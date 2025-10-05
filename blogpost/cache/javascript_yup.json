@@ -1,0 +1,160 @@
+{
+  "nodes": [
+    {
+      "id": "tiny-case",
+      "meta": {
+        "author": "Jason Quense",
+        "description": "Tiny Casing utils",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2023-09-25",
+        "repo_maintainers": [
+          "jquense",
+          "Tralafarlaw",
+          "v-jiepeng"
+        ],
+        "repo_owner": "jquense",
+        "repo_stars": 6,
+        "repo_url": "https://github.com/jquense/tiny-case",
+        "version": "1.0.3"
+      }
+    },
+    {
+      "id": "toposort",
+      "meta": {
+        "author": "Marcel Klehr",
+        "description": "Topological sort of directed ascyclic graphs (like dependecy lists)",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2023-07-10",
+        "repo_last_release": "0001-01-01",
+        "repo_owner": "marcelklehr",
+        "repo_stars": 307,
+        "repo_topics": [
+          "directed-edges",
+          "edges",
+          "javascript",
+          "toposort",
+          "vertices"
+        ],
+        "repo_url": "https://github.com/marcelklehr/toposort#readme",
+        "version": "2.0.2"
+      }
+    },
+    {
+      "id": "tagged-tag",
+      "meta": {
+        "author": "Sindre Sorhus",
+        "description": "Unique tag for use in the type-fest Tagged type",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_last_commit": "2025-05-12",
+        "repo_last_release": "2025-05-12",
+        "repo_maintainers": [
+          "sindresorhus"
+        ],
+        "repo_owner": "sindresorhus",
+        "repo_stars": 19,
+        "repo_url": "https://github.com/sindresorhus/tagged-tag",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "yup",
+      "meta": {
+        "author": "@monasticpanic Jason Quense",
+        "description": "Dead simple Object schema validation",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2025-11-23",
+        "repo_last_release": "2023-02-08",
+        "repo_maintainers": [
+          "jquense",
+          "renovate-bot",
+          "vonagam",
+          "fakenickels"
+        ],
+        "repo_owner": "jquense",
+        "repo_stars": 23645,
+        "repo_url": "https://github.com/jquense/yup",
+        "version": "1.7.1"
+      }
+    },
+    {
+      "id": "type-fest",
+      "meta": {
+        "author": "Sindre Sorhus",
+        "description": "A collection of essential TypeScript types",
+        "license": "(MIT OR CC0-1.0)",
+        "repo_archived": false,
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2025-11-29",
+        "repo_last_release": "2025-11-03",
+        "repo_maintainers": [
+          "sindresorhus",
+          "som-sm",
+          "Emiyaaaaa",
+          "skarab42",
+          "voxpelli"
+        ],
+        "repo_owner": "sindresorhus",
+        "repo_stars": 16544,
+        "repo_topics": [
+          "npm-package",
+          "types",
+          "typescript",
+          "typescript-definitions",
+          "utilities"
+        ],
+        "repo_url": "https://github.com/sindresorhus/type-fest",
+        "version": "5.2.0"
+      }
+    },
+    {
+      "id": "property-expr",
+      "meta": {
+        "author": "@monasticpanic Jason Quense",
+        "description": "tiny util for getting and setting deep object props safely",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-03-21",
+        "repo_maintainers": [
+          "jquense",
+          "corydeppen",
+          "anaekin",
+          "radiosilence"
+        ],
+        "repo_owner": "jquense",
+        "repo_stars": 26,
+        "repo_url": "https://github.com/jquense/expr",
+        "version": "2.0.6"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "yup",
+      "to": "type-fest"
+    },
+    {
+      "from": "yup",
+      "to": "property-expr"
+    },
+    {
+      "from": "yup",
+      "to": "tiny-case"
+    },
+    {
+      "from": "yup",
+      "to": "toposort"
+    },
+    {
+      "from": "type-fest",
+      "to": "tagged-tag"
+    }
+  ]
+}

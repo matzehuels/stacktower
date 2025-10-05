@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "name": "bridge",
+    "description": "Two separate chains connected by a single bridge node"
+  },
+  "nodes": [
+    {
+      "id": "bridge",
+      "meta": {
+        "version": "3.0.0",
+        "summary": "Unified data access layer",
+        "license": "MIT",
+        "repo_stars": 5600
+      }
+    },
+    {
+      "id": "left-top",
+      "meta": {
+        "version": "1.2.0",
+        "summary": "Left chain query builder",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "left-mid",
+      "meta": {
+        "version": "1.1.0",
+        "summary": "Left chain ORM layer",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "left-base",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "Left chain database driver",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "right-top",
+      "meta": {
+        "version": "2.2.0",
+        "summary": "Right chain cache decorator",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "right-mid",
+      "meta": {
+        "version": "2.1.0",
+        "summary": "Right chain cache manager",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "right-base",
+      "meta": {
+        "version": "2.0.0",
+        "summary": "Right chain cache driver",
+        "license": "Apache-2.0"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "left-mid",
+      "to": "left-base"
+    },
+    {
+      "from": "left-top",
+      "to": "left-mid"
+    },
+    {
+      "from": "right-mid",
+      "to": "right-base"
+    },
+    {
+      "from": "right-top",
+      "to": "right-mid"
+    },
+    {
+      "from": "bridge",
+      "to": "left-top"
+    },
+    {
+      "from": "bridge",
+      "to": "right-top"
+    }
+  ]
+}

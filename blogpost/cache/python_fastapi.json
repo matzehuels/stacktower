@@ -1,0 +1,355 @@
+{
+  "nodes": [
+    {
+      "id": "starlette",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-11-01",
+        "repo_maintainers": [
+          "lovelydinosaur",
+          "Kludex",
+          "aminalaee",
+          "adriangb"
+        ],
+        "repo_owner": "Kludex",
+        "repo_stars": 11709,
+        "repo_topics": [
+          "asgi",
+          "async",
+          "http",
+          "python",
+          "websockets"
+        ],
+        "repo_url": "https://github.com/Kludex/starlette",
+        "summary": "The little ASGI library that shines.",
+        "version": "0.50.0"
+      }
+    },
+    {
+      "id": "pydantic",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-30",
+        "repo_last_release": "2025-11-26",
+        "repo_maintainers": [
+          "samuelcolvin",
+          "Viicos",
+          "sydney-runkle",
+          "dmontagu"
+        ],
+        "repo_owner": "pydantic",
+        "repo_stars": 25983,
+        "repo_topics": [
+          "hints",
+          "json-schema",
+          "parsing",
+          "pydantic",
+          "python",
+          "python310",
+          "python311",
+          "python312",
+          "python313",
+          "python39",
+          "validation"
+        ],
+        "repo_url": "https://github.com/pydantic/pydantic",
+        "summary": "Data validation using Python type hints",
+        "version": "2.12.5"
+      }
+    },
+    {
+      "id": "typing-extensions",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-18",
+        "repo_last_release": "2025-08-25",
+        "repo_maintainers": [
+          "JelleZijlstra",
+          "AlexWaygood",
+          "srittau",
+          "brianschubert",
+          "Daraan"
+        ],
+        "repo_owner": "python",
+        "repo_stars": 537,
+        "repo_url": "https://github.com/python/typing_extensions",
+        "summary": "Backported and Experimental Type Hints for Python 3.9+",
+        "version": "4.15.0"
+      }
+    },
+    {
+      "id": "annotated-types",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-10",
+        "repo_last_release": "2024-05-20",
+        "repo_maintainers": [
+          "adriangb",
+          "samuelcolvin",
+          "Zac-HD",
+          "hugovk",
+          "Viicos"
+        ],
+        "repo_owner": "annotated-types",
+        "repo_stars": 583,
+        "repo_url": "https://github.com/annotated-types/annotated-types",
+        "summary": "Reusable constraint types to use with typing.Annotated",
+        "version": "0.7.0"
+      }
+    },
+    {
+      "id": "typing-inspection",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-10-01",
+        "repo_last_release": "2025-10-01",
+        "repo_maintainers": [
+          "Viicos",
+          "samuelcolvin",
+          "cdce8p"
+        ],
+        "repo_owner": "pydantic",
+        "repo_stars": 56,
+        "repo_url": "https://github.com/pydantic/typing-inspection",
+        "summary": "Runtime typing introspection tools",
+        "version": "0.4.2"
+      }
+    },
+    {
+      "id": "exceptiongroup",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-21",
+        "repo_last_release": "2025-11-21",
+        "repo_maintainers": [
+          "agronholm",
+          "jakkdl",
+          "Zac-HD",
+          "cfbolz"
+        ],
+        "repo_owner": "agronholm",
+        "repo_stars": 48,
+        "repo_url": "https://github.com/agronholm/exceptiongroup",
+        "summary": "Backport of PEP 654 (exception groups)",
+        "version": "1.3.1"
+      }
+    },
+    {
+      "id": "fastapi",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-11-30",
+        "repo_maintainers": [
+          "tiangolo",
+          "alejsdev"
+        ],
+        "repo_owner": "fastapi",
+        "repo_stars": 92526,
+        "repo_topics": [
+          "api",
+          "async",
+          "asyncio",
+          "fastapi",
+          "framework",
+          "json",
+          "json-schema",
+          "openapi",
+          "openapi3",
+          "pydantic",
+          "python",
+          "python-types",
+          "python3",
+          "redoc",
+          "rest",
+          "starlette",
+          "swagger",
+          "swagger-ui",
+          "uvicorn",
+          "web"
+        ],
+        "repo_url": "https://github.com/fastapi/fastapi",
+        "summary": "FastAPI framework, high performance, easy to learn, fast to code, ready for production",
+        "version": "0.123.0"
+      }
+    },
+    {
+      "id": "annotated-doc",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-25",
+        "repo_last_release": "2025-11-10",
+        "repo_maintainers": [
+          "tiangolo",
+          "svlandeg",
+          "musicinmybrain"
+        ],
+        "repo_owner": "fastapi",
+        "repo_stars": 59,
+        "repo_url": "https://github.com/fastapi/annotated-doc",
+        "summary": "Document parameters, class attributes, return types, and variables inline, with Annotated.",
+        "version": "0.0.4"
+      }
+    },
+    {
+      "id": "anyio",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-29",
+        "repo_last_release": "2025-11-30",
+        "repo_maintainers": [
+          "agronholm",
+          "graingert",
+          "gschaffner",
+          "davidbrochart"
+        ],
+        "repo_owner": "agronholm",
+        "repo_stars": 2309,
+        "repo_topics": [
+          "async-await",
+          "asyncio",
+          "trio"
+        ],
+        "repo_url": "https://github.com/agronholm/anyio",
+        "summary": "High-level concurrency and networking framework on top of asyncio or Trio",
+        "version": "4.12.0"
+      }
+    },
+    {
+      "id": "pydantic-core",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-10",
+        "repo_last_release": "2025-11-04",
+        "repo_maintainers": [
+          "samuelcolvin",
+          "davidhewitt",
+          "adriangb",
+          "sydney-runkle"
+        ],
+        "repo_owner": "pydantic",
+        "repo_stars": 1730,
+        "repo_topics": [
+          "json-schema",
+          "parsing",
+          "pydantic",
+          "rust",
+          "schema",
+          "validation"
+        ],
+        "repo_url": "https://github.com/pydantic/pydantic-core",
+        "summary": "Core functionality for Pydantic validation and serialization",
+        "version": "2.41.5"
+      }
+    },
+    {
+      "id": "idna",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-10-20",
+        "repo_last_release": "2025-10-12",
+        "repo_maintainers": [
+          "kjd",
+          "hugovk",
+          "jdufresne",
+          "jribbens",
+          "slingamn"
+        ],
+        "repo_owner": "kjd",
+        "repo_stars": 267,
+        "repo_topics": [
+          "dns",
+          "hacktoberfest",
+          "idna",
+          "python",
+          "unicode"
+        ],
+        "repo_url": "https://github.com/kjd/idna",
+        "summary": "Internationalized Domain Names in Applications (IDNA)",
+        "version": "3.11"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "fastapi",
+      "to": "starlette"
+    },
+    {
+      "from": "fastapi",
+      "to": "pydantic"
+    },
+    {
+      "from": "fastapi",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "fastapi",
+      "to": "annotated-doc"
+    },
+    {
+      "from": "starlette",
+      "to": "anyio"
+    },
+    {
+      "from": "starlette",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "pydantic",
+      "to": "annotated-types"
+    },
+    {
+      "from": "pydantic",
+      "to": "pydantic-core"
+    },
+    {
+      "from": "pydantic",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "pydantic",
+      "to": "typing-inspection"
+    },
+    {
+      "from": "anyio",
+      "to": "exceptiongroup"
+    },
+    {
+      "from": "anyio",
+      "to": "idna"
+    },
+    {
+      "from": "anyio",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "pydantic-core",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "annotated-types",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "typing-inspection",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "exceptiongroup",
+      "to": "typing-extensions"
+    }
+  ]
+}

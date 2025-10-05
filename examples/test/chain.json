@@ -1,0 +1,78 @@
+{
+  "metadata": {
+    "name": "chain",
+    "description": "Linear dependency chain testing rank assignment"
+  },
+  "nodes": [
+    {
+      "id": "app",
+      "meta": {
+        "version": "3.1.0",
+        "summary": "Example application",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "sdk",
+      "meta": {
+        "version": "3.0.0",
+        "summary": "Developer SDK",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "framework",
+      "meta": {
+        "version": "2.1.0",
+        "summary": "Application framework",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "runtime",
+      "meta": {
+        "version": "2.0.0",
+        "summary": "Async runtime implementation",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "primitives",
+      "meta": {
+        "version": "1.1.0",
+        "summary": "Low-level type primitives",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "foundation",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "Core foundation primitives",
+        "license": "Apache-2.0"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "primitives",
+      "to": "foundation"
+    },
+    {
+      "from": "runtime",
+      "to": "primitives"
+    },
+    {
+      "from": "framework",
+      "to": "runtime"
+    },
+    {
+      "from": "sdk",
+      "to": "framework"
+    },
+    {
+      "from": "app",
+      "to": "sdk"
+    }
+  ]
+}

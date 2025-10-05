@@ -1,0 +1,131 @@
+{
+  "metadata": {
+    "name": "mesh",
+    "description": "Dense mesh with many cross-dependencies"
+  },
+  "nodes": [
+    {
+      "id": "api-a",
+      "meta": {
+        "version": "3.0.0",
+        "summary": "User API gateway",
+        "license": "MIT",
+        "repo_stars": 4200
+      }
+    },
+    {
+      "id": "api-b",
+      "meta": {
+        "version": "3.1.0",
+        "summary": "Session API gateway",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "api-c",
+      "meta": {
+        "version": "3.2.0",
+        "summary": "Analytics API gateway",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "service-a",
+      "meta": {
+        "version": "2.0.0",
+        "summary": "User service",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "service-b",
+      "meta": {
+        "version": "2.1.0",
+        "summary": "Session service",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "data-b",
+      "meta": {
+        "version": "1.1.0",
+        "summary": "Session data store",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "service-c",
+      "meta": {
+        "version": "2.2.0",
+        "summary": "Analytics service",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "data-a",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "User data store",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "data-c",
+      "meta": {
+        "version": "1.2.0",
+        "summary": "Analytics data store",
+        "license": "Apache-2.0"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "service-a",
+      "to": "data-a"
+    },
+    {
+      "from": "service-a",
+      "to": "data-b"
+    },
+    {
+      "from": "service-b",
+      "to": "data-b"
+    },
+    {
+      "from": "service-b",
+      "to": "data-c"
+    },
+    {
+      "from": "service-c",
+      "to": "data-a"
+    },
+    {
+      "from": "service-c",
+      "to": "data-c"
+    },
+    {
+      "from": "api-a",
+      "to": "service-a"
+    },
+    {
+      "from": "api-a",
+      "to": "service-b"
+    },
+    {
+      "from": "api-b",
+      "to": "service-b"
+    },
+    {
+      "from": "api-b",
+      "to": "service-c"
+    },
+    {
+      "from": "api-c",
+      "to": "service-a"
+    },
+    {
+      "from": "api-c",
+      "to": "service-c"
+    }
+  ]
+}

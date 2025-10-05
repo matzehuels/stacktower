@@ -1,0 +1,331 @@
+{
+  "nodes": [
+    {
+      "id": "sonic-boom",
+      "meta": {
+        "author": "Matteo Collina",
+        "description": "Extremely fast utf8 only stream implementation",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2024-10-15",
+        "repo_maintainers": [
+          "mcollina",
+          "Fdawgs",
+          "kibertoad",
+          "ronag"
+        ],
+        "repo_owner": "pinojs",
+        "repo_stars": 302,
+        "repo_url": "https://github.com/pinojs/sonic-boom",
+        "version": "4.2.0"
+      }
+    },
+    {
+      "id": "real-require",
+      "meta": {
+        "author": "Paolo Insogna",
+        "description": "Keep require and import consistent after bundling or transpiling",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2023-12-01",
+        "repo_last_release": "2022-07-25",
+        "repo_maintainers": [
+          "Fdawgs",
+          "ShogunPanda",
+          "mcollina",
+          "jsumners"
+        ],
+        "repo_owner": "pinojs",
+        "repo_stars": 9,
+        "repo_url": "https://github.com/pinojs/real-require",
+        "version": "0.2.0"
+      }
+    },
+    {
+      "id": "pino",
+      "meta": {
+        "author": "Matteo Collina",
+        "description": "super fast, all natural json logger",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-10-18",
+        "repo_maintainers": [
+          "mcollina",
+          "jsumners",
+          "davidmarkclements",
+          "Fdawgs"
+        ],
+        "repo_owner": "pinojs",
+        "repo_stars": 16906,
+        "repo_topics": [
+          "fast",
+          "json",
+          "logger",
+          "nodejs",
+          "pino"
+        ],
+        "repo_url": "https://github.com/pinojs/pino",
+        "version": "10.1.0"
+      }
+    },
+    {
+      "id": "thread-stream",
+      "meta": {
+        "author": "Matteo Collina",
+        "description": "A streaming way to send data to a Node.js Worker Thread",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2024-06-13",
+        "repo_maintainers": [
+          "mcollina",
+          "Fdawgs",
+          "ronag",
+          "ggrossetie"
+        ],
+        "repo_owner": "mcollina",
+        "repo_stars": 247,
+        "repo_url": "https://github.com/mcollina/thread-stream",
+        "version": "3.1.0"
+      }
+    },
+    {
+      "id": "on-exit-leak-free",
+      "meta": {
+        "author": "Matteo Collina",
+        "description": "Execute a function on exit without leaking memory, allowing all objects to be garbage collected",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-04-28",
+        "repo_last_release": "2023-10-03",
+        "repo_maintainers": [
+          "mcollina",
+          "glensc",
+          "pH-7"
+        ],
+        "repo_owner": "mcollina",
+        "repo_stars": 145,
+        "repo_url": "https://github.com/mcollina/on-exit-or-gc",
+        "version": "2.1.2"
+      }
+    },
+    {
+      "id": "process-warning",
+      "meta": {
+        "author": "Tomas Della Vedova",
+        "description": "A small utility for creating warnings and emitting them.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-10-17",
+        "repo_last_release": "0001-01-01",
+        "repo_owner": "fastify",
+        "repo_stars": 38,
+        "repo_topics": [
+          "fastify-library"
+        ],
+        "repo_url": "https://github.com/fastify/fastify-warning#readme",
+        "version": "5.0.0"
+      }
+    },
+    {
+      "id": "quick-format-unescaped",
+      "meta": {
+        "author": "David Mark Clements",
+        "description": "Solves a problem with util.format",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2022-03-19",
+        "repo_maintainers": [
+          "davidmarkclements",
+          "jsumners",
+          "mcollina",
+          "commenthol",
+          "climba03003"
+        ],
+        "repo_owner": "davidmarkclements",
+        "repo_stars": 17,
+        "repo_url": "https://github.com/davidmarkclements/quick-format",
+        "version": "4.0.4"
+      }
+    },
+    {
+      "id": "atomic-sleep",
+      "meta": {
+        "author": "David Mark Clements",
+        "description": "Zero CPU overhead, zero dependency, true event-loop blocking sleep",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2020-03-11",
+        "repo_owner": "davidmarkclements",
+        "repo_stars": 84,
+        "repo_url": "https://github.com/davidmarkclements/atomic-sleep",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "pino-std-serializers",
+      "meta": {
+        "author": "James Sumners",
+        "description": "A collection of standard object serializers for Pino",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "0001-01-01",
+        "repo_owner": "pinojs",
+        "repo_stars": 72,
+        "repo_url": "https://github.com/pinojs/pino-std-serializers#readme",
+        "version": "7.0.0"
+      }
+    },
+    {
+      "id": "split2",
+      "meta": {
+        "author": "Matteo Collina",
+        "description": "split a Text Stream into a Line Stream, using Stream 3",
+        "license": "ISC",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-06-10",
+        "repo_last_release": "2023-03-26",
+        "repo_maintainers": [
+          "mcollina",
+          "mafintosh",
+          "vsemozhetbyt"
+        ],
+        "repo_owner": "mcollina",
+        "repo_stars": 293,
+        "repo_url": "https://github.com/mcollina/split2",
+        "version": "4.2.0"
+      }
+    },
+    {
+      "id": "pino-abstract-transport",
+      "meta": {
+        "author": "Matteo Collina",
+        "description": "Write Pino transports easily",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-10-06",
+        "repo_last_release": "2025-10-06",
+        "repo_maintainers": [
+          "mcollina",
+          "Fdawgs",
+          "10xLaCroixDrinker",
+          "jsumners"
+        ],
+        "repo_owner": "pinojs",
+        "repo_stars": 40,
+        "repo_url": "https://github.com/pinojs/pino-abstract-transport",
+        "version": "3.0.0"
+      }
+    },
+    {
+      "id": "safe-stable-stringify",
+      "meta": {
+        "author": "Ruben Bridgewater",
+        "description": "Deterministic and safely JSON.stringify to quickly serialize JavaScript objects",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-04-14",
+        "repo_last_release": "0001-01-01",
+        "repo_owner": "BridgeAR",
+        "repo_stars": 235,
+        "repo_url": "https://github.com/BridgeAR/safe-stable-stringify#readme",
+        "version": "2.5.0"
+      }
+    },
+    {
+      "id": "@pinojs/redact",
+      "meta": {
+        "author": "Matteo Collina",
+        "description": "Redact JS objects",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-10-14",
+        "repo_maintainers": [
+          "mcollina",
+          "Fdawgs",
+          "jsumners",
+          "samchungy"
+        ],
+        "repo_owner": "pinojs",
+        "repo_stars": 16,
+        "repo_url": "https://github.com/pinojs/redact",
+        "version": "0.4.0"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "pino",
+      "to": "thread-stream"
+    },
+    {
+      "from": "pino",
+      "to": "on-exit-leak-free"
+    },
+    {
+      "from": "pino",
+      "to": "pino-abstract-transport"
+    },
+    {
+      "from": "pino",
+      "to": "process-warning"
+    },
+    {
+      "from": "pino",
+      "to": "quick-format-unescaped"
+    },
+    {
+      "from": "pino",
+      "to": "safe-stable-stringify"
+    },
+    {
+      "from": "pino",
+      "to": "@pinojs/redact"
+    },
+    {
+      "from": "pino",
+      "to": "sonic-boom"
+    },
+    {
+      "from": "pino",
+      "to": "atomic-sleep"
+    },
+    {
+      "from": "pino",
+      "to": "pino-std-serializers"
+    },
+    {
+      "from": "pino",
+      "to": "real-require"
+    },
+    {
+      "from": "sonic-boom",
+      "to": "atomic-sleep"
+    },
+    {
+      "from": "thread-stream",
+      "to": "real-require"
+    },
+    {
+      "from": "pino-abstract-transport",
+      "to": "split2"
+    }
+  ]
+}

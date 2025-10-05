@@ -1,0 +1,159 @@
+{
+  "nodes": [
+    {
+      "id": "requests",
+      "meta": {
+        "author": "Kenneth Reitz",
+        "license": "Apache-2.0",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-08-18",
+        "repo_maintainers": [
+          "kennethreitz",
+          "Lukasa",
+          "sigmavirus24",
+          "nateprewitt",
+          "slingamn"
+        ],
+        "repo_owner": "psf",
+        "repo_stars": 53530,
+        "repo_topics": [
+          "client",
+          "cookies",
+          "forhumans",
+          "http",
+          "humans",
+          "python",
+          "python-requests",
+          "requests"
+        ],
+        "repo_url": "https://github.com/psf/requests",
+        "summary": "Python HTTP for Humans.",
+        "version": "2.32.5"
+      }
+    },
+    {
+      "id": "charset-normalizer",
+      "meta": {
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-10-14",
+        "repo_maintainers": [
+          "Ousret",
+          "adbar",
+          "deedy5",
+          "akx"
+        ],
+        "repo_owner": "jawah",
+        "repo_stars": 719,
+        "repo_topics": [
+          "chardet",
+          "charset-conversion",
+          "charset-detection",
+          "encoding",
+          "python",
+          "unicode"
+        ],
+        "repo_url": "https://github.com/jawah/charset_normalizer",
+        "summary": "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet.",
+        "version": "3.4.4"
+      }
+    },
+    {
+      "id": "idna",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-10-20",
+        "repo_last_release": "2025-10-12",
+        "repo_maintainers": [
+          "kjd",
+          "hugovk",
+          "jdufresne",
+          "jribbens",
+          "slingamn"
+        ],
+        "repo_owner": "kjd",
+        "repo_stars": 267,
+        "repo_topics": [
+          "dns",
+          "hacktoberfest",
+          "idna",
+          "python",
+          "unicode"
+        ],
+        "repo_url": "https://github.com/kjd/idna",
+        "summary": "Internationalized Domain Names in Applications (IDNA)",
+        "version": "3.11"
+      }
+    },
+    {
+      "id": "urllib3",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-06-18",
+        "repo_maintainers": [
+          "shazow",
+          "Lukasa",
+          "sethmlarson",
+          "pquentin",
+          "t-8ch"
+        ],
+        "repo_owner": "urllib3",
+        "repo_stars": 3970,
+        "repo_topics": [
+          "http",
+          "http-client",
+          "python",
+          "urllib3"
+        ],
+        "repo_url": "https://github.com/urllib3/urllib3",
+        "summary": "HTTP library with thread-safe connection pooling, file post, and more.",
+        "version": "2.5.0"
+      }
+    },
+    {
+      "id": "certifi",
+      "meta": {
+        "author": "Kenneth Reitz",
+        "license": "MPL-2.0",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-24",
+        "repo_maintainers": [
+          "Lukasa",
+          "alex",
+          "sigmavirus24"
+        ],
+        "repo_owner": "certifi",
+        "repo_stars": 939,
+        "repo_url": "https://github.com/certifi/python-certifi",
+        "summary": "Python package for providing Mozilla's CA Bundle.",
+        "version": "2025.11.12"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "requests",
+      "to": "charset-normalizer"
+    },
+    {
+      "from": "requests",
+      "to": "idna"
+    },
+    {
+      "from": "requests",
+      "to": "urllib3"
+    },
+    {
+      "from": "requests",
+      "to": "certifi"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200.0 200.0" width="200" height="200">
+<rect id="block-App" class="block" x="10.00" y="10.00" width="180.00" height="60.00" rx="18.0" ry="18.0" fill="white" stroke="#333" stroke-width="1"/>
+<rect id="block-Auth" class="block" x="10.00" y="70.00" width="90.00" height="60.00" rx="18.0" ry="18.0" fill="white" stroke="#333" stroke-width="1"/>
+<rect id="block-Cache" class="block" x="100.00" y="70.00" width="90.00" height="60.00" rx="18.0" ry="18.0" fill="white" stroke="#333" stroke-width="1"/>
+<rect id="block-Core" class="block" x="10.00" y="130.00" width="180.00" height="60.00" rx="18.0" ry="18.0" fill="white" stroke="#333" stroke-width="1"/>
+  <g class="block-text" data-block="App">
+    <rect x="78.40" y="25.60" width="43.20" height="28.80" fill="white"/>
+    <text x="100.00" y="40.00" text-anchor="middle" dominant-baseline="middle" font-family="Times,serif" font-size="24.0" fill="#333">App</text>
+  </g>
+  <g class="block-text" data-block="Auth">
+    <rect x="26.20" y="85.60" width="57.60" height="28.80" fill="white"/>
+    <text x="55.00" y="100.00" text-anchor="middle" dominant-baseline="middle" font-family="Times,serif" font-size="24.0" fill="#333">Auth</text>
+  </g>
+  <g class="block-text" data-block="Cache">
+    <rect x="109.00" y="85.60" width="72.00" height="28.80" fill="white"/>
+    <text x="145.00" y="100.00" text-anchor="middle" dominant-baseline="middle" font-family="Times,serif" font-size="24.0" fill="#333">Cache</text>
+  </g>
+  <g class="block-text" data-block="Core">
+    <rect x="71.20" y="145.60" width="57.60" height="28.80" fill="white"/>
+    <text x="100.00" y="160.00" text-anchor="middle" dominant-baseline="middle" font-family="Times,serif" font-size="24.0" fill="#333">Core</text>
+  </g>
+</svg>

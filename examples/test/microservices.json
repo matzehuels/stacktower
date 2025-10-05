@@ -1,0 +1,117 @@
+{
+  "metadata": {
+    "name": "microservices",
+    "description": "Microservices architecture with shared infrastructure"
+  },
+  "nodes": [
+    {
+      "id": "external-api",
+      "meta": {
+        "version": "3.3.0",
+        "summary": "External API HTTP client",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "logger",
+      "meta": {
+        "version": "3.2.0",
+        "summary": "Structured JSON logger",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "message-queue",
+      "meta": {
+        "version": "2.0.0",
+        "summary": "RabbitMQ client library",
+        "license": "Apache-2.0",
+        "repo_stars": 8500
+      }
+    },
+    {
+      "id": "metrics",
+      "meta": {
+        "version": "3.1.0",
+        "summary": "Prometheus metrics exporter",
+        "license": "Apache-2.0",
+        "repo_stars": 4200
+      }
+    },
+    {
+      "id": "user-db",
+      "meta": {
+        "version": "3.0.0",
+        "summary": "User database ORM",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "analytics",
+      "meta": {
+        "version": "2.1.0",
+        "summary": "Analytics event processor",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "web-server",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "HTTP server with routing",
+        "license": "MIT",
+        "repo_stars": 15000
+      }
+    },
+    {
+      "id": "worker-pool",
+      "meta": {
+        "version": "1.1.0",
+        "summary": "Background job processor",
+        "license": "MIT"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "user-db",
+      "to": "web-server"
+    },
+    {
+      "from": "message-queue",
+      "to": "web-server"
+    },
+    {
+      "from": "logger",
+      "to": "web-server"
+    },
+    {
+      "from": "metrics",
+      "to": "web-server"
+    },
+    {
+      "from": "message-queue",
+      "to": "worker-pool"
+    },
+    {
+      "from": "analytics",
+      "to": "worker-pool"
+    },
+    {
+      "from": "external-api",
+      "to": "worker-pool"
+    },
+    {
+      "from": "logger",
+      "to": "worker-pool"
+    },
+    {
+      "from": "user-db",
+      "to": "analytics"
+    },
+    {
+      "from": "metrics",
+      "to": "analytics"
+    }
+  ]
+}

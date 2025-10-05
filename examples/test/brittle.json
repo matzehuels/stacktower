@@ -1,0 +1,33 @@
+{
+  "nodes": [
+    {
+      "id": "old-package",
+      "meta": {
+        "repo_last_commit": "2020-01-01",
+        "repo_stars": 50,
+        "repo_maintainers": ["solo-dev"]
+      }
+    },
+    {
+      "id": "archived-package",
+      "meta": {
+        "repo_archived": true,
+        "repo_last_commit": "2023-01-01",
+        "repo_stars": 1000,
+        "repo_maintainers": ["dev1", "dev2", "dev3"]
+      }
+    },
+    {
+      "id": "healthy-package",
+      "meta": {
+        "repo_last_commit": "2025-11-01",
+        "repo_stars": 5000,
+        "repo_maintainers": ["dev1", "dev2", "dev3", "dev4"]
+      }
+    }
+  ],
+  "edges": [
+    {"from": "healthy-package", "to": "old-package"},
+    {"from": "healthy-package", "to": "archived-package"}
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "name": "layered",
+    "description": "Classic multi-tier architecture pattern"
+  },
+  "nodes": [
+    {
+      "id": "cache",
+      "meta": {
+        "version": "3.1.0",
+        "summary": "Redis cache client",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "database",
+      "meta": {
+        "version": "3.0.0",
+        "summary": "PostgreSQL driver",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "auth",
+      "meta": {
+        "version": "2.1.0",
+        "summary": "OAuth2 authentication service",
+        "license": "Apache-2.0",
+        "repo_stars": 5800
+      }
+    },
+    {
+      "id": "gateway",
+      "meta": {
+        "version": "2.0.0",
+        "summary": "API gateway with rate limiting",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "frontend",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "React frontend application",
+        "license": "MIT",
+        "repo_stars": 2400
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "gateway",
+      "to": "frontend"
+    },
+    {
+      "from": "auth",
+      "to": "frontend"
+    },
+    {
+      "from": "database",
+      "to": "gateway"
+    },
+    {
+      "from": "cache",
+      "to": "gateway"
+    },
+    {
+      "from": "database",
+      "to": "auth"
+    }
+  ]
+}

@@ -1,0 +1,327 @@
+{
+  "nodes": [
+    {
+      "id": "@ioredis/commands",
+      "meta": {
+        "author": "Zihua Li",
+        "description": "Redis commands",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-11-03",
+        "repo_last_release": "2025-11-03",
+        "repo_maintainers": [
+          "ioredis-robot",
+          "luin",
+          "AlBlanc",
+          "pinkiesky",
+          "mlb5000"
+        ],
+        "repo_owner": "ioredis",
+        "repo_stars": 9,
+        "repo_url": "https://github.com/ioredis/commands",
+        "version": "1.5.0"
+      }
+    },
+    {
+      "id": "cluster-key-slot",
+      "meta": {
+        "author": "Mike Diarmid",
+        "description": "Generates CRC hashes for strings - for use by node redis clients to determine key slots.",
+        "license": "Apache-2.0",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2022-11-01",
+        "repo_last_release": "2019-07-18",
+        "repo_maintainers": [
+          "Salakar",
+          "Ehesp",
+          "indeyets",
+          "luin"
+        ],
+        "repo_owner": "Salakar",
+        "repo_stars": 22,
+        "repo_url": "https://github.com/Salakar/cluster-key-slot",
+        "version": "1.1.2"
+      }
+    },
+    {
+      "id": "lodash.defaults",
+      "meta": {
+        "author": "John-David Dalton",
+        "description": "The lodash method `_.defaults` exported as a module.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-11-19",
+        "repo_last_release": "2016-01-12",
+        "repo_maintainers": [
+          "jdalton",
+          "jashkenas",
+          "greenkeeperio-bot",
+          "bnjmnt4n",
+          "braddunbar"
+        ],
+        "repo_owner": "lodash",
+        "repo_stars": 61438,
+        "repo_topics": [
+          "javascript",
+          "lodash",
+          "modules",
+          "utilities"
+        ],
+        "repo_url": "https://github.com/lodash/lodash",
+        "version": "4.2.0"
+      }
+    },
+    {
+      "id": "redis-parser",
+      "meta": {
+        "author": "Ruben Bridgewater",
+        "description": "Javascript Redis protocol (RESP) parser",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2020-06-01",
+        "repo_last_release": "2018-07-06",
+        "repo_maintainers": [
+          "BridgeAR",
+          "Salakar",
+          "CKarper",
+          "jjofseattle"
+        ],
+        "repo_owner": "NodeRedis",
+        "repo_stars": 88,
+        "repo_topics": [
+          "node-redis",
+          "redis-parser",
+          "resp"
+        ],
+        "repo_url": "https://github.com/NodeRedis/node-redis-parser",
+        "version": "3.0.0"
+      }
+    },
+    {
+      "id": "debug",
+      "meta": {
+        "author": "Josh Junon",
+        "description": "Lightweight debugging utility for Node.js and the browser",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-09-13",
+        "repo_last_release": "2025-09-13",
+        "repo_maintainers": [
+          "TooTallNate",
+          "tj",
+          "Qix-",
+          "thebigredgeek",
+          "yamikuronue"
+        ],
+        "repo_owner": "debug-js",
+        "repo_stars": 11399,
+        "repo_topics": [
+          "browser",
+          "debug",
+          "debugging",
+          "javascript",
+          "logging",
+          "node",
+          "node-js"
+        ],
+        "repo_url": "https://github.com/debug-js/debug",
+        "version": "4.4.3"
+      }
+    },
+    {
+      "id": "denque",
+      "meta": {
+        "author": "Invertase",
+        "description": "The fastest javascript implementation of a double-ended queue. Used by the official Redis, MongoDB, MariaDB \u0026 MySQL libraries for Node.js and many other libraries. Maintains compatability with deque.",
+        "license": "Apache-2.0",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2023-03-04",
+        "repo_last_release": "2021-08-31",
+        "repo_maintainers": [
+          "Salakar",
+          "dnlmlr",
+          "noevents",
+          "BrandonWilliamsCS"
+        ],
+        "repo_owner": "invertase",
+        "repo_stars": 369,
+        "repo_url": "https://github.com/invertase/denque",
+        "version": "2.1.0"
+      }
+    },
+    {
+      "id": "lodash.isarguments",
+      "meta": {
+        "author": "John-David Dalton",
+        "description": "The lodash method `_.isArguments` exported as a module.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-11-19",
+        "repo_last_release": "2016-01-12",
+        "repo_maintainers": [
+          "jdalton",
+          "jashkenas",
+          "greenkeeperio-bot",
+          "bnjmnt4n",
+          "braddunbar"
+        ],
+        "repo_owner": "lodash",
+        "repo_stars": 61438,
+        "repo_topics": [
+          "javascript",
+          "lodash",
+          "modules",
+          "utilities"
+        ],
+        "repo_url": "https://github.com/lodash/lodash",
+        "version": "3.1.0"
+      }
+    },
+    {
+      "id": "redis-errors",
+      "meta": {
+        "author": "Ruben Bridgewater",
+        "description": "Error classes used in node_redis",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2017-06-01",
+        "repo_maintainers": [
+          "BridgeAR"
+        ],
+        "repo_owner": "NodeRedis",
+        "repo_stars": 6,
+        "repo_url": "https://github.com/NodeRedis/redis-errors",
+        "version": "1.2.0"
+      }
+    },
+    {
+      "id": "standard-as-callback",
+      "meta": {
+        "author": "luin",
+        "description": "A performant and standard (Bluebird) library that registers a node-style callback on a promise",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-06-16",
+        "repo_last_release": "0001-01-01",
+        "repo_owner": "luin",
+        "repo_stars": 0,
+        "repo_url": "https://github.com/luin/asCallback#readme",
+        "version": "2.1.0"
+      }
+    },
+    {
+      "id": "ms",
+      "meta": {
+        "description": "Tiny millisecond conversion utility",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2025-11-18",
+        "repo_last_release": "2020-12-08",
+        "repo_maintainers": [
+          "leo",
+          "rauchg",
+          "dimitropoulos",
+          "tj",
+          "styfle"
+        ],
+        "repo_owner": "vercel",
+        "repo_stars": 5465,
+        "repo_topics": [
+          "conversion",
+          "milliseconds",
+          "utility"
+        ],
+        "repo_url": "https://github.com/vercel/ms",
+        "version": "2.1.3"
+      }
+    },
+    {
+      "id": "ioredis",
+      "meta": {
+        "author": "Zihua Li",
+        "description": "A robust, performance-focused and full-featured Redis client for Node.js.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2025-11-19",
+        "repo_last_release": "2025-10-21",
+        "repo_maintainers": [
+          "luin",
+          "semantic-release-bot",
+          "ioredis-robot",
+          "marcbachmann",
+          "shaharmor"
+        ],
+        "repo_owner": "luin",
+        "repo_stars": 15126,
+        "repo_topics": [
+          "nodejs",
+          "redis",
+          "redis-client",
+          "redis-cluster",
+          "redis-module",
+          "redis-sentinel",
+          "typescript"
+        ],
+        "repo_url": "https://github.com/luin/ioredis",
+        "version": "5.8.2"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "ioredis",
+      "to": "@ioredis/commands"
+    },
+    {
+      "from": "ioredis",
+      "to": "cluster-key-slot"
+    },
+    {
+      "from": "ioredis",
+      "to": "lodash.defaults"
+    },
+    {
+      "from": "ioredis",
+      "to": "redis-errors"
+    },
+    {
+      "from": "ioredis",
+      "to": "redis-parser"
+    },
+    {
+      "from": "ioredis",
+      "to": "debug"
+    },
+    {
+      "from": "ioredis",
+      "to": "denque"
+    },
+    {
+      "from": "ioredis",
+      "to": "lodash.isarguments"
+    },
+    {
+      "from": "ioredis",
+      "to": "standard-as-callback"
+    },
+    {
+      "from": "redis-parser",
+      "to": "redis-errors"
+    },
+    {
+      "from": "debug",
+      "to": "ms"
+    }
+  ]
+}

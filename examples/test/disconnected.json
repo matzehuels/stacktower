@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "name": "disconnected",
+    "description": "Two disconnected components in same graph"
+  },
+  "nodes": [
+    {
+      "id": "alpha-top",
+      "meta": {
+        "version": "1.2.0",
+        "summary": "Alpha component client",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "alpha-mid",
+      "meta": {
+        "version": "1.1.0",
+        "summary": "Alpha component middleware",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "alpha-base",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "Alpha component base",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "beta-top",
+      "meta": {
+        "version": "2.2.0",
+        "summary": "Beta component client",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "beta-mid",
+      "meta": {
+        "version": "2.1.0",
+        "summary": "Beta component middleware",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "beta-base",
+      "meta": {
+        "version": "2.0.0",
+        "summary": "Beta component base",
+        "license": "Apache-2.0"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "alpha-mid",
+      "to": "alpha-base"
+    },
+    {
+      "from": "alpha-top",
+      "to": "alpha-mid"
+    },
+    {
+      "from": "beta-mid",
+      "to": "beta-base"
+    },
+    {
+      "from": "beta-top",
+      "to": "beta-mid"
+    }
+  ]
+}

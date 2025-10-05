@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacktower: An Accidental Deep Dive</title>
+    <meta name="description" content="How an XKCD comic led to teaching myself graph theory — a journey through NP-hard problems, PQ-trees, and layered graph algorithms.">
+    
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- MathJax for LaTeX rendering -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Overtracking Pixel Code -->
+    <script defer src="https://cdn.overtracking.com/t/tEi6HMQbt5wJf9Yp8/"></script>
+    <!-- End Overtracking Pixel Code -->
+</head>
+<body>
+    <!-- Main Navigation Tabs -->
+    <nav class="main-nav">
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-view="blogpost">Blog Post</button>
+            <button class="nav-tab" data-view="gallery">Gallery</button>
+        </div>
+    </nav>
+
+    <!-- BLOG POST VIEW -->
+    <div class="view-content active" data-view="blogpost">
+        <header class="hero" id="top">
+            <div class="container">
+                <h1 class="hero-title">Stacking Dependencies</h1>
+                <p class="hero-subtitle">What happens when you take an XKCD joke too literally</p>
+                <p class="hero-author"><a href="https://huels.ai" target="_blank" rel="noopener">Matthias Huels</a> • Brooklyn, October 2025</p>
+                <div class="hero-comparison">
+                    <div class="hero-item">
+                    <a href="https://xkcd.com/2347/" target="_blank" rel="noopener" title="View original XKCD comic">
+                            <img src="xkcd.png" alt="XKCD Dependency Comic" srcset="xkcd_2x.png 2x" class="xkcd-image">
+                        </a>
+                        <p class="hero-caption"><a href="https://xkcd.com/2347/" target="_blank" rel="noopener">XKCD #2347</a> by Randall Munroe</p>
+                    </div>
+                    <div class="hero-tldr">
+                        <div class="hero-actions">
+                            <button class="hero-cta nav-tab" data-view="gallery">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="14" width="7" height="7"></rect>
+                                    <rect x="3" y="14" width="7" height="7"></rect>
+                                </svg>
+                                <span>Explore the Gallery</span>
+                            </button>
+                            <a href="https://github.com/matzehuels/stacktower" target="_blank" rel="noopener" class="hero-cta hero-github">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                <span>View on GitHub</span>
+                            </a>
+                        </div>
+                        <span class="hero-arrow">→</span>
+                        <p>Inspired by this comic, I built a tool that turns real dependency graphs into physical towers. What started as "how hard could it be?" turned into a wild journey through NP-hard problems, and graph theory.</p>
+                    </div>
+                    <div class="hero-item">
+                        <a href="#gallery/python/fastapi" title="See more in gallery">
+                            <object type="image/svg+xml" data="plots/hero_tower.svg" class="hero-tower">FastAPI dependency tower</object>
+                        </a>
+                        <p class="hero-caption"><strong>fastapi</strong> rendered as a tower</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="container">
+        <article class="blog-post">
+
+            <!-- SECTION 1: THE SPARK -->
+            <section id="the-spark">
+                <h2>The Spark</h2>
+
+                <p>I was scrolling Twitter late one night (as one does), when <a href="https://xkcd.com/2347/" target="_blank" rel="noopener">XKCD #2347</a> floated past my timeline again. You know the one; modern digital infrastructure as a precarious tower of blocks, all somehow balanced on one random project maintained by <em>some dude in Nebraska</em>.</p>
+
+                <p>I'd seen it dozens of times, but for whatever reason, I looked at it differently this time. It's not just a joke about fragile infrastructure, <strong>it's actually a better way to visualize dependencies!</strong></p>
+
+                <p>We spend so much time in software building abstractions like UML, entity-relationship models, or architecture diagrams. They're technically correct, but they don't <em>feel</em> like anything. The world needs more visualizations that tap into intuition rather than requiring you to decode abstract conventions.</p>
+
+                <p>If we lean into that intuition, the tower metaphor becomes literal: Why don't we draw actual physical structures where things rest on what they depend on? Your application is a block sitting on library blocks, which sit on framework blocks below.</p>
+
+                <p>So I thought, what if I could actually build this? Take a real dependency graph and render it as a stacked tower? How hard could it be?</p>
+
+                <p>Famous last words.</p>
+
+                <p>The rest of this post is the story of what happened when I tried ...</p>
+
+            </section>
+
+            <!-- SECTION 2: DOWN THE RABBIT HOLE -->
+            <section id="down-the-rabbit-hole">
+                <h2>Welcome to the Side Quest</h2>
+
+                <p>I thought a few lines of Python would get things moving. Instead, they revealed that I had just enrolled myself in a research project.</p>
+
+                <p>Software dependencies form a graph (a <a href="https://en.wikipedia.org/wiki/Directed_acyclic_graph" target="_blank" rel="noopener">directed acyclic graph</a> to be precise), and most graph visualization tools draw <a href="https://en.wikipedia.org/wiki/Graph_drawing" target="_blank" rel="noopener">node-link diagrams</a> where boxes are connected by arrows. The arrows explicitly show every relationship, and you just arrange things to keep them readable. Some use <a href="https://en.wikipedia.org/wiki/Layered_graph_drawing" target="_blank" rel="noopener">layered graph drawings</a> with nodes organized into rows.</p>
+
+                <p>In node-link layouts (Fig. 1a), the left-to-right order within a row is mostly about aesthetics. Sure, you try to minimize edge crossings (where two arrows pass over each other) because they make diagrams cluttered. But crossings are tolerable. In a stacked tower (Fig. 1b), edge crossings can make a proper structure impossible. Blocks can only support each other if they are in contact.</p>
+
+                <div class="diagram-row">
+                    <div class="diagram-item">
+                        <img src="plots/simple_dag.svg" alt="Node-link diagram">
+                        <p><em><strong>Fig. 1 (a): </strong>Traditional node-link diagram with explicit arrows</em></p>
+                    </div>
+                    <div class="diagram-item">
+                        <img src="plots/simple_tower.svg" alt="Tower diagram">
+                        <p><em><strong>Fig. 1 (b): </strong>Tower layout where contact implies dependency</em></p>
+                    </div>
+                </div>
+
+                <p>So we can't just slap blocks down in any order. We have to find the <em>right</em> order. And since every row can be ordered independently, this is fundamentally an <strong>ordering problem</strong>. For each horizontal layer, we need to pick the left-to-right sequence that avoids crossings entirely.</p>
+
+                <p>Easy, right?</p>
+
+                <h3>The Combinatorial Explosion</h3>
+
+                <p>Except, how many orderings are we talking about?</p>
+
+                <p>Let's say you have 3 blocks in a row. There are 6 possible orderings (3! = 6). That's fine. But what about 5 blocks? That's 120 orderings. 10 blocks? 3,628,800 orderings. 20 blocks? 2.4 × 10<sup>18</sup> orderings.</p>
+
+                <p>This is when I learned (or re-learned, if I'm being honest) that the problem I was casually trying to solve is <a href="https://en.wikipedia.org/wiki/NP-hardness" target="_blank" rel="noopener">NP-hard</a>. In plain English: there is no known shortcut algorithm. The only way to guarantee the optimal solution is to try a combinatorially explosive number of possibilities.</p>
+
+                <p>Fuck.</p>
+            </section>
+
+            <!-- SECTION 3: FINDING A BATTLE PLAN -->
+            <section id="battle-plan">
+                <h2>Finding a Battle Plan</h2>
+
+                <p>Staring at an NP-hard problem, the obvious move is to nope out. But NP-hard isn't hopeless; it just means there is <em>no known shortcut for every case</em>. In practice, I could use approximation algorithms (settle for 95% optimal in 5% of the time), exploit domain-specific structure to shrink the search space, or combine exact methods for small subproblems with heuristics for the rest. The art is in figuring out what structure your specific problem has and then ruthlessly exploiting it.</p>
+
+                <p>So I thought: I'm surely not the first person to arrange nodes in layers and worry about their arrangement. Remember those <a href="https://en.wikipedia.org/wiki/Layered_graph_drawing" target="_blank" rel="noopener">layered graph drawings</a> from earlier, the ones with arrows between rows? People must have been working on this for some time. Maybe they've found some domain-specific tricks I can borrow.</p>
+
+                <h3>The Sugiyama Framework</h3>
+
+                <p>Turns out, they have. The most influential approach is the <a href="https://ieeexplore.ieee.org/document/4308636" target="_blank" rel="noopener">Sugiyama Framework</a>, published in 1981. It's a multi-step pipeline for rendering node-link diagrams of graphs that goes something like:</p>
+
+                <ol>
+                    <li><strong>Layer Assignment:</strong> Divide nodes into horizontal rows (layers).</li>
+                    <li><strong>Crossing Minimization:</strong> Find the optimal left-to-right ordering within each layer.</li>
+                    <li><strong>Coordinate Assignment:</strong> Assign precise x-y coordinates to nodes.</li>
+                    <li><strong>Edge Drawing:</strong> Render the connecting lines.</li>
+                </ol>
+
+                <p>For our tower rendering, the layering is natural: the <em>origin</em> of the tower is the root node (no upstream dependencies). Layer 1 is things that the root node depends on. Layer 2 is things that Layer 1 depends on, and so forth. The hard part is the <strong>crossing minimization</strong> (step 2).</p>
+
+                <p>But here's the catch: Sugiyama's crossing minimization aims to <em>minimize</em> edge crossings, not <em>eliminate</em> them entirely. For towers, that's not good enough. I needed <em>zero</em> crossings, not just fewer crossings.</p>
+
+                <p>So Sugiyama gave me a starting point, but it didn't immediately solve my problem. I realized I first needed to understand more about graph topology: which types of graphs are actually stackable (admit a crossing-free ordering), and which aren't.</p>
+ 
+                <p>I'm not a mathematician, and I'm sure there are elegant, theorem-shaped proofs out there that pin this down far better than I can.</p>
+            </section>
+
+            <!-- SECTION 4: REDUCING THE PROBLEM -->
+            <section id="reducing-the-problem">
+                <h2>Reducing the Problem</h2>
+
+                <p>What I could do, though, was look for the practical knobs to turn. Once it became clear that stackability isn’t guaranteed, the next step was figuring out how to tame the unruly cases. If we can identify and fix these issues upfront, we might transform an intractable mess into something more manageable. I identified three key properties that I needed to address:</p>
+
+                <ol>
+                    <li><strong>The Transitivity Trap:</strong> If <code>A</code> depends on <code>B</code> and <code>B</code> depends on <code>C</code>, adding a direct <code>A → C</code> edge creates a redundant constraint. In stacking terms, it demands that <code>C</code> sit both two floors up and directly on <code>A</code>, which makes the entire tower geometry impossible to satisfy.</li>
+                    <li><strong>The Long-Edge Problem:</strong> When an edge jumps multiple layers at once, it behaves like a diagonal support beam slicing through the structure. These long spans complicate ordering and tend to force crossings, because the edge interacts with every layer it skips.</li>
+                    <li><strong>The Tangle Motif:</strong> Certain dependency patterns (small "knots" in the graph) guarantee crossings no matter how cleverly you arrange the layers. These non-planar motifs inflate the search space because the layout algorithm has to navigate unavoidable overlaps.</li>
+                </ol>
+
+                <p>It became obvious that I couldn’t stack anything until I dealt with these structural quirks. I needed a way to normalize the DAG first — a small reduction pipeline to tame and untangle whatever shape it arrived in.</p>
+
+                <h3>Step 1: Transitive Cleanup</h3>
+
+                <p>I started by removing redundant edges. If you've got <code>App → Auth → Core</code>, you don't also need <code>App → Core</code> (Fig. 2a). It's technically correct but for our purposes, it makes stacking impossible. This is actually called <a href="https://en.wikipedia.org/wiki/Transitive_reduction" target="_blank" rel="noopener">transitive reduction</a> in graph theory, and there are some efficient algorithms for it. You strip out any edge you can reach by following other edges. The result is a cleaner chain (Fig. 2b) that stacks naturally (Fig. 2c).</p>
+
+                <div class="diagram-row">
+                    <div class="diagram-item">
+                        <img src="plots/transitive_before.svg" alt="Before transitive reduction">
+                        <p><em><strong>Fig. 2 (a): </strong>The transitive trap</em></p>
+                    </div>
+                    <div class="diagram-item">
+                        <img src="plots/transitive_after.svg" alt="After transitive reduction">
+                        <p><em><strong>Fig. 2 (b): </strong>After transitive reduction</em></p>
+                    </div>
+                    <div class="diagram-item">
+                        <img src="plots/transitive_after_tower.svg" alt="Tower view">
+                        <p><em><strong>Fig. 2 (c): </strong>Stacked tower view</em></p>
+                    </div>
+                </div>
+
+                <p>The graph still means the same thing. <code>App</code> ultimately depends on <code>Core</code> via <code>Auth</code>, I'll take it!</p>
+
+                <h3>Step 2: Edge Shortening</h3>
+
+                <p>Next, I worried about edges that span multiple layers (say, <code>API</code> in row 0 depends on <code>Cache</code> in row 2, skipping <code>Auth</code>'s level, as shown in Fig. 3a). We need to break it into single-layer hops. Why? Because in a tower, all leaf nodes (blocks at the same layer) must rest on the same level floor and support has to be continuous. There was no magic in the fix; we simply insert <strong>dummy nodes</strong> to bridge the gap (Fig. 3b):</p>
+
+                <div class="diagram-row">
+                    <div class="diagram-item">
+                        <img src="plots/dummies_before.svg" alt="Before dummy insertion">
+                        <p><em><strong>Fig. 3 (a): </strong>Long-spanning edge</em></p>
+                    </div>
+                    <div class="diagram-item">
+                        <img src="plots/dummies_after.svg" alt="After dummy insertion">
+                        <p><em><strong>Fig. 3 (b): </strong>Bridged with dummies</em></p>
+                    </div>
+                </div>
+
+                <p>Now <code>API→Cache_1 → Cache</code> forms a <strong>chain</strong> of adjacent edges. During ordering, we treat these dummy nodes as a single unit and keep them vertically aligned so the support line stays straight. This turns long edges into manageable, stackable segments while retaining the <strong>row-by-row</strong> character of the ordering problem. Once ordering is complete, we can visually merge the dummy blocks back into a single tall block that represents the continuous support (Fig. 4a-b).</p>
+
+                <div class="diagram-row">
+                    <div class="diagram-item">
+                        <img src="plots/dummies_after_tower.svg" alt="After tower">
+                        <p><em><strong>Fig. 4 (a): </strong>Intermediate tower view</em></p>
+                    </div>
+                    <div class="diagram-item">
+                        <img src="plots/dummies_before_tower.svg" alt="Before tower">
+                        <p><em><strong>Fig. 4 (b): </strong>Final merged view</em></p>
+                    </div>
+                </div>
+
+                <h3>Step 3: Planarity Repair</h3>
+
+                <p>Finally, I needed to eliminate inevitable tangles, so that a proper stacking is guaranteed at least in theory. Here's a nasty example case with multiple parents sharing multiple children. Say <code>Auth</code> connects to <code>Logging</code> and <code>Metrics</code>, while <code>API</code> also connects to <code>Logging</code> and <code>Metrics</code>. In graph theory, that's a <a href="https://en.wikipedia.org/wiki/Complete_bipartite_graph" target="_blank" rel="noopener">complete bipartite subgraph</a>, and it <strong>guarantees crossings</strong> no matter how you order the children.</p>
+
+                <div class="diagram-row" style="justify-content: center;">
+                    <div class="diagram-item">
+                        <img src="plots/separators_before.svg" alt="Before separator insertion">
+                        <p><em><strong>Fig. 5: </strong>Tangled edges</em></p>
+                    </div>
+                </div>
+
+                <p>Instead of trying to beat the impossible, I decided to change the structure of the tower. If two parents share the exact same children, I insert a thin "separator" that sits between them. The parents rest on the beam, and the beam fans out to the children. Visually, this was an appealing compromise to me. It still conveys the core idea, but turns an impossible tangle into a tidy two-layer pattern. Now <code>Auth</code> and <code>API</code> rest on the separator, and the separator distributes support to <code>Logging</code> and <code>Metrics</code>.</p>
+
+                <div class="diagram-row" style="justify-content: center;">
+                    <div class="diagram-item">
+                        <img src="plots/separators_after.svg" alt="After separator insertion">
+                        <p><em><strong>Fig. 6 (a): </strong>Separator node insertion</em></p>
+                    </div>
+                    <div class="diagram-item">
+                        <img src="plots/separators_after_tower.svg" alt="Tower view">
+                        <p><em><strong>Fig. 6 (b): </strong>Tower view</em></p>
+                    </div>
+                </div>
+
+                <p>These three steps leave the DAG in a very different state. The redundancy is gone, the edges all move in single-floor increments, and the worst structural knots have been smoothed into simpler shapes. In this lean, untangled form, the graph is finally ready for the real challenge: finding an ordering that stacks.</p>
+            </section>
+
+            <!-- SECTION 5: THE ALGORITHM JOURNEY -->
+            <section id="algorithm-journey">
+                <h2>The Evolution of an Algorithm</h2>
+
+                <p>I'd love to tell you I sketched out a brilliant algorithm on a napkin and implemented it flawlessly.</p>
+
+                <p>That would be a lie.</p>
+                    
+                <p>What actually happened was a long stumble through increasingly desperate strategies, each one teaching me something new about why the previous one failed. Some were hilariously naive. Some were clever but slow. Some actually worked pretty well.</p>
+
+                <h3>Attempt #1: Brute Force</h3>
+
+                <p>My first instinct was to architect a galaxy-brain solution no one asked for. But if LeetCode grinding taught me anything, it's this: always start with the naive solution and confidently say <em>"we can optimize this later"</em>, lmao. Even if it's hilariously slow, building it forces you to understand the problem. You see the edges (literally, in this case). You notice patterns. Sometimes you even stumble into insights that lead to the actual solution.</p>
+
+                <p>So, I could literally <strong>just try everything</strong>. The algorithm is obviously straightforward:</p>
+
+                <ol>
+                    <li>For each row, generate all <code>n!</code> possible permutations of its nodes.</li>
+                    <li>Take the <a href="https://en.wikipedia.org/wiki/Cartesian_product" target="_blank" rel="noopener">Cartesian product</a> across all rows to create every possible complete layout.</li>
+                    <li>For each candidate layout, build the full tower and count edge crossings.</li>
+                    <li>Track the best-so-far (minimum crossings) as you go.</li>
+                    <li>Return the winner.</li>
+                </ol>
+
+                <div style="font-size: 0.95rem; overflow-x: auto; font-weight: 300;">
+                $$
+                \begin{array}{ll}
+                \hline
+                \textbf{Algorithm 1} & \text{Brute Force Layer Ordering} \\
+                \hline
+                \textbf{Input:} & \text{Layered graph } G \text{ with layers } L_0, L_1, \ldots, L_k \\
+                \textbf{Output:} & \text{Ordering with minimum crossings} \\
+                \hline
+                \end{array}
+                $$
+                $$
+                \begin{array}{l}
+                \mathsf{best\_layout} \leftarrow \mathsf{null} \\
+                \mathsf{min\_crossings} \leftarrow \infty \\[0.5em]
+                \textbf{for each } \text{layer } L \in G \textbf{ do} \\
+                \quad \mathsf{orderings}[L] \leftarrow \mathsf{permutations}(\mathsf{nodes}(L)) \\
+                \textbf{end for} \\[0.5em]
+                \textbf{for each } \mathsf{layout} \in \mathsf{cartesian\_product}(\mathsf{orderings}) \textbf{ do} \\
+                \quad \mathsf{crossings} \leftarrow \mathsf{count\_crossings}(\mathsf{layout}) \\
+                \quad \textbf{if } \mathsf{crossings} < \mathsf{min\_crossings} \textbf{ then} \\
+                \quad \quad \mathsf{min\_crossings} \leftarrow \mathsf{crossings} \\
+                \quad \quad \mathsf{best\_layout} \leftarrow \mathsf{layout} \\
+                \quad \quad \textbf{if } \mathsf{crossings} = 0 \textbf{ then} \\
+                \quad \quad \quad \textbf{break} \\
+                \quad \quad \textbf{end if} \\
+                \quad \textbf{end if} \\
+                \textbf{end for} \\[0.5em]
+                \textbf{return } \mathsf{best\_layout}
+                \end{array}
+                $$
+                </div>
+
+                <p>This actually worked well for small graphs (also trivially parallelizable), and it taught me something important: how do I count edge crossings without melting my CPU?</p>
+
+                <p>Naively, you'd compare every pair of edges between two rows and check if they cross, which is <code>O(E²)</code>. I found that there's a much faster trick for layered graphs! Between any two adjacent rows we can:</p>
+                <ol>
+                    <li>Fix the order of the lower row and give each node a position: <code>0, 1, 2, ...</code></li>
+                    <li>Walk across the upper row from left to right, and for each parent, record the positions of its children in the lower row. This gives you a sequence of integers like <code>[2, 5, 1, 3, ...]</code></li>
+                    <li>Every <strong>crossing</strong> between edges becomes an <a href="https://en.wikipedia.org/wiki/Inversion_(discrete_mathematics)" target="_blank" rel="noopener">inversion</a> in that sequence (a larger number appearing before a smaller one)</li>
+                </ol>
+
+                <p>And counting inversions is a classic problem with many known solutions! I implemented a <a href="https://en.wikipedia.org/wiki/Fenwick_tree" target="_blank" rel="noopener">Fenwick tree</a> (a binary indexed tree) to do it in <code>O(E log V)</code>: as we stream through the sequence, we ask <em>"how many edges have I seen that should have come after this one?"</em> and update the tree structure. That's how we can easily score thousands of candidate layouts as we iterate.</p>
+
+                <p>Sticking to my LeetCode instincts and starting with the naive solution turned out to be useful. It forced me to tease out a crucial sub-problem I needed to solve.</p>
+
+                <p>But the factorial complexity killed me instantly. A graph with a single 10-node row? That's 10! = 3,628,800 permutations. Not great, but still manageable. Two rows of 10 nodes? That's 3.6 million × 3.6 million = <strong>13 trillion</strong> layouts. Even at a million layouts per second, that's 150 days of compute time.</p>
+
+                <p>I didn’t have 150 days. I had a weekend and a dangerously optimistic attitude.</p>
+
+                <h3>Attempt #2: The PQ-Tree</h3>
+
+                <p>Staring at those factorial numbers, I suddenly realized I was an idiot for obvious reasons: <strong>most permutations are garbage</strong>.</p>
+
+                <p>Think about what's happening. Remember those dummy-node chains from normalization? When we split a long edge like <code>API → Cache</code> into <code>API → Cache_1 → Cache</code>, we did it so the support would be a clean vertical column. For that to work, <code>Cache_1</code> and <code>Cache</code> have to sit together, they're really just one long beam chopped into pieces.</p>
+
+                <p>But that same logic applies to ordinary parent–child relationships too. Suppose <code>API</code> has two children <code>Cache</code> and <code>Auth</code> that both live in the same row. Those two children form a little sibling pair. If brute force scatters them with <code>Cache</code> on the far left, a random node in the middle, and <code>Auth</code> on the far right, you get a layout that makes no structural sense.</p>
+
+                <p>Brute force doesn't care. It happily generates these cursed permutations where structurally-linked nodes drift apart. So here's the insight: <strong>what if we only generate the valid orderings?</strong> Skip the garbage entirely.</p>
+
+                <p>After some thinking and a bit of research, I realized this can be formalized using what's called the <a href="https://www.sciencedirect.com/science/article/pii/S0022000076800451" target="_blank" rel="noopener">Consecutive-Ones Property (C1P)</a>. If a set of nodes "belong together" (like a chain), they must appear as a contiguous block in the row ordering. Formally, for each constraint set <code>S</code>, there must be some column ordering where all elements of <code>S</code> appear as a single contiguous block. That's the C1P we need to maintain as we iterate. But how do we generate <em>only</em> the C1P-valid orderings, without wasting time on the invalid ones?</p>
+
+                <p>Enter the <a href="https://en.wikipedia.org/wiki/PQ_tree" target="_blank" rel="noopener">PQ-Tree</a>.</p>
+
+                <p>A PQ-tree is a data structure that compactly represents a family of valid permutations. Instead of storing millions of orderings explicitly, it stores the <strong>constraints</strong> that define them. It has two types of internal nodes:</p>
+                <ul>
+                    <li><strong>P-nodes (Permutable):</strong> Children can be arranged in any order.</li>
+                    <li><strong>Q-nodes (seQuence):</strong> Children have a fixed order (but can be reversed as a unit).</li>
+                </ul>
+
+                <p>Say you have three independent libraries: <code>Logging</code>, <code>Auth</code>, <code>Caching</code>. With no constraints, they're all children of a P-node, representing <strong>6 possibilities</strong> (3! orderings).</p>
+
+                <p>Now add a constraint: a node on the next layer depends on both <code>Auth</code> and <code>Caching</code>. This means they must be adjacent. The PQ-tree algorithm <strong>reduces</strong> the tree by applying this constraint. It might create a Q-node linking <code>[Auth, Caching]</code> (fixed order, or reversed), then group that Q-node with <code>Logging</code> under a new P-node.</p>
+
+                <p>The resulting tree represents exactly 4 orderings: <code>[Logging, Auth, Caching]</code>, <code>[Logging, Caching, Auth]</code>, <code>[Auth, Caching, Logging]</code>, and <code>[Caching, Auth, Logging]</code>.</p>
+
+                <p>We went from 6 to 4 with one constraint. Add five more constraints? You might go from millions of permutations to just a few hundred valid ones. If a constraint is impossible to satisfy, the tree reduction fails immediately, which is a huge time-saver.</p>
+
+                <p>Fig. 7a shows an unconstrained PQ-tree with three P-nodes (<code>Logging</code>, <code>Auth</code>, <code>Caching</code>) representing all 6 permutations. Fig. 7b shows the reduced tree with a Q-node grouping <code>Auth</code> and <code>Caching</code>, and a P-node that can permute <code>Logging</code> with that constrained pair, exactly the 4 valid orderings described above.</p>
+
+                <div class="diagram-row">
+                    <div class="diagram-item">
+                        <img src="plots/pq_tree_before.svg" alt="PQ-tree before applying adjacency constraint">
+                        <p><em><strong>Fig. 7 (a): </strong>Single P-node with Logging, Auth, Caching</em></p>
+                    </div>
+                    <div class="diagram-item">
+                        <img src="plots/pq_tree_after.svg" alt="PQ-tree after applying adjacency constraint">
+                        <p><em><strong>Fig. 7 (b): </strong>Q-node enforcing [Auth, Caching] adjacency</em></p>
+                    </div>
+                </div>
+
+                <p>Aha! The smarter algorithm now looks like this:</p>
+
+                <ol>
+                    <li>For each row, build a PQ-tree initialized with all nodes (fully permutable).</li>
+                    <li>Apply C1P constraints from chains and all parent-child relationships.</li>
+                    <li>Generate <strong>only</strong> the valid orderings by traversing the reduced PQ-tree.</li>
+                    <li>Take the Cartesian product of valid orderings across rows.</li>
+                    <li>Score each candidate and return the best.</li>
+                </ol>
+
+                <div style="font-size: 0.95rem; overflow-x: auto; font-weight: 300;">
+                $$
+                \begin{array}{ll}
+                \hline
+                \textbf{Algorithm 2} & \text{PQ-Tree Constrained Ordering} \\
+                \hline
+                \textbf{Input:} & \text{Layered graph } G \text{ with layers } L_0, L_1, \ldots, L_k \\
+                \textbf{Output:} & \text{Ordering with minimum crossings} \\
+                \hline
+                \end{array}
+                $$
+                $$
+                \begin{array}{l}
+                \mathsf{best\_layout} \leftarrow \mathsf{null} \\
+                \mathsf{min\_crossings} \leftarrow \infty \\[0.5em]
+                \textbf{for each } \text{layer } L \in G \textbf{ do} \\
+                \quad \mathsf{tree}[L] \leftarrow \mathsf{PQTree}(\mathsf{nodes}(L)) \\
+                \quad \textbf{for each } \text{constraint } C \textbf{ do} \\
+                \quad \quad \mathsf{tree}[L].\mathsf{reduce}(C) \\
+                \quad \textbf{end for} \\
+                \quad \mathsf{orderings}[L] \leftarrow \mathsf{tree}[L].\mathsf{frontier}() \\
+                \textbf{end for} \\[0.5em]
+                \textbf{for each } \mathsf{layout} \in \mathsf{cartesian\_product}(\mathsf{orderings}) \textbf{ do} \\
+                \quad \mathsf{crossings} \leftarrow \mathsf{count\_crossings}(\mathsf{layout}) \\
+                \quad \textbf{if } \mathsf{crossings} < \mathsf{min\_crossings} \textbf{ then} \\
+                \quad \quad \mathsf{min\_crossings} \leftarrow \mathsf{crossings} \\
+                \quad \quad \mathsf{best\_layout} \leftarrow \mathsf{layout} \\
+                \quad \quad \textbf{if } \mathsf{crossings} = 0 \textbf{ then} \\
+                \quad \quad \quad \textbf{break} \\
+                \quad \quad \textbf{end if} \\
+                \quad \textbf{end if} \\
+                \textbf{end for} \\[0.5em]
+                \textbf{return } \mathsf{best\_layout}
+                \end{array}
+                $$
+                </div>
+
+                <p>Using the PQ-tree, brute-forcing made optimal solutions tractable for a much larger class of graphs like anything with 6-8 nodes per row and strong chain structures.</p>
+
+                <p>We're so back.</p>
+
+                <h3>Attempt #3: The Barycenter Heuristic</h3>
+
+                <p>So PQ-trees let us handle 6-8 nodes per row. Great! Except... real-world dependency graphs don't politely cap themselves at 8 nodes. A typical microservice architecture? Easily 30-40 nodes in a single layer. And remember, PQ-trees only help if your graph has strong structures. Graphs with lots of many-to-many relationships? You're back in factorial hell.</p>
+
+                <p>We're not back. We're still screwed.</p>
+
+                <p>At this point, it was time for a mindset shift. Maybe I don't need the <em>optimal</em> solution. Maybe I just need something <em>good enough</em> that runs in reasonable time. Remember the Sugiyama Framework from earlier? It doesn't promise optimality, it uses heuristics to find decent solutions quickly. Let's steal from that playbook.</p>
+
+                <p>The most famous heuristic from Sugiyama is the <strong>barycenter method</strong>: a greedy algorithm that positions each node near the average position of its neighbors. The intuition is simple: if a node's connections are clustered on the left, put it on the left. If they're spread out, put it in the middle. Minimize edge length, minimize crossings!</p>
+
+                <p>Say row 1 has three nodes at positions 0, 1, 2. Node <code>D</code> in row 2 has parents at positions 0 and 2. Its barycenter is $(0 + 2) / 2 = 1.0$. Node <code>E</code> has a parent only at position 1, so its barycenter is $1.0$. Node <code>F</code> has a parent at position 2, so its barycenter is $2.0$. After sorting by barycenter, the row 2 ordering is <code>[D, E, F]</code> (or <code>[E, D, F]</code> if we break ties). The key insight: we use barycenter values as <strong>sorting scores</strong>, not actual x-coordinates. Then we sweep multiple times—alternating top-down and bottom-up—to let each row iteratively influence its neighbors.</p>
+
+                <p>Here's the final algorithm:</p>
+
+                <ol>
+                    <li>Start with a fixed ordering for the top row (say, alphabetical).</li>
+                    <li>For each node in row 2, calculate its barycenter: the average position of its parents in row 1.</li>
+                    <li>Sort row 2 by barycentric scores (ascending).</li>
+                    <li>With row 2 now fixed, calculate barycenters for row 3 based on row 2 positions.</li>
+                    <li>Repeat downward through all rows (alternating top-down and bottom-up).</li>
+                </ol>
+
+                <div style="font-size: 0.95rem; overflow-x: auto; font-weight: 300;">
+                $$
+                \begin{array}{ll}
+                \hline
+                \textbf{Algorithm 3} & \text{Barycentric Heuristic} \\
+                \hline
+                \textbf{Input:} & \text{Layered graph } G \text{ with layers } L_0, L_1, \ldots, L_k \\
+                \textbf{Output:} & \text{Ordering (locally optimized)} \\
+                \hline
+                \end{array}
+                $$
+                $$
+                \begin{array}{l}
+                \mathsf{orders}[L_0] \leftarrow \mathsf{sort}(\mathsf{nodes}(L_0)) \\
+                \textbf{for } i = 1 \text{ to } k \textbf{ do} \\
+                \quad \mathsf{orders}[L_i] \leftarrow \mathsf{order\_by\_parents}(\mathsf{nodes}(L_i), \mathsf{orders}[L_{i-1}]) \\
+                \textbf{end for} \\[0.5em]
+                \textbf{for } \mathsf{pass} = 1 \text{ to } \mathsf{max\_passes} \textbf{ do} \\
+                \quad \textbf{if } \mathsf{pass} \text{ is even} \textbf{ then} \\
+                \quad \quad \textbf{for } i = 1 \text{ to } k \textbf{ do} \\
+                \quad \quad \quad \mathsf{orders}[L_i] \leftarrow \mathsf{wmedian}(\mathsf{nodes}(L_i), \mathsf{orders}[L_{i-1}]) \\
+                \quad \quad \quad \mathsf{orders}[L_i] \leftarrow \mathsf{transpose}(\mathsf{orders}[L_i], \mathsf{orders}[L_{i-1}]) \\
+                \quad \quad \textbf{end for} \\
+                \quad \textbf{else} \\
+                \quad \quad \textbf{for } i = k-1 \text{ down to } 0 \textbf{ do} \\
+                \quad \quad \quad \mathsf{orders}[L_i] \leftarrow \mathsf{wmedian}(\mathsf{nodes}(L_i), \mathsf{orders}[L_{i+1}]) \\
+                \quad \quad \quad \mathsf{orders}[L_i] \leftarrow \mathsf{transpose}(\mathsf{orders}[L_i], \mathsf{orders}[L_{i+1}]) \\
+                \quad \quad \textbf{end for} \\
+                \quad \textbf{end if} \\
+                \textbf{end for} \\[0.5em]
+                \textbf{return } \mathsf{orders}
+                \end{array}
+                $$
+                </div>
+
+                <p>Each pass is <code>O(n log n)</code>, so even with 20+ passes, it's blazingly fast.</p>
+
+                <p>The method works surprisingly well on clean, hierarchical graphs, but it's still just a heuristic. Most of the time it spits out layouts that look way better than they have any right to, but there are no guarantees. On real, messy graphs it can absolutely whiff.</p>
+
+                <h3>Attempt #4: Heuristic-Guided Constrained Search (The Synthesis)</h3>
+
+                <p>Overall, I wasn't satisfied.</p>
+
+                <p>This is where I dusted off my old optimization brain from past jobs and flexed some long-forgotten <a href="https://en.wikipedia.org/wiki/Branch_and_bound" target="_blank" rel="noopener">branch-and-bound</a> muscles: I had the PQ-tree (smart pruning) and the barycentric method (smart guessing). What if I could <strong>combine</strong> them? What if the heuristic could <strong>guide</strong> a structured search process with custom pruning?</p>
+
+                <p>Imagine exploring a giant decision tree of possible solutions. You keep track of:</p>
+                <ul>
+                    <li>the <strong>best complete solution</strong> you've seen so far (the current "champion"), and</li>
+                    <li>for each <strong>partial solution</strong>, an <strong>optimistic lower bound</strong> on how good it could possibly get if everything else went perfectly.</li>
+                </ul>
+
+                <p>If the best-case version of a partial solution is already worse than your champion, you just <strong>prune</strong> that entire branch. Don't explore its children, don't think about it again. That's branch-and-bound. Essentially, I implemented a tower-shaped version of that:</p>
+
+                <ol>
+                    <li><strong>Start with a good bound:</strong> run the barycentric heuristic to get an initial solution and use its crossing count as our best-known score.</li>
+                    <li><strong>Build PQ-trees for each layer:</strong> apply all C1P constraints (chains, adjacency) so each tree encodes only the structurally-valid orderings.</li>
+                    <li><strong>Search recursively layer-by-layer:</strong> for each layer, generate its valid orderings from the PQ-tree and sort them by barycentric score (most promising first).</li>
+                    <li><strong>Track crossings incrementally:</strong> as we build the tower depth-first, compute the new crossings between the current and previous row, adding to a running total.</li>
+                    <li><strong>Prune aggressively:</strong> if the running crossing count already exceeds our best complete solution, stop exploring that branch immediately—no point continuing if we've already lost.</li>
+                    <li><strong>Update the champion:</strong> when we reach a complete layout with fewer crossings than the current best, replace it and tighten the pruning bound for future branches.</li>
+                </ol>
+
+                <div style="font-size: 0.95rem; overflow-x: auto; font-weight: 300;">
+                $$
+                \begin{array}{ll}
+                \hline
+                \textbf{Algorithm 4} & \text{Branch-and-Bound with PQ-Tree Pruning and Barycentric Heuristic} \\
+                \hline
+                \textbf{Input:} & \text{Layered graph } G \text{ with layers } L_0, L_1, \ldots, L_k \\
+                \textbf{Output:} & \text{Optimal or near-optimal ordering} \\
+                \hline
+                \end{array}
+                $$
+                $$
+                \begin{array}{l}
+                \mathsf{best\_layout} \leftarrow \mathsf{barycentric\_heuristic}(G) \\
+                \mathsf{best\_score} \leftarrow \mathsf{count\_crossings}(\mathsf{best\_layout}) \\[0.5em]
+                \textbf{for each } \text{layer } L \in G \textbf{ do} \\
+                \quad \mathsf{tree}[L] \leftarrow \mathsf{PQTree}(\mathsf{nodes}(L)) \\
+                \quad \textbf{for each } \text{constraint } C \textbf{ do} \\
+                \quad \quad \mathsf{tree}[L].\mathsf{reduce}(C) \\
+                \quad \textbf{end for} \\
+                \textbf{end for} \\[0.5em]
+                \mathsf{search}(\emptyset, 0, 0) \\[0.5em]
+                \textbf{function } \mathsf{search}(\mathsf{partial}, \mathsf{depth}, \mathsf{crossings}) \\
+                \quad \textbf{if } \mathsf{depth} = k+1 \textbf{ then} \\
+                \quad \quad \textbf{if } \mathsf{crossings} < \mathsf{best\_score} \textbf{ then} \\
+                \quad \quad \quad \mathsf{best\_score} \leftarrow \mathsf{crossings} \\
+                \quad \quad \quad \mathsf{best\_layout} \leftarrow \mathsf{partial} \\
+                \quad \quad \textbf{end if} \\
+                \quad \quad \textbf{return} \\
+                \quad \textbf{end if} \\[0.3em]
+                \quad \mathsf{orderings} \leftarrow \mathsf{tree}[L_{\mathsf{depth}}].\mathsf{frontier}() \\
+                \quad \mathsf{sort}(\mathsf{orderings}, \mathsf{by\_barycenter}) \\[0.3em]
+                \quad \textbf{for each } \mathsf{order} \in \mathsf{orderings} \textbf{ do} \\
+                \quad \quad \mathsf{new\_crossings} \leftarrow \mathsf{crossings} + \mathsf{count\_row\_crossings}(\mathsf{order}) \\
+                \quad \quad \textbf{if } \mathsf{new\_crossings} \geq \mathsf{best\_score} \textbf{ then} \\
+                \quad \quad \quad \textbf{break} \text{ } \triangleright \text{ Prune this branch} \\
+                \quad \quad \textbf{end if} \\
+                \quad \quad \mathsf{search}(\mathsf{partial} + \mathsf{order}, \mathsf{depth}+1, \mathsf{new\_crossings}) \\
+                \quad \textbf{end for} \\
+                \textbf{end function} \\[0.5em]
+                \textbf{return } \mathsf{best\_layout}
+                \end{array}
+                $$
+                </div>
+
+                <p>This is where things finally started to click. The algorithm was fast enough to handle much larger, messier graphs, and the layouts actually looked good. It felt like there was still a ton of room to explore: tighter bounds, fancier heuristics, parallel tricks, but I'd crossed the line from <em>"this is an intractable NP-hard problem"</em> to <em>"this is actually a decently good solution"</em>.</p>
+
+            </section>
+
+            <!-- SECTION 6: THE FINAL TOUCHES -->
+            <section id="final-touches">
+                <h2>The Final Touches</h2>
+
+                <p>Looking back, the path from idea to working algorithm was surprisingly predictable in hindsight:</p>
+
+                <ul>
+                    <li>I started with <strong>brute force</strong>, literally enumerating permutations, which instantly reminded me why <em>factorial</em> is a cursed word.</li>
+                    <li>To keep that from setting my laptop on fire, I added <strong>fast inversion-based crossing counting</strong>, so I could score layouts in reasonable time.</li>
+                    <li>Then I pulled in the <strong>PQ-tree</strong> to encode constraints like <em>"these nodes must stay consecutive"</em>, letting me skip entire sets of obviously impossible orderings.</li>
+                    <li>From there, I stole the <strong>barycenter heuristic</strong> to get a cheap, surprisingly decent way to guess good row orderings on big, ugly graphs.</li>
+                    <li>Finally, I mashed it all into a <strong>search algorithm</strong>: PQ-trees define the legal moves, barycentric scores decide which branches to try first, the fast inversion-based crossing counter keeps scoring cheap, and a simple lower bound lets me ruthlessly kill anything that can't beat the best tower so far.</li>
+                </ul>
+
+                <p>Not bad for a project that started with an XKCD joke!</p>
+
+                <h3>Separation of Concerns</h3>
+
+                <p>With the algorithm solved, everything else became trivial. The core outputs one thing: an ordered list of nodes per layer. No pixels, no styling. Just the abstract layout.</p>
+
+                <p>The rendering layer handles the rest independently: flow-based width allocation (wider blocks support more structure), positioning, and visual styling. I implemented two styles (clean and hand-drawn) without touching the algorithm. The hard problem stayed separate from the easy one.</p>
+
+                <h3>Real Dependency Data</h3>
+
+                <p>To make this work with actual projects, I built parsers for three major package ecosystems: <a href="https://pypi.org" target="_blank" rel="noopener">PyPI</a> (Python), <a href="https://crates.io" target="_blank" rel="noopener">crates.io</a> (Rust), and <a href="https://www.npmjs.com" target="_blank" rel="noopener">npm</a> (Node.js). Each parser hits the registry API, recursively walks the dependency tree, and builds the DAG.</p>
+
+                <p>Then I fetch metadata from <a href="https://github.com" target="_blank" rel="noopener">GitHub</a> for each package: repository owner, maintainer list, and contributor counts. This lets me enrich the visualization with real-world context about who actually maintains these packages.</p>
+
+                <h3>The Nebraska Guy Ranking</h3>
+
+                <p>Remember the XKCD comic about the random developer in Nebraska holding up a critical piece of internet infrastructure? I wanted to surface that in the visualization. The Nebraska ranking algorithm scans the dependency graph and scores each maintainer based on:</p>
+
+                <ul>
+                    <li><strong>Depth:</strong> Packages deeper in the tower (more dependencies above them) score higher. They're foundational.</li>
+                    <li><strong>Role weight:</strong> Owners get 3x weight, leads get 1.5x, regular maintainers get 1x.</li>
+                    <li><strong>Shared credit:</strong> If a package has multiple maintainers, the depth score is divided among them.</li>
+                </ul>
+
+                <p>The algorithm walks every node, calculates its depth from the root, divides that by the number of maintainers, and accumulates weighted scores. The result: a ranked list of the people whose packages quietly support the entire tower. The Nebraska guy for your stack.</p>
+
+                <h3>Implementing in Go</h3>
+
+                <p>I started prototyping this in Python, my usual go-to for <em>"let's just see if this works"</em> projects. But as soon as I understood the scale of the problem (factorial search spaces, millions of layout evaluations), I realized I needed something faster. Much faster.</p>
+
+                <p>I'd been writing Go at work lately and was looking for a side project to sharpen my skills. This seemed like the perfect excuse. Go hits a sweet spot: it's fast enough for tight algorithmic loops, but you're not fighting a borrow checker or managing memory manually. You just write code and it runs.</p>
+
+                <p>Spoiler: it was absolutely the right call. The performance difference over Python was staggering: orders of magnitude faster for crossing detection and layout evaluation. Go's goroutines made parallelizing the search trivial. And the simplicity of the language meant I spent my time on the actual problem.</p>
+
+                <h3>The Result</h3>
+
+                <p>After iterating on algorithms, parsers, and rendering pipelines, the pieces finally came together. The search algorithm finds clean orderings, the metadata enrichment surfaces the maintainers, and the visual styles bring it all to life.</p>
+
+                <p>And honestly? I'm pretty damn happy with how it turned out. Here's what it looks like in action for <a href="https://fastapi.tiangolo.com" target="_blank" rel="noopener">FastAPI</a>, a popular Python web framework.  Hover over blocks to see more details.</p>
+
+                <div class="inline-tower-figure">
+                    <object class="svg-desktop" type="image/svg+xml" data="plots/showcase/python/fastapi.svg"></object>
+                    <object class="svg-mobile" type="image/svg+xml" data="plots/showcase/python/fastapi_mobile.svg"></object>
+                </div>
+
+            </section>
+
+            <!-- SECTION 7: REFLECTION -->
+            <section id="reflection">
+                <h2>Wrapping Up</h2>
+
+                <p>This project ended up teaching me more than graph algorithms. It reminded me what real problem-solving feels like. In the end, Stacktower wasn't about inventing one brilliant algorithm from scratch. It was about finding the right decomposition, borrowing good ideas for each piece, and stitching them together into something that fits this particular problem.</p>
+
+                <p>If you want to explore the code, it's all <a href="https://github.com/matzehuels/stacktower" target="_blank" rel="noopener">open source on GitHub</a>. You can render your own towers. And if you've read this far, thank you for coming on this journey with me.</p>
+            </section>
+
+            <!-- Article end section -->
+            <div class="article-end">
+                <div class="article-end-cta">
+                    <button class="hero-cta nav-tab" data-view="gallery">Explore the Gallery</button>
+                    <span class="article-end-divider">•</span>
+                    <a href="https://huels.ai" target="_blank" rel="noopener">More from Matthias</a>
+                </div>
+                <div class="article-end-share">
+                    <span>Share:</span>
+                <button class="share-btn" data-share="twitter" title="Share on X">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </button>
+                <button class="share-btn" data-share="linkedin" title="Share on LinkedIn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </button>
+                <button class="share-btn" data-share="copy" title="Copy link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                </button>
+            </div>
+        </div>
+
+        </article>
+    </main>
+
+    <!-- FOOTER -->
+    </div>
+
+    <!-- GALLERY VIEW -->
+    <div class="view-content" data-view="gallery">
+        <div class="gallery-view">
+            <header class="gallery-header">
+                <h1>Dependency Tower Gallery</h1>
+                <p>Real-world package dependency structures visualized as towers. Hover over blocks to see details.</p>
+            </header>
+
+            <div class="gallery-tabs">
+                <button class="gallery-tab active" data-tab="python">Python (PyPI)</button>
+                <button class="gallery-tab" data-tab="rust">Rust (Crates.io)</button>
+                <button class="gallery-tab" data-tab="javascript">JavaScript (npm)</button>
+            </div>
+
+            <div class="gallery-container">
+                <!-- Python -->
+                <div class="gallery-content active" data-tab="python">
+                    <div class="carousel-info">
+                        <p class="gallery-caption"></p>
+                        <div class="slide-share desktop-only"></div>
+                    </div>
+                    <div class="carousel-wrapper">
+                        <div class="gallery-carousel">
+                            <button class="carousel-nav prev" aria-label="Previous">‹</button>
+                            <div class="gallery-track">
+                                <div class="gallery-slide active" data-name="openai" data-caption="<a href='https://github.com/openai/openai-python' target='_blank' rel='noopener'><strong>openai</strong></a> — Clean, modern OpenAI client">
+                                    <object class="svg-desktop" type="image/svg+xml" data="plots/showcase/python/openai.svg"></object>
+                                    <object class="svg-mobile" type="image/svg+xml" data="plots/showcase/python/openai_mobile.svg"></object>
+                                </div>
+                                <div class="gallery-slide" data-name="requests" data-caption="<a href='https://github.com/psf/requests' target='_blank' rel='noopener'><strong>requests</strong></a> — The venerable HTTP client">
+                                    <object class="svg-desktop" type="image/svg+xml" data="plots/showcase/python/requests.svg"></object>
+                                    <object class="svg-mobile" type="image/svg+xml" data="plots/showcase/python/requests_mobile.svg"></object>
+                                </div>
+                                <div class="gallery-slide" data-name="pydantic" data-caption="<a href='https://github.com/pydantic/pydantic' target='_blank' rel='noopener'><strong>pydantic</strong></a> — Data validation everywhere">
+                                    <object class="svg-desktop" type="image/svg+xml" data="plots/showcase/python/pydantic.svg"></object>
+                                    <object class="svg-mobile" type="image/svg+xml" data="plots/showcase/python/pydantic_mobile.svg"></object>
+                                </div>
+                                <div class="gallery-slide" data-name="fastapi" data-caption="<a href='https://github.com/fastapi/fastapi' target='_blank' rel='noopener'><strong>fastapi</strong></a> — Modern web framework">
+                                    <object class="svg-desktop" type="image/svg+xml" data="plots/showcase/python/fastapi.svg"></object>
+                                    <object class="svg-mobile" type="image/svg+xml" data="plots/showcase/python/fastapi_mobile.svg"></object>
+                                </div>
+                                <div class="gallery-slide" data-name="typer" data-caption="<a href='https://github.com/fastapi/typer' target='_blank' rel='noopener'><strong>typer</strong></a> — CLI from the FastAPI ecosystem">
+                                    <object class="svg-desktop" type="image/svg+xml" data="plots/showcase/python/typer.svg"></object>
+                                    <object class="svg-mobile" type="image/svg+xml" data="plots/showcase/python/typer_mobile.svg"></object>
+                                </div>
+                            </div>
+                            <button class="carousel-nav next" aria-label="Next">›</button>
+                        </div>
+                    </div>
+                    <div class="gallery-share-mobile"></div>
+                    <div class="gallery-dots"></div>
+                </div>
+
+                <!-- Rust -->
+                <div class="gallery-content" data-tab="rust">
+                    <div class="carousel-info">
+                        <p class="gallery-caption"></p>
+                        <div class="slide-share desktop-only"></div>
+                    </div>
+                    <div class="carousel-wrapper">
+                        <div class="gallery-carousel">
+                            <button class="carousel-nav prev" aria-label="Previous">‹</button>
+                            <div class="gallery-track">
+                                <div class="gallery-slide active" data-name="serde" data-caption="<a href='https://github.com/serde-rs/serde' target='_blank' rel='noopener'><strong>serde</strong></a> — Serialization darling">
+                                    <object class="svg-desktop" type="image/svg+xml" data="plots/showcase/rust/serde.svg"></object>
+                                    <object class="svg-mobile" type="image/svg+xml" data="plots/showcase/rust/serde_mobile.svg"></object>
+                                </div>
+                                <div class="gallery-slide" data-name="ureq" data-caption="<a href='https://github.com/algesten/ureq' target='_blank' rel='noopener'><strong>ureq</strong></a> — Simple HTTP client">
+                                    <object class="svg-desktop" type="image/svg+xml" data="plots/showcase/rust/ureq.svg"></object>
+                                    <object class="svg-mobile" type="image/svg+xml" data="plots/showcase/rust/ureq_mobile.svg"></object>
+                                </div>
+                                <div class="gallery-slide" data-name="hyper" data-caption="<a href='https://github.com/hyperium/hyper' target='_blank' rel='noopener'><strong>hyper</strong></a> — HTTP implementation">
+                                    <object class="svg-desktop" type="image/svg+xml" data="plots/showcase/rust/hyper.svg"></object>
+                                    <object class="svg-mobile" type="image/svg+xml" data="plots/showcase/rust/hyper_mobile.svg"></object>
+                                </div>
+                                <div class="gallery-slide" data-name="diesel" data-caption="<a href='https://github.com/diesel-rs/diesel' target='_blank' rel='noopener'><strong>diesel</strong></a> — ORM and query builder">
+                                    <object class="svg-desktop" type="image/svg+xml" data="plots/showcase/rust/diesel.svg"></object>
+                                    <object class="svg-mobile" type="image/svg+xml" data="plots/showcase/rust/diesel_mobile.svg"></object>
+                                </div>
+                                <div class="gallery-slide" data-name="rayon" data-caption="<a href='https://github.com/rayon-rs/rayon' target='_blank' rel='noopener'><strong>rayon</strong></a> — Parallel iterators">
+                                    <object class="svg-desktop" type="image/svg+xml" data="plots/showcase/rust/rayon.svg"></object>
+                                    <object class="svg-mobile" type="image/svg+xml" data="plots/showcase/rust/rayon_mobile.svg"></object>
+                                </div>
+                            </div>
+                            <button class="carousel-nav next" aria-label="Next">›</button>
+                        </div>
+                    </div>
+                    <div class="gallery-share-mobile"></div>
+                    <div class="gallery-dots"></div>
+                </div>
+
+                <!-- JavaScript -->
+                <div class="gallery-content" data-tab="javascript">
+                    <div class="carousel-info">
+                        <p class="gallery-caption"></p>
+                        <div class="slide-share desktop-only"></div>
+                    </div>
+                    <div class="carousel-wrapper">
+                        <div class="gallery-carousel">
+                            <button class="carousel-nav prev" aria-label="Previous">‹</button>
+                            <div class="gallery-track">
+                                <div class="gallery-slide active" data-name="yup" data-caption="<a href='https://github.com/jquense/yup' target='_blank' rel='noopener'><strong>yup</strong></a> — Schema validation">
+                                    <object class="svg-desktop" type="image/svg+xml" data="plots/showcase/javascript/yup.svg"></object>
+                                    <object class="svg-mobile" type="image/svg+xml" data="plots/showcase/javascript/yup_mobile.svg"></object>
+                                </div>
+                                <div class="gallery-slide" data-name="mongoose" data-caption="<a href='https://github.com/Automattic/mongoose' target='_blank' rel='noopener'><strong>mongoose</strong></a> — MongoDB ODM">
+                                    <object class="svg-desktop" type="image/svg+xml" data="plots/showcase/javascript/mongoose.svg"></object>
+                                    <object class="svg-mobile" type="image/svg+xml" data="plots/showcase/javascript/mongoose_mobile.svg"></object>
+                                </div>
+                                <div class="gallery-slide" data-name="knex" data-caption="<a href='https://github.com/knex/knex' target='_blank' rel='noopener'><strong>knex</strong></a> — SQL query builder">
+                                    <object class="svg-desktop" type="image/svg+xml" data="plots/showcase/javascript/knex.svg"></object>
+                                    <object class="svg-mobile" type="image/svg+xml" data="plots/showcase/javascript/knex_mobile.svg"></object>
+                                </div>
+                                <div class="gallery-slide" data-name="ioredis" data-caption="<a href='https://github.com/redis/ioredis' target='_blank' rel='noopener'><strong>ioredis</strong></a> — Redis client">
+                                    <object class="svg-desktop" type="image/svg+xml" data="plots/showcase/javascript/ioredis.svg"></object>
+                                    <object class="svg-mobile" type="image/svg+xml" data="plots/showcase/javascript/ioredis_mobile.svg"></object>
+                                </div>
+                                <div class="gallery-slide" data-name="pino" data-caption="<a href='https://github.com/pinojs/pino' target='_blank' rel='noopener'><strong>pino</strong></a> — Fast logging">
+                                    <object class="svg-desktop" type="image/svg+xml" data="plots/showcase/javascript/pino.svg"></object>
+                                    <object class="svg-mobile" type="image/svg+xml" data="plots/showcase/javascript/pino_mobile.svg"></object>
+                                </div>
+                            </div>
+                            <button class="carousel-nav next" aria-label="Next">›</button>
+                        </div>
+                    </div>
+                    <div class="gallery-share-mobile"></div>
+                    <div class="gallery-dots"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

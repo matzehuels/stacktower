@@ -1,0 +1,154 @@
+{
+  "nodes": [
+    {
+      "id": "colorama",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-07-09",
+        "repo_maintainers": [
+          "tartley",
+          "wiggin15",
+          "hugovk",
+          "njsmith",
+          "jdufresne"
+        ],
+        "repo_owner": "tartley",
+        "repo_stars": 3755,
+        "repo_url": "https://github.com/tartley/colorama",
+        "summary": "Cross-platform colored terminal text.",
+        "version": "0.4.6"
+      }
+    },
+    {
+      "id": "flask",
+      "meta": {
+        "author": "Armin Ronacher",
+        "license": "BSD-3-Clause",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-28",
+        "repo_last_release": "2025-08-19",
+        "repo_maintainers": [
+          "davidism",
+          "mitsuhiko",
+          "untitaker",
+          "rduplain",
+          "greyli"
+        ],
+        "repo_owner": "pallets",
+        "repo_stars": 70860,
+        "repo_topics": [
+          "flask",
+          "jinja",
+          "pallets",
+          "python",
+          "web-framework",
+          "werkzeug",
+          "wsgi"
+        ],
+        "repo_url": "https://github.com/pallets/flask",
+        "summary": "A micro web framework",
+        "version": "2.0.0"
+      }
+    },
+    {
+      "id": "click",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-25",
+        "repo_last_release": "2025-11-15",
+        "repo_maintainers": [
+          "davidism",
+          "mitsuhiko",
+          "Rowlando13",
+          "untitaker"
+        ],
+        "repo_owner": "pallets",
+        "repo_stars": 17030,
+        "repo_topics": [
+          "cli",
+          "click",
+          "pallets",
+          "python"
+        ],
+        "repo_url": "https://github.com/pallets/click",
+        "summary": "Composable command line interface toolkit",
+        "version": "8.3.1"
+      }
+    },
+    {
+      "id": "werkzeug",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-29",
+        "repo_last_release": "2025-11-29",
+        "repo_maintainers": [
+          "mitsuhiko",
+          "davidism",
+          "untitaker",
+          "DasIch"
+        ],
+        "repo_owner": "pallets",
+        "repo_stars": 6822,
+        "repo_topics": [
+          "http",
+          "pallets",
+          "python",
+          "werkzeug",
+          "wsgi"
+        ],
+        "repo_url": "https://github.com/pallets/werkzeug",
+        "summary": "The comprehensive WSGI web application library.",
+        "version": "3.1.4"
+      }
+    },
+    {
+      "id": "markupsafe",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-09-27",
+        "repo_last_release": "2025-09-27",
+        "repo_maintainers": [
+          "davidism",
+          "mitsuhiko"
+        ],
+        "repo_owner": "pallets",
+        "repo_stars": 682,
+        "repo_topics": [
+          "html",
+          "html-escape",
+          "jinja",
+          "markupsafe",
+          "pallets",
+          "python",
+          "template-engine"
+        ],
+        "repo_url": "https://github.com/pallets/markupsafe",
+        "summary": "Safely add untrusted strings to HTML/XML markup.",
+        "version": "3.0.3"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "flask",
+      "to": "click"
+    },
+    {
+      "from": "flask",
+      "to": "werkzeug"
+    },
+    {
+      "from": "werkzeug",
+      "to": "markupsafe"
+    },
+    {
+      "from": "click",
+      "to": "colorama"
+    }
+  ]
+}

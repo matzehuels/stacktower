@@ -1,0 +1,217 @@
+{
+  "nodes": [
+    {
+      "id": "pin-project-lite",
+      "meta": {
+        "description": "A lightweight version of pin-project written with declarative macros.\n",
+        "downloads": 480117984,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-12",
+        "repo_last_release": "2025-01-06",
+        "repo_maintainers": [
+          "taiki-e",
+          "Michael-J-Ward",
+          "nnethercote",
+          "aksh1618"
+        ],
+        "repo_owner": "taiki-e",
+        "repo_stars": 262,
+        "repo_topics": [
+          "no-std",
+          "rust"
+        ],
+        "repo_url": "https://github.com/taiki-e/pin-project-lite",
+        "version": "0.2.16"
+      }
+    },
+    {
+      "id": "itoa",
+      "meta": {
+        "description": "Fast integer primitive to string conversion",
+        "downloads": 654225437,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-20",
+        "repo_last_release": "2025-03-03",
+        "repo_maintainers": [
+          "dtolnay",
+          "glandium",
+          "Object905",
+          "SimonSapin",
+          "nox"
+        ],
+        "repo_owner": "dtolnay",
+        "repo_stars": 352,
+        "repo_topics": [
+          "performance",
+          "rust"
+        ],
+        "repo_url": "https://github.com/dtolnay/itoa",
+        "version": "1.0.15"
+      }
+    },
+    {
+      "id": "hyper",
+      "meta": {
+        "description": "A protective and efficient HTTP library for all.",
+        "downloads": 446223433,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-11-13",
+        "repo_maintainers": [
+          "seanmonstar",
+          "reem",
+          "tottoto",
+          "pyfisch",
+          "weihanglo"
+        ],
+        "repo_owner": "hyperium",
+        "repo_stars": 15726,
+        "repo_topics": [
+          "http",
+          "hyper",
+          "rust"
+        ],
+        "repo_url": "https://github.com/hyperium/hyper",
+        "version": "1.8.1"
+      }
+    },
+    {
+      "id": "bytes",
+      "meta": {
+        "description": "Types and traits for working with bytes",
+        "downloads": 492903540,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-28",
+        "repo_last_release": "2025-11-14",
+        "repo_maintainers": [
+          "carllerche",
+          "seanmonstar",
+          "Darksonn",
+          "taiki-e",
+          "braddunbar"
+        ],
+        "repo_owner": "tokio-rs",
+        "repo_stars": 2135,
+        "repo_url": "https://github.com/tokio-rs/bytes",
+        "version": "1.11.0"
+      }
+    },
+    {
+      "id": "http",
+      "meta": {
+        "description": "A set of types for representing HTTP requests and responses.\n",
+        "downloads": 466906893,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-24",
+        "repo_last_release": "2025-11-24",
+        "repo_maintainers": [
+          "seanmonstar",
+          "carllerche",
+          "alexcrichton",
+          "tottoto",
+          "sbosnick"
+        ],
+        "repo_owner": "hyperium",
+        "repo_stars": 1293,
+        "repo_topics": [
+          "http",
+          "rust"
+        ],
+        "repo_url": "https://github.com/hyperium/http",
+        "version": "1.4.0"
+      }
+    },
+    {
+      "id": "http-body",
+      "meta": {
+        "description": "Trait representing an asynchronous, streaming, HTTP request or response body.\n",
+        "downloads": 411909459,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-25",
+        "repo_last_release": "2024-07-12",
+        "repo_maintainers": [
+          "seanmonstar",
+          "tottoto",
+          "LucioFranco",
+          "davidpdrsn",
+          "cratelyn"
+        ],
+        "repo_owner": "hyperium",
+        "repo_stars": 151,
+        "repo_url": "https://github.com/hyperium/http-body",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "id": "tokio",
+      "meta": {
+        "description": "An event-driven, non-blocking I/O platform for writing asynchronous I/O\nbacked applications.\n",
+        "downloads": 455139867,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-29",
+        "repo_last_release": "2025-10-14",
+        "repo_maintainers": [
+          "carllerche",
+          "Darksonn",
+          "alexcrichton",
+          "taiki-e",
+          "ipetkov"
+        ],
+        "repo_owner": "tokio-rs",
+        "repo_stars": 30402,
+        "repo_topics": [
+          "asynchronous",
+          "networking",
+          "rust"
+        ],
+        "repo_url": "https://github.com/tokio-rs/tokio",
+        "version": "1.48.0"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "hyper",
+      "to": "bytes"
+    },
+    {
+      "from": "hyper",
+      "to": "http"
+    },
+    {
+      "from": "hyper",
+      "to": "http-body"
+    },
+    {
+      "from": "hyper",
+      "to": "tokio"
+    },
+    {
+      "from": "tokio",
+      "to": "pin-project-lite"
+    },
+    {
+      "from": "http",
+      "to": "bytes"
+    },
+    {
+      "from": "http",
+      "to": "itoa"
+    },
+    {
+      "from": "http-body",
+      "to": "bytes"
+    },
+    {
+      "from": "http-body",
+      "to": "http"
+    }
+  ]
+}

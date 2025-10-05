@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300.0 250.0" width="300" height="250">
+<rect id="block-C1" class="block" x="15.00" y="125.00" width="135.00" height="112.50" rx="18.0" ry="18.0" fill="white" stroke="#333" stroke-width="1"/>
+<rect id="block-C2" class="block" x="150.00" y="125.00" width="135.00" height="112.50" rx="18.0" ry="18.0" fill="white" stroke="#333" stroke-width="1"/>
+<rect id="block-P1" class="block" x="15.00" y="12.50" width="135.00" height="112.50" rx="18.0" ry="18.0" fill="white" stroke="#333" stroke-width="1"/>
+<rect id="block-P2" class="block" x="150.00" y="12.50" width="135.00" height="112.50" rx="18.0" ry="18.0" fill="white" stroke="#333" stroke-width="1"/>
+  <g class="block-text" data-block="C1">
+    <rect x="64.10" y="164.85" width="36.80" height="32.80" fill="white"/>
+    <text x="82.50" y="181.25" text-anchor="middle" dominant-baseline="middle" font-family="Times,serif" font-size="24.0" fill="#333">C1</text>
+  </g>
+  <g class="block-text" data-block="C2">
+    <rect x="199.10" y="164.85" width="36.80" height="32.80" fill="white"/>
+    <text x="217.50" y="181.25" text-anchor="middle" dominant-baseline="middle" font-family="Times,serif" font-size="24.0" fill="#333">C2</text>
+  </g>
+  <g class="block-text" data-block="P1">
+    <rect x="64.10" y="52.35" width="36.80" height="32.80" fill="white"/>
+    <text x="82.50" y="68.75" text-anchor="middle" dominant-baseline="middle" font-family="Times,serif" font-size="24.0" fill="#333">P1</text>
+  </g>
+  <g class="block-text" data-block="P2">
+    <rect x="199.10" y="52.35" width="36.80" height="32.80" fill="white"/>
+    <text x="217.50" y="68.75" text-anchor="middle" dominant-baseline="middle" font-family="Times,serif" font-size="24.0" fill="#333">P2</text>
+  </g>
+</svg>

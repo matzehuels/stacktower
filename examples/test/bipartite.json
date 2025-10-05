@@ -1,0 +1,59 @@
+{
+  "metadata": {
+    "name": "bipartite",
+    "description": "Complete bipartite K(2,2) requiring separator node insertion"
+  },
+  "nodes": [
+    {
+      "id": "consumer-a",
+      "meta": {
+        "version": "2.0.0",
+        "summary": "First consumer service",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "consumer-b",
+      "meta": {
+        "version": "2.1.0",
+        "summary": "Second consumer service",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "provider-a",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "First data provider",
+        "license": "MIT",
+        "repo_stars": 5400
+      }
+    },
+    {
+      "id": "provider-b",
+      "meta": {
+        "version": "1.1.0",
+        "summary": "Second data provider",
+        "license": "MIT"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "consumer-a",
+      "to": "provider-a"
+    },
+    {
+      "from": "consumer-a",
+      "to": "provider-b"
+    },
+    {
+      "from": "consumer-b",
+      "to": "provider-a"
+    },
+    {
+      "from": "consumer-b",
+      "to": "provider-b"
+    }
+  ]
+}

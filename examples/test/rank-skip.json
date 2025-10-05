@@ -1,0 +1,147 @@
+{
+  "metadata": {
+    "name": "rank-skip",
+    "description": "Complex rank skipping with multiple skip depths"
+  },
+  "nodes": [
+    {
+      "id": "top",
+      "meta": {
+        "version": "3.0.0",
+        "summary": "Unified prelude with skip edges",
+        "license": "MIT",
+        "repo_stars": 7800
+      }
+    },
+    {
+      "id": "mid-1",
+      "meta": {
+        "version": "2.0.0",
+        "summary": "Type extensions",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "base-1",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "Core types",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "mid-2",
+      "meta": {
+        "version": "2.1.0",
+        "summary": "Trait implementations",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "base-2",
+      "meta": {
+        "version": "1.1.0",
+        "summary": "Core traits",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "mid-3",
+      "meta": {
+        "version": "2.2.0",
+        "summary": "Derive macros",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "base-3",
+      "meta": {
+        "version": "1.2.0",
+        "summary": "Core macros",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "mid-4",
+      "meta": {
+        "version": "2.3.0",
+        "summary": "Utility macros",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "skip-1",
+      "meta": {
+        "version": "1.5.0",
+        "summary": "Skip target alpha",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "skip-2",
+      "meta": {
+        "version": "1.6.0",
+        "summary": "Skip target beta",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "skip-3",
+      "meta": {
+        "version": "1.7.0",
+        "summary": "Skip target gamma",
+        "license": "Apache-2.0"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "mid-1",
+      "to": "base-1"
+    },
+    {
+      "from": "mid-2",
+      "to": "base-2"
+    },
+    {
+      "from": "mid-3",
+      "to": "base-3"
+    },
+    {
+      "from": "mid-1",
+      "to": "skip-3"
+    },
+    {
+      "from": "mid-2",
+      "to": "skip-3"
+    },
+    {
+      "from": "top",
+      "to": "mid-1"
+    },
+    {
+      "from": "top",
+      "to": "mid-2"
+    },
+    {
+      "from": "top",
+      "to": "mid-3"
+    },
+    {
+      "from": "top",
+      "to": "mid-4"
+    },
+    {
+      "from": "top",
+      "to": "skip-1"
+    },
+    {
+      "from": "top",
+      "to": "skip-2"
+    },
+    {
+      "from": "top",
+      "to": "skip-3"
+    }
+  ]
+}

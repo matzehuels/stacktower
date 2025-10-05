@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "name": "transitive",
+    "description": "Simple transitive edge: A\u2192B\u2192C with shortcut A\u2192C"
+  },
+  "nodes": [
+    {
+      "id": "top",
+      "meta": {
+        "version": "3.0.0",
+        "summary": "Top-level with direct and transitive dep",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "middle",
+      "meta": {
+        "version": "2.0.0",
+        "summary": "Intermediate wrapper",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "base",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "Base dependency",
+        "license": "MIT"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "middle",
+      "to": "base"
+    },
+    {
+      "from": "top",
+      "to": "middle"
+    },
+    {
+      "from": "top",
+      "to": "base"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "metadata": {
+    "name": "single-node",
+    "description": "Edge case: single isolated node with no dependencies"
+  },
+  "nodes": [
+    {
+      "id": "core",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "Standalone core library",
+        "license": "MIT",
+        "repo_stars": 1250,
+        "repo_url": "https://github.com/example/core"
+      }
+    }
+  ],
+  "edges": []
+}

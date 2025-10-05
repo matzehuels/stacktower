@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200.0 200.0" width="200" height="200">
+<rect id="block-API" class="block" x="10.00" y="10.00" width="90.00" height="81.82" rx="18.0" ry="18.0" fill="white" stroke="#333" stroke-width="1"/>
+<rect id="block-Auth" class="block" x="100.00" y="10.00" width="90.00" height="81.82" rx="18.0" ry="18.0" fill="white" stroke="#333" stroke-width="1"/>
+<rect id="block-Logging" class="block" x="10.00" y="108.18" width="90.00" height="81.82" rx="18.0" ry="18.0" fill="white" stroke="#333" stroke-width="1"/>
+<rect id="block-Metrics" class="block" x="100.00" y="108.18" width="90.00" height="81.82" rx="18.0" ry="18.0" fill="white" stroke="#333" stroke-width="1"/>
+<rect id="block-Sep_1_Logging_Metrics" class="block" x="10.00" y="91.82" width="180.00" height="16.36" rx="5.5" ry="5.5" fill="white" stroke="#333" stroke-width="1"/>
+  <g class="block-text" data-block="API">
+    <rect x="33.40" y="36.51" width="43.20" height="28.80" fill="white"/>
+    <text x="55.00" y="50.91" text-anchor="middle" dominant-baseline="middle" font-family="Times,serif" font-size="24.0" fill="#333">API</text>
+  </g>
+  <g class="block-text" data-block="Auth">
+    <rect x="116.20" y="36.51" width="57.60" height="28.80" fill="white"/>
+    <text x="145.00" y="50.91" text-anchor="middle" dominant-baseline="middle" font-family="Times,serif" font-size="24.0" fill="#333">Auth</text>
+  </g>
+  <g class="block-text" data-block="Logging">
+    <rect x="13.27" y="137.17" width="83.45" height="23.84" fill="white"/>
+    <text x="55.00" y="149.09" text-anchor="middle" dominant-baseline="middle" font-family="Times,serif" font-size="19.9" fill="#333">Logging</text>
+  </g>
+  <g class="block-text" data-block="Metrics">
+    <rect x="103.27" y="137.17" width="83.45" height="23.84" fill="white"/>
+    <text x="145.00" y="149.09" text-anchor="middle" dominant-baseline="middle" font-family="Times,serif" font-size="19.9" fill="#333">Metrics</text>
+  </g>
+</svg>

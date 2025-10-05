@@ -1,0 +1,64 @@
+{
+  "metadata": {
+    "name": "diamond",
+    "description": "Classic diamond with transitive edge testing redundant dependency handling"
+  },
+  "nodes": [
+    {
+      "id": "top",
+      "meta": {
+        "version": "3.0.0",
+        "summary": "Unified top-level API",
+        "license": "MIT",
+        "repo_stars": 8500
+      }
+    },
+    {
+      "id": "left",
+      "meta": {
+        "version": "2.0.0",
+        "summary": "Left branch implementation",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "right",
+      "meta": {
+        "version": "2.1.0",
+        "summary": "Right branch implementation",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "base",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "Common base dependency",
+        "license": "MIT",
+        "repo_stars": 15000
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "left",
+      "to": "base"
+    },
+    {
+      "from": "right",
+      "to": "base"
+    },
+    {
+      "from": "top",
+      "to": "base"
+    },
+    {
+      "from": "top",
+      "to": "left"
+    },
+    {
+      "from": "top",
+      "to": "right"
+    }
+  ]
+}

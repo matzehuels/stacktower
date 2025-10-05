@@ -1,0 +1,188 @@
+{
+  "nodes": [
+    {
+      "id": "rayon",
+      "meta": {
+        "description": "Simple work-stealing parallelism for Rust",
+        "downloads": 276207514,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-10-28",
+        "repo_maintainers": [
+          "cuviper",
+          "nikomatsakis",
+          "Kerollmops",
+          "schuster"
+        ],
+        "repo_owner": "rayon-rs",
+        "repo_stars": 12420,
+        "repo_url": "https://github.com/rayon-rs/rayon",
+        "version": "1.11.0"
+      }
+    },
+    {
+      "id": "either",
+      "meta": {
+        "description": "The enum `Either` with variants `Left` and `Right` is a general purpose sum type with two cases.\n",
+        "downloads": 505174526,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-04",
+        "repo_maintainers": [
+          "cuviper",
+          "bluss",
+          "m4rw3r",
+          "yotamofek",
+          "aj-bagwell"
+        ],
+        "repo_owner": "rayon-rs",
+        "repo_stars": 540,
+        "repo_topics": [
+          "rust"
+        ],
+        "repo_url": "https://github.com/rayon-rs/either",
+        "version": "1.15.0"
+      }
+    },
+    {
+      "id": "rayon-core",
+      "meta": {
+        "description": "Core APIs for Rayon",
+        "downloads": 273535906,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-10-28",
+        "repo_maintainers": [
+          "cuviper",
+          "nikomatsakis",
+          "Kerollmops",
+          "schuster"
+        ],
+        "repo_owner": "rayon-rs",
+        "repo_stars": 12420,
+        "repo_url": "https://github.com/rayon-rs/rayon",
+        "version": "1.13.0"
+      }
+    },
+    {
+      "id": "crossbeam-deque",
+      "meta": {
+        "description": "Concurrent work-stealing deque",
+        "downloads": 320110893,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-06-07",
+        "repo_last_release": "2025-04-08",
+        "repo_maintainers": [
+          "taiki-e",
+          "aturon",
+          "jeehoonkang",
+          "Amanieu"
+        ],
+        "repo_owner": "crossbeam-rs",
+        "repo_stars": 8186,
+        "repo_topics": [
+          "concurrency",
+          "data-structures",
+          "lock-free",
+          "parallelism",
+          "rust",
+          "synchronization",
+          "threads"
+        ],
+        "repo_url": "https://github.com/crossbeam-rs/crossbeam",
+        "version": "0.8.6"
+      }
+    },
+    {
+      "id": "crossbeam-utils",
+      "meta": {
+        "description": "Utilities for concurrent programming",
+        "downloads": 461325481,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-06-07",
+        "repo_last_release": "2025-04-08",
+        "repo_maintainers": [
+          "taiki-e",
+          "aturon",
+          "jeehoonkang",
+          "Amanieu"
+        ],
+        "repo_owner": "crossbeam-rs",
+        "repo_stars": 8186,
+        "repo_topics": [
+          "concurrency",
+          "data-structures",
+          "lock-free",
+          "parallelism",
+          "rust",
+          "synchronization",
+          "threads"
+        ],
+        "repo_url": "https://github.com/crossbeam-rs/crossbeam",
+        "version": "0.8.21"
+      }
+    },
+    {
+      "id": "crossbeam-epoch",
+      "meta": {
+        "description": "Epoch-based garbage collection",
+        "downloads": 335482971,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-06-07",
+        "repo_last_release": "2025-04-08",
+        "repo_maintainers": [
+          "taiki-e",
+          "aturon",
+          "jeehoonkang",
+          "Amanieu"
+        ],
+        "repo_owner": "crossbeam-rs",
+        "repo_stars": 8186,
+        "repo_topics": [
+          "concurrency",
+          "data-structures",
+          "lock-free",
+          "parallelism",
+          "rust",
+          "synchronization",
+          "threads"
+        ],
+        "repo_url": "https://github.com/crossbeam-rs/crossbeam",
+        "version": "0.9.18"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "rayon",
+      "to": "either"
+    },
+    {
+      "from": "rayon",
+      "to": "rayon-core"
+    },
+    {
+      "from": "rayon-core",
+      "to": "crossbeam-deque"
+    },
+    {
+      "from": "rayon-core",
+      "to": "crossbeam-utils"
+    },
+    {
+      "from": "crossbeam-deque",
+      "to": "crossbeam-epoch"
+    },
+    {
+      "from": "crossbeam-deque",
+      "to": "crossbeam-utils"
+    },
+    {
+      "from": "crossbeam-epoch",
+      "to": "crossbeam-utils"
+    }
+  ]
+}

@@ -1,0 +1,511 @@
+{
+  "nodes": [
+    {
+      "id": "mongodb-connection-string-url",
+      "meta": {
+        "description": "MongoDB connection strings, based on the WhatWG URL API",
+        "license": "Apache-2.0",
+        "repo_archived": false,
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-11-05",
+        "repo_maintainers": [
+          "addaleax",
+          "gribnoysup",
+          "nbbeeken",
+          "baileympearson"
+        ],
+        "repo_owner": "mongodb-js",
+        "repo_stars": 9,
+        "repo_url": "https://github.com/mongodb-js/mongodb-connection-string-url",
+        "version": "7.0.0"
+      }
+    },
+    {
+      "id": "bson",
+      "meta": {
+        "author": "The MongoDB NodeJS Team",
+        "description": "A bson parser for node.js and the browser",
+        "license": "Apache-2.0",
+        "repo_archived": false,
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-11-05",
+        "repo_maintainers": [
+          "christkv",
+          "nbbeeken",
+          "mbroadst",
+          "baileympearson",
+          "W-A-James"
+        ],
+        "repo_owner": "mongodb",
+        "repo_stars": 1200,
+        "repo_topics": [
+          "bson",
+          "bson-library",
+          "mongodb",
+          "node-js",
+          "nodejs"
+        ],
+        "repo_url": "https://github.com/mongodb/js-bson",
+        "version": "7.0.0"
+      }
+    },
+    {
+      "id": "webidl-conversions",
+      "meta": {
+        "author": "Domenic Denicola",
+        "description": "Implements the WebIDL algorithms for converting to and from JavaScript values",
+        "license": "BSD-2-Clause",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-09-09",
+        "repo_last_release": "2025-09-09",
+        "repo_maintainers": [
+          "domenic",
+          "TimothyGu",
+          "ExE-Boss",
+          "Sebmaster",
+          "MattiasBuelens"
+        ],
+        "repo_owner": "jsdom",
+        "repo_stars": 36,
+        "repo_topics": [
+          "javascript",
+          "webidl"
+        ],
+        "repo_url": "https://github.com/jsdom/webidl-conversions",
+        "version": "8.0.0"
+      }
+    },
+    {
+      "id": "@types/webidl-conversions",
+      "meta": {
+        "description": "TypeScript definitions for webidl-conversions",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2019-09-04",
+        "repo_maintainers": [
+          "vvakame",
+          "sandersn",
+          "DanielRosenwasser",
+          "peterblazejewicz",
+          "BendingBender"
+        ],
+        "repo_owner": "DefinitelyTyped",
+        "repo_stars": 50674,
+        "repo_topics": [
+          "definition",
+          "dts",
+          "hacktoberfest",
+          "types",
+          "typescript",
+          "typescript-definitions",
+          "typings"
+        ],
+        "repo_url": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+        "version": "7.0.3"
+      }
+    },
+    {
+      "id": "punycode",
+      "meta": {
+        "author": "Mathias Bynens",
+        "description": "A robust Punycode converter that fully complies to RFC 3492 and RFC 5891, and works on nearly all JavaScript platforms.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-04-18",
+        "repo_last_release": "2023-10-30",
+        "repo_maintainers": [
+          "mathiasbynens",
+          "garycourt",
+          "jdalton",
+          "anonrig",
+          "abetomo"
+        ],
+        "repo_owner": "mathiasbynens",
+        "repo_stars": 1660,
+        "repo_url": "https://github.com/mathiasbynens/punycode.js",
+        "version": "2.3.1"
+      }
+    },
+    {
+      "id": "mquery",
+      "meta": {
+        "author": "Aaron Heckmann",
+        "description": "Expressive query building for MongoDB",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-11-18",
+        "repo_maintainers": [
+          "vkarpov15",
+          "aheckmann",
+          "hasezoey",
+          "ebensing",
+          "Fonger"
+        ],
+        "repo_owner": "aheckmann",
+        "repo_stars": 479,
+        "repo_topics": [
+          "javascript",
+          "mongodb",
+          "nodejs",
+          "query-builder"
+        ],
+        "repo_url": "https://github.com/aheckmann/mquery",
+        "version": "6.0.0"
+      }
+    },
+    {
+      "id": "ms",
+      "meta": {
+        "description": "Tiny millisecond conversion utility",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2025-11-18",
+        "repo_last_release": "2020-12-08",
+        "repo_maintainers": [
+          "leo",
+          "rauchg",
+          "dimitropoulos",
+          "tj",
+          "styfle"
+        ],
+        "repo_owner": "vercel",
+        "repo_stars": 5465,
+        "repo_topics": [
+          "conversion",
+          "milliseconds",
+          "utility"
+        ],
+        "repo_url": "https://github.com/vercel/ms",
+        "version": "2.1.3"
+      }
+    },
+    {
+      "id": "sift",
+      "meta": {
+        "author": "Craig Condon",
+        "description": "MongoDB query filtering in JavaScript",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-06-16",
+        "repo_last_release": "0001-01-01",
+        "repo_owner": "crcn",
+        "repo_stars": 1692,
+        "repo_topics": [
+          "frontend",
+          "javascript",
+          "utility"
+        ],
+        "repo_url": "https://github.com/crcn/sift.js#readme",
+        "version": "17.1.3"
+      }
+    },
+    {
+      "id": "whatwg-url",
+      "meta": {
+        "author": "Sebastian Mayr",
+        "description": "An implementation of the WHATWG URL Standard's URL API and parsing machinery",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-11-19",
+        "repo_last_release": "2025-09-13",
+        "repo_maintainers": [
+          "domenic",
+          "Sebmaster",
+          "TimothyGu",
+          "annevk",
+          "rmisev"
+        ],
+        "repo_owner": "jsdom",
+        "repo_stars": 405,
+        "repo_url": "https://github.com/jsdom/whatwg-url",
+        "version": "15.1.0"
+      }
+    },
+    {
+      "id": "mongodb",
+      "meta": {
+        "author": "The MongoDB NodeJS Team",
+        "description": "The official MongoDB driver for Node.js",
+        "license": "Apache-2.0",
+        "repo_archived": false,
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-11-06",
+        "repo_maintainers": [
+          "christkv",
+          "mbroadst",
+          "nbbeeken",
+          "daprahamian",
+          "baileympearson"
+        ],
+        "repo_owner": "mongodb",
+        "repo_stars": 10177,
+        "repo_topics": [
+          "database",
+          "mongodb",
+          "node-js",
+          "nodejs",
+          "nosql"
+        ],
+        "repo_url": "https://github.com/mongodb/node-mongodb-native",
+        "version": "7.0.0"
+      }
+    },
+    {
+      "id": "mpath",
+      "meta": {
+        "author": "Aaron Heckmann",
+        "description": "{G,S}et object values using MongoDB-like path notation",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2023-10-14",
+        "repo_maintainers": [
+          "Uzlopak",
+          "vkarpov15",
+          "aheckmann",
+          "hasezoey",
+          "0x0a0d"
+        ],
+        "repo_owner": "aheckmann",
+        "repo_stars": 46,
+        "repo_url": "https://github.com/aheckmann/mpath",
+        "version": "0.9.0"
+      }
+    },
+    {
+      "id": "@mongodb-js/saslprep",
+      "meta": {
+        "author": "Dmitry Tsvettsikh",
+        "description": "SASLprep: Stringprep Profile for User Names and Passwords, rfc4013",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2025-12-02",
+        "repo_maintainers": [
+          "addaleax",
+          "lerouxb",
+          "mcasimir"
+        ],
+        "repo_owner": "mongodb-js",
+        "repo_stars": 22,
+        "repo_url": "https://github.com/mongodb-js/devtools-shared",
+        "version": "1.3.2"
+      }
+    },
+    {
+      "id": "sparse-bitfield",
+      "meta": {
+        "author": "Mathias Buus",
+        "description": "Bitfield that allocates a series of small buffers to support sparse bits without allocating a massive buffer",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2021-06-21",
+        "repo_maintainers": [
+          "mafintosh"
+        ],
+        "repo_owner": "mafintosh",
+        "repo_stars": 27,
+        "repo_url": "https://github.com/mafintosh/sparse-bitfield",
+        "version": "3.0.3"
+      }
+    },
+    {
+      "id": "@types/whatwg-url",
+      "meta": {
+        "description": "TypeScript definitions for whatwg-url",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2019-09-04",
+        "repo_maintainers": [
+          "vvakame",
+          "sandersn",
+          "DanielRosenwasser",
+          "peterblazejewicz",
+          "BendingBender"
+        ],
+        "repo_owner": "DefinitelyTyped",
+        "repo_stars": 50674,
+        "repo_topics": [
+          "definition",
+          "dts",
+          "hacktoberfest",
+          "types",
+          "typescript",
+          "typescript-definitions",
+          "typings"
+        ],
+        "repo_url": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+        "version": "13.0.0"
+      }
+    },
+    {
+      "id": "tr46",
+      "meta": {
+        "author": "Sebastian Mayr",
+        "description": "An implementation of the Unicode UTS #46: Unicode IDNA Compatibility Processing",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-11-21",
+        "repo_last_release": "0001-01-01",
+        "repo_owner": "jsdom",
+        "repo_stars": 39,
+        "repo_url": "https://github.com/jsdom/tr46#readme",
+        "version": "6.0.0"
+      }
+    },
+    {
+      "id": "memory-pager",
+      "meta": {
+        "author": "Mathias Buus",
+        "description": "Access memory using small fixed sized buffers",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2021-06-02",
+        "repo_maintainers": [
+          "mafintosh",
+          "pfrazee"
+        ],
+        "repo_owner": "mafintosh",
+        "repo_stars": 31,
+        "repo_url": "https://github.com/mafintosh/memory-pager",
+        "version": "1.5.0"
+      }
+    },
+    {
+      "id": "mongoose",
+      "meta": {
+        "author": "Guillermo Rauch",
+        "description": "Mongoose MongoDB ODM",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-12-02",
+        "repo_last_release": "2025-11-21",
+        "repo_maintainers": [
+          "vkarpov15",
+          "aheckmann",
+          "AbdelrahmanHafez",
+          "rauchg",
+          "hasezoey"
+        ],
+        "repo_owner": "Automattic",
+        "repo_stars": 27409,
+        "repo_topics": [
+          "mongo",
+          "mongodb",
+          "nodejs",
+          "odm",
+          "orm"
+        ],
+        "repo_url": "https://github.com/Automattic/mongoose",
+        "version": "9.0.0"
+      }
+    },
+    {
+      "id": "kareem",
+      "meta": {
+        "author": "Valeri Karpov",
+        "description": "Next-generation take on pre/post function hooks",
+        "license": "Apache-2.0",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-11-18",
+        "repo_maintainers": [
+          "vkarpov15",
+          "hasezoey",
+          "Uzlopak"
+        ],
+        "repo_owner": "mongoosejs",
+        "repo_stars": 84,
+        "repo_url": "https://github.com/mongoosejs/kareem",
+        "version": "3.0.0"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "mongoose",
+      "to": "mquery"
+    },
+    {
+      "from": "mongoose",
+      "to": "ms"
+    },
+    {
+      "from": "mongoose",
+      "to": "sift"
+    },
+    {
+      "from": "mongoose",
+      "to": "kareem"
+    },
+    {
+      "from": "mongoose",
+      "to": "mongodb"
+    },
+    {
+      "from": "mongoose",
+      "to": "mpath"
+    },
+    {
+      "from": "mongodb",
+      "to": "@mongodb-js/saslprep"
+    },
+    {
+      "from": "mongodb",
+      "to": "mongodb-connection-string-url"
+    },
+    {
+      "from": "mongodb",
+      "to": "bson"
+    },
+    {
+      "from": "@mongodb-js/saslprep",
+      "to": "sparse-bitfield"
+    },
+    {
+      "from": "mongodb-connection-string-url",
+      "to": "@types/whatwg-url"
+    },
+    {
+      "from": "mongodb-connection-string-url",
+      "to": "whatwg-url"
+    },
+    {
+      "from": "sparse-bitfield",
+      "to": "memory-pager"
+    },
+    {
+      "from": "whatwg-url",
+      "to": "tr46"
+    },
+    {
+      "from": "whatwg-url",
+      "to": "webidl-conversions"
+    },
+    {
+      "from": "@types/whatwg-url",
+      "to": "@types/webidl-conversions"
+    },
+    {
+      "from": "tr46",
+      "to": "punycode"
+    }
+  ]
+}

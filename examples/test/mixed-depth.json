@@ -1,0 +1,172 @@
+{
+  "metadata": {
+    "name": "mixed-depth",
+    "description": "Complex mixed depth with multiple skip levels and branches"
+  },
+  "nodes": [
+    {
+      "id": "system",
+      "meta": {
+        "version": "7.0.0",
+        "summary": "Top-level system controller",
+        "license": "MIT",
+        "repo_stars": 12500
+      }
+    },
+    {
+      "id": "core",
+      "meta": {
+        "version": "6.0.0",
+        "summary": "Core orchestrator",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "engine",
+      "meta": {
+        "version": "5.0.0",
+        "summary": "Execution engine",
+        "license": "MIT",
+        "repo_stars": 8500
+      }
+    },
+    {
+      "id": "isolated",
+      "meta": {
+        "version": "1.2.0",
+        "summary": "Isolated utility module",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "skip-engine",
+      "meta": {
+        "version": "5.1.0",
+        "summary": "Engine fast-path",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "processor",
+      "meta": {
+        "version": "4.0.0",
+        "summary": "Central processing unit",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "data",
+      "meta": {
+        "version": "3.0.0",
+        "summary": "Data serialization layer",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "disk",
+      "meta": {
+        "version": "2.0.0",
+        "summary": "Disk I/O operations",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "network",
+      "meta": {
+        "version": "3.1.0",
+        "summary": "Network protocol handler",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "skip-net",
+      "meta": {
+        "version": "3.2.0",
+        "summary": "Network shortcuts",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "socket",
+      "meta": {
+        "version": "2.1.0",
+        "summary": "Socket management",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "connection",
+      "meta": {
+        "version": "1.1.0",
+        "summary": "Connection pool manager",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "storage",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "Storage abstraction layer",
+        "license": "MIT"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "system",
+      "to": "core"
+    },
+    {
+      "from": "system",
+      "to": "skip-engine"
+    },
+    {
+      "from": "system",
+      "to": "skip-net"
+    },
+    {
+      "from": "system",
+      "to": "isolated"
+    },
+    {
+      "from": "core",
+      "to": "engine"
+    },
+    {
+      "from": "engine",
+      "to": "processor"
+    },
+    {
+      "from": "skip-engine",
+      "to": "processor"
+    },
+    {
+      "from": "processor",
+      "to": "data"
+    },
+    {
+      "from": "processor",
+      "to": "network"
+    },
+    {
+      "from": "data",
+      "to": "disk"
+    },
+    {
+      "from": "disk",
+      "to": "storage"
+    },
+    {
+      "from": "network",
+      "to": "socket"
+    },
+    {
+      "from": "skip-net",
+      "to": "socket"
+    },
+    {
+      "from": "socket",
+      "to": "connection"
+    }
+  ]
+}

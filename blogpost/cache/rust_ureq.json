@@ -1,0 +1,289 @@
+{
+  "nodes": [
+    {
+      "id": "ureq",
+      "meta": {
+        "description": "Simple, safe HTTP client",
+        "downloads": 77370181,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-22",
+        "repo_maintainers": [
+          "algesten",
+          "jsha",
+          "lolgesten",
+          "AlyoshaVasilieva"
+        ],
+        "repo_owner": "algesten",
+        "repo_stars": 2022,
+        "repo_topics": [
+          "http",
+          "httpclient",
+          "rust",
+          "rust-library"
+        ],
+        "repo_url": "https://github.com/algesten/ureq",
+        "version": "3.1.4"
+      }
+    },
+    {
+      "id": "base64",
+      "meta": {
+        "description": "encodes and decodes base64 as bytes or utf8",
+        "downloads": 811591170,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-23",
+        "repo_maintainers": [
+          "marshallpierce",
+          "alicemaz",
+          "danieleades",
+          "rvolgers",
+          "nox"
+        ],
+        "repo_owner": "marshallpierce",
+        "repo_stars": 703,
+        "repo_topics": [
+          "base64",
+          "nostd",
+          "rust"
+        ],
+        "repo_url": "https://github.com/marshallpierce/rust-base64",
+        "version": "0.22.1"
+      }
+    },
+    {
+      "id": "log",
+      "meta": {
+        "description": "A lightweight logging facade for Rust\n",
+        "downloads": 628503931,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-29",
+        "repo_last_release": "2025-09-03",
+        "repo_maintainers": [
+          "KodrAus",
+          "sfackler",
+          "alexcrichton",
+          "dtolnay",
+          "Thomasdezeeuw"
+        ],
+        "repo_owner": "rust-lang",
+        "repo_stars": 2448,
+        "repo_topics": [
+          "logging",
+          "rust-library"
+        ],
+        "repo_url": "https://github.com/rust-lang/log",
+        "version": "0.4.28"
+      }
+    },
+    {
+      "id": "percent-encoding",
+      "meta": {
+        "description": "Percent encoding and decoding",
+        "downloads": 442341783,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-03",
+        "repo_last_release": "2025-08-27",
+        "repo_maintainers": [
+          "SimonSapin",
+          "valenting",
+          "djc",
+          "frewsxcv",
+          "nox"
+        ],
+        "repo_owner": "servo",
+        "repo_stars": 1485,
+        "repo_url": "https://github.com/servo/rust-url",
+        "version": "2.3.2"
+      }
+    },
+    {
+      "id": "ureq-proto",
+      "meta": {
+        "description": "ureq support crate",
+        "downloads": 9347401,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-22",
+        "repo_maintainers": [
+          "algesten",
+          "JPDye",
+          "42triangles",
+          "ethanpailes"
+        ],
+        "repo_owner": "algesten",
+        "repo_stars": 12,
+        "repo_url": "https://github.com/algesten/ureq-proto",
+        "version": "0.5.3"
+      }
+    },
+    {
+      "id": "utf-8",
+      "meta": {
+        "description": "Incremental, zero-copy UTF-8 decoding with error handling",
+        "downloads": 124199373,
+        "repo_archived": true,
+        "repo_language": "Rust",
+        "repo_last_commit": "2023-01-21",
+        "repo_maintainers": [
+          "SimonSapin",
+          "frewsxcv"
+        ],
+        "repo_owner": "SimonSapin",
+        "repo_stars": 24,
+        "repo_url": "https://github.com/SimonSapin/rust-utf8",
+        "version": "0.7.6"
+      }
+    },
+    {
+      "id": "http",
+      "meta": {
+        "description": "A set of types for representing HTTP requests and responses.\n",
+        "downloads": 466906893,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-24",
+        "repo_last_release": "2025-11-24",
+        "repo_maintainers": [
+          "seanmonstar",
+          "carllerche",
+          "alexcrichton",
+          "tottoto",
+          "sbosnick"
+        ],
+        "repo_owner": "hyperium",
+        "repo_stars": 1293,
+        "repo_topics": [
+          "http",
+          "rust"
+        ],
+        "repo_url": "https://github.com/hyperium/http",
+        "version": "1.4.0"
+      }
+    },
+    {
+      "id": "httparse",
+      "meta": {
+        "description": "A tiny, safe, speedy, zero-copy HTTP/1.x parser.",
+        "downloads": 351547800,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-10",
+        "repo_last_release": "2025-03-03",
+        "repo_maintainers": [
+          "seanmonstar",
+          "AaronO",
+          "nox",
+          "reem",
+          "hkBst"
+        ],
+        "repo_owner": "seanmonstar",
+        "repo_stars": 662,
+        "repo_topics": [
+          "http",
+          "parse",
+          "rust"
+        ],
+        "repo_url": "https://github.com/seanmonstar/httparse",
+        "version": "1.10.1"
+      }
+    },
+    {
+      "id": "bytes",
+      "meta": {
+        "description": "Types and traits for working with bytes",
+        "downloads": 492903540,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-28",
+        "repo_last_release": "2025-11-14",
+        "repo_maintainers": [
+          "carllerche",
+          "seanmonstar",
+          "Darksonn",
+          "taiki-e",
+          "braddunbar"
+        ],
+        "repo_owner": "tokio-rs",
+        "repo_stars": 2135,
+        "repo_url": "https://github.com/tokio-rs/bytes",
+        "version": "1.11.0"
+      }
+    },
+    {
+      "id": "itoa",
+      "meta": {
+        "description": "Fast integer primitive to string conversion",
+        "downloads": 654225437,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-20",
+        "repo_last_release": "2025-03-03",
+        "repo_maintainers": [
+          "dtolnay",
+          "glandium",
+          "Object905",
+          "SimonSapin",
+          "nox"
+        ],
+        "repo_owner": "dtolnay",
+        "repo_stars": 352,
+        "repo_topics": [
+          "performance",
+          "rust"
+        ],
+        "repo_url": "https://github.com/dtolnay/itoa",
+        "version": "1.0.15"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "ureq",
+      "to": "base64"
+    },
+    {
+      "from": "ureq",
+      "to": "log"
+    },
+    {
+      "from": "ureq",
+      "to": "percent-encoding"
+    },
+    {
+      "from": "ureq",
+      "to": "ureq-proto"
+    },
+    {
+      "from": "ureq",
+      "to": "utf-8"
+    },
+    {
+      "from": "ureq-proto",
+      "to": "base64"
+    },
+    {
+      "from": "ureq-proto",
+      "to": "http"
+    },
+    {
+      "from": "ureq-proto",
+      "to": "httparse"
+    },
+    {
+      "from": "ureq-proto",
+      "to": "log"
+    },
+    {
+      "from": "http",
+      "to": "bytes"
+    },
+    {
+      "from": "http",
+      "to": "itoa"
+    }
+  ]
+}

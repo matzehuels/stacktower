@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "name": "union-violation",
+    "description": "Tests union constraint violation in ordering"
+  },
+  "nodes": [
+    {
+      "id": "top",
+      "meta": {
+        "version": "3.0.0",
+        "summary": "Top-level aggregator",
+        "license": "MIT",
+        "repo_stars": 2100
+      }
+    },
+    {
+      "id": "mid-w",
+      "meta": {
+        "version": "2.2.0",
+        "summary": "Third middleware",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "base-c",
+      "meta": {
+        "version": "1.2.0",
+        "summary": "Third base component",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "mid-x",
+      "meta": {
+        "version": "2.0.0",
+        "summary": "First middleware",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "mid-y",
+      "meta": {
+        "version": "2.1.0",
+        "summary": "Second middleware spanning two bases",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "base-a",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "First base component",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "base-b",
+      "meta": {
+        "version": "1.1.0",
+        "summary": "Second base component",
+        "license": "MIT"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "mid-x",
+      "to": "base-a"
+    },
+    {
+      "from": "mid-y",
+      "to": "base-a"
+    },
+    {
+      "from": "mid-y",
+      "to": "base-b"
+    },
+    {
+      "from": "mid-w",
+      "to": "base-c"
+    },
+    {
+      "from": "top",
+      "to": "mid-x"
+    },
+    {
+      "from": "top",
+      "to": "mid-y"
+    },
+    {
+      "from": "top",
+      "to": "mid-w"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "metadata": {
+    "name": "fan-out",
+    "description": "One node with multiple dependents (one-to-many)"
+  },
+  "nodes": [
+    {
+      "id": "client-a",
+      "meta": {
+        "version": "2.0.0",
+        "summary": "HTTP client adapter",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "client-b",
+      "meta": {
+        "version": "2.1.0",
+        "summary": "WebSocket client adapter",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "client-c",
+      "meta": {
+        "version": "2.2.0",
+        "summary": "gRPC client adapter",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "core",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "Shared core library",
+        "license": "MIT",
+        "repo_stars": 8500
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "client-a",
+      "to": "core"
+    },
+    {
+      "from": "client-b",
+      "to": "core"
+    },
+    {
+      "from": "client-c",
+      "to": "core"
+    }
+  ]
+}

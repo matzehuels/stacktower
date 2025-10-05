@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300.0 250.0" width="300" height="250">
+<rect id="block-A" class="block" x="15.00" y="12.50" width="270.00" height="75.00" rx="18.0" ry="18.0" fill="white" stroke="#333" stroke-width="1"/>
+<rect id="block-B" class="block" x="15.00" y="87.50" width="270.00" height="75.00" rx="18.0" ry="18.0" fill="white" stroke="#333" stroke-width="1"/>
+<rect id="block-C" class="block" x="15.00" y="162.50" width="270.00" height="75.00" rx="18.0" ry="18.0" fill="white" stroke="#333" stroke-width="1"/>
+  <g class="block-text" data-block="A">
+    <rect x="138.80" y="33.60" width="22.40" height="32.80" fill="white"/>
+    <text x="150.00" y="50.00" text-anchor="middle" dominant-baseline="middle" font-family="Times,serif" font-size="24.0" fill="#333">A</text>
+  </g>
+  <g class="block-text" data-block="B">
+    <rect x="138.80" y="108.60" width="22.40" height="32.80" fill="white"/>
+    <text x="150.00" y="125.00" text-anchor="middle" dominant-baseline="middle" font-family="Times,serif" font-size="24.0" fill="#333">B</text>
+  </g>
+  <g class="block-text" data-block="C">
+    <rect x="138.80" y="183.60" width="22.40" height="32.80" fill="white"/>
+    <text x="150.00" y="200.00" text-anchor="middle" dominant-baseline="middle" font-family="Times,serif" font-size="24.0" fill="#333">C</text>
+  </g>
+</svg>

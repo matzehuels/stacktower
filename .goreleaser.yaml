@@ -1,0 +1,122 @@
+# GoReleaser configuration
+# Documentation: https://goreleaser.com
+
+version: 2
+
+before:
+  hooks:
+    # Ensure dependencies are up to date
+    - go mod tidy
+    # Run tests before building
+    - go test ./...
+
+builds:
+  - id: stacktower
+    main: ./main.go
+    binary: stacktower
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    # Don't build darwin/arm64 on Go < 1.16
+    ignore:
+      - goos: darwin
+        goarch: arm64
+    ldflags:
+      - -s -w
+      - -X main.version={{.Version}}
+      - -X main.commit={{.Commit}}
+      - -X main.date={{.Date}}
+
+archives:
+  - id: stacktower
+    format: tar.gz
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- .Version }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - LICENSE
+      - README.md
+
+checksum:
+  name_template: 'checksums.txt'
+
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  sort: asc
+  use: github
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - '^chore:'
+      - '^ci:'
+      - 'README'
+      - Merge pull request
+      - Merge branch
+  groups:
+    - title: Features
+      regexp: '^.*?feat(\([[:word:]]+\))??!?:.+$'
+      order: 0
+    - title: Bug Fixes
+      regexp: '^.*?fix(\([[:word:]]+\))??!?:.+$'
+      order: 1
+    - title: Performance
+      regexp: '^.*?perf(\([[:word:]]+\))??!?:.+$'
+      order: 2
+    - title: Others
+      order: 999
+
+release:
+  github:
+    owner: matzehuels
+    name: stacktower
+  draft: false
+  prerelease: auto
+  name_template: "{{.ProjectName}} v{{.Version}}"
+  header: |
+    ## Stacktower {{.Version}}
+
+    A tool for visualizing dependency graphs as elegant "stack tower" diagrams.
+
+    ### Installation
+
+    Download the appropriate binary for your platform below, or install via Go:
+
+    ```bash
+    go install github.com/matzehuels/stacktower@{{.Tag}}
+    ```
+
+  footer: |
+    **Full Changelog**: https://github.com/matzehuels/stacktower/compare/{{ .PreviousTag }}...{{ .Tag }}
+
+# Homebrew tap (disabled until ready)
+# Uncomment and create homebrew-tap repo when ready for brew distribution
+# brews:
+#   - name: stacktower
+#     repository:
+#       owner: matzehuels
+#       name: homebrew-tap
+#     folder: Formula
+#     homepage: https://github.com/matzehuels/stacktower
+#     description: Visualize dependency graphs as elegant "stack tower" diagrams
+#     license: MIT
+#     test: |
+#       system "#{bin}/stacktower --version"
+#     install: |
+#       bin.install "stacktower"

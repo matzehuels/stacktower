@@ -1,0 +1,1273 @@
+{
+  "nodes": [
+    {
+      "id": "side-channel",
+      "meta": {
+        "author": "Jordan Harband",
+        "description": "Store information about any JS value in a side channel. Uses WeakMap if available.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-12-11",
+        "repo_maintainers": [
+          "ljharb",
+          "Tofandel",
+          "cortopy",
+          "nicolo-ribaudo"
+        ],
+        "repo_owner": "ljharb",
+        "repo_stars": 17,
+        "repo_url": "https://github.com/ljharb/side-channel",
+        "version": "1.1.0"
+      }
+    },
+    {
+      "id": "side-channel-list",
+      "meta": {
+        "author": "Jordan Harband",
+        "description": "Store information about any JS value in a side channel, using a linked list",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-12-10",
+        "repo_maintainers": [
+          "ljharb"
+        ],
+        "repo_owner": "ljharb",
+        "repo_stars": 3,
+        "repo_url": "https://github.com/ljharb/side-channel-list",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "call-bind-apply-helpers",
+      "meta": {
+        "author": "Jordan Harband",
+        "description": "Helper functions around Function call/apply/bind, for use in `call-bind`",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-02-12",
+        "repo_maintainers": [
+          "ljharb"
+        ],
+        "repo_owner": "ljharb",
+        "repo_stars": 4,
+        "repo_url": "https://github.com/ljharb/call-bind-apply-helpers",
+        "version": "1.0.2"
+      }
+    },
+    {
+      "id": "http-errors",
+      "meta": {
+        "author": "Jonathan Ong",
+        "description": "Create HTTP error objects",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-11-20",
+        "repo_maintainers": [
+          "dougwilson",
+          "jonathanong",
+          "krmannix",
+          "pluma"
+        ],
+        "repo_owner": "jshttp",
+        "repo_stars": 1547,
+        "repo_url": "https://github.com/jshttp/http-errors",
+        "version": "2.0.1"
+      }
+    },
+    {
+      "id": "setprototypeof",
+      "meta": {
+        "author": "Wes Todd",
+        "description": "A small polyfill for Object.setprototypeof",
+        "license": "ISC",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2022-06-24",
+        "repo_maintainers": [
+          "wesleytodd",
+          "phapdinh",
+          "longlho",
+          "mad-gooze"
+        ],
+        "repo_owner": "wesleytodd",
+        "repo_stars": 53,
+        "repo_url": "https://github.com/wesleytodd/setprototypeof",
+        "version": "1.2.0"
+      }
+    },
+    {
+      "id": "es-errors",
+      "meta": {
+        "author": "Jordan Harband",
+        "description": "A simple cache for a few of the JS Error constructors.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-03-09",
+        "repo_maintainers": [
+          "ljharb"
+        ],
+        "repo_owner": "ljharb",
+        "repo_stars": 10,
+        "repo_topics": [
+          "ecmascript",
+          "error",
+          "javascript",
+          "rangeerror",
+          "syntaxerror",
+          "typeerror"
+        ],
+        "repo_url": "https://github.com/ljharb/es-errors",
+        "version": "1.3.0"
+      }
+    },
+    {
+      "id": "call-bound",
+      "meta": {
+        "author": "Jordan Harband",
+        "description": "Robust call-bound JavaScript intrinsics, using `call-bind` and `get-intrinsic`.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-03-03",
+        "repo_maintainers": [
+          "ljharb"
+        ],
+        "repo_owner": "ljharb",
+        "repo_stars": 4,
+        "repo_url": "https://github.com/ljharb/call-bound",
+        "version": "1.0.4"
+      }
+    },
+    {
+      "id": "iconv-lite",
+      "meta": {
+        "author": "Alexander Shtuchkin",
+        "description": "Convert character encodings in pure javascript.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-11-26",
+        "repo_last_release": "2025-08-20",
+        "repo_maintainers": [
+          "ashtuchkin",
+          "bjohansebas",
+          "jenkinv",
+          "mscdex"
+        ],
+        "repo_owner": "pillarjs",
+        "repo_stars": 3144,
+        "repo_topics": [
+          "encoding",
+          "encoding-convertors",
+          "iconv",
+          "javascript"
+        ],
+        "repo_url": "https://github.com/pillarjs/iconv-lite",
+        "version": "0.7.0"
+      }
+    },
+    {
+      "id": "type-is",
+      "meta": {
+        "description": "Infer the content-type of a request.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-11-01",
+        "repo_last_release": "2025-03-27",
+        "repo_maintainers": [
+          "dougwilson",
+          "jonathanong",
+          "wesleytodd",
+          "Fishrock123"
+        ],
+        "repo_owner": "jshttp",
+        "repo_stars": 227,
+        "repo_topics": [
+          "http",
+          "javascript",
+          "nodejs",
+          "type"
+        ],
+        "repo_url": "https://github.com/jshttp/type-is",
+        "version": "2.0.1"
+      }
+    },
+    {
+      "id": "depd",
+      "meta": {
+        "author": "Douglas Christopher Wilson",
+        "description": "Deprecate all the things",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-09-03",
+        "repo_last_release": "2018-10-26",
+        "repo_maintainers": [
+          "dougwilson",
+          "adrianheine"
+        ],
+        "repo_owner": "dougwilson",
+        "repo_stars": 329,
+        "repo_topics": [
+          "deprecate",
+          "javascript",
+          "nodejs"
+        ],
+        "repo_url": "https://github.com/dougwilson/nodejs-depd",
+        "version": "2.0.0"
+      }
+    },
+    {
+      "id": "inherits",
+      "meta": {
+        "description": "Browser-friendly inheritance fully compatible with standard node.js inherits()",
+        "license": "ISC",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-10-25",
+        "repo_maintainers": [
+          "isaacs",
+          "gaconnet",
+          "ColinEberhardt",
+          "dimsmol",
+          "sdalmeida"
+        ],
+        "repo_owner": "isaacs",
+        "repo_stars": 354,
+        "repo_url": "https://github.com/isaacs/inherits",
+        "version": "2.0.4"
+      }
+    },
+    {
+      "id": "media-typer",
+      "meta": {
+        "author": "Douglas Christopher Wilson",
+        "description": "Simple RFC 6838 media type parser and formatter",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-11-01",
+        "repo_last_release": "2019-04-25",
+        "repo_maintainers": [
+          "dougwilson",
+          "UlisesGascon",
+          "carpasse",
+          "Phillip9587"
+        ],
+        "repo_owner": "jshttp",
+        "repo_stars": 56,
+        "repo_topics": [
+          "javascript",
+          "media",
+          "mime",
+          "nodejs",
+          "type"
+        ],
+        "repo_url": "https://github.com/jshttp/media-typer",
+        "version": "1.1.0"
+      }
+    },
+    {
+      "id": "toidentifier",
+      "meta": {
+        "author": "Douglas Christopher Wilson",
+        "description": "Convert a string of words to a JavaScript identifier",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2023-12-18",
+        "repo_maintainers": [
+          "dougwilson",
+          "niftylettuce"
+        ],
+        "repo_owner": "component",
+        "repo_stars": 6,
+        "repo_url": "https://github.com/component/toidentifier",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "id": "object-inspect",
+      "meta": {
+        "author": "James Halliday",
+        "description": "string representations of objects in node and the browser",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-10-07",
+        "repo_last_release": "2021-05-08",
+        "repo_maintainers": [
+          "ljharb",
+          "christianbundy",
+          "emilbayes",
+          "brigand",
+          "martinheidegger"
+        ],
+        "repo_owner": "inspect-js",
+        "repo_stars": 158,
+        "repo_topics": [
+          "browser",
+          "inspect",
+          "javascript",
+          "node",
+          "object"
+        ],
+        "repo_url": "https://github.com/inspect-js/object-inspect",
+        "version": "1.13.4"
+      }
+    },
+    {
+      "id": "mime-db",
+      "meta": {
+        "description": "Media Type Database",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-03-18",
+        "repo_maintainers": [
+          "dougwilson",
+          "jonathanong",
+          "wesleytodd",
+          "alrra",
+          "jeffreybaird"
+        ],
+        "repo_owner": "jshttp",
+        "repo_stars": 1198,
+        "repo_topics": [
+          "mime",
+          "mime-types"
+        ],
+        "repo_url": "https://github.com/jshttp/mime-db",
+        "version": "1.54.0"
+      }
+    },
+    {
+      "id": "has-symbols",
+      "meta": {
+        "author": "Jordan Harband",
+        "description": "Determine if the JS environment has Symbol support. Supports spec, or shams.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-12-02",
+        "repo_maintainers": [
+          "ljharb"
+        ],
+        "repo_owner": "inspect-js",
+        "repo_stars": 17,
+        "repo_topics": [
+          "core-js",
+          "ecmascript",
+          "es2015",
+          "es6",
+          "has",
+          "javascript",
+          "symbol",
+          "symbol-support",
+          "symbols"
+        ],
+        "repo_url": "https://github.com/inspect-js/has-symbols",
+        "version": "1.1.0"
+      }
+    },
+    {
+      "id": "function-bind",
+      "meta": {
+        "author": "Raynos",
+        "description": "Implementation of Function.prototype.bind",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2023-10-12",
+        "repo_maintainers": [
+          "ljharb",
+          "Raynos",
+          "ExE-Boss",
+          "maxnordlund",
+          "PeterDaveHello"
+        ],
+        "repo_owner": "Raynos",
+        "repo_stars": 139,
+        "repo_url": "https://github.com/Raynos/function-bind",
+        "version": "1.1.2"
+      }
+    },
+    {
+      "id": "body-parser",
+      "meta": {
+        "description": "Node.js body parsing middleware",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-11-30",
+        "repo_last_release": "2025-11-24",
+        "repo_maintainers": [
+          "dougwilson",
+          "Phillip9587",
+          "UlisesGascon",
+          "jonathanong"
+        ],
+        "repo_owner": "expressjs",
+        "repo_stars": 5498,
+        "repo_topics": [
+          "body",
+          "expressjs",
+          "javascript",
+          "json",
+          "middleware",
+          "nodejs",
+          "parser",
+          "urlencoded"
+        ],
+        "repo_url": "https://github.com/expressjs/body-parser",
+        "version": "2.2.1"
+      }
+    },
+    {
+      "id": "statuses",
+      "meta": {
+        "description": "HTTP status utility",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-11-17",
+        "repo_last_release": "2025-06-06",
+        "repo_maintainers": [
+          "dougwilson",
+          "jonathanong",
+          "inigomarquinez",
+          "UlisesGascon"
+        ],
+        "repo_owner": "jshttp",
+        "repo_stars": 284,
+        "repo_topics": [
+          "http",
+          "javascript",
+          "nodejs",
+          "status-codes"
+        ],
+        "repo_url": "https://github.com/jshttp/statuses",
+        "version": "2.0.2"
+      }
+    },
+    {
+      "id": "safer-buffer",
+      "meta": {
+        "author": "Nikita Skovoroda",
+        "description": "Modern Buffer API polyfill without footguns",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2021-04-22",
+        "repo_last_release": "2018-04-08",
+        "repo_maintainers": [
+          "ChALkeR",
+          "addaleax",
+          "ashtuchkin",
+          "jon-simpkins",
+          "joyeecheung"
+        ],
+        "repo_owner": "ChALkeR",
+        "repo_stars": 27,
+        "repo_url": "https://github.com/ChALkeR/safer-buffer",
+        "version": "2.1.2"
+      }
+    },
+    {
+      "id": "side-channel-weakmap",
+      "meta": {
+        "author": "Jordan Harband",
+        "description": "Store information about any JS value in a side channel. Uses WeakMap if available.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-12-11",
+        "repo_maintainers": [
+          "ljharb"
+        ],
+        "repo_owner": "ljharb",
+        "repo_stars": 1,
+        "repo_url": "https://github.com/ljharb/side-channel-weakmap",
+        "version": "1.0.2"
+      }
+    },
+    {
+      "id": "get-intrinsic",
+      "meta": {
+        "author": "Jordan Harband",
+        "description": "Get and robustly cache all JS language-level intrinsics at first require time",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-09-29",
+        "repo_maintainers": [
+          "ljharb",
+          "ExE-Boss"
+        ],
+        "repo_owner": "ljharb",
+        "repo_stars": 28,
+        "repo_topics": [
+          "builtin",
+          "builtins",
+          "ecmascript",
+          "intrinsic",
+          "intrinsics",
+          "javascript",
+          "primordial",
+          "primordials"
+        ],
+        "repo_url": "https://github.com/ljharb/get-intrinsic",
+        "version": "1.3.0"
+      }
+    },
+    {
+      "id": "get-proto",
+      "meta": {
+        "author": "Jordan Harband",
+        "description": "Robustly get the [[Prototype]] of an object",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-01-02",
+        "repo_maintainers": [
+          "ljharb"
+        ],
+        "repo_owner": "ljharb",
+        "repo_stars": 2,
+        "repo_url": "https://github.com/ljharb/get-proto",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "id": "raw-body",
+      "meta": {
+        "author": "Jonathan Ong",
+        "description": "Get and validate the raw body of a readable stream.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-11-25",
+        "repo_last_release": "2025-11-21",
+        "repo_maintainers": [
+          "dougwilson",
+          "jonathanong",
+          "Raynos",
+          "bjohansebas"
+        ],
+        "repo_owner": "stream-utils",
+        "repo_stars": 396,
+        "repo_topics": [
+          "body",
+          "http",
+          "javascript",
+          "nodejs",
+          "parser",
+          "stream"
+        ],
+        "repo_url": "https://github.com/stream-utils/raw-body",
+        "version": "3.0.2"
+      }
+    },
+    {
+      "id": "on-finished",
+      "meta": {
+        "description": "Execute a callback when a request closes, finishes, or errors",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-11-27",
+        "repo_last_release": "2022-02-22",
+        "repo_maintainers": [
+          "dougwilson",
+          "jonathanong",
+          "carpasse",
+          "Fishrock123"
+        ],
+        "repo_owner": "jshttp",
+        "repo_stars": 403,
+        "repo_topics": [
+          "event",
+          "finished",
+          "http",
+          "javascript",
+          "nodejs"
+        ],
+        "repo_url": "https://github.com/jshttp/on-finished",
+        "version": "2.4.1"
+      }
+    },
+    {
+      "id": "bytes",
+      "meta": {
+        "author": "TJ Holowaychuk",
+        "description": "Utility to parse a string bytes to bytes and vice-versa",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-07-05",
+        "repo_maintainers": [
+          "dougwilson",
+          "tj",
+          "theofidry",
+          "jbrower2",
+          "MarkHerhold"
+        ],
+        "repo_owner": "visionmedia",
+        "repo_stars": 474,
+        "repo_url": "https://github.com/visionmedia/bytes.js",
+        "version": "3.1.2"
+      }
+    },
+    {
+      "id": "mime-types",
+      "meta": {
+        "description": "The ultimate javascript content-type utility.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-11-25",
+        "repo_last_release": "2025-11-20",
+        "repo_maintainers": [
+          "dougwilson",
+          "Fishrock123",
+          "jonathanong",
+          "Ayoub-Mabrouk"
+        ],
+        "repo_owner": "jshttp",
+        "repo_stars": 1426,
+        "repo_topics": [
+          "javascript",
+          "mime",
+          "mime-types",
+          "nodejs"
+        ],
+        "repo_url": "https://github.com/jshttp/mime-types",
+        "version": "3.0.2"
+      }
+    },
+    {
+      "id": "math-intrinsics",
+      "meta": {
+        "author": "Jordan Harband",
+        "description": "ES Math-related intrinsics and helpers, robustly cached.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-12-19",
+        "repo_maintainers": [
+          "ljharb"
+        ],
+        "repo_owner": "es-shims",
+        "repo_stars": 1,
+        "repo_url": "https://github.com/es-shims/math-intrinsics",
+        "version": "1.1.0"
+      }
+    },
+    {
+      "id": "es-define-property",
+      "meta": {
+        "author": "Jordan Harband",
+        "description": "`Object.defineProperty`, but not IE 8's broken one.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-12-06",
+        "repo_maintainers": [
+          "ljharb"
+        ],
+        "repo_owner": "ljharb",
+        "repo_stars": 4,
+        "repo_topics": [
+          "define",
+          "defineproperty",
+          "ecmascript",
+          "javascript",
+          "object",
+          "property"
+        ],
+        "repo_url": "https://github.com/ljharb/es-define-property",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "id": "express",
+      "meta": {
+        "author": "TJ Holowaychuk",
+        "description": "Fast, unopinionated web framework",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-11-26",
+        "repo_last_release": "2025-03-31",
+        "repo_maintainers": [
+          "tj",
+          "dougwilson",
+          "jonathanong",
+          "defunctzombie",
+          "wesleytodd"
+        ],
+        "repo_owner": "expressjs",
+        "repo_stars": 68279,
+        "repo_topics": [
+          "express",
+          "javascript",
+          "nodejs",
+          "server"
+        ],
+        "repo_url": "https://github.com/expressjs/express",
+        "version": "4.18.0"
+      }
+    },
+    {
+      "id": "side-channel-map",
+      "meta": {
+        "author": "Jordan Harband",
+        "description": "Store information about any JS value in a side channel, using a Map",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-12-11",
+        "repo_maintainers": [
+          "ljharb"
+        ],
+        "repo_owner": "ljharb",
+        "repo_stars": 1,
+        "repo_url": "https://github.com/ljharb/side-channel-map",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "id": "hasown",
+      "meta": {
+        "author": "Jordan Harband",
+        "description": "A robust, ES3 compatible, \"has own property\" predicate.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-03-10",
+        "repo_maintainers": [
+          "ljharb",
+          "jslog"
+        ],
+        "repo_owner": "inspect-js",
+        "repo_stars": 1,
+        "repo_url": "https://github.com/inspect-js/hasOwn",
+        "version": "2.0.2"
+      }
+    },
+    {
+      "id": "gopd",
+      "meta": {
+        "author": "Jordan Harband",
+        "description": "`Object.getOwnPropertyDescriptor`, but accounts for IE's broken implementation.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-12-04",
+        "repo_last_release": "0001-01-01",
+        "repo_owner": "ljharb",
+        "repo_stars": 2,
+        "repo_topics": [
+          "descriptor",
+          "ecmascript",
+          "getownpropertydescriptor",
+          "javascript",
+          "property"
+        ],
+        "repo_url": "https://github.com/ljharb/gopd#readme",
+        "version": "1.2.0"
+      }
+    },
+    {
+      "id": "dunder-proto",
+      "meta": {
+        "author": "Jordan Harband",
+        "description": "If available, the `Object.prototype.__proto__` accessor and mutator, call-bound",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-12-17",
+        "repo_maintainers": [
+          "ljharb"
+        ],
+        "repo_owner": "es-shims",
+        "repo_stars": 0,
+        "repo_url": "https://github.com/es-shims/dunder-proto",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "id": "debug",
+      "meta": {
+        "author": "Josh Junon",
+        "description": "Lightweight debugging utility for Node.js and the browser",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-09-13",
+        "repo_last_release": "0001-01-01",
+        "repo_owner": "debug-js",
+        "repo_stars": 11399,
+        "repo_topics": [
+          "browser",
+          "debug",
+          "debugging",
+          "javascript",
+          "logging",
+          "node",
+          "node-js"
+        ],
+        "repo_url": "https://github.com/debug-js/debug#readme",
+        "version": "4.4.3"
+      }
+    },
+    {
+      "id": "content-type",
+      "meta": {
+        "author": "Douglas Christopher Wilson",
+        "description": "Create and parse HTTP Content-Type header",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-11-01",
+        "repo_last_release": "2023-01-29",
+        "repo_maintainers": [
+          "dougwilson",
+          "UlisesGascon",
+          "carpasse",
+          "bbamsch",
+          "gr0uch"
+        ],
+        "repo_owner": "jshttp",
+        "repo_stars": 140,
+        "repo_topics": [
+          "content-type",
+          "http",
+          "javascript",
+          "nodejs"
+        ],
+        "repo_url": "https://github.com/jshttp/content-type",
+        "version": "1.0.5"
+      }
+    },
+    {
+      "id": "ms",
+      "meta": {
+        "description": "Tiny millisecond conversion utility",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2025-11-18",
+        "repo_last_release": "2020-12-08",
+        "repo_maintainers": [
+          "leo",
+          "rauchg",
+          "dimitropoulos",
+          "tj",
+          "styfle"
+        ],
+        "repo_owner": "vercel",
+        "repo_stars": 5465,
+        "repo_topics": [
+          "conversion",
+          "milliseconds",
+          "utility"
+        ],
+        "repo_url": "https://github.com/vercel/ms",
+        "version": "2.1.3"
+      }
+    },
+    {
+      "id": "ee-first",
+      "meta": {
+        "author": "Jonathan Ong",
+        "description": "return the first event in a set of ee/event pairs",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2019-04-27",
+        "repo_maintainers": [
+          "dougwilson",
+          "jonathanong"
+        ],
+        "repo_owner": "jonathanong",
+        "repo_stars": 54,
+        "repo_url": "https://github.com/jonathanong/ee-first",
+        "version": "1.1.1"
+      }
+    },
+    {
+      "id": "unpipe",
+      "meta": {
+        "author": "Douglas Christopher Wilson",
+        "description": "Unpipe a stream from all destinations",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2020-12-15",
+        "repo_maintainers": [
+          "dougwilson"
+        ],
+        "repo_owner": "stream-utils",
+        "repo_stars": 22,
+        "repo_topics": [
+          "javascript",
+          "nodejs",
+          "stream",
+          "unpipe"
+        ],
+        "repo_url": "https://github.com/stream-utils/unpipe",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "es-object-atoms",
+      "meta": {
+        "author": "Jordan Harband",
+        "description": "ES Object-related atoms: Object, ToObject, RequireObjectCoercible",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-01-15",
+        "repo_maintainers": [
+          "ljharb"
+        ],
+        "repo_owner": "ljharb",
+        "repo_stars": 3,
+        "repo_topics": [
+          "ecmascript",
+          "javascript",
+          "object",
+          "toobject",
+          "toobjectcoercible"
+        ],
+        "repo_url": "https://github.com/ljharb/es-object-atoms",
+        "version": "1.1.1"
+      }
+    },
+    {
+      "id": "cookie",
+      "meta": {
+        "author": "Roman Shtylman",
+        "description": "HTTP server cookie parsing and serialization",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2025-11-26",
+        "repo_last_release": "0001-01-01",
+        "repo_owner": "jshttp",
+        "repo_stars": 1449,
+        "repo_topics": [
+          "cookie",
+          "http",
+          "javascript",
+          "nodejs"
+        ],
+        "repo_url": "https://github.com/jshttp/cookie#readme",
+        "version": "1.1.1"
+      }
+    },
+    {
+      "id": "qs",
+      "meta": {
+        "description": "A querystring parser that supports nesting and arrays, with a depth limit",
+        "license": "BSD-3-Clause",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-11-19",
+        "repo_maintainers": [
+          "ljharb",
+          "nlf",
+          "papandreou",
+          "dead-horse",
+          "Connormiha"
+        ],
+        "repo_owner": "ljharb",
+        "repo_stars": 8850,
+        "repo_topics": [
+          "browsers",
+          "encoding",
+          "javascript",
+          "node",
+          "nodejs",
+          "parse",
+          "querystrings",
+          "stringify",
+          "url-parsing"
+        ],
+        "repo_url": "https://github.com/ljharb/qs",
+        "version": "6.14.0"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "express",
+      "to": "body-parser"
+    },
+    {
+      "from": "express",
+      "to": "cookie"
+    },
+    {
+      "from": "body-parser",
+      "to": "debug"
+    },
+    {
+      "from": "body-parser",
+      "to": "http-errors"
+    },
+    {
+      "from": "body-parser",
+      "to": "iconv-lite"
+    },
+    {
+      "from": "body-parser",
+      "to": "qs"
+    },
+    {
+      "from": "body-parser",
+      "to": "raw-body"
+    },
+    {
+      "from": "body-parser",
+      "to": "on-finished"
+    },
+    {
+      "from": "body-parser",
+      "to": "type-is"
+    },
+    {
+      "from": "body-parser",
+      "to": "bytes"
+    },
+    {
+      "from": "body-parser",
+      "to": "content-type"
+    },
+    {
+      "from": "debug",
+      "to": "ms"
+    },
+    {
+      "from": "http-errors",
+      "to": "depd"
+    },
+    {
+      "from": "http-errors",
+      "to": "inherits"
+    },
+    {
+      "from": "http-errors",
+      "to": "setprototypeof"
+    },
+    {
+      "from": "http-errors",
+      "to": "statuses"
+    },
+    {
+      "from": "http-errors",
+      "to": "toidentifier"
+    },
+    {
+      "from": "qs",
+      "to": "side-channel"
+    },
+    {
+      "from": "type-is",
+      "to": "media-typer"
+    },
+    {
+      "from": "type-is",
+      "to": "mime-types"
+    },
+    {
+      "from": "type-is",
+      "to": "content-type"
+    },
+    {
+      "from": "on-finished",
+      "to": "ee-first"
+    },
+    {
+      "from": "iconv-lite",
+      "to": "safer-buffer"
+    },
+    {
+      "from": "raw-body",
+      "to": "bytes"
+    },
+    {
+      "from": "raw-body",
+      "to": "unpipe"
+    },
+    {
+      "from": "raw-body",
+      "to": "iconv-lite"
+    },
+    {
+      "from": "raw-body",
+      "to": "http-errors"
+    },
+    {
+      "from": "side-channel",
+      "to": "side-channel-list"
+    },
+    {
+      "from": "side-channel",
+      "to": "side-channel-map"
+    },
+    {
+      "from": "side-channel",
+      "to": "side-channel-weakmap"
+    },
+    {
+      "from": "side-channel",
+      "to": "es-errors"
+    },
+    {
+      "from": "side-channel",
+      "to": "object-inspect"
+    },
+    {
+      "from": "mime-types",
+      "to": "mime-db"
+    },
+    {
+      "from": "side-channel-map",
+      "to": "get-intrinsic"
+    },
+    {
+      "from": "side-channel-map",
+      "to": "object-inspect"
+    },
+    {
+      "from": "side-channel-map",
+      "to": "call-bound"
+    },
+    {
+      "from": "side-channel-map",
+      "to": "es-errors"
+    },
+    {
+      "from": "side-channel-list",
+      "to": "object-inspect"
+    },
+    {
+      "from": "side-channel-list",
+      "to": "es-errors"
+    },
+    {
+      "from": "side-channel-weakmap",
+      "to": "side-channel-map"
+    },
+    {
+      "from": "side-channel-weakmap",
+      "to": "call-bound"
+    },
+    {
+      "from": "side-channel-weakmap",
+      "to": "es-errors"
+    },
+    {
+      "from": "side-channel-weakmap",
+      "to": "get-intrinsic"
+    },
+    {
+      "from": "side-channel-weakmap",
+      "to": "object-inspect"
+    },
+    {
+      "from": "get-intrinsic",
+      "to": "hasown"
+    },
+    {
+      "from": "get-intrinsic",
+      "to": "es-errors"
+    },
+    {
+      "from": "get-intrinsic",
+      "to": "get-proto"
+    },
+    {
+      "from": "get-intrinsic",
+      "to": "has-symbols"
+    },
+    {
+      "from": "get-intrinsic",
+      "to": "function-bind"
+    },
+    {
+      "from": "get-intrinsic",
+      "to": "es-object-atoms"
+    },
+    {
+      "from": "get-intrinsic",
+      "to": "math-intrinsics"
+    },
+    {
+      "from": "get-intrinsic",
+      "to": "call-bind-apply-helpers"
+    },
+    {
+      "from": "get-intrinsic",
+      "to": "gopd"
+    },
+    {
+      "from": "get-intrinsic",
+      "to": "es-define-property"
+    },
+    {
+      "from": "call-bound",
+      "to": "call-bind-apply-helpers"
+    },
+    {
+      "from": "call-bound",
+      "to": "get-intrinsic"
+    },
+    {
+      "from": "get-proto",
+      "to": "dunder-proto"
+    },
+    {
+      "from": "get-proto",
+      "to": "es-object-atoms"
+    },
+    {
+      "from": "es-object-atoms",
+      "to": "es-errors"
+    },
+    {
+      "from": "call-bind-apply-helpers",
+      "to": "es-errors"
+    },
+    {
+      "from": "call-bind-apply-helpers",
+      "to": "function-bind"
+    },
+    {
+      "from": "hasown",
+      "to": "function-bind"
+    },
+    {
+      "from": "dunder-proto",
+      "to": "es-errors"
+    },
+    {
+      "from": "dunder-proto",
+      "to": "gopd"
+    },
+    {
+      "from": "dunder-proto",
+      "to": "call-bind-apply-helpers"
+    }
+  ]
+}

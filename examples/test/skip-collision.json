@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "name": "skip-collision",
+    "description": "Skip edges colliding at same target node"
+  },
+  "nodes": [
+    {
+      "id": "top",
+      "meta": {
+        "version": "3.0.0",
+        "summary": "Top-level orchestrator",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "chain-2",
+      "meta": {
+        "version": "1.2.0",
+        "summary": "Second chain step",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "chain-1",
+      "meta": {
+        "version": "1.1.0",
+        "summary": "First chain step",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "skip-a",
+      "meta": {
+        "version": "2.0.0",
+        "summary": "First skip edge source",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "skip-b",
+      "meta": {
+        "version": "2.1.0",
+        "summary": "Second skip edge source",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "base",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "Common base target",
+        "license": "MIT",
+        "repo_stars": 12000
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "chain-1",
+      "to": "base"
+    },
+    {
+      "from": "chain-2",
+      "to": "chain-1"
+    },
+    {
+      "from": "skip-a",
+      "to": "base"
+    },
+    {
+      "from": "skip-b",
+      "to": "base"
+    },
+    {
+      "from": "top",
+      "to": "chain-2"
+    },
+    {
+      "from": "top",
+      "to": "skip-a"
+    },
+    {
+      "from": "top",
+      "to": "skip-b"
+    }
+  ]
+}

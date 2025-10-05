@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "name": "overlap",
+    "description": "Overlapping parent regions with shared children"
+  },
+  "nodes": [
+    {
+      "id": "top",
+      "meta": {
+        "version": "3.0.0",
+        "summary": "Aggregates all children",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "child-1",
+      "meta": {
+        "version": "2.0.0",
+        "summary": "Depends only on parent-a",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "child-2",
+      "meta": {
+        "version": "2.1.0",
+        "summary": "Depends on both parents",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "child-3",
+      "meta": {
+        "version": "2.2.0",
+        "summary": "Depends only on parent-b",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "parent-a",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "First parent provider",
+        "license": "MIT",
+        "repo_stars": 9200
+      }
+    },
+    {
+      "id": "parent-b",
+      "meta": {
+        "version": "1.1.0",
+        "summary": "Second parent provider",
+        "license": "MIT"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "child-1",
+      "to": "parent-a"
+    },
+    {
+      "from": "child-2",
+      "to": "parent-a"
+    },
+    {
+      "from": "child-2",
+      "to": "parent-b"
+    },
+    {
+      "from": "child-3",
+      "to": "parent-b"
+    },
+    {
+      "from": "top",
+      "to": "child-1"
+    },
+    {
+      "from": "top",
+      "to": "child-2"
+    },
+    {
+      "from": "top",
+      "to": "child-3"
+    }
+  ]
+}

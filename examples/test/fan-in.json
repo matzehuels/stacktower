@@ -1,0 +1,66 @@
+{
+  "metadata": {
+    "name": "fan-in",
+    "description": "Multiple nodes converging to single dependency (many-to-one)"
+  },
+  "nodes": [
+    {
+      "id": "app",
+      "meta": {
+        "version": "3.0.0",
+        "summary": "Main application",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "aggregator",
+      "meta": {
+        "version": "2.0.0",
+        "summary": "Utility aggregator bundle",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "util-a",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "String utilities",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "util-b",
+      "meta": {
+        "version": "1.1.0",
+        "summary": "Date/time utilities",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "util-c",
+      "meta": {
+        "version": "1.2.0",
+        "summary": "Collection utilities",
+        "license": "Apache-2.0"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "aggregator",
+      "to": "util-a"
+    },
+    {
+      "from": "aggregator",
+      "to": "util-b"
+    },
+    {
+      "from": "aggregator",
+      "to": "util-c"
+    },
+    {
+      "from": "app",
+      "to": "aggregator"
+    }
+  ]
+}

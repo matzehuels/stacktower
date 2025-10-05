@@ -1,0 +1,99 @@
+{
+  "metadata": {
+    "name": "crossing",
+    "description": "Two parallel chains that cross in the middle"
+  },
+  "nodes": [
+    {
+      "id": "apex",
+      "meta": {
+        "version": "4.0.0",
+        "summary": "Unified apex controller",
+        "license": "MIT",
+        "repo_stars": 4800
+      }
+    },
+    {
+      "id": "left-top",
+      "meta": {
+        "version": "3.0.0",
+        "summary": "Left top crossing to right",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "right-top",
+      "meta": {
+        "version": "3.1.0",
+        "summary": "Right top crossing to left",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "left-mid",
+      "meta": {
+        "version": "2.0.0",
+        "summary": "Left chain middleware",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "left-base",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "Left chain foundation",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "right-mid",
+      "meta": {
+        "version": "2.1.0",
+        "summary": "Right chain middleware",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "right-base",
+      "meta": {
+        "version": "1.1.0",
+        "summary": "Right chain foundation",
+        "license": "MIT"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "left-mid",
+      "to": "left-base"
+    },
+    {
+      "from": "right-mid",
+      "to": "right-base"
+    },
+    {
+      "from": "left-top",
+      "to": "left-mid"
+    },
+    {
+      "from": "left-top",
+      "to": "right-mid"
+    },
+    {
+      "from": "right-top",
+      "to": "left-mid"
+    },
+    {
+      "from": "right-top",
+      "to": "right-mid"
+    },
+    {
+      "from": "apex",
+      "to": "left-top"
+    },
+    {
+      "from": "apex",
+      "to": "right-top"
+    }
+  ]
+}

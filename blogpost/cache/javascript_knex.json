@@ -1,0 +1,609 @@
+{
+  "nodes": [
+    {
+      "id": "knex",
+      "meta": {
+        "author": "Tim Griesser",
+        "description": "A batteries-included SQL query \u0026 schema builder for PostgresSQL, MySQL, CockroachDB, MSSQL and SQLite3",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-08-26",
+        "repo_last_release": "2023-12-07",
+        "repo_maintainers": [
+          "tgriesser",
+          "kibertoad",
+          "elhigu",
+          "rhys-vdw"
+        ],
+        "repo_owner": "knex",
+        "repo_stars": 20132,
+        "repo_topics": [
+          "javascript",
+          "knex",
+          "mysql",
+          "postgresql",
+          "sql",
+          "sqlite3"
+        ],
+        "repo_url": "https://github.com/knex/knex",
+        "version": "3.1.0"
+      }
+    },
+    {
+      "id": "debug",
+      "meta": {
+        "author": "Josh Junon",
+        "description": "Lightweight debugging utility for Node.js and the browser",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-09-13",
+        "repo_last_release": "0001-01-01",
+        "repo_owner": "debug-js",
+        "repo_stars": 11399,
+        "repo_topics": [
+          "browser",
+          "debug",
+          "debugging",
+          "javascript",
+          "logging",
+          "node",
+          "node-js"
+        ],
+        "repo_url": "https://github.com/debug-js/debug#readme",
+        "version": "4.4.3"
+      }
+    },
+    {
+      "id": "colorette",
+      "meta": {
+        "author": "Jorge Bucaran",
+        "description": "🌈Easily set your terminal text color \u0026 styles.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-10-03",
+        "repo_last_release": "2023-04-16",
+        "repo_maintainers": [
+          "jorgebucaran",
+          "kibertoad",
+          "ahnpnl",
+          "alexkuz",
+          "ai"
+        ],
+        "repo_owner": "jorgebucaran",
+        "repo_stars": 1620,
+        "repo_topics": [
+          "ansi",
+          "browser",
+          "cli",
+          "colors",
+          "console",
+          "node",
+          "terminal"
+        ],
+        "repo_url": "https://github.com/jorgebucaran/colorette",
+        "version": "2.0.20"
+      }
+    },
+    {
+      "id": "esm",
+      "meta": {
+        "author": "John-David Dalton",
+        "description": "Tomorrow's ECMAScript modules today!",
+        "license": "MIT",
+        "repo_archived": true,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-04-10",
+        "repo_last_release": "0001-01-01",
+        "repo_owner": "standard-things",
+        "repo_stars": 5258,
+        "repo_topics": [
+          "es6",
+          "es6-modules",
+          "esm",
+          "esmodules",
+          "nodejs"
+        ],
+        "repo_url": "https://github.com/standard-things/esm#readme",
+        "version": "3.2.25"
+      }
+    },
+    {
+      "id": "supports-preserve-symlinks-flag",
+      "meta": {
+        "author": "Jordan Harband",
+        "description": "Determine if the current node version supports the `--preserve-symlinks` flag.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2022-11-02",
+        "repo_last_release": "0001-01-01",
+        "repo_owner": "inspect-js",
+        "repo_stars": 1,
+        "repo_topics": [
+          "flag",
+          "node",
+          "preserve-symlinks",
+          "symlink",
+          "symlinks"
+        ],
+        "repo_url": "https://github.com/inspect-js/node-supports-preserve-symlinks-flag#readme",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "path-parse",
+      "meta": {
+        "author": "Javier Blanco",
+        "description": "Node.js path.parse() ponyfill",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2022-03-23",
+        "repo_maintainers": [
+          "jbgutierrez",
+          "jeffrey-pinyan-ithreat",
+          "honzajavorek",
+          "mfranzke",
+          "sindresorhus"
+        ],
+        "repo_owner": "jbgutierrez",
+        "repo_stars": 56,
+        "repo_url": "https://github.com/jbgutierrez/path-parse",
+        "version": "1.0.7"
+      }
+    },
+    {
+      "id": "escalade",
+      "meta": {
+        "author": "Luke Edwards",
+        "description": "A tiny (183B to 210B) and fast utility to ascend parent directories",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-08-29",
+        "repo_last_release": "2024-08-29",
+        "repo_maintainers": [
+          "lukeed",
+          "ljharb",
+          "NMinhNguyen",
+          "triannguyen"
+        ],
+        "repo_owner": "lukeed",
+        "repo_stars": 153,
+        "repo_url": "https://github.com/lukeed/escalade",
+        "version": "3.2.0"
+      }
+    },
+    {
+      "id": "pg-connection-string",
+      "meta": {
+        "author": "Blaine Bublitz",
+        "description": "Functions for dealing with a PostgresSQL connection string",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-10-22",
+        "repo_maintainers": [
+          "brianc",
+          "booo",
+          "charmander",
+          "AlexanderS"
+        ],
+        "repo_owner": "brianc",
+        "repo_stars": 12967,
+        "repo_topics": [
+          "libpq",
+          "node-postgres",
+          "postgres",
+          "postgresql",
+          "postgresql-driver"
+        ],
+        "repo_url": "https://github.com/brianc/node-postgres",
+        "version": "2.9.1"
+      }
+    },
+    {
+      "id": "tildify",
+      "meta": {
+        "author": "Sindre Sorhus",
+        "description": "Convert an absolute path to a tilde path: `/Users/sindresorhus/dev` → `~/dev`",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2022-07-08",
+        "repo_last_release": "0001-01-01",
+        "repo_owner": "sindresorhus",
+        "repo_stars": 96,
+        "repo_url": "https://github.com/sindresorhus/tildify#readme",
+        "version": "3.0.0"
+      }
+    },
+    {
+      "id": "interpret",
+      "meta": {
+        "author": "Gulp Team",
+        "description": "A dictionary of file extensions and associated module loaders.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-08-15",
+        "repo_last_release": "2022-06-29",
+        "repo_maintainers": [
+          "phated",
+          "sttk",
+          "MadcapJake",
+          "jamesknelson"
+        ],
+        "repo_owner": "gulpjs",
+        "repo_stars": 265,
+        "repo_url": "https://github.com/gulpjs/interpret",
+        "version": "3.1.1"
+      }
+    },
+    {
+      "id": "get-package-type",
+      "meta": {
+        "author": "Corey Farrell",
+        "description": "Determine the `package.json#type` which applies to a location",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2020-05-19",
+        "repo_last_release": "0001-01-01",
+        "repo_owner": "cfware",
+        "repo_stars": 5,
+        "repo_url": "https://github.com/cfware/get-package-type#readme",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "id": "resolve-from",
+      "meta": {
+        "author": "Sindre Sorhus",
+        "description": "Resolve the path of a module like `require.resolve()` but from a given path",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2021-01-23",
+        "repo_last_release": "2019-04-15",
+        "repo_maintainers": [
+          "sindresorhus",
+          "SamVerschueren",
+          "coreyfarrell",
+          "BendingBender",
+          "ranyitz"
+        ],
+        "repo_owner": "sindresorhus",
+        "repo_stars": 143,
+        "repo_url": "https://github.com/sindresorhus/resolve-from",
+        "version": "5.0.0"
+      }
+    },
+    {
+      "id": "ms",
+      "meta": {
+        "description": "Tiny millisecond conversion utility",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2025-11-18",
+        "repo_last_release": "2020-12-08",
+        "repo_maintainers": [
+          "leo",
+          "rauchg",
+          "dimitropoulos",
+          "tj",
+          "styfle"
+        ],
+        "repo_owner": "vercel",
+        "repo_stars": 5465,
+        "repo_topics": [
+          "conversion",
+          "milliseconds",
+          "utility"
+        ],
+        "repo_url": "https://github.com/vercel/ms",
+        "version": "2.1.3"
+      }
+    },
+    {
+      "id": "function-bind",
+      "meta": {
+        "author": "Raynos",
+        "description": "Implementation of Function.prototype.bind",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2023-10-12",
+        "repo_maintainers": [
+          "ljharb",
+          "Raynos",
+          "ExE-Boss",
+          "maxnordlund",
+          "PeterDaveHello"
+        ],
+        "repo_owner": "Raynos",
+        "repo_stars": 139,
+        "repo_url": "https://github.com/Raynos/function-bind",
+        "version": "1.1.2"
+      }
+    },
+    {
+      "id": "tarn",
+      "meta": {
+        "author": "Sami Koskimäki",
+        "description": "Simple and robust resource pool for node.js",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-06-26",
+        "repo_last_release": "0001-01-01",
+        "repo_owner": "vincit",
+        "repo_stars": 505,
+        "repo_url": "https://github.com/vincit/tarn.js#readme",
+        "version": "3.0.2"
+      }
+    },
+    {
+      "id": "getopts",
+      "meta": {
+        "author": "Jorge Bucaran",
+        "description": "Parse CLI arguments.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-07-03",
+        "repo_last_release": "2021-02-15",
+        "repo_maintainers": [
+          "jorgebucaran",
+          "jridgewell",
+          "Ovyerus",
+          "WiseNat",
+          "jimt"
+        ],
+        "repo_owner": "jorgebucaran",
+        "repo_stars": 636,
+        "repo_topics": [
+          "argv",
+          "cli-parser",
+          "getopts",
+          "node"
+        ],
+        "repo_url": "https://github.com/jorgebucaran/getopts",
+        "version": "2.3.0"
+      }
+    },
+    {
+      "id": "lodash",
+      "meta": {
+        "author": "John-David Dalton",
+        "description": "Lodash modular utilities.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-11-19",
+        "repo_last_release": "2016-01-12",
+        "repo_maintainers": [
+          "jdalton",
+          "jashkenas",
+          "greenkeeperio-bot",
+          "bnjmnt4n",
+          "braddunbar"
+        ],
+        "repo_owner": "lodash",
+        "repo_stars": 61438,
+        "repo_topics": [
+          "javascript",
+          "lodash",
+          "modules",
+          "utilities"
+        ],
+        "repo_url": "https://github.com/lodash/lodash",
+        "version": "4.17.21"
+      }
+    },
+    {
+      "id": "resolve",
+      "meta": {
+        "author": "James Halliday",
+        "description": "resolve like require.resolve() on behalf of files asynchronously and synchronously",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-10-20",
+        "repo_last_release": "0001-01-01",
+        "repo_owner": "browserify",
+        "repo_stars": 792,
+        "repo_topics": [
+          "javascript",
+          "module",
+          "modules",
+          "node",
+          "nodejs",
+          "require",
+          "resolve",
+          "resolver"
+        ],
+        "repo_url": "https://github.com/browserify/resolve#readme",
+        "version": "1.22.11"
+      }
+    },
+    {
+      "id": "is-core-module",
+      "meta": {
+        "author": "Jordan Harband",
+        "description": "Is this specifier a node.js core module?",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-12-21",
+        "repo_maintainers": [
+          "ljharb",
+          "fregante",
+          "Qard",
+          "sosukesuzuki"
+        ],
+        "repo_owner": "inspect-js",
+        "repo_stars": 26,
+        "repo_topics": [
+          "core",
+          "is",
+          "module",
+          "node"
+        ],
+        "repo_url": "https://github.com/inspect-js/is-core-module",
+        "version": "2.16.1"
+      }
+    },
+    {
+      "id": "hasown",
+      "meta": {
+        "author": "Jordan Harband",
+        "description": "A robust, ES3 compatible, \"has own property\" predicate.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-03-10",
+        "repo_last_release": "0001-01-01",
+        "repo_owner": "inspect-js",
+        "repo_stars": 1,
+        "repo_url": "https://github.com/inspect-js/hasOwn#readme",
+        "version": "2.0.2"
+      }
+    },
+    {
+      "id": "rechoir",
+      "meta": {
+        "author": "Gulp Team",
+        "description": "Prepare a node environment to require files with different extensions.",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2024-06-21",
+        "repo_last_release": "2021-07-24",
+        "repo_maintainers": [
+          "phated",
+          "sttk",
+          "jmm",
+          "silkentrance",
+          "alansouzati"
+        ],
+        "repo_owner": "gulpjs",
+        "repo_stars": 48,
+        "repo_url": "https://github.com/gulpjs/rechoir",
+        "version": "0.8.0"
+      }
+    },
+    {
+      "id": "commander",
+      "meta": {
+        "author": "TJ Holowaychuk",
+        "description": "the complete solution for node.js command-line programs",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-10-25",
+        "repo_maintainers": [
+          "shadowspawn",
+          "tj",
+          "zhiyelee",
+          "abetomo"
+        ],
+        "repo_owner": "tj",
+        "repo_stars": 27769,
+        "repo_url": "https://github.com/tj/commander.js",
+        "version": "14.0.2"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "knex",
+      "to": "pg-connection-string"
+    },
+    {
+      "from": "knex",
+      "to": "tarn"
+    },
+    {
+      "from": "knex",
+      "to": "debug"
+    },
+    {
+      "from": "knex",
+      "to": "getopts"
+    },
+    {
+      "from": "knex",
+      "to": "tildify"
+    },
+    {
+      "from": "knex",
+      "to": "colorette"
+    },
+    {
+      "from": "knex",
+      "to": "interpret"
+    },
+    {
+      "from": "knex",
+      "to": "get-package-type"
+    },
+    {
+      "from": "knex",
+      "to": "esm"
+    },
+    {
+      "from": "knex",
+      "to": "lodash"
+    },
+    {
+      "from": "knex",
+      "to": "rechoir"
+    },
+    {
+      "from": "knex",
+      "to": "escalade"
+    },
+    {
+      "from": "knex",
+      "to": "commander"
+    },
+    {
+      "from": "knex",
+      "to": "resolve-from"
+    },
+    {
+      "from": "debug",
+      "to": "ms"
+    },
+    {
+      "from": "rechoir",
+      "to": "resolve"
+    },
+    {
+      "from": "resolve",
+      "to": "is-core-module"
+    },
+    {
+      "from": "resolve",
+      "to": "path-parse"
+    },
+    {
+      "from": "resolve",
+      "to": "supports-preserve-symlinks-flag"
+    },
+    {
+      "from": "is-core-module",
+      "to": "hasown"
+    },
+    {
+      "from": "hasown",
+      "to": "function-bind"
+    }
+  ]
+}

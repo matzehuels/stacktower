@@ -1,0 +1,518 @@
+{
+  "nodes": [
+    {
+      "id": "syn",
+      "meta": {
+        "description": "Parser for Rust source code",
+        "downloads": 1207086583,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-28",
+        "repo_last_release": "2025-11-23",
+        "repo_maintainers": [
+          "dtolnay",
+          "mystor",
+          "alexcrichton",
+          "taiki-e",
+          "CAD97"
+        ],
+        "repo_owner": "dtolnay",
+        "repo_stars": 3229,
+        "repo_topics": [
+          "proc-macro"
+        ],
+        "repo_url": "https://github.com/dtolnay/syn",
+        "version": "2.0.111"
+      }
+    },
+    {
+      "id": "unicode-ident",
+      "meta": {
+        "description": "Determine whether characters have the XID_Start or XID_Continue properties according to Unicode Standard Annex #31",
+        "downloads": 636603519,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-30",
+        "repo_last_release": "2025-10-30",
+        "repo_maintainers": [
+          "dtolnay",
+          "Marcondiro",
+          "Jake-Shadle",
+          "sorairolake"
+        ],
+        "repo_owner": "dtolnay",
+        "repo_stars": 104,
+        "repo_url": "https://github.com/dtolnay/unicode-ident",
+        "version": "1.0.22"
+      }
+    },
+    {
+      "id": "darling_macro",
+      "meta": {
+        "description": "Internal support for a proc-macro library for reading attributes into structs when\nimplementing custom derives. Use https://crates.io/crates/darling in your code.\n",
+        "downloads": 312121686,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-24",
+        "repo_last_release": "2025-08-22",
+        "repo_maintainers": [
+          "TedDriggs",
+          "jonasbb",
+          "Eijebong",
+          "GnomedDev",
+          "cyqsimon"
+        ],
+        "repo_owner": "TedDriggs",
+        "repo_stars": 1196,
+        "repo_topics": [
+          "proc-macro",
+          "rust"
+        ],
+        "repo_url": "https://github.com/TedDriggs/darling",
+        "version": "0.21.3"
+      }
+    },
+    {
+      "id": "diesel_derives",
+      "meta": {
+        "description": "You should not use this crate directly, it is internal to Diesel.",
+        "downloads": 20187638,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-11-26",
+        "repo_maintainers": [
+          "weiznich",
+          "sgrif",
+          "Ten0",
+          "killercup",
+          "Eijebong"
+        ],
+        "repo_owner": "diesel-rs",
+        "repo_stars": 13802,
+        "repo_topics": [
+          "mysql",
+          "orm",
+          "postgresql",
+          "query-builder",
+          "rust",
+          "sqlite"
+        ],
+        "repo_url": "https://github.com/diesel-rs/diesel",
+        "version": "2.3.5"
+      }
+    },
+    {
+      "id": "downcast-rs",
+      "meta": {
+        "description": "Trait object downcasting support using only safe Rust. It supports type\nparameters, associated types, and type constraints.\n",
+        "downloads": 78043237,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-09-01",
+        "repo_maintainers": [
+          "marcianx",
+          "TheNeikos",
+          "wangrunji0408",
+          "azriel91",
+          "dkaste"
+        ],
+        "repo_owner": "marcianx",
+        "repo_stars": 210,
+        "repo_url": "https://github.com/marcianx/downcast-rs",
+        "version": "2.0.2"
+      }
+    },
+    {
+      "id": "dsl_auto_type",
+      "meta": {
+        "description": "Automatically expand query fragment types for factoring as functions",
+        "downloads": 6991738,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-11-26",
+        "repo_maintainers": [
+          "weiznich",
+          "sgrif",
+          "Ten0",
+          "killercup",
+          "Eijebong"
+        ],
+        "repo_owner": "diesel-rs",
+        "repo_stars": 13802,
+        "repo_topics": [
+          "mysql",
+          "orm",
+          "postgresql",
+          "query-builder",
+          "rust",
+          "sqlite"
+        ],
+        "repo_url": "https://github.com/diesel-rs/diesel",
+        "version": "0.2.0"
+      }
+    },
+    {
+      "id": "ident_case",
+      "meta": {
+        "description": "Utility for applying case rules to Rust identifiers.",
+        "downloads": 219654290,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2021-04-28",
+        "repo_last_release": "2017-05-10",
+        "repo_maintainers": [
+          "TedDriggs",
+          "sielicki"
+        ],
+        "repo_owner": "TedDriggs",
+        "repo_stars": 3,
+        "repo_url": "https://github.com/TedDriggs/ident_case",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "id": "diesel_table_macro_syntax",
+      "meta": {
+        "description": "Internal diesel crate",
+        "downloads": 10667769,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-11-26",
+        "repo_maintainers": [
+          "weiznich",
+          "sgrif",
+          "Ten0",
+          "killercup",
+          "Eijebong"
+        ],
+        "repo_owner": "diesel-rs",
+        "repo_stars": 13802,
+        "repo_topics": [
+          "mysql",
+          "orm",
+          "postgresql",
+          "query-builder",
+          "rust",
+          "sqlite"
+        ],
+        "repo_url": "https://github.com/diesel-rs/diesel",
+        "version": "0.3.0"
+      }
+    },
+    {
+      "id": "proc-macro2",
+      "meta": {
+        "description": "A substitute implementation of the compiler's `proc_macro` API to decouple token-based libraries from the procedural macro use case.",
+        "downloads": 832161782,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-20",
+        "repo_last_release": "2025-10-23",
+        "repo_maintainers": [
+          "dtolnay",
+          "alexcrichton",
+          "mystor",
+          "bjorn3",
+          "SergioBenitez"
+        ],
+        "repo_owner": "dtolnay",
+        "repo_stars": 884,
+        "repo_url": "https://github.com/dtolnay/proc-macro2",
+        "version": "1.0.103"
+      }
+    },
+    {
+      "id": "quote",
+      "meta": {
+        "description": "Quasi-quoting macro quote!(...)",
+        "downloads": 813663359,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-28",
+        "repo_last_release": "2025-11-06",
+        "repo_maintainers": [
+          "dtolnay",
+          "mystor",
+          "alexcrichton",
+          "dishmaker",
+          "SimonSapin"
+        ],
+        "repo_owner": "dtolnay",
+        "repo_stars": 1493,
+        "repo_topics": [
+          "proc-macro",
+          "rust",
+          "syn"
+        ],
+        "repo_url": "https://github.com/dtolnay/quote",
+        "version": "1.0.42"
+      }
+    },
+    {
+      "id": "darling",
+      "meta": {
+        "description": "A proc-macro library for reading attributes into structs when\nimplementing custom derives.\n",
+        "downloads": 312130882,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-24",
+        "repo_last_release": "2025-08-22",
+        "repo_maintainers": [
+          "TedDriggs",
+          "jonasbb",
+          "Eijebong",
+          "GnomedDev",
+          "cyqsimon"
+        ],
+        "repo_owner": "TedDriggs",
+        "repo_stars": 1196,
+        "repo_topics": [
+          "proc-macro",
+          "rust"
+        ],
+        "repo_url": "https://github.com/TedDriggs/darling",
+        "version": "0.21.3"
+      }
+    },
+    {
+      "id": "heck",
+      "meta": {
+        "description": "heck is a case conversion library.",
+        "downloads": 628248985,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-08-09",
+        "repo_maintainers": [
+          "jplatte",
+          "withoutboats",
+          "rj00a",
+          "ChrisAntaki",
+          "danburkert"
+        ],
+        "repo_owner": "withoutboats",
+        "repo_stars": 570,
+        "repo_url": "https://github.com/withoutboats/heck",
+        "version": "0.5.0"
+      }
+    },
+    {
+      "id": "fnv",
+      "meta": {
+        "description": "Fowler–Noll–Vo hash function",
+        "downloads": 405478283,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2024-03-20",
+        "repo_last_release": "2017-11-09",
+        "repo_maintainers": [
+          "SimonSapin",
+          "frewsxcv",
+          "Manishearth",
+          "Ms2ger",
+          "nyurik"
+        ],
+        "repo_owner": "servo",
+        "repo_stars": 353,
+        "repo_url": "https://github.com/servo/rust-fnv",
+        "version": "1.0.7"
+      }
+    },
+    {
+      "id": "diesel",
+      "meta": {
+        "description": "A safe, extensible ORM and Query Builder for PostgreSQL, SQLite, and MySQL",
+        "downloads": 20147801,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-11-26",
+        "repo_maintainers": [
+          "weiznich",
+          "sgrif",
+          "Ten0",
+          "killercup",
+          "Eijebong"
+        ],
+        "repo_owner": "diesel-rs",
+        "repo_stars": 13802,
+        "repo_topics": [
+          "mysql",
+          "orm",
+          "postgresql",
+          "query-builder",
+          "rust",
+          "sqlite"
+        ],
+        "repo_url": "https://github.com/diesel-rs/diesel",
+        "version": "2.3.4"
+      }
+    },
+    {
+      "id": "either",
+      "meta": {
+        "description": "The enum `Either` with variants `Left` and `Right` is a general purpose sum type with two cases.\n",
+        "downloads": 505174526,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-04",
+        "repo_maintainers": [
+          "cuviper",
+          "bluss",
+          "m4rw3r",
+          "yotamofek",
+          "aj-bagwell"
+        ],
+        "repo_owner": "rayon-rs",
+        "repo_stars": 540,
+        "repo_topics": [
+          "rust"
+        ],
+        "repo_url": "https://github.com/rayon-rs/either",
+        "version": "1.15.0"
+      }
+    },
+    {
+      "id": "darling_core",
+      "meta": {
+        "description": "Helper crate for proc-macro library for reading attributes into structs when\nimplementing custom derives. Use https://crates.io/crates/darling in your code.\n",
+        "downloads": 312195674,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-24",
+        "repo_last_release": "2025-08-22",
+        "repo_maintainers": [
+          "TedDriggs",
+          "jonasbb",
+          "Eijebong",
+          "GnomedDev",
+          "cyqsimon"
+        ],
+        "repo_owner": "TedDriggs",
+        "repo_stars": 1196,
+        "repo_topics": [
+          "proc-macro",
+          "rust"
+        ],
+        "repo_url": "https://github.com/TedDriggs/darling",
+        "version": "0.21.3"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "diesel",
+      "to": "diesel_derives"
+    },
+    {
+      "from": "diesel",
+      "to": "downcast-rs"
+    },
+    {
+      "from": "diesel_derives",
+      "to": "diesel_table_macro_syntax"
+    },
+    {
+      "from": "diesel_derives",
+      "to": "dsl_auto_type"
+    },
+    {
+      "from": "diesel_derives",
+      "to": "proc-macro2"
+    },
+    {
+      "from": "diesel_derives",
+      "to": "quote"
+    },
+    {
+      "from": "diesel_derives",
+      "to": "syn"
+    },
+    {
+      "from": "diesel_table_macro_syntax",
+      "to": "syn"
+    },
+    {
+      "from": "dsl_auto_type",
+      "to": "darling"
+    },
+    {
+      "from": "dsl_auto_type",
+      "to": "either"
+    },
+    {
+      "from": "dsl_auto_type",
+      "to": "heck"
+    },
+    {
+      "from": "dsl_auto_type",
+      "to": "proc-macro2"
+    },
+    {
+      "from": "dsl_auto_type",
+      "to": "quote"
+    },
+    {
+      "from": "dsl_auto_type",
+      "to": "syn"
+    },
+    {
+      "from": "proc-macro2",
+      "to": "unicode-ident"
+    },
+    {
+      "from": "quote",
+      "to": "proc-macro2"
+    },
+    {
+      "from": "syn",
+      "to": "proc-macro2"
+    },
+    {
+      "from": "syn",
+      "to": "unicode-ident"
+    },
+    {
+      "from": "darling",
+      "to": "darling_core"
+    },
+    {
+      "from": "darling",
+      "to": "darling_macro"
+    },
+    {
+      "from": "darling_macro",
+      "to": "darling_core"
+    },
+    {
+      "from": "darling_macro",
+      "to": "quote"
+    },
+    {
+      "from": "darling_macro",
+      "to": "syn"
+    },
+    {
+      "from": "darling_core",
+      "to": "fnv"
+    },
+    {
+      "from": "darling_core",
+      "to": "ident_case"
+    },
+    {
+      "from": "darling_core",
+      "to": "proc-macro2"
+    },
+    {
+      "from": "darling_core",
+      "to": "quote"
+    },
+    {
+      "from": "darling_core",
+      "to": "syn"
+    }
+  ]
+}

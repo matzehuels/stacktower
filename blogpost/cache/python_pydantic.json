@@ -1,0 +1,156 @@
+{
+  "nodes": [
+    {
+      "id": "pydantic",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-30",
+        "repo_last_release": "2025-11-26",
+        "repo_maintainers": [
+          "samuelcolvin",
+          "Viicos",
+          "sydney-runkle",
+          "dmontagu"
+        ],
+        "repo_owner": "pydantic",
+        "repo_stars": 25983,
+        "repo_topics": [
+          "hints",
+          "json-schema",
+          "parsing",
+          "pydantic",
+          "python",
+          "python310",
+          "python311",
+          "python312",
+          "python313",
+          "python39",
+          "validation"
+        ],
+        "repo_url": "https://github.com/pydantic/pydantic",
+        "summary": "Data validation using Python type hints",
+        "version": "2.12.5"
+      }
+    },
+    {
+      "id": "annotated-types",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-10",
+        "repo_last_release": "2024-05-20",
+        "repo_maintainers": [
+          "adriangb",
+          "samuelcolvin",
+          "Zac-HD",
+          "hugovk",
+          "Viicos"
+        ],
+        "repo_owner": "annotated-types",
+        "repo_stars": 583,
+        "repo_url": "https://github.com/annotated-types/annotated-types",
+        "summary": "Reusable constraint types to use with typing.Annotated",
+        "version": "0.7.0"
+      }
+    },
+    {
+      "id": "pydantic-core",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-10",
+        "repo_last_release": "2025-11-04",
+        "repo_maintainers": [
+          "samuelcolvin",
+          "davidhewitt",
+          "adriangb",
+          "sydney-runkle"
+        ],
+        "repo_owner": "pydantic",
+        "repo_stars": 1730,
+        "repo_topics": [
+          "json-schema",
+          "parsing",
+          "pydantic",
+          "rust",
+          "schema",
+          "validation"
+        ],
+        "repo_url": "https://github.com/pydantic/pydantic-core",
+        "summary": "Core functionality for Pydantic validation and serialization",
+        "version": "2.41.5"
+      }
+    },
+    {
+      "id": "typing-extensions",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-18",
+        "repo_last_release": "2025-08-25",
+        "repo_maintainers": [
+          "JelleZijlstra",
+          "AlexWaygood",
+          "srittau",
+          "brianschubert",
+          "Daraan"
+        ],
+        "repo_owner": "python",
+        "repo_stars": 537,
+        "repo_url": "https://github.com/python/typing_extensions",
+        "summary": "Backported and Experimental Type Hints for Python 3.9+",
+        "version": "4.15.0"
+      }
+    },
+    {
+      "id": "typing-inspection",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-10-01",
+        "repo_last_release": "2025-10-01",
+        "repo_maintainers": [
+          "Viicos",
+          "samuelcolvin",
+          "cdce8p"
+        ],
+        "repo_owner": "pydantic",
+        "repo_stars": 56,
+        "repo_url": "https://github.com/pydantic/typing-inspection",
+        "summary": "Runtime typing introspection tools",
+        "version": "0.4.2"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "pydantic",
+      "to": "annotated-types"
+    },
+    {
+      "from": "pydantic",
+      "to": "pydantic-core"
+    },
+    {
+      "from": "pydantic",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "pydantic",
+      "to": "typing-inspection"
+    },
+    {
+      "from": "typing-inspection",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "pydantic-core",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "annotated-types",
+      "to": "typing-extensions"
+    }
+  ]
+}

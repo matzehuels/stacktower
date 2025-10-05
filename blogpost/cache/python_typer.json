@@ -1,0 +1,270 @@
+{
+  "nodes": [
+    {
+      "id": "typing-extensions",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-18",
+        "repo_last_release": "2025-08-25",
+        "repo_maintainers": [
+          "JelleZijlstra",
+          "AlexWaygood",
+          "srittau",
+          "brianschubert",
+          "Daraan"
+        ],
+        "repo_owner": "python",
+        "repo_stars": 537,
+        "repo_url": "https://github.com/python/typing_extensions",
+        "summary": "Backported and Experimental Type Hints for Python 3.9+",
+        "version": "4.15.0"
+      }
+    },
+    {
+      "id": "shellingham",
+      "meta": {
+        "author": "Tzu-ping Chung",
+        "license": "ISC License",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-09-04",
+        "repo_last_release": "2023-10-24",
+        "repo_maintainers": [
+          "uranusjr",
+          "frostming",
+          "Moomboh",
+          "glehmann"
+        ],
+        "repo_owner": "sarugaku",
+        "repo_stars": 302,
+        "repo_url": "https://github.com/sarugaku/shellingham",
+        "summary": "Tool to Detect Surrounding Shell",
+        "version": "1.5.4"
+      }
+    },
+    {
+      "id": "markdown-it-py",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-08-11",
+        "repo_maintainers": [
+          "chrisjsewell",
+          "hukkinj1",
+          "hukkin",
+          "tsutsu3"
+        ],
+        "repo_owner": "executablebooks",
+        "repo_stars": 1168,
+        "repo_topics": [
+          "markdown",
+          "markdown-it",
+          "markdown-parser"
+        ],
+        "repo_url": "https://github.com/executablebooks/markdown-it-py",
+        "summary": "Python port of markdown-it. Markdown parsing, done right!",
+        "version": "4.0.0"
+      }
+    },
+    {
+      "id": "colorama",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-07-09",
+        "repo_maintainers": [
+          "tartley",
+          "wiggin15",
+          "hugovk",
+          "njsmith",
+          "jdufresne"
+        ],
+        "repo_owner": "tartley",
+        "repo_stars": 3755,
+        "repo_url": "https://github.com/tartley/colorama",
+        "summary": "Cross-platform colored terminal text.",
+        "version": "0.4.6"
+      }
+    },
+    {
+      "id": "mdurl",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_maintainers": [
+          "hukkin",
+          "hugovk",
+          "mib112"
+        ],
+        "repo_owner": "executablebooks",
+        "repo_stars": 14,
+        "repo_topics": [
+          "commonmark",
+          "markdown",
+          "markdown-it",
+          "url"
+        ],
+        "repo_url": "https://github.com/executablebooks/mdurl",
+        "summary": "Markdown URL utilities",
+        "version": "0.1.2"
+      }
+    },
+    {
+      "id": "typer",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-10-20",
+        "repo_maintainers": [
+          "tiangolo",
+          "svlandeg"
+        ],
+        "repo_owner": "fastapi",
+        "repo_stars": 18392,
+        "repo_topics": [
+          "cli",
+          "click",
+          "python",
+          "python3",
+          "shell",
+          "terminal",
+          "typehints",
+          "typer"
+        ],
+        "repo_url": "https://github.com/fastapi/typer",
+        "summary": "Typer, build great CLIs. Easy to code. Based on Python type hints.",
+        "version": "0.20.0"
+      }
+    },
+    {
+      "id": "click",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-25",
+        "repo_last_release": "2025-11-15",
+        "repo_maintainers": [
+          "davidism",
+          "mitsuhiko",
+          "Rowlando13",
+          "untitaker"
+        ],
+        "repo_owner": "pallets",
+        "repo_stars": 17030,
+        "repo_topics": [
+          "cli",
+          "click",
+          "pallets",
+          "python"
+        ],
+        "repo_url": "https://github.com/pallets/click",
+        "summary": "Composable command line interface toolkit",
+        "version": "8.3.1"
+      }
+    },
+    {
+      "id": "rich",
+      "meta": {
+        "author": "Will McGugan",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-10-09",
+        "repo_last_release": "2025-10-09",
+        "repo_maintainers": [
+          "willmcgugan",
+          "darrenburns",
+          "davep",
+          "hedyhli"
+        ],
+        "repo_owner": "Textualize",
+        "repo_stars": 54631,
+        "repo_topics": [
+          "ansi-colors",
+          "emoji",
+          "markdown",
+          "progress-bar",
+          "progress-bar-python",
+          "python",
+          "python-library",
+          "python3",
+          "rich",
+          "syntax-highlighting",
+          "tables",
+          "terminal",
+          "terminal-color",
+          "traceback",
+          "tracebacks-rich",
+          "tui"
+        ],
+        "repo_url": "https://github.com/Textualize/rich",
+        "summary": "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal",
+        "version": "14.2.0"
+      }
+    },
+    {
+      "id": "pygments",
+      "meta": {
+        "license": "BSD-2-Clause",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-08-12",
+        "repo_last_release": "2025-06-21",
+        "repo_maintainers": [
+          "birkenfeld",
+          "Anteru",
+          "thatch",
+          "jeanas",
+          "hoelzro"
+        ],
+        "repo_owner": "pygments",
+        "repo_stars": 2077,
+        "repo_topics": [
+          "python",
+          "syntax-highlighting"
+        ],
+        "repo_url": "https://github.com/pygments/pygments",
+        "summary": "Pygments is a syntax highlighting package written in Python.",
+        "version": "2.19.2"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "typer",
+      "to": "click"
+    },
+    {
+      "from": "typer",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "typer",
+      "to": "shellingham"
+    },
+    {
+      "from": "typer",
+      "to": "rich"
+    },
+    {
+      "from": "rich",
+      "to": "pygments"
+    },
+    {
+      "from": "rich",
+      "to": "markdown-it-py"
+    },
+    {
+      "from": "click",
+      "to": "colorama"
+    },
+    {
+      "from": "markdown-it-py",
+      "to": "mdurl"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+name: Homebrew
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dawidd6/action-homebrew-bump-formula@v3
+        with:
+          tap: matzehuels/homebrew-tap
+          formula: stacktower
+          token: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+        continue-on-error: true

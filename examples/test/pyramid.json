@@ -1,0 +1,195 @@
+{
+  "metadata": {
+    "name": "pyramid",
+    "description": "Wide base narrowing to apex across 4 levels"
+  },
+  "nodes": [
+    {
+      "id": "apex",
+      "meta": {
+        "version": "4.0.0",
+        "summary": "Unified application framework",
+        "license": "MIT",
+        "repo_stars": 18500
+      }
+    },
+    {
+      "id": "upper-1",
+      "meta": {
+        "version": "3.0.0",
+        "summary": "Observability stack",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "mid-1",
+      "meta": {
+        "version": "2.0.0",
+        "summary": "Structured logger",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "mid-2",
+      "meta": {
+        "version": "2.1.0",
+        "summary": "Log formatters",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "base-1",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "Logging primitives",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "upper-2",
+      "meta": {
+        "version": "3.1.0",
+        "summary": "Error tracking",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "mid-3",
+      "meta": {
+        "version": "2.2.0",
+        "summary": "Error reporter",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "upper-3",
+      "meta": {
+        "version": "3.2.0",
+        "summary": "Data codec",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "mid-4",
+      "meta": {
+        "version": "2.3.0",
+        "summary": "JSON serializer",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "base-2",
+      "meta": {
+        "version": "1.1.0",
+        "summary": "Error handling primitives",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "upper-4",
+      "meta": {
+        "version": "3.3.0",
+        "summary": "Async executor",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "mid-5",
+      "meta": {
+        "version": "2.4.0",
+        "summary": "Binary serializer",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "base-3",
+      "meta": {
+        "version": "1.2.0",
+        "summary": "Serialization primitives",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "id": "mid-6",
+      "meta": {
+        "version": "2.5.0",
+        "summary": "Async runtime",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "base-4",
+      "meta": {
+        "version": "1.3.0",
+        "summary": "Async primitives",
+        "license": "MIT"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "mid-1",
+      "to": "base-1"
+    },
+    {
+      "from": "mid-2",
+      "to": "base-1"
+    },
+    {
+      "from": "mid-3",
+      "to": "base-2"
+    },
+    {
+      "from": "mid-4",
+      "to": "base-2"
+    },
+    {
+      "from": "mid-5",
+      "to": "base-3"
+    },
+    {
+      "from": "mid-6",
+      "to": "base-4"
+    },
+    {
+      "from": "upper-1",
+      "to": "mid-1"
+    },
+    {
+      "from": "upper-1",
+      "to": "mid-2"
+    },
+    {
+      "from": "upper-2",
+      "to": "mid-3"
+    },
+    {
+      "from": "upper-3",
+      "to": "mid-4"
+    },
+    {
+      "from": "upper-4",
+      "to": "mid-5"
+    },
+    {
+      "from": "upper-4",
+      "to": "mid-6"
+    },
+    {
+      "from": "apex",
+      "to": "upper-1"
+    },
+    {
+      "from": "apex",
+      "to": "upper-2"
+    },
+    {
+      "from": "apex",
+      "to": "upper-3"
+    },
+    {
+      "from": "apex",
+      "to": "upper-4"
+    }
+  ]
+}

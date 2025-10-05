@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "name": "skip-edge",
+    "description": "Parallel paths of different lengths requiring dummy node insertion"
+  },
+  "nodes": [
+    {
+      "id": "core",
+      "meta": {
+        "version": "3.0.0",
+        "summary": "Core module using both paths",
+        "license": "MIT",
+        "repo_stars": 3200
+      }
+    },
+    {
+      "id": "fast-path",
+      "meta": {
+        "version": "2.0.0",
+        "summary": "Optimized direct path",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "slow-step-2",
+      "meta": {
+        "version": "2.2.0",
+        "summary": "Second validation step",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "slow-step-1",
+      "meta": {
+        "version": "2.1.0",
+        "summary": "First validation step",
+        "license": "MIT"
+      }
+    },
+    {
+      "id": "entry",
+      "meta": {
+        "version": "1.0.0",
+        "summary": "Application entry point",
+        "license": "MIT"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "fast-path",
+      "to": "entry"
+    },
+    {
+      "from": "slow-step-1",
+      "to": "entry"
+    },
+    {
+      "from": "slow-step-2",
+      "to": "slow-step-1"
+    },
+    {
+      "from": "core",
+      "to": "fast-path"
+    },
+    {
+      "from": "core",
+      "to": "slow-step-2"
+    }
+  ]
+}
