@@ -27,7 +27,7 @@ type parseOpts struct {
 type parserFactory func() (source.Parser, error)
 
 func newParseCmd() *cobra.Command {
-	opts := parseOpts{maxDepth: 10, maxNodes: 100}
+	opts := parseOpts{maxDepth: 10, maxNodes: 5000}
 
 	cmd := &cobra.Command{
 		Use:   "parse",

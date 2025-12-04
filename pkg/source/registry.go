@@ -30,7 +30,7 @@ type RepoInfo struct {
 	Version      string
 	ProjectURLs  map[string]string
 	HomePage     string
-	ManifestFile string // e.g., "Cargo.toml", "pyproject.toml", "package.json"
+	ManifestFile string
 }
 
 type Options struct {
@@ -68,18 +68,6 @@ type PackageInfo interface {
 
 type fetchFunc[T PackageInfo] func(ctx context.Context, name string, refresh bool) (T, error)
 
-type job struct {
-	name  string
-	depth int
-}
-
-type result[T PackageInfo] struct {
-	name  string
-	info  T
-	depth int
-	err   error
-}
-
 func Parse[T PackageInfo](ctx context.Context, root string, opts Options, fetch fetchFunc[T]) (*dag.DAG, error) {
 	opts = opts.withDefaults()
 
@@ -90,11 +78,24 @@ func Parse[T PackageInfo](ctx context.Context, root string, opts Options, fetch 
 		g:       dag.New(nil),
 		visited: make(map[string]bool),
 		meta:    make(map[string]map[string]any),
-		jobs:    make(chan job, numWorkers),
-		results: make(chan result[T], numWorkers),
+		jobs:    make(chan job, numWorkers*2),
+		results: make(chan result[T], numWorkers*2),
+		done:    make(chan struct{}),
 	}
 
 	return p.parse(root)
+}
+
+type job struct {
+	name  string
+	depth int
+}
+
+type result[T PackageInfo] struct {
+	name  string
+	info  T
+	depth int
+	err   error
 }
 
 type parser[T PackageInfo] struct {
@@ -108,30 +109,40 @@ type parser[T PackageInfo] struct {
 
 	jobs    chan job
 	results chan result[T]
+	done    chan struct{}
 
-	mu     sync.Mutex
-	active int
+	mu        sync.Mutex
+	inflight  int64
+	nodeCount int32
+}
+
+func (p *parser[T]) adjustInflight(delta int64) {
+	p.mu.Lock()
+	p.inflight += delta
+	isDone := p.inflight == 0
+	p.mu.Unlock()
+
+	if isDone {
+		close(p.done)
+	}
 }
 
 func (p *parser[T]) parse(root string) (*dag.DAG, error) {
-	var wg sync.WaitGroup
+	var workerWg sync.WaitGroup
 	for range numWorkers {
-		wg.Add(1)
+		workerWg.Add(1)
 		go func() {
-			defer wg.Done()
+			defer workerWg.Done()
 			p.worker()
 		}()
 	}
 
-	go func() {
-		wg.Wait()
-		close(p.results)
-	}()
-
 	p.submit(job{name: root, depth: 0})
 
 	rootErr := p.processResults(root)
+
 	close(p.jobs)
+	workerWg.Wait()
 
 	if rootErr != nil {
 		return nil, rootErr
@@ -144,61 +155,118 @@ func (p *parser[T]) parse(root string) (*dag.DAG, error) {
 func (p *parser[T]) worker() {
 	for j := range p.jobs {
 		if p.ctx.Err() != nil {
-			return
+			p.adjustInflight(-1) // job cancelled
+			continue
 		}
 		info, err := p.fetch(p.ctx, j.name, p.opts.Refresh)
 		p.results <- result[T]{name: j.name, info: info, depth: j.depth, err: err}
 	}
 }
 
-func (p *parser[T]) submit(j job) {
+func (p *parser[T]) submit(j job) bool {
 	p.mu.Lock()
 	if p.visited[j.name] {
 		p.mu.Unlock()
-		return
+		return false
 	}
 	p.visited[j.name] = true
-	p.active++
+	p.inflight++
 	p.mu.Unlock()
 
 	p.jobs <- j
+	return true
 }
 
 func (p *parser[T]) processResults(root string) error {
-	for r := range p.results {
-		p.decrementActive()
-
-		if r.err != nil {
-			if r.name == root {
-				return r.err
+	for {
+		select {
+		case r := <-p.results:
+			if err := p.handleResult(r, root); err != nil {
+				return err
 			}
-			p.opts.Logger("failed to fetch %s: %v", r.name, r.err)
-		} else {
-			p.processResult(r)
-		}
 
-		if p.isDone() {
-			break
+		case <-p.done:
+			return nil
+
+		case <-p.ctx.Done():
+			return p.ctx.Err()
 		}
 	}
+}
+
+func (p *parser[T]) handleResult(r result[T], root string) error {
+	defer p.adjustInflight(-1)
+
+	if r.err != nil {
+		if r.name == root {
+			return r.err
+		}
+		p.opts.Logger("failed to fetch %s: %v", r.name, r.err)
+		return nil
+	}
+
+	p.addNode(r)
+	p.submitDependencies(r)
 	return nil
 }
 
-func (p *parser[T]) processResult(r result[T]) {
+func (p *parser[T]) addNode(r result[T]) {
 	_ = p.g.AddNode(dag.Node{ID: r.name})
 
-	meta := enrichMetadata(p.ctx, r.info, p.opts)
-	p.storeMeta(r.name, meta)
+	p.mu.Lock()
+	p.nodeCount++
+	p.mu.Unlock()
 
-	if r.depth >= p.opts.MaxDepth || len(p.visited) >= p.opts.MaxNodes {
+	meta := enrichMetadata(p.ctx, r.info, p.opts)
+	if len(meta) > 0 {
+		p.mu.Lock()
+		p.meta[r.name] = meta
+		p.mu.Unlock()
+	}
+}
+
+func (p *parser[T]) submitDependencies(r result[T]) {
+	if r.depth >= p.opts.MaxDepth {
 		return
 	}
 
-	for _, dep := range r.info.GetDependencies() {
+	deps := r.info.GetDependencies()
+	if len(deps) == 0 {
+		return
+	}
+
+	// Add edges and collect jobs
+	p.mu.Lock()
+	nodeCount := p.nodeCount
+	p.mu.Unlock()
+
+	var toSubmit []job
+	for _, dep := range deps {
 		_ = p.g.AddNode(dag.Node{ID: dep})
 		_ = p.g.AddEdge(dag.Edge{From: r.name, To: dep})
-		p.submit(job{name: dep, depth: r.depth + 1})
+
+		if int(nodeCount) < p.opts.MaxNodes {
+			toSubmit = append(toSubmit, job{name: dep, depth: r.depth + 1})
+		}
 	}
+
+	if len(toSubmit) == 0 {
+		return
+	}
+
+	// Reserve a slot for the async submitter BEFORE spawning it.
+	// This prevents processResults from exiting prematurely.
+	p.mu.Lock()
+	p.inflight++
+	p.mu.Unlock()
+
+	go func() {
+		defer p.adjustInflight(-1) // release slot when done submitting
+
+		for _, j := range toSubmit {
+			p.submit(j)
+		}
+	}()
 }
 
 func (p *parser[T]) applyMetadata() {
@@ -209,27 +277,6 @@ func (p *parser[T]) applyMetadata() {
 			n.Meta = m
 		}
 	}
-}
-
-func (p *parser[T]) decrementActive() {
-	p.mu.Lock()
-	p.active--
-	p.mu.Unlock()
-}
-
-func (p *parser[T]) isDone() bool {
-	p.mu.Lock()
-	defer p.mu.Unlock()
-	return p.active == 0
-}
-
-func (p *parser[T]) storeMeta(name string, meta map[string]any) {
-	if len(meta) == 0 {
-		return
-	}
-	p.mu.Lock()
-	p.meta[name] = meta
-	p.mu.Unlock()
 }
 
 func enrichMetadata(ctx context.Context, info PackageInfo, opts Options) map[string]any {
