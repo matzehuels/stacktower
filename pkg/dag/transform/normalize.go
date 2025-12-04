@@ -1,6 +1,6 @@
 package transform
 
-import "stacktower/pkg/dag"
+import "github.com/matzehuels/stacktower/pkg/dag"
 
 func Normalize(g *dag.DAG) *dag.DAG {
 	TransitiveReduction(g)

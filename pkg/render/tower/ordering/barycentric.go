@@ -4,7 +4,7 @@ import (
 	"cmp"
 	"slices"
 
-	"stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/dag"
 )
 
 const defaultPasses = 24

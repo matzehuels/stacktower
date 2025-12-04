@@ -10,14 +10,14 @@ import (
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 
-	"stacktower/pkg/dag"
-	dagtransform "stacktower/pkg/dag/transform"
-	"stacktower/pkg/io"
-	"stacktower/pkg/render/nodelink"
-	"stacktower/pkg/render/tower"
-	"stacktower/pkg/render/tower/ordering"
-	"stacktower/pkg/render/tower/styles/handdrawn"
-	layouttransform "stacktower/pkg/render/tower/transform"
+	"github.com/matzehuels/stacktower/pkg/dag"
+	dagtransform "github.com/matzehuels/stacktower/pkg/dag/transform"
+	"github.com/matzehuels/stacktower/pkg/io"
+	"github.com/matzehuels/stacktower/pkg/render/nodelink"
+	"github.com/matzehuels/stacktower/pkg/render/tower"
+	"github.com/matzehuels/stacktower/pkg/render/tower/ordering"
+	"github.com/matzehuels/stacktower/pkg/render/tower/styles/handdrawn"
+	layouttransform "github.com/matzehuels/stacktower/pkg/render/tower/transform"
 )
 
 const (

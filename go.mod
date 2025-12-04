@@ -1,4 +1,4 @@
-module stacktower
+module github.com/matzehuels/stacktower
 
 go 1.24.11
 

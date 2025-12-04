@@ -3,8 +3,8 @@ package tower
 import (
 	"slices"
 
-	"stacktower/pkg/dag"
-	"stacktower/pkg/render/tower/ordering"
+	"github.com/matzehuels/stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/render/tower/ordering"
 )
 
 const (

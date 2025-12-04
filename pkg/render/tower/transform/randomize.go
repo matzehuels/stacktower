@@ -6,8 +6,8 @@ import (
 	"math/rand/v2"
 	"slices"
 
-	"stacktower/pkg/dag"
-	"stacktower/pkg/render/tower"
+	"github.com/matzehuels/stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/render/tower"
 )
 
 type Options struct {

@@ -8,12 +8,12 @@ import (
 
 	"github.com/spf13/cobra"
 
-	pkgio "stacktower/pkg/io"
-	"stacktower/pkg/source"
-	"stacktower/pkg/source/javascript"
-	"stacktower/pkg/source/metadata"
-	"stacktower/pkg/source/python"
-	"stacktower/pkg/source/rust"
+	pkgio "github.com/matzehuels/stacktower/pkg/io"
+	"github.com/matzehuels/stacktower/pkg/source"
+	"github.com/matzehuels/stacktower/pkg/source/javascript"
+	"github.com/matzehuels/stacktower/pkg/source/metadata"
+	"github.com/matzehuels/stacktower/pkg/source/python"
+	"github.com/matzehuels/stacktower/pkg/source/rust"
 )
 
 type parseOpts struct {

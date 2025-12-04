@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/dag"
 )
 
 func TestWriteJSON(t *testing.T) {

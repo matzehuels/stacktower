@@ -12,7 +12,7 @@ import (
 
 	"github.com/goccy/go-graphviz"
 
-	"stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/dag"
 )
 
 type Options struct {

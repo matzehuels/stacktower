@@ -3,7 +3,7 @@ package ordering
 import (
 	"slices"
 
-	"stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/dag"
 )
 
 func medianPosition(pos []int) (int, bool) {

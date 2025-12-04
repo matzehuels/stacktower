@@ -3,7 +3,7 @@ package tower
 import (
 	"testing"
 
-	"stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/dag"
 )
 
 func TestRankNebraska_DeepDepsScoreHigher(t *testing.T) {

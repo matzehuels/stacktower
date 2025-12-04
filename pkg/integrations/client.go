@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"stacktower/pkg/httputil"
+	"github.com/matzehuels/stacktower/pkg/httputil"
 )
 
 type BaseClient struct {

@@ -4,9 +4,9 @@ import (
 	"context"
 	"time"
 
-	"stacktower/pkg/dag"
-	"stacktower/pkg/integrations/pypi"
-	"stacktower/pkg/source"
+	"github.com/matzehuels/stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/integrations/pypi"
+	"github.com/matzehuels/stacktower/pkg/source"
 )
 
 type Parser struct {

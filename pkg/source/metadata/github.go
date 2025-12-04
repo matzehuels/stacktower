@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"stacktower/pkg/integrations/github"
-	"stacktower/pkg/source"
+	"github.com/matzehuels/stacktower/pkg/integrations/github"
+	"github.com/matzehuels/stacktower/pkg/source"
 )
 
 type GitHub struct {

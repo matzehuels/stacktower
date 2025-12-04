@@ -6,7 +6,7 @@ import (
 	"slices"
 	"strings"
 
-	"stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/dag"
 )
 
 func ResolveSpanOverlaps(d *dag.DAG) {

@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"stacktower/pkg/httputil"
+	"github.com/matzehuels/stacktower/pkg/httputil"
 )
 
 const httpTimeout = 10 * time.Second

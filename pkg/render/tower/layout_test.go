@@ -4,7 +4,7 @@ import (
 	"math"
 	"testing"
 
-	"stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/dag"
 )
 
 func TestBlock(t *testing.T) {

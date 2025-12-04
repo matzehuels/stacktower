@@ -7,7 +7,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"stacktower/pkg/dag/perm"
+	"github.com/matzehuels/stacktower/pkg/dag/perm"
 )
 
 func newPQTreeCmd() *cobra.Command {

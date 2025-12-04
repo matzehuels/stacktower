@@ -3,7 +3,7 @@ package transform
 import (
 	"fmt"
 
-	"stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/dag"
 )
 
 func Subdivide(g *dag.DAG) {

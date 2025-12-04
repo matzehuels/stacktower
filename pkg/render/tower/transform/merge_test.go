@@ -3,8 +3,8 @@ package transform
 import (
 	"testing"
 
-	"stacktower/pkg/dag"
-	"stacktower/pkg/render/tower"
+	"github.com/matzehuels/stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/render/tower"
 )
 
 func TestMergeSubdividers_NoSubdividers(t *testing.T) {

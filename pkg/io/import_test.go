@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/dag"
 )
 
 func TestReadJSON(t *testing.T) {

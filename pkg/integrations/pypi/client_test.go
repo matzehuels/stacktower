@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"stacktower/pkg/integrations"
+	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
 func TestClient_FetchPackage(t *testing.T) {
