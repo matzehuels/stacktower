@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"stacktower/pkg/render/tower/styles"
+	"github.com/matzehuels/stacktower/pkg/render/tower/styles"
 )
 
 const (

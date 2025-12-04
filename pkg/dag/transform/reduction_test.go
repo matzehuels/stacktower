@@ -3,7 +3,7 @@ package transform
 import (
 	"testing"
 
-	"stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/dag"
 )
 
 func hasEdge(g *dag.DAG, from, to string) bool {

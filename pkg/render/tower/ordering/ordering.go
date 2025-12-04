@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/dag"
 )
 
 type Orderer interface {

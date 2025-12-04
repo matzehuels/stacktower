@@ -4,7 +4,7 @@ import (
 	"regexp"
 	"time"
 
-	"stacktower/pkg/integrations"
+	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
 var repoURLPattern = regexp.MustCompile(`https?://gitlab\.com/([^/]+)/([^/]+)`)

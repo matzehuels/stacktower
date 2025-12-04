@@ -3,7 +3,7 @@ package tower
 import (
 	"time"
 
-	"stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/dag"
 )
 
 const (

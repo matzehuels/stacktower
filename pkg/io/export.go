@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io"
 
-	"stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/dag"
 )
 
 var kindToString = map[dag.NodeKind]string{

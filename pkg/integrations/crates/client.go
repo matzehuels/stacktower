@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	"stacktower/pkg/integrations"
+	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
 type CrateInfo struct {
@@ -37,7 +37,7 @@ func NewClient(cacheTTL time.Duration) (*Client, error) {
 			Cache: cache,
 		},
 		baseURL: "https://crates.io/api/v1",
-		headers: map[string]string{"User-Agent": "stacktower/1.0 (https://github.com/stacktower)"},
+		headers: map[string]string{"User-Agent": "github.com/matzehuels/stacktower/1.0 (https://github.com/stacktower)"},
 	}, nil
 }
 

@@ -3,7 +3,7 @@ package tower
 import (
 	"math"
 
-	"stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/dag"
 )
 
 const eps = 1e-9

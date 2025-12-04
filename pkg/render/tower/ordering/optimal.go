@@ -9,8 +9,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"stacktower/pkg/dag"
-	"stacktower/pkg/dag/perm"
+	"github.com/matzehuels/stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/dag/perm"
 )
 
 const maxCandidates = 10000

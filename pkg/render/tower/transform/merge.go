@@ -1,8 +1,8 @@
 package transform
 
 import (
-	"stacktower/pkg/dag"
-	"stacktower/pkg/render/tower"
+	"github.com/matzehuels/stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/render/tower"
 )
 
 func MergeSubdividers(layout tower.Layout, g *dag.DAG) tower.Layout {

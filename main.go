@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"stacktower/internal/cli"
+	"github.com/matzehuels/stacktower/internal/cli"
 )
 
 var (

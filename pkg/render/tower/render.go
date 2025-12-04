@@ -7,8 +7,8 @@ import (
 	"slices"
 	"strings"
 
-	"stacktower/pkg/dag"
-	"stacktower/pkg/render/tower/styles"
+	"github.com/matzehuels/stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/render/tower/styles"
 )
 
 type RenderOption func(*renderer)

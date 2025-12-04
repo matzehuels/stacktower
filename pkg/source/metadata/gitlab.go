@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"stacktower/pkg/integrations/gitlab"
-	"stacktower/pkg/source"
+	"github.com/matzehuels/stacktower/pkg/integrations/gitlab"
+	"github.com/matzehuels/stacktower/pkg/source"
 )
 
 type GitLab struct {

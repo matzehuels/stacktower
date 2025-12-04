@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/dag"
 )
 
 func TestOptimalSearch_Empty(t *testing.T) {

@@ -1,6 +1,6 @@
 package transform
 
-import "stacktower/pkg/dag"
+import "github.com/matzehuels/stacktower/pkg/dag"
 
 func AssignLayers(g *dag.DAG) {
 	nodes := g.Nodes()

@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/dag"
 )
 
 const (
