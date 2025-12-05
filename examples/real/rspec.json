@@ -1,0 +1,98 @@
+{
+  "nodes": [
+    {
+      "id": "rspec",
+      "meta": {
+        "author": "Steven Baker, David Chelimsky, Myron Marston",
+        "description": "BDD for Ruby",
+        "downloads": 933712525,
+        "license": "MIT",
+        "version": "3.13.2"
+      }
+    },
+    {
+      "id": "rspec-core",
+      "meta": {
+        "author": "Steven Baker, David Chelimsky, Chad Humphries, Myron Marston",
+        "description": "BDD for Ruby. RSpec runner and example groups.",
+        "downloads": 1086232437,
+        "license": "MIT",
+        "version": "3.13.6"
+      }
+    },
+    {
+      "id": "rspec-expectations",
+      "meta": {
+        "author": "Steven Baker, David Chelimsky, Myron Marston",
+        "description": "rspec-expectations provides a simple, readable API to express expected outcomes of a code example.",
+        "downloads": 1087466323,
+        "license": "MIT",
+        "version": "3.13.5"
+      }
+    },
+    {
+      "id": "rspec-mocks",
+      "meta": {
+        "author": "Steven Baker, David Chelimsky, Myron Marston",
+        "description": "RSpec's 'test double' framework, with support for stubbing and mocking",
+        "downloads": 1080564537,
+        "license": "MIT",
+        "version": "3.13.7"
+      }
+    },
+    {
+      "id": "diff-lcs",
+      "meta": {
+        "author": "Austin Ziegler",
+        "description": "Diff::LCS computes the difference between two Enumerable sequences using the\nMcIlroy-Hunt longest common subsequence (LCS) algorithm. It includes utilities\nto create a simple HTML diff output format and a standard diff-like tool.\n\nThis is release 1.6.1, providing a simple extension that allows for\nDiff::LCS::Change objects to be treated implicitly as arrays and fixes a number\nof formatting issues.\n\nRuby versions below 2.5 are soft-deprecated, which means that older versions are\nno longer part of the CI test suite. If any changes have been introduced that\nbreak those versions, bug reports and patches will be accepted, but it will be\nup to the reporter to verify any fixes prior to release. The next major release\nwill completely break compatibility.",
+        "downloads": 1109763549,
+        "license": "MIT, Artistic-1.0-Perl, GPL-2.0-or-later",
+        "version": "1.6.2"
+      }
+    },
+    {
+      "id": "rspec-support",
+      "meta": {
+        "author": "David Chelimsky, Myron Marson, Jon Rowe, Sam Phippen, Xaviery Shay, Bradley Schaefer",
+        "description": "Support utilities for RSpec gems",
+        "downloads": 1070970150,
+        "license": "MIT",
+        "version": "3.13.6"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "rspec",
+      "to": "rspec-core"
+    },
+    {
+      "from": "rspec",
+      "to": "rspec-expectations"
+    },
+    {
+      "from": "rspec",
+      "to": "rspec-mocks"
+    },
+    {
+      "from": "rspec-expectations",
+      "to": "diff-lcs"
+    },
+    {
+      "from": "rspec-expectations",
+      "to": "rspec-support"
+    },
+    {
+      "from": "rspec-core",
+      "to": "rspec-support"
+    },
+    {
+      "from": "rspec-mocks",
+      "to": "diff-lcs"
+    },
+    {
+      "from": "rspec-mocks",
+      "to": "rspec-support"
+    }
+  ]
+}
