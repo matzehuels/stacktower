@@ -37,6 +37,9 @@ stacktower parse rust serde -o serde.json
 
 # JavaScript (npm)
 stacktower parse javascript yup -o yup.json
+
+# PHP (Packagist/Composer)
+stacktower parse php monolog/monolog -o monolog.json
 ```
 
 Add `--enrich` with a `GITHUB_TOKEN` to pull repository metadata (stars, maintainers, last commit) for richer visualizations.
