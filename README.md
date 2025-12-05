@@ -146,4 +146,4 @@ The generic `source.Parse()` handles concurrent fetching, depth limits, and grap
 
 ## License
 
-MIT
+Apache-2.0
