@@ -10,7 +10,7 @@ import (
 )
 
 // Parser implements source.Parser for PHP/Composer via Packagist
- type Parser struct {
+type Parser struct {
 	client *packagist.Client
 }
 
@@ -34,7 +34,7 @@ func (p *Parser) fetch(ctx context.Context, name string, refresh bool) (*package
 	return &packageInfo{info}, nil
 }
 
-type packageInfo struct { *packagist.PackageInfo }
+type packageInfo struct{ *packagist.PackageInfo }
 
 func (pi *packageInfo) GetName() string           { return pi.Name }
 func (pi *packageInfo) GetVersion() string        { return pi.Version }

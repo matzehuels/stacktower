@@ -12,9 +12,9 @@ import (
 	"github.com/matzehuels/stacktower/pkg/source"
 	"github.com/matzehuels/stacktower/pkg/source/javascript"
 	"github.com/matzehuels/stacktower/pkg/source/metadata"
+	"github.com/matzehuels/stacktower/pkg/source/php"
 	"github.com/matzehuels/stacktower/pkg/source/python"
 	"github.com/matzehuels/stacktower/pkg/source/rust"
-	"github.com/matzehuels/stacktower/pkg/source/php"
 )
 
 type parseOpts struct {

@@ -170,9 +170,15 @@ type p2Version struct {
 	License     []string          `json:"license"`
 	Require     map[string]string `json:"require"`
 	Support     map[string]string `json:"support"`
-	Source      struct{ URL string `json:"url"` } `json:"source"`
-	Dist        struct{ URL string `json:"url"` } `json:"dist"`
-	Authors     []struct{ Name string `json:"name"` } `json:"authors"`
+	Source      struct {
+		URL string `json:"url"`
+	} `json:"source"`
+	Dist struct {
+		URL string `json:"url"`
+	} `json:"dist"`
+	Authors []struct {
+		Name string `json:"name"`
+	} `json:"authors"`
 }
 
 func (v *p2Version) UnmarshalJSON(b []byte) error {
@@ -184,9 +190,15 @@ func (v *p2Version) UnmarshalJSON(b []byte) error {
 		License     json.RawMessage   `json:"license"`
 		Require     json.RawMessage   `json:"require"`
 		Support     map[string]string `json:"support"`
-		Source      struct{ URL string `json:"url"` } `json:"source"`
-		Dist        struct{ URL string `json:"url"` } `json:"dist"`
-		Authors     []struct{ Name string `json:"name"` } `json:"authors"`
+		Source      struct {
+			URL string `json:"url"`
+		} `json:"source"`
+		Dist struct {
+			URL string `json:"url"`
+		} `json:"dist"`
+		Authors []struct {
+			Name string `json:"name"`
+		} `json:"authors"`
 	}
 
 	var rv rawVersion
