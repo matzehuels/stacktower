@@ -2,7 +2,6 @@
 
 Inspired by [XKCD #2347](https://xkcd.com/2347/), StackTower renders dependency graphs as **physical towers** where blocks rest on what they depend on. Your application sits at the top, supported by libraries below—all the way down to that one critical package maintained by *some dude in Nebraska*.
 
-Traditional node-link diagrams are technically correct but don't *feel* like anything. Tower visualizations tap into intuition: width shows importance, depth reveals foundation, and the structure makes hidden dependencies visible at a glance.
 
 📖 **[Read the full story at stacktower.io](https://www.stacktower.io)**
 
@@ -63,7 +62,7 @@ The repository ships with pre-parsed graphs so you can experiment immediately:
 # Real packages with full metadata
 stacktower render examples/real/flask.json -t tower --style handdrawn --merge -o flask.svg
 stacktower render examples/real/serde.json -t tower --popups -o serde.svg
-stacktower render examples/real/express.json -t tower --ordering barycenter -o express.svg
+stacktower render examples/real/express.json -t tower --ordering barycentric -o express.svg
 
 # Synthetic test cases
 stacktower render examples/test/diamond.json -t tower -o diamond.svg
@@ -120,6 +119,22 @@ The ordering step is where the magic happens. StackTower uses an optimal search 
 ## Caching
 
 HTTP responses are cached in `~/.cache/stacktower/` with a 24-hour TTL. Use `--refresh` to bypass.
+
+## Adding New Languages
+
+To add support for a new package manager (e.g., Ruby/RubyGems):
+
+1. **Create a registry client** in `pkg/integrations/rubygems/client.go` — parse the registry API, extract dependencies, use `integrations.BaseClient` for HTTP + caching
+
+2. **Create a source parser** in `pkg/source/ruby/ruby.go` — implement the `source.PackageInfo` interface (`GetName`, `GetVersion`, `GetDependencies`, `ToMetadata`, `ToRepoInfo`)
+
+3. **Wire into CLI** in `internal/cli/parse.go`:
+   ```go
+   cmd.AddCommand(newParserCmd("ruby <gem>", "Parse Ruby dependencies",
+       func() (source.Parser, error) { return ruby.NewParser(source.DefaultCacheTTL) }, &opts))
+   ```
+
+The generic `source.Parse()` handles concurrent fetching, depth limits, and graph construction automatically.
 
 ## Learn More
 
