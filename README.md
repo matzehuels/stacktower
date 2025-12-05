@@ -1,14 +1,10 @@
 # StackTower
 
-Traditional dependency graphs are hairballs—nodes and edges sprawling in every direction. StackTower renders them as **layered towers** that reveal structure at a glance:
+Inspired by [XKCD #2347](https://xkcd.com/2347/), StackTower renders dependency graphs as **physical towers** where blocks rest on what they depend on. Your application sits at the top, supported by libraries below—all the way down to that one critical package maintained by *some dude in Nebraska*.
 
-- **Width = Importance** — Packages supporting more of your code get more visual weight
-- **Depth = Foundation** — See what's at the bottom of your stack
-- **No Crossings** — Optimal ordering eliminates the spaghetti
+Traditional node-link diagrams are technically correct but don't *feel* like anything. Tower visualizations tap into intuition: width shows importance, depth reveals foundation, and the structure makes hidden dependencies visible at a glance.
 
-The result: you can finally *see* your dependency structure instead of deciphering it.
-
-📖 **[Interactive examples at stacktower.io](https://www.stacktower.io)**
+📖 **[Read the full story at stacktower.io](https://www.stacktower.io)**
 
 ## Quick Start
 
@@ -35,13 +31,13 @@ StackTower works in two stages: **parse** dependency data from package registrie
 
 ```bash
 # Python (PyPI)
-stacktower parse python requests -o requests.json
+stacktower parse python fastapi -o fastapi.json
 
 # Rust (crates.io)
 stacktower parse rust serde -o serde.json
 
 # JavaScript (npm)
-stacktower parse javascript express -o express.json
+stacktower parse javascript yup -o yup.json
 ```
 
 Add `--enrich` with a `GITHUB_TOKEN` to pull repository metadata (stars, maintainers, last commit) for richer visualizations.
@@ -50,13 +46,13 @@ Add `--enrich` with a `GITHUB_TOKEN` to pull repository metadata (stars, maintai
 
 ```bash
 # Tower visualization (recommended)
-stacktower render graph.json -t tower -o tower.svg
+stacktower render fastapi.json -t tower -o fastapi.svg
 
 # Hand-drawn style with hover popups
-stacktower render graph.json -t tower --style handdrawn --popups -o tower.svg
+stacktower render serde.json -t tower --style handdrawn --popups -o serde.svg
 
 # Traditional node-link diagram
-stacktower render graph.json -o nodelink.svg
+stacktower render yup.json -t nodelink -o yup.svg
 ```
 
 ### Included Examples
@@ -67,7 +63,7 @@ The repository ships with pre-parsed graphs so you can experiment immediately:
 # Real packages with full metadata
 stacktower render examples/real/flask.json -t tower --style handdrawn --merge -o flask.svg
 stacktower render examples/real/serde.json -t tower --popups -o serde.svg
-stacktower render examples/real/express.json -t tower -o express.svg
+stacktower render examples/real/express.json -t tower --ordering barycenter -o express.svg
 
 # Synthetic test cases
 stacktower render examples/test/diamond.json -t tower -o diamond.svg
