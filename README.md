@@ -37,9 +37,21 @@ stacktower parse rust serde -o serde.json
 
 # JavaScript (npm)
 stacktower parse javascript yup -o yup.json
+
+# manifest package.json + npm
+stacktower parse manifest package.json -o tktm.json
 ```
 
 Add `--enrich` with a `GITHUB_TOKEN` to pull repository metadata (stars, maintainers, last commit) for richer visualizations.
+
+Exemple from source to svg using manifest and a bunch of options
+```
+go build -o stacktower .
+
+./stacktower parse manifest package.json -o tktm.json --enrich --max-depth 2
+
+./stacktower render tktm.json -t tower -o tktm.svg --ordering barycentric --popups --nebraska --style handdrawn
+```
 
 ### Rendering
 

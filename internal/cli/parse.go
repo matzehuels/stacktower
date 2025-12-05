@@ -14,6 +14,7 @@ import (
 	"github.com/matzehuels/stacktower/pkg/source/metadata"
 	"github.com/matzehuels/stacktower/pkg/source/python"
 	"github.com/matzehuels/stacktower/pkg/source/rust"
+	"github.com/matzehuels/stacktower/pkg/source/local/manifest"
 )
 
 type parseOpts struct {
@@ -41,13 +42,16 @@ func newParseCmd() *cobra.Command {
 	cmd.PersistentFlags().BoolVar(&opts.refresh, "refresh", false, "bypass cache")
 	cmd.PersistentFlags().StringVarP(&opts.output, "output", "o", "", "output file (stdout if empty)")
 
+	// package managers
 	cmd.AddCommand(newParserCmd("python <package>", "Parse Python package dependencies from PyPI",
 		func() (source.Parser, error) { return python.NewParser(source.DefaultCacheTTL) }, &opts))
 	cmd.AddCommand(newParserCmd("rust <crate>", "Parse Rust crate dependencies from crates.io",
 		func() (source.Parser, error) { return rust.NewParser(source.DefaultCacheTTL) }, &opts))
 	cmd.AddCommand(newParserCmd("javascript <package>", "Parse JavaScript package dependencies from npm",
 		func() (source.Parser, error) { return javascript.NewParser(source.DefaultCacheTTL) }, &opts))
-
+	// manifest
+	cmd.AddCommand(newParserCmd("manifest <package>", "Parse pyproj.toml file",
+		func() (source.Parser, error) { return manifest.NewParser(source.DefaultCacheTTL) }, &opts))
 	return cmd
 }
 
