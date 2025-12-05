@@ -101,6 +101,59 @@ stacktower render examples/test/diamond.json -t tower -o diamond.svg
 |------|-------------|
 | `--detailed` | Show node metadata in labels |
 
+## JSON Format
+
+The render layer accepts a simple JSON format, making it easy to visualize **any** directed graph—not just package dependencies. You can hand-craft graphs for component diagrams, callgraphs, or pipe output from other tools.
+
+### Minimal Example
+
+```json
+{
+  "nodes": [
+    { "id": "app" },
+    { "id": "lib-a" },
+    { "id": "lib-b" }
+  ],
+  "edges": [
+    { "from": "app", "to": "lib-a" },
+    { "from": "lib-a", "to": "lib-b" }
+  ]
+}
+```
+
+### Required Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `nodes[].id` | string | Unique node identifier (displayed as label) |
+| `edges[].from` | string | Source node ID |
+| `edges[].to` | string | Target node ID |
+
+### Optional Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `nodes[].row` | int | Pre-assigned layer (computed automatically if omitted) |
+| `nodes[].kind` | string | Internal use: `"subdivider"` or `"auxiliary"` |
+| `nodes[].meta` | object | Freeform metadata for display features |
+
+### Recognized `meta` Keys
+
+These keys are read by specific render flags. All are optional—missing keys simply disable the corresponding feature.
+
+| Key | Type | Used By |
+|-----|------|---------|
+| `repo_url` | string | Clickable blocks, `--popups`, `--nebraska` |
+| `repo_stars` | int | `--popups` |
+| `repo_owner` | string | `--nebraska` |
+| `repo_maintainers` | []string | `--nebraska`, `--popups` |
+| `repo_last_commit` | string (date) | `--popups`, brittle detection |
+| `repo_last_release` | string (date) | `--popups` |
+| `repo_archived` | bool | `--popups`, brittle detection |
+| `summary` | string | `--popups` (fallback: `description`) |
+
+The `--detailed` flag (node-link only) displays **all** meta keys in the node label.
+
 ## How It Works
 
 1. **Parse** — Fetch package metadata from registries (PyPI, crates.io, npm)
