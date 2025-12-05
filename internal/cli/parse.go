@@ -12,6 +12,7 @@ import (
 	"github.com/matzehuels/stacktower/pkg/source"
 	"github.com/matzehuels/stacktower/pkg/source/javascript"
 	"github.com/matzehuels/stacktower/pkg/source/metadata"
+	"github.com/matzehuels/stacktower/pkg/source/php"
 	"github.com/matzehuels/stacktower/pkg/source/python"
 	"github.com/matzehuels/stacktower/pkg/source/rust"
 )
@@ -47,6 +48,8 @@ func newParseCmd() *cobra.Command {
 		func() (source.Parser, error) { return rust.NewParser(source.DefaultCacheTTL) }, &opts))
 	cmd.AddCommand(newParserCmd("javascript <package>", "Parse JavaScript package dependencies from npm",
 		func() (source.Parser, error) { return javascript.NewParser(source.DefaultCacheTTL) }, &opts))
+	cmd.AddCommand(newParserCmd("php <package>", "Parse PHP (Composer) package dependencies from Packagist",
+		func() (source.Parser, error) { return php.NewParser(source.DefaultCacheTTL) }, &opts))
 
 	return cmd
 }
