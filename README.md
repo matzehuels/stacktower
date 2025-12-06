@@ -73,6 +73,12 @@ stacktower render examples/test/diamond.json -t tower -o diamond.svg
 
 ## Options Reference
 
+### Global Options
+
+| Flag | Description |
+|------|-------------|
+| `-v`, `--verbose` | Enable debug logging (search space info, timing details) |
+
 ### Parse Options
 
 | Flag | Description |

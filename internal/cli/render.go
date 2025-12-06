@@ -287,6 +287,21 @@ func withOptimalSearchProgress(ctx context.Context, timeoutSec int) ordering.Ord
 			}
 			o.lastBest = bestScore
 		},
+		Debug: func(info ordering.DebugInfo) {
+			logger.Debugf("Search space: %d rows, max depth reached: %d/%d", info.TotalRows, info.MaxDepth, info.TotalRows)
+
+			bottlenecks := 0
+			for _, r := range info.Rows {
+				if r.Candidates > 100 {
+					logger.Debugf("  Row %d: %d nodes, %d candidates", r.Row, r.NodeCount, r.Candidates)
+					bottlenecks++
+				}
+			}
+
+			if info.MaxDepth < info.TotalRows && bottlenecks > 0 {
+				logger.Debugf("Search incomplete: %d rows have >100 candidates, causing combinatorial explosion", bottlenecks)
+			}
+		},
 	}
 	return o
 }

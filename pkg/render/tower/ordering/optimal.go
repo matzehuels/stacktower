@@ -13,11 +13,24 @@ import (
 	"github.com/matzehuels/stacktower/pkg/dag/perm"
 )
 
-const maxCandidates = 10000
+const maxCandidatesBase = 10000
 
 type OptimalSearch struct {
 	Progress func(explored, pruned, best int)
 	Timeout  time.Duration
+	Debug    func(info DebugInfo)
+}
+
+type DebugInfo struct {
+	Rows      []RowDebugInfo
+	MaxDepth  int
+	TotalRows int
+}
+
+type RowDebugInfo struct {
+	Row        int
+	NodeCount  int
+	Candidates int
 }
 
 func (o OptimalSearch) OrderRows(g *dag.DAG) map[int][]string {
@@ -42,12 +55,13 @@ func (o OptimalSearch) OrderRows(g *dag.DAG) map[int][]string {
 	defer cancel()
 
 	s := &solver{
-		g:        g,
-		fg:       newFastGraph(g, rows),
-		rows:     rows,
-		rowNodes: make(map[int][]*dag.Node, len(rows)),
-		ctx:      ctx,
-		cancel:   cancel,
+		g:         g,
+		fg:        newFastGraph(g, rows),
+		rows:      rows,
+		rowNodes:  make(map[int][]*dag.Node, len(rows)),
+		candLimit: calcCandidateLimit(len(rows)),
+		ctx:       ctx,
+		cancel:    cancel,
 	}
 	s.bestScore.Store(int64(initialScore))
 	s.bestPath.Store(toIndexPath(g, rows, initial))
@@ -66,6 +80,10 @@ func (o OptimalSearch) OrderRows(g *dag.DAG) map[int][]string {
 		o.report(int(s.explored.Load()), int(s.pruned.Load()), int(s.bestScore.Load()))
 	}
 
+	if o.Debug != nil {
+		o.Debug(s.collectDebugInfo(initial))
+	}
+
 	return toStringOrder(s.rowNodes, s.rows, s.bestPath.Load().([][]int))
 }
 
@@ -76,18 +94,30 @@ func (o OptimalSearch) report(explored, pruned, best int) {
 }
 
 type solver struct {
-	g        *dag.DAG
-	fg       *fastGraph
-	rows     []int
-	rowNodes map[int][]*dag.Node
+	g         *dag.DAG
+	fg        *fastGraph
+	rows      []int
+	rowNodes  map[int][]*dag.Node
+	candLimit int
 
 	bestScore atomic.Int64
 	bestPath  atomic.Value
 	explored  atomic.Int64
 	pruned    atomic.Int64
+	maxDepth  atomic.Int64
 
 	ctx    context.Context
 	cancel context.CancelFunc
+}
+
+func calcCandidateLimit(numRows int) int {
+	if numRows <= 3 {
+		return maxCandidatesBase
+	}
+	// Linear scaling: more rows = fewer candidates per row
+	// 5 rows → 2000, 10 rows → 1000, 20 rows → 500
+	limit := maxCandidatesBase / numRows
+	return max(100, min(1000, limit))
 }
 
 func (s *solver) search() {
@@ -201,6 +231,14 @@ func (s *solver) dfs(depth, score int, path [][]int, ws *dag.CrossingWorkspace) 
 		return
 	}
 
+	// Track max depth reached
+	for {
+		cur := s.maxDepth.Load()
+		if int64(depth) <= cur || s.maxDepth.CompareAndSwap(cur, int64(depth)) {
+			break
+		}
+	}
+
 	if score >= int(s.bestScore.Load()) {
 		s.pruned.Add(1)
 		return
@@ -261,7 +299,7 @@ func (s *solver) generateC1PCandidates(depth int, nodes []*dag.Node, prevOrder [
 		return s.fallbackPermutations(n)
 	}
 
-	limit := maxCandidates
+	limit := s.candLimit
 	if n <= 8 {
 		limit = tree.ValidCount()
 	}
@@ -306,7 +344,7 @@ func (s *solver) fallbackPermutations(n int) [][]int {
 	if n <= 8 {
 		return perm.Generate(n, -1)
 	}
-	return perm.Generate(n, maxCandidates)
+	return perm.Generate(n, s.candLimit)
 }
 
 func (s *solver) updateBest(path [][]int, score int) {
@@ -329,6 +367,38 @@ func (s *solver) updateBest(path [][]int, score int) {
 			return
 		}
 	}
+}
+
+func (s *solver) collectDebugInfo(initialOrder map[int][]string) DebugInfo {
+	info := DebugInfo{
+		TotalRows: len(s.rows),
+		MaxDepth:  int(s.maxDepth.Load()),
+		Rows:      make([]RowDebugInfo, len(s.rows)),
+	}
+
+	path := toIndexPath(s.g, s.rows, initialOrder)
+
+	for i, r := range s.rows {
+		nodes := s.rowNodes[r]
+		rowInfo := RowDebugInfo{
+			Row:       r,
+			NodeCount: len(nodes),
+		}
+
+		if len(nodes) <= 1 {
+			rowInfo.Candidates = 1
+		} else if i == 0 {
+			rowInfo.Candidates = min(perm.Factorial(len(nodes)), s.candLimit)
+		} else {
+			prevNodes := s.rowNodes[s.rows[i-1]]
+			candidates := s.generateC1PCandidates(i, nodes, path[i-1], prevNodes)
+			rowInfo.Candidates = len(candidates)
+		}
+
+		info.Rows[i] = rowInfo
+	}
+
+	return info
 }
 
 func (s *solver) monitor(fn func(int, int, int)) {
