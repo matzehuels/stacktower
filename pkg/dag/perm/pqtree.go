@@ -358,77 +358,90 @@ func (t *PQTree) Enumerate(limit int) [][]int {
 	}
 
 	var results [][]int
-	t.enumerate(t.root, nil, limit, &results)
+	t.enumerateLazy(t.root, nil, func(perm []int) bool {
+		results = append(results, perm)
+		return limit <= 0 || len(results) < limit
+	})
 	return results
 }
 
-func (t *PQTree) enumerate(node *pqNode, prefix []int, limit int, results *[][]int) bool {
-	if limit > 0 && len(*results) >= limit {
+// enumerateLazy generates permutations one at a time via callback.
+// Returns false if callback signaled stop, true otherwise.
+func (t *PQTree) enumerateLazy(node *pqNode, prefix []int, emit func([]int) bool) bool {
+	if node.kind == leafNode {
+		return emit(append(slices.Clone(prefix), node.value))
+	}
+
+	return t.forEachChildPerm(node, func(children []*pqNode) bool {
+		return t.enumerateChildrenLazy(children, prefix, emit)
+	})
+}
+
+// For Q-nodes: yields forward and reverse only.
+// For P-nodes: generates permutations one at a time without storing them all.
+func (t *PQTree) forEachChildPerm(node *pqNode, fn func([]*pqNode) bool) bool {
+	if node.kind == qNode {
+		if !fn(node.children) {
+			return false
+		}
+		if len(node.children) <= 1 {
+			return true
+		}
+		rev := slices.Clone(node.children)
+		slices.Reverse(rev)
+		return fn(rev)
+	}
+
+	// P-node: Generate permutations lazily
+	n := len(node.children)
+	if n == 0 {
+		return fn(nil)
+	}
+	if n == 1 {
+		return fn(node.children)
+	}
+
+	perm := slices.Clone(node.children)
+	state := make([]int, n)
+
+	// Emit first permutation (identity)
+	if !fn(slices.Clone(perm)) {
 		return false
 	}
 
-	if node.kind == leafNode {
-		*results = append(*results, append(slices.Clone(prefix), node.value))
-		return true
-	}
-
-	perms := t.childPermutations(node)
-	for _, perm := range perms {
-		if limit > 0 && len(*results) >= limit {
-			return false
+	// iteratively generate remaining permutations
+	for i := 0; i < n; {
+		if state[i] < i {
+			if i&1 == 0 {
+				perm[0], perm[i] = perm[i], perm[0]
+			} else {
+				perm[state[i]], perm[i] = perm[i], perm[state[i]]
+			}
+			if !fn(slices.Clone(perm)) {
+				return false
+			}
+			state[i]++
+			i = 0
+		} else {
+			state[i] = 0
+			i++
 		}
-		if !t.enumerateChildren(perm, prefix, limit, results) {
-			return false
-		}
 	}
-
 	return true
 }
 
-func (t *PQTree) childPermutations(node *pqNode) [][]*pqNode {
-	if node.kind == qNode {
-		fwd := slices.Clone(node.children)
-		rev := slices.Clone(node.children)
-		slices.Reverse(rev)
-		return [][]*pqNode{fwd, rev}
-	}
-
-	indexPerms := Generate(len(node.children), -1)
-	result := make([][]*pqNode, len(indexPerms))
-	for i, perm := range indexPerms {
-		ordered := make([]*pqNode, len(perm))
-		for j, idx := range perm {
-			ordered[j] = node.children[idx]
-		}
-		result[i] = ordered
-	}
-	return result
-}
-
-func (t *PQTree) enumerateChildren(children []*pqNode, prefix []int, limit int, results *[][]int) bool {
+func (t *PQTree) enumerateChildrenLazy(children []*pqNode, prefix []int, emit func([]int) bool) bool {
 	if len(children) == 0 {
-		*results = append(*results, slices.Clone(prefix))
-		return true
+		return emit(slices.Clone(prefix))
 	}
 
 	first := children[0]
 	rest := children[1:]
 
-	var firstPerms [][]int
-	t.enumerate(first, nil, 0, &firstPerms)
-
-	for _, fp := range firstPerms {
-		if limit > 0 && len(*results) >= limit {
-			return false
-		}
-
-		newPrefix := append(slices.Clone(prefix), fp...)
-		if !t.enumerateChildren(rest, newPrefix, limit, results) {
-			return false
-		}
-	}
-
-	return true
+	return t.enumerateLazy(first, nil, func(firstPerm []int) bool {
+		newPrefix := append(slices.Clone(prefix), firstPerm...)
+		return t.enumerateChildrenLazy(rest, newPrefix, emit)
+	})
 }
 
 func (t *PQTree) ValidCount() int {

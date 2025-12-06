@@ -100,17 +100,27 @@ func (s *solver) search() {
 	var wg sync.WaitGroup
 	sem := make(chan struct{}, workers)
 
+dispatch:
 	for _, startPerm := range starts {
 		if s.bestScore.Load() == 0 {
 			break
 		}
 
-		sem <- struct{}{}
-		wg.Add(1)
+		// Acquire worker slot, respecting context timeout
+		select {
+		case sem <- struct{}{}:
+		case <-s.ctx.Done():
+			break dispatch
+		}
 
+		wg.Add(1)
 		go func(start []int) {
 			defer wg.Done()
 			defer func() { <-sem }()
+
+			if s.ctx.Err() != nil {
+				return
+			}
 
 			path := make([][]int, len(s.rows))
 			copy(path, prefix)
@@ -187,7 +197,7 @@ func (s *solver) generateStartPermutations(parallelRow int, prefix [][]int, work
 }
 
 func (s *solver) dfs(depth, score int, path [][]int, ws *dag.CrossingWorkspace) {
-	if depth&0x0F == 0 && s.ctx.Err() != nil {
+	if s.ctx.Err() != nil {
 		return
 	}
 
@@ -229,7 +239,7 @@ func (s *solver) dfs(depth, score int, path [][]int, ws *dag.CrossingWorkspace) 
 		path[depth] = candidate
 		s.dfs(depth+1, newScore, path, ws)
 
-		if s.bestScore.Load() == 0 {
+		if s.bestScore.Load() == 0 || s.ctx.Err() != nil {
 			return
 		}
 	}
