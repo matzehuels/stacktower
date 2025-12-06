@@ -22,6 +22,9 @@ const (
 	warnSymbolShift = 8.0
 	textWidthRatio  = 0.45
 	textHeightRatio = 1.0
+
+	// Font stack: Patrick Hand (Google Fonts), then common casual/handwriting fonts
+	fontFamily = `'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif`
 )
 
 type HandDrawn struct{ seed uint64 }
@@ -87,11 +90,11 @@ func (h *HandDrawn) RenderText(buf *bytes.Buffer, b styles.Block) {
 			b.CX-textW/2, b.CY-textH/2, textW, textH, grey)
 
 		if rotate {
-			fmt.Fprintf(buf, `    <text x="%.2f" y="%.2f" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="%.1f" fill="#333" transform="rotate(-90 %.2f %.2f)">%s</text>`+"\n",
-				b.CX, b.CY, size, b.CX, b.CY, styles.EscapeXML(b.ID))
+			fmt.Fprintf(buf, `    <text x="%.2f" y="%.2f" text-anchor="middle" dominant-baseline="middle" font-family="%s" font-size="%.1f" fill="#333" transform="rotate(-90 %.2f %.2f)">%s</text>`+"\n",
+				b.CX, b.CY, fontFamily, size, b.CX, b.CY, styles.EscapeXML(b.ID))
 		} else {
-			fmt.Fprintf(buf, `    <text x="%.2f" y="%.2f" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="%.1f" fill="#333">%s</text>`+"\n",
-				b.CX, b.CY, size, styles.EscapeXML(b.ID))
+			fmt.Fprintf(buf, `    <text x="%.2f" y="%.2f" text-anchor="middle" dominant-baseline="middle" font-family="%s" font-size="%.1f" fill="#333">%s</text>`+"\n",
+				b.CX, b.CY, fontFamily, size, styles.EscapeXML(b.ID))
 		}
 	})
 	buf.WriteString("  </g>\n")
@@ -125,8 +128,8 @@ func (h *HandDrawn) RenderPopup(buf *bytes.Buffer, b styles.Block) {
 
 	textY := popupTextStartY
 	for _, line := range descLines {
-		fmt.Fprintf(buf, `    <text x="%.1f" y="%.1f" font-family="'Patrick Hand', cursive" font-size="%.0f" fill="#444">%s</text>`+"\n",
-			popupTextX, textY, popupTextSize, styles.EscapeXML(line))
+		fmt.Fprintf(buf, `    <text x="%.1f" y="%.1f" font-family="%s" font-size="%.0f" fill="#444">%s</text>`+"\n",
+			popupTextX, textY, fontFamily, popupTextSize, styles.EscapeXML(line))
 		textY += popupLineHeight
 	}
 
@@ -144,19 +147,19 @@ func (h *HandDrawn) RenderPopup(buf *bytes.Buffer, b styles.Block) {
 		}
 
 		if p.LastCommit != "" {
-			fmt.Fprintf(buf, `    <text x="%.1f" y="%.1f" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="%.0f" fill="#444">%slast commit: %s</text>`+"\n",
-				dateX, rightY, popupTextSize, warnPrefix, p.LastCommit)
+			fmt.Fprintf(buf, `    <text x="%.1f" y="%.1f" text-anchor="middle" font-family="%s" font-size="%.0f" fill="#444">%slast commit: %s</text>`+"\n",
+				dateX, rightY, fontFamily, popupTextSize, warnPrefix, p.LastCommit)
 			rightY += popupLineHeight * dateLineSpacing
 		}
 		if p.LastRelease != "" && p.LastRelease != "0001-01-01" {
-			fmt.Fprintf(buf, `    <text x="%.1f" y="%.1f" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="%.0f" fill="#444">%slast release: %s</text>`+"\n",
-				dateX, rightY, popupTextSize, warnPrefix, p.LastRelease)
+			fmt.Fprintf(buf, `    <text x="%.1f" y="%.1f" text-anchor="middle" font-family="%s" font-size="%.0f" fill="#444">%slast release: %s</text>`+"\n",
+				dateX, rightY, fontFamily, popupTextSize, warnPrefix, p.LastRelease)
 		}
 
 		if p.Stars > 0 {
 			starsCenterY := statsStartY + (popupLineHeight*float64(statsRows))/2 - popupStarShift
-			fmt.Fprintf(buf, `    <text x="%.1f" y="%.1f" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="%.0f" fill="#222" font-weight="bold">★ %s</text>`+"\n",
-				leftCenterX, starsCenterY, popupStarSize, formatNumber(p.Stars))
+			fmt.Fprintf(buf, `    <text x="%.1f" y="%.1f" text-anchor="middle" dominant-baseline="middle" font-family="%s" font-size="%.0f" fill="#222" font-weight="bold">★ %s</text>`+"\n",
+				leftCenterX, starsCenterY, fontFamily, popupStarSize, formatNumber(p.Stars))
 		}
 	}
 
