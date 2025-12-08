@@ -256,7 +256,12 @@ func buildLayoutOpts(ctx context.Context, opts *renderOpts) ([]tower.Option, err
 
 func withOptimalSearchProgress(ctx context.Context, timeoutSec int) ordering.Orderer {
 	logger := loggerFromContext(ctx)
-	o := &optimalSearchOrderer{prog: newProgress(logger), logger: logger, lastBest: -1}
+	o := &optimalSearchOrderer{
+		prog:     newProgress(logger),
+		logger:   logger,
+		lastBest: -1,
+		start:    time.Now(),
+	}
 
 	o.OptimalSearch = ordering.OptimalSearch{
 		Timeout: time.Duration(timeoutSec) * time.Second,
@@ -269,10 +274,33 @@ func withOptimalSearchProgress(ctx context.Context, timeoutSec int) ordering.Ord
 			switch {
 			case o.lastBest < 0:
 				logger.Infof("Initial: %d crossings (explored: %d, pruned: %d)", bestScore, explored, pruned)
+				o.lastLog = time.Now()
 			case bestScore < o.lastBest:
 				logger.Infof("Improved: %d crossings (↓%d)", bestScore, o.lastBest-bestScore)
+				o.lastLog = time.Now()
+			default:
+				if time.Since(o.lastLog) >= 10*time.Second {
+					elapsed := time.Since(o.start).Truncate(time.Second)
+					logger.Infof("Searching... %v/%ds elapsed, %d crossings (pruned: %d)", elapsed, timeoutSec, bestScore, pruned)
+					o.lastLog = time.Now()
+				}
 			}
 			o.lastBest = bestScore
+		},
+		Debug: func(info ordering.DebugInfo) {
+			logger.Debugf("Search space: %d rows, max depth reached: %d/%d", info.TotalRows, info.MaxDepth, info.TotalRows)
+
+			bottlenecks := 0
+			for _, r := range info.Rows {
+				if r.Candidates > 100 {
+					logger.Debugf("  Row %d: %d nodes, %d candidates", r.Row, r.NodeCount, r.Candidates)
+					bottlenecks++
+				}
+			}
+
+			if info.MaxDepth < info.TotalRows && bottlenecks > 0 {
+				logger.Debugf("Search incomplete: %d rows have >100 candidates, causing combinatorial explosion", bottlenecks)
+			}
 		},
 	}
 	return o
@@ -284,6 +312,7 @@ type optimalSearchOrderer struct {
 	logger                   *log.Logger
 	lastExplored, lastPruned int
 	lastBest                 int
+	start, lastLog           time.Time
 }
 
 func (o *optimalSearchOrderer) OrderRows(g *dag.DAG) map[int][]string {
@@ -293,6 +322,9 @@ func (o *optimalSearchOrderer) OrderRows(g *dag.DAG) map[int][]string {
 	if crossings >= 0 {
 		o.logger.Infof("Best: %d crossings (explored: %d, pruned: %d)",
 			crossings, o.lastExplored, o.lastPruned)
+	}
+	if crossings > 0 {
+		o.logger.Warn("Layout has edge crossings; try increasing the timeout (--ordering-timeout)")
 	}
 	return result
 }

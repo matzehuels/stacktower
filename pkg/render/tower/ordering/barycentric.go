@@ -113,9 +113,9 @@ func wmedian(g *dag.DAG, nodes []*dag.Node, current, fixed []string, useParents 
 	for i, n := range nodes {
 		var neighbors []string
 		if useParents {
-			neighbors = g.Parents(n.EffectiveID())
+			neighbors = g.Parents(n.ID)
 		} else {
-			neighbors = g.Children(n.EffectiveID())
+			neighbors = g.Children(n.ID)
 		}
 
 		pos := len(current)
@@ -219,22 +219,37 @@ func orderByMinParent(g *dag.DAG, nodes []*dag.Node, parentOrder []string) []str
 	parentPos := dag.PosMap(parentOrder)
 
 	type entry struct {
-		id  string
-		pos int
+		id     string
+		minPos int
+		avgPos float64
 	}
 	entries := make([]entry, len(nodes))
 	for i, n := range nodes {
+		parents := g.Parents(n.ID)
 		minPos := len(parentOrder)
-		for _, parent := range g.Parents(n.EffectiveID()) {
-			if pos, ok := parentPos[parent]; ok && pos < minPos {
-				minPos = pos
+		sumPos := 0
+		count := 0
+		for _, parent := range parents {
+			if pos, ok := parentPos[parent]; ok {
+				if pos < minPos {
+					minPos = pos
+				}
+				sumPos += pos
+				count++
 			}
 		}
-		entries[i] = entry{n.ID, minPos}
+		avgPos := float64(minPos)
+		if count > 0 {
+			avgPos = float64(sumPos) / float64(count)
+		}
+		entries[i] = entry{n.ID, minPos, avgPos}
 	}
 
 	slices.SortStableFunc(entries, func(a, b entry) int {
-		if c := cmp.Compare(a.pos, b.pos); c != 0 {
+		if c := cmp.Compare(a.minPos, b.minPos); c != 0 {
+			return c
+		}
+		if c := cmp.Compare(a.avgPos, b.avgPos); c != 0 {
 			return c
 		}
 		return cmp.Compare(a.id, b.id)

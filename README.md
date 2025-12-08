@@ -2,7 +2,6 @@
 
 Inspired by [XKCD #2347](https://xkcd.com/2347/), StackTower renders dependency graphs as **physical towers** where blocks rest on what they depend on. Your application sits at the top, supported by libraries below—all the way down to that one critical package maintained by *some dude in Nebraska*.
 
-Traditional node-link diagrams are technically correct but don't *feel* like anything. Tower visualizations tap into intuition: width shows importance, depth reveals foundation, and the structure makes hidden dependencies visible at a glance.
 
 📖 **[Read the full story at stacktower.io](https://www.stacktower.io)**
 
@@ -38,6 +37,9 @@ stacktower parse rust serde -o serde.json
 
 # JavaScript (npm)
 stacktower parse javascript yup -o yup.json
+
+# PHP (Packagist/Composer)
+stacktower parse php monolog/monolog -o monolog.json
 ```
 
 Add `--enrich` with a `GITHUB_TOKEN` to pull repository metadata (stars, maintainers, last commit) for richer visualizations.
@@ -63,13 +65,19 @@ The repository ships with pre-parsed graphs so you can experiment immediately:
 # Real packages with full metadata
 stacktower render examples/real/flask.json -t tower --style handdrawn --merge -o flask.svg
 stacktower render examples/real/serde.json -t tower --popups -o serde.svg
-stacktower render examples/real/express.json -t tower --ordering barycenter -o express.svg
+stacktower render examples/real/express.json -t tower --ordering barycentric -o express.svg
 
 # Synthetic test cases
 stacktower render examples/test/diamond.json -t tower -o diamond.svg
 ```
 
 ## Options Reference
+
+### Global Options
+
+| Flag | Description |
+|------|-------------|
+| `-v`, `--verbose` | Enable debug logging (search space info, timing details) |
 
 ### Parse Options
 
@@ -99,6 +107,59 @@ stacktower render examples/test/diamond.json -t tower -o diamond.svg
 |------|-------------|
 | `--detailed` | Show node metadata in labels |
 
+## JSON Format
+
+The render layer accepts a simple JSON format, making it easy to visualize **any** directed graph—not just package dependencies. You can hand-craft graphs for component diagrams, callgraphs, or pipe output from other tools.
+
+### Minimal Example
+
+```json
+{
+  "nodes": [
+    { "id": "app" },
+    { "id": "lib-a" },
+    { "id": "lib-b" }
+  ],
+  "edges": [
+    { "from": "app", "to": "lib-a" },
+    { "from": "lib-a", "to": "lib-b" }
+  ]
+}
+```
+
+### Required Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `nodes[].id` | string | Unique node identifier (displayed as label) |
+| `edges[].from` | string | Source node ID |
+| `edges[].to` | string | Target node ID |
+
+### Optional Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `nodes[].row` | int | Pre-assigned layer (computed automatically if omitted) |
+| `nodes[].kind` | string | Internal use: `"subdivider"` or `"auxiliary"` |
+| `nodes[].meta` | object | Freeform metadata for display features |
+
+### Recognized `meta` Keys
+
+These keys are read by specific render flags. All are optional—missing keys simply disable the corresponding feature.
+
+| Key | Type | Used By |
+|-----|------|---------|
+| `repo_url` | string | Clickable blocks, `--popups`, `--nebraska` |
+| `repo_stars` | int | `--popups` |
+| `repo_owner` | string | `--nebraska` |
+| `repo_maintainers` | []string | `--nebraska`, `--popups` |
+| `repo_last_commit` | string (date) | `--popups`, brittle detection |
+| `repo_last_release` | string (date) | `--popups` |
+| `repo_archived` | bool | `--popups`, brittle detection |
+| `summary` | string | `--popups` (fallback: `description`) |
+
+The `--detailed` flag (node-link only) displays **all** meta keys in the node label.
+
 ## How It Works
 
 1. **Parse** — Fetch package metadata from registries (PyPI, crates.io, npm)
@@ -121,6 +182,22 @@ The ordering step is where the magic happens. StackTower uses an optimal search 
 
 HTTP responses are cached in `~/.cache/stacktower/` with a 24-hour TTL. Use `--refresh` to bypass.
 
+## Adding New Languages
+
+To add support for a new package manager (e.g., Ruby/RubyGems):
+
+1. **Create a registry client** in `pkg/integrations/rubygems/client.go` — parse the registry API, extract dependencies, use `integrations.BaseClient` for HTTP + caching
+
+2. **Create a source parser** in `pkg/source/ruby/ruby.go` — implement the `source.PackageInfo` interface (`GetName`, `GetVersion`, `GetDependencies`, `ToMetadata`, `ToRepoInfo`)
+
+3. **Wire into CLI** in `internal/cli/parse.go`:
+   ```go
+   cmd.AddCommand(newParserCmd("ruby <gem>", "Parse Ruby dependencies",
+       func() (source.Parser, error) { return ruby.NewParser(source.DefaultCacheTTL) }, &opts))
+   ```
+
+The generic `source.Parse()` handles concurrent fetching, depth limits, and graph construction automatically.
+
 ## Learn More
 
 - 📖 **[stacktower.io](https://www.stacktower.io)** — Interactive examples and the full story behind tower visualizations
@@ -128,4 +205,4 @@ HTTP responses are cached in `~/.cache/stacktower/` with a 24-hour TTL. Use `--r
 
 ## License
 
-MIT
+Apache-2.0

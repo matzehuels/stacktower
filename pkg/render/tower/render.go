@@ -34,6 +34,7 @@ func WithPopups() RenderOption { return func(r *renderer) { r.popups = true } }
 const (
 	nebraskaPanelHeightLandscape = 260.0
 	nebraskaPanelHeightPortrait  = 480.0
+	fontFamily                   = `'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif`
 )
 
 func calcNebraskaPanelHeight(frameWidth, frameHeight float64) float64 {
@@ -113,8 +114,8 @@ func renderNebraskaPanel(buf *bytes.Buffer, frameWidth, frameHeight float64, ran
 	panelY := frameHeight + nebraskaPanelPadding
 	centerX := frameWidth / 2
 
-	fmt.Fprintf(buf, `  <text x="%.1f" y="%.1f" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>`+"\n",
-		centerX, panelY+nebraskaTitleY)
+	fmt.Fprintf(buf, `  <text x="%.1f" y="%.1f" text-anchor="middle" font-family="%s" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>`+"\n",
+		centerX, panelY+nebraskaTitleY, fontFamily)
 	fmt.Fprintf(buf, `  <path d="M %.1f %.1f q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>`+"\n",
 		centerX-128, panelY+nebraskaTitleY+nebraskaUnderlineY)
 
@@ -179,7 +180,7 @@ const nebraskaCSS = `
     a, .package-entry { cursor: pointer; }
     .nebraska-entry {
       text-align: center;
-      font-family: 'Patrick Hand', cursive;
+      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
       overflow: hidden;
       height: 100%;
     }
