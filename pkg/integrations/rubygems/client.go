@@ -11,15 +11,15 @@ import (
 )
 
 type GemInfo struct {
-	Name         string
-	Version      string
-	Dependencies []string
+	Name          string
+	Version       string
+	Dependencies  []string
 	SourceCodeURI string
-	HomepageURI  string
-	Description  string
-	License      string
-	Downloads    int
-	Authors      string
+	HomepageURI   string
+	Description   string
+	License       string
+	Downloads     int
+	Authors       string
 }
 
 type Client struct {
@@ -127,4 +127,3 @@ type dependencyInfo struct {
 	Name         string `json:"name"`
 	Requirements string `json:"requirements"`
 }
-

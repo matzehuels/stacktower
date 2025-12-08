@@ -149,4 +149,3 @@ func TestJoinLicenses(t *testing.T) {
 		}
 	}
 }
-

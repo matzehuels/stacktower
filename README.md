@@ -40,6 +40,9 @@ stacktower parse javascript yup -o yup.json
 
 # PHP (Packagist/Composer)
 stacktower parse php monolog/monolog -o monolog.json
+
+# Ruby (RubyGems)
+stacktower parse ruby rspec -o rspec.json
 ```
 
 Add `--enrich` with a `GITHUB_TOKEN` to pull repository metadata (stars, maintainers, last commit) for richer visualizations.
@@ -162,7 +165,7 @@ The `--detailed` flag (node-link only) displays **all** meta keys in the node la
 
 ## How It Works
 
-1. **Parse** — Fetch package metadata from registries (PyPI, crates.io, npm)
+1. **Parse** — Fetch package metadata from registries (PyPI, crates.io, npm, Packagist, RubyGems)
 2. **Reduce** — Remove transitive edges to show only direct dependencies
 3. **Layer** — Assign each package to a row based on its depth
 4. **Order** — Minimize edge crossings using branch-and-bound with PQ-tree pruning
@@ -184,16 +187,16 @@ HTTP responses are cached in `~/.cache/stacktower/` with a 24-hour TTL. Use `--r
 
 ## Adding New Languages
 
-To add support for a new package manager (e.g., Ruby/RubyGems):
+To add support for a new package manager (e.g., Go/pkg.go.dev):
 
-1. **Create a registry client** in `pkg/integrations/rubygems/client.go` — parse the registry API, extract dependencies, use `integrations.BaseClient` for HTTP + caching
+1. **Create a registry client** in `pkg/integrations/<registry>/client.go` — parse the registry API, extract dependencies, use `integrations.BaseClient` for HTTP + caching
 
-2. **Create a source parser** in `pkg/source/ruby/ruby.go` — implement the `source.PackageInfo` interface (`GetName`, `GetVersion`, `GetDependencies`, `ToMetadata`, `ToRepoInfo`)
+2. **Create a source parser** in `pkg/source/<lang>/<lang>.go` — implement the `source.PackageInfo` interface (`GetName`, `GetVersion`, `GetDependencies`, `ToMetadata`, `ToRepoInfo`)
 
 3. **Wire into CLI** in `internal/cli/parse.go`:
    ```go
-   cmd.AddCommand(newParserCmd("ruby <gem>", "Parse Ruby dependencies",
-       func() (source.Parser, error) { return ruby.NewParser(source.DefaultCacheTTL) }, &opts))
+   cmd.AddCommand(newParserCmd("<lang> <package>", "Parse <Lang> dependencies",
+       func() (source.Parser, error) { return <lang>.NewParser(source.DefaultCacheTTL) }, &opts))
    ```
 
 The generic `source.Parse()` handles concurrent fetching, depth limits, and graph construction automatically.

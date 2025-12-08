@@ -14,8 +14,8 @@ import (
 	"github.com/matzehuels/stacktower/pkg/source/metadata"
 	"github.com/matzehuels/stacktower/pkg/source/php"
 	"github.com/matzehuels/stacktower/pkg/source/python"
-	"github.com/matzehuels/stacktower/pkg/source/rust"
 	"github.com/matzehuels/stacktower/pkg/source/ruby"
+	"github.com/matzehuels/stacktower/pkg/source/rust"
 )
 
 type parseOpts struct {

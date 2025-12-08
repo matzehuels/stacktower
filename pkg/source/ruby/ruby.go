@@ -74,4 +74,3 @@ func (gi *gemInfo) ToRepoInfo() *source.RepoInfo {
 		ManifestFile: "Gemfile",
 	}
 }
-

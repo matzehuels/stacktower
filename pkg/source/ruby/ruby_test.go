@@ -14,4 +14,3 @@ func TestNewParser(t *testing.T) {
 		t.Error("client not initialized")
 	}
 }
-
