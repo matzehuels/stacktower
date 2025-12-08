@@ -28,57 +28,57 @@
   <a href="https://github.com/mcollina/thread-stream" target="_blank"><path id="block-thread-stream" class="block" d="M 796.82 198.07 Q 795.00 171.13 800.00 174.60 Q 805.00 178.07 810.00 174.89 Q 815.00 171.71 820.00 174.06 Q 825.00 176.42 824.16 200.71 Q 823.31 225.00 822.52 250.00 Q 821.74 275.00 824.04 300.00 Q 826.35 325.00 820.68 324.02 Q 815.00 323.04 810.00 322.94 Q 805.00 322.85 800.00 323.87 Q 795.00 324.89 795.49 299.95 Q 795.98 275.00 797.31 250.00 Q 798.65 225.00 796.82 198.07 Z" fill="rgba(192,192,192,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(1.695 810.00 250.00)"/></a>
   <g class="block-text" data-block="@pinojs/redact">
   <a href="https://github.com/pinojs/redact" target="_blank">    <rect x="78.00" y="249.40" width="24.00" height="151.20" fill="rgba(172,172,172,1)"/>
-    <text x="90.00" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333" transform="rotate(-90 90.00 325.00)">@pinojs/redact</text>
+    <text x="90.00" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 90.00 325.00)">@pinojs/redact</text>
 </a>  </g>
   <g class="block-text" data-block="atomic-sleep">
   <a href="https://github.com/davidmarkclements/atomic-sleep" target="_blank">    <rect x="712.76" y="360.88" width="14.49" height="78.24" fill="rgba(190,190,190,1)"/>
-    <text x="720.00" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="14.5" fill="#333" transform="rotate(-90 720.00 400.00)">atomic-sleep</text>
+    <text x="720.00" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14.5" fill="#333" transform="rotate(-90 720.00 400.00)">atomic-sleep</text>
 </a>  </g>
   <g class="block-text" data-block="on-exit-leak-free">
   <a href="https://github.com/mcollina/on-exit-or-gc" target="_blank">    <rect x="169.77" y="246.76" width="20.45" height="156.48" fill="rgba(246,246,246,1)"/>
-    <text x="180.00" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="20.5" fill="#333" transform="rotate(-90 180.00 325.00)">on-exit-leak-free</text>
+    <text x="180.00" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="20.5" fill="#333" transform="rotate(-90 180.00 325.00)">on-exit-leak-free</text>
 </a>  </g>
   <g class="block-text" data-block="pino">
   <a href="https://github.com/pinojs/pino" target="_blank">    <rect x="428.40" y="88.00" width="43.20" height="24.00" fill="rgba(183,183,183,1)"/>
-    <text x="450.00" y="100.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">pino</text>
+    <text x="450.00" y="100.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">pino</text>
 </a>  </g>
   <g class="block-text" data-block="pino-abstract-transport">
   <a href="https://github.com/pinojs/pino-abstract-transport" target="_blank">    <rect x="266.00" y="208.60" width="8.00" height="82.80" fill="rgba(194,194,194,1)"/>
-    <text x="270.00" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="8.0" fill="#333" transform="rotate(-90 270.00 250.00)">pino-abstract-transport</text>
+    <text x="270.00" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="8.0" fill="#333" transform="rotate(-90 270.00 250.00)">pino-abstract-transport</text>
 </a>  </g>
   <g class="block-text" data-block="pino-std-serializers">
   <a href="https://github.com/pinojs/pino-std-serializers#readme" target="_blank">    <rect x="351.31" y="246.76" width="17.39" height="156.48" fill="rgba(243,243,243,1)"/>
-    <text x="360.00" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="17.4" fill="#333" transform="rotate(-90 360.00 325.00)">pino-std-serializers</text>
+    <text x="360.00" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="17.4" fill="#333" transform="rotate(-90 360.00 325.00)">pino-std-serializers</text>
 </a>  </g>
   <g class="block-text" data-block="process-warning">
   <a href="https://github.com/fastify/fastify-warning#readme" target="_blank">    <rect x="441.00" y="264.25" width="18.00" height="121.50" fill="rgba(239,239,239,1)"/>
-    <text x="450.00" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="18.0" fill="#333" transform="rotate(-90 450.00 325.00)">process-warning</text>
+    <text x="450.00" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 450.00 325.00)">process-warning</text>
 </a>  </g>
   <g class="block-text" data-block="quick-format-unescaped">
   <a href="https://github.com/davidmarkclements/quick-format" target="_blank">    <rect x="532.10" y="246.76" width="15.81" height="156.48" fill="rgba(161,161,161,1)"/>
-    <text x="540.00" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="15.8" fill="#333" transform="rotate(-90 540.00 325.00)">quick-format-unescaped</text>
+    <text x="540.00" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="15.8" fill="#333" transform="rotate(-90 540.00 325.00)">quick-format-unescaped</text>
 </a>  </g>
   <g class="block-text" data-block="real-require">
   <a href="https://github.com/pinojs/real-require" target="_blank">    <rect x="802.76" y="360.88" width="14.49" height="78.24" fill="rgba(191,191,191,1)"/>
-    <text x="810.00" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="14.5" fill="#333" transform="rotate(-90 810.00 400.00)">real-require</text>
+    <text x="810.00" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14.5" fill="#333" transform="rotate(-90 810.00 400.00)">real-require</text>
 </a>  </g>
   <g class="block-text" data-block="safe-stable-stringify">
   <a href="https://github.com/BridgeAR/safe-stable-stringify#readme" target="_blank">    <rect x="621.72" y="246.76" width="16.56" height="156.48" fill="rgba(172,172,172,1)"/>
-    <text x="630.00" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="16.6" fill="#333" transform="rotate(-90 630.00 325.00)">safe-stable-stringify</text>
+    <text x="630.00" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16.6" fill="#333" transform="rotate(-90 630.00 325.00)">safe-stable-stringify</text>
 </a>  </g>
   <g class="block-text" data-block="sonic-boom">
   <a href="https://github.com/pinojs/sonic-boom" target="_blank">    <rect x="711.31" y="210.88" width="17.39" height="78.24" fill="rgba(177,177,177,1)"/>
-    <text x="720.00" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="17.4" fill="#333" transform="rotate(-90 720.00 250.00)">sonic-boom</text>
+    <text x="720.00" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="17.4" fill="#333" transform="rotate(-90 720.00 250.00)">sonic-boom</text>
 </a>  </g>
   <g class="block-text" data-block="split2">
   <a href="https://github.com/mcollina/split2" target="_blank">    <rect x="258.00" y="367.60" width="24.00" height="64.80" fill="rgba(209,209,209,1)"/>
-    <text x="270.00" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333" transform="rotate(-90 270.00 400.00)">split2</text>
+    <text x="270.00" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 270.00 400.00)">split2</text>
 </a>  </g>
   <g class="block-text" data-block="thread-stream">
   <a href="https://github.com/mcollina/thread-stream" target="_blank">    <rect x="803.31" y="210.88" width="13.37" height="78.24" fill="rgba(192,192,192,1)"/>
-    <text x="810.00" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="13.4" fill="#333" transform="rotate(-90 810.00 250.00)">thread-stream</text>
+    <text x="810.00" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="13.4" fill="#333" transform="rotate(-90 810.00 250.00)">thread-stream</text>
 </a>  </g>
-  <text x="450.0" y="564.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
+  <text x="450.0" y="564.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 322.0 580.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
   <foreignObject x="30.0" y="604.0" width="168.0" height="120.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
@@ -131,7 +131,7 @@
     a, .package-entry { cursor: pointer; }
     .nebraska-entry {
       text-align: center;
-      font-family: 'Patrick Hand', cursive;
+      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
       overflow: hidden;
       height: 100%;
     }
@@ -179,94 +179,94 @@
   ]]></script>
   <g class="popup" data-for="@pinojs/redact" visibility="hidden">
     <path d="M 1.06 15.67 Q 0.00 -1.33 37.50 -0.12 Q 75.00 1.10 112.50 1.79 Q 150.00 2.48 187.50 1.45 Q 225.00 0.41 262.50 0.07 Q 300.00 -0.28 299.32 16.19 Q 298.63 32.67 299.06 49.00 Q 299.48 65.33 301.05 81.67 Q 302.63 98.00 263.81 98.88 Q 225.00 99.76 187.50 97.81 Q 150.00 95.86 112.50 97.37 Q 75.00 98.88 37.50 97.94 Q 0.00 96.99 -1.98 81.16 Q -3.97 65.33 -0.93 49.00 Q 2.11 32.67 1.06 15.67 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Redact JS objects</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-12-01</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-10-14</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 16</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Redact JS objects</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-12-01</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-10-14</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 16</text>
   </g>
   <g class="popup" data-for="atomic-sleep" visibility="hidden">
     <path d="M 0.83 14.47 Q 0.00 -3.73 37.50 -3.35 Q 75.00 -2.97 112.50 -0.99 Q 150.00 0.99 187.50 -1.18 Q 225.00 -3.35 262.50 -0.21 Q 300.00 2.92 301.61 17.80 Q 303.21 32.67 299.70 49.00 Q 296.18 65.33 298.21 81.67 Q 300.23 98.00 262.62 97.76 Q 225.00 97.52 187.50 98.69 Q 150.00 99.86 112.50 98.59 Q 75.00 97.32 37.50 98.24 Q 0.00 99.16 -1.49 82.25 Q -2.98 65.33 -0.67 49.00 Q 1.65 32.67 0.83 14.47 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Zero CPU overhead, zero dependency, true event-loop</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">blocking sleep</text>
-    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2020-03-11</text>
-    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 84</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Zero CPU overhead, zero dependency, true event-loop</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">blocking sleep</text>
+    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2020-03-11</text>
+    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 84</text>
   </g>
   <g class="popup" data-for="on-exit-leak-free" visibility="hidden">
     <path d="M -0.19 19.73 Q 0.00 -1.88 37.50 -0.50 Q 75.00 0.89 112.50 2.18 Q 150.00 3.48 187.50 1.23 Q 225.00 -1.02 262.50 0.12 Q 300.00 1.26 299.34 21.30 Q 298.68 41.33 297.51 62.00 Q 296.34 82.67 296.42 103.33 Q 296.50 124.00 260.75 125.50 Q 225.00 127.01 187.50 123.75 Q 150.00 120.50 112.50 122.24 Q 75.00 123.99 37.50 123.54 Q 0.00 123.09 -1.49 102.88 Q -2.99 82.67 -1.68 62.00 Q -0.38 41.33 -0.19 19.73 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Execute a function on exit without leaking memory,</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">allowing all objects to be garbage collected</text>
-    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2024-04-28</text>
-    <text x="217.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last release: 2023-10-03</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 145</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Execute a function on exit without leaking memory,</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">allowing all objects to be garbage collected</text>
+    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2024-04-28</text>
+    <text x="217.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last release: 2023-10-03</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 145</text>
   </g>
   <g class="popup" data-for="pino" visibility="hidden">
     <path d="M -1.54 15.90 Q 0.00 -0.87 37.50 -1.12 Q 75.00 -1.37 112.50 0.68 Q 150.00 2.72 187.50 0.22 Q 225.00 -2.28 262.50 0.55 Q 300.00 3.37 299.56 18.02 Q 299.11 32.67 301.33 49.00 Q 303.55 65.33 301.37 81.67 Q 299.18 98.00 262.09 99.00 Q 225.00 100.01 187.50 100.31 Q 150.00 100.61 112.50 101.27 Q 75.00 101.92 37.50 100.55 Q 0.00 99.19 -0.91 82.26 Q -1.81 65.33 -2.44 49.00 Q -3.08 32.67 -1.54 15.90 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">super fast, all natural json logger</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-12-01</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-10-18</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 16.9k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">super fast, all natural json logger</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-12-01</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-10-18</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 16.9k</text>
   </g>
   <g class="popup" data-for="pino-abstract-transport" visibility="hidden">
     <path d="M 0.11 17.35 Q 0.00 2.03 37.50 -0.83 Q 75.00 -3.68 112.50 -3.84 Q 150.00 -3.99 187.50 -1.26 Q 225.00 1.48 262.50 1.84 Q 300.00 2.20 298.69 17.43 Q 297.38 32.67 299.14 49.00 Q 300.91 65.33 299.71 81.67 Q 298.51 98.00 261.76 98.64 Q 225.00 99.27 187.50 97.20 Q 150.00 95.14 112.50 94.72 Q 75.00 94.30 37.50 95.70 Q 0.00 97.09 1.79 81.21 Q 3.58 65.33 1.90 49.00 Q 0.23 32.67 0.11 17.35 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Write Pino transports easily</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-10-06</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-10-06</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 40</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Write Pino transports easily</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-10-06</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-10-06</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 40</text>
   </g>
   <g class="popup" data-for="pino-std-serializers" visibility="hidden">
     <path d="M -1.97 11.29 Q 0.00 -1.43 37.50 -0.67 Q 75.00 0.09 112.50 1.44 Q 150.00 2.78 187.50 2.82 Q 225.00 2.87 262.50 1.23 Q 300.00 -0.40 299.62 11.80 Q 299.23 24.00 297.71 36.00 Q 296.19 48.00 298.25 60.00 Q 300.32 72.00 262.66 70.03 Q 225.00 68.06 187.50 68.19 Q 150.00 68.31 112.50 70.71 Q 75.00 73.10 37.50 73.25 Q 0.00 73.40 -1.39 60.70 Q -2.78 48.00 -3.36 36.00 Q -3.94 24.00 -1.97 11.29 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">A collection of standard object serializers for Pino</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-12-01</text>
-    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 72</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">A collection of standard object serializers for Pino</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-12-01</text>
+    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 72</text>
   </g>
   <g class="popup" data-for="process-warning" visibility="hidden">
     <path d="M 1.29 15.39 Q 0.00 -1.89 37.50 0.70 Q 75.00 3.30 112.50 0.69 Q 150.00 -1.93 187.50 -1.90 Q 225.00 -1.87 262.50 -2.16 Q 300.00 -2.45 301.87 15.11 Q 303.75 32.67 301.82 49.00 Q 299.89 65.33 300.20 81.67 Q 300.52 98.00 262.76 96.35 Q 225.00 94.70 187.50 94.91 Q 150.00 95.12 112.50 96.76 Q 75.00 98.39 37.50 99.73 Q 0.00 101.06 1.24 83.20 Q 2.48 65.33 2.53 49.00 Q 2.58 32.67 1.29 15.39 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">A small utility for creating warnings and emitting</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">them.</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-10-17</text>
-    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 38</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">A small utility for creating warnings and emitting</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">them.</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-10-17</text>
+    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 38</text>
   </g>
   <g class="popup" data-for="quick-format-unescaped" visibility="hidden">
     <path d="M 1.44 12.69 Q 0.00 1.38 37.50 1.49 Q 75.00 1.60 112.50 -0.88 Q 150.00 -3.36 187.50 -3.29 Q 225.00 -3.21 262.50 -1.10 Q 300.00 1.02 298.83 12.51 Q 297.66 24.00 300.31 36.00 Q 302.96 48.00 299.70 60.00 Q 296.44 72.00 260.72 71.89 Q 225.00 71.77 187.50 70.40 Q 150.00 69.04 112.50 72.19 Q 75.00 75.35 37.50 71.94 Q 0.00 68.52 -1.01 58.26 Q -2.02 48.00 0.43 36.00 Q 2.88 24.00 1.44 12.69 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Solves a problem with util.format</text>
-    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2022-03-19</text>
-    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 17</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Solves a problem with util.format</text>
+    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2022-03-19</text>
+    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 17</text>
   </g>
   <g class="popup" data-for="real-require" visibility="hidden">
     <path d="M -1.22 19.39 Q 0.00 -2.56 37.50 -1.04 Q 75.00 0.48 112.50 -0.12 Q 150.00 -0.71 187.50 0.73 Q 225.00 2.16 262.50 1.27 Q 300.00 0.38 298.01 20.86 Q 296.02 41.33 297.43 62.00 Q 298.84 82.67 298.27 103.33 Q 297.70 124.00 261.35 124.12 Q 225.00 124.24 187.50 123.12 Q 150.00 122.01 112.50 121.65 Q 75.00 121.29 37.50 120.70 Q 0.00 120.11 -0.46 101.39 Q -0.93 82.67 -1.68 62.00 Q -2.44 41.33 -1.22 19.39 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Keep require and import consistent after bundling or</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">transpiling</text>
-    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2023-12-01</text>
-    <text x="217.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last release: 2022-07-25</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 9</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Keep require and import consistent after bundling or</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">transpiling</text>
+    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2023-12-01</text>
+    <text x="217.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last release: 2022-07-25</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 9</text>
   </g>
   <g class="popup" data-for="safe-stable-stringify" visibility="hidden">
     <path d="M -1.65 17.10 Q 0.00 1.54 37.50 -0.45 Q 75.00 -2.44 112.50 -0.23 Q 150.00 1.97 187.50 1.06 Q 225.00 0.15 262.50 -0.98 Q 300.00 -2.11 300.68 15.28 Q 301.36 32.67 301.46 49.00 Q 301.56 65.33 302.32 81.67 Q 303.07 98.00 264.04 97.67 Q 225.00 97.34 187.50 98.63 Q 150.00 99.93 112.50 97.37 Q 75.00 94.81 37.50 96.15 Q 0.00 97.49 0.77 81.41 Q 1.55 65.33 -0.87 49.00 Q -3.29 32.67 -1.65 17.10 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Deterministic and safely JSON.stringify to quickly</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">serialize JavaScript objects</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-04-14</text>
-    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 235</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Deterministic and safely JSON.stringify to quickly</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">serialize JavaScript objects</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-04-14</text>
+    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 235</text>
   </g>
   <g class="popup" data-for="sonic-boom" visibility="hidden">
     <path d="M -0.77 15.47 Q 0.00 -1.72 37.50 -0.51 Q 75.00 0.70 112.50 2.03 Q 150.00 3.37 187.50 3.51 Q 225.00 3.65 262.50 2.56 Q 300.00 1.47 300.45 17.07 Q 300.90 32.67 301.45 49.00 Q 301.99 65.33 302.48 81.67 Q 302.96 98.00 263.98 98.73 Q 225.00 99.47 187.50 96.97 Q 150.00 94.48 112.50 94.50 Q 75.00 94.52 37.50 95.68 Q 0.00 96.84 0.67 81.09 Q 1.34 65.33 -0.10 49.00 Q -1.54 32.67 -0.77 15.47 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Extremely fast utf8 only stream implementation</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-12-01</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2024-10-15</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 302</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Extremely fast utf8 only stream implementation</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-12-01</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2024-10-15</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 302</text>
   </g>
   <g class="popup" data-for="split2" visibility="hidden">
     <path d="M 1.10 15.50 Q 0.00 -1.67 37.50 -0.95 Q 75.00 -0.23 112.50 -1.57 Q 150.00 -2.92 187.50 -2.73 Q 225.00 -2.54 262.50 -3.25 Q 300.00 -3.97 301.49 14.35 Q 302.98 32.67 302.86 49.00 Q 302.74 65.33 301.79 81.67 Q 300.84 98.00 262.92 99.04 Q 225.00 100.09 187.50 101.00 Q 150.00 101.92 112.50 99.83 Q 75.00 97.74 37.50 96.76 Q 0.00 95.78 1.73 80.56 Q 3.47 65.33 2.84 49.00 Q 2.21 32.67 1.10 15.50 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">split a Text Stream into a Line Stream, using Stream 3</text>
-    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2024-06-10</text>
-    <text x="217.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last release: 2023-03-26</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 293</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">split a Text Stream into a Line Stream, using Stream 3</text>
+    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2024-06-10</text>
+    <text x="217.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last release: 2023-03-26</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 293</text>
   </g>
   <g class="popup" data-for="thread-stream" visibility="hidden">
     <path d="M 0.66 15.53 Q 0.00 -1.61 37.50 -1.39 Q 75.00 -1.16 112.50 -1.89 Q 150.00 -2.61 187.50 0.29 Q 225.00 3.19 262.50 2.04 Q 300.00 0.88 301.96 16.77 Q 303.92 32.67 300.90 49.00 Q 297.87 65.33 299.99 81.67 Q 302.12 98.00 263.56 99.29 Q 225.00 100.58 187.50 99.86 Q 150.00 99.14 112.50 98.53 Q 75.00 97.91 37.50 98.49 Q 0.00 99.06 -1.98 82.20 Q -3.95 65.33 -1.32 49.00 Q 1.32 32.67 0.66 15.53 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">A streaming way to send data to a Node.js Worker Thread</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-12-01</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2024-06-13</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 247</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">A streaming way to send data to a Node.js Worker Thread</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-12-01</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2024-06-13</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 247</text>
   </g>
   <style>
     .popup { pointer-events: none; transition: opacity 0.15s ease, transform 0.1s ease; }

@@ -1,7 +1,10 @@
-# StackTower
+# Stacktower
 
-Inspired by [XKCD #2347](https://xkcd.com/2347/), StackTower renders dependency graphs as **physical towers** where blocks rest on what they depend on. Your application sits at the top, supported by libraries below—all the way down to that one critical package maintained by *some dude in Nebraska*.
+Inspired by [XKCD #2347](https://xkcd.com/2347/), Stacktower renders dependency graphs as **physical towers** where blocks rest on what they depend on. Your application sits at the top, supported by libraries below—all the way down to that one critical package maintained by *some dude in Nebraska*.
 
+<p align="center">
+  <img src="blogpost/plots/showcase/python/fastapi.svg" alt="FastAPI dependency tower" width="600">
+</p>
 
 📖 **[Read the full story at stacktower.io](https://www.stacktower.io)**
 
@@ -24,7 +27,7 @@ go build -o stacktower .
 
 ## Usage
 
-StackTower works in two stages: **parse** dependency data from package registries, then **render** visualizations.
+Stacktower works in two stages: **parse** dependency data from package registries, then **render** visualizations.
 
 ### Parsing Dependencies
 
@@ -172,7 +175,7 @@ The `--detailed` flag (node-link only) displays **all** meta keys in the node la
 5. **Layout** — Compute block widths proportional to downstream dependents
 6. **Render** — Generate clean SVG output
 
-The ordering step is where the magic happens. StackTower uses an optimal search algorithm that guarantees minimum crossings for small-to-medium graphs. For larger graphs, it gracefully falls back after a configurable timeout.
+The ordering step is where the magic happens. Stacktower uses an optimal search algorithm that guarantees minimum crossings for small-to-medium graphs. For larger graphs, it gracefully falls back after a configurable timeout.
 
 ## Environment Variables
 

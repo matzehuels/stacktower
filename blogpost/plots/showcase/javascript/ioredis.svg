@@ -26,49 +26,49 @@
   <path class="block-texture" d="M 776.70 213.49 Q 775.33 176.98 785.01 177.49 Q 794.69 177.99 804.38 176.26 Q 814.06 174.53 823.74 174.45 Q 833.42 174.37 834.67 212.18 Q 835.92 250.00 836.20 287.50 Q 836.48 325.00 834.61 362.50 Q 832.74 400.00 833.31 437.50 Q 833.89 475.00 823.97 473.69 Q 814.06 472.37 804.38 474.34 Q 794.69 476.31 785.01 474.97 Q 775.33 473.63 775.96 436.82 Q 776.60 400.00 776.55 362.50 Q 776.49 325.00 777.28 287.50 Q 778.07 250.00 776.70 213.49 Z" fill="url(#brittleTexture)" style="pointer-events: none;" transform="rotate(1.060 804.38 325.00)"/>
   <g class="block-text" data-block="@ioredis/commands">
   <a href="https://github.com/ioredis/commands" target="_blank">    <rect x="85.40" y="246.76" width="20.45" height="156.48" fill="rgba(183,183,183,1)"/>
-    <text x="95.62" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="20.5" fill="#333" transform="rotate(-90 95.62 325.00)">@ioredis/commands</text>
+    <text x="95.62" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="20.5" fill="#333" transform="rotate(-90 95.62 325.00)">@ioredis/commands</text>
 </a>  </g>
   <g class="block-text" data-block="cluster-key-slot">
   <a href="https://github.com/Salakar/cluster-key-slot" target="_blank">    <rect x="186.01" y="246.76" width="21.73" height="156.48" fill="rgba(214,214,214,1)"/>
-    <text x="196.88" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="21.7" fill="#333" transform="rotate(-90 196.88 325.00)">cluster-key-slot</text>
+    <text x="196.88" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="21.7" fill="#333" transform="rotate(-90 196.88 325.00)">cluster-key-slot</text>
 </a>  </g>
   <g class="block-text" data-block="debug">
   <a href="https://github.com/debug-js/debug" target="_blank">    <rect x="286.12" y="223.00" width="24.00" height="54.00" fill="rgba(214,214,214,1)"/>
-    <text x="298.12" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333" transform="rotate(-90 298.12 250.00)">debug</text>
+    <text x="298.12" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 298.12 250.00)">debug</text>
 </a>  </g>
   <g class="block-text" data-block="denque">
   <a href="https://github.com/invertase/denque" target="_blank">    <rect x="387.38" y="292.60" width="24.00" height="64.80" fill="rgba(201,201,201,1)"/>
-    <text x="399.38" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333" transform="rotate(-90 399.38 325.00)">denque</text>
+    <text x="399.38" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 399.38 325.00)">denque</text>
 </a>  </g>
   <g class="block-text" data-block="ioredis">
   <a href="https://github.com/luin/ioredis" target="_blank">    <rect x="412.20" y="88.00" width="75.60" height="24.00" fill="rgba(248,248,248,1)"/>
-    <text x="450.00" y="100.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">ioredis</text>
+    <text x="450.00" y="100.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">ioredis</text>
 </a>  </g>
   <g class="block-text" data-block="lodash.defaults">
   <a href="https://github.com/lodash/lodash" target="_blank">    <rect x="491.62" y="264.25" width="18.00" height="121.50" fill="rgba(212,212,212,1)"/>
-    <text x="500.62" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="18.0" fill="#333" transform="rotate(-90 500.62 325.00)">lodash.defaults</text>
+    <text x="500.62" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 500.62 325.00)">lodash.defaults</text>
 </a>  </g>
   <g class="block-text" data-block="lodash.isarguments">
   <a href="https://github.com/lodash/lodash" target="_blank">    <rect x="592.22" y="246.76" width="19.32" height="156.48" fill="rgba(196,196,196,1)"/>
-    <text x="601.88" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="19.3" fill="#333" transform="rotate(-90 601.88 325.00)">lodash.isarguments</text>
+    <text x="601.88" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="19.3" fill="#333" transform="rotate(-90 601.88 325.00)">lodash.isarguments</text>
 </a>  </g>
   <g class="block-text" data-block="ms">
   <a href="https://github.com/vercel/ms" target="_blank">    <rect x="287.32" y="388.00" width="21.60" height="24.00" fill="rgba(239,239,239,1)"/>
-    <text x="298.12" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">ms</text>
+    <text x="298.12" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">ms</text>
 </a>  </g>
   <g class="block-text" data-block="redis-errors">
   <a href="https://github.com/NodeRedis/redis-errors" target="_blank">    <rect x="695.88" y="360.88" width="14.49" height="78.24" fill="rgba(196,196,196,1)"/>
-    <text x="703.12" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="14.5" fill="#333" transform="rotate(-90 703.12 400.00)">redis-errors</text>
+    <text x="703.12" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14.5" fill="#333" transform="rotate(-90 703.12 400.00)">redis-errors</text>
 </a>  </g>
   <g class="block-text" data-block="redis-parser">
   <a href="https://github.com/NodeRedis/node-redis-parser" target="_blank">    <rect x="695.88" y="210.88" width="14.49" height="78.24" fill="rgba(218,218,218,1)"/>
-    <text x="703.12" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="14.5" fill="#333" transform="rotate(-90 703.12 250.00)">redis-parser</text>
+    <text x="703.12" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14.5" fill="#333" transform="rotate(-90 703.12 250.00)">redis-parser</text>
 </a>  </g>
   <g class="block-text" data-block="standard-as-callback">
   <a href="https://github.com/luin/asCallback#readme" target="_blank">    <rect x="795.68" y="246.76" width="17.39" height="156.48" fill="rgba(169,169,169,1)"/>
-    <text x="804.38" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="17.4" fill="#333" transform="rotate(-90 804.38 325.00)">standard-as-callback</text>
+    <text x="804.38" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="17.4" fill="#333" transform="rotate(-90 804.38 325.00)">standard-as-callback</text>
 </a>  </g>
-  <text x="450.0" y="564.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
+  <text x="450.0" y="564.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 322.0 580.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
   <foreignObject x="30.0" y="604.0" width="168.0" height="120.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
@@ -124,7 +124,7 @@
     a, .package-entry { cursor: pointer; }
     .nebraska-entry {
       text-align: center;
-      font-family: 'Patrick Hand', cursive;
+      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
       overflow: hidden;
       height: 100%;
     }
@@ -172,84 +172,84 @@
   ]]></script>
   <g class="popup" data-for="@ioredis/commands" visibility="hidden">
     <path d="M 0.92 15.06 Q 0.00 -2.55 37.50 -0.88 Q 75.00 0.80 112.50 1.00 Q 150.00 1.20 187.50 -0.17 Q 225.00 -1.53 262.50 0.08 Q 300.00 1.69 301.76 17.18 Q 303.51 32.67 301.37 49.00 Q 299.23 65.33 298.16 81.67 Q 297.09 98.00 261.04 97.59 Q 225.00 97.19 187.50 96.35 Q 150.00 95.52 112.50 95.84 Q 75.00 96.17 37.50 95.74 Q 0.00 95.30 0.44 80.32 Q 0.89 65.33 1.36 49.00 Q 1.83 32.67 0.92 15.06 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Redis commands</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-03</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-11-03</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 9</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Redis commands</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-03</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-11-03</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 9</text>
   </g>
   <g class="popup" data-for="cluster-key-slot" visibility="hidden">
     <path d="M -0.83 22.41 Q 0.00 3.49 37.50 0.36 Q 75.00 -2.77 112.50 0.12 Q 150.00 3.01 187.50 2.89 Q 225.00 2.77 262.50 3.22 Q 300.00 3.68 300.60 22.51 Q 301.20 41.33 301.76 62.00 Q 302.31 82.67 300.44 103.33 Q 298.57 124.00 261.78 124.90 Q 225.00 125.81 187.50 126.79 Q 150.00 127.77 112.50 124.50 Q 75.00 121.24 37.50 123.74 Q 0.00 126.25 1.09 104.46 Q 2.19 82.67 0.26 62.00 Q -1.66 41.33 -0.83 22.41 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Generates CRC hashes for strings - for use by node</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">redis clients to determine key slots.</text>
-    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2022-11-01</text>
-    <text x="217.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last release: 2019-07-18</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 22</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Generates CRC hashes for strings - for use by node</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">redis clients to determine key slots.</text>
+    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2022-11-01</text>
+    <text x="217.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last release: 2019-07-18</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 22</text>
   </g>
   <g class="popup" data-for="debug" visibility="hidden">
     <path d="M 0.70 19.82 Q 0.00 -1.70 37.50 -1.55 Q 75.00 -1.41 112.50 -0.77 Q 150.00 -0.14 187.50 -0.77 Q 225.00 -1.40 262.50 -1.50 Q 300.00 -1.61 298.82 19.86 Q 297.63 41.33 299.91 62.00 Q 302.18 82.67 302.06 103.33 Q 301.94 124.00 263.47 122.63 Q 225.00 121.27 187.50 123.38 Q 150.00 125.49 112.50 125.77 Q 75.00 126.05 37.50 124.39 Q 0.00 122.73 -1.64 102.70 Q -3.28 82.67 -0.94 62.00 Q 1.40 41.33 0.70 19.82 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Lightweight debugging utility for Node.js and the</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">browser</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-09-13</text>
-    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-09-13</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 11.4k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Lightweight debugging utility for Node.js and the</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">browser</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-09-13</text>
+    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-09-13</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 11.4k</text>
   </g>
   <g class="popup" data-for="denque" visibility="hidden">
     <path d="M 1.03 30.72 Q 0.00 2.78 37.50 1.31 Q 75.00 -0.15 112.50 0.74 Q 150.00 1.62 187.50 1.36 Q 225.00 1.10 262.50 -0.31 Q 300.00 -1.72 298.10 28.47 Q 296.20 58.67 298.65 88.00 Q 301.10 117.33 299.50 146.67 Q 297.89 176.00 261.45 175.53 Q 225.00 175.06 187.50 176.11 Q 150.00 177.17 112.50 177.66 Q 75.00 178.15 37.50 177.22 Q 0.00 176.29 -1.31 146.81 Q -2.62 117.33 -0.28 88.00 Q 2.07 58.67 1.03 30.72 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">The fastest javascript implementation of a double-ended</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">queue. Used by the official Redis, MongoDB, MariaDB &amp;</text>
-    <text x="10.0" y="74.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">MySQL libraries for Node.js and many other libraries.</text>
-    <text x="10.0" y="100.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Maintains compatability with deque.</text>
-    <text x="217.0" y="126.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2023-03-04</text>
-    <text x="217.0" y="149.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last release: 2021-08-31</text>
-    <text x="75.0" y="138.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 369</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">The fastest javascript implementation of a double-ended</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">queue. Used by the official Redis, MongoDB, MariaDB &amp;</text>
+    <text x="10.0" y="74.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">MySQL libraries for Node.js and many other libraries.</text>
+    <text x="10.0" y="100.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Maintains compatability with deque.</text>
+    <text x="217.0" y="126.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2023-03-04</text>
+    <text x="217.0" y="149.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last release: 2021-08-31</text>
+    <text x="75.0" y="138.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 369</text>
   </g>
   <g class="popup" data-for="ioredis" visibility="hidden">
     <path d="M 1.10 19.81 Q 0.00 -1.71 37.50 0.44 Q 75.00 2.60 112.50 0.16 Q 150.00 -2.29 187.50 0.58 Q 225.00 3.46 262.50 2.93 Q 300.00 2.40 299.68 21.86 Q 299.36 41.33 299.66 62.00 Q 299.97 82.67 299.58 103.33 Q 299.19 124.00 262.09 123.09 Q 225.00 122.18 187.50 122.09 Q 150.00 121.99 112.50 124.20 Q 75.00 126.41 37.50 126.74 Q 0.00 127.08 0.13 104.87 Q 0.25 82.67 1.23 62.00 Q 2.21 41.33 1.10 19.81 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">A robust, performance-focused and full-featured Redis</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">client for Node.js.</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-19</text>
-    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-10-21</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 15.1k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">A robust, performance-focused and full-featured Redis</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">client for Node.js.</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-19</text>
+    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-10-21</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 15.1k</text>
   </g>
   <g class="popup" data-for="lodash.defaults" visibility="hidden">
     <path d="M 0.50 17.73 Q 0.00 2.79 37.50 1.75 Q 75.00 0.72 112.50 0.92 Q 150.00 1.13 187.50 2.23 Q 225.00 3.33 262.50 0.14 Q 300.00 -3.05 301.91 14.81 Q 303.82 32.67 303.33 49.00 Q 302.83 65.33 302.79 81.67 Q 302.75 98.00 263.87 97.11 Q 225.00 96.21 187.50 97.82 Q 150.00 99.44 112.50 97.31 Q 75.00 95.19 37.50 97.82 Q 0.00 100.44 -0.65 82.89 Q -1.31 65.33 -0.15 49.00 Q 1.01 32.67 0.50 17.73 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">The lodash method `_.defaults` exported as a module.</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-19</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2016-01-12</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 61.4k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">The lodash method `_.defaults` exported as a module.</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-19</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2016-01-12</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 61.4k</text>
   </g>
   <g class="popup" data-for="lodash.isarguments" visibility="hidden">
     <path d="M 1.19 17.21 Q 0.00 1.75 37.50 2.76 Q 75.00 3.77 112.50 1.96 Q 150.00 0.14 187.50 1.78 Q 225.00 3.42 262.50 1.01 Q 300.00 -1.41 299.12 15.63 Q 298.23 32.67 300.79 49.00 Q 303.34 65.33 299.90 81.67 Q 296.46 98.00 260.73 96.07 Q 225.00 94.14 187.50 95.89 Q 150.00 97.64 112.50 97.02 Q 75.00 96.39 37.50 97.44 Q 0.00 98.48 -1.30 81.91 Q -2.61 65.33 -0.11 49.00 Q 2.38 32.67 1.19 17.21 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">The lodash method `_.isArguments` exported as a module.</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-19</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2016-01-12</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 61.4k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">The lodash method `_.isArguments` exported as a module.</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-19</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2016-01-12</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 61.4k</text>
   </g>
   <g class="popup" data-for="ms" visibility="hidden">
     <path d="M -0.59 16.95 Q 0.00 1.24 37.50 2.09 Q 75.00 2.95 112.50 -0.04 Q 150.00 -3.03 187.50 -1.05 Q 225.00 0.93 262.50 0.99 Q 300.00 1.05 299.76 16.86 Q 299.53 32.67 300.47 49.00 Q 301.41 65.33 300.23 81.67 Q 299.06 98.00 262.03 98.49 Q 225.00 98.98 187.50 97.71 Q 150.00 96.43 112.50 96.98 Q 75.00 97.52 37.50 95.95 Q 0.00 94.39 0.08 79.86 Q 0.15 65.33 -0.52 49.00 Q -1.19 32.67 -0.59 16.95 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Tiny millisecond conversion utility</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-18</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2020-12-08</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 5.5k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Tiny millisecond conversion utility</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-18</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2020-12-08</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 5.5k</text>
   </g>
   <g class="popup" data-for="redis-errors" visibility="hidden">
     <path d="M -1.50 10.87 Q 0.00 -2.27 37.50 -1.75 Q 75.00 -1.24 112.50 -0.79 Q 150.00 -0.33 187.50 1.67 Q 225.00 3.67 262.50 0.53 Q 300.00 -2.61 300.53 10.69 Q 301.06 24.00 302.15 36.00 Q 303.24 48.00 300.99 60.00 Q 298.74 72.00 261.87 73.92 Q 225.00 75.84 187.50 72.43 Q 150.00 69.02 112.50 72.33 Q 75.00 75.63 37.50 75.34 Q 0.00 75.04 -1.05 61.52 Q -2.11 48.00 -2.55 36.00 Q -2.99 24.00 -1.50 10.87 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Error classes used in node_redis</text>
-    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2017-06-01</text>
-    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 6</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Error classes used in node_redis</text>
+    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2017-06-01</text>
+    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 6</text>
   </g>
   <g class="popup" data-for="redis-parser" visibility="hidden">
     <path d="M -1.69 18.32 Q 0.00 3.98 37.50 2.84 Q 75.00 1.71 112.50 -0.59 Q 150.00 -2.88 187.50 -2.18 Q 225.00 -1.48 262.50 1.05 Q 300.00 3.59 299.72 18.13 Q 299.44 32.67 299.94 49.00 Q 300.45 65.33 300.56 81.67 Q 300.67 98.00 262.84 99.10 Q 225.00 100.20 187.50 100.04 Q 150.00 99.89 112.50 97.36 Q 75.00 94.82 37.50 96.54 Q 0.00 98.26 1.49 81.80 Q 2.98 65.33 -0.20 49.00 Q -3.38 32.67 -1.69 18.32 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Javascript Redis protocol (RESP) parser</text>
-    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2020-06-01</text>
-    <text x="217.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last release: 2018-07-06</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 88</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Javascript Redis protocol (RESP) parser</text>
+    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2020-06-01</text>
+    <text x="217.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last release: 2018-07-06</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 88</text>
   </g>
   <g class="popup" data-for="standard-as-callback" visibility="hidden">
     <path d="M 0.67 15.61 Q 0.00 -1.46 37.50 -0.94 Q 75.00 -0.42 112.50 1.48 Q 150.00 3.37 187.50 0.73 Q 225.00 -1.92 262.50 -1.83 Q 300.00 -1.74 300.59 15.46 Q 301.18 32.67 300.40 49.00 Q 299.63 65.33 300.41 81.67 Q 301.19 98.00 263.10 96.92 Q 225.00 95.83 187.50 96.19 Q 150.00 96.54 112.50 98.78 Q 75.00 101.01 37.50 98.80 Q 0.00 96.58 0.52 80.96 Q 1.03 65.33 1.19 49.00 Q 1.34 32.67 0.67 15.61 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">A performant and standard (Bluebird) library that</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">registers a node-style callback on a promise</text>
-    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2024-06-16</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">A performant and standard (Bluebird) library that</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">registers a node-style callback on a promise</text>
+    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2024-06-16</text>
   </g>
   <style>
     .popup { pointer-events: none; transition: opacity 0.15s ease, transform 0.1s ease; }

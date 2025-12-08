@@ -16,29 +16,29 @@
   <a href="https://github.com/rayon-rs/rayon" target="_blank"><path id="block-rayon-core" class="block" d="M 441.50 232.67 Q 440.60 204.34 475.45 204.18 Q 510.30 204.02 545.15 205.25 Q 580.00 206.48 614.85 207.82 Q 649.70 209.16 684.55 208.74 Q 719.40 208.31 719.82 234.66 Q 720.25 261.00 721.27 288.00 Q 722.29 315.00 721.36 342.00 Q 720.44 369.00 685.07 370.10 Q 649.70 371.19 614.85 369.10 Q 580.00 367.00 545.15 366.77 Q 510.30 366.54 475.45 368.07 Q 440.60 369.60 440.89 342.30 Q 441.18 315.00 441.80 288.00 Q 442.41 261.00 441.50 232.67 Z" fill="rgba(214,214,214,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.948 580.00 288.00)"/></a>
   <g class="block-text" data-block="crossbeam-deque">
   <a href="https://github.com/crossbeam-rs/crossbeam" target="_blank">    <rect x="499.00" y="438.00" width="162.00" height="24.00" fill="rgba(233,233,233,1)"/>
-    <text x="580.00" y="450.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">crossbeam-deque</text>
+    <text x="580.00" y="450.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">crossbeam-deque</text>
 </a>  </g>
   <g class="block-text" data-block="crossbeam-epoch">
   <a href="https://github.com/crossbeam-rs/crossbeam" target="_blank">    <rect x="499.00" y="600.00" width="162.00" height="24.00" fill="rgba(194,194,194,1)"/>
-    <text x="580.00" y="612.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">crossbeam-epoch</text>
+    <text x="580.00" y="612.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">crossbeam-epoch</text>
 </a>  </g>
   <g class="block-text" data-block="crossbeam-utils">
   <a href="https://github.com/crossbeam-rs/crossbeam" target="_blank">    <rect x="499.00" y="762.00" width="162.00" height="24.00" fill="rgba(244,244,244,1)"/>
-    <text x="580.00" y="774.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">crossbeam-utils</text>
+    <text x="580.00" y="774.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">crossbeam-utils</text>
 </a>  </g>
   <g class="block-text" data-block="either">
   <a href="https://github.com/rayon-rs/either" target="_blank">    <rect x="187.60" y="519.00" width="64.80" height="24.00" fill="rgba(238,238,238,1)"/>
-    <text x="220.00" y="531.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">either</text>
+    <text x="220.00" y="531.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">either</text>
 </a>  </g>
   <g class="block-text" data-block="rayon">
   <a href="https://github.com/rayon-rs/rayon" target="_blank">    <rect x="373.00" y="114.00" width="54.00" height="24.00" fill="rgba(176,176,176,1)"/>
-    <text x="400.00" y="126.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">rayon</text>
+    <text x="400.00" y="126.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">rayon</text>
 </a>  </g>
   <g class="block-text" data-block="rayon-core">
   <a href="https://github.com/rayon-rs/rayon" target="_blank">    <rect x="526.00" y="276.00" width="108.00" height="24.00" fill="rgba(214,214,214,1)"/>
-    <text x="580.00" y="288.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">rayon-core</text>
+    <text x="580.00" y="288.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">rayon-core</text>
 </a>  </g>
-  <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
+  <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 272.0 980.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
   <foreignObject x="30.0" y="1004.0" width="370.0" height="120.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
@@ -97,7 +97,7 @@
     a, .package-entry { cursor: pointer; }
     .nebraska-entry {
       text-align: center;
-      font-family: 'Patrick Hand', cursive;
+      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
       overflow: hidden;
       height: 100%;
     }
@@ -145,43 +145,43 @@
   ]]></script>
   <g class="popup" data-for="crossbeam-deque" visibility="hidden">
     <path d="M -1.61 15.95 Q 0.00 -0.76 37.50 1.14 Q 75.00 3.04 112.50 -0.25 Q 150.00 -3.54 187.50 -3.74 Q 225.00 -3.94 262.50 -1.10 Q 300.00 1.74 301.64 17.20 Q 303.29 32.67 302.54 49.00 Q 301.80 65.33 302.01 81.67 Q 302.21 98.00 263.61 96.99 Q 225.00 95.99 187.50 95.86 Q 150.00 95.73 112.50 95.64 Q 75.00 95.55 37.50 98.68 Q 0.00 101.81 -0.55 83.57 Q -1.10 65.33 -2.15 49.00 Q -3.21 32.67 -1.61 15.95 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Concurrent work-stealing deque</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-06-07</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-04-08</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 8.2k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Concurrent work-stealing deque</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-06-07</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-04-08</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 8.2k</text>
   </g>
   <g class="popup" data-for="crossbeam-epoch" visibility="hidden">
     <path d="M 0.72 15.93 Q 0.00 -0.80 37.50 -0.78 Q 75.00 -0.76 112.50 -2.36 Q 150.00 -3.95 187.50 -3.53 Q 225.00 -3.12 262.50 -3.19 Q 300.00 -3.27 299.24 14.70 Q 298.47 32.67 299.21 49.00 Q 299.94 65.33 300.27 81.67 Q 300.59 98.00 262.80 98.30 Q 225.00 98.60 187.50 98.94 Q 150.00 99.28 112.50 100.33 Q 75.00 101.38 37.50 98.46 Q 0.00 95.54 1.38 80.43 Q 2.76 65.33 2.10 49.00 Q 1.44 32.67 0.72 15.93 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Epoch-based garbage collection</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-06-07</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-04-08</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 8.2k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Epoch-based garbage collection</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-06-07</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-04-08</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 8.2k</text>
   </g>
   <g class="popup" data-for="crossbeam-utils" visibility="hidden">
     <path d="M -0.27 16.52 Q 0.00 0.38 37.50 1.88 Q 75.00 3.39 112.50 2.35 Q 150.00 1.32 187.50 -0.86 Q 225.00 -3.05 262.50 -0.73 Q 300.00 1.59 299.08 17.13 Q 298.15 32.67 299.63 49.00 Q 301.10 65.33 298.89 81.67 Q 296.68 98.00 260.84 97.29 Q 225.00 96.57 187.50 96.66 Q 150.00 96.75 112.50 98.03 Q 75.00 99.32 37.50 100.57 Q 0.00 101.82 -0.39 83.58 Q -0.78 65.33 -0.66 49.00 Q -0.53 32.67 -0.27 16.52 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Utilities for concurrent programming</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-06-07</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-04-08</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 8.2k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Utilities for concurrent programming</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-06-07</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-04-08</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 8.2k</text>
   </g>
   <g class="popup" data-for="either" visibility="hidden">
     <path d="M 1.34 15.20 Q 0.00 -2.27 37.50 0.32 Q 75.00 2.91 112.50 1.54 Q 150.00 0.17 187.50 0.98 Q 225.00 1.79 262.50 -0.62 Q 300.00 -3.02 300.03 14.82 Q 300.05 32.67 299.83 49.00 Q 299.62 65.33 298.15 81.67 Q 296.68 98.00 260.84 96.17 Q 225.00 94.34 187.50 96.22 Q 150.00 98.10 112.50 99.30 Q 75.00 100.50 37.50 99.90 Q 0.00 99.29 0.66 82.31 Q 1.32 65.33 2.00 49.00 Q 2.68 32.67 1.34 15.20 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">The enum `Either` with variants `Left` and `Right` is a</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">general purpose sum type with two cases.</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-04</text>
-    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 540</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">The enum `Either` with variants `Left` and `Right` is a</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">general purpose sum type with two cases.</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-04</text>
+    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 540</text>
   </g>
   <g class="popup" data-for="rayon" visibility="hidden">
     <path d="M 1.81 12.59 Q 0.00 1.17 37.50 -0.18 Q 75.00 -1.54 112.50 -2.67 Q 150.00 -3.80 187.50 -2.40 Q 225.00 -1.00 262.50 -0.59 Q 300.00 -0.18 298.11 11.91 Q 296.21 24.00 297.19 36.00 Q 298.17 48.00 297.24 60.00 Q 296.31 72.00 260.66 70.16 Q 225.00 68.32 187.50 70.83 Q 150.00 73.33 112.50 73.91 Q 75.00 74.50 37.50 74.54 Q 0.00 74.59 -1.09 61.29 Q -2.19 48.00 0.72 36.00 Q 3.63 24.00 1.81 12.59 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Simple work-stealing parallelism for Rust</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-10-28</text>
-    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 12.4k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Simple work-stealing parallelism for Rust</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-10-28</text>
+    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 12.4k</text>
   </g>
   <g class="popup" data-for="rayon-core" visibility="hidden">
     <path d="M 1.08 12.29 Q 0.00 0.58 37.50 -0.66 Q 75.00 -1.90 112.50 0.44 Q 150.00 2.78 187.50 -0.11 Q 225.00 -2.99 262.50 -0.90 Q 300.00 1.19 301.21 12.59 Q 302.41 24.00 300.61 36.00 Q 298.80 48.00 300.19 60.00 Q 301.57 72.00 263.29 72.36 Q 225.00 72.72 187.50 72.70 Q 150.00 72.68 112.50 70.97 Q 75.00 69.25 37.50 69.14 Q 0.00 69.03 -1.98 58.52 Q -3.95 48.00 -0.90 36.00 Q 2.16 24.00 1.08 12.29 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Core APIs for Rayon</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-10-28</text>
-    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 12.4k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Core APIs for Rayon</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-10-28</text>
+    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 12.4k</text>
   </g>
   <style>
     .popup { pointer-events: none; transition: opacity 0.15s ease, transform 0.1s ease; }

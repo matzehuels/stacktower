@@ -28,69 +28,69 @@
   <a href="https://github.com/dtolnay/unicode-ident" target="_blank"><path id="block-unicode-ident" class="block" d="M 50.23 432.15 Q 50.00 422.63 70.83 424.97 Q 91.67 427.31 112.50 426.58 Q 133.33 425.86 154.17 425.83 Q 175.00 425.80 173.03 433.73 Q 171.05 441.67 174.47 450.00 Q 177.90 458.33 178.02 466.67 Q 178.14 475.00 155.74 474.68 Q 133.33 474.37 112.50 475.95 Q 91.67 477.52 70.83 477.43 Q 50.00 477.35 49.49 467.84 Q 48.98 458.33 49.72 450.00 Q 50.46 441.67 50.23 432.15 Z" fill="rgba(163,163,163,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(1.702 112.50 450.00)"/></a>
   <g class="block-text" data-block="darling">
   <a href="https://github.com/TedDriggs/darling" target="_blank">    <rect x="226.57" y="188.00" width="75.60" height="24.00" fill="rgba(244,244,244,1)"/>
-    <text x="264.38" y="200.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">darling</text>
+    <text x="264.38" y="200.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">darling</text>
 </a>  </g>
   <g class="block-text" data-block="darling_core">
   <a href="https://github.com/TedDriggs/darling" target="_blank">    <rect x="149.30" y="288.00" width="129.60" height="24.00" fill="rgba(232,232,232,1)"/>
-    <text x="214.10" y="300.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">darling_core</text>
+    <text x="214.10" y="300.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">darling_core</text>
 </a>  </g>
   <g class="block-text" data-block="darling_macro">
   <a href="https://github.com/TedDriggs/darling" target="_blank">    <rect x="194.18" y="238.00" width="140.40" height="24.00" fill="rgba(191,191,191,1)"/>
-    <text x="264.38" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">darling_macro</text>
+    <text x="264.38" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">darling_macro</text>
 </a>  </g>
   <g class="block-text" data-block="diesel">
   <a href="https://github.com/diesel-rs/diesel" target="_blank">    <rect x="417.60" y="38.00" width="64.80" height="24.00" fill="rgba(167,167,167,1)"/>
-    <text x="450.00" y="50.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">diesel</text>
+    <text x="450.00" y="50.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">diesel</text>
 </a>  </g>
   <g class="block-text" data-block="diesel_derives">
   <a href="https://github.com/diesel-rs/diesel" target="_blank">    <rect x="277.56" y="88.00" width="151.20" height="24.00" fill="rgba(224,224,224,1)"/>
-    <text x="353.16" y="100.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">diesel_derives</text>
+    <text x="353.16" y="100.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">diesel_derives</text>
 </a>  </g>
   <g class="block-text" data-block="diesel_table_macro_syntax">
   <a href="https://github.com/diesel-rs/diesel" target="_blank">    <rect x="57.24" y="172.84" width="9.27" height="104.32" fill="rgba(177,177,177,1)"/>
-    <text x="61.88" y="225.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="9.3" fill="#333" transform="rotate(-90 61.88 225.00)">diesel_table_macro_syntax</text>
+    <text x="61.88" y="225.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="9.3" fill="#333" transform="rotate(-90 61.88 225.00)">diesel_table_macro_syntax</text>
 </a>  </g>
   <g class="block-text" data-block="downcast-rs">
   <a href="https://github.com/marcianx/downcast-rs" target="_blank">    <rect x="775.50" y="215.60" width="24.00" height="118.80" fill="rgba(160,160,160,1)"/>
-    <text x="787.50" y="275.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333" transform="rotate(-90 787.50 275.00)">downcast-rs</text>
+    <text x="787.50" y="275.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 787.50 275.00)">downcast-rs</text>
 </a>  </g>
   <g class="block-text" data-block="dsl_auto_type">
   <a href="https://github.com/diesel-rs/diesel" target="_blank">    <rect x="329.18" y="138.00" width="140.40" height="24.00" fill="rgba(165,165,165,1)"/>
-    <text x="399.38" y="150.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">dsl_auto_type</text>
+    <text x="399.38" y="150.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">dsl_auto_type</text>
 </a>  </g>
   <g class="block-text" data-block="either">
   <a href="https://github.com/rayon-rs/either" target="_blank">    <rect x="505.50" y="292.60" width="24.00" height="64.80" fill="rgba(238,238,238,1)"/>
-    <text x="517.50" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333" transform="rotate(-90 517.50 325.00)">either</text>
+    <text x="517.50" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 517.50 325.00)">either</text>
 </a>  </g>
   <g class="block-text" data-block="fnv">
   <a href="https://github.com/servo/rust-fnv" target="_blank">    <rect x="231.30" y="388.00" width="32.40" height="24.00" fill="rgba(209,209,209,1)"/>
-    <text x="247.50" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">fnv</text>
+    <text x="247.50" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">fnv</text>
 </a>  </g>
   <g class="block-text" data-block="heck">
   <a href="https://github.com/withoutboats/heck" target="_blank">    <rect x="643.50" y="308.80" width="18.00" height="32.40" fill="rgba(248,248,248,1)"/>
-    <text x="652.50" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="18.0" fill="#333" transform="rotate(-90 652.50 325.00)">heck</text>
+    <text x="652.50" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 652.50 325.00)">heck</text>
 </a>  </g>
   <g class="block-text" data-block="ident_case">
   <a href="https://github.com/TedDriggs/ident_case" target="_blank">    <rect x="373.81" y="360.88" width="17.39" height="78.24" fill="rgba(246,246,246,1)"/>
-    <text x="382.50" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="17.4" fill="#333" transform="rotate(-90 382.50 400.00)">ident_case</text>
+    <text x="382.50" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="17.4" fill="#333" transform="rotate(-90 382.50 400.00)">ident_case</text>
 </a>  </g>
   <g class="block-text" data-block="proc-macro2">
   <a href="https://github.com/dtolnay/proc-macro2" target="_blank">    <rect x="79.47" y="393.33" width="66.07" height="13.35" fill="rgba(236,236,236,1)"/>
-    <text x="112.50" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="13.3" fill="#333">proc-macro2</text>
+    <text x="112.50" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="13.3" fill="#333">proc-macro2</text>
 </a>  </g>
   <g class="block-text" data-block="quote">
   <a href="https://github.com/dtolnay/quote" target="_blank">    <rect x="126.26" y="341.11" width="39.99" height="17.77" fill="rgba(229,229,229,1)"/>
-    <text x="146.25" y="350.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="17.8" fill="#333">quote</text>
+    <text x="146.25" y="350.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="17.8" fill="#333">quote</text>
 </a>  </g>
   <g class="block-text" data-block="syn">
   <a href="https://github.com/dtolnay/syn" target="_blank">    <rect x="62.55" y="338.00" width="32.40" height="24.00" fill="rgba(233,233,233,1)"/>
-    <text x="78.75" y="350.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">syn</text>
+    <text x="78.75" y="350.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">syn</text>
 </a>  </g>
   <g class="block-text" data-block="unicode-ident">
   <a href="https://github.com/dtolnay/unicode-ident" target="_blank">    <rect x="69.03" y="442.57" width="86.93" height="14.86" fill="rgba(163,163,163,1)"/>
-    <text x="112.50" y="450.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="14.9" fill="#333">unicode-ident</text>
+    <text x="112.50" y="450.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14.9" fill="#333">unicode-ident</text>
 </a>  </g>
-  <text x="450.0" y="564.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
+  <text x="450.0" y="564.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 322.0 580.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
   <foreignObject x="30.0" y="604.0" width="168.0" height="120.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
@@ -148,7 +148,7 @@
     a, .package-entry { cursor: pointer; }
     .nebraska-entry {
       text-align: center;
-      font-family: 'Patrick Hand', cursive;
+      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
       overflow: hidden;
       height: 100%;
     }
@@ -196,129 +196,129 @@
   ]]></script>
   <g class="popup" data-for="darling" visibility="hidden">
     <path d="M -0.47 18.99 Q 0.00 -3.35 37.50 -1.77 Q 75.00 -0.18 112.50 -1.14 Q 150.00 -2.10 187.50 -0.28 Q 225.00 1.55 262.50 1.56 Q 300.00 1.58 301.63 21.46 Q 303.26 41.33 303.40 62.00 Q 303.55 82.67 300.31 103.33 Q 297.06 124.00 261.03 124.19 Q 225.00 124.37 187.50 123.51 Q 150.00 122.64 112.50 124.30 Q 75.00 125.97 37.50 123.67 Q 0.00 121.38 0.83 102.02 Q 1.67 82.67 0.36 62.00 Q -0.94 41.33 -0.47 18.99 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">A proc-macro library for reading attributes into</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">structs when implementing custom derives.</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-24</text>
-    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-08-22</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 1.2k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">A proc-macro library for reading attributes into</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">structs when implementing custom derives.</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-24</text>
+    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-08-22</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 1.2k</text>
   </g>
   <g class="popup" data-for="darling_core" visibility="hidden">
     <path d="M 0.76 27.98 Q 0.00 -2.71 37.50 -2.49 Q 75.00 -2.27 112.50 0.39 Q 150.00 3.06 187.50 2.50 Q 225.00 1.94 262.50 1.36 Q 300.00 0.78 300.52 29.72 Q 301.03 58.67 302.29 88.00 Q 303.56 117.33 301.22 146.67 Q 298.89 176.00 261.94 175.45 Q 225.00 174.90 187.50 175.57 Q 150.00 176.24 112.50 177.21 Q 75.00 178.19 37.50 175.43 Q 0.00 172.67 1.91 145.00 Q 3.81 117.33 2.67 88.00 Q 1.52 58.67 0.76 27.98 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Helper crate for proc-macro library for reading</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">attributes into structs when implementing custom</text>
-    <text x="10.0" y="74.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">derives. Use https://crates.io/crates/darling in your</text>
-    <text x="10.0" y="100.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">code.</text>
-    <text x="225.0" y="126.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-24</text>
-    <text x="225.0" y="149.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-08-22</text>
-    <text x="75.0" y="138.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 1.2k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Helper crate for proc-macro library for reading</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">attributes into structs when implementing custom</text>
+    <text x="10.0" y="74.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">derives. Use https://crates.io/crates/darling in your</text>
+    <text x="10.0" y="100.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">code.</text>
+    <text x="225.0" y="126.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-24</text>
+    <text x="225.0" y="149.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-08-22</text>
+    <text x="75.0" y="138.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 1.2k</text>
   </g>
   <g class="popup" data-for="darling_macro" visibility="hidden">
     <path d="M 0.32 31.12 Q 0.00 3.58 37.50 -0.19 Q 75.00 -3.97 112.50 -3.95 Q 150.00 -3.94 187.50 -0.83 Q 225.00 2.28 262.50 2.10 Q 300.00 1.92 298.82 30.30 Q 297.63 58.67 299.15 88.00 Q 300.67 117.33 298.90 146.67 Q 297.13 176.00 261.06 174.72 Q 225.00 173.44 187.50 174.04 Q 150.00 174.64 112.50 175.33 Q 75.00 176.02 37.50 176.55 Q 0.00 177.08 -1.98 147.21 Q -3.97 117.33 -1.66 88.00 Q 0.64 58.67 0.32 31.12 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Internal support for a proc-macro library for reading</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">attributes into structs when implementing custom</text>
-    <text x="10.0" y="74.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">derives. Use https://crates.io/crates/darling in your</text>
-    <text x="10.0" y="100.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">code.</text>
-    <text x="225.0" y="126.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-24</text>
-    <text x="225.0" y="149.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-08-22</text>
-    <text x="75.0" y="138.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 1.2k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Internal support for a proc-macro library for reading</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">attributes into structs when implementing custom</text>
+    <text x="10.0" y="74.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">derives. Use https://crates.io/crates/darling in your</text>
+    <text x="10.0" y="100.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">code.</text>
+    <text x="225.0" y="126.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-24</text>
+    <text x="225.0" y="149.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-08-22</text>
+    <text x="75.0" y="138.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 1.2k</text>
   </g>
   <g class="popup" data-for="diesel" visibility="hidden">
     <path d="M -1.50 19.63 Q 0.00 -2.08 37.50 -0.90 Q 75.00 0.28 112.50 0.42 Q 150.00 0.56 187.50 1.44 Q 225.00 2.32 262.50 -0.25 Q 300.00 -2.82 298.03 19.26 Q 296.06 41.33 299.31 62.00 Q 302.57 82.67 300.57 103.33 Q 298.57 124.00 261.79 124.06 Q 225.00 124.13 187.50 122.20 Q 150.00 120.27 112.50 121.01 Q 75.00 121.76 37.50 123.23 Q 0.00 124.70 1.08 103.68 Q 2.16 82.67 -0.42 62.00 Q -2.99 41.33 -1.50 19.63 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">A safe, extensible ORM and Query Builder for</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">PostgreSQL, SQLite, and MySQL</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-12-01</text>
-    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-11-26</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 13.8k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">A safe, extensible ORM and Query Builder for</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">PostgreSQL, SQLite, and MySQL</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-12-01</text>
+    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-11-26</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 13.8k</text>
   </g>
   <g class="popup" data-for="diesel_derives" visibility="hidden">
     <path d="M -0.41 21.19 Q 0.00 1.04 37.50 1.57 Q 75.00 2.10 112.50 0.75 Q 150.00 -0.61 187.50 1.33 Q 225.00 3.28 262.50 2.02 Q 300.00 0.77 300.83 21.05 Q 301.67 41.33 301.08 62.00 Q 300.48 82.67 300.19 103.33 Q 299.89 124.00 262.44 124.45 Q 225.00 124.89 187.50 124.30 Q 150.00 123.70 112.50 125.76 Q 75.00 127.81 37.50 126.25 Q 0.00 124.69 0.29 103.68 Q 0.59 82.67 -0.11 62.00 Q -0.82 41.33 -0.41 21.19 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">You should not use this crate directly, it is internal</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">to Diesel.</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-12-01</text>
-    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-11-26</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 13.8k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">You should not use this crate directly, it is internal</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">to Diesel.</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-12-01</text>
+    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-11-26</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 13.8k</text>
   </g>
   <g class="popup" data-for="diesel_table_macro_syntax" visibility="hidden">
     <path d="M -0.66 18.14 Q 0.00 3.62 37.50 0.06 Q 75.00 -3.49 112.50 -1.20 Q 150.00 1.10 187.50 0.18 Q 225.00 -0.73 262.50 -1.67 Q 300.00 -2.60 300.49 15.03 Q 300.98 32.67 298.73 49.00 Q 296.47 65.33 299.08 81.67 Q 301.69 98.00 263.34 99.25 Q 225.00 100.50 187.50 98.36 Q 150.00 96.21 112.50 98.95 Q 75.00 101.70 37.50 98.03 Q 0.00 94.37 -0.75 79.85 Q -1.50 65.33 -1.41 49.00 Q -1.32 32.67 -0.66 18.14 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Internal diesel crate</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-12-01</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-11-26</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 13.8k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Internal diesel crate</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-12-01</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-11-26</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 13.8k</text>
   </g>
   <g class="popup" data-for="downcast-rs" visibility="hidden">
     <path d="M -1.03 22.00 Q 0.00 2.67 37.50 0.98 Q 75.00 -0.71 112.50 -0.04 Q 150.00 0.63 187.50 -0.18 Q 225.00 -1.00 262.50 -1.84 Q 300.00 -2.68 299.56 19.33 Q 299.13 41.33 299.20 62.00 Q 299.28 82.67 298.88 103.33 Q 298.48 124.00 261.74 122.40 Q 225.00 120.80 187.50 123.61 Q 150.00 126.41 112.50 123.25 Q 75.00 120.08 37.50 124.02 Q 0.00 127.96 -0.73 105.31 Q -1.46 82.67 -1.76 62.00 Q -2.05 41.33 -1.03 22.00 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Trait object downcasting support using only safe Rust.</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">It supports type parameters, associated types, and type</text>
-    <text x="10.0" y="74.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">constraints.</text>
-    <text x="225.0" y="100.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-09-01</text>
-    <text x="75.0" y="99.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 210</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Trait object downcasting support using only safe Rust.</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">It supports type parameters, associated types, and type</text>
+    <text x="10.0" y="74.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">constraints.</text>
+    <text x="225.0" y="100.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-09-01</text>
+    <text x="75.0" y="99.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 210</text>
   </g>
   <g class="popup" data-for="dsl_auto_type" visibility="hidden">
     <path d="M -1.64 21.08 Q 0.00 0.83 37.50 0.59 Q 75.00 0.35 112.50 -1.61 Q 150.00 -3.57 187.50 -1.27 Q 225.00 1.03 262.50 -0.63 Q 300.00 -2.28 301.10 19.52 Q 302.20 41.33 302.37 62.00 Q 302.55 82.67 302.56 103.33 Q 302.57 124.00 263.79 124.52 Q 225.00 125.04 187.50 122.87 Q 150.00 120.70 112.50 122.34 Q 75.00 123.98 37.50 123.96 Q 0.00 123.93 1.95 103.30 Q 3.90 82.67 0.31 62.00 Q -3.29 41.33 -1.64 21.08 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Automatically expand query fragment types for factoring</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">as functions</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-12-01</text>
-    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-11-26</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 13.8k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Automatically expand query fragment types for factoring</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">as functions</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-12-01</text>
+    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-11-26</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 13.8k</text>
   </g>
   <g class="popup" data-for="either" visibility="hidden">
     <path d="M 1.34 15.20 Q 0.00 -2.27 37.50 0.32 Q 75.00 2.91 112.50 1.54 Q 150.00 0.17 187.50 0.98 Q 225.00 1.79 262.50 -0.62 Q 300.00 -3.02 300.03 14.82 Q 300.05 32.67 299.83 49.00 Q 299.62 65.33 298.15 81.67 Q 296.68 98.00 260.84 96.17 Q 225.00 94.34 187.50 96.22 Q 150.00 98.10 112.50 99.30 Q 75.00 100.50 37.50 99.90 Q 0.00 99.29 0.66 82.31 Q 1.32 65.33 2.00 49.00 Q 2.68 32.67 1.34 15.20 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">The enum `Either` with variants `Left` and `Right` is a</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">general purpose sum type with two cases.</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-04</text>
-    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 540</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">The enum `Either` with variants `Left` and `Right` is a</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">general purpose sum type with two cases.</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-04</text>
+    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 540</text>
   </g>
   <g class="popup" data-for="fnv" visibility="hidden">
     <path d="M -1.28 14.42 Q 0.00 -3.82 37.50 -2.03 Q 75.00 -0.25 112.50 -1.15 Q 150.00 -2.05 187.50 0.12 Q 225.00 2.28 262.50 2.73 Q 300.00 3.18 299.41 17.92 Q 298.82 32.67 299.76 49.00 Q 300.70 65.33 300.47 81.67 Q 300.23 98.00 262.62 98.83 Q 225.00 99.65 187.50 98.85 Q 150.00 98.06 112.50 98.03 Q 75.00 98.01 37.50 96.71 Q 0.00 95.41 -1.67 80.37 Q -3.35 65.33 -2.95 49.00 Q -2.56 32.67 -1.28 14.42 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Fowler–Noll–Vo hash function</text>
-    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2024-03-20</text>
-    <text x="217.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last release: 2017-11-09</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 353</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Fowler–Noll–Vo hash function</text>
+    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2024-03-20</text>
+    <text x="217.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last release: 2017-11-09</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 353</text>
   </g>
   <g class="popup" data-for="heck" visibility="hidden">
     <path d="M 1.54 13.95 Q 0.00 3.90 37.50 1.51 Q 75.00 -0.88 112.50 -1.73 Q 150.00 -2.59 187.50 -2.94 Q 225.00 -3.29 262.50 0.04 Q 300.00 3.36 301.36 13.68 Q 302.72 24.00 300.52 36.00 Q 298.32 48.00 297.29 60.00 Q 296.26 72.00 260.63 73.54 Q 225.00 75.08 187.50 72.22 Q 150.00 69.36 112.50 70.36 Q 75.00 71.36 37.50 69.90 Q 0.00 68.44 0.39 58.22 Q 0.78 48.00 1.93 36.00 Q 3.08 24.00 1.54 13.95 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">heck is a case conversion library.</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-08-09</text>
-    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 570</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">heck is a case conversion library.</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-08-09</text>
+    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 570</text>
   </g>
   <g class="popup" data-for="ident_case" visibility="hidden">
     <path d="M -1.09 16.23 Q 0.00 -0.21 37.50 0.65 Q 75.00 1.51 112.50 -0.78 Q 150.00 -3.06 187.50 -0.81 Q 225.00 1.44 262.50 1.58 Q 300.00 1.71 299.10 17.19 Q 298.19 32.67 299.19 49.00 Q 300.18 65.33 300.90 81.67 Q 301.62 98.00 263.31 97.86 Q 225.00 97.72 187.50 96.12 Q 150.00 94.52 112.50 94.88 Q 75.00 95.24 37.50 98.59 Q 0.00 101.93 -0.68 83.63 Q -1.37 65.33 -1.77 49.00 Q -2.17 32.67 -1.09 16.23 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Utility for applying case rules to Rust identifiers.</text>
-    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2021-04-28</text>
-    <text x="217.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last release: 2017-05-10</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 3</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Utility for applying case rules to Rust identifiers.</text>
+    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2021-04-28</text>
+    <text x="217.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last release: 2017-05-10</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 3</text>
   </g>
   <g class="popup" data-for="proc-macro2" visibility="hidden">
     <path d="M 1.71 25.22 Q 0.00 0.44 37.50 0.15 Q 75.00 -0.13 112.50 1.18 Q 150.00 2.49 187.50 0.04 Q 225.00 -2.40 262.50 -2.06 Q 300.00 -1.72 301.23 24.14 Q 302.46 50.00 300.25 75.00 Q 298.04 100.00 297.42 125.00 Q 296.80 150.00 260.90 150.76 Q 225.00 151.52 187.50 150.72 Q 150.00 149.92 112.50 148.81 Q 75.00 147.71 37.50 147.96 Q 0.00 148.21 1.06 124.10 Q 2.12 100.00 2.77 75.00 Q 3.43 50.00 1.71 25.22 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">A substitute implementation of the compiler&#39;s</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">`proc_macro` API to decouple token-based libraries from</text>
-    <text x="10.0" y="74.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">the procedural macro use case.</text>
-    <text x="225.0" y="100.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-20</text>
-    <text x="225.0" y="123.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-10-23</text>
-    <text x="75.0" y="112.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 884</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">A substitute implementation of the compiler&#39;s</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">`proc_macro` API to decouple token-based libraries from</text>
+    <text x="10.0" y="74.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">the procedural macro use case.</text>
+    <text x="225.0" y="100.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-20</text>
+    <text x="225.0" y="123.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-10-23</text>
+    <text x="75.0" y="112.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 884</text>
   </g>
   <g class="popup" data-for="quote" visibility="hidden">
     <path d="M -0.31 14.99 Q 0.00 -2.68 37.50 -2.39 Q 75.00 -2.10 112.50 -0.48 Q 150.00 1.13 187.50 -1.33 Q 225.00 -3.80 262.50 -0.75 Q 300.00 2.29 299.77 17.48 Q 299.54 32.67 301.37 49.00 Q 303.21 65.33 303.45 81.67 Q 303.70 98.00 264.35 99.95 Q 225.00 101.90 187.50 99.59 Q 150.00 97.27 112.50 98.24 Q 75.00 99.21 37.50 99.92 Q 0.00 100.62 1.93 82.98 Q 3.87 65.33 1.62 49.00 Q -0.62 32.67 -0.31 14.99 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Quasi-quoting macro quote!(...)</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-28</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-11-06</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 1.5k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Quasi-quoting macro quote!(...)</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-28</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-11-06</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 1.5k</text>
   </g>
   <g class="popup" data-for="syn" visibility="hidden">
     <path d="M 1.04 17.89 Q 0.00 3.12 37.50 2.21 Q 75.00 1.30 112.50 0.09 Q 150.00 -1.13 187.50 -2.40 Q 225.00 -3.67 262.50 -3.30 Q 300.00 -2.94 300.81 14.86 Q 301.62 32.67 300.49 49.00 Q 299.36 65.33 299.41 81.67 Q 299.45 98.00 262.23 97.37 Q 225.00 96.74 187.50 98.69 Q 150.00 100.65 112.50 98.15 Q 75.00 95.66 37.50 97.02 Q 0.00 98.39 1.90 81.86 Q 3.79 65.33 2.93 49.00 Q 2.08 32.67 1.04 17.89 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Parser for Rust source code</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-28</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-11-23</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 3.2k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Parser for Rust source code</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-28</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-11-23</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 3.2k</text>
   </g>
   <g class="popup" data-for="unicode-ident" visibility="hidden">
     <path d="M -0.19 24.51 Q 0.00 -0.99 37.50 -2.24 Q 75.00 -3.49 112.50 -1.11 Q 150.00 1.27 187.50 2.06 Q 225.00 2.84 262.50 2.64 Q 300.00 2.43 299.52 26.21 Q 299.05 50.00 299.46 75.00 Q 299.88 100.00 301.82 125.00 Q 303.76 150.00 264.38 149.42 Q 225.00 148.85 187.50 147.51 Q 150.00 146.18 112.50 149.31 Q 75.00 152.44 37.50 151.00 Q 0.00 149.56 0.37 124.78 Q 0.73 100.00 0.18 75.00 Q -0.38 50.00 -0.19 24.51 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Determine whether characters have the XID_Start or</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">XID_Continue properties according to Unicode Standard</text>
-    <text x="10.0" y="74.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Annex #31</text>
-    <text x="225.0" y="100.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-30</text>
-    <text x="225.0" y="123.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-10-30</text>
-    <text x="75.0" y="112.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 104</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Determine whether characters have the XID_Start or</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">XID_Continue properties according to Unicode Standard</text>
+    <text x="10.0" y="74.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Annex #31</text>
+    <text x="225.0" y="100.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-30</text>
+    <text x="225.0" y="123.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-10-30</text>
+    <text x="75.0" y="112.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 104</text>
   </g>
   <style>
     .popup { pointer-events: none; transition: opacity 0.15s ease, transform 0.1s ease; }

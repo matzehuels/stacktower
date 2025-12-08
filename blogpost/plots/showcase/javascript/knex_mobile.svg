@@ -44,93 +44,93 @@
   <path class="block-texture" d="M 723.71 212.33 Q 722.50 177.15 727.50 179.55 Q 732.50 181.96 737.50 179.23 Q 742.50 176.50 747.50 179.15 Q 752.50 181.81 750.87 214.65 Q 749.24 247.50 751.32 281.25 Q 753.40 315.00 753.57 348.75 Q 753.73 382.50 753.76 416.25 Q 753.79 450.00 751.86 483.75 Q 749.92 517.50 750.10 551.25 Q 750.28 585.00 752.07 618.75 Q 753.86 652.50 753.73 686.25 Q 753.61 720.00 755.00 753.75 Q 756.39 787.50 752.87 821.25 Q 749.35 855.00 745.92 853.68 Q 742.50 852.36 737.50 852.89 Q 732.50 853.41 727.50 855.13 Q 722.50 856.85 722.70 822.18 Q 722.89 787.50 724.09 753.75 Q 725.29 720.00 725.40 686.25 Q 725.52 652.50 725.68 618.75 Q 725.85 585.00 726.16 551.25 Q 726.46 517.50 723.43 483.75 Q 720.40 450.00 720.62 416.25 Q 720.84 382.50 723.07 348.75 Q 725.30 315.00 725.11 281.25 Q 724.91 247.50 723.71 212.33 Z" fill="url(#brittleTexture)" style="pointer-events: none;" transform="rotate(0.438 737.50 517.50)"/>
   <g class="block-text" data-block="colorette">
   <a href="https://github.com/jorgebucaran/colorette" target="_blank">    <rect x="53.50" y="481.05" width="18.00" height="72.90" fill="rgba(232,232,232,1)"/>
-    <text x="62.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="18.0" fill="#333" transform="rotate(-90 62.50 517.50)">colorette</text>
+    <text x="62.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 62.50 517.50)">colorette</text>
 </a>  </g>
   <g class="block-text" data-block="commander">
   <a href="https://github.com/tj/commander.js" target="_blank">    <rect x="98.50" y="481.05" width="18.00" height="72.90" fill="rgba(179,179,179,1)"/>
-    <text x="107.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="18.0" fill="#333" transform="rotate(-90 107.50 517.50)">commander</text>
+    <text x="107.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 107.50 517.50)">commander</text>
 </a>  </g>
   <g class="block-text" data-block="debug">
   <a href="https://github.com/debug-js/debug#readme" target="_blank">    <rect x="143.50" y="227.25" width="18.00" height="40.50" fill="rgba(214,214,214,1)"/>
-    <text x="152.50" y="247.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="18.0" fill="#333" transform="rotate(-90 152.50 247.50)">debug</text>
+    <text x="152.50" y="247.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 152.50 247.50)">debug</text>
 </a>  </g>
   <g class="block-text" data-block="escalade">
   <a href="https://github.com/lukeed/escalade" target="_blank">    <rect x="188.50" y="485.10" width="18.00" height="64.80" fill="rgba(167,167,167,1)"/>
-    <text x="197.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="18.0" fill="#333" transform="rotate(-90 197.50 517.50)">escalade</text>
+    <text x="197.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 197.50 517.50)">escalade</text>
 </a>  </g>
   <g class="block-text" data-block="esm">
   <a href="https://github.com/standard-things/esm#readme" target="_blank">    <rect x="233.50" y="505.35" width="18.00" height="24.30" fill="rgba(170,170,170,1)"/>
-    <text x="242.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="18.0" fill="#333" transform="rotate(-90 242.50 517.50)">esm</text>
+    <text x="242.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 242.50 517.50)">esm</text>
 </a>  </g>
   <g class="block-text" data-block="function-bind">
   <a href="https://github.com/Raynos/function-bind" target="_blank">    <rect x="506.48" y="752.29" width="12.04" height="70.41" fill="rgba(175,175,175,1)"/>
-    <text x="512.50" y="787.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="12.0" fill="#333" transform="rotate(-90 512.50 787.50)">function-bind</text>
+    <text x="512.50" y="787.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12.0" fill="#333" transform="rotate(-90 512.50 787.50)">function-bind</text>
 </a>  </g>
   <g class="block-text" data-block="get-package-type">
   <a href="https://github.com/cfware/get-package-type#readme" target="_blank">    <rect x="278.50" y="452.70" width="18.00" height="129.60" fill="rgba(169,169,169,1)"/>
-    <text x="287.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="18.0" fill="#333" transform="rotate(-90 287.50 517.50)">get-package-type</text>
+    <text x="287.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 287.50 517.50)">get-package-type</text>
 </a>  </g>
   <g class="block-text" data-block="getopts">
   <a href="https://github.com/jorgebucaran/getopts" target="_blank">    <rect x="323.50" y="489.15" width="18.00" height="56.70" fill="rgba(249,249,249,1)"/>
-    <text x="332.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="18.0" fill="#333" transform="rotate(-90 332.50 517.50)">getopts</text>
+    <text x="332.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 332.50 517.50)">getopts</text>
 </a>  </g>
   <g class="block-text" data-block="hasown">
   <a href="https://github.com/inspect-js/hasOwn#readme" target="_blank">    <rect x="502.00" y="624.15" width="21.00" height="56.70" fill="rgba(241,241,241,1)"/>
-    <text x="512.50" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="21.0" fill="#333" transform="rotate(-90 512.50 652.50)">hasown</text>
+    <text x="512.50" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="21.0" fill="#333" transform="rotate(-90 512.50 652.50)">hasown</text>
 </a>  </g>
   <g class="block-text" data-block="interpret">
   <a href="https://github.com/gulpjs/interpret" target="_blank">    <rect x="368.50" y="481.05" width="18.00" height="72.90" fill="rgba(220,220,220,1)"/>
-    <text x="377.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="18.0" fill="#333" transform="rotate(-90 377.50 517.50)">interpret</text>
+    <text x="377.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 377.50 517.50)">interpret</text>
 </a>  </g>
   <g class="block-text" data-block="is-core-module">
   <a href="https://github.com/inspect-js/is-core-module" target="_blank">    <rect x="506.91" y="482.29" width="11.18" height="70.41" fill="rgba(188,188,188,1)"/>
-    <text x="512.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="11.2" fill="#333" transform="rotate(-90 512.50 517.50)">is-core-module</text>
+    <text x="512.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="11.2" fill="#333" transform="rotate(-90 512.50 517.50)">is-core-module</text>
 </a>  </g>
   <g class="block-text" data-block="knex">
   <a href="https://github.com/knex/knex" target="_blank">    <rect x="378.40" y="100.50" width="43.20" height="24.00" fill="rgba(165,165,165,1)"/>
-    <text x="400.00" y="112.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">knex</text>
+    <text x="400.00" y="112.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">knex</text>
 </a>  </g>
   <g class="block-text" data-block="lodash">
   <a href="https://github.com/lodash/lodash" target="_blank">    <rect x="413.50" y="493.20" width="18.00" height="48.60" fill="rgba(178,178,178,1)"/>
-    <text x="422.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="18.0" fill="#333" transform="rotate(-90 422.50 517.50)">lodash</text>
+    <text x="422.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 422.50 517.50)">lodash</text>
 </a>  </g>
   <g class="block-text" data-block="ms">
   <a href="https://github.com/vercel/ms" target="_blank">    <rect x="141.70" y="573.00" width="21.60" height="24.00" fill="rgba(239,239,239,1)"/>
-    <text x="152.50" y="585.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">ms</text>
+    <text x="152.50" y="585.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">ms</text>
 </a>  </g>
   <g class="block-text" data-block="path-parse">
   <a href="https://github.com/jbgutierrez/path-parse" target="_blank">    <rect x="548.50" y="612.00" width="18.00" height="81.00" fill="rgba(198,198,198,1)"/>
-    <text x="557.50" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="18.0" fill="#333" transform="rotate(-90 557.50 652.50)">path-parse</text>
+    <text x="557.50" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 557.50 652.50)">path-parse</text>
 </a>  </g>
   <g class="block-text" data-block="pg-connection-string">
   <a href="https://github.com/brianc/node-postgres" target="_blank">    <rect x="458.50" y="436.50" width="18.00" height="162.00" fill="rgba(175,175,175,1)"/>
-    <text x="467.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="18.0" fill="#333" transform="rotate(-90 467.50 517.50)">pg-connection-string</text>
+    <text x="467.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 467.50 517.50)">pg-connection-string</text>
 </a>  </g>
   <g class="block-text" data-block="rechoir">
   <a href="https://github.com/gulpjs/rechoir" target="_blank">    <rect x="546.32" y="212.29" width="22.35" height="70.41" fill="rgba(233,233,233,1)"/>
-    <text x="557.50" y="247.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22.4" fill="#333" transform="rotate(-90 557.50 247.50)">rechoir</text>
+    <text x="557.50" y="247.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22.4" fill="#333" transform="rotate(-90 557.50 247.50)">rechoir</text>
 </a>  </g>
   <g class="block-text" data-block="resolve">
   <a href="https://github.com/browserify/resolve#readme" target="_blank">    <rect x="519.70" y="370.50" width="75.60" height="24.00" fill="rgba(223,223,223,1)"/>
-    <text x="557.50" y="382.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">resolve</text>
+    <text x="557.50" y="382.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">resolve</text>
 </a>  </g>
   <g class="block-text" data-block="resolve-from">
   <a href="https://github.com/sindresorhus/resolve-from" target="_blank">    <rect x="638.50" y="468.90" width="18.00" height="97.20" fill="rgba(208,208,208,1)"/>
-    <text x="647.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="18.0" fill="#333" transform="rotate(-90 647.50 517.50)">resolve-from</text>
+    <text x="647.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 647.50 517.50)">resolve-from</text>
 </a>  </g>
   <g class="block-text" data-block="supports-preserve-symlinks-flag">
   <a href="https://github.com/inspect-js/node-supports-preserve-symlinks-flag#readme" target="_blank">    <rect x="594.93" y="546.88" width="15.14" height="211.24" fill="rgba(178,178,178,1)"/>
-    <text x="602.50" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="15.1" fill="#333" transform="rotate(-90 602.50 652.50)">supports-preserve-symlinks-flag</text>
+    <text x="602.50" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="15.1" fill="#333" transform="rotate(-90 602.50 652.50)">supports-preserve-symlinks-flag</text>
 </a>  </g>
   <g class="block-text" data-block="tarn">
   <a href="https://github.com/vincit/tarn.js#readme" target="_blank">    <rect x="683.50" y="501.30" width="18.00" height="32.40" fill="rgba(214,214,214,1)"/>
-    <text x="692.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="18.0" fill="#333" transform="rotate(-90 692.50 517.50)">tarn</text>
+    <text x="692.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 692.50 517.50)">tarn</text>
 </a>  </g>
   <g class="block-text" data-block="tildify">
   <a href="https://github.com/sindresorhus/tildify#readme" target="_blank">    <rect x="728.50" y="489.15" width="18.00" height="56.70" fill="rgba(206,206,206,1)"/>
-    <text x="737.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="18.0" fill="#333" transform="rotate(-90 737.50 517.50)">tildify</text>
+    <text x="737.50" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 737.50 517.50)">tildify</text>
 </a>  </g>
-  <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
+  <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 272.0 980.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
   <foreignObject x="30.0" y="1004.0" width="370.0" height="120.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
@@ -183,7 +183,7 @@
     a, .package-entry { cursor: pointer; }
     .nebraska-entry {
       text-align: center;
-      font-family: 'Patrick Hand', cursive;
+      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
       overflow: hidden;
       height: 100%;
     }
@@ -231,156 +231,156 @@
   ]]></script>
   <g class="popup" data-for="colorette" visibility="hidden">
     <path d="M -1.29 18.15 Q 0.00 3.63 37.50 1.11 Q 75.00 -1.41 112.50 0.90 Q 150.00 3.22 187.50 2.47 Q 225.00 1.72 262.50 2.84 Q 300.00 3.96 299.03 18.31 Q 298.07 32.67 297.70 49.00 Q 297.34 65.33 300.63 81.67 Q 303.92 98.00 264.46 96.10 Q 225.00 94.19 187.50 95.58 Q 150.00 96.96 112.50 95.77 Q 75.00 94.58 37.50 96.52 Q 0.00 98.46 -0.29 81.90 Q -0.58 65.33 -1.58 49.00 Q -2.58 32.67 -1.29 18.15 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">🌈Easily set your terminal text color &amp; styles.</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-10-03</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2023-04-16</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 1.6k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">🌈Easily set your terminal text color &amp; styles.</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-10-03</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2023-04-16</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 1.6k</text>
   </g>
   <g class="popup" data-for="commander" visibility="hidden">
     <path d="M 0.07 18.26 Q 0.00 3.85 37.50 0.73 Q 75.00 -2.40 112.50 0.14 Q 150.00 2.67 187.50 0.51 Q 225.00 -1.66 262.50 -0.17 Q 300.00 1.31 298.87 16.99 Q 297.74 32.67 298.41 49.00 Q 299.08 65.33 300.01 81.67 Q 300.94 98.00 262.97 98.59 Q 225.00 99.19 187.50 98.31 Q 150.00 97.44 112.50 97.70 Q 75.00 97.96 37.50 97.53 Q 0.00 97.09 -0.23 81.21 Q -0.46 65.33 -0.16 49.00 Q 0.15 32.67 0.07 18.26 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">the complete solution for node.js command-line programs</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-12-01</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-10-25</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 27.8k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">the complete solution for node.js command-line programs</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-12-01</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-10-25</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 27.8k</text>
   </g>
   <g class="popup" data-for="debug" visibility="hidden">
     <path d="M 0.70 15.48 Q 0.00 -1.70 37.50 -1.55 Q 75.00 -1.41 112.50 -0.77 Q 150.00 -0.14 187.50 -0.77 Q 225.00 -1.40 262.50 -1.50 Q 300.00 -1.61 298.82 15.53 Q 297.63 32.67 299.91 49.00 Q 302.18 65.33 302.06 81.67 Q 301.94 98.00 263.47 96.63 Q 225.00 95.27 187.50 97.38 Q 150.00 99.49 112.50 99.77 Q 75.00 100.05 37.50 98.39 Q 0.00 96.73 -1.64 81.03 Q -3.28 65.33 -0.94 49.00 Q 1.40 32.67 0.70 15.48 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Lightweight debugging utility for Node.js and the</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">browser</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-09-13</text>
-    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 11.4k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Lightweight debugging utility for Node.js and the</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">browser</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-09-13</text>
+    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 11.4k</text>
   </g>
   <g class="popup" data-for="escalade" visibility="hidden">
     <path d="M 1.34 21.42 Q 0.00 1.51 37.50 1.96 Q 75.00 2.40 112.50 -0.44 Q 150.00 -3.28 187.50 -0.06 Q 225.00 3.17 262.50 0.58 Q 300.00 -2.00 301.26 19.66 Q 302.53 41.33 301.16 62.00 Q 299.80 82.67 300.25 103.33 Q 300.69 124.00 262.84 125.62 Q 225.00 127.25 187.50 124.91 Q 150.00 122.58 112.50 122.02 Q 75.00 121.46 37.50 122.04 Q 0.00 122.62 1.13 102.64 Q 2.27 82.67 2.48 62.00 Q 2.69 41.33 1.34 21.42 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">A tiny (183B to 210B) and fast utility to ascend parent</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">directories</text>
-    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2024-08-29</text>
-    <text x="217.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last release: 2024-08-29</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 153</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">A tiny (183B to 210B) and fast utility to ascend parent</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">directories</text>
+    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2024-08-29</text>
+    <text x="217.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last release: 2024-08-29</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 153</text>
   </g>
   <g class="popup" data-for="esm" visibility="hidden">
     <path d="M -1.86 10.78 Q 0.00 -2.44 37.50 -1.76 Q 75.00 -1.07 112.50 -2.50 Q 150.00 -3.93 187.50 -0.09 Q 225.00 3.76 262.50 2.48 Q 300.00 1.21 301.15 12.61 Q 302.30 24.00 299.59 36.00 Q 296.88 48.00 300.36 60.00 Q 303.85 72.00 264.42 72.85 Q 225.00 73.71 187.50 73.38 Q 150.00 73.06 112.50 72.89 Q 75.00 72.73 37.50 72.72 Q 0.00 72.72 -0.08 60.36 Q -0.15 48.00 -1.93 36.00 Q -3.71 24.00 -1.86 10.78 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Tomorrow&#39;s ECMAScript modules today!</text>
-    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2024-04-10</text>
-    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 5.3k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Tomorrow&#39;s ECMAScript modules today!</text>
+    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2024-04-10</text>
+    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 5.3k</text>
   </g>
   <g class="popup" data-for="function-bind" visibility="hidden">
     <path d="M 1.65 12.92 Q 0.00 1.85 37.50 -0.34 Q 75.00 -2.53 112.50 -2.49 Q 150.00 -2.46 187.50 -1.08 Q 225.00 0.30 262.50 -1.02 Q 300.00 -2.35 300.75 10.83 Q 301.51 24.00 300.58 36.00 Q 299.65 48.00 298.85 60.00 Q 298.04 72.00 261.52 72.71 Q 225.00 73.41 187.50 71.28 Q 150.00 69.15 112.50 71.87 Q 75.00 74.60 37.50 72.99 Q 0.00 71.38 1.58 59.69 Q 3.15 48.00 3.22 36.00 Q 3.29 24.00 1.65 12.92 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Implementation of Function.prototype.bind</text>
-    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2023-10-12</text>
-    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 139</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Implementation of Function.prototype.bind</text>
+    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2023-10-12</text>
+    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 139</text>
   </g>
   <g class="popup" data-for="get-package-type" visibility="hidden">
     <path d="M -0.23 17.43 Q 0.00 2.20 37.50 2.93 Q 75.00 3.66 112.50 1.53 Q 150.00 -0.60 187.50 -1.09 Q 225.00 -1.58 262.50 0.01 Q 300.00 1.60 301.31 17.13 Q 302.62 32.67 302.19 49.00 Q 301.76 65.33 299.50 81.67 Q 297.23 98.00 261.12 98.42 Q 225.00 98.85 187.50 97.94 Q 150.00 97.04 112.50 95.53 Q 75.00 94.02 37.50 97.65 Q 0.00 101.29 -0.76 83.31 Q -1.52 65.33 -0.99 49.00 Q -0.46 32.67 -0.23 17.43 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Determine the `package.json#type` which applies to a</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">location</text>
-    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2020-05-19</text>
-    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 5</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Determine the `package.json#type` which applies to a</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">location</text>
+    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2020-05-19</text>
+    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 5</text>
   </g>
   <g class="popup" data-for="getopts" visibility="hidden">
     <path d="M -1.48 14.52 Q 0.00 -3.63 37.50 -0.10 Q 75.00 3.43 112.50 3.69 Q 150.00 3.95 187.50 2.00 Q 225.00 0.04 262.50 0.97 Q 300.00 1.90 298.50 17.29 Q 296.99 32.67 300.24 49.00 Q 303.49 65.33 301.94 81.67 Q 300.38 98.00 262.69 99.91 Q 225.00 101.83 187.50 101.31 Q 150.00 100.79 112.50 100.01 Q 75.00 99.23 37.50 99.60 Q 0.00 99.97 0.28 82.65 Q 0.56 65.33 -1.20 49.00 Q -2.96 32.67 -1.48 14.52 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Parse CLI arguments.</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-07-03</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2021-02-15</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 636</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Parse CLI arguments.</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-07-03</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2021-02-15</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 636</text>
   </g>
   <g class="popup" data-for="hasown" visibility="hidden">
     <path d="M 1.09 13.06 Q 0.00 2.12 37.50 0.65 Q 75.00 -0.81 112.50 -1.85 Q 150.00 -2.89 187.50 -1.53 Q 225.00 -0.17 262.50 -1.88 Q 300.00 -3.60 299.48 10.20 Q 298.96 24.00 299.00 36.00 Q 299.03 48.00 298.07 60.00 Q 297.10 72.00 261.05 73.29 Q 225.00 74.58 187.50 72.47 Q 150.00 70.36 112.50 70.59 Q 75.00 70.81 37.50 72.38 Q 0.00 73.94 -0.10 60.97 Q -0.21 48.00 0.99 36.00 Q 2.18 24.00 1.09 13.06 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">A robust, ES3 compatible, &#34;has own property&#34; predicate.</text>
-    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2024-03-10</text>
-    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 1</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">A robust, ES3 compatible, &#34;has own property&#34; predicate.</text>
+    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2024-03-10</text>
+    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 1</text>
   </g>
   <g class="popup" data-for="interpret" visibility="hidden">
     <path d="M 0.51 22.46 Q 0.00 3.59 37.50 0.54 Q 75.00 -2.51 112.50 0.49 Q 150.00 3.50 187.50 3.60 Q 225.00 3.70 262.50 0.81 Q 300.00 -2.07 300.89 19.63 Q 301.78 41.33 300.72 62.00 Q 299.67 82.67 299.84 103.33 Q 300.01 124.00 262.51 123.90 Q 225.00 123.80 187.50 125.47 Q 150.00 127.14 112.50 126.48 Q 75.00 125.81 37.50 125.23 Q 0.00 124.65 0.69 103.66 Q 1.39 82.67 1.20 62.00 Q 1.01 41.33 0.51 22.46 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">A dictionary of file extensions and associated module</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">loaders.</text>
-    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2024-08-15</text>
-    <text x="217.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last release: 2022-06-29</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 265</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">A dictionary of file extensions and associated module</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">loaders.</text>
+    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2024-08-15</text>
+    <text x="217.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last release: 2022-06-29</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 265</text>
   </g>
   <g class="popup" data-for="is-core-module" visibility="hidden">
     <path d="M 0.44 11.51 Q 0.00 -0.99 37.50 -0.93 Q 75.00 -0.87 112.50 0.84 Q 150.00 2.55 187.50 2.85 Q 225.00 3.16 262.50 0.15 Q 300.00 -2.86 299.15 10.57 Q 298.30 24.00 298.13 36.00 Q 297.95 48.00 298.54 60.00 Q 299.13 72.00 262.06 71.13 Q 225.00 70.26 187.50 73.06 Q 150.00 75.86 112.50 73.13 Q 75.00 70.41 37.50 70.63 Q 0.00 70.84 -0.84 59.42 Q -1.67 48.00 -0.39 36.00 Q 0.88 24.00 0.44 11.51 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Is this specifier a node.js core module?</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2024-12-21</text>
-    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 26</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Is this specifier a node.js core module?</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2024-12-21</text>
+    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 26</text>
   </g>
   <g class="popup" data-for="knex" visibility="hidden">
     <path d="M 1.04 18.98 Q 0.00 -3.37 37.50 -1.09 Q 75.00 1.18 112.50 -1.14 Q 150.00 -3.45 187.50 -0.12 Q 225.00 3.22 262.50 1.70 Q 300.00 0.18 299.36 20.76 Q 298.71 41.33 299.38 62.00 Q 300.04 82.67 298.31 103.33 Q 296.59 124.00 260.79 123.31 Q 225.00 122.61 187.50 123.85 Q 150.00 125.08 112.50 123.77 Q 75.00 122.46 37.50 123.06 Q 0.00 123.67 1.03 103.17 Q 2.06 82.67 2.07 62.00 Q 2.09 41.33 1.04 18.98 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">A batteries-included SQL query &amp; schema builder for</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">PostgresSQL, MySQL, CockroachDB, MSSQL and SQLite3</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-08-26</text>
-    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2023-12-07</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 20.1k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">A batteries-included SQL query &amp; schema builder for</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">PostgresSQL, MySQL, CockroachDB, MSSQL and SQLite3</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-08-26</text>
+    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2023-12-07</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 20.1k</text>
   </g>
   <g class="popup" data-for="lodash" visibility="hidden">
     <path d="M 0.18 16.84 Q 0.00 1.02 37.50 2.29 Q 75.00 3.56 112.50 1.81 Q 150.00 0.06 187.50 1.23 Q 225.00 2.41 262.50 1.17 Q 300.00 -0.08 301.25 16.29 Q 302.51 32.67 301.25 49.00 Q 299.99 65.33 299.59 81.67 Q 299.19 98.00 262.09 96.59 Q 225.00 95.18 187.50 97.86 Q 150.00 100.55 112.50 101.05 Q 75.00 101.56 37.50 100.78 Q 0.00 100.00 1.68 82.66 Q 3.35 65.33 1.85 49.00 Q 0.36 32.67 0.18 16.84 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Lodash modular utilities.</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-19</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2016-01-12</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 61.4k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Lodash modular utilities.</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-19</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2016-01-12</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 61.4k</text>
   </g>
   <g class="popup" data-for="ms" visibility="hidden">
     <path d="M -0.59 16.95 Q 0.00 1.24 37.50 2.09 Q 75.00 2.95 112.50 -0.04 Q 150.00 -3.03 187.50 -1.05 Q 225.00 0.93 262.50 0.99 Q 300.00 1.05 299.76 16.86 Q 299.53 32.67 300.47 49.00 Q 301.41 65.33 300.23 81.67 Q 299.06 98.00 262.03 98.49 Q 225.00 98.98 187.50 97.71 Q 150.00 96.43 112.50 96.98 Q 75.00 97.52 37.50 95.95 Q 0.00 94.39 0.08 79.86 Q 0.15 65.33 -0.52 49.00 Q -1.19 32.67 -0.59 16.95 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Tiny millisecond conversion utility</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-18</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2020-12-08</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 5.5k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Tiny millisecond conversion utility</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-18</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2020-12-08</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 5.5k</text>
   </g>
   <g class="popup" data-for="path-parse" visibility="hidden">
     <path d="M 1.04 12.71 Q 0.00 1.41 37.50 2.55 Q 75.00 3.68 112.50 -0.10 Q 150.00 -3.89 187.50 -0.24 Q 225.00 3.41 262.50 2.98 Q 300.00 2.56 301.24 13.28 Q 302.47 24.00 301.09 36.00 Q 299.71 48.00 301.53 60.00 Q 303.36 72.00 264.18 71.44 Q 225.00 70.87 187.50 71.90 Q 150.00 72.92 112.50 74.07 Q 75.00 75.23 37.50 73.67 Q 0.00 72.12 -0.48 60.06 Q -0.96 48.00 0.56 36.00 Q 2.09 24.00 1.04 12.71 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Node.js path.parse() ponyfill</text>
-    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2022-03-23</text>
-    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 56</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Node.js path.parse() ponyfill</text>
+    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2022-03-23</text>
+    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 56</text>
   </g>
   <g class="popup" data-for="pg-connection-string" visibility="hidden">
     <path d="M -1.33 16.92 Q 0.00 1.17 37.50 1.46 Q 75.00 1.75 112.50 -1.12 Q 150.00 -3.99 187.50 -3.16 Q 225.00 -2.32 262.50 -0.24 Q 300.00 1.84 298.84 17.25 Q 297.67 32.67 300.01 49.00 Q 302.35 65.33 301.88 81.67 Q 301.41 98.00 263.20 96.87 Q 225.00 95.75 187.50 95.17 Q 150.00 94.59 112.50 96.38 Q 75.00 98.17 37.50 96.28 Q 0.00 94.39 1.49 79.86 Q 2.99 65.33 0.16 49.00 Q -2.66 32.67 -1.33 16.92 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Functions for dealing with a PostgresSQL connection</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">string</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-10-22</text>
-    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 13.0k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Functions for dealing with a PostgresSQL connection</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">string</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-10-22</text>
+    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 13.0k</text>
   </g>
   <g class="popup" data-for="rechoir" visibility="hidden">
     <path d="M -0.28 21.73 Q 0.00 2.13 37.50 1.87 Q 75.00 1.61 112.50 0.48 Q 150.00 -0.66 187.50 1.27 Q 225.00 3.21 262.50 2.63 Q 300.00 2.04 299.56 21.69 Q 299.13 41.33 298.00 62.00 Q 296.88 82.67 298.59 103.33 Q 300.29 124.00 262.65 125.02 Q 225.00 126.04 187.50 125.13 Q 150.00 124.23 112.50 123.68 Q 75.00 123.12 37.50 122.07 Q 0.00 121.03 0.85 101.85 Q 1.70 82.67 0.57 62.00 Q -0.57 41.33 -0.28 21.73 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Prepare a node environment to require files with</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">different extensions.</text>
-    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2024-06-21</text>
-    <text x="217.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last release: 2021-07-24</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 48</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Prepare a node environment to require files with</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">different extensions.</text>
+    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2024-06-21</text>
+    <text x="217.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last release: 2021-07-24</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 48</text>
   </g>
   <g class="popup" data-for="resolve" visibility="hidden">
     <path d="M -1.42 14.47 Q 0.00 -3.72 37.50 -2.24 Q 75.00 -0.75 112.50 -2.03 Q 150.00 -3.31 187.50 -0.53 Q 225.00 2.24 262.50 1.99 Q 300.00 1.73 300.99 17.20 Q 301.98 32.67 299.20 49.00 Q 296.42 65.33 298.09 81.67 Q 299.75 98.00 262.38 97.85 Q 225.00 97.70 187.50 99.39 Q 150.00 101.08 112.50 100.77 Q 75.00 100.47 37.50 99.17 Q 0.00 97.88 1.34 81.60 Q 2.68 65.33 -0.07 49.00 Q -2.83 32.67 -1.42 14.47 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">resolve like require.resolve() on behalf of files</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">asynchronously and synchronously</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-10-20</text>
-    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 792</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">resolve like require.resolve() on behalf of files</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">asynchronously and synchronously</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-10-20</text>
+    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 792</text>
   </g>
   <g class="popup" data-for="resolve-from" visibility="hidden">
     <path d="M -1.84 21.96 Q 0.00 2.58 37.50 0.78 Q 75.00 -1.02 112.50 -0.97 Q 150.00 -0.92 187.50 -1.12 Q 225.00 -1.32 262.50 -0.93 Q 300.00 -0.54 298.85 20.40 Q 297.70 41.33 298.65 62.00 Q 299.60 82.67 299.90 103.33 Q 300.19 124.00 262.60 125.97 Q 225.00 127.95 187.50 125.79 Q 150.00 123.64 112.50 122.85 Q 75.00 122.06 37.50 123.64 Q 0.00 125.21 1.58 103.94 Q 3.17 82.67 -0.26 62.00 Q -3.68 41.33 -1.84 21.96 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Resolve the path of a module like `require.resolve()`</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">but from a given path</text>
-    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2021-01-23</text>
-    <text x="217.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last release: 2019-04-15</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 143</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Resolve the path of a module like `require.resolve()`</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">but from a given path</text>
+    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2021-01-23</text>
+    <text x="217.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last release: 2019-04-15</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 143</text>
   </g>
   <g class="popup" data-for="supports-preserve-symlinks-flag" visibility="hidden">
     <path d="M -0.91 15.47 Q 0.00 -1.73 37.50 -2.72 Q 75.00 -3.71 112.50 -1.47 Q 150.00 0.76 187.50 0.55 Q 225.00 0.33 262.50 0.59 Q 300.00 0.85 300.56 16.76 Q 301.12 32.67 301.05 49.00 Q 300.98 65.33 302.49 81.67 Q 303.99 98.00 264.49 97.93 Q 225.00 97.87 187.50 98.14 Q 150.00 98.41 112.50 99.67 Q 75.00 100.93 37.50 100.12 Q 0.00 99.31 0.01 82.32 Q 0.02 65.33 -0.90 49.00 Q -1.83 32.67 -0.91 15.47 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Determine if the current node version supports the</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">`--preserve-symlinks` flag.</text>
-    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2022-11-02</text>
-    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 1</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Determine if the current node version supports the</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">`--preserve-symlinks` flag.</text>
+    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2022-11-02</text>
+    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 1</text>
   </g>
   <g class="popup" data-for="tarn" visibility="hidden">
     <path d="M 1.28 13.13 Q 0.00 2.25 37.50 1.33 Q 75.00 0.41 112.50 -0.57 Q 150.00 -1.55 187.50 -1.30 Q 225.00 -1.04 262.50 -0.43 Q 300.00 0.17 298.83 12.09 Q 297.66 24.00 297.70 36.00 Q 297.74 48.00 300.19 60.00 Q 302.63 72.00 263.82 72.14 Q 225.00 72.29 187.50 71.33 Q 150.00 70.37 112.50 69.92 Q 75.00 69.46 37.50 70.60 Q 0.00 71.74 1.86 59.87 Q 3.72 48.00 3.15 36.00 Q 2.57 24.00 1.28 13.13 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Simple and robust resource pool for node.js</text>
-    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2024-06-26</text>
-    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 505</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Simple and robust resource pool for node.js</text>
+    <text x="217.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2024-06-26</text>
+    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 505</text>
   </g>
   <g class="popup" data-for="tildify" visibility="hidden">
     <path d="M -0.78 16.97 Q 0.00 1.28 37.50 -1.29 Q 75.00 -3.87 112.50 -3.15 Q 150.00 -2.43 187.50 -2.75 Q 225.00 -3.07 262.50 -0.81 Q 300.00 1.46 301.65 17.06 Q 303.30 32.67 300.21 49.00 Q 297.13 65.33 299.07 81.67 Q 301.01 98.00 263.00 96.28 Q 225.00 94.56 187.50 94.67 Q 150.00 94.78 112.50 94.75 Q 75.00 94.71 37.50 96.47 Q 0.00 98.23 1.68 81.78 Q 3.37 65.33 0.90 49.00 Q -1.56 32.67 -0.78 16.97 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Convert an absolute path to a tilde path:</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">`/Users/sindresorhus/dev` → `~/dev`</text>
-    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">⚠ last commit: 2022-07-08</text>
-    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 96</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Convert an absolute path to a tilde path:</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">`/Users/sindresorhus/dev` → `~/dev`</text>
+    <text x="217.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">⚠ last commit: 2022-07-08</text>
+    <text x="75.0" y="73.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 96</text>
   </g>
   <style>
     .popup { pointer-events: none; transition: opacity 0.15s ease, transform 0.1s ease; }

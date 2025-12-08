@@ -15,25 +15,25 @@
   <a href="https://github.com/pydantic/typing-inspection" target="_blank"><path id="block-typing-inspection" class="block" d="M 625.56 199.46 Q 627.04 173.92 658.03 175.34 Q 689.01 176.76 720.00 175.86 Q 750.99 174.96 781.97 175.33 Q 812.96 175.70 812.19 200.35 Q 811.43 225.00 812.40 250.00 Q 813.38 275.00 811.28 300.00 Q 809.17 325.00 780.08 324.04 Q 750.99 323.08 720.00 324.89 Q 689.01 326.70 658.03 325.10 Q 627.04 323.51 626.22 299.25 Q 625.41 275.00 624.74 250.00 Q 624.08 225.00 625.56 199.46 Z" fill="rgba(205,205,205,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-1.013 720.00 250.00)"/></a>
   <g class="block-text" data-block="annotated-types">
   <a href="https://github.com/annotated-types/annotated-types" target="_blank">    <rect x="110.13" y="239.65" width="139.73" height="20.70" fill="rgba(207,207,207,1)"/>
-    <text x="180.00" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="20.7" fill="#333">annotated-types</text>
+    <text x="180.00" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="20.7" fill="#333">annotated-types</text>
 </a>  </g>
   <g class="block-text" data-block="pydantic">
   <a href="https://github.com/pydantic/pydantic" target="_blank">    <rect x="406.80" y="88.00" width="86.40" height="24.00" fill="rgba(171,171,171,1)"/>
-    <text x="450.00" y="100.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">pydantic</text>
+    <text x="450.00" y="100.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">pydantic</text>
 </a>  </g>
   <g class="block-text" data-block="pydantic-core">
   <a href="https://github.com/pydantic/pydantic-core" target="_blank">    <rect x="379.80" y="238.00" width="140.40" height="24.00" fill="rgba(163,163,163,1)"/>
-    <text x="450.00" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">pydantic-core</text>
+    <text x="450.00" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">pydantic-core</text>
 </a>  </g>
   <g class="block-text" data-block="typing-extensions">
   <a href="https://github.com/python/typing_extensions" target="_blank">    <rect x="358.20" y="388.00" width="183.60" height="24.00" fill="rgba(227,227,227,1)"/>
-    <text x="450.00" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">typing-extensions</text>
+    <text x="450.00" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">typing-extensions</text>
 </a>  </g>
   <g class="block-text" data-block="typing-inspection">
   <a href="https://github.com/pydantic/typing-inspection" target="_blank">    <rect x="655.35" y="241.55" width="129.29" height="16.90" fill="rgba(205,205,205,1)"/>
-    <text x="720.00" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="16.9" fill="#333">typing-inspection</text>
+    <text x="720.00" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16.9" fill="#333">typing-inspection</text>
 </a>  </g>
-  <text x="450.0" y="564.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
+  <text x="450.0" y="564.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 322.0 580.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
   <foreignObject x="30.0" y="604.0" width="168.0" height="120.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
@@ -87,7 +87,7 @@
     a, .package-entry { cursor: pointer; }
     .nebraska-entry {
       text-align: center;
-      font-family: 'Patrick Hand', cursive;
+      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
       overflow: hidden;
       height: 100%;
     }
@@ -135,39 +135,39 @@
   ]]></script>
   <g class="popup" data-for="annotated-types" visibility="hidden">
     <path d="M -0.48 14.81 Q 0.00 -3.05 37.50 -1.17 Q 75.00 0.70 112.50 0.36 Q 150.00 0.02 187.50 -0.21 Q 225.00 -0.44 262.50 1.22 Q 300.00 2.89 298.79 17.78 Q 297.58 32.67 298.41 49.00 Q 299.25 65.33 300.55 81.67 Q 301.85 98.00 263.43 98.58 Q 225.00 99.16 187.50 97.20 Q 150.00 95.25 112.50 97.03 Q 75.00 98.81 37.50 97.75 Q 0.00 96.69 1.25 81.01 Q 2.50 65.33 0.77 49.00 Q -0.96 32.67 -0.48 14.81 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Reusable constraint types to use with typing.Annotated</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-10</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2024-05-20</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 583</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Reusable constraint types to use with typing.Annotated</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-10</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2024-05-20</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 583</text>
   </g>
   <g class="popup" data-for="pydantic" visibility="hidden">
     <path d="M 0.78 16.96 Q 0.00 1.25 37.50 -0.00 Q 75.00 -1.26 112.50 0.86 Q 150.00 2.98 187.50 1.12 Q 225.00 -0.74 262.50 0.26 Q 300.00 1.26 301.84 16.96 Q 303.69 32.67 299.91 49.00 Q 296.13 65.33 296.70 81.67 Q 297.26 98.00 261.13 99.22 Q 225.00 100.43 187.50 97.55 Q 150.00 94.67 112.50 97.30 Q 75.00 99.93 37.50 97.13 Q 0.00 94.33 -1.53 79.83 Q -3.06 65.33 -0.75 49.00 Q 1.56 32.67 0.78 16.96 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Data validation using Python type hints</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-30</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-11-26</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 26.0k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Data validation using Python type hints</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-30</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-11-26</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 26.0k</text>
   </g>
   <g class="popup" data-for="pydantic-core" visibility="hidden">
     <path d="M 0.19 20.16 Q 0.00 -1.02 37.50 -2.19 Q 75.00 -3.37 112.50 -3.02 Q 150.00 -2.67 187.50 -0.49 Q 225.00 1.70 262.50 2.50 Q 300.00 3.30 298.03 22.32 Q 296.05 41.33 297.18 62.00 Q 298.30 82.67 301.13 103.33 Q 303.96 124.00 264.48 125.89 Q 225.00 127.77 187.50 125.48 Q 150.00 123.19 112.50 124.74 Q 75.00 126.29 37.50 124.92 Q 0.00 123.55 0.89 103.11 Q 1.79 82.67 1.08 62.00 Q 0.38 41.33 0.19 20.16 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Core functionality for Pydantic validation and</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">serialization</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-10</text>
-    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-11-04</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 1.7k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Core functionality for Pydantic validation and</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">serialization</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-10</text>
+    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-11-04</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 1.7k</text>
   </g>
   <g class="popup" data-for="typing-extensions" visibility="hidden">
     <path d="M 0.25 17.37 Q 0.00 2.08 37.50 0.00 Q 75.00 -2.08 112.50 -0.93 Q 150.00 0.21 187.50 1.06 Q 225.00 1.91 262.50 2.39 Q 300.00 2.86 299.40 17.77 Q 298.81 32.67 299.80 49.00 Q 300.80 65.33 299.13 81.67 Q 297.46 98.00 261.23 98.13 Q 225.00 98.26 187.50 99.57 Q 150.00 100.87 112.50 99.47 Q 75.00 98.07 37.50 98.89 Q 0.00 99.71 -0.29 82.52 Q -0.58 65.33 -0.04 49.00 Q 0.50 32.67 0.25 17.37 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Backported and Experimental Type Hints for Python 3.9+</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-18</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-08-25</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 537</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Backported and Experimental Type Hints for Python 3.9+</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-18</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-08-25</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 537</text>
   </g>
   <g class="popup" data-for="typing-inspection" visibility="hidden">
     <path d="M -0.40 15.48 Q 0.00 -1.71 37.50 -2.21 Q 75.00 -2.71 112.50 -0.84 Q 150.00 1.04 187.50 1.78 Q 225.00 2.52 262.50 0.94 Q 300.00 -0.64 301.48 16.01 Q 302.96 32.67 302.65 49.00 Q 302.33 65.33 299.18 81.67 Q 296.02 98.00 260.51 99.85 Q 225.00 101.70 187.50 101.62 Q 150.00 101.55 112.50 100.69 Q 75.00 99.83 37.50 100.65 Q 0.00 101.48 0.16 83.41 Q 0.32 65.33 -0.24 49.00 Q -0.80 32.67 -0.40 15.48 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Runtime typing introspection tools</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-10-01</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-10-01</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 56</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Runtime typing introspection tools</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-10-01</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-10-01</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 56</text>
   </g>
   <style>
     .popup { pointer-events: none; transition: opacity 0.15s ease, transform 0.1s ease; }

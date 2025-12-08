@@ -19,41 +19,41 @@
   <a href="https://github.com/python/typing_extensions" target="_blank"><path id="block-typing-extensions" class="block" d="M 651.00 280.91 Q 650.03 246.83 662.68 245.24 Q 675.34 243.66 688.00 243.86 Q 700.66 244.05 713.32 245.31 Q 725.97 246.57 724.83 280.79 Q 723.68 315.00 726.55 348.75 Q 729.42 382.50 726.74 416.25 Q 724.05 450.00 725.30 483.75 Q 726.55 517.50 727.04 551.25 Q 727.54 585.00 727.45 618.75 Q 727.36 652.50 728.41 686.25 Q 729.46 720.00 729.27 753.75 Q 729.08 787.50 729.30 821.25 Q 729.51 855.00 715.09 853.02 Q 700.66 851.03 688.00 851.29 Q 675.34 851.54 662.68 853.85 Q 650.03 856.15 649.41 821.82 Q 648.80 787.50 648.93 753.75 Q 649.07 720.00 650.77 686.25 Q 652.48 652.50 650.03 618.75 Q 647.59 585.00 649.43 551.25 Q 651.27 517.50 649.14 483.75 Q 647.01 450.00 647.20 416.25 Q 647.38 382.50 649.68 348.75 Q 651.97 315.00 651.00 280.91 Z" fill="rgba(227,227,227,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.037 688.00 551.25)"/></a>
   <g class="block-text" data-block="click">
   <a href="https://github.com/pallets/click" target="_blank">    <rect x="85.00" y="336.75" width="54.00" height="24.00" fill="rgba(215,215,215,1)"/>
-    <text x="112.00" y="348.75" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">click</text>
+    <text x="112.00" y="348.75" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">click</text>
 </a>  </g>
   <g class="block-text" data-block="colorama">
   <a href="https://github.com/tartley/colorama" target="_blank">    <rect x="68.80" y="640.50" width="86.40" height="24.00" fill="rgba(185,185,185,1)"/>
-    <text x="112.00" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">colorama</text>
+    <text x="112.00" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">colorama</text>
 </a>  </g>
   <g class="block-text" data-block="markdown-it-py">
   <a href="https://github.com/executablebooks/markdown-it-py" target="_blank">    <rect x="247.62" y="498.44" width="16.77" height="105.62" fill="rgba(192,192,192,1)"/>
-    <text x="256.00" y="551.25" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="16.8" fill="#333" transform="rotate(-90 256.00 551.25)">markdown-it-py</text>
+    <text x="256.00" y="551.25" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16.8" fill="#333" transform="rotate(-90 256.00 551.25)">markdown-it-py</text>
 </a>  </g>
   <g class="block-text" data-block="mdurl">
   <a href="https://github.com/executablebooks/mdurl" target="_blank">    <rect x="246.74" y="732.92" width="18.52" height="41.66" fill="rgba(171,171,171,1)"/>
-    <text x="256.00" y="753.75" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="18.5" fill="#333" transform="rotate(-90 256.00 753.75)">mdurl</text>
+    <text x="256.00" y="753.75" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.5" fill="#333" transform="rotate(-90 256.00 753.75)">mdurl</text>
 </a>  </g>
   <g class="block-text" data-block="pygments">
   <a href="https://github.com/pygments/pygments" target="_blank">    <rect x="356.80" y="640.50" width="86.40" height="24.00" fill="rgba(226,226,226,1)"/>
-    <text x="400.00" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">pygments</text>
+    <text x="400.00" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">pygments</text>
 </a>  </g>
   <g class="block-text" data-block="rich">
   <a href="https://github.com/Textualize/rich" target="_blank">    <rect x="306.40" y="336.75" width="43.20" height="24.00" fill="rgba(225,225,225,1)"/>
-    <text x="328.00" y="348.75" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">rich</text>
+    <text x="328.00" y="348.75" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">rich</text>
 </a>  </g>
   <g class="block-text" data-block="shellingham">
   <a href="https://github.com/sarugaku/shellingham" target="_blank">    <rect x="532.00" y="491.85" width="24.00" height="118.80" fill="rgba(205,205,205,1)"/>
-    <text x="544.00" y="551.25" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333" transform="rotate(-90 544.00 551.25)">shellingham</text>
+    <text x="544.00" y="551.25" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 544.00 551.25)">shellingham</text>
 </a>  </g>
   <g class="block-text" data-block="typer">
   <a href="https://github.com/fastapi/typer" target="_blank">    <rect x="373.00" y="134.25" width="54.00" height="24.00" fill="rgba(181,181,181,1)"/>
-    <text x="400.00" y="146.25" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">typer</text>
+    <text x="400.00" y="146.25" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">typer</text>
 </a>  </g>
   <g class="block-text" data-block="typing-extensions">
   <a href="https://github.com/python/typing_extensions" target="_blank">    <rect x="676.00" y="459.45" width="24.00" height="183.60" fill="rgba(227,227,227,1)"/>
-    <text x="688.00" y="551.25" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333" transform="rotate(-90 688.00 551.25)">typing-extensions</text>
+    <text x="688.00" y="551.25" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 688.00 551.25)">typing-extensions</text>
 </a>  </g>
-  <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
+  <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 272.0 980.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
   <foreignObject x="30.0" y="1004.0" width="370.0" height="120.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
@@ -105,7 +105,7 @@
     a, .package-entry { cursor: pointer; }
     .nebraska-entry {
       text-align: center;
-      font-family: 'Patrick Hand', cursive;
+      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
       overflow: hidden;
       height: 100%;
     }
@@ -153,68 +153,68 @@
   ]]></script>
   <g class="popup" data-for="click" visibility="hidden">
     <path d="M -0.39 17.64 Q 0.00 2.62 37.50 0.44 Q 75.00 -1.75 112.50 -0.78 Q 150.00 0.20 187.50 0.05 Q 225.00 -0.09 262.50 -0.79 Q 300.00 -1.49 300.74 15.59 Q 301.48 32.67 299.57 49.00 Q 297.66 65.33 298.53 81.67 Q 299.41 98.00 262.20 96.17 Q 225.00 94.34 187.50 95.32 Q 150.00 96.31 112.50 97.48 Q 75.00 98.64 37.50 99.30 Q 0.00 99.96 0.43 82.65 Q 0.86 65.33 0.04 49.00 Q -0.78 32.67 -0.39 17.64 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Composable command line interface toolkit</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-25</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-11-15</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 17.0k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Composable command line interface toolkit</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-25</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-11-15</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 17.0k</text>
   </g>
   <g class="popup" data-for="colorama" visibility="hidden">
     <path d="M -0.78 13.13 Q 0.00 2.25 37.50 1.41 Q 75.00 0.56 112.50 0.19 Q 150.00 -0.18 187.50 0.54 Q 225.00 1.26 262.50 2.15 Q 300.00 3.04 301.39 13.52 Q 302.79 24.00 302.44 36.00 Q 302.09 48.00 299.39 60.00 Q 296.68 72.00 260.84 71.64 Q 225.00 71.27 187.50 72.17 Q 150.00 73.07 112.50 71.54 Q 75.00 70.02 37.50 69.23 Q 0.00 68.44 -0.60 58.22 Q -1.20 48.00 -1.38 36.00 Q -1.55 24.00 -0.78 13.13 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Cross-platform colored terminal text.</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-07-09</text>
-    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 3.8k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Cross-platform colored terminal text.</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-07-09</text>
+    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 3.8k</text>
   </g>
   <g class="popup" data-for="markdown-it-py" visibility="hidden">
     <path d="M -0.91 20.36 Q 0.00 -0.62 37.50 -0.86 Q 75.00 -1.11 112.50 -2.47 Q 150.00 -3.83 187.50 -0.03 Q 225.00 3.77 262.50 -0.09 Q 300.00 -3.96 298.88 18.69 Q 297.76 41.33 297.71 62.00 Q 297.65 82.67 297.92 103.33 Q 298.19 124.00 261.60 123.94 Q 225.00 123.87 187.50 123.56 Q 150.00 123.24 112.50 125.04 Q 75.00 126.84 37.50 125.17 Q 0.00 123.50 -1.19 103.08 Q -2.38 82.67 -2.10 62.00 Q -1.81 41.33 -0.91 20.36 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Python port of markdown-it. Markdown parsing, done</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">right!</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-12-01</text>
-    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-08-11</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 1.2k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Python port of markdown-it. Markdown parsing, done</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">right!</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-12-01</text>
+    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-08-11</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 1.2k</text>
   </g>
   <g class="popup" data-for="mdurl" visibility="hidden">
     <path d="M 1.87 11.00 Q 0.00 -1.99 37.50 0.60 Q 75.00 3.20 112.50 -0.08 Q 150.00 -3.37 187.50 -1.84 Q 225.00 -0.32 262.50 -1.14 Q 300.00 -1.97 299.95 11.02 Q 299.90 24.00 298.60 36.00 Q 297.29 48.00 298.15 60.00 Q 299.01 72.00 262.00 73.10 Q 225.00 74.20 187.50 74.52 Q 150.00 74.84 112.50 73.42 Q 75.00 72.01 37.50 73.80 Q 0.00 75.59 -1.32 61.80 Q -2.64 48.00 0.55 36.00 Q 3.75 24.00 1.87 11.00 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Markdown URL utilities</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-12-01</text>
-    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 14</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Markdown URL utilities</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-12-01</text>
+    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 14</text>
   </g>
   <g class="popup" data-for="pygments" visibility="hidden">
     <path d="M 0.82 20.65 Q 0.00 -0.03 37.50 -0.75 Q 75.00 -1.48 112.50 -0.80 Q 150.00 -0.12 187.50 -0.48 Q 225.00 -0.83 262.50 -1.55 Q 300.00 -2.26 298.29 19.53 Q 296.58 41.33 298.39 62.00 Q 300.20 82.67 300.82 103.33 Q 301.44 124.00 263.22 125.74 Q 225.00 127.47 187.50 125.62 Q 150.00 123.76 112.50 125.25 Q 75.00 126.74 37.50 125.42 Q 0.00 124.11 1.99 103.39 Q 3.98 82.67 2.81 62.00 Q 1.64 41.33 0.82 20.65 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Pygments is a syntax highlighting package written in</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Python.</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-08-12</text>
-    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-06-21</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 2.1k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Pygments is a syntax highlighting package written in</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Python.</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-08-12</text>
+    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-06-21</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 2.1k</text>
   </g>
   <g class="popup" data-for="rich" visibility="hidden">
     <path d="M 1.72 20.36 Q 0.00 -0.61 37.50 -0.42 Q 75.00 -0.23 112.50 1.72 Q 150.00 3.66 187.50 1.31 Q 225.00 -1.03 262.50 0.00 Q 300.00 1.04 301.74 21.19 Q 303.48 41.33 299.96 62.00 Q 296.43 82.67 298.83 103.33 Q 301.22 124.00 263.11 123.78 Q 225.00 123.56 187.50 125.65 Q 150.00 127.74 112.50 126.92 Q 75.00 126.10 37.50 126.48 Q 0.00 126.87 1.22 104.77 Q 2.44 82.67 2.94 62.00 Q 3.43 41.33 1.72 20.36 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Render rich text, tables, progress bars, syntax</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">highlighting, markdown and more to the terminal</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-10-09</text>
-    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-10-09</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 54.6k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Render rich text, tables, progress bars, syntax</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">highlighting, markdown and more to the terminal</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-10-09</text>
+    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-10-09</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 54.6k</text>
   </g>
   <g class="popup" data-for="shellingham" visibility="hidden">
     <path d="M -1.52 17.21 Q 0.00 1.75 37.50 2.03 Q 75.00 2.31 112.50 2.85 Q 150.00 3.39 187.50 2.14 Q 225.00 0.90 262.50 -1.38 Q 300.00 -3.65 300.37 14.51 Q 300.74 32.67 301.11 49.00 Q 301.47 65.33 300.68 81.67 Q 299.88 98.00 262.44 99.73 Q 225.00 101.45 187.50 99.86 Q 150.00 98.27 112.50 99.15 Q 75.00 100.03 37.50 97.08 Q 0.00 94.13 -0.13 79.73 Q -0.26 65.33 -1.64 49.00 Q -3.03 32.67 -1.52 17.21 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Tool to Detect Surrounding Shell</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-09-04</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2023-10-24</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 302</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Tool to Detect Surrounding Shell</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-09-04</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2023-10-24</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 302</text>
   </g>
   <g class="popup" data-for="typer" visibility="hidden">
     <path d="M -0.40 18.93 Q 0.00 -3.47 37.50 -0.14 Q 75.00 3.18 112.50 2.96 Q 150.00 2.74 187.50 2.90 Q 225.00 3.07 262.50 1.56 Q 300.00 0.04 300.24 20.69 Q 300.49 41.33 302.12 62.00 Q 303.74 82.67 301.91 103.33 Q 300.07 124.00 262.54 124.17 Q 225.00 124.33 187.50 124.49 Q 150.00 124.65 112.50 126.03 Q 75.00 127.41 37.50 124.25 Q 0.00 121.10 0.16 101.88 Q 0.32 82.67 -0.24 62.00 Q -0.80 41.33 -0.40 18.93 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Typer, build great CLIs. Easy to code. Based on Python</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">type hints.</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-12-01</text>
-    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-10-20</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 18.4k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Typer, build great CLIs. Easy to code. Based on Python</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">type hints.</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-12-01</text>
+    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-10-20</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 18.4k</text>
   </g>
   <g class="popup" data-for="typing-extensions" visibility="hidden">
     <path d="M 0.25 17.37 Q 0.00 2.08 37.50 0.00 Q 75.00 -2.08 112.50 -0.93 Q 150.00 0.21 187.50 1.06 Q 225.00 1.91 262.50 2.39 Q 300.00 2.86 299.40 17.77 Q 298.81 32.67 299.80 49.00 Q 300.80 65.33 299.13 81.67 Q 297.46 98.00 261.23 98.13 Q 225.00 98.26 187.50 99.57 Q 150.00 100.87 112.50 99.47 Q 75.00 98.07 37.50 98.89 Q 0.00 99.71 -0.29 82.52 Q -0.58 65.33 -0.04 49.00 Q 0.50 32.67 0.25 17.37 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Backported and Experimental Type Hints for Python 3.9+</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-18</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-08-25</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 537</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Backported and Experimental Type Hints for Python 3.9+</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-18</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-08-25</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 537</text>
   </g>
   <style>
     .popup { pointer-events: none; transition: opacity 0.15s ease, transform 0.1s ease; }

@@ -15,25 +15,25 @@
   <a href="https://github.com/urllib3/urllib3" target="_blank"><path id="block-urllib3" class="block" d="M 623.69 483.07 Q 621.82 448.63 637.88 450.82 Q 653.94 453.00 670.00 450.40 Q 686.06 447.79 702.12 447.11 Q 718.18 446.44 716.91 481.97 Q 715.65 517.50 715.96 551.25 Q 716.27 585.00 717.76 618.75 Q 719.25 652.50 717.52 686.25 Q 715.79 720.00 717.32 753.75 Q 718.84 787.50 716.94 821.25 Q 715.04 855.00 700.55 856.61 Q 686.06 858.22 670.00 856.32 Q 653.94 854.42 637.88 854.28 Q 621.82 854.15 621.37 820.82 Q 620.91 787.50 621.16 753.75 Q 621.41 720.00 619.65 686.25 Q 617.90 652.50 619.15 618.75 Q 620.40 585.00 622.97 551.25 Q 625.55 517.50 623.69 483.07 Z" fill="rgba(238,238,238,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.055 670.00 652.50)"/></a>
   <g class="block-text" data-block="certifi">
   <a href="https://github.com/certifi/python-certifi" target="_blank">    <rect x="92.20" y="640.50" width="75.60" height="24.00" fill="rgba(225,225,225,1)"/>
-    <text x="130.00" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">certifi</text>
+    <text x="130.00" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">certifi</text>
 </a>  </g>
   <g class="block-text" data-block="charset-normalizer">
   <a href="https://github.com/jawah/charset_normalizer" target="_blank">    <rect x="298.00" y="555.30" width="24.00" height="194.40" fill="rgba(171,171,171,1)"/>
-    <text x="310.00" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333" transform="rotate(-90 310.00 652.50)">charset-normalizer</text>
+    <text x="310.00" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 310.00 652.50)">charset-normalizer</text>
 </a>  </g>
   <g class="block-text" data-block="idna">
   <a href="https://github.com/kjd/idna" target="_blank">    <rect x="468.40" y="640.50" width="43.20" height="24.00" fill="rgba(203,203,203,1)"/>
-    <text x="490.00" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">idna</text>
+    <text x="490.00" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">idna</text>
 </a>  </g>
   <g class="block-text" data-block="requests">
   <a href="https://github.com/psf/requests" target="_blank">    <rect x="356.80" y="235.50" width="86.40" height="24.00" fill="rgba(213,213,213,1)"/>
-    <text x="400.00" y="247.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333">requests</text>
+    <text x="400.00" y="247.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">requests</text>
 </a>  </g>
   <g class="block-text" data-block="urllib3">
   <a href="https://github.com/urllib3/urllib3" target="_blank">    <rect x="658.00" y="614.70" width="24.00" height="75.60" fill="rgba(238,238,238,1)"/>
-    <text x="670.00" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="24.0" fill="#333" transform="rotate(-90 670.00 652.50)">urllib3</text>
+    <text x="670.00" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 670.00 652.50)">urllib3</text>
 </a>  </g>
-  <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
+  <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 272.0 980.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
   <foreignObject x="30.0" y="1004.0" width="370.0" height="120.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
@@ -84,7 +84,7 @@
     a, .package-entry { cursor: pointer; }
     .nebraska-entry {
       text-align: center;
-      font-family: 'Patrick Hand', cursive;
+      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
       overflow: hidden;
       height: 100%;
     }
@@ -132,39 +132,39 @@
   ]]></script>
   <g class="popup" data-for="certifi" visibility="hidden">
     <path d="M -1.76 12.24 Q 0.00 0.48 37.50 -0.71 Q 75.00 -1.91 112.50 -2.25 Q 150.00 -2.58 187.50 -2.29 Q 225.00 -2.00 262.50 -2.52 Q 300.00 -3.04 298.90 10.48 Q 297.79 24.00 299.66 36.00 Q 301.53 48.00 299.27 60.00 Q 297.01 72.00 261.01 73.49 Q 225.00 74.98 187.50 72.04 Q 150.00 69.10 112.50 69.77 Q 75.00 70.44 37.50 72.49 Q 0.00 74.54 1.29 61.27 Q 2.59 48.00 -0.46 36.00 Q -3.52 24.00 -1.76 12.24 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Python package for providing Mozilla&#39;s CA Bundle.</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-11-24</text>
-    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 939</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Python package for providing Mozilla&#39;s CA Bundle.</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-11-24</text>
+    <text x="75.0" y="47.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 939</text>
   </g>
   <g class="popup" data-for="charset-normalizer" visibility="hidden">
     <path d="M 0.10 18.81 Q 0.00 -3.72 37.50 -0.99 Q 75.00 1.74 112.50 2.65 Q 150.00 3.57 187.50 0.39 Q 225.00 -2.78 262.50 -3.10 Q 300.00 -3.42 299.33 18.96 Q 298.66 41.33 297.86 62.00 Q 297.07 82.67 298.23 103.33 Q 299.40 124.00 262.20 123.44 Q 225.00 122.89 187.50 121.99 Q 150.00 121.10 112.50 123.33 Q 75.00 125.57 37.50 124.91 Q 0.00 124.26 -0.02 103.46 Q -0.03 82.67 0.09 62.00 Q 0.21 41.33 0.10 18.81 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">The Real First Universal Charset Detector. Open, modern</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">and actively maintained alternative to Chardet.</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-12-01</text>
-    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-10-14</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 719</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">The Real First Universal Charset Detector. Open, modern</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">and actively maintained alternative to Chardet.</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-12-01</text>
+    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-10-14</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 719</text>
   </g>
   <g class="popup" data-for="idna" visibility="hidden">
     <path d="M 1.33 16.68 Q 0.00 0.69 37.50 -1.61 Q 75.00 -3.91 112.50 -1.05 Q 150.00 1.82 187.50 1.76 Q 225.00 1.69 262.50 2.67 Q 300.00 3.64 301.14 18.16 Q 302.28 32.67 301.80 49.00 Q 301.32 65.33 299.22 81.67 Q 297.11 98.00 261.06 96.88 Q 225.00 95.75 187.50 95.98 Q 150.00 96.21 112.50 97.52 Q 75.00 98.83 37.50 98.31 Q 0.00 97.79 0.01 81.56 Q 0.03 65.33 1.34 49.00 Q 2.66 32.67 1.33 16.68 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Internationalized Domain Names in Applications (IDNA)</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-10-20</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-10-12</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 267</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Internationalized Domain Names in Applications (IDNA)</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-10-20</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-10-12</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 267</text>
   </g>
   <g class="popup" data-for="requests" visibility="hidden">
     <path d="M 0.50 16.64 Q 0.00 0.61 37.50 -1.49 Q 75.00 -3.60 112.50 -1.29 Q 150.00 1.02 187.50 2.09 Q 225.00 3.16 262.50 3.11 Q 300.00 3.05 299.12 17.86 Q 298.24 32.67 298.31 49.00 Q 298.38 65.33 297.36 81.67 Q 296.34 98.00 260.67 96.03 Q 225.00 94.06 187.50 95.90 Q 150.00 97.75 112.50 96.79 Q 75.00 95.84 37.50 97.76 Q 0.00 99.68 -0.53 82.50 Q -1.06 65.33 -0.03 49.00 Q 1.01 32.67 0.50 16.64 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">Python HTTP for Humans.</text>
-    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-12-01</text>
-    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-08-18</text>
-    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 53.5k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">Python HTTP for Humans.</text>
+    <text x="225.0" y="48.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-12-01</text>
+    <text x="225.0" y="71.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-08-18</text>
+    <text x="75.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 53.5k</text>
   </g>
   <g class="popup" data-for="urllib3" visibility="hidden">
     <path d="M -0.59 22.39 Q 0.00 3.45 37.50 2.32 Q 75.00 1.19 112.50 1.92 Q 150.00 2.65 187.50 0.19 Q 225.00 -2.27 262.50 0.05 Q 300.00 2.37 300.63 21.85 Q 301.27 41.33 298.68 62.00 Q 296.09 82.67 296.45 103.33 Q 296.80 124.00 260.90 124.52 Q 225.00 125.04 187.50 125.28 Q 150.00 125.52 112.50 125.83 Q 75.00 126.13 37.50 124.74 Q 0.00 123.35 1.42 103.01 Q 2.85 82.67 0.84 62.00 Q -1.18 41.33 -0.59 22.39 Z" fill="white" stroke="#333" stroke-width="1.5" stroke-linejoin="round"/>
-    <text x="10.0" y="22.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">HTTP library with thread-safe connection pooling, file</text>
-    <text x="10.0" y="48.0" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">post, and more.</text>
-    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last commit: 2025-12-01</text>
-    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', cursive" font-size="14" fill="#444">last release: 2025-06-18</text>
-    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', cursive" font-size="22" fill="#222" font-weight="bold">★ 4.0k</text>
+    <text x="10.0" y="22.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">HTTP library with thread-safe connection pooling, file</text>
+    <text x="10.0" y="48.0" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">post, and more.</text>
+    <text x="225.0" y="74.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last commit: 2025-12-01</text>
+    <text x="225.0" y="97.4" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14" fill="#444">last release: 2025-06-18</text>
+    <text x="75.0" y="86.0" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22" fill="#222" font-weight="bold">★ 4.0k</text>
   </g>
   <style>
     .popup { pointer-events: none; transition: opacity 0.15s ease, transform 0.1s ease; }
