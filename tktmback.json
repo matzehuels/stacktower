@@ -1,0 +1,2847 @@
+{
+  "nodes": [
+    {
+      "id": "wrapt",
+      "meta": {
+        "author": "Graham Dumpleton",
+        "license": "Copyright (c) 2013-2025, Graham Dumpleton\n        All rights reserved.\n        \n        Redistribution and use in source and binary forms, with or without\n        modification, are permitted provided that the following conditions are met:\n        \n        * Redistributions of source code must retain the above copyright notice, this\n          list of conditions and the following disclaimer.\n        \n        * Redistributions in binary form must reproduce the above copyright notice,\n          this list of conditions and the following disclaimer in the documentation\n          and/or other materials provided with the distribution.\n        \n        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\n        AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\n        IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE\n        ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE\n        LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR\n        CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF\n        SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS\n        INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN\n        CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)\n        ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE\n        POSSIBILITY OF SUCH DAMAGE.\n        ",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-07",
+        "repo_last_release": "2025-11-07",
+        "repo_maintainers": [
+          "GrahamDumpleton",
+          "althonos",
+          "varunagrawal",
+          "agriffis",
+          "finnagin"
+        ],
+        "repo_owner": "GrahamDumpleton",
+        "repo_stars": 2241,
+        "repo_url": "https://github.com/GrahamDumpleton/wrapt",
+        "summary": "Module for decorators, wrappers and monkey patching.",
+        "version": "2.0.1"
+      }
+    },
+    {
+      "id": "app",
+      "meta": {
+        "version": "0.0.0"
+      }
+    },
+    {
+      "id": "emails",
+      "meta": {
+        "author": "Sergey Lavrinenko",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2024-01-10",
+        "repo_maintainers": [
+          "lavr",
+          "mck9",
+          "smihai",
+          "Daviey",
+          "sochi"
+        ],
+        "repo_owner": "lavr",
+        "repo_stars": 421,
+        "repo_url": "https://github.com/lavr/python-emails",
+        "summary": "Modern python library for emails.",
+        "version": "0.6"
+      }
+    },
+    {
+      "id": "typing-extensions",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-02",
+        "repo_last_release": "2025-08-25",
+        "repo_maintainers": [
+          "JelleZijlstra",
+          "AlexWaygood",
+          "srittau",
+          "brianschubert",
+          "Daraan"
+        ],
+        "repo_owner": "python",
+        "repo_stars": 541,
+        "repo_url": "https://github.com/python/typing_extensions",
+        "summary": "Backported and Experimental Type Hints for Python 3.9+",
+        "version": "4.15.0"
+      }
+    },
+    {
+      "id": "certifi",
+      "meta": {
+        "author": "Kenneth Reitz",
+        "license": "MPL-2.0",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-02",
+        "repo_maintainers": [
+          "Lukasa",
+          "alex",
+          "sigmavirus24"
+        ],
+        "repo_owner": "certifi",
+        "repo_stars": 941,
+        "repo_url": "https://github.com/certifi/python-certifi",
+        "summary": "Python package for providing Mozilla's CA Bundle.",
+        "version": "2025.11.12"
+      }
+    },
+    {
+      "id": "pydantic-graph",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-08",
+        "repo_last_release": "2025-12-05",
+        "repo_maintainers": [
+          "samuelcolvin",
+          "DouweM",
+          "Kludex",
+          "dmontagu",
+          "alexmojaki"
+        ],
+        "repo_owner": "pydantic",
+        "repo_stars": 13698,
+        "repo_topics": [
+          "agent-framework",
+          "genai",
+          "llm",
+          "pydantic",
+          "python"
+        ],
+        "repo_url": "https://github.com/pydantic/pydantic-ai",
+        "summary": "Graph and state machine library",
+        "version": "1.27.0"
+      }
+    },
+    {
+      "id": "httpx",
+      "meta": {
+        "license": "BSD-3-Clause",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2024-12-06",
+        "repo_maintainers": [
+          "lovelydinosaur",
+          "florimondmanca",
+          "sethmlarson",
+          "karpetrosyan"
+        ],
+        "repo_owner": "encode",
+        "repo_stars": 14820,
+        "repo_topics": [
+          "asyncio",
+          "http",
+          "python",
+          "trio"
+        ],
+        "repo_url": "https://github.com/encode/httpx",
+        "summary": "The next generation HTTP client.",
+        "version": "0.28.1"
+      }
+    },
+    {
+      "id": "tzlocal",
+      "meta": {
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-07-08",
+        "repo_maintainers": [
+          "regebro",
+          "agronholm",
+          "revansSZ",
+          "EdwardBetts",
+          "jean"
+        ],
+        "repo_owner": "regebro",
+        "repo_stars": 213,
+        "repo_url": "https://github.com/regebro/tzlocal",
+        "summary": "tzinfo object for the local timezone",
+        "version": "5.3.1"
+      }
+    },
+    {
+      "id": "markupsafe",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-09-27",
+        "repo_last_release": "2025-09-27",
+        "repo_maintainers": [
+          "davidism",
+          "mitsuhiko"
+        ],
+        "repo_owner": "pallets",
+        "repo_stars": 680,
+        "repo_topics": [
+          "html",
+          "html-escape",
+          "jinja",
+          "markupsafe",
+          "pallets",
+          "python",
+          "template-engine"
+        ],
+        "repo_url": "https://github.com/pallets/markupsafe",
+        "summary": "Safely add untrusted strings to HTML/XML markup.",
+        "version": "3.0.3"
+      }
+    },
+    {
+      "id": "packaging",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-02",
+        "repo_last_release": "2025-04-19",
+        "repo_maintainers": [
+          "dstufft",
+          "pradyunsg",
+          "brettcannon",
+          "di",
+          "henryiii"
+        ],
+        "repo_owner": "pypa",
+        "repo_stars": 688,
+        "repo_url": "https://github.com/pypa/packaging",
+        "summary": "Core utilities for Python packages",
+        "version": "25.0"
+      }
+    },
+    {
+      "id": "pycryptodome",
+      "meta": {
+        "author": "Helder Eijs",
+        "license": "BSD, Public Domain",
+        "repo_archived": false,
+        "repo_language": "C",
+        "repo_last_commit": "2025-11-16",
+        "repo_last_release": "2025-05-17",
+        "repo_maintainers": [
+          "Legrandin",
+          "dlitz",
+          "roughconsensusandrunningcode",
+          "sebastinas",
+          "thorsteneb"
+        ],
+        "repo_owner": "Legrandin",
+        "repo_stars": 3161,
+        "repo_topics": [
+          "cryptography",
+          "python",
+          "security"
+        ],
+        "repo_url": "https://github.com/Legrandin/pycryptodome",
+        "summary": "Cryptographic library for Python",
+        "version": "3.23.0"
+      }
+    },
+    {
+      "id": "six",
+      "meta": {
+        "author": "Benjamin Peterson",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-15",
+        "repo_maintainers": [
+          "benjaminp",
+          "msabramo",
+          "jaraco",
+          "jdufresne",
+          "brettcannon"
+        ],
+        "repo_owner": "benjaminp",
+        "repo_stars": 1017,
+        "repo_url": "https://github.com/benjaminp/six",
+        "summary": "Python 2 and 3 compatibility utilities",
+        "version": "1.17.0"
+      }
+    },
+    {
+      "id": "argon2-cffi-bindings",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-07-30",
+        "repo_maintainers": [
+          "hynek",
+          "finnagin",
+          "step-security-bot"
+        ],
+        "repo_owner": "hynek",
+        "repo_stars": 15,
+        "repo_url": "https://github.com/hynek/argon2-cffi-bindings",
+        "summary": "Low-level CFFI bindings for Argon2",
+        "version": "25.1.0"
+      }
+    },
+    {
+      "id": "typing-inspection",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-10-01",
+        "repo_last_release": "2025-10-01",
+        "repo_maintainers": [
+          "Viicos",
+          "samuelcolvin",
+          "cdce8p"
+        ],
+        "repo_owner": "pydantic",
+        "repo_stars": 56,
+        "repo_url": "https://github.com/pydantic/typing-inspection",
+        "summary": "Runtime typing introspection tools",
+        "version": "0.4.2"
+      }
+    },
+    {
+      "id": "coverage",
+      "meta": {
+        "author": "Ned Batchelder and 246 others",
+        "license": "Apache-2.0",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-08",
+        "repo_last_release": "2025-12-08",
+        "repo_maintainers": [
+          "nedbat",
+          "strichter",
+          "blueyed",
+          "devdanzin"
+        ],
+        "repo_owner": "coveragepy",
+        "repo_stars": 3293,
+        "repo_url": "https://github.com/coveragepy/coveragepy",
+        "summary": "Code coverage measurement for Python",
+        "version": "7.13.0"
+      }
+    },
+    {
+      "id": "exceptiongroup",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-21",
+        "repo_last_release": "2025-11-21",
+        "repo_maintainers": [
+          "agronholm",
+          "jakkdl",
+          "Zac-HD",
+          "cfbolz"
+        ],
+        "repo_owner": "agronholm",
+        "repo_stars": 48,
+        "repo_url": "https://github.com/agronholm/exceptiongroup",
+        "summary": "Backport of PEP 654 (exception groups)",
+        "version": "1.3.1"
+      }
+    },
+    {
+      "id": "tomli",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_maintainers": [
+          "hukkin",
+          "hukkinj1",
+          "hauntsaninja",
+          "DimitriPapadopoulos"
+        ],
+        "repo_owner": "hukkin",
+        "repo_stars": 540,
+        "repo_topics": [
+          "config",
+          "parser",
+          "python",
+          "toml",
+          "toml-parser",
+          "tomli"
+        ],
+        "repo_url": "https://github.com/hukkin/tomli",
+        "summary": "A lil' TOML parser",
+        "version": "2.3.0"
+      }
+    },
+    {
+      "id": "lxml",
+      "meta": {
+        "author": "lxml dev team",
+        "license": "BSD-3-Clause",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-07",
+        "repo_last_release": "2025-09-21",
+        "repo_maintainers": [
+          "scoder",
+          "SimonSapin",
+          "hugovk",
+          "plq"
+        ],
+        "repo_owner": "lxml",
+        "repo_stars": 2957,
+        "repo_url": "https://github.com/lxml/lxml",
+        "summary": "Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.",
+        "version": "6.0.2"
+      }
+    },
+    {
+      "id": "inspect2",
+      "meta": {
+        "author": "Jelle Zijlstra",
+        "license": "PSF",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2019-08-10",
+        "repo_maintainers": [
+          "JelleZijlstra"
+        ],
+        "repo_owner": "JelleZijlstra",
+        "repo_stars": 3,
+        "repo_topics": [
+          "backports",
+          "inspection",
+          "python"
+        ],
+        "repo_url": "https://github.com/JelleZijlstra/inspect2",
+        "summary": "Backport of the Python 3.6 inspect module to Python 2.7-3.5",
+        "version": "0.1.2"
+      }
+    },
+    {
+      "id": "requests",
+      "meta": {
+        "author": "Kenneth Reitz",
+        "license": "Apache-2.0",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-08-18",
+        "repo_maintainers": [
+          "kennethreitz",
+          "Lukasa",
+          "sigmavirus24",
+          "nateprewitt",
+          "slingamn"
+        ],
+        "repo_owner": "psf",
+        "repo_stars": 53552,
+        "repo_topics": [
+          "client",
+          "cookies",
+          "forhumans",
+          "http",
+          "humans",
+          "python",
+          "python-requests",
+          "requests"
+        ],
+        "repo_url": "https://github.com/psf/requests",
+        "summary": "Python HTTP for Humans.",
+        "version": "2.32.5"
+      }
+    },
+    {
+      "id": "passlib",
+      "meta": {
+        "author": "Eli Collins",
+        "license": "BSD",
+        "summary": "comprehensive password hashing framework supporting over 30 schemes",
+        "version": "1.7.4"
+      }
+    },
+    {
+      "id": "motor",
+      "meta": {
+        "license": "Apache License\n                                   Version 2.0, January 2004\n                                http://www.apache.org/licenses/\n        \n           TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n        \n           1. Definitions.\n        \n              \"License\" shall mean the terms and conditions for use, reproduction,\n              and distribution as defined by Sections 1 through 9 of this document.\n        \n              \"Licensor\" shall mean the copyright owner or entity authorized by\n              the copyright owner that is granting the License.\n        \n              \"Legal Entity\" shall mean the union of the acting entity and all\n              other entities that control, are controlled by, or are under common\n              control with that entity. For the purposes of this definition,\n              \"control\" means (i) the power, direct or indirect, to cause the\n              direction or management of such entity, whether by contract or\n              otherwise, or (ii) ownership of fifty percent (50%) or more of the\n              outstanding shares, or (iii) beneficial ownership of such entity.\n        \n              \"You\" (or \"Your\") shall mean an individual or Legal Entity\n              exercising permissions granted by this License.\n        \n              \"Source\" form shall mean the preferred form for making modifications,\n              including but not limited to software source code, documentation\n              source, and configuration files.\n        \n              \"Object\" form shall mean any form resulting from mechanical\n              transformation or translation of a Source form, including but\n              not limited to compiled object code, generated documentation,\n              and conversions to other media types.\n        \n              \"Work\" shall mean the work of authorship, whether in Source or\n              Object form, made available under the License, as indicated by a\n              copyright notice that is included in or attached to the work\n              (an example is provided in the Appendix below).\n        \n              \"Derivative Works\" shall mean any work, whether in Source or Object\n              form, that is based on (or derived from) the Work and for which the\n              editorial revisions, annotations, elaborations, or other modifications\n              represent, as a whole, an original work of authorship. For the purposes\n              of this License, Derivative Works shall not include works that remain\n              separable from, or merely link (or bind by name) to the interfaces of,\n              the Work and Derivative Works thereof.\n        \n              \"Contribution\" shall mean any work of authorship, including\n              the original version of the Work and any modifications or additions\n              to that Work or Derivative Works thereof, that is intentionally\n              submitted to Licensor for inclusion in the Work by the copyright owner\n              or by an individual or Legal Entity authorized to submit on behalf of\n              the copyright owner. For the purposes of this definition, \"submitted\"\n              means any form of electronic, verbal, or written communication sent\n              to the Licensor or its representatives, including but not limited to\n              communication on electronic mailing lists, source code control systems,\n              and issue tracking systems that are managed by, or on behalf of, the\n              Licensor for the purpose of discussing and improving the Work, but\n              excluding communication that is conspicuously marked or otherwise\n              designated in writing by the copyright owner as \"Not a Contribution.\"\n        \n              \"Contributor\" shall mean Licensor and any individual or Legal Entity\n              on behalf of whom a Contribution has been received by Licensor and\n              subsequently incorporated within the Work.\n        \n           2. Grant of Copyright License. Subject to the terms and conditions of\n              this License, each Contributor hereby grants to You a perpetual,\n              worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n              copyright license to reproduce, prepare Derivative Works of,\n              publicly display, publicly perform, sublicense, and distribute the\n              Work and such Derivative Works in Source or Object form.\n        \n           3. Grant of Patent License. Subject to the terms and conditions of\n              this License, each Contributor hereby grants to You a perpetual,\n              worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n              (except as stated in this section) patent license to make, have made,\n              use, offer to sell, sell, import, and otherwise transfer the Work,\n              where such license applies only to those patent claims licensable\n              by such Contributor that are necessarily infringed by their\n              Contribution(s) alone or by combination of their Contribution(s)\n              with the Work to which such Contribution(s) was submitted. If You\n              institute patent litigation against any entity (including a\n              cross-claim or counterclaim in a lawsuit) alleging that the Work\n              or a Contribution incorporated within the Work constitutes direct\n              or contributory patent infringement, then any patent licenses\n              granted to You under this License for that Work shall terminate\n              as of the date such litigation is filed.\n        \n           4. Redistribution. You may reproduce and distribute copies of the\n              Work or Derivative Works thereof in any medium, with or without\n              modifications, and in Source or Object form, provided that You\n              meet the following conditions:\n        \n              (a) You must give any other recipients of the Work or\n                  Derivative Works a copy of this License; and\n        \n              (b) You must cause any modified files to carry prominent notices\n                  stating that You changed the files; and\n        \n              (c) You must retain, in the Source form of any Derivative Works\n                  that You distribute, all copyright, patent, trademark, and\n                  attribution notices from the Source form of the Work,\n                  excluding those notices that do not pertain to any part of\n                  the Derivative Works; and\n        \n              (d) If the Work includes a \"NOTICE\" text file as part of its\n                  distribution, then any Derivative Works that You distribute must\n                  include a readable copy of the attribution notices contained\n                  within such NOTICE file, excluding those notices that do not\n                  pertain to any part of the Derivative Works, in at least one\n                  of the following places: within a NOTICE text file distributed\n                  as part of the Derivative Works; within the Source form or\n                  documentation, if provided along with the Derivative Works; or,\n                  within a display generated by the Derivative Works, if and\n                  wherever such third-party notices normally appear. The contents\n                  of the NOTICE file are for informational purposes only and\n                  do not modify the License. You may add Your own attribution\n                  notices within Derivative Works that You distribute, alongside\n                  or as an addendum to the NOTICE text from the Work, provided\n                  that such additional attribution notices cannot be construed\n                  as modifying the License.\n        \n              You may add Your own copyright statement to Your modifications and\n              may provide additional or different license terms and conditions\n              for use, reproduction, or distribution of Your modifications, or\n              for any such Derivative Works as a whole, provided Your use,\n              reproduction, and distribution of the Work otherwise complies with\n              the conditions stated in this License.\n        \n           5. Submission of Contributions. Unless You explicitly state otherwise,\n              any Contribution intentionally submitted for inclusion in the Work\n              by You to the Licensor shall be under the terms and conditions of\n              this License, without any additional terms or conditions.\n              Notwithstanding the above, nothing herein shall supersede or modify\n              the terms of any separate license agreement you may have executed\n              with Licensor regarding such Contributions.\n        \n           6. Trademarks. This License does not grant permission to use the trade\n              names, trademarks, service marks, or product names of the Licensor,\n              except as required for reasonable and customary use in describing the\n              origin of the Work and reproducing the content of the NOTICE file.\n        \n           7. Disclaimer of Warranty. Unless required by applicable law or\n              agreed to in writing, Licensor provides the Work (and each\n              Contributor provides its Contributions) on an \"AS IS\" BASIS,\n              WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or\n              implied, including, without limitation, any warranties or conditions\n              of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A\n              PARTICULAR PURPOSE. You are solely responsible for determining the\n              appropriateness of using or redistributing the Work and assume any\n              risks associated with Your exercise of permissions under this License.\n        \n           8. Limitation of Liability. In no event and under no legal theory,\n              whether in tort (including negligence), contract, or otherwise,\n              unless required by applicable law (such as deliberate and grossly\n              negligent acts) or agreed to in writing, shall any Contributor be\n              liable to You for damages, including any direct, indirect, special,\n              incidental, or consequential damages of any character arising as a\n              result of this License or out of the use or inability to use the\n              Work (including but not limited to damages for loss of goodwill,\n              work stoppage, computer failure or malfunction, or any and all\n              other commercial damages or losses), even if such Contributor\n              has been advised of the possibility of such damages.\n        \n           9. Accepting Warranty or Additional Liability. While redistributing\n              the Work or Derivative Works thereof, You may choose to offer,\n              and charge a fee for, acceptance of support, warranty, indemnity,\n              or other liability obligations and/or rights consistent with this\n              License. However, in accepting such obligations, You may act only\n              on Your own behalf and on Your sole responsibility, not on behalf\n              of any other Contributor, and only if You agree to indemnify,\n              defend, and hold each Contributor harmless for any liability\n              incurred by, or claims asserted against, such Contributor by reason\n              of your accepting any such warranty or additional liability.\n        \n           END OF TERMS AND CONDITIONS\n        \n           APPENDIX: How to apply the Apache License to your work.\n        \n              To apply the Apache License to your work, attach the following\n              boilerplate notice, with the fields enclosed by brackets \"[]\"\n              replaced with your own identifying information. (Don't include\n              the brackets!)  The text should be enclosed in the appropriate\n              comment syntax for the file format. We also recommend that a\n              file or class name and description of purpose be included on the\n              same \"printed page\" as the copyright notice for easier\n              identification within third-party archives.\n        \n           Copyright [yyyy] [name of copyright owner]\n        \n           Licensed under the Apache License, Version 2.0 (the \"License\");\n           you may not use this file except in compliance with the License.\n           You may obtain a copy of the License at\n        \n               http://www.apache.org/licenses/LICENSE-2.0\n        \n           Unless required by applicable law or agreed to in writing, software\n           distributed under the License is distributed on an \"AS IS\" BASIS,\n           WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n           See the License for the specific language governing permissions and\n           limitations under the License.",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-08",
+        "repo_last_release": "2025-05-14",
+        "repo_maintainers": [
+          "ajdavis",
+          "blink1073",
+          "ShaneHarvey",
+          "prashantmital",
+          "asvetlov"
+        ],
+        "repo_owner": "mongodb",
+        "repo_stars": 2525,
+        "repo_topics": [
+          "async",
+          "mongodb",
+          "python"
+        ],
+        "repo_url": "https://github.com/mongodb/motor",
+        "summary": "Non-blocking MongoDB driver for Tornado or asyncio",
+        "version": "3.7.1"
+      }
+    },
+    {
+      "id": "click",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-25",
+        "repo_last_release": "2025-11-15",
+        "repo_maintainers": [
+          "davidism",
+          "mitsuhiko",
+          "Rowlando13",
+          "untitaker"
+        ],
+        "repo_owner": "pallets",
+        "repo_stars": 17048,
+        "repo_topics": [
+          "cli",
+          "click",
+          "pallets",
+          "python"
+        ],
+        "repo_url": "https://github.com/pallets/click",
+        "summary": "Composable command line interface toolkit",
+        "version": "8.3.1"
+      }
+    },
+    {
+      "id": "pydantic-ai-slim",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-08",
+        "repo_last_release": "2025-12-05",
+        "repo_maintainers": [
+          "samuelcolvin",
+          "DouweM",
+          "Kludex",
+          "dmontagu",
+          "alexmojaki"
+        ],
+        "repo_owner": "pydantic",
+        "repo_stars": 13698,
+        "repo_topics": [
+          "agent-framework",
+          "genai",
+          "llm",
+          "pydantic",
+          "python"
+        ],
+        "repo_url": "https://github.com/pydantic/pydantic-ai",
+        "summary": "Agent Framework / shim to use Pydantic with LLMs, slim package",
+        "version": "1.27.0"
+      }
+    },
+    {
+      "id": "pypdf",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-08",
+        "repo_last_release": "2025-12-07",
+        "repo_maintainers": [
+          "MartinThoma",
+          "pubpub-zz",
+          "j-t-1",
+          "mstamy2",
+          "stefan6419846"
+        ],
+        "repo_owner": "py-pdf",
+        "repo_stars": 9656,
+        "repo_topics": [
+          "help-wanted",
+          "pdf",
+          "pdf-documents",
+          "pdf-manipulation",
+          "pdf-parser",
+          "pdf-parsing",
+          "pypdf2",
+          "python"
+        ],
+        "repo_url": "https://github.com/py-pdf/pypdf",
+        "summary": "A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files",
+        "version": "6.4.1"
+      }
+    },
+    {
+      "id": "minio",
+      "meta": {
+        "author": "MinIO, Inc.",
+        "license": "Apache-2.0",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-07",
+        "repo_last_release": "2025-11-27",
+        "repo_maintainers": [
+          "balamurugana",
+          "fkautz",
+          "harshavardhana",
+          "minio-trusted",
+          "vadmeste"
+        ],
+        "repo_owner": "minio",
+        "repo_stars": 1017,
+        "repo_topics": [
+          "aws-s3",
+          "minio",
+          "minio-client",
+          "s3-bucket",
+          "sdk"
+        ],
+        "repo_url": "https://github.com/minio/minio-py",
+        "summary": "MinIO Python SDK for Amazon S3 Compatible Cloud Storage",
+        "version": "7.2.20"
+      }
+    },
+    {
+      "id": "pillow",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-07",
+        "repo_last_release": "2025-10-15",
+        "repo_maintainers": [
+          "radarhere",
+          "hugovk",
+          "wiredfool",
+          "aclark4life",
+          "homm"
+        ],
+        "repo_owner": "python-pillow",
+        "repo_stars": 13247,
+        "repo_topics": [
+          "c",
+          "cross-platform",
+          "image",
+          "image-processing",
+          "pil",
+          "pillow",
+          "python",
+          "python-3"
+        ],
+        "repo_url": "https://github.com/python-pillow/Pillow",
+        "summary": "Python Imaging Library (fork)",
+        "version": "12.0.0"
+      }
+    },
+    {
+      "id": "colorama",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-07-09",
+        "repo_maintainers": [
+          "tartley",
+          "wiggin15",
+          "hugovk",
+          "njsmith",
+          "jdufresne"
+        ],
+        "repo_owner": "tartley",
+        "repo_stars": 3758,
+        "repo_url": "https://github.com/tartley/colorama",
+        "summary": "Cross-platform colored terminal text.",
+        "version": "0.4.6"
+      }
+    },
+    {
+      "id": "iniconfig",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-10-18",
+        "repo_maintainers": [
+          "RonnyPfannschmidt",
+          "hugovk",
+          "hpk42",
+          "bluetech",
+          "tn3w"
+        ],
+        "repo_owner": "pytest-dev",
+        "repo_stars": 57,
+        "repo_url": "https://github.com/pytest-dev/iniconfig",
+        "summary": "brain-dead simple config-ini parsing",
+        "version": "2.3.0"
+      }
+    },
+    {
+      "id": "phonenumbers",
+      "meta": {
+        "author": "David Drysdale",
+        "license": "Apache License 2.0",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-05",
+        "repo_maintainers": [
+          "daviddrysdale",
+          "jdufresne",
+          "scop",
+          "AA-Turner",
+          "andyst"
+        ],
+        "repo_owner": "daviddrysdale",
+        "repo_stars": 3689,
+        "repo_url": "https://github.com/daviddrysdale/python-phonenumbers",
+        "summary": "Python version of Google's common library for parsing, formatting, storing and validating international phone numbers.",
+        "version": "9.0.20"
+      }
+    },
+    {
+      "id": "backports",
+      "meta": {
+        "author": "Brandon Craig Rhodes",
+        "repo_archived": true,
+        "repo_last_commit": "2021-12-04",
+        "repo_maintainers": [
+          "jaraco",
+          "brandon-rhodes",
+          "nikolas"
+        ],
+        "repo_owner": "brandon-rhodes",
+        "repo_stars": 2,
+        "repo_url": "https://github.com/brandon-rhodes/backports",
+        "summary": "Namespace for backported Python features",
+        "version": "1.1"
+      }
+    },
+    {
+      "id": "gunicorn",
+      "meta": {
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2024-08-10",
+        "repo_maintainers": [
+          "benoitc",
+          "tilgovi",
+          "berkerpeksag",
+          "davisp",
+          "pajod"
+        ],
+        "repo_owner": "benoitc",
+        "repo_stars": 10362,
+        "repo_topics": [
+          "http",
+          "http-server",
+          "python",
+          "wsgi",
+          "wsgi-server"
+        ],
+        "repo_url": "https://github.com/benoitc/gunicorn",
+        "summary": "WSGI HTTP Server for UNIX",
+        "version": "23.0.0"
+      }
+    },
+    {
+      "id": "opentelemetry-api",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-03",
+        "repo_last_release": "2025-12-03",
+        "repo_maintainers": [
+          "ocelotl",
+          "lzchen",
+          "srikanthccv",
+          "xrmx",
+          "c24t"
+        ],
+        "repo_owner": "open-telemetry",
+        "repo_stars": 2242,
+        "repo_topics": [
+          "correlationcontext",
+          "distributed-tracing",
+          "logging",
+          "metrics",
+          "opentelemetry",
+          "python",
+          "sdk",
+          "tracecontext"
+        ],
+        "repo_url": "https://github.com/open-telemetry/opentelemetry-python",
+        "summary": "OpenTelemetry Python API",
+        "version": "1.39.0"
+      }
+    },
+    {
+      "id": "inboard",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-23",
+        "repo_maintainers": [
+          "br3ndonland",
+          "bodograumann"
+        ],
+        "repo_owner": "br3ndonland",
+        "repo_stars": 301,
+        "repo_topics": [
+          "actions",
+          "asgi",
+          "docker",
+          "fastapi",
+          "ghcr",
+          "github-container-registry",
+          "github-packages",
+          "gunicorn",
+          "hatch",
+          "python",
+          "starlette",
+          "uvicorn"
+        ],
+        "repo_url": "https://github.com/br3ndonland/inboard",
+        "summary": "Docker images and utilities to power your Python APIs and help you ship faster.",
+        "version": "0.79.0"
+      }
+    },
+    {
+      "id": "pydantic",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-08",
+        "repo_last_release": "2025-11-26",
+        "repo_maintainers": [
+          "samuelcolvin",
+          "Viicos",
+          "sydney-runkle",
+          "dmontagu"
+        ],
+        "repo_owner": "pydantic",
+        "repo_stars": 26081,
+        "repo_topics": [
+          "hints",
+          "json-schema",
+          "parsing",
+          "pydantic",
+          "python",
+          "python310",
+          "python311",
+          "python312",
+          "python313",
+          "python39",
+          "validation"
+        ],
+        "repo_url": "https://github.com/pydantic/pydantic",
+        "summary": "Data validation using Python type hints",
+        "version": "2.12.5"
+      }
+    },
+    {
+      "id": "slowapi",
+      "meta": {
+        "author": "Laurent Savaete",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-08-10",
+        "repo_maintainers": [
+          "laurentS",
+          "thentgesMindee",
+          "Rested",
+          "colin99d"
+        ],
+        "repo_owner": "laurents",
+        "repo_stars": 1806,
+        "repo_topics": [
+          "asgi",
+          "fastapi",
+          "python",
+          "rate-limiter",
+          "starlette",
+          "uvicorn"
+        ],
+        "repo_url": "https://github.com/laurents/slowapi",
+        "summary": "A rate limiting extension for Starlette and Fastapi",
+        "version": "0.1.9"
+      }
+    },
+    {
+      "id": "python-dotenv",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-24",
+        "repo_last_release": "2025-10-26",
+        "repo_maintainers": [
+          "bbc2",
+          "theskumar",
+          "ulyssessouza",
+          "jacobian",
+          "smsearcy"
+        ],
+        "repo_owner": "theskumar",
+        "repo_stars": 8527,
+        "repo_topics": [
+          "12-factor-app",
+          "configuration",
+          "devops-tools",
+          "dotenv",
+          "env",
+          "environment-variables",
+          "python"
+        ],
+        "repo_url": "https://github.com/theskumar/python-dotenv",
+        "summary": "Read key-value pairs from a .env file and set them as environment variables",
+        "version": "1.2.1"
+      }
+    },
+    {
+      "id": "tzdata",
+      "meta": {
+        "author": "Python Software Foundation",
+        "license": "Apache-2.0",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-03-23",
+        "repo_maintainers": [
+          "pganssle",
+          "StanFromIreland",
+          "actions-user",
+          "hugovk"
+        ],
+        "repo_owner": "python",
+        "repo_stars": 93,
+        "repo_url": "https://github.com/python/tzdata",
+        "summary": "Provider of IANA time zone data",
+        "version": "2025.2"
+      }
+    },
+    {
+      "id": "more-itertools",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-04",
+        "repo_last_release": "2025-09-02",
+        "repo_maintainers": [
+          "bbayles",
+          "rhettinger",
+          "erikrose",
+          "debruijn",
+          "JamesParrott"
+        ],
+        "repo_owner": "more-itertools",
+        "repo_stars": 4014,
+        "repo_url": "https://github.com/more-itertools/more-itertools",
+        "summary": "More routines for operating on iterables, beyond itertools",
+        "version": "10.8.0"
+      }
+    },
+    {
+      "id": "logfire-api",
+      "meta": {
+        "summary": "Shim for the Logfire SDK which does nothing unless Logfire is installed",
+        "version": "4.16.0"
+      }
+    },
+    {
+      "id": "eval-type-backport",
+      "meta": {
+        "author": "Alex Hall",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-02",
+        "repo_maintainers": [
+          "alexmojaki",
+          "johnslavik",
+          "tasansal",
+          "PerchunPak",
+          "Viicos"
+        ],
+        "repo_owner": "alexmojaki",
+        "repo_stars": 15,
+        "repo_url": "https://github.com/alexmojaki/eval_type_backport",
+        "summary": "Like `typing._eval_type`, but lets older Python versions use newer typing features.",
+        "version": "0.3.1"
+      }
+    },
+    {
+      "id": "apscheduler",
+      "meta": {
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-10-31",
+        "repo_maintainers": [
+          "agronholm",
+          "linuxdynasty",
+          "peterschutt",
+          "injust"
+        ],
+        "repo_owner": "agronholm",
+        "repo_stars": 7165,
+        "repo_url": "https://github.com/agronholm/apscheduler",
+        "summary": "In-process task scheduler with Cron-like capabilities",
+        "version": "3.11.1"
+      }
+    },
+    {
+      "id": "ua-parser",
+      "meta": {
+        "license": "Apache 2.0",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-06-15",
+        "repo_last_release": "2025-02-01",
+        "repo_maintainers": [
+          "masklinn",
+          "mattrobenolt",
+          "elsigh",
+          "selwin",
+          "commenthol"
+        ],
+        "repo_owner": "ua-parser",
+        "repo_stars": 632,
+        "repo_topics": [
+          "python3",
+          "user-agent",
+          "user-agent-parser",
+          "user-agent-parsing"
+        ],
+        "repo_url": "https://github.com/ua-parser/uap-python",
+        "summary": "Python port of Browserscope's user agent parser",
+        "version": "1.0.1"
+      }
+    },
+    {
+      "id": "python-multipart",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2024-12-16",
+        "repo_maintainers": [
+          "andrew-d",
+          "Kludex",
+          "hugovk",
+          "Ambro17"
+        ],
+        "repo_owner": "Kludex",
+        "repo_stars": 457,
+        "repo_url": "https://github.com/Kludex/python-multipart",
+        "summary": "A streaming multipart parser for Python",
+        "version": "0.0.20"
+      }
+    },
+    {
+      "id": "ua-parser-builtins",
+      "meta": {
+        "license": "Apache 2.0",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-06-15",
+        "repo_last_release": "2025-02-01",
+        "repo_maintainers": [
+          "masklinn",
+          "mattrobenolt",
+          "elsigh",
+          "selwin",
+          "commenthol"
+        ],
+        "repo_owner": "ua-parser",
+        "repo_stars": 632,
+        "repo_topics": [
+          "python3",
+          "user-agent",
+          "user-agent-parser",
+          "user-agent-parsing"
+        ],
+        "repo_url": "https://github.com/ua-parser/uap-python",
+        "summary": "Precompiled rules for User Agent Parser",
+        "version": "0.18.0.post1"
+      }
+    },
+    {
+      "id": "pluggy",
+      "meta": {
+        "license": "MIT",
+        "summary": "plugin and hook calling mechanisms for python",
+        "version": "1.6.0"
+      }
+    },
+    {
+      "id": "chardet",
+      "meta": {
+        "author": "Mark Pilgrim",
+        "license": "LGPL",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-25",
+        "repo_last_release": "2023-08-01",
+        "repo_maintainers": [
+          "dan-blanchard",
+          "sigmavirus24",
+          "jdufresne",
+          "puzzlet",
+          "erikrose"
+        ],
+        "repo_owner": "chardet",
+        "repo_stars": 2309,
+        "repo_url": "https://github.com/chardet/chardet",
+        "summary": "Universal encoding detector for Python 3",
+        "version": "5.2.0"
+      }
+    },
+    {
+      "id": "python-dateutil",
+      "meta": {
+        "author": "Gustavo Niemeyer",
+        "license": "Dual License",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-09-16",
+        "repo_last_release": "2024-03-01",
+        "repo_maintainers": [
+          "pganssle",
+          "jbrockmendel",
+          "jarondl",
+          "mariocj89",
+          "jdufresne"
+        ],
+        "repo_owner": "dateutil",
+        "repo_stars": 2574,
+        "repo_topics": [
+          "datetime",
+          "library",
+          "parsing",
+          "python",
+          "time",
+          "timezones"
+        ],
+        "repo_url": "https://github.com/dateutil/dateutil",
+        "summary": "Extensions to the standard Python datetime module",
+        "version": "2.9.0.post0"
+      }
+    },
+    {
+      "id": "genai-prices",
+      "meta": {
+        "author": "Samuel Colvin",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-02",
+        "repo_last_release": "2025-11-25",
+        "repo_maintainers": [
+          "samuelcolvin",
+          "alexmojaki",
+          "GSemikozov",
+          "Kludex"
+        ],
+        "repo_owner": "pydantic",
+        "repo_stars": 174,
+        "repo_url": "https://github.com/pydantic/genai-prices",
+        "summary": "Calculate prices for calling LLM inference APIs.",
+        "version": "0.0.47"
+      }
+    },
+    {
+      "id": "argon2-cffi",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-06-03",
+        "repo_maintainers": [
+          "hynek",
+          "asottile",
+          "bwesterb"
+        ],
+        "repo_owner": "hynek",
+        "repo_stars": 662,
+        "repo_topics": [
+          "argon2",
+          "cffi",
+          "password",
+          "password-hash",
+          "python",
+          "security"
+        ],
+        "repo_url": "https://github.com/hynek/argon2-cffi",
+        "summary": "Argon2 for Python",
+        "version": "25.1.0"
+      }
+    },
+    {
+      "id": "griffe",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-02",
+        "repo_last_release": "2025-11-10",
+        "repo_maintainers": [
+          "pawamoy",
+          "has2k1",
+          "machow",
+          "johnslavik",
+          "echoix"
+        ],
+        "repo_owner": "mkdocstrings",
+        "repo_stars": 575,
+        "repo_topics": [
+          "api",
+          "breaking-changes",
+          "docs",
+          "mkdocstrings-collector",
+          "parser",
+          "python",
+          "signature"
+        ],
+        "repo_url": "https://github.com/mkdocstrings/griffe",
+        "summary": "Signatures for entire Python programs. Extract the structure, the frame, the skeleton of your project, to generate API documentation or find breaking changes in your API.",
+        "version": "1.15.0"
+      }
+    },
+    {
+      "id": "pydantic-settings",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-03",
+        "repo_last_release": "2025-11-10",
+        "repo_maintainers": [
+          "hramezani",
+          "kschwab",
+          "samuelcolvin",
+          "Viicos",
+          "Kludex"
+        ],
+        "repo_owner": "pydantic",
+        "repo_stars": 1171,
+        "repo_topics": [
+          "configuration",
+          "environment",
+          "pydantic",
+          "python",
+          "settings"
+        ],
+        "repo_url": "https://github.com/pydantic/pydantic-settings",
+        "summary": "Settings management using Pydantic",
+        "version": "2.12.0"
+      }
+    },
+    {
+      "id": "pymongo-migrate",
+      "meta": {
+        "license": "Apache Software License",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2023-09-15",
+        "repo_last_release": "2020-10-19",
+        "repo_maintainers": [
+          "rooterkyberian",
+          "thomas-invert",
+          "sobelek",
+          "hishamrahman"
+        ],
+        "repo_owner": "stxnext",
+        "repo_stars": 73,
+        "repo_topics": [
+          "hacktoberfest",
+          "mongo",
+          "mongodb",
+          "pymongo",
+          "python3"
+        ],
+        "repo_url": "https://github.com/stxnext/pymongo-migrate",
+        "summary": "MongoDB data migration tool in Python",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "httpcore",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-06",
+        "repo_last_release": "2025-04-24",
+        "repo_maintainers": [
+          "lovelydinosaur",
+          "florimondmanca",
+          "karpetrosyan",
+          "cdeler"
+        ],
+        "repo_owner": "encode",
+        "repo_stars": 526,
+        "repo_url": "https://github.com/encode/httpcore",
+        "summary": "A minimal low-level HTTP client.",
+        "version": "1.0.9"
+      }
+    },
+    {
+      "id": "cffi",
+      "meta": {
+        "author": "Armin Rigo, Maciej Fijalkowski",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-08",
+        "repo_last_release": "2025-09-08",
+        "repo_maintainers": [
+          "arigo",
+          "fijal",
+          "nitzmahone",
+          "mattip",
+          "alex"
+        ],
+        "repo_owner": "python-cffi",
+        "repo_stars": 228,
+        "repo_url": "https://github.com/python-cffi/cffi",
+        "summary": "Foreign Function Interface for Python calling C code.",
+        "version": "2.0.0"
+      }
+    },
+    {
+      "id": "zipp",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-10-19",
+        "repo_last_release": "2025-06-08",
+        "repo_maintainers": [
+          "jaraco",
+          "DimitriPapadopoulos",
+          "layday",
+          "Avasam",
+          "barneygale"
+        ],
+        "repo_owner": "jaraco",
+        "repo_stars": 67,
+        "repo_url": "https://github.com/jaraco/zipp",
+        "summary": "Backport of pathlib-compatible object wrapper for zip files",
+        "version": "3.23.0"
+      }
+    },
+    {
+      "id": "pydantic-extra-types",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-02",
+        "repo_last_release": "2025-10-08",
+        "repo_maintainers": [
+          "yezz123",
+          "Kludex",
+          "07pepa",
+          "hramezani"
+        ],
+        "repo_owner": "pydantic",
+        "repo_stars": 299,
+        "repo_topics": [
+          "countries",
+          "mac-address",
+          "phone-number",
+          "pydantic",
+          "python"
+        ],
+        "repo_url": "https://github.com/pydantic/pydantic-extra-types",
+        "summary": "Extra Pydantic types.",
+        "version": "2.10.6"
+      }
+    },
+    {
+      "id": "urllib3",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-08",
+        "repo_last_release": "2025-12-08",
+        "repo_maintainers": [
+          "shazow",
+          "Lukasa",
+          "sethmlarson",
+          "pquentin",
+          "t-8ch"
+        ],
+        "repo_owner": "urllib3",
+        "repo_stars": 3975,
+        "repo_topics": [
+          "http",
+          "http-client",
+          "python",
+          "urllib3"
+        ],
+        "repo_url": "https://github.com/urllib3/urllib3",
+        "summary": "HTTP library with thread-safe connection pooling, file post, and more.",
+        "version": "2.6.1"
+      }
+    },
+    {
+      "id": "pygments",
+      "meta": {
+        "license": "BSD-2-Clause",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-08-12",
+        "repo_last_release": "2025-06-21",
+        "repo_maintainers": [
+          "birkenfeld",
+          "Anteru",
+          "thatch",
+          "jeanas",
+          "hoelzro"
+        ],
+        "repo_owner": "pygments",
+        "repo_stars": 2078,
+        "repo_topics": [
+          "python",
+          "syntax-highlighting"
+        ],
+        "repo_url": "https://github.com/pygments/pygments",
+        "summary": "Pygments is a syntax highlighting package written in Python.",
+        "version": "2.19.2"
+      }
+    },
+    {
+      "id": "uvicorn",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-10-18",
+        "repo_maintainers": [
+          "lovelydinosaur",
+          "Kludex",
+          "euri10",
+          "florimondmanca"
+        ],
+        "repo_owner": "Kludex",
+        "repo_stars": 10144,
+        "repo_topics": [
+          "asgi",
+          "asyncio",
+          "http",
+          "http-server",
+          "python"
+        ],
+        "repo_url": "https://github.com/Kludex/uvicorn",
+        "summary": "The lightning-fast ASGI server.",
+        "version": "0.38.0"
+      }
+    },
+    {
+      "id": "limits",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-10-11",
+        "repo_last_release": "2025-09-29",
+        "repo_maintainers": [
+          "alisaifee",
+          "hasier",
+          "laurentS",
+          "RobertDeRose"
+        ],
+        "repo_owner": "alisaifee",
+        "repo_stars": 584,
+        "repo_topics": [
+          "async",
+          "memcached",
+          "mongodb",
+          "python",
+          "rate-limiting",
+          "redis",
+          "valkey"
+        ],
+        "repo_url": "https://github.com/alisaifee/limits",
+        "summary": "Rate limiting utilities",
+        "version": "5.6.0"
+      }
+    },
+    {
+      "id": "pytest-asyncio",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-02",
+        "repo_last_release": "2025-11-10",
+        "repo_maintainers": [
+          "seifertm",
+          "Tinche",
+          "asvetlov"
+        ],
+        "repo_owner": "pytest-dev",
+        "repo_stars": 1591,
+        "repo_topics": [
+          "asyncio",
+          "pytest-plugin",
+          "python",
+          "testing"
+        ],
+        "repo_url": "https://github.com/pytest-dev/pytest-asyncio",
+        "summary": "Pytest support for asyncio",
+        "version": "1.3.0"
+      }
+    },
+    {
+      "id": "cryptography",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-08",
+        "repo_maintainers": [
+          "alex",
+          "reaperhulk",
+          "dreid"
+        ],
+        "repo_owner": "pyca",
+        "repo_stars": 7377,
+        "repo_topics": [
+          "cryptography",
+          "python"
+        ],
+        "repo_url": "https://github.com/pyca/cryptography",
+        "summary": "cryptography is a package which provides cryptographic recipes and primitives to Python developers.",
+        "version": "46.0.3"
+      }
+    },
+    {
+      "id": "jinja2",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-06-14",
+        "repo_last_release": "2025-03-05",
+        "repo_maintainers": [
+          "mitsuhiko",
+          "davidism",
+          "untitaker"
+        ],
+        "repo_owner": "pallets",
+        "repo_stars": 11320,
+        "repo_topics": [
+          "jinja",
+          "jinja2",
+          "pallets",
+          "python",
+          "template-engine",
+          "templates"
+        ],
+        "repo_url": "https://github.com/pallets/jinja",
+        "summary": "A very fast and expressive template engine.",
+        "version": "3.1.6"
+      }
+    },
+    {
+      "id": "pytest",
+      "meta": {
+        "author": "Holger Krekel, Bruno Oliveira, Ronny Pfannschmidt, Floris Bruynooghe, Brianna Laugher, Florian Bruhin, Others (See AUTHORS)",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-08",
+        "repo_last_release": "2025-12-06",
+        "repo_maintainers": [
+          "nicoddemus",
+          "hpk42",
+          "bluetech",
+          "blueyed",
+          "RonnyPfannschmidt"
+        ],
+        "repo_owner": "pytest-dev",
+        "repo_stars": 13350,
+        "repo_topics": [
+          "hacktoberfest",
+          "python",
+          "test",
+          "testing",
+          "unit-testing"
+        ],
+        "repo_url": "https://github.com/pytest-dev/pytest",
+        "summary": "pytest: simple powerful testing with Python",
+        "version": "9.0.2"
+      }
+    },
+    {
+      "id": "charset-normalizer",
+      "meta": {
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-04",
+        "repo_last_release": "2025-10-14",
+        "repo_maintainers": [
+          "Ousret",
+          "adbar",
+          "deedy5",
+          "akx"
+        ],
+        "repo_owner": "jawah",
+        "repo_stars": 721,
+        "repo_topics": [
+          "chardet",
+          "charset-conversion",
+          "charset-detection",
+          "encoding",
+          "python",
+          "unicode"
+        ],
+        "repo_url": "https://github.com/jawah/charset_normalizer",
+        "summary": "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet.",
+        "version": "3.4.4"
+      }
+    },
+    {
+      "id": "anyio",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-01",
+        "repo_last_release": "2025-11-30",
+        "repo_maintainers": [
+          "agronholm",
+          "graingert",
+          "gschaffner",
+          "davidbrochart"
+        ],
+        "repo_owner": "agronholm",
+        "repo_stars": 2321,
+        "repo_topics": [
+          "async-await",
+          "asyncio",
+          "trio"
+        ],
+        "repo_url": "https://github.com/agronholm/anyio",
+        "summary": "High-level concurrency and networking framework on top of asyncio or Trio",
+        "version": "4.12.0"
+      }
+    },
+    {
+      "id": "pymongo",
+      "meta": {
+        "author": "The MongoDB Python Team",
+        "license": "Apache License\n                                   Version 2.0, January 2004\n                                http://www.apache.org/licenses/\n        \n           TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n        \n           1. Definitions.\n        \n              \"License\" shall mean the terms and conditions for use, reproduction,\n              and distribution as defined by Sections 1 through 9 of this document.\n        \n              \"Licensor\" shall mean the copyright owner or entity authorized by\n              the copyright owner that is granting the License.\n        \n              \"Legal Entity\" shall mean the union of the acting entity and all\n              other entities that control, are controlled by, or are under common\n              control with that entity. For the purposes of this definition,\n              \"control\" means (i) the power, direct or indirect, to cause the\n              direction or management of such entity, whether by contract or\n              otherwise, or (ii) ownership of fifty percent (50%) or more of the\n              outstanding shares, or (iii) beneficial ownership of such entity.\n        \n              \"You\" (or \"Your\") shall mean an individual or Legal Entity\n              exercising permissions granted by this License.\n        \n              \"Source\" form shall mean the preferred form for making modifications,\n              including but not limited to software source code, documentation\n              source, and configuration files.\n        \n              \"Object\" form shall mean any form resulting from mechanical\n              transformation or translation of a Source form, including but\n              not limited to compiled object code, generated documentation,\n              and conversions to other media types.\n        \n              \"Work\" shall mean the work of authorship, whether in Source or\n              Object form, made available under the License, as indicated by a\n              copyright notice that is included in or attached to the work\n              (an example is provided in the Appendix below).\n        \n              \"Derivative Works\" shall mean any work, whether in Source or Object\n              form, that is based on (or derived from) the Work and for which the\n              editorial revisions, annotations, elaborations, or other modifications\n              represent, as a whole, an original work of authorship. For the purposes\n              of this License, Derivative Works shall not include works that remain\n              separable from, or merely link (or bind by name) to the interfaces of,\n              the Work and Derivative Works thereof.\n        \n              \"Contribution\" shall mean any work of authorship, including\n              the original version of the Work and any modifications or additions\n              to that Work or Derivative Works thereof, that is intentionally\n              submitted to Licensor for inclusion in the Work by the copyright owner\n              or by an individual or Legal Entity authorized to submit on behalf of\n              the copyright owner. For the purposes of this definition, \"submitted\"\n              means any form of electronic, verbal, or written communication sent\n              to the Licensor or its representatives, including but not limited to\n              communication on electronic mailing lists, source code control systems,\n              and issue tracking systems that are managed by, or on behalf of, the\n              Licensor for the purpose of discussing and improving the Work, but\n              excluding communication that is conspicuously marked or otherwise\n              designated in writing by the copyright owner as \"Not a Contribution.\"\n        \n              \"Contributor\" shall mean Licensor and any individual or Legal Entity\n              on behalf of whom a Contribution has been received by Licensor and\n              subsequently incorporated within the Work.\n        \n           2. Grant of Copyright License. Subject to the terms and conditions of\n              this License, each Contributor hereby grants to You a perpetual,\n              worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n              copyright license to reproduce, prepare Derivative Works of,\n              publicly display, publicly perform, sublicense, and distribute the\n              Work and such Derivative Works in Source or Object form.\n        \n           3. Grant of Patent License. Subject to the terms and conditions of\n              this License, each Contributor hereby grants to You a perpetual,\n              worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n              (except as stated in this section) patent license to make, have made,\n              use, offer to sell, sell, import, and otherwise transfer the Work,\n              where such license applies only to those patent claims licensable\n              by such Contributor that are necessarily infringed by their\n              Contribution(s) alone or by combination of their Contribution(s)\n              with the Work to which such Contribution(s) was submitted. If You\n              institute patent litigation against any entity (including a\n              cross-claim or counterclaim in a lawsuit) alleging that the Work\n              or a Contribution incorporated within the Work constitutes direct\n              or contributory patent infringement, then any patent licenses\n              granted to You under this License for that Work shall terminate\n              as of the date such litigation is filed.\n        \n           4. Redistribution. You may reproduce and distribute copies of the\n              Work or Derivative Works thereof in any medium, with or without\n              modifications, and in Source or Object form, provided that You\n              meet the following conditions:\n        \n              (a) You must give any other recipients of the Work or\n                  Derivative Works a copy of this License; and\n        \n              (b) You must cause any modified files to carry prominent notices\n                  stating that You changed the files; and\n        \n              (c) You must retain, in the Source form of any Derivative Works\n                  that You distribute, all copyright, patent, trademark, and\n                  attribution notices from the Source form of the Work,\n                  excluding those notices that do not pertain to any part of\n                  the Derivative Works; and\n        \n              (d) If the Work includes a \"NOTICE\" text file as part of its\n                  distribution, then any Derivative Works that You distribute must\n                  include a readable copy of the attribution notices contained\n                  within such NOTICE file, excluding those notices that do not\n                  pertain to any part of the Derivative Works, in at least one\n                  of the following places: within a NOTICE text file distributed\n                  as part of the Derivative Works; within the Source form or\n                  documentation, if provided along with the Derivative Works; or,\n                  within a display generated by the Derivative Works, if and\n                  wherever such third-party notices normally appear. The contents\n                  of the NOTICE file are for informational purposes only and\n                  do not modify the License. You may add Your own attribution\n                  notices within Derivative Works that You distribute, alongside\n                  or as an addendum to the NOTICE text from the Work, provided\n                  that such additional attribution notices cannot be construed\n                  as modifying the License.\n        \n              You may add Your own copyright statement to Your modifications and\n              may provide additional or different license terms and conditions\n              for use, reproduction, or distribution of Your modifications, or\n              for any such Derivative Works as a whole, provided Your use,\n              reproduction, and distribution of the Work otherwise complies with\n              the conditions stated in this License.\n        \n           5. Submission of Contributions. Unless You explicitly state otherwise,\n              any Contribution intentionally submitted for inclusion in the Work\n              by You to the Licensor shall be under the terms and conditions of\n              this License, without any additional terms or conditions.\n              Notwithstanding the above, nothing herein shall supersede or modify\n              the terms of any separate license agreement you may have executed\n              with Licensor regarding such Contributions.\n        \n           6. Trademarks. This License does not grant permission to use the trade\n              names, trademarks, service marks, or product names of the Licensor,\n              except as required for reasonable and customary use in describing the\n              origin of the Work and reproducing the content of the NOTICE file.\n        \n           7. Disclaimer of Warranty. Unless required by applicable law or\n              agreed to in writing, Licensor provides the Work (and each\n              Contributor provides its Contributions) on an \"AS IS\" BASIS,\n              WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or\n              implied, including, without limitation, any warranties or conditions\n              of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A\n              PARTICULAR PURPOSE. You are solely responsible for determining the\n              appropriateness of using or redistributing the Work and assume any\n              risks associated with Your exercise of permissions under this License.\n        \n           8. Limitation of Liability. In no event and under no legal theory,\n              whether in tort (including negligence), contract, or otherwise,\n              unless required by applicable law (such as deliberate and grossly\n              negligent acts) or agreed to in writing, shall any Contributor be\n              liable to You for damages, including any direct, indirect, special,\n              incidental, or consequential damages of any character arising as a\n              result of this License or out of the use or inability to use the\n              Work (including but not limited to damages for loss of goodwill,\n              work stoppage, computer failure or malfunction, or any and all\n              other commercial damages or losses), even if such Contributor\n              has been advised of the possibility of such damages.\n        \n           9. Accepting Warranty or Additional Liability. While redistributing\n              the Work or Derivative Works thereof, You may choose to offer,\n              and charge a fee for, acceptance of support, warranty, indemnity,\n              or other liability obligations and/or rights consistent with this\n              License. However, in accepting such obligations, You may act only\n              on Your own behalf and on Your sole responsibility, not on behalf\n              of any other Contributor, and only if You agree to indemnify,\n              defend, and hold each Contributor harmless for any liability\n              incurred by, or claims asserted against, such Contributor by reason\n              of your accepting any such warranty or additional liability.\n        \n           END OF TERMS AND CONDITIONS\n        \n           APPENDIX: How to apply the Apache License to your work.\n        \n              To apply the Apache License to your work, attach the following\n              boilerplate notice, with the fields enclosed by brackets \"[]\"\n              replaced with your own identifying information. (Don't include\n              the brackets!)  The text should be enclosed in the appropriate\n              comment syntax for the file format. We also recommend that a\n              file or class name and description of purpose be included on the\n              same \"printed page\" as the copyright notice for easier\n              identification within third-party archives.\n        \n           Copyright [yyyy] [name of copyright owner]\n        \n           Licensed under the Apache License, Version 2.0 (the \"License\");\n           you may not use this file except in compliance with the License.\n           You may obtain a copy of the License at\n        \n               http://www.apache.org/licenses/LICENSE-2.0\n        \n           Unless required by applicable law or agreed to in writing, software\n           distributed under the License is distributed on an \"AS IS\" BASIS,\n           WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n           See the License for the specific language governing permissions and\n           limitations under the License.",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-08",
+        "repo_last_release": "2025-12-02",
+        "repo_maintainers": [
+          "behackett",
+          "ShaneHarvey",
+          "ajdavis",
+          "blink1073",
+          "NoahStapp"
+        ],
+        "repo_owner": "mongodb",
+        "repo_stars": 4312,
+        "repo_topics": [
+          "mongodb",
+          "mongodb-driver",
+          "pymongo",
+          "python",
+          "python-library"
+        ],
+        "repo_url": "https://github.com/mongodb/mongo-python-driver",
+        "summary": "PyMongo - the Official MongoDB Python driver",
+        "version": "4.15.5"
+      }
+    },
+    {
+      "id": "pycparser",
+      "meta": {
+        "author": "Eli Bendersky",
+        "license": "BSD-3-Clause",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-10-10",
+        "repo_last_release": "2025-09-09",
+        "repo_maintainers": [
+          "eliben",
+          "jdufresne",
+          "akiradeveloper",
+          "ldore",
+          "vit9696"
+        ],
+        "repo_owner": "eliben",
+        "repo_stars": 3449,
+        "repo_url": "https://github.com/eliben/pycparser",
+        "summary": "C parser in Python",
+        "version": "2.23"
+      }
+    },
+    {
+      "id": "asgi-logger",
+      "meta": {
+        "author": "Marcelo Trylesinski",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2024-01-05",
+        "repo_maintainers": [
+          "Kludex"
+        ],
+        "repo_owner": "Kludex",
+        "repo_stars": 54,
+        "repo_topics": [
+          "asgi",
+          "asgi-middleware",
+          "logger",
+          "uvicorn"
+        ],
+        "repo_url": "https://github.com/Kludex/asgi-logger",
+        "summary": "Middleware based uvicorn access logger! :tada:",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "id": "email-validator",
+      "meta": {
+        "author": "Joshua Tauberer",
+        "license": "Unlicense",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-10-27",
+        "repo_last_release": "2025-08-26",
+        "repo_maintainers": [
+          "JoshData",
+          "samuelcolvin",
+          "tamird",
+          "0xdade",
+          "musicinmybrain"
+        ],
+        "repo_owner": "JoshData",
+        "repo_stars": 1339,
+        "repo_topics": [
+          "dns",
+          "email",
+          "normalization",
+          "syntax",
+          "validation"
+        ],
+        "repo_url": "https://github.com/JoshData/python-email-validator",
+        "summary": "A robust email address syntax and deliverability validation library.",
+        "version": "2.3.0"
+      }
+    },
+    {
+      "id": "tenacity",
+      "meta": {
+        "author": "Julien Danjou",
+        "license": "Apache 2.0",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-02",
+        "repo_last_release": "2025-04-02",
+        "repo_maintainers": [
+          "jd",
+          "rholder",
+          "immerrr"
+        ],
+        "repo_owner": "jd",
+        "repo_stars": 8134,
+        "repo_topics": [
+          "failure",
+          "hacktoberfest",
+          "python",
+          "retry",
+          "retry-library"
+        ],
+        "repo_url": "https://github.com/jd/tenacity",
+        "summary": "Retry code until it succeeds",
+        "version": "9.1.2"
+      }
+    },
+    {
+      "id": "sentry-sdk",
+      "meta": {
+        "author": "Sentry Team and Contributors",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-08",
+        "repo_last_release": "2025-12-03",
+        "repo_maintainers": [
+          "untitaker",
+          "sentrivana",
+          "antonpirker",
+          "szokeasaurusrex",
+          "getsentry-bot"
+        ],
+        "repo_owner": "getsentry",
+        "repo_stars": 2113,
+        "repo_topics": [
+          "crash-reporting",
+          "hacktoberfest",
+          "python",
+          "sdk",
+          "sentry",
+          "sentry-python",
+          "tag-production",
+          "team-web-backend"
+        ],
+        "repo_url": "https://github.com/getsentry/sentry-python",
+        "summary": "Python client for Sentry (https://sentry.io)",
+        "version": "2.47.0"
+      }
+    },
+    {
+      "id": "idna",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-10-20",
+        "repo_last_release": "2025-10-12",
+        "repo_maintainers": [
+          "kjd",
+          "hugovk",
+          "jdufresne",
+          "jribbens",
+          "slingamn"
+        ],
+        "repo_owner": "kjd",
+        "repo_stars": 271,
+        "repo_topics": [
+          "dns",
+          "hacktoberfest",
+          "idna",
+          "python",
+          "unicode"
+        ],
+        "repo_url": "https://github.com/kjd/idna",
+        "summary": "Internationalized Domain Names in Applications (IDNA)",
+        "version": "3.11"
+      }
+    },
+    {
+      "id": "backports-asyncio-runner",
+      "meta": {
+        "license": "PSF-2.0",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-07-02",
+        "repo_last_release": "2025-07-02",
+        "repo_maintainers": [
+          "samypr100"
+        ],
+        "repo_owner": "samypr100",
+        "repo_stars": 4,
+        "repo_url": "https://github.com/samypr100/backports.asyncio.runner",
+        "summary": "Backport of asyncio.Runner, a context manager that controls event loop life cycle.",
+        "version": "1.2.0"
+      }
+    },
+    {
+      "id": "h11",
+      "meta": {
+        "author": "Nathaniel J. Smith",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-04-24",
+        "repo_maintainers": [
+          "njsmith",
+          "pgjones",
+          "Lukasa",
+          "cdeler",
+          "lovelydinosaur"
+        ],
+        "repo_owner": "python-hyper",
+        "repo_stars": 533,
+        "repo_topics": [
+          "http",
+          "python",
+          "sans-io"
+        ],
+        "repo_url": "https://github.com/python-hyper/h11",
+        "summary": "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1",
+        "version": "0.16.0"
+      }
+    },
+    {
+      "id": "cssselect",
+      "meta": {
+        "author": "Ian Bicking",
+        "license": "BSD",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-07",
+        "repo_maintainers": [
+          "SimonSapin",
+          "wRAR",
+          "redapple",
+          "scoder",
+          "Gallaecio"
+        ],
+        "repo_owner": "scrapy",
+        "repo_stars": 304,
+        "repo_topics": [
+          "css",
+          "hacktoberfest",
+          "python",
+          "selectors"
+        ],
+        "repo_url": "https://github.com/scrapy/cssselect",
+        "summary": "cssselect parses CSS3 Selectors and translates them to XPath 1.0",
+        "version": "1.3.0"
+      }
+    },
+    {
+      "id": "pyjwt",
+      "meta": {
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-06",
+        "repo_last_release": "2024-11-28",
+        "repo_maintainers": [
+          "jpadilla",
+          "mark-adams",
+          "jdufresne",
+          "progrium"
+        ],
+        "repo_owner": "jpadilla",
+        "repo_stars": 5541,
+        "repo_topics": [
+          "hacktoberfest",
+          "jwt",
+          "python"
+        ],
+        "repo_url": "https://github.com/jpadilla/pyjwt",
+        "summary": "JSON Web Token implementation in Python",
+        "version": "2.10.1"
+      }
+    },
+    {
+      "id": "setuptools",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-10-31",
+        "repo_last_release": "2025-05-27",
+        "repo_maintainers": [
+          "jaraco",
+          "abravalheri",
+          "gward",
+          "merwok",
+          "birkenfeld"
+        ],
+        "repo_owner": "pypa",
+        "repo_stars": 2786,
+        "repo_url": "https://github.com/pypa/setuptools",
+        "summary": "Easily download, build, install, upgrade, and uninstall Python packages",
+        "version": "80.9.0"
+      }
+    },
+    {
+      "id": "asgiref",
+      "meta": {
+        "author": "Django Software Foundation",
+        "license": "BSD-3-Clause",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-19",
+        "repo_maintainers": [
+          "andrewgodwin",
+          "carltongibson",
+          "pgjones",
+          "Kludex",
+          "graingert"
+        ],
+        "repo_owner": "django",
+        "repo_stars": 1599,
+        "repo_url": "https://github.com/django/asgiref",
+        "summary": "ASGI specs, helper code, and adapters",
+        "version": "3.11.0"
+      }
+    },
+    {
+      "id": "annotated-types",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-10",
+        "repo_last_release": "2024-05-20",
+        "repo_maintainers": [
+          "adriangb",
+          "samuelcolvin",
+          "Zac-HD",
+          "hugovk",
+          "Viicos"
+        ],
+        "repo_owner": "annotated-types",
+        "repo_stars": 583,
+        "repo_url": "https://github.com/annotated-types/annotated-types",
+        "summary": "Reusable constraint types to use with typing.Annotated",
+        "version": "0.7.0"
+      }
+    },
+    {
+      "id": "python-calamine",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-30",
+        "repo_last_release": "2025-11-26",
+        "repo_maintainers": [
+          "dimastbk",
+          "simonadi",
+          "spwoodcock"
+        ],
+        "repo_owner": "dimastbk",
+        "repo_stars": 415,
+        "repo_topics": [
+          "excel",
+          "ods",
+          "pandas",
+          "python",
+          "spreadsheet",
+          "xls",
+          "xlsb",
+          "xlsx"
+        ],
+        "repo_url": "https://github.com/dimastbk/python-calamine",
+        "summary": "Python binding for Rust's library for reading excel and odf file - calamine",
+        "version": "0.6.1"
+      }
+    },
+    {
+      "id": "cssutils",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-05-14",
+        "repo_last_release": "2024-06-04",
+        "repo_maintainers": [
+          "jaraco",
+          "cthedot",
+          "SimonSapin",
+          "DimitriPapadopoulos",
+          "Avasam"
+        ],
+        "repo_owner": "jaraco",
+        "repo_stars": 85,
+        "repo_url": "https://github.com/jaraco/cssutils",
+        "summary": "A CSS Cascading Style Sheets library for Python",
+        "version": "2.11.1"
+      }
+    },
+    {
+      "id": "premailer",
+      "meta": {
+        "author": "Peter Bengtsson",
+        "license": "Python",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2023-12-16",
+        "repo_maintainers": [
+          "peterbe",
+          "mpj17",
+          "vanng822",
+          "michi88",
+          "fangpenlin"
+        ],
+        "repo_owner": "peterbe",
+        "repo_stars": 1084,
+        "repo_url": "https://github.com/peterbe/premailer",
+        "summary": "Turns CSS blocks into style attributes",
+        "version": "3.10.0"
+      }
+    },
+    {
+      "id": "deprecated",
+      "meta": {
+        "author": "Laurent LAPORTE",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-10-30",
+        "repo_last_release": "2025-10-30",
+        "repo_maintainers": [
+          "tantale",
+          "laurent-laporte-pro",
+          "colindean",
+          "santosh653",
+          "hugovk"
+        ],
+        "repo_owner": "laurent-laporte-pro",
+        "repo_stars": 328,
+        "repo_url": "https://github.com/laurent-laporte-pro/deprecated",
+        "summary": "Python @deprecated decorator to deprecate old python classes, functions or methods.",
+        "version": "1.3.1"
+      }
+    },
+    {
+      "id": "pytest-cov",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-24",
+        "repo_maintainers": [
+          "ionelmc",
+          "schlamar",
+          "blueyed",
+          "graingert",
+          "hugovk"
+        ],
+        "repo_owner": "pytest-dev",
+        "repo_stars": 1981,
+        "repo_topics": [
+          "pytest",
+          "python"
+        ],
+        "repo_url": "https://github.com/pytest-dev/pytest-cov",
+        "summary": "Pytest plugin for measuring coverage.",
+        "version": "7.0.0"
+      }
+    },
+    {
+      "id": "odmantic",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-01-23",
+        "repo_last_release": "2024-04-26",
+        "repo_maintainers": [
+          "art049",
+          "tiangolo",
+          "adriencaccia",
+          "Olegt0rr"
+        ],
+        "repo_owner": "art049",
+        "repo_stars": 1138,
+        "repo_topics": [
+          "async",
+          "asyncio",
+          "database",
+          "fastapi",
+          "mongo",
+          "mongodb",
+          "mongodb-orm",
+          "motor",
+          "nosql",
+          "object-document-mapper",
+          "odm",
+          "orm",
+          "pydantic",
+          "pymongo",
+          "python",
+          "python-types",
+          "sync",
+          "type-hints"
+        ],
+        "repo_url": "https://github.com/art049/odmantic",
+        "summary": "ODMantic, an AsyncIO MongoDB Object Document Mapper for Python using type hints",
+        "version": "1.0.2"
+      }
+    },
+    {
+      "id": "dnspython",
+      "meta": {
+        "license": "ISC",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-06",
+        "repo_last_release": "2025-09-07",
+        "repo_maintainers": [
+          "rthalley",
+          "bwelling",
+          "MartinBasti",
+          "kimbo"
+        ],
+        "repo_owner": "rthalley",
+        "repo_stars": 2618,
+        "repo_topics": [
+          "asyncio",
+          "ddns",
+          "dns",
+          "dns-over-https",
+          "dns-over-quic",
+          "dns-over-tls",
+          "dnspython",
+          "dnssec",
+          "edns",
+          "edns0",
+          "idna",
+          "stub-resolver",
+          "trio"
+        ],
+        "repo_url": "https://github.com/rthalley/dnspython",
+        "summary": "DNS toolkit",
+        "version": "2.8.0"
+      }
+    },
+    {
+      "id": "pydantic-core",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-10",
+        "repo_last_release": "2025-11-04",
+        "repo_maintainers": [
+          "samuelcolvin",
+          "davidhewitt",
+          "adriangb",
+          "sydney-runkle"
+        ],
+        "repo_owner": "pydantic",
+        "repo_stars": 1737,
+        "repo_topics": [
+          "json-schema",
+          "parsing",
+          "pydantic",
+          "rust",
+          "schema",
+          "validation"
+        ],
+        "repo_url": "https://github.com/pydantic/pydantic-core",
+        "summary": "Core functionality for Pydantic validation and serialization",
+        "version": "2.41.5"
+      }
+    },
+    {
+      "id": "importlib-metadata",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-08-17",
+        "repo_last_release": "2025-04-27",
+        "repo_maintainers": [
+          "jaraco",
+          "warsaw",
+          "abravalheri",
+          "jherland",
+          "sjma3"
+        ],
+        "repo_owner": "python",
+        "repo_stars": 137,
+        "repo_url": "https://github.com/python/importlib_metadata",
+        "summary": "Read metadata from Python packages",
+        "version": "8.7.0"
+      }
+    },
+    {
+      "id": "cachetools",
+      "meta": {
+        "author": "Thomas Kemmer",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-08",
+        "repo_maintainers": [
+          "tkem",
+          "efkon-tkem",
+          "kurtmckee",
+          "kuraga"
+        ],
+        "repo_owner": "tkem",
+        "repo_stars": 2659,
+        "repo_url": "https://github.com/tkem/cachetools",
+        "summary": "Extensible memoizing collections and decorators",
+        "version": "6.2.2"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "app",
+      "to": "apscheduler"
+    },
+    {
+      "from": "app",
+      "to": "inboard"
+    },
+    {
+      "from": "app",
+      "to": "ua-parser"
+    },
+    {
+      "from": "app",
+      "to": "asgi-logger"
+    },
+    {
+      "from": "app",
+      "to": "python-multipart"
+    },
+    {
+      "from": "app",
+      "to": "email-validator"
+    },
+    {
+      "from": "app",
+      "to": "requests"
+    },
+    {
+      "from": "app",
+      "to": "passlib"
+    },
+    {
+      "from": "app",
+      "to": "cryptography"
+    },
+    {
+      "from": "app",
+      "to": "tenacity"
+    },
+    {
+      "from": "app",
+      "to": "emails"
+    },
+    {
+      "from": "app",
+      "to": "sentry-sdk"
+    },
+    {
+      "from": "app",
+      "to": "jinja2"
+    },
+    {
+      "from": "app",
+      "to": "pyjwt"
+    },
+    {
+      "from": "app",
+      "to": "python-calamine"
+    },
+    {
+      "from": "app",
+      "to": "pydantic"
+    },
+    {
+      "from": "app",
+      "to": "pydantic-ai-slim"
+    },
+    {
+      "from": "app",
+      "to": "pydantic-settings"
+    },
+    {
+      "from": "app",
+      "to": "pydantic-extra-types"
+    },
+    {
+      "from": "app",
+      "to": "httpx"
+    },
+    {
+      "from": "app",
+      "to": "setuptools"
+    },
+    {
+      "from": "app",
+      "to": "motor"
+    },
+    {
+      "from": "app",
+      "to": "pytest"
+    },
+    {
+      "from": "app",
+      "to": "pytest-cov"
+    },
+    {
+      "from": "app",
+      "to": "pytest-asyncio"
+    },
+    {
+      "from": "app",
+      "to": "argon2-cffi"
+    },
+    {
+      "from": "app",
+      "to": "argon2-cffi-bindings"
+    },
+    {
+      "from": "app",
+      "to": "odmantic"
+    },
+    {
+      "from": "app",
+      "to": "phonenumbers"
+    },
+    {
+      "from": "app",
+      "to": "pypdf"
+    },
+    {
+      "from": "app",
+      "to": "minio"
+    },
+    {
+      "from": "app",
+      "to": "slowapi"
+    },
+    {
+      "from": "app",
+      "to": "pillow"
+    },
+    {
+      "from": "app",
+      "to": "pymongo-migrate"
+    },
+    {
+      "from": "pydantic-extra-types",
+      "to": "pydantic"
+    },
+    {
+      "from": "pydantic-extra-types",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "apscheduler",
+      "to": "tzlocal"
+    },
+    {
+      "from": "apscheduler",
+      "to": "backports"
+    },
+    {
+      "from": "requests",
+      "to": "charset-normalizer"
+    },
+    {
+      "from": "requests",
+      "to": "idna"
+    },
+    {
+      "from": "requests",
+      "to": "urllib3"
+    },
+    {
+      "from": "requests",
+      "to": "certifi"
+    },
+    {
+      "from": "ua-parser",
+      "to": "ua-parser-builtins"
+    },
+    {
+      "from": "pydantic-settings",
+      "to": "pydantic"
+    },
+    {
+      "from": "pydantic-settings",
+      "to": "python-dotenv"
+    },
+    {
+      "from": "pydantic-settings",
+      "to": "typing-inspection"
+    },
+    {
+      "from": "jinja2",
+      "to": "markupsafe"
+    },
+    {
+      "from": "email-validator",
+      "to": "dnspython"
+    },
+    {
+      "from": "email-validator",
+      "to": "idna"
+    },
+    {
+      "from": "httpx",
+      "to": "anyio"
+    },
+    {
+      "from": "httpx",
+      "to": "certifi"
+    },
+    {
+      "from": "httpx",
+      "to": "httpcore"
+    },
+    {
+      "from": "httpx",
+      "to": "idna"
+    },
+    {
+      "from": "motor",
+      "to": "pymongo"
+    },
+    {
+      "from": "sentry-sdk",
+      "to": "urllib3"
+    },
+    {
+      "from": "sentry-sdk",
+      "to": "certifi"
+    },
+    {
+      "from": "pytest-cov",
+      "to": "coverage"
+    },
+    {
+      "from": "pytest-cov",
+      "to": "pluggy"
+    },
+    {
+      "from": "pytest-cov",
+      "to": "pytest"
+    },
+    {
+      "from": "pytest-asyncio",
+      "to": "backports-asyncio-runner"
+    },
+    {
+      "from": "pytest-asyncio",
+      "to": "pytest"
+    },
+    {
+      "from": "pytest-asyncio",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "pytest",
+      "to": "colorama"
+    },
+    {
+      "from": "pytest",
+      "to": "exceptiongroup"
+    },
+    {
+      "from": "pytest",
+      "to": "iniconfig"
+    },
+    {
+      "from": "pytest",
+      "to": "packaging"
+    },
+    {
+      "from": "pytest",
+      "to": "pluggy"
+    },
+    {
+      "from": "pytest",
+      "to": "pygments"
+    },
+    {
+      "from": "pytest",
+      "to": "tomli"
+    },
+    {
+      "from": "argon2-cffi",
+      "to": "argon2-cffi-bindings"
+    },
+    {
+      "from": "argon2-cffi-bindings",
+      "to": "cffi"
+    },
+    {
+      "from": "odmantic",
+      "to": "pydantic"
+    },
+    {
+      "from": "odmantic",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "odmantic",
+      "to": "motor"
+    },
+    {
+      "from": "odmantic",
+      "to": "pymongo"
+    },
+    {
+      "from": "pypdf",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "minio",
+      "to": "argon2-cffi"
+    },
+    {
+      "from": "minio",
+      "to": "certifi"
+    },
+    {
+      "from": "minio",
+      "to": "pycryptodome"
+    },
+    {
+      "from": "minio",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "minio",
+      "to": "urllib3"
+    },
+    {
+      "from": "asgi-logger",
+      "to": "asgiref"
+    },
+    {
+      "from": "inboard",
+      "to": "gunicorn"
+    },
+    {
+      "from": "inboard",
+      "to": "uvicorn"
+    },
+    {
+      "from": "emails",
+      "to": "cssutils"
+    },
+    {
+      "from": "emails",
+      "to": "lxml"
+    },
+    {
+      "from": "emails",
+      "to": "chardet"
+    },
+    {
+      "from": "emails",
+      "to": "python-dateutil"
+    },
+    {
+      "from": "emails",
+      "to": "requests"
+    },
+    {
+      "from": "emails",
+      "to": "premailer"
+    },
+    {
+      "from": "pydantic",
+      "to": "annotated-types"
+    },
+    {
+      "from": "pydantic",
+      "to": "pydantic-core"
+    },
+    {
+      "from": "pydantic",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "pydantic",
+      "to": "typing-inspection"
+    },
+    {
+      "from": "pydantic-ai-slim",
+      "to": "exceptiongroup"
+    },
+    {
+      "from": "pydantic-ai-slim",
+      "to": "genai-prices"
+    },
+    {
+      "from": "pydantic-ai-slim",
+      "to": "griffe"
+    },
+    {
+      "from": "pydantic-ai-slim",
+      "to": "httpx"
+    },
+    {
+      "from": "pydantic-ai-slim",
+      "to": "opentelemetry-api"
+    },
+    {
+      "from": "pydantic-ai-slim",
+      "to": "pydantic-graph"
+    },
+    {
+      "from": "pydantic-ai-slim",
+      "to": "pydantic"
+    },
+    {
+      "from": "pydantic-ai-slim",
+      "to": "typing-inspection"
+    },
+    {
+      "from": "cryptography",
+      "to": "cffi"
+    },
+    {
+      "from": "cryptography",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "slowapi",
+      "to": "limits"
+    },
+    {
+      "from": "pymongo-migrate",
+      "to": "pymongo"
+    },
+    {
+      "from": "pymongo-migrate",
+      "to": "click"
+    },
+    {
+      "from": "tzlocal",
+      "to": "tzdata"
+    },
+    {
+      "from": "typing-inspection",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "anyio",
+      "to": "exceptiongroup"
+    },
+    {
+      "from": "anyio",
+      "to": "idna"
+    },
+    {
+      "from": "anyio",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "httpcore",
+      "to": "certifi"
+    },
+    {
+      "from": "httpcore",
+      "to": "h11"
+    },
+    {
+      "from": "pymongo",
+      "to": "dnspython"
+    },
+    {
+      "from": "exceptiongroup",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "cffi",
+      "to": "pycparser"
+    },
+    {
+      "from": "asgiref",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "gunicorn",
+      "to": "packaging"
+    },
+    {
+      "from": "gunicorn",
+      "to": "importlib-metadata"
+    },
+    {
+      "from": "uvicorn",
+      "to": "click"
+    },
+    {
+      "from": "uvicorn",
+      "to": "h11"
+    },
+    {
+      "from": "uvicorn",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "python-dateutil",
+      "to": "six"
+    },
+    {
+      "from": "premailer",
+      "to": "lxml"
+    },
+    {
+      "from": "premailer",
+      "to": "cssselect"
+    },
+    {
+      "from": "premailer",
+      "to": "cssutils"
+    },
+    {
+      "from": "premailer",
+      "to": "requests"
+    },
+    {
+      "from": "premailer",
+      "to": "cachetools"
+    },
+    {
+      "from": "cssutils",
+      "to": "more-itertools"
+    },
+    {
+      "from": "annotated-types",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "pydantic-core",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "opentelemetry-api",
+      "to": "importlib-metadata"
+    },
+    {
+      "from": "opentelemetry-api",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "pydantic-graph",
+      "to": "httpx"
+    },
+    {
+      "from": "pydantic-graph",
+      "to": "logfire-api"
+    },
+    {
+      "from": "pydantic-graph",
+      "to": "pydantic"
+    },
+    {
+      "from": "pydantic-graph",
+      "to": "typing-inspection"
+    },
+    {
+      "from": "griffe",
+      "to": "colorama"
+    },
+    {
+      "from": "genai-prices",
+      "to": "eval-type-backport"
+    },
+    {
+      "from": "genai-prices",
+      "to": "httpx"
+    },
+    {
+      "from": "genai-prices",
+      "to": "pydantic"
+    },
+    {
+      "from": "limits",
+      "to": "deprecated"
+    },
+    {
+      "from": "limits",
+      "to": "packaging"
+    },
+    {
+      "from": "limits",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "click",
+      "to": "colorama"
+    },
+    {
+      "from": "importlib-metadata",
+      "to": "zipp"
+    },
+    {
+      "from": "importlib-metadata",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "deprecated",
+      "to": "wrapt"
+    },
+    {
+      "from": "deprecated",
+      "to": "inspect2"
+    }
+  ]
+}

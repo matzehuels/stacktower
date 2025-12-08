@@ -45,7 +45,8 @@ stacktower parse manifest package.json -o tktm.json
 Add `--enrich` with a `GITHUB_TOKEN` to pull repository metadata (stars, maintainers, last commit) for richer visualizations.
 
 Exemple from source to svg using manifest and a bunch of options
-```
+
+```bash
 go build -o stacktower .
 
 ./stacktower parse manifest package.json -o tktm.json --enrich --max-depth 2
