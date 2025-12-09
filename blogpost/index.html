@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stacktower: An Accidental Deep Dive</title>
     <meta name="description" content="How an XKCD comic led to teaching myself graph theory — a journey through NP-hard problems, PQ-trees, and layered graph algorithms.">
+    <meta name="author" content="Matthias Huels">
+    <meta name="keywords" content="dependency visualization, graph algorithms, PQ-tree, Sugiyama, layered graph drawing, XKCD, software dependencies, Go, npm, PyPI, crates.io">
+    <link rel="canonical" href="https://stacktower.io/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://stacktower.io/">
+    <meta property="og:title" content="Stacktower: An Accidental Deep Dive">
+    <meta property="og:description" content="How an XKCD comic led to teaching myself graph theory — a journey through NP-hard problems, PQ-trees, and layered graph algorithms.">
+    <meta property="og:image" content="https://stacktower.io/android-chrome-512x512.png">
+    <meta property="og:site_name" content="Stacktower">
+    <meta property="article:author" content="Matthias Huels">
+    <meta property="article:published_time" content="2025-10-01">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://stacktower.io/">
+    <meta name="twitter:title" content="Stacktower: An Accidental Deep Dive">
+    <meta name="twitter:description" content="How an XKCD comic led to teaching myself graph theory — a journey through NP-hard problems, PQ-trees, and layered graph algorithms.">
+    <meta name="twitter:image" content="https://stacktower.io/android-chrome-512x512.png">
     
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -15,6 +35,8 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <meta name="theme-color" content="#1a1a2e">
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
     <!-- MathJax for LaTeX rendering -->
@@ -31,12 +53,39 @@
             }
         };
     </script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <!-- Overtracking Pixel Code -->
     <script defer src="https://cdn.overtracking.com/t/tEi6HMQbt5wJf9Yp8/"></script>
     <!-- End Overtracking Pixel Code -->
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Stacktower: An Accidental Deep Dive",
+        "description": "How an XKCD comic led to teaching myself graph theory — a journey through NP-hard problems, PQ-trees, and layered graph algorithms.",
+        "image": "https://stacktower.io/android-chrome-512x512.png",
+        "author": {
+            "@type": "Person",
+            "name": "Matthias Huels",
+            "url": "https://huels.ai"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "Matthias Huels",
+            "url": "https://huels.ai"
+        },
+        "datePublished": "2025-10-01",
+        "dateModified": "2025-10-01",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://stacktower.io/"
+        },
+        "keywords": ["dependency visualization", "graph algorithms", "PQ-tree", "Sugiyama framework", "layered graph drawing", "software dependencies"]
+    }
+    </script>
 </head>
 <body>
     <!-- Main Navigation Tabs -->
@@ -127,11 +176,11 @@
 
                 <div class="diagram-row">
                     <div class="diagram-item">
-                        <img src="plots/simple_dag.svg" alt="Node-link diagram">
+                        <img src="plots/simple_dag.svg" alt="Node-link diagram" loading="lazy">
                         <p><em><strong>Fig. 1 (a): </strong>Traditional node-link diagram with explicit arrows</em></p>
                     </div>
                     <div class="diagram-item">
-                        <img src="plots/simple_tower.svg" alt="Tower diagram">
+                        <img src="plots/simple_tower.svg" alt="Tower diagram" loading="lazy">
                         <p><em><strong>Fig. 1 (b): </strong>Tower layout where contact implies dependency</em></p>
                     </div>
                 </div>
@@ -199,15 +248,15 @@
 
                 <div class="diagram-row">
                     <div class="diagram-item">
-                        <img src="plots/transitive_before.svg" alt="Before transitive reduction">
+                        <img src="plots/transitive_before.svg" alt="Before transitive reduction" loading="lazy">
                         <p><em><strong>Fig. 2 (a): </strong>The transitive trap</em></p>
                     </div>
                     <div class="diagram-item">
-                        <img src="plots/transitive_after.svg" alt="After transitive reduction">
+                        <img src="plots/transitive_after.svg" alt="After transitive reduction" loading="lazy">
                         <p><em><strong>Fig. 2 (b): </strong>After transitive reduction</em></p>
                     </div>
                     <div class="diagram-item">
-                        <img src="plots/transitive_after_tower.svg" alt="Tower view">
+                        <img src="plots/transitive_after_tower.svg" alt="Tower view" loading="lazy">
                         <p><em><strong>Fig. 2 (c): </strong>Stacked tower view</em></p>
                     </div>
                 </div>
@@ -220,11 +269,11 @@
 
                 <div class="diagram-row">
                     <div class="diagram-item">
-                        <img src="plots/dummies_before.svg" alt="Before dummy insertion">
+                        <img src="plots/dummies_before.svg" alt="Before dummy insertion" loading="lazy">
                         <p><em><strong>Fig. 3 (a): </strong>Long-spanning edge</em></p>
                     </div>
                     <div class="diagram-item">
-                        <img src="plots/dummies_after.svg" alt="After dummy insertion">
+                        <img src="plots/dummies_after.svg" alt="After dummy insertion" loading="lazy">
                         <p><em><strong>Fig. 3 (b): </strong>Bridged with dummies</em></p>
                     </div>
                 </div>
@@ -233,11 +282,11 @@
 
                 <div class="diagram-row">
                     <div class="diagram-item">
-                        <img src="plots/dummies_after_tower.svg" alt="After tower">
+                        <img src="plots/dummies_after_tower.svg" alt="After tower" loading="lazy">
                         <p><em><strong>Fig. 4 (a): </strong>Intermediate tower view</em></p>
                     </div>
                     <div class="diagram-item">
-                        <img src="plots/dummies_before_tower.svg" alt="Before tower">
+                        <img src="plots/dummies_before_tower.svg" alt="Before tower" loading="lazy">
                         <p><em><strong>Fig. 4 (b): </strong>Final merged view</em></p>
                     </div>
                 </div>
@@ -248,7 +297,7 @@
 
                 <div class="diagram-row" style="justify-content: center;">
                     <div class="diagram-item">
-                        <img src="plots/separators_before.svg" alt="Before separator insertion">
+                        <img src="plots/separators_before.svg" alt="Before separator insertion" loading="lazy">
                         <p><em><strong>Fig. 5: </strong>Tangled edges</em></p>
                     </div>
                 </div>
@@ -257,11 +306,11 @@
 
                 <div class="diagram-row" style="justify-content: center;">
                     <div class="diagram-item">
-                        <img src="plots/separators_after.svg" alt="After separator insertion">
+                        <img src="plots/separators_after.svg" alt="After separator insertion" loading="lazy">
                         <p><em><strong>Fig. 6 (a): </strong>Separator node insertion</em></p>
                     </div>
                     <div class="diagram-item">
-                        <img src="plots/separators_after_tower.svg" alt="Tower view">
+                        <img src="plots/separators_after_tower.svg" alt="Tower view" loading="lazy">
                         <p><em><strong>Fig. 6 (b): </strong>Tower view</em></p>
                     </div>
                 </div>
@@ -375,11 +424,11 @@
 
                 <div class="diagram-row">
                     <div class="diagram-item">
-                        <img src="plots/pq_tree_before.svg" alt="PQ-tree before applying adjacency constraint">
+                        <img src="plots/pq_tree_before.svg" alt="PQ-tree before applying adjacency constraint" loading="lazy">
                         <p><em><strong>Fig. 7 (a): </strong>Single P-node with Logging, Auth, Caching</em></p>
                     </div>
                     <div class="diagram-item">
-                        <img src="plots/pq_tree_after.svg" alt="PQ-tree after applying adjacency constraint">
+                        <img src="plots/pq_tree_after.svg" alt="PQ-tree after applying adjacency constraint" loading="lazy">
                         <p><em><strong>Fig. 7 (b): </strong>Q-node enforcing [Auth, Caching] adjacency</em></p>
                     </div>
                 </div>
