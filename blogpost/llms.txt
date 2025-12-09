@@ -1,0 +1,47 @@
+# Stacktower
+
+> Stacktower is a tool that visualizes software dependency graphs as physical towers, inspired by XKCD #2347.
+
+## About
+
+This blog post documents the journey of building Stacktower - a visualization tool that transforms dependency graphs into stacked tower diagrams. Instead of traditional node-link diagrams with arrows, dependencies are represented as physical blocks where blocks rest on what they depend on.
+
+## Key Topics
+
+- **Dependency Visualization**: A new approach to visualizing software dependencies as physical structures
+- **Graph Algorithms**: Layered graph drawing, crossing minimization, NP-hard optimization
+- **PQ-Trees**: Data structure for encoding permutation constraints efficiently
+- **Barycenter Heuristic**: Fast approximation algorithm for node ordering
+- **Branch and Bound**: Combining exact and heuristic methods for optimal layouts
+
+## Sections
+
+- The Spark: Origin story inspired by XKCD comic #2347
+- Welcome to the Side Quest: Discovery of the underlying NP-hard problem
+- Finding a Battle Plan: Research into existing algorithms (Sugiyama Framework)
+- Reducing the Problem: Graph transformations to make stacking possible
+- The Evolution of an Algorithm: From brute force to PQ-trees to heuristics
+- The Final Touches: Implementation details and rendering
+
+## Technical Details
+
+The tool is implemented in Go and supports:
+- PyPI (Python packages)
+- crates.io (Rust packages)
+- npm (JavaScript packages)
+
+It fetches dependency data from package registries and maintainer information from GitHub.
+
+## Links
+
+- Source Code: https://github.com/matzehuels/stacktower
+- Author: Matthias Huels (https://huels.ai)
+- Original Inspiration: XKCD #2347 (https://xkcd.com/2347/)
+
+## Gallery
+
+The site includes an interactive gallery showcasing dependency towers for popular packages:
+- Python: openai, requests, pydantic, fastapi, typer
+- Rust: serde, ureq, hyper, diesel, rayon
+- JavaScript: yup, mongoose, knex, ioredis, pino
+

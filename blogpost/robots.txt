@@ -1,0 +1,11 @@
+# Robots.txt for stacktower.io
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://stacktower.io/sitemap.xml
+
+# LLMs.txt location
+# See https://llmstxt.org/
+
