@@ -4,7 +4,7 @@ BINARY := stacktower
 
 all: check build
 
-check: fmt lint test
+check: fmt lint test vuln
 
 fmt:
 	@gofmt -s -w .
@@ -65,7 +65,7 @@ clean:
 
 help:
 	@echo "make              - Run checks and build"
-	@echo "make check        - Format, lint, test"
+	@echo "make check        - Format, lint, test, vulncheck (same as CI)"
 	@echo "make fmt          - Format code"
 	@echo "make lint         - Run golangci-lint"
 	@echo "make test         - Run tests"

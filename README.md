@@ -427,6 +427,27 @@ func (p *MyLockParser) Parse(path string, opts deps.Options) (*deps.ManifestResu
 
 The `deps.Registry` handles concurrent fetching with configurable depth/node limits and metadata enrichment automatically.
 
+## Development
+
+```bash
+make install-tools  # Install required tools (golangci-lint, goimports, govulncheck)
+make check          # Run all CI checks locally (fmt, lint, test, vuln)
+make build          # Build binary to bin/stacktower
+```
+
+| Command | Description |
+|---------|-------------|
+| `make check` | Format, lint, test, vulncheck (same as CI) |
+| `make fmt` | Format code with gofmt and goimports |
+| `make lint` | Run golangci-lint |
+| `make test` | Run tests with race detector |
+| `make cover` | Run tests with coverage report |
+| `make vuln` | Check for known vulnerabilities |
+| `make e2e` | Run end-to-end tests |
+| `make snapshot` | Build release locally (no publish) |
+
+Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/).
+
 ## Learn More
 
 - 📖 **[stacktower.io](https://www.stacktower.io)** — Interactive examples and the full story behind tower visualizations
