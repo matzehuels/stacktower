@@ -30,7 +30,14 @@ jobs:
           version: v2.1.6
 
       - name: Test
-        run: go test -race -timeout=2m ./...
+        run: go test -race -coverprofile=coverage.txt -timeout=2m ./...
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage.txt
+          fail_ci_if_error: false
 
       - name: Vulncheck
         run: |

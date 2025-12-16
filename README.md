@@ -1,6 +1,7 @@
 # Stacktower
 
 [![CI](https://github.com/matzehuels/stacktower/actions/workflows/ci.yml/badge.svg)](https://github.com/matzehuels/stacktower/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/matzehuels/stacktower/graph/badge.svg)](https://codecov.io/gh/matzehuels/stacktower)
 [![Go Report Card](https://goreportcard.com/badge/github.com/matzehuels/stacktower)](https://goreportcard.com/report/github.com/matzehuels/stacktower)
 [![Release](https://img.shields.io/github/v/release/matzehuels/stacktower)](https://github.com/matzehuels/stacktower/releases)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
