@@ -111,7 +111,7 @@ brews:
       token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
     directory: Formula
     homepage: https://github.com/matzehuels/stacktower
-    description: Visualize dependency graphs as elegant stacktower diagrams
+    description: Visualize dependency graphs as elegant stacked tower diagrams
     license: Apache-2.0
     test: |
       system "#{bin}/stacktower", "--version"
