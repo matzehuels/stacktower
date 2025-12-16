@@ -73,7 +73,7 @@ run_parse_tests() {
     test_parse javascript yargs
     test_parse ruby rspec
     test_parse php symfony/console
-    test_parse java com.google.guava:guava
+    test_parse java com.google.guava_guava
     test_parse go github.com/spf13/cobra
 
     echo ""
