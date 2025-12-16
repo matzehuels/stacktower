@@ -73,13 +73,13 @@ func (h *HandDrawn) RenderEdge(buf *bytes.Buffer, e styles.Edge) {
 
 func (h *HandDrawn) RenderText(buf *bytes.Buffer, b styles.Block) {
 	size := styles.FontSize(b)
-	rotate := styles.ShouldRotate(b, size)
+	rotate := styles.ShouldRotate(b)
 	if rotate {
 		size = styles.FontSizeRotated(b)
 	}
 	grey := greyForID(b.ID)
 
-	textW, textH := float64(len(b.ID))*size*textWidthRatio, size*textHeightRatio
+	textW, textH := float64(len(b.Label))*size*textWidthRatio, size*textHeightRatio
 	if rotate {
 		textW, textH = textH, textW
 	}
@@ -91,10 +91,10 @@ func (h *HandDrawn) RenderText(buf *bytes.Buffer, b styles.Block) {
 
 		if rotate {
 			fmt.Fprintf(buf, `    <text x="%.2f" y="%.2f" text-anchor="middle" dominant-baseline="middle" font-family="%s" font-size="%.1f" fill="#333" transform="rotate(-90 %.2f %.2f)">%s</text>`+"\n",
-				b.CX, b.CY, fontFamily, size, b.CX, b.CY, styles.EscapeXML(b.ID))
+				b.CX, b.CY, fontFamily, size, b.CX, b.CY, styles.EscapeXML(b.Label))
 		} else {
 			fmt.Fprintf(buf, `    <text x="%.2f" y="%.2f" text-anchor="middle" dominant-baseline="middle" font-family="%s" font-size="%.1f" fill="#333">%s</text>`+"\n",
-				b.CX, b.CY, fontFamily, size, styles.EscapeXML(b.ID))
+				b.CX, b.CY, fontFamily, size, styles.EscapeXML(b.Label))
 		}
 	})
 	buf.WriteString("  </g>\n")

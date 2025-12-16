@@ -24,7 +24,7 @@ type PackageInfo struct {
 }
 
 type Client struct {
-	integrations.BaseClient
+	*integrations.Client
 	baseURL string
 }
 
@@ -34,57 +34,54 @@ func NewClient(cacheTTL time.Duration) (*Client, error) {
 		return nil, err
 	}
 	return &Client{
-		BaseClient: integrations.BaseClient{
-			HTTP:  integrations.NewHTTPClient(),
-			Cache: cache,
-		},
+		Client:  integrations.NewClient(cache, nil),
 		baseURL: "https://registry.npmjs.org",
 	}, nil
 }
 
 func (c *Client) FetchPackage(ctx context.Context, pkg string, refresh bool) (*PackageInfo, error) {
-	pkg = normalizeName(pkg)
-	cacheKey := "npm:" + pkg
+	pkg = strings.ToLower(strings.TrimSpace(pkg))
+	key := "npm:" + pkg
 
 	var info PackageInfo
-	err := c.FetchWithCache(ctx, cacheKey, refresh, func() error {
-		return c.fetchPackage(ctx, pkg, &info)
-	}, &info)
+	err := c.Cached(ctx, key, refresh, &info, func() error {
+		return c.fetch(ctx, pkg, &info)
+	})
 	if err != nil {
 		return nil, err
 	}
 	return &info, nil
 }
 
-func (c *Client) fetchPackage(ctx context.Context, pkg string, info *PackageInfo) error {
+func (c *Client) fetch(ctx context.Context, pkg string, info *PackageInfo) error {
 	var data registryResponse
-	if err := c.DoRequest(ctx, c.baseURL+"/"+pkg, nil, &data); err != nil {
+	if err := c.Get(ctx, c.baseURL+"/"+pkg, &data); err != nil {
 		if errors.Is(err, integrations.ErrNotFound) {
 			return fmt.Errorf("%w: npm package %s", err, pkg)
 		}
 		return err
 	}
 
-	v := data.DistTags.Latest
-	vd, ok := data.Versions[v]
+	latest := data.DistTags.Latest
+	v, ok := data.Versions[latest]
 	if !ok {
-		return fmt.Errorf("version %s not found in registry data", v)
+		return fmt.Errorf("version %s not found", latest)
 	}
 
 	*info = PackageInfo{
 		Name:         data.Name,
-		Version:      v,
-		Description:  vd.Description,
-		License:      extractString(vd.License, "type"),
-		Author:       extractString(vd.Author, "name"),
-		Repository:   normalizeRepoURL(extractString(vd.Repository, "url")),
-		HomePage:     vd.HomePage,
-		Dependencies: slices.Collect(maps.Keys(vd.Dependencies)),
+		Version:      latest,
+		Description:  v.Description,
+		License:      extractField(v.License, "type"),
+		Author:       extractField(v.Author, "name"),
+		Repository:   integrations.NormalizeRepoURL(extractField(v.Repository, "url")),
+		HomePage:     v.HomePage,
+		Dependencies: slices.Collect(maps.Keys(v.Dependencies)),
 	}
 	return nil
 }
 
-func extractString(v any, field string) string {
+func extractField(v any, field string) string {
 	switch val := v.(type) {
 	case string:
 		return val
@@ -94,21 +91,6 @@ func extractString(v any, field string) string {
 		}
 	}
 	return ""
-}
-
-func normalizeRepoURL(url string) string {
-	if url == "" {
-		return ""
-	}
-	url = strings.TrimSpace(url)
-	url = strings.TrimPrefix(url, "git+")
-	url = strings.ReplaceAll(url, "git@github.com:", "https://github.com/")
-	url = strings.ReplaceAll(url, "git://github.com/", "https://github.com/")
-	return strings.TrimSuffix(url, ".git")
-}
-
-func normalizeName(name string) string {
-	return strings.ToLower(strings.TrimSpace(name))
 }
 
 type registryResponse struct {

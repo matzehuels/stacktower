@@ -1,6 +1,9 @@
 package perm
 
-import "slices"
+import (
+	"slices"
+	"strings"
+)
 
 type PQTree struct {
 	root   *pqNode
@@ -482,13 +485,14 @@ func (t *PQTree) StringWithLabels(labels []string) string {
 
 func (t *PQTree) nodeString(n *pqNode, labels []string) string {
 	if n.kind == leafNode {
-		if n.value < len(labels) {
+		switch {
+		case n.value < len(labels):
 			return labels[n.value]
+		case n.value < 10:
+			return string('0' + rune(n.value))
+		default:
+			return "(" + string('a'+rune(n.value-10)) + ")"
 		}
-		if n.value < 10 {
-			return string(rune('0' + n.value))
-		}
-		return "(" + string(rune('a'+n.value-10)) + ")"
 	}
 
 	open, close := "{", "}"
@@ -496,12 +500,9 @@ func (t *PQTree) nodeString(n *pqNode, labels []string) string {
 		open, close = "[", "]"
 	}
 
-	s := open
+	parts := make([]string, len(n.children))
 	for i, child := range n.children {
-		if i > 0 {
-			s += " "
-		}
-		s += t.nodeString(child, labels)
+		parts[i] = t.nodeString(child, labels)
 	}
-	return s + close
+	return open + strings.Join(parts, " ") + close
 }

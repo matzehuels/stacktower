@@ -78,17 +78,13 @@ func newIDGen(nodes []*dag.Node) *idGen {
 }
 
 func (gen *idGen) next(base string, row int) string {
-	id := fmt.Sprintf("%s_sub_%d", base, row)
-	if _, exists := gen.used[id]; !exists {
-		gen.used[id] = struct{}{}
-		return id
-	}
-
+	prefix := fmt.Sprintf("%s_sub_%d", base, row)
+	id := prefix
 	for i := 1; ; i++ {
-		id = fmt.Sprintf("%s_sub_%d__%d", base, row, i)
 		if _, exists := gen.used[id]; !exists {
 			gen.used[id] = struct{}{}
 			return id
 		}
+		id = fmt.Sprintf("%s__%d", prefix, i)
 	}
 }

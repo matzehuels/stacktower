@@ -3,6 +3,7 @@ package cli
 import (
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/spf13/cobra"
@@ -84,8 +85,8 @@ func parseConstraint(s string) ([]int, error) {
 	}
 	result := make([]int, len(parts))
 	for i, p := range parts {
-		var n int
-		if _, err := fmt.Sscanf(strings.TrimSpace(p), "%d", &n); err != nil {
+		n, err := strconv.Atoi(strings.TrimSpace(p))
+		if err != nil {
 			return nil, fmt.Errorf("invalid index %q", p)
 		}
 		result[i] = n

@@ -4,6 +4,7 @@
 *.dll
 *.so
 *.dylib
+/stacktower
 /bin/
 /dist/  # GoReleaser output
 
@@ -26,6 +27,9 @@ go.work.sum
 *.swo
 *~
 .DS_Store
+
+# Personal notes
+brew.md
 
 # bin
 bin/

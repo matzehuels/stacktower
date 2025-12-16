@@ -5,18 +5,32 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strings"
 
 	"github.com/spf13/cobra"
 
+	"github.com/matzehuels/stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/deps"
+	"github.com/matzehuels/stacktower/pkg/deps/golang"
+	"github.com/matzehuels/stacktower/pkg/deps/java"
+	"github.com/matzehuels/stacktower/pkg/deps/javascript"
+	"github.com/matzehuels/stacktower/pkg/deps/metadata"
+	"github.com/matzehuels/stacktower/pkg/deps/php"
+	"github.com/matzehuels/stacktower/pkg/deps/python"
+	"github.com/matzehuels/stacktower/pkg/deps/ruby"
+	"github.com/matzehuels/stacktower/pkg/deps/rust"
 	pkgio "github.com/matzehuels/stacktower/pkg/io"
-	"github.com/matzehuels/stacktower/pkg/source"
-	"github.com/matzehuels/stacktower/pkg/source/javascript"
-	"github.com/matzehuels/stacktower/pkg/source/metadata"
-	"github.com/matzehuels/stacktower/pkg/source/php"
-	"github.com/matzehuels/stacktower/pkg/source/python"
-	"github.com/matzehuels/stacktower/pkg/source/ruby"
-	"github.com/matzehuels/stacktower/pkg/source/rust"
 )
+
+var languages = []*deps.Language{
+	python.Language,
+	rust.Language,
+	javascript.Language,
+	ruby.Language,
+	php.Language,
+	java.Language,
+	golang.Language,
+}
 
 type parseOpts struct {
 	maxDepth int
@@ -26,81 +40,171 @@ type parseOpts struct {
 	output   string
 }
 
-type parserFactory func() (source.Parser, error)
+func (o *parseOpts) resolveOptions(ctx context.Context) deps.Options {
+	logger := loggerFromContext(ctx)
+	providers, err := metadataProviders(o.enrich)
+	if err != nil {
+		logger.Warnf("Metadata enrichment disabled: %v", err)
+	}
+	return deps.Options{
+		MaxDepth:          o.maxDepth,
+		MaxNodes:          o.maxNodes,
+		Refresh:           o.refresh,
+		CacheTTL:          deps.DefaultCacheTTL,
+		MetadataProviders: providers,
+		Logger:            func(msg string, args ...any) { logger.Warnf(msg, args...) },
+	}
+}
 
 func newParseCmd() *cobra.Command {
-	opts := parseOpts{maxDepth: 10, maxNodes: 5000}
+	opts := parseOpts{maxDepth: 10, maxNodes: 5000, enrich: true}
 
 	cmd := &cobra.Command{
 		Use:   "parse",
-		Short: "Parse dependency graphs from package managers",
-		Long:  `Parse dependency graphs from package managers (PyPI, crates.io, npm) and output as JSON.`,
+		Short: "Parse dependency graphs from package managers or manifest files",
+		Long: `Parse dependency graphs from package managers or local manifest files.
+
+The command auto-detects whether you're providing a package name or a manifest file.
+
+Examples:
+  stacktower parse python requests                        # Package from PyPI
+  stacktower parse python poetry.lock                     # Manifest file
+  stacktower parse python registry pypi fastapi           # Explicit registry  
+  stacktower parse python manifest poetry my_poetry.lock  # Explicit manifest type`,
 	}
 
 	cmd.PersistentFlags().IntVar(&opts.maxDepth, "max-depth", opts.maxDepth, "maximum dependency depth")
 	cmd.PersistentFlags().IntVar(&opts.maxNodes, "max-nodes", opts.maxNodes, "maximum nodes to fetch")
-	cmd.PersistentFlags().BoolVar(&opts.enrich, "enrich", false, "enrich with repository metadata")
+	cmd.PersistentFlags().BoolVar(&opts.enrich, "enrich", opts.enrich, "enrich with GitHub metadata (requires GITHUB_TOKEN)")
 	cmd.PersistentFlags().BoolVar(&opts.refresh, "refresh", false, "bypass cache")
 	cmd.PersistentFlags().StringVarP(&opts.output, "output", "o", "", "output file (stdout if empty)")
 
-	cmd.AddCommand(newParserCmd("python <package>", "Parse Python package dependencies from PyPI",
-		func() (source.Parser, error) { return python.NewParser(source.DefaultCacheTTL) }, &opts))
-	cmd.AddCommand(newParserCmd("rust <crate>", "Parse Rust crate dependencies from crates.io",
-		func() (source.Parser, error) { return rust.NewParser(source.DefaultCacheTTL) }, &opts))
-	cmd.AddCommand(newParserCmd("javascript <package>", "Parse JavaScript package dependencies from npm",
-		func() (source.Parser, error) { return javascript.NewParser(source.DefaultCacheTTL) }, &opts))
-	cmd.AddCommand(newParserCmd("ruby <gem>", "Parse Ruby gem dependencies from RubyGems",
-		func() (source.Parser, error) { return ruby.NewParser(source.DefaultCacheTTL) }, &opts))
-	cmd.AddCommand(newParserCmd("php <package>", "Parse PHP (Composer) package dependencies from Packagist",
-		func() (source.Parser, error) { return php.NewParser(source.DefaultCacheTTL) }, &opts))
+	for _, lang := range languages {
+		cmd.AddCommand(langCmd(lang, &opts))
+	}
 
 	return cmd
 }
 
-func newParserCmd(use, short string, factory parserFactory, opts *parseOpts) *cobra.Command {
-	return &cobra.Command{
-		Use:   use,
-		Short: short,
+func langCmd(lang *deps.Language, opts *parseOpts) *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   fmt.Sprintf("%s <package-or-file>", lang.Name),
+		Short: fmt.Sprintf("Parse %s dependencies", lang.Name),
 		Args:  cobra.ExactArgs(1),
-		RunE: func(cmd *cobra.Command, args []string) error {
-			p, err := factory()
+		RunE: func(c *cobra.Command, args []string) error {
+			return smartParse(c.Context(), lang, opts, args[0])
+		},
+	}
+
+	cmd.AddCommand(registryCmd(lang, opts))
+	if lang.HasManifests() {
+		cmd.AddCommand(manifestCmd(lang, opts))
+	}
+
+	return cmd
+}
+
+func registryCmd(lang *deps.Language, opts *parseOpts) *cobra.Command {
+	return &cobra.Command{
+		Use:   fmt.Sprintf("registry <%s> <package>", lang.DefaultRegistry),
+		Short: fmt.Sprintf("Parse %s package from specific registry", lang.Name),
+		Args:  cobra.ExactArgs(2),
+		RunE: func(c *cobra.Command, args []string) error {
+			res, err := lang.Registry(args[0])
 			if err != nil {
 				return err
 			}
-			return runParse(cmd.Context(), p, args[0], opts)
+			return resolve(c.Context(), opts, res, args[1])
 		},
 	}
 }
 
-func runParse(ctx context.Context, p source.Parser, pkg string, opts *parseOpts) error {
-	logger := loggerFromContext(ctx)
-	logger.Infof("Parsing %s dependencies", pkg)
+func manifestCmd(lang *deps.Language, opts *parseOpts) *cobra.Command {
+	return &cobra.Command{
+		Use:   fmt.Sprintf("manifest <%s> <file>", strings.Join(lang.ManifestTypes, "|")),
+		Short: fmt.Sprintf("Parse %s manifest file with explicit type", lang.Name),
+		Args:  cobra.ExactArgs(2),
+		RunE: func(c *cobra.Command, args []string) error {
+			res, err := lang.Resolver()
+			if err != nil {
+				return err
+			}
+			parser, ok := lang.Manifest(args[0], res)
+			if !ok {
+				return fmt.Errorf("unknown manifest type: %s (available: %s)", args[0], strings.Join(lang.ManifestTypes, ", "))
+			}
+			return parseManifest(c.Context(), opts, parser, args[1])
+		},
+	}
+}
 
-	providers, err := buildMetadataProviders(opts.enrich)
+func smartParse(ctx context.Context, lang *deps.Language, opts *parseOpts, arg string) error {
+	if lang.HasManifests() && looksLikeFile(arg) {
+		return parseManifestAuto(ctx, lang, opts, arg)
+	}
+	res, err := lang.Resolver()
 	if err != nil {
-		logger.Warnf("Metadata enrichment disabled: %v", err)
-	} else if len(providers) > 0 {
-		logger.Debugf("Metadata enrichment enabled (%d providers)", len(providers))
+		return err
 	}
+	return resolve(ctx, opts, res, arg)
+}
 
-	srcOpts := source.Options{
-		MaxDepth:          opts.maxDepth,
-		MaxNodes:          opts.maxNodes,
-		MetadataProviders: providers,
-		Refresh:           opts.refresh,
-		CacheTTL:          source.DefaultCacheTTL,
-		Logger:            func(msg string, args ...any) { logger.Warnf(msg, args...) },
+func parseManifestAuto(ctx context.Context, lang *deps.Language, opts *parseOpts, filePath string) error {
+	res, err := lang.Resolver()
+	if err != nil {
+		return fmt.Errorf("resolver: %w", err)
 	}
+	parser, err := deps.DetectManifest(filePath, lang.ManifestParsers(res)...)
+	if err != nil {
+		return fmt.Errorf("%w\n\nSupported: %s", err, strings.Join(lang.ManifestTypes, ", "))
+	}
+	return parseManifest(ctx, opts, parser, filePath)
+}
 
-	logger.Info("Resolving dependency graph")
+func resolve(ctx context.Context, opts *parseOpts, res deps.Resolver, pkg string) error {
+	logger := loggerFromContext(ctx)
+	logger.Infof("Resolving %s from %s", pkg, res.Name())
+
 	prog := newProgress(logger)
-	g, err := p.Parse(ctx, pkg, srcOpts)
+	g, err := res.Resolve(ctx, pkg, opts.resolveOptions(ctx))
 	if err != nil {
 		return err
 	}
 	prog.done(fmt.Sprintf("Resolved %d packages with %d dependencies", g.NodeCount(), g.EdgeCount()))
 
-	out, err := openOutput(opts.output)
+	return writeGraph(g, opts.output, logger)
+}
+
+func parseManifest(ctx context.Context, opts *parseOpts, parser deps.ManifestParser, filePath string) error {
+	logger := loggerFromContext(ctx)
+	logger.Infof("Parsing %s (%s)", filePath, parser.Type())
+
+	prog := newProgress(logger)
+	result, err := parser.Parse(filePath, opts.resolveOptions(ctx))
+	if err != nil {
+		return err
+	}
+	g := result.Graph.(*dag.DAG)
+	prog.done(fmt.Sprintf("Parsed %d packages with %d dependencies", g.NodeCount(), g.EdgeCount()))
+
+	return writeGraph(g, opts.output, logger)
+}
+
+func looksLikeFile(arg string) bool {
+	if _, err := os.Stat(arg); err == nil {
+		return true
+	}
+	lower := strings.ToLower(arg)
+	return strings.HasSuffix(lower, ".txt") ||
+		strings.HasSuffix(lower, ".lock") ||
+		strings.HasSuffix(lower, ".toml") ||
+		strings.HasSuffix(lower, ".xml") ||
+		lower == "go.mod" ||
+		lower == "pom.xml"
+}
+
+func writeGraph(g *dag.DAG, path string, logger interface{ Infof(string, ...any) }) error {
+	out, err := openOutput(path)
 	if err != nil {
 		return err
 	}
@@ -109,38 +213,25 @@ func runParse(ctx context.Context, p source.Parser, pkg string, opts *parseOpts)
 	if err := pkgio.WriteJSON(g, out); err != nil {
 		return err
 	}
-
-	if opts.output != "" {
-		logger.Infof("Wrote graph to %s", opts.output)
+	if path != "" {
+		logger.Infof("Wrote graph to %s", path)
 	}
 	return nil
 }
 
-func buildMetadataProviders(enrich bool) ([]source.MetadataProvider, error) {
+func metadataProviders(enrich bool) ([]deps.MetadataProvider, error) {
 	if !enrich {
 		return nil, nil
 	}
-
-	var providers []source.MetadataProvider
-	if tok := os.Getenv("GITHUB_TOKEN"); tok != "" {
-		gh, err := metadata.NewGitHub(tok, source.DefaultCacheTTL)
-		if err != nil {
-			return nil, fmt.Errorf("github: %w", err)
-		}
-		providers = append(providers, gh)
+	tok := os.Getenv("GITHUB_TOKEN")
+	if tok == "" {
+		return nil, fmt.Errorf("GITHUB_TOKEN not set (set it or use --enrich=false)")
 	}
-	if tok := os.Getenv("GITLAB_TOKEN"); tok != "" {
-		gl, err := metadata.NewGitLab(tok, source.DefaultCacheTTL)
-		if err != nil {
-			return nil, fmt.Errorf("gitlab: %w", err)
-		}
-		providers = append(providers, gl)
+	gh, err := metadata.NewGitHub(tok, deps.DefaultCacheTTL)
+	if err != nil {
+		return nil, fmt.Errorf("github: %w", err)
 	}
-
-	if len(providers) == 0 {
-		return nil, fmt.Errorf("no tokens found (GITHUB_TOKEN, GITLAB_TOKEN)")
-	}
-	return providers, nil
+	return []deps.MetadataProvider{gh}, nil
 }
 
 type nopCloser struct{ io.Writer }

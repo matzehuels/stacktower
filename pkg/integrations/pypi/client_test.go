@@ -14,7 +14,7 @@ import (
 
 func TestClient_FetchPackage(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path == "/pypi/flask/json" {
+		if r.URL.Path == "/flask/json" {
 			resp := apiResponse{
 				Info: apiInfo{
 					Name:         "Flask",
@@ -35,11 +35,9 @@ func TestClient_FetchPackage(t *testing.T) {
 	}))
 	defer server.Close()
 
-	c, _ := NewClient(time.Hour)
-	c.HTTP = server.Client()
-	c.baseURL = server.URL + "/pypi"
+	c := testClient(t, server.URL)
 
-	info, err := c.FetchPackage(context.Background(), "flask", false)
+	info, err := c.FetchPackage(context.Background(), "flask", true)
 	if err != nil {
 		t.Fatalf("FetchPackage failed: %v", err)
 	}
@@ -59,11 +57,9 @@ func TestClient_FetchPackage_NotFound(t *testing.T) {
 	server := httptest.NewServer(http.NotFoundHandler())
 	defer server.Close()
 
-	c, _ := NewClient(time.Hour)
-	c.HTTP = server.Client()
-	c.baseURL = server.URL
+	c := testClient(t, server.URL)
 
-	_, err := c.FetchPackage(context.Background(), "missing-pkg", false)
+	_, err := c.FetchPackage(context.Background(), "missing-pkg", true)
 	if err == nil {
 		t.Fatal("expected error for missing package")
 	}
@@ -77,18 +73,9 @@ func TestExtractDeps_FiltersMarkers(t *testing.T) {
 		input    []string
 		expected int
 	}{
-		{
-			input:    []string{"requests", "numpy; extra == 'dev'"},
-			expected: 1,
-		},
-		{
-			input:    []string{"django>=3.0", "pytest; extra == 'test'"},
-			expected: 1,
-		},
-		{
-			input:    []string{"flask"},
-			expected: 1,
-		},
+		{[]string{"requests", "numpy; extra == 'dev'"}, 1},
+		{[]string{"django>=3.0", "pytest; extra == 'test'"}, 1},
+		{[]string{"flask"}, 1},
 	}
 
 	for _, tt := range tests {
@@ -99,7 +86,7 @@ func TestExtractDeps_FiltersMarkers(t *testing.T) {
 	}
 }
 
-func TestNormalizeName(t *testing.T) {
+func TestNormalizePkgName(t *testing.T) {
 	tests := []struct {
 		input    string
 		expected string
@@ -112,10 +99,22 @@ func TestNormalizeName(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.input, func(t *testing.T) {
-			result := normalizeName(tt.input)
+			result := integrations.NormalizePkgName(tt.input)
 			if result != tt.expected {
 				t.Errorf("expected %s, got %s", tt.expected, result)
 			}
 		})
+	}
+}
+
+func testClient(t *testing.T, serverURL string) *Client {
+	t.Helper()
+	cache, err := integrations.NewCache(time.Hour)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return &Client{
+		Client:  integrations.NewClient(cache, nil),
+		baseURL: serverURL,
 	}
 }

@@ -12,6 +12,7 @@ type Style interface {
 
 type Block struct {
 	ID         string
+	Label      string
 	X, Y, W, H float64
 	CX, CY     float64
 	URL        string

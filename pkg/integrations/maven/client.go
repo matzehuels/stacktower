@@ -1,0 +1,199 @@
+package maven
+
+import (
+	"context"
+	"encoding/xml"
+	"errors"
+	"fmt"
+	"io"
+	"net/http"
+	"strings"
+	"time"
+
+	"github.com/matzehuels/stacktower/pkg/integrations"
+)
+
+type ArtifactInfo struct {
+	GroupID      string
+	ArtifactID   string
+	Version      string
+	Dependencies []string
+	Description  string
+	URL          string
+}
+
+func (a *ArtifactInfo) Coordinate() string {
+	return a.GroupID + ":" + a.ArtifactID
+}
+
+type Client struct {
+	*integrations.Client
+	baseURL string
+}
+
+func NewClient(cacheTTL time.Duration) (*Client, error) {
+	cache, err := integrations.NewCache(cacheTTL)
+	if err != nil {
+		return nil, err
+	}
+	return &Client{
+		Client:  integrations.NewClient(cache, nil),
+		baseURL: "https://search.maven.org/solrsearch/select",
+	}, nil
+}
+
+func (c *Client) FetchArtifact(ctx context.Context, coordinate string, refresh bool) (*ArtifactInfo, error) {
+	groupID, artifactID, err := parseCoordinate(coordinate)
+	if err != nil {
+		return nil, err
+	}
+
+	key := "maven:" + coordinate
+
+	var info ArtifactInfo
+	err = c.Cached(ctx, key, refresh, &info, func() error {
+		return c.fetch(ctx, groupID, artifactID, &info)
+	})
+	if err != nil {
+		return nil, err
+	}
+	return &info, nil
+}
+
+func (c *Client) fetch(ctx context.Context, groupID, artifactID string, info *ArtifactInfo) error {
+	// First, get the latest version
+	query := fmt.Sprintf("g:%q AND a:%q", groupID, artifactID)
+	url := fmt.Sprintf("%s?q=%s&rows=1&wt=json", c.baseURL, integrations.URLEncode(query))
+
+	var searchResp searchResponse
+	if err := c.Get(ctx, url, &searchResp); err != nil {
+		if errors.Is(err, integrations.ErrNotFound) {
+			return fmt.Errorf("%w: maven artifact %s:%s", err, groupID, artifactID)
+		}
+		return err
+	}
+
+	if searchResp.Response.NumFound == 0 {
+		return fmt.Errorf("%w: maven artifact %s:%s", integrations.ErrNotFound, groupID, artifactID)
+	}
+
+	doc := searchResp.Response.Docs[0]
+	version := doc.LatestVersion
+	if version == "" {
+		version = doc.Version
+	}
+
+	// Fetch POM to get dependencies
+	deps, pomURL := c.fetchPOMDeps(ctx, groupID, artifactID, version)
+
+	*info = ArtifactInfo{
+		GroupID:      groupID,
+		ArtifactID:   artifactID,
+		Version:      version,
+		Dependencies: deps,
+		URL:          pomURL,
+	}
+	return nil
+}
+
+func (c *Client) fetchPOMDeps(ctx context.Context, groupID, artifactID, version string) ([]string, string) {
+	groupPath := strings.ReplaceAll(groupID, ".", "/")
+	pomURL := fmt.Sprintf("https://repo1.maven.org/maven2/%s/%s/%s/%s-%s.pom",
+		groupPath, artifactID, version, artifactID, version)
+
+	pom, err := c.fetchPOM(ctx, pomURL)
+	if err != nil {
+		return nil, pomURL
+	}
+
+	return extractDeps(pom), pomURL
+}
+
+func (c *Client) fetchPOM(ctx context.Context, url string) (*pomProject, error) {
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("pom fetch failed: %d", resp.StatusCode)
+	}
+
+	data, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	var pom pomProject
+	if err := xml.Unmarshal(data, &pom); err != nil {
+		return nil, err
+	}
+	return &pom, nil
+}
+
+func extractDeps(pom *pomProject) []string {
+	var deps []string
+	seen := make(map[string]bool)
+
+	for _, dep := range pom.Dependencies {
+		if dep.Scope == "test" || dep.Scope == "provided" || dep.Optional == "true" {
+			continue
+		}
+		// Skip dependencies with unresolved properties
+		if strings.HasPrefix(dep.GroupID, "${") || strings.HasPrefix(dep.ArtifactID, "${") {
+			continue
+		}
+		coord := dep.GroupID + ":" + dep.ArtifactID
+		if !seen[coord] {
+			seen[coord] = true
+			deps = append(deps, coord)
+		}
+	}
+	return deps
+}
+
+func parseCoordinate(coord string) (groupID, artifactID string, err error) {
+	parts := strings.Split(coord, ":")
+	if len(parts) < 2 {
+		return "", "", fmt.Errorf("invalid maven coordinate %q (expected groupId:artifactId)", coord)
+	}
+	return parts[0], parts[1], nil
+}
+
+type searchResponse struct {
+	Response struct {
+		NumFound int         `json:"numFound"`
+		Docs     []searchDoc `json:"docs"`
+	} `json:"response"`
+}
+
+type searchDoc struct {
+	GroupID       string `json:"g"`
+	ArtifactID    string `json:"a"`
+	Version       string `json:"v"`
+	LatestVersion string `json:"latestVersion"`
+}
+
+type pomProject struct {
+	GroupID      string          `xml:"groupId"`
+	ArtifactID   string          `xml:"artifactId"`
+	Version      string          `xml:"version"`
+	Name         string          `xml:"name"`
+	Description  string          `xml:"description"`
+	URL          string          `xml:"url"`
+	Dependencies []pomDependency `xml:"dependencies>dependency"`
+}
+
+type pomDependency struct {
+	GroupID    string `xml:"groupId"`
+	ArtifactID string `xml:"artifactId"`
+	Version    string `xml:"version"`
+	Scope      string `xml:"scope"`
+	Optional   string `xml:"optional"`
+}

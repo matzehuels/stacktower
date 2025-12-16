@@ -174,21 +174,16 @@ func insertSeparator(d *dag.DAG, row int, children []*dag.Node, r span, usedIDs 
 }
 
 func uniqueID(row int, firstChild, lastChild string, usedIDs map[string]struct{}) string {
-	firstClean := strings.ReplaceAll(firstChild, "_", "")
-	lastClean := strings.ReplaceAll(lastChild, "_", "")
+	clean := func(s string) string { return strings.ReplaceAll(s, "_", "") }
+	base := fmt.Sprintf("Sep_%d_%s_%s", row, clean(firstChild), clean(lastChild))
 
-	id := fmt.Sprintf("Sep_%d_%s_%s", row, firstClean, lastClean)
-	if _, exists := usedIDs[id]; !exists {
-		usedIDs[id] = struct{}{}
-		return id
-	}
-
+	id := base
 	for i := 1; ; i++ {
-		id = fmt.Sprintf("Sep_%d_%s_%s__%d", row, firstClean, lastClean, i)
 		if _, exists := usedIDs[id]; !exists {
 			usedIDs[id] = struct{}{}
 			return id
 		}
+		id = fmt.Sprintf("%s__%d", base, i)
 	}
 }
 

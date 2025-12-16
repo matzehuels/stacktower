@@ -116,16 +116,14 @@ func computeRowBottoms(heights map[int]float64) map[int]float64 {
 		return nil
 	}
 
-	var maxRow int
+	maxRow := 0
 	for r := range heights {
-		if r > maxRow {
-			maxRow = r
-		}
+		maxRow = max(maxRow, r)
 	}
 
 	bottoms := make(map[int]float64, len(heights))
-	var y float64
-	for r := 0; r <= maxRow; r++ {
+	y := 0.0
+	for r := range maxRow + 1 {
 		if h, ok := heights[r]; ok {
 			bottoms[r] = y
 			y += h

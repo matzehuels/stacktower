@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900.0 760.0" width="900" height="760">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900.0 780.0" width="900" height="780">
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;display=swap');
@@ -63,28 +63,49 @@
   <a href="https://github.com/pydantic/typing-inspection" target="_blank">    <rect x="477.61" y="248.06" width="12.27" height="93.89" fill="rgba(205,205,205,1)"/>
     <text x="483.75" y="295.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12.3" fill="#333" transform="rotate(-90 483.75 295.00)">typing-inspection</text>
 </a>  </g>
+  <style>
+    .block { transition: stroke-width 0.2s ease; }
+    .block.highlight { stroke-width: 4; }
+    .block-text { transition: transform 0.2s ease; transform-origin: center; transform-box: fill-box; }
+    .block-text.highlight { transform: scale(1.08); font-weight: bold; }
+    a { cursor: pointer; }
+  </style>
+  <script type="text/javascript"><![CDATA[
+    function highlight(pkgs) {
+      document.querySelectorAll('.block').forEach(b => b.classList.toggle('highlight', pkgs.includes(b.id.replace('block-', ''))));
+      document.querySelectorAll('.block-text').forEach(t => t.classList.toggle('highlight', pkgs.includes(t.dataset.block)));
+    }
+    function clearHighlight() {
+      document.querySelectorAll('.block, .block-text').forEach(el => el.classList.remove('highlight'));
+    }
+    document.querySelectorAll('.block').forEach(el => {
+      el.addEventListener('mouseenter', () => highlight([el.id.replace('block-', '')]));
+      el.addEventListener('mouseleave', clearHighlight);
+    });
+  ]]></script>
   <text x="450.0" y="564.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 322.0 580.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <foreignObject x="30.0" y="604.0" width="168.0" height="120.0">
+  <foreignObject x="30.0" y="604.0" width="168.0" height="140.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/agronholm" target="_blank" class="maintainer-name" data-packages="anyio,exceptiongroup">#1 @agronholm</a>
+      <a href="https://github.com/agronholm" target="_blank" class="maintainer-name" data-packages="exceptiongroup,anyio">#1 @agronholm</a>
       <div class="packages">
-        <span>anyio</span>
         <span>exceptiongroup</span>
+        <span>anyio</span>
       </div>
     </div>
   </foreignObject>
-  <foreignObject x="198.0" y="604.0" width="168.0" height="120.0">
+  <foreignObject x="198.0" y="604.0" width="168.0" height="140.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/samuelcolvin" target="_blank" class="maintainer-name" data-packages="annotated-types,pydantic,pydantic-core,typing-inspection">#2 @samuelcolvin</a>
+      <a href="https://github.com/samuelcolvin" target="_blank" class="maintainer-name" data-packages="pydantic-core,pydantic,annotated-types,typing-inspection">#2 @samuelcolvin</a>
       <div class="packages">
-        <span>annotated-types</span>
-        <span>pydantic</span>
         <span>pydantic-core</span>
+        <span>pydantic</span>
+        <span>annotated-types</span>
+        <span style="color:#aaa">+1 more</span>
       </div>
     </div>
   </foreignObject>
-  <foreignObject x="366.0" y="604.0" width="168.0" height="120.0">
+  <foreignObject x="366.0" y="604.0" width="168.0" height="140.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
       <a href="https://github.com/kjd" target="_blank" class="maintainer-name" data-packages="idna">#3 @kjd</a>
       <div class="packages">
@@ -92,17 +113,17 @@
       </div>
     </div>
   </foreignObject>
-  <foreignObject x="534.0" y="604.0" width="168.0" height="120.0">
+  <foreignObject x="534.0" y="604.0" width="168.0" height="140.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/Viicos" target="_blank" class="maintainer-name" data-packages="annotated-types,pydantic,typing-inspection">#4 @Viicos</a>
+      <a href="https://github.com/Viicos" target="_blank" class="maintainer-name" data-packages="typing-inspection,annotated-types,pydantic">#4 @Viicos</a>
       <div class="packages">
+        <span>typing-inspection</span>
         <span>annotated-types</span>
         <span>pydantic</span>
-        <span>typing-inspection</span>
       </div>
     </div>
   </foreignObject>
-  <foreignObject x="702.0" y="604.0" width="168.0" height="120.0">
+  <foreignObject x="702.0" y="604.0" width="168.0" height="140.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
       <a href="https://github.com/adriangb" target="_blank" class="maintainer-name" data-packages="annotated-types,pydantic-core,starlette">#5 @adriangb</a>
       <div class="packages">
@@ -113,11 +134,6 @@
     </div>
   </foreignObject>
   <style>
-    .block { transition: stroke-width 0.2s ease; }
-    .block.highlight { stroke-width: 4; }
-    .block-text { transition: transform 0.2s ease; transform-origin: center; transform-box: fill-box; }
-    .block-text.highlight { transform: scale(1.08); font-weight: bold; }
-    a, .package-entry { cursor: pointer; }
     .nebraska-entry {
       text-align: center;
       font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
@@ -146,23 +162,12 @@
     }
   </style>
   <script type="text/javascript"><![CDATA[
-    function highlight(pkgs) {
-      document.querySelectorAll('.block').forEach(b => b.classList.toggle('highlight', pkgs.includes(b.id.replace('block-', ''))));
-      document.querySelectorAll('.block-text').forEach(t => t.classList.toggle('highlight', pkgs.includes(t.dataset.block)));
-    }
-    function clearHighlight() {
-      document.querySelectorAll('.block, .block-text').forEach(el => el.classList.remove('highlight'));
-    }
     document.querySelectorAll('.maintainer-name').forEach(el => {
       el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
       el.addEventListener('mouseleave', clearHighlight);
     });
     document.querySelectorAll('.package-entry').forEach(el => {
       el.addEventListener('mouseenter', () => highlight([el.dataset.package]));
-      el.addEventListener('mouseleave', clearHighlight);
-    });
-    document.querySelectorAll('.block').forEach(el => {
-      el.addEventListener('mouseenter', () => highlight([el.id.replace('block-', '')]));
       el.addEventListener('mouseleave', clearHighlight);
     });
   ]]></script>

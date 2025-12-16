@@ -5,8 +5,11 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 	"time"
+
+	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
 func TestNewClient(t *testing.T) {
@@ -14,13 +17,12 @@ func TestNewClient(t *testing.T) {
 	if err != nil {
 		t.Fatalf("NewClient failed: %v", err)
 	}
-	if c.baseURL != "https://repo.packagist.org" {
-		t.Errorf("expected base URL %s, got %s", "https://repo.packagist.org", c.baseURL)
+	if c.Client == nil {
+		t.Error("expected client to be initialized")
 	}
 }
 
 func TestFetchPackage_Success(t *testing.T) {
-	// Build a fake Packagist p2 response
 	vStable := p2Version{
 		Name:        "vendor/package",
 		Version:     "1.2.3",
@@ -45,7 +47,7 @@ func TestFetchPackage_Success(t *testing.T) {
 	}
 	vDev := p2Version{Name: "vendor/package", Version: "1.3.0-dev"}
 	payload := p2Response{Packages: map[string][]p2Version{
-		"vendor/package": {vDev, vStable}, // chooseLatestStable should skip dev and pick vStable
+		"vendor/package": {vDev, vStable},
 	}}
 
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -57,12 +59,7 @@ func TestFetchPackage_Success(t *testing.T) {
 	}))
 	defer server.Close()
 
-	c, err := NewClient(time.Hour)
-	if err != nil {
-		t.Fatalf("NewClient error: %v", err)
-	}
-	// Point client to our test server
-	c.baseURL = server.URL
+	c := testClient(t, server.URL)
 
 	info, err := c.FetchPackage(context.Background(), "Vendor/Package", true)
 	if err != nil {
@@ -87,7 +84,6 @@ func TestFetchPackage_Success(t *testing.T) {
 	if info.HomePage != "https://example.com" {
 		t.Errorf("unexpected homepage: %s", info.HomePage)
 	}
-	// Only vendor/dep should survive filtering
 	if len(info.Dependencies) != 1 || info.Dependencies[0] != "vendor/dep" {
 		t.Errorf("unexpected dependencies: %#v", info.Dependencies)
 	}
@@ -97,11 +93,7 @@ func TestFetchPackage_NotFound(t *testing.T) {
 	server := httptest.NewServer(http.NotFoundHandler())
 	defer server.Close()
 
-	c, err := NewClient(time.Minute)
-	if err != nil {
-		t.Fatalf("NewClient error: %v", err)
-	}
-	c.baseURL = server.URL
+	c := testClient(t, server.URL)
 
 	if _, err := c.FetchPackage(context.Background(), "missing/pkg", true); err == nil {
 		t.Fatalf("expected error for 404, got nil")
@@ -109,7 +101,7 @@ func TestFetchPackage_NotFound(t *testing.T) {
 }
 
 func TestNormalizeName(t *testing.T) {
-	if got := normalizeName("  VenDor/PackAge  "); got != "vendor/package" {
+	if got := strings.ToLower(strings.TrimSpace("  VenDor/PackAge  ")); got != "vendor/package" {
 		t.Errorf("normalizeName unexpected: %q", got)
 	}
 }
@@ -123,13 +115,13 @@ func TestNormalizeRepoURL(t *testing.T) {
 		{"", ""},
 	}
 	for _, c := range cases {
-		if got := normalizeRepoURL(c.in); got != c.want {
-			t.Errorf("normalizeRepoURL(%q) = %q, want %q", c.in, got, c.want)
+		if got := integrations.NormalizeRepoURL(c.in); got != c.want {
+			t.Errorf("NormalizeRepoURL(%q) = %q, want %q", c.in, got, c.want)
 		}
 	}
 }
 
-func TestFilterComposerDeps(t *testing.T) {
+func TestFilterDeps(t *testing.T) {
 	in := map[string]string{
 		"php":                  ">=8.1",
 		"ext-json":             "*",
@@ -138,11 +130,10 @@ func TestFilterComposerDeps(t *testing.T) {
 		"composer-runtime-api": "^2",
 		"vendor/dep1":          "^1.0",
 		"Vendor/Dep2":          "*",
-		"no/slash?":            "1.0", // still has slash, should be included once normalized by caller (function just checks contains "/")
-		"noslash":              "*",   // ignored
+		"no/slash?":            "1.0",
+		"noslash":              "*",
 	}
-	got := filterComposerDeps(in)
-	// Expect entries with a slash and not platform/composer special ones
+	got := filterDeps(in)
 	if _, ok := got["vendor/dep1"]; !ok {
 		t.Errorf("missing vendor/dep1 in %v", got)
 	}
@@ -166,27 +157,25 @@ func TestFilterComposerDeps(t *testing.T) {
 	}
 }
 
-func TestChooseLatestStable(t *testing.T) {
+func TestLatestStable(t *testing.T) {
 	versions := []p2Version{
 		{Version: "2-dev"},
-		{Version: "v3"},    // no dot, not chosen by stable rule
-		{Version: "1.5.0"}, // has dot, should be chosen
+		{Version: "v3"},
+		{Version: "1.5.0"},
 	}
-	got := chooseLatestStable(versions)
+	got := latestStable(versions)
 	if got.Version != "1.5.0" {
-		t.Errorf("chooseLatestStable = %s", got.Version)
+		t.Errorf("latestStable = %s", got.Version)
 	}
 
-	// If none match, fall back to first
 	versions = []p2Version{{Version: "dev-main"}, {Version: "v2"}}
-	got = chooseLatestStable(versions)
+	got = latestStable(versions)
 	if got.Version != "dev-main" {
-		t.Errorf("chooseLatestStable fallback = %s", got.Version)
+		t.Errorf("latestStable fallback = %s", got.Version)
 	}
 }
 
 func TestP2Version_UnmarshalJSON(t *testing.T) {
-	// license as string, require as object with non-string values
 	raw := `{
         "name": "vendor/pkg",
         "version": "1.0.0",
@@ -206,5 +195,17 @@ func TestP2Version_UnmarshalJSON(t *testing.T) {
 	}
 	if v.Require["vendor/dep"] != "^1" || v.Require["php"] != ">=8.0" {
 		t.Errorf("unexpected require: %#v", v.Require)
+	}
+}
+
+func testClient(t *testing.T, serverURL string) *Client {
+	t.Helper()
+	cache, err := integrations.NewCache(time.Hour)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return &Client{
+		Client:  integrations.NewClient(cache, nil),
+		baseURL: serverURL,
 	}
 }

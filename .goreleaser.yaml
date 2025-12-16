@@ -23,10 +23,6 @@ builds:
     goarch:
       - amd64
       - arm64
-    # Don't build darwin/arm64 on Go < 1.16
-    ignore:
-      - goos: darwin
-        goarch: arm64
     ldflags:
       - -s -w
       - -X main.version={{.Version}}
@@ -35,7 +31,8 @@ builds:
 
 archives:
   - id: stacktower
-    format: tar.gz
+    formats:
+      - tar.gz
     name_template: >-
       {{ .ProjectName }}_
       {{- .Version }}_
@@ -46,7 +43,8 @@ archives:
       {{- if .Arm }}v{{ .Arm }}{{ end }}
     format_overrides:
       - goos: windows
-        format: zip
+        formats:
+          - zip
     files:
       - LICENSE
       - README.md
@@ -55,7 +53,7 @@ checksum:
   name_template: 'checksums.txt'
 
 snapshot:
-  name_template: "{{ incpatch .Version }}-next"
+  version_template: "{{ incpatch .Version }}-next"
 
 changelog:
   sort: asc
@@ -105,18 +103,17 @@ release:
   footer: |
     **Full Changelog**: https://github.com/matzehuels/stacktower/compare/{{ .PreviousTag }}...{{ .Tag }}
 
-# Homebrew tap (disabled until ready)
-# Uncomment and create homebrew-tap repo when ready for brew distribution
-# brews:
-#   - name: stacktower
-#     repository:
-#       owner: matzehuels
-#       name: homebrew-tap
-#     folder: Formula
-#     homepage: https://github.com/matzehuels/stacktower
-#     description: Visualize dependency graphs as elegant "stack tower" diagrams
-#     license: MIT
-#     test: |
-#       system "#{bin}/stacktower --version"
-#     install: |
-#       bin.install "stacktower"
+brews:
+  - name: stacktower
+    repository:
+      owner: matzehuels
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
+    directory: Formula
+    homepage: https://github.com/matzehuels/stacktower
+    description: Visualize dependency graphs as elegant stacktower diagrams
+    license: Apache-2.0
+    test: |
+      system "#{bin}/stacktower", "--version"
+    install: |
+      bin.install "stacktower"

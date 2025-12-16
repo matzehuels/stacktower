@@ -10,9 +10,9 @@ import (
 )
 
 var (
-	version = "dev"
-	commit  = "none"
-	date    = "unknown"
+	version string
+	commit  string
+	date    string
 )
 
 func SetVersion(v, c, d string) {
@@ -45,6 +45,7 @@ func Execute() error {
 
 	root.AddCommand(newParseCmd())
 	root.AddCommand(newRenderCmd())
+	root.AddCommand(newCacheCmd())
 	root.AddCommand(newPQTreeCmd())
 
 	return root.ExecuteContext(context.Background())

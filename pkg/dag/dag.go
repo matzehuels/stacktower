@@ -222,34 +222,37 @@ func (d *DAG) validateEdgeConsistency() error {
 }
 
 func (d *DAG) detectCycles() error {
-	inDegree := make(map[string]int, len(d.nodes))
-	for id := range d.nodes {
-		inDegree[id] = len(d.incoming[id])
-	}
+	const (
+		white = iota
+		gray
+		black
+	)
 
-	queue := make([]string, 0, len(d.nodes))
-	for id, degree := range inDegree {
-		if degree == 0 {
-			queue = append(queue, id)
-		}
-	}
+	color := make(map[string]int, len(d.nodes))
+	var hasCycle bool
 
-	processed := 0
-	for len(queue) > 0 {
-		curr := queue[0]
-		queue = queue[1:]
-		processed++
-
-		for _, child := range d.outgoing[curr] {
-			inDegree[child]--
-			if inDegree[child] == 0 {
-				queue = append(queue, child)
+	var dfs func(id string)
+	dfs = func(id string) {
+		color[id] = gray
+		for _, child := range d.outgoing[id] {
+			switch color[child] {
+			case white:
+				dfs(child)
+			case gray:
+				hasCycle = true
+				return
 			}
 		}
+		color[id] = black
 	}
 
-	if processed != len(d.nodes) {
-		return ErrGraphHasCycle
+	for id := range d.nodes {
+		if color[id] == white {
+			dfs(id)
+			if hasCycle {
+				return ErrGraphHasCycle
+			}
+		}
 	}
 	return nil
 }

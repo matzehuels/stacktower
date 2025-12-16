@@ -1,0 +1,9 @@
+# Example requirements.txt for testing stacktower manifest parsing
+# This file contains only direct dependencies (shallow)
+
+requests>=2.28.0
+click>=8.0.0
+pydantic>=2.0.0
+httpx>=0.24.0
+rich>=13.0.0
+

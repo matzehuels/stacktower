@@ -250,6 +250,46 @@ func TestValidate(t *testing.T) {
 			},
 			wantErr: ErrGraphHasCycle,
 		},
+		{
+			name: "self-loop cycle",
+			setup: func() *DAG {
+				g := New(nil)
+				g.AddNode(Node{ID: "a", Row: 0})
+				g.outgoing["a"] = []string{"a"}
+				g.incoming["a"] = []string{"a"}
+				return g
+			},
+			wantErr: ErrGraphHasCycle,
+		},
+		{
+			name: "two-node cycle",
+			setup: func() *DAG {
+				g := New(nil)
+				g.AddNode(Node{ID: "a", Row: 0})
+				g.AddNode(Node{ID: "b", Row: 1})
+				g.AddEdge(Edge{From: "a", To: "b"})
+				g.outgoing["b"] = append(g.outgoing["b"], "a")
+				g.incoming["a"] = append(g.incoming["a"], "b")
+				return g
+			},
+			wantErr: ErrGraphHasCycle,
+		},
+		{
+			name: "diamond no cycle",
+			setup: func() *DAG {
+				g := New(nil)
+				g.AddNode(Node{ID: "a", Row: 0})
+				g.AddNode(Node{ID: "b", Row: 1})
+				g.AddNode(Node{ID: "c", Row: 1})
+				g.AddNode(Node{ID: "d", Row: 2})
+				g.AddEdge(Edge{From: "a", To: "b"})
+				g.AddEdge(Edge{From: "a", To: "c"})
+				g.AddEdge(Edge{From: "b", To: "d"})
+				g.AddEdge(Edge{From: "c", To: "d"})
+				return g
+			},
+			wantErr: nil, // diamond shape is valid DAG
+		},
 	}
 
 	for _, tt := range tests {

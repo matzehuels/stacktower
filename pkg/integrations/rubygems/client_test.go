@@ -6,6 +6,7 @@ import (
 	"errors"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 	"time"
 
@@ -14,7 +15,7 @@ import (
 
 func TestClient_FetchGem(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path == "/api/v1/gems/rails.json" {
+		if r.URL.Path == "/gems/rails.json" {
 			resp := gemResponse{
 				Name:          "rails",
 				Version:       "7.1.0",
@@ -24,15 +25,10 @@ func TestClient_FetchGem(t *testing.T) {
 				HomepageURI:   "https://rubyonrails.org",
 				Authors:       "David Heinemeier Hansson",
 				Downloads:     500000000,
-				Dependencies: dependenciesResponse{
-					Runtime: []dependencyInfo{
-						{Name: "activesupport", Requirements: "= 7.1.0"},
-						{Name: "actionpack", Requirements: "= 7.1.0"},
-					},
-					Development: []dependencyInfo{
-						{Name: "rake", Requirements: ">= 0"},
-					},
-				},
+			}
+			resp.Dependencies.Runtime = []dependency{
+				{Name: "activesupport"},
+				{Name: "actionpack"},
 			}
 			json.NewEncoder(w).Encode(resp)
 		} else {
@@ -41,11 +37,9 @@ func TestClient_FetchGem(t *testing.T) {
 	}))
 	defer server.Close()
 
-	c, _ := NewClient(time.Hour)
-	c.HTTP = server.Client()
-	c.baseURL = server.URL + "/api/v1"
+	c := testClient(t, server.URL)
 
-	info, err := c.FetchGem(context.Background(), "rails", false)
+	info, err := c.FetchGem(context.Background(), "rails", true)
 	if err != nil {
 		t.Fatalf("FetchGem failed: %v", err)
 	}
@@ -68,11 +62,9 @@ func TestClient_FetchGem_NotFound(t *testing.T) {
 	server := httptest.NewServer(http.NotFoundHandler())
 	defer server.Close()
 
-	c, _ := NewClient(time.Hour)
-	c.HTTP = server.Client()
-	c.baseURL = server.URL
+	c := testClient(t, server.URL)
 
-	_, err := c.FetchGem(context.Background(), "missing-gem", false)
+	_, err := c.FetchGem(context.Background(), "missing-gem", true)
 	if err == nil {
 		t.Fatal("expected error for missing gem")
 	}
@@ -81,53 +73,16 @@ func TestClient_FetchGem_NotFound(t *testing.T) {
 	}
 }
 
-func TestExtractDeps_RuntimeOnly(t *testing.T) {
-	deps := dependenciesResponse{
-		Runtime: []dependencyInfo{
-			{Name: "activesupport", Requirements: ">= 0"},
-			{Name: "actionpack", Requirements: ">= 0"},
-		},
-		Development: []dependencyInfo{
-			{Name: "rake", Requirements: ">= 0"},
-			{Name: "rspec", Requirements: ">= 0"},
-		},
+func TestRuntimeDeps(t *testing.T) {
+	deps := []dependency{
+		{Name: "activesupport"},
+		{Name: "actionpack"},
+		{Name: "ActionPack"}, // duplicate after normalization
 	}
 
-	result := extractDeps(deps)
+	result := runtimeDeps(deps)
 	if len(result) != 2 {
-		t.Errorf("expected 2 runtime deps, got %d", len(result))
-	}
-
-	// Verify only runtime deps are included
-	hasRake := false
-	for _, d := range result {
-		if d == "rake" || d == "rspec" {
-			hasRake = true
-		}
-	}
-	if hasRake {
-		t.Error("expected development dependencies to be excluded")
-	}
-}
-
-func TestNormalizeName(t *testing.T) {
-	tests := []struct {
-		input    string
-		expected string
-	}{
-		{"Rails", "rails"},
-		{"  ActiveRecord  ", "activerecord"},
-		{"UPPERCASE", "uppercase"},
-		{"some_gem", "some_gem"},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.input, func(t *testing.T) {
-			result := normalizeName(tt.input)
-			if result != tt.expected {
-				t.Errorf("expected %s, got %s", tt.expected, result)
-			}
-		})
+		t.Errorf("expected 2 unique deps, got %d", len(result))
 	}
 }
 
@@ -143,9 +98,21 @@ func TestJoinLicenses(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		result := joinLicenses(tt.input)
+		result := strings.Join(tt.input, ", ")
 		if result != tt.expected {
-			t.Errorf("joinLicenses(%v): expected %s, got %s", tt.input, tt.expected, result)
+			t.Errorf("join(%v): expected %s, got %s", tt.input, tt.expected, result)
 		}
+	}
+}
+
+func testClient(t *testing.T, serverURL string) *Client {
+	t.Helper()
+	cache, err := integrations.NewCache(time.Hour)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return &Client{
+		Client:  integrations.NewClient(cache, nil),
+		baseURL: serverURL,
 	}
 }

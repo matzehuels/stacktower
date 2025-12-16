@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800.0 1380.0" width="800" height="1380">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800.0 1440.0" width="800" height="1440">
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;display=swap');
@@ -68,19 +68,39 @@
   <a href="https://github.com/luin/asCallback#readme" target="_blank">    <rect x="703.00" y="477.00" width="24.00" height="216.00" fill="rgba(169,169,169,1)"/>
     <text x="715.00" y="585.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 715.00 585.00)">standard-as-callback</text>
 </a>  </g>
+  <style>
+    .block { transition: stroke-width 0.2s ease; }
+    .block.highlight { stroke-width: 4; }
+    .block-text { transition: transform 0.2s ease; transform-origin: center; transform-box: fill-box; }
+    .block-text.highlight { transform: scale(1.08); font-weight: bold; }
+    a { cursor: pointer; }
+  </style>
+  <script type="text/javascript"><![CDATA[
+    function highlight(pkgs) {
+      document.querySelectorAll('.block').forEach(b => b.classList.toggle('highlight', pkgs.includes(b.id.replace('block-', ''))));
+      document.querySelectorAll('.block-text').forEach(t => t.classList.toggle('highlight', pkgs.includes(t.dataset.block)));
+    }
+    function clearHighlight() {
+      document.querySelectorAll('.block, .block-text').forEach(el => el.classList.remove('highlight'));
+    }
+    document.querySelectorAll('.block').forEach(el => {
+      el.addEventListener('mouseenter', () => highlight([el.id.replace('block-', '')]));
+      el.addEventListener('mouseleave', clearHighlight);
+    });
+  ]]></script>
   <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 272.0 980.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <foreignObject x="30.0" y="1004.0" width="370.0" height="120.0">
+  <foreignObject x="30.0" y="1004.0" width="370.0" height="140.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/luin" target="_blank" class="maintainer-name" data-packages="@ioredis/commands,cluster-key-slot,standard-as-callback">#1 @luin</a>
+      <a href="https://github.com/luin" target="_blank" class="maintainer-name" data-packages="standard-as-callback,@ioredis/commands,cluster-key-slot">#1 @luin</a>
       <div class="packages">
+        <span>standard-as-callback</span>
         <span>@ioredis/commands</span>
         <span>cluster-key-slot</span>
-        <span>standard-as-callback</span>
       </div>
     </div>
   </foreignObject>
-  <foreignObject x="400.0" y="1004.0" width="370.0" height="120.0">
+  <foreignObject x="400.0" y="1004.0" width="370.0" height="140.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
       <a href="https://github.com/BridgeAR" target="_blank" class="maintainer-name" data-packages="redis-errors,redis-parser">#2 @BridgeAR</a>
       <div class="packages">
@@ -89,7 +109,7 @@
       </div>
     </div>
   </foreignObject>
-  <foreignObject x="30.0" y="1124.0" width="370.0" height="120.0">
+  <foreignObject x="30.0" y="1144.0" width="370.0" height="140.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
       <a href="https://github.com/Salakar" target="_blank" class="maintainer-name" data-packages="cluster-key-slot,denque,redis-parser">#3 @Salakar</a>
       <div class="packages">
@@ -99,7 +119,7 @@
       </div>
     </div>
   </foreignObject>
-  <foreignObject x="400.0" y="1124.0" width="370.0" height="120.0">
+  <foreignObject x="400.0" y="1144.0" width="370.0" height="140.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
       <a href="https://github.com/jdalton" target="_blank" class="maintainer-name" data-packages="lodash.defaults,lodash.isarguments">#4 @jdalton</a>
       <div class="packages">
@@ -108,7 +128,7 @@
       </div>
     </div>
   </foreignObject>
-  <foreignObject x="215.0" y="1244.0" width="370.0" height="120.0">
+  <foreignObject x="215.0" y="1284.0" width="370.0" height="140.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
       <a href="https://github.com/leo" target="_blank" class="maintainer-name" data-packages="ms">#5 @leo</a>
       <div class="packages">
@@ -117,11 +137,6 @@
     </div>
   </foreignObject>
   <style>
-    .block { transition: stroke-width 0.2s ease; }
-    .block.highlight { stroke-width: 4; }
-    .block-text { transition: transform 0.2s ease; transform-origin: center; transform-box: fill-box; }
-    .block-text.highlight { transform: scale(1.08); font-weight: bold; }
-    a, .package-entry { cursor: pointer; }
     .nebraska-entry {
       text-align: center;
       font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
@@ -150,23 +165,12 @@
     }
   </style>
   <script type="text/javascript"><![CDATA[
-    function highlight(pkgs) {
-      document.querySelectorAll('.block').forEach(b => b.classList.toggle('highlight', pkgs.includes(b.id.replace('block-', ''))));
-      document.querySelectorAll('.block-text').forEach(t => t.classList.toggle('highlight', pkgs.includes(t.dataset.block)));
-    }
-    function clearHighlight() {
-      document.querySelectorAll('.block, .block-text').forEach(el => el.classList.remove('highlight'));
-    }
     document.querySelectorAll('.maintainer-name').forEach(el => {
       el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
       el.addEventListener('mouseleave', clearHighlight);
     });
     document.querySelectorAll('.package-entry').forEach(el => {
       el.addEventListener('mouseenter', () => highlight([el.dataset.package]));
-      el.addEventListener('mouseleave', clearHighlight);
-    });
-    document.querySelectorAll('.block').forEach(el => {
-      el.addEventListener('mouseenter', () => highlight([el.id.replace('block-', '')]));
       el.addEventListener('mouseleave', clearHighlight);
     });
   ]]></script>

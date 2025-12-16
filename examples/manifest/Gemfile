@@ -1,0 +1,28 @@
+source 'https://rubygems.org'
+
+# Web framework
+gem 'rails', '~> 7.1'
+gem 'puma', '>= 5.0'
+
+# Database
+gem 'pg', '~> 1.1'
+gem 'redis', '~> 5.0'
+
+# Background jobs
+gem 'sidekiq', '~> 7.0'
+
+# API
+gem 'jbuilder', '~> 2.11'
+gem 'rack-cors'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 6.0'
+  gem 'factory_bot_rails'
+  gem 'faker'
+end
+
+group :development do
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
+end
+

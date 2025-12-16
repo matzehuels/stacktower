@@ -1,10 +1,14 @@
 package tower
 
 import (
+	"bytes"
 	"cmp"
+	"fmt"
 	"slices"
+	"strings"
 
 	"github.com/matzehuels/stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/render/tower/styles"
 )
 
 type Role string
@@ -19,6 +23,7 @@ type PackageRole struct {
 	Package string
 	Role    Role
 	URL     string
+	Depth   int
 }
 
 type NebraskaRanking struct {
@@ -31,7 +36,55 @@ const (
 	ownerWeight      = 3.0
 	leadWeight       = 1.5
 	maintainerWeight = 1.0
+
+	nebraskaPanelLandscape = 280.0
+	nebraskaPanelPortrait  = 540.0
+	nebraskaPanelPadding   = 24.0
+	nebraskaTitleY         = 40.0
+	nebraskaUnderlineY     = 16.0
+	nebraskaEntryStartY    = 80.0
+	nebraskaEntryHeight    = 140.0
+
+	fontFamily = `'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif`
 )
+
+const nebraskaCSS = `
+    .nebraska-entry {
+      text-align: center;
+      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
+      overflow: hidden;
+      height: 100%;
+    }
+    .nebraska-entry .maintainer-name {
+      display: block;
+      font-size: 24px;
+      color: #333;
+      text-decoration: none;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      margin-bottom: 8px;
+    }
+    .nebraska-entry .maintainer-name:hover { text-decoration: underline; }
+    .nebraska-entry .packages {
+      font-size: 16px;
+      color: #888;
+      line-height: 1.4;
+    }
+    .nebraska-entry .packages span {
+      display: block;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }`
+
+const nebraskaJS = `
+    document.querySelectorAll('.maintainer-name').forEach(el => {
+      el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
+      el.addEventListener('mouseleave', clearHighlight);
+    });
+    document.querySelectorAll('.package-entry').forEach(el => {
+      el.addEventListener('mouseenter', () => highlight([el.dataset.package]));
+      el.addEventListener('mouseleave', clearHighlight);
+    });`
 
 func RankNebraska(g *dag.DAG, topN int) []NebraskaRanking {
 	scores := make(map[string]float64)
@@ -49,8 +102,8 @@ func RankNebraska(g *dag.DAG, topN int) []NebraskaRanking {
 			continue
 		}
 
-		depth := float64(n.Row - minRow)
-		share := depth / float64(len(roles))
+		depth := n.Row - minRow
+		share := float64(depth) / float64(len(roles))
 
 		for maintainer, role := range roles {
 			scores[maintainer] += share * roleWeight(role)
@@ -61,6 +114,7 @@ func RankNebraska(g *dag.DAG, topN int) []NebraskaRanking {
 					Package: n.ID,
 					Role:    role,
 					URL:     url,
+					Depth:   depth,
 				})
 			}
 
@@ -74,6 +128,15 @@ func RankNebraska(g *dag.DAG, topN int) []NebraskaRanking {
 	for m, score := range scores {
 		pkgs := packages[m]
 		slices.SortFunc(pkgs, func(a, b PackageRole) int {
+			// Sort by role first (owner > lead > maintainer)
+			if c := cmp.Compare(roleRank(a.Role), roleRank(b.Role)); c != 0 {
+				return c
+			}
+			// Then by depth descending (deeper = more foundational)
+			if c := cmp.Compare(b.Depth, a.Depth); c != 0 {
+				return c
+			}
+			// Then alphabetically for stability
 			return cmp.Compare(a.Package, b.Package)
 		})
 		rankings = append(rankings, NebraskaRanking{
@@ -124,16 +187,13 @@ func roleWeight(r Role) float64 {
 }
 
 func findMinRow(g *dag.DAG) int {
-	minRow := int(^uint(0) >> 1) // max int
+	minRow := -1
 	for _, n := range g.Nodes() {
-		if !n.IsSynthetic() && n.Row < minRow {
+		if !n.IsSynthetic() && (minRow < 0 || n.Row < minRow) {
 			minRow = n.Row
 		}
 	}
-	if minRow == int(^uint(0)>>1) {
-		return 0
-	}
-	return minRow
+	return max(0, minRow)
 }
 
 func getMaintainerRoles(n *dag.Node) map[string]Role {
@@ -166,22 +226,100 @@ func getMaintainerRoles(n *dag.Node) map[string]Role {
 }
 
 func getStringSlice(v any) []string {
-	switch val := v.(type) {
+	switch v := v.(type) {
 	case []string:
-		return val
+		return v
 	case []any:
-		out := make([]string, 0, len(val))
-		for _, item := range val {
+		out := make([]string, 0, len(v))
+		for _, item := range v {
 			if s, ok := item.(string); ok {
 				out = append(out, s)
 			}
 		}
 		return out
-	default:
-		return nil
 	}
+	return nil
 }
 
 func hasPackage(pkgs []PackageRole, id string) bool {
 	return slices.ContainsFunc(pkgs, func(p PackageRole) bool { return p.Package == id })
+}
+
+func CalcNebraskaPanelHeight(w, h float64) float64 {
+	if h > w {
+		return nebraskaPanelPortrait
+	}
+	return nebraskaPanelLandscape
+}
+
+func RenderNebraskaPanel(buf *bytes.Buffer, frameWidth, frameHeight float64, rankings []NebraskaRanking) {
+	panelY := frameHeight + nebraskaPanelPadding
+	centerX := frameWidth / 2
+
+	fmt.Fprintf(buf, `  <text x="%.1f" y="%.1f" text-anchor="middle" font-family="%s" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>`+"\n",
+		centerX, panelY+nebraskaTitleY, fontFamily)
+	fmt.Fprintf(buf, `  <path d="M %.1f %.1f q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>`+"\n",
+		centerX-128, panelY+nebraskaTitleY+nebraskaUnderlineY)
+
+	numEntries := min(len(rankings), 5)
+	padding := 30.0
+	isPortrait := frameHeight > frameWidth
+
+	if isPortrait {
+		cols := 2
+		availableWidth := frameWidth - 2*padding
+		entryWidth := availableWidth / float64(cols)
+
+		for i := 0; i < numEntries; i++ {
+			row, col := i/cols, i%cols
+			var entryX float64
+			if row == 2 && numEntries == 5 {
+				entryX = (frameWidth - entryWidth) / 2
+			} else {
+				entryX = padding + float64(col)*entryWidth
+			}
+			entryY := panelY + nebraskaEntryStartY + float64(row)*nebraskaEntryHeight
+			renderNebraskaEntry(buf, rankings[i], i, entryX, entryY, entryWidth)
+		}
+	} else {
+		availableWidth := frameWidth - 2*padding
+		entryWidth := availableWidth / float64(numEntries)
+		entryY := panelY + nebraskaEntryStartY
+
+		for i := 0; i < numEntries; i++ {
+			entryX := padding + float64(i)*entryWidth
+			renderNebraskaEntry(buf, rankings[i], i, entryX, entryY, entryWidth)
+		}
+	}
+}
+
+const maxDisplayedPackages = 3
+
+func renderNebraskaEntry(buf *bytes.Buffer, r NebraskaRanking, idx int, x, y, width float64) {
+	// All packages for hover highlighting
+	allPkgIDs := make([]string, len(r.Packages))
+	for j, p := range r.Packages {
+		allPkgIDs[j] = p.Package
+	}
+
+	displayed := min(len(r.Packages), maxDisplayedPackages)
+
+	fmt.Fprintf(buf, `  <foreignObject x="%.1f" y="%.1f" width="%.1f" height="%.1f">`+"\n",
+		x, y, width, nebraskaEntryHeight)
+	fmt.Fprintf(buf, `    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">`+"\n")
+	fmt.Fprintf(buf, `      <a href="https://github.com/%s" target="_blank" class="maintainer-name" data-packages="%s">#%d @%s</a>`+"\n",
+		r.Maintainer, styles.EscapeXML(strings.Join(allPkgIDs, ",")), idx+1, styles.EscapeXML(r.Maintainer))
+	buf.WriteString(`      <div class="packages">` + "\n")
+	for j := 0; j < displayed; j++ {
+		fmt.Fprintf(buf, `        <span>%s</span>`+"\n", styles.EscapeXML(r.Packages[j].Package))
+	}
+	if extra := len(r.Packages) - displayed; extra > 0 {
+		fmt.Fprintf(buf, `        <span style="color:#aaa">+%d more</span>`+"\n", extra)
+	}
+	buf.WriteString("      </div>\n    </div>\n  </foreignObject>\n")
+}
+
+func RenderNebraskaScript(buf *bytes.Buffer) {
+	fmt.Fprintf(buf, "  <style>%s\n  </style>\n", nebraskaCSS)
+	fmt.Fprintf(buf, "  <script type=\"text/javascript\"><![CDATA[%s\n  ]]></script>\n", nebraskaJS)
 }

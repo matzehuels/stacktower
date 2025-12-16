@@ -148,7 +148,7 @@ func TestMergeSubdividers_PreservesLayoutMetadata(t *testing.T) {
 	}
 }
 
-func TestMergeSubdividers_WidthTakesWidest(t *testing.T) {
+func TestMergeSubdividers_ConsistentPositions_Merges(t *testing.T) {
 	g := dag.New(nil)
 	_ = g.AddNode(dag.Node{ID: "a", Row: 0})
 	_ = g.AddNode(dag.Node{ID: "a_sub_1", Row: 1, Kind: dag.NodeKindSubdivider, MasterID: "a"})
@@ -156,17 +156,73 @@ func TestMergeSubdividers_WidthTakesWidest(t *testing.T) {
 	layout := tower.Layout{
 		Blocks: map[string]tower.Block{
 			"a":       {NodeID: "a", Left: 10, Right: 40, Bottom: 50, Top: 100},
-			"a_sub_1": {NodeID: "a_sub_1", Left: 5, Right: 45, Bottom: 0, Top: 50},
+			"a_sub_1": {NodeID: "a_sub_1", Left: 10, Right: 40, Bottom: 0, Top: 50},
 		},
 	}
 
 	merged := MergeSubdividers(layout, g)
 
-	blockA := merged.Blocks["a"]
-	if got, want := blockA.Left, 5.0; got != want {
-		t.Errorf("Left = %f, want %f (min)", got, want)
+	// Should merge into single block
+	if len(merged.Blocks) != 1 {
+		t.Errorf("expected 1 merged block, got %d", len(merged.Blocks))
 	}
-	if got, want := blockA.Right, 45.0; got != want {
-		t.Errorf("Right = %f, want %f (max)", got, want)
+	blockA := merged.Blocks["a"]
+	if got, want := blockA.Left, 10.0; got != want {
+		t.Errorf("Left = %f, want %f", got, want)
+	}
+	if got, want := blockA.Right, 40.0; got != want {
+		t.Errorf("Right = %f, want %f", got, want)
+	}
+	if got, want := blockA.Bottom, 0.0; got != want {
+		t.Errorf("Bottom = %f, want %f (min)", got, want)
+	}
+	if got, want := blockA.Top, 100.0; got != want {
+		t.Errorf("Top = %f, want %f (max)", got, want)
+	}
+}
+
+func TestMergeSubdividers_InconsistentPositions_MergesSubgroups(t *testing.T) {
+	g := dag.New(nil)
+	_ = g.AddNode(dag.Node{ID: "a", Row: 0})
+	_ = g.AddNode(dag.Node{ID: "a_sub_1", Row: 1, Kind: dag.NodeKindSubdivider, MasterID: "a"})
+	_ = g.AddNode(dag.Node{ID: "a_sub_2", Row: 2, Kind: dag.NodeKindSubdivider, MasterID: "a"})
+
+	layout := tower.Layout{
+		Blocks: map[string]tower.Block{
+			"a":       {NodeID: "a", Left: 10, Right: 40, Bottom: 75, Top: 100},
+			"a_sub_1": {NodeID: "a_sub_1", Left: 50, Right: 80, Bottom: 25, Top: 75},
+			"a_sub_2": {NodeID: "a_sub_2", Left: 50, Right: 80, Bottom: 0, Top: 25},
+		},
+	}
+
+	merged := MergeSubdividers(layout, g)
+
+	// Should create 2 blocks: master alone + subdividers merged together
+	if len(merged.Blocks) != 2 {
+		t.Errorf("expected 2 merged blocks, got %d", len(merged.Blocks))
+	}
+
+	// One block should be the master
+	var hasMasterBlock, hasSubBlock bool
+	for id, b := range merged.Blocks {
+		if b.Left == 10 && b.Right == 40 {
+			hasMasterBlock = true
+			if b.Bottom != 75 || b.Top != 100 {
+				t.Errorf("master block %s has wrong vertical extent", id)
+			}
+		}
+		if b.Left == 50 && b.Right == 80 {
+			hasSubBlock = true
+			// Subdividers should be merged vertically
+			if b.Bottom != 0 || b.Top != 75 {
+				t.Errorf("subdivider block %s has wrong vertical extent: got Bottom=%.1f Top=%.1f, want Bottom=0 Top=75", id, b.Bottom, b.Top)
+			}
+		}
+	}
+	if !hasMasterBlock {
+		t.Error("expected master block at position 10-40")
+	}
+	if !hasSubBlock {
+		t.Error("expected merged subdivider block at position 50-80")
 	}
 }

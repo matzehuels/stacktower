@@ -9,7 +9,7 @@ import (
 )
 
 func TestCache_GetSet(t *testing.T) {
-	c := &Cache{Dir: t.TempDir(), TTL: time.Hour}
+	c, _ := NewCache(t.TempDir(), time.Hour)
 
 	tests := []struct {
 		name  string
@@ -49,7 +49,7 @@ func TestCache_GetSet(t *testing.T) {
 }
 
 func TestCache_Miss(t *testing.T) {
-	c := &Cache{Dir: t.TempDir(), TTL: time.Hour}
+	c, _ := NewCache(t.TempDir(), time.Hour)
 	var result string
 	ok, err := c.Get("missing", &result)
 	if err != nil {
@@ -61,7 +61,7 @@ func TestCache_Miss(t *testing.T) {
 }
 
 func TestCache_Expiration(t *testing.T) {
-	c := &Cache{Dir: t.TempDir(), TTL: 10 * time.Millisecond}
+	c, _ := NewCache(t.TempDir(), 10*time.Millisecond)
 
 	if err := c.Set("key", "value"); err != nil {
 		t.Fatalf("Set() failed: %v", err)
@@ -85,13 +85,13 @@ func TestCache_Expiration(t *testing.T) {
 }
 
 func TestCache_KeyStability(t *testing.T) {
-	c := &Cache{Dir: t.TempDir(), TTL: time.Hour}
-	p1 := c.path("test")
-	p2 := c.path("test")
+	c, _ := NewCache(t.TempDir(), time.Hour)
+	p1 := c.keyPath("test")
+	p2 := c.keyPath("test")
 	if p1 != p2 {
 		t.Error("path should be deterministic")
 	}
-	p3 := c.path("other")
+	p3 := c.keyPath("other")
 	if p1 == p3 {
 		t.Error("different keys should produce different paths")
 	}
@@ -109,13 +109,13 @@ func TestNewCache_DefaultDir(t *testing.T) {
 	}
 
 	want := filepath.Join(home, ".cache", "stacktower")
-	if c.Dir != want {
-		t.Errorf("got Dir = %s, want %s", c.Dir, want)
+	if c.Dir() != want {
+		t.Errorf("got Dir = %s, want %s", c.Dir(), want)
 	}
-	if c.TTL != time.Hour {
-		t.Errorf("got TTL = %v, want 1h", c.TTL)
+	if c.TTL() != time.Hour {
+		t.Errorf("got TTL = %v, want 1h", c.TTL())
 	}
-	if _, err := os.Stat(c.Dir); err != nil {
+	if _, err := os.Stat(c.Dir()); err != nil {
 		t.Errorf("directory not created: %v", err)
 	}
 }

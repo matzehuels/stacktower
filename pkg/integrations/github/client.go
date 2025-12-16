@@ -10,13 +10,11 @@ import (
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
-var repoURLPattern = regexp.MustCompile(`https?://github\.com/([^/]+)/([^/]+)`)
+var repoURLPattern = regexp.MustCompile(`https?://github\.com/([^/]+)/([^/]+?)(?:\.git)?(?:[/?#]|$)`)
 
 type Client struct {
-	integrations.BaseClient
-	token   string
+	*integrations.Client
 	baseURL string
-	headers map[string]string
 }
 
 func NewClient(token string, cacheTTL time.Duration) (*Client, error) {
@@ -31,23 +29,18 @@ func NewClient(token string, cacheTTL time.Duration) (*Client, error) {
 	}
 
 	return &Client{
-		BaseClient: integrations.BaseClient{
-			HTTP:  integrations.NewHTTPClient(),
-			Cache: cache,
-		},
-		token:   token,
+		Client:  integrations.NewClient(cache, headers),
 		baseURL: "https://api.github.com",
-		headers: headers,
 	}, nil
 }
 
 func (c *Client) Fetch(ctx context.Context, owner, repo string, refresh bool) (*integrations.RepoMetrics, error) {
-	cacheKey := "github:" + owner + "/" + repo
+	key := "github:" + owner + "/" + repo
 
 	var m integrations.RepoMetrics
-	err := c.FetchWithCache(ctx, cacheKey, refresh, func() error {
+	err := c.Cached(ctx, key, refresh, &m, func() error {
 		return c.fetchMetrics(ctx, owner, repo, &m)
-	}, &m)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -55,7 +48,7 @@ func (c *Client) Fetch(ctx context.Context, owner, repo string, refresh bool) (*
 }
 
 func (c *Client) fetchMetrics(ctx context.Context, owner, repo string, m *integrations.RepoMetrics) error {
-	repoData, err := c.fetchRepo(ctx, owner, repo)
+	data, err := c.fetchRepo(ctx, owner, repo)
 	if err != nil {
 		return err
 	}
@@ -63,30 +56,29 @@ func (c *Client) fetchMetrics(ctx context.Context, owner, repo string, m *integr
 	*m = integrations.RepoMetrics{
 		RepoURL:  fmt.Sprintf("https://github.com/%s/%s", owner, repo),
 		Owner:    owner,
-		Stars:    repoData.Stars,
-		SizeKB:   repoData.Size,
-		License:  repoData.License.SPDXID,
-		Language: repoData.Language,
-		Topics:   repoData.Topics,
-		Archived: repoData.Archived,
+		Stars:    data.Stars,
+		SizeKB:   data.Size,
+		License:  data.License.SPDXID,
+		Language: data.Language,
+		Topics:   data.Topics,
+		Archived: data.Archived,
 	}
-	if repoData.PushedAt != nil {
-		m.LastCommitAt = repoData.PushedAt
+	if data.PushedAt != nil {
+		m.LastCommitAt = data.PushedAt
 	}
-	if release, err := c.fetchLatestRelease(ctx, owner, repo); err == nil {
-		m.LastReleaseAt = &release.PublishedAt
+	if rel, err := c.fetchRelease(ctx, owner, repo); err == nil {
+		m.LastReleaseAt = &rel.PublishedAt
 	}
-	if contributors, err := c.fetchContributors(ctx, owner, repo); err == nil {
-		m.Contributors = contributors
+	if contribs, err := c.fetchContributors(ctx, owner, repo); err == nil {
+		m.Contributors = contribs
 	}
 	return nil
 }
 
 func (c *Client) fetchRepo(ctx context.Context, owner, repo string) (*repoResponse, error) {
-	url := fmt.Sprintf("%s/repos/%s/%s", c.baseURL, owner, repo)
-
 	var data repoResponse
-	if err := c.DoRequest(ctx, url, c.headers, &data); err != nil {
+	url := fmt.Sprintf("%s/repos/%s/%s", c.baseURL, owner, repo)
+	if err := c.Get(ctx, url, &data); err != nil {
 		if errors.Is(err, integrations.ErrNotFound) {
 			return nil, fmt.Errorf("%w: github repo %s/%s", err, owner, repo)
 		}
@@ -95,74 +87,59 @@ func (c *Client) fetchRepo(ctx context.Context, owner, repo string) (*repoRespon
 	return &data, nil
 }
 
-func (c *Client) fetchLatestRelease(ctx context.Context, owner, repo string) (*releaseResponse, error) {
-	url := fmt.Sprintf("%s/repos/%s/%s/releases/latest", c.baseURL, owner, repo)
-
+func (c *Client) fetchRelease(ctx context.Context, owner, repo string) (*releaseResponse, error) {
 	var data releaseResponse
-	if err := c.DoRequest(ctx, url, c.headers, &data); err != nil {
-		return nil, fmt.Errorf("no releases")
+	url := fmt.Sprintf("%s/repos/%s/%s/releases/latest", c.baseURL, owner, repo)
+	if err := c.Get(ctx, url, &data); err != nil {
+		return nil, err
 	}
 	return &data, nil
 }
 
 func (c *Client) fetchContributors(ctx context.Context, owner, repo string) ([]integrations.Contributor, error) {
-	url := fmt.Sprintf("%s/repos/%s/%s/contributors?per_page=5", c.baseURL, owner, repo)
-
 	var data []contributorResponse
-	if err := c.DoRequest(ctx, url, c.headers, &data); err != nil {
-		return nil, fmt.Errorf("no contributors")
+	url := fmt.Sprintf("%s/repos/%s/%s/contributors?per_page=5", c.baseURL, owner, repo)
+	if err := c.Get(ctx, url, &data); err != nil {
+		return nil, err
 	}
 
-	contributors := make([]integrations.Contributor, 0, len(data))
-	for _, c := range data {
-		if c.Type != "Bot" {
-			contributors = append(contributors, integrations.Contributor{
-				Login:         c.Login,
-				Contributions: c.Contributions,
+	var result []integrations.Contributor
+	for _, cr := range data {
+		if cr.Type != "Bot" {
+			result = append(result, integrations.Contributor{
+				Login:         cr.Login,
+				Contributions: cr.Contributions,
 			})
 		}
 	}
-	return contributors, nil
+	return result, nil
 }
 
 func (c *Client) SearchPackageRepo(ctx context.Context, pkgName, manifestFile string) (owner, repo string, ok bool) {
-	if c.token == "" {
-		return "", "", false
-	}
+	key := fmt.Sprintf("github:search:%s:%s", manifestFile, pkgName)
 
-	cacheKey := fmt.Sprintf("github:search:%s:%s", manifestFile, pkgName)
-
-	var result searchCacheEntry
-	err := c.FetchWithCache(ctx, cacheKey, false, func() error {
-		o, r, found := c.doCodeSearch(ctx, pkgName, manifestFile)
-		result = searchCacheEntry{Owner: o, Repo: r, Found: found}
+	var result searchResult
+	_ = c.Cached(ctx, key, false, &result, func() error {
+		result.Owner, result.Repo, result.Found = c.doSearch(ctx, pkgName, manifestFile)
 		return nil
-	}, &result)
-
-	if err != nil || !result.Found {
-		return "", "", false
-	}
-	return result.Owner, result.Repo, true
+	})
+	return result.Owner, result.Repo, result.Found
 }
 
-func (c *Client) doCodeSearch(ctx context.Context, pkgName, manifestFile string) (owner, repo string, ok bool) {
+func (c *Client) doSearch(ctx context.Context, pkgName, manifestFile string) (owner, repo string, ok bool) {
 	query := fmt.Sprintf(`name = "%s" filename:%s`, pkgName, manifestFile)
-	searchURL := fmt.Sprintf("%s/search/code?q=%s&per_page=1", c.baseURL, integrations.URLEncode(query))
+	url := fmt.Sprintf("%s/search/code?q=%s&per_page=1", c.baseURL, integrations.URLEncode(query))
 
-	var data codeSearchResponse
-	if err := c.DoRequest(ctx, searchURL, c.headers, &data); err != nil {
+	var data searchResponse
+	if err := c.Get(ctx, url, &data); err != nil || len(data.Items) == 0 {
 		return "", "", false
 	}
-
-	if len(data.Items) == 0 {
-		return "", "", false
-	}
-
-	return data.Items[0].Repository.Owner.Login, data.Items[0].Repository.Name, true
+	item := data.Items[0]
+	return item.Repository.Owner.Login, item.Repository.Name, true
 }
 
-func ExtractURL(projectURLs map[string]string, homepage string) (owner, repo string, ok bool) {
-	return integrations.ExtractRepoURL(repoURLPattern, projectURLs, homepage)
+func ExtractURL(urls map[string]string, homepage string) (owner, repo string, ok bool) {
+	return integrations.ExtractRepoURL(repoURLPattern, urls, homepage)
 }
 
 type repoResponse struct {
@@ -187,7 +164,7 @@ type contributorResponse struct {
 	Type          string `json:"type"`
 }
 
-type codeSearchResponse struct {
+type searchResponse struct {
 	Items []struct {
 		Repository struct {
 			Name  string `json:"name"`
@@ -198,7 +175,7 @@ type codeSearchResponse struct {
 	} `json:"items"`
 }
 
-type searchCacheEntry struct {
+type searchResult struct {
 	Owner string `json:"owner"`
 	Repo  string `json:"repo"`
 	Found bool   `json:"found"`

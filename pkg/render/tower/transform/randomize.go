@@ -2,7 +2,6 @@ package transform
 
 import (
 	"maps"
-	"math"
 	"math/rand/v2"
 	"slices"
 
@@ -28,7 +27,7 @@ func Randomize(layout tower.Layout, g *dag.DAG, seed uint64, opts *Options) towe
 	if opts == nil {
 		opts = &defaultOpts
 	}
-	if shrink := clamp(opts.WidthShrink, 0, 1); shrink == 0 {
+	if shrink := max(0.0, min(opts.WidthShrink, 1.0)); shrink == 0 {
 		return layout
 	}
 
@@ -44,7 +43,7 @@ func Randomize(layout tower.Layout, g *dag.DAG, seed uint64, opts *Options) towe
 }
 
 func shrinkCheckerboard(orders map[int][]string, blocks map[string]tower.Block, rows []int, rng *rand.Rand, opts *Options) {
-	shrink := clamp(opts.WidthShrink, 0, 1)
+	shrink := max(0, min(opts.WidthShrink, 1))
 	for rowIdx, row := range rows {
 		if rowIdx == 0 {
 			continue
@@ -56,7 +55,7 @@ func shrinkCheckerboard(orders map[int][]string, blocks map[string]tower.Block, 
 			if rowIdx%2 == 1 {
 				width *= 1 - rng.Float64()*shrink
 			}
-			width = math.Max(width, opts.MinBlockWidth)
+			width = max(width, opts.MinBlockWidth)
 			node.Left = center - width/2
 			node.Right = center + width/2
 			blocks[nodeID] = node
@@ -84,11 +83,11 @@ func ensureMinimumOverlap(g *dag.DAG, blocks map[string]tower.Block, minOverlap 
 			changed = true
 
 			if (parent.Left+parent.Right)/2 < (child.Left+child.Right)/2 {
-				parent.Right = math.Max(parent.Right, child.Left+minOverlap)
-				child.Left = math.Min(child.Left, parent.Right-minOverlap)
+				parent.Right = max(parent.Right, child.Left+minOverlap)
+				child.Left = min(child.Left, parent.Right-minOverlap)
 			} else {
-				parent.Left = math.Min(parent.Left, child.Right-minOverlap)
-				child.Right = math.Max(child.Right, parent.Left+minOverlap)
+				parent.Left = min(parent.Left, child.Right-minOverlap)
+				child.Right = max(child.Right, parent.Left+minOverlap)
 			}
 			blocks[edge.From] = parent
 			blocks[edge.To] = child
@@ -100,9 +99,5 @@ func ensureMinimumOverlap(g *dag.DAG, blocks map[string]tower.Block, minOverlap 
 }
 
 func calcOverlap(a1, a2, b1, b2 float64) float64 {
-	return math.Max(0, math.Min(a2, b2)-math.Max(a1, b1))
-}
-
-func clamp(v, lo, hi float64) float64 {
-	return math.Max(lo, math.Min(v, hi))
+	return max(0, min(a2, b2)-max(a1, b1))
 }

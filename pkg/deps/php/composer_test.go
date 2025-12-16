@@ -1,0 +1,99 @@
+package php
+
+import (
+	"os"
+	"path/filepath"
+	"testing"
+
+	"github.com/matzehuels/stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/deps"
+)
+
+func TestComposerJSON_Supports(t *testing.T) {
+	parser := &ComposerJSON{}
+
+	tests := []struct {
+		filename string
+		want     bool
+	}{
+		{"composer.json", true},
+		{"Composer.json", true},
+		{"COMPOSER.JSON", true},
+		{"package.json", false},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.filename, func(t *testing.T) {
+			if got := parser.Supports(tt.filename); got != tt.want {
+				t.Errorf("Supports(%q) = %v, want %v", tt.filename, got, tt.want)
+			}
+		})
+	}
+}
+
+func TestComposerJSON_Parse(t *testing.T) {
+	dir := t.TempDir()
+	composerFile := filepath.Join(dir, "composer.json")
+	content := `{
+  "name": "vendor/my-package",
+  "version": "1.0.0",
+  "require": {
+    "php": "^8.1",
+    "ext-json": "*",
+    "monolog/monolog": "^3.0",
+    "symfony/console": "^6.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.0"
+  }
+}`
+
+	if err := os.WriteFile(composerFile, []byte(content), 0644); err != nil {
+		t.Fatal(err)
+	}
+
+	parser := &ComposerJSON{}
+	result, err := parser.Parse(composerFile, deps.Options{})
+	if err != nil {
+		t.Fatalf("Parse failed: %v", err)
+	}
+
+	g := result.Graph.(*dag.DAG)
+
+	// project root + vendor/my-package + 3 deps (php and ext-json filtered out)
+	if got := g.NodeCount(); got != 5 {
+		t.Errorf("NodeCount = %d, want 5", got)
+	}
+
+	for _, dep := range []string{"monolog/monolog", "symfony/console", "phpunit/phpunit"} {
+		if _, ok := g.Node(dep); !ok {
+			t.Errorf("expected node %q not found", dep)
+		}
+	}
+
+	// Verify php and ext-json are filtered
+	if _, ok := g.Node("php"); ok {
+		t.Error("unexpected node 'php' found (should be filtered)")
+	}
+	if _, ok := g.Node("ext-json"); ok {
+		t.Error("unexpected node 'ext-json' found (should be filtered)")
+	}
+
+	if result.RootPackage != "vendor/my-package" {
+		t.Errorf("RootPackage = %q, want %q", result.RootPackage, "vendor/my-package")
+	}
+}
+
+func TestComposerJSON_Type(t *testing.T) {
+	parser := &ComposerJSON{}
+	if got := parser.Type(); got != "composer.json" {
+		t.Errorf("Type() = %q, want %q", got, "composer.json")
+	}
+}
+
+func TestComposerJSON_IncludesTransitive(t *testing.T) {
+	parser := &ComposerJSON{}
+	if parser.IncludesTransitive() {
+		t.Error("IncludesTransitive() = true, want false (no resolver)")
+	}
+}

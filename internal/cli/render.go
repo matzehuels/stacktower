@@ -5,9 +5,7 @@ import (
 	"fmt"
 	"path/filepath"
 	"strings"
-	"time"
 
-	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 
 	"github.com/matzehuels/stacktower/pkg/dag"
@@ -15,7 +13,6 @@ import (
 	"github.com/matzehuels/stacktower/pkg/io"
 	"github.com/matzehuels/stacktower/pkg/render/nodelink"
 	"github.com/matzehuels/stacktower/pkg/render/tower"
-	"github.com/matzehuels/stacktower/pkg/render/tower/ordering"
 	"github.com/matzehuels/stacktower/pkg/render/tower/styles/handdrawn"
 	layouttransform "github.com/matzehuels/stacktower/pkg/render/tower/transform"
 )
@@ -52,7 +49,10 @@ func newRenderCmd() *cobra.Command {
 		normalize: true,
 		width:     defaultWidth,
 		height:    defaultHeight,
-		style:     styleSimple,
+		style:     styleHanddrawn,
+		randomize: true,
+		merge:     true,
+		popups:    true,
 	}
 
 	cmd := &cobra.Command{
@@ -69,19 +69,19 @@ func newRenderCmd() *cobra.Command {
 	}
 
 	cmd.Flags().StringVarP(&opts.output, "output", "o", "", "output file (single type) or base path (multiple types)")
-	cmd.Flags().StringVarP(&vizTypesStr, "type", "t", "", "visualization types: nodelink, tower (comma-separated)")
+	cmd.Flags().StringVarP(&vizTypesStr, "type", "t", "", "visualization type: tower (default), nodelink")
 	cmd.Flags().BoolVar(&opts.detailed, "detailed", false, "show detailed information (nodelink)")
 	cmd.Flags().BoolVar(&opts.normalize, "normalize", opts.normalize, "apply normalization pipeline")
-	cmd.Flags().Float64Var(&opts.width, "width", opts.width, "frame width (tower)")
-	cmd.Flags().Float64Var(&opts.height, "height", opts.height, "frame height (tower)")
-	cmd.Flags().BoolVar(&opts.showEdges, "edges", false, "show edges (tower)")
-	cmd.Flags().StringVar(&opts.style, "style", opts.style, "visual style: simple or handdrawn (tower)")
+	cmd.Flags().Float64Var(&opts.width, "width", opts.width, "frame width")
+	cmd.Flags().Float64Var(&opts.height, "height", opts.height, "frame height")
+	cmd.Flags().BoolVar(&opts.showEdges, "edges", false, "show dependency edges")
+	cmd.Flags().StringVar(&opts.style, "style", opts.style, "visual style: handdrawn (default), simple")
 	cmd.Flags().StringVar(&opts.ordering, "ordering", "", "ordering algorithm: optimal (default), barycentric")
 	cmd.Flags().IntVar(&opts.orderTimeout, "ordering-timeout", 60, "timeout in seconds for optimal search")
-	cmd.Flags().BoolVar(&opts.randomize, "randomize", false, "randomize positions for hand-drawn effect (tower)")
-	cmd.Flags().BoolVar(&opts.merge, "merge", false, "merge subdivider blocks (tower)")
-	cmd.Flags().BoolVar(&opts.nebraska, "nebraska", false, "show Nebraska guy ranking (handdrawn)")
-	cmd.Flags().BoolVar(&opts.popups, "popups", false, "show hover popups (handdrawn)")
+	cmd.Flags().BoolVar(&opts.randomize, "randomize", opts.randomize, "randomize block widths for hand-drawn effect")
+	cmd.Flags().BoolVar(&opts.merge, "merge", opts.merge, "merge subdivider blocks into single towers")
+	cmd.Flags().BoolVar(&opts.nebraska, "nebraska", false, "show Nebraska guy maintainer ranking")
+	cmd.Flags().BoolVar(&opts.popups, "popups", opts.popups, "show hover popups with metadata")
 	cmd.Flags().BoolVar(&opts.topDown, "top-down", false, "use top-down width flow (roots get equal width)")
 
 	return cmd
@@ -89,7 +89,7 @@ func newRenderCmd() *cobra.Command {
 
 func parseVizTypes(s string) []string {
 	if s == "" {
-		return []string{"nodelink"}
+		return []string{"tower"}
 	}
 	return strings.Split(s, ",")
 }
@@ -197,8 +197,7 @@ func renderGraph(ctx context.Context, g *dag.DAG, vizType string, opts *renderOp
 }
 
 func renderNodeLink(ctx context.Context, g *dag.DAG, opts *renderOpts) ([]byte, error) {
-	logger := loggerFromContext(ctx)
-	logger.Info("Generating node-link diagram")
+	loggerFromContext(ctx).Info("Generating node-link diagram")
 	dot := nodelink.ToDOT(g, nodelink.Options{Detailed: opts.detailed})
 	return nodelink.RenderSVG(dot)
 }
@@ -230,103 +229,28 @@ func renderTower(ctx context.Context, g *dag.DAG, opts *renderOpts) ([]byte, err
 	}
 
 	logger.Infof("Rendering tower SVG (%s style)", opts.style)
-	renderOpts := buildRenderOpts(g, opts)
-	return tower.RenderSVG(layout, renderOpts...), nil
+	return tower.RenderSVG(layout, buildRenderOpts(g, opts)...), nil
 }
 
 func buildLayoutOpts(ctx context.Context, opts *renderOpts) ([]tower.Option, error) {
+	logger := loggerFromContext(ctx)
 	var layoutOpts []tower.Option
 
 	switch opts.ordering {
 	case "barycentric":
+		// default barycentric, no option needed
 	case "optimal", "":
-		loggerFromContext(ctx).Debugf("Using optimal search with %ds timeout", opts.orderTimeout)
-		layoutOpts = append(layoutOpts, tower.WithOrderer(withOptimalSearchProgress(ctx, opts.orderTimeout)))
+		logger.Debugf("Using optimal search with %ds timeout", opts.orderTimeout)
+		layoutOpts = append(layoutOpts, tower.WithOrderer(newOptimalOrderer(ctx, opts.orderTimeout)))
 	default:
 		return nil, fmt.Errorf("unknown ordering: %s", opts.ordering)
 	}
 
 	if opts.topDown {
-		loggerFromContext(ctx).Debug("Using top-down width flow")
+		logger.Debug("Using top-down width flow")
 		layoutOpts = append(layoutOpts, tower.WithTopDownWidths())
 	}
-
 	return layoutOpts, nil
-}
-
-func withOptimalSearchProgress(ctx context.Context, timeoutSec int) ordering.Orderer {
-	logger := loggerFromContext(ctx)
-	o := &optimalSearchOrderer{
-		prog:     newProgress(logger),
-		logger:   logger,
-		lastBest: -1,
-		start:    time.Now(),
-	}
-
-	o.OptimalSearch = ordering.OptimalSearch{
-		Timeout: time.Duration(timeoutSec) * time.Second,
-		Progress: func(explored, pruned, bestScore int) {
-			o.lastExplored, o.lastPruned = explored, pruned
-			if bestScore < 0 || (explored == 0 && pruned == 0) {
-				return
-			}
-
-			switch {
-			case o.lastBest < 0:
-				logger.Infof("Initial: %d crossings (explored: %d, pruned: %d)", bestScore, explored, pruned)
-				o.lastLog = time.Now()
-			case bestScore < o.lastBest:
-				logger.Infof("Improved: %d crossings (↓%d)", bestScore, o.lastBest-bestScore)
-				o.lastLog = time.Now()
-			default:
-				if time.Since(o.lastLog) >= 10*time.Second {
-					elapsed := time.Since(o.start).Truncate(time.Second)
-					logger.Infof("Searching... %v/%ds elapsed, %d crossings (pruned: %d)", elapsed, timeoutSec, bestScore, pruned)
-					o.lastLog = time.Now()
-				}
-			}
-			o.lastBest = bestScore
-		},
-		Debug: func(info ordering.DebugInfo) {
-			logger.Debugf("Search space: %d rows, max depth reached: %d/%d", info.TotalRows, info.MaxDepth, info.TotalRows)
-
-			bottlenecks := 0
-			for _, r := range info.Rows {
-				if r.Candidates > 100 {
-					logger.Debugf("  Row %d: %d nodes, %d candidates", r.Row, r.NodeCount, r.Candidates)
-					bottlenecks++
-				}
-			}
-
-			if info.MaxDepth < info.TotalRows && bottlenecks > 0 {
-				logger.Debugf("Search incomplete: %d rows have >100 candidates, causing combinatorial explosion", bottlenecks)
-			}
-		},
-	}
-	return o
-}
-
-type optimalSearchOrderer struct {
-	ordering.OptimalSearch
-	prog                     *progress
-	logger                   *log.Logger
-	lastExplored, lastPruned int
-	lastBest                 int
-	start, lastLog           time.Time
-}
-
-func (o *optimalSearchOrderer) OrderRows(g *dag.DAG) map[int][]string {
-	result := o.OptimalSearch.OrderRows(g)
-	crossings := dag.CountCrossings(g, result)
-	o.prog.done(fmt.Sprintf("Layout complete: %d crossings", crossings))
-	if crossings >= 0 {
-		o.logger.Infof("Best: %d crossings (explored: %d, pruned: %d)",
-			crossings, o.lastExplored, o.lastPruned)
-	}
-	if crossings > 0 {
-		o.logger.Warn("Layout has edge crossings; try increasing the timeout (--ordering-timeout)")
-	}
-	return result
 }
 
 func buildRenderOpts(g *dag.DAG, opts *renderOpts) []tower.RenderOption {

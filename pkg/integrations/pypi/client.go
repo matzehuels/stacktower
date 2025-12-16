@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"regexp"
-	"strings"
 	"time"
 
 	"github.com/matzehuels/stacktower/pkg/integrations"
@@ -29,7 +28,7 @@ type PackageInfo struct {
 }
 
 type Client struct {
-	integrations.BaseClient
+	*integrations.Client
 	baseURL string
 }
 
@@ -39,33 +38,28 @@ func NewClient(cacheTTL time.Duration) (*Client, error) {
 		return nil, err
 	}
 	return &Client{
-		BaseClient: integrations.BaseClient{
-			HTTP:  integrations.NewHTTPClient(),
-			Cache: cache,
-		},
+		Client:  integrations.NewClient(cache, nil),
 		baseURL: "https://pypi.org/pypi",
 	}, nil
 }
 
 func (c *Client) FetchPackage(ctx context.Context, pkg string, refresh bool) (*PackageInfo, error) {
-	pkg = normalizeName(pkg)
-	cacheKey := "pypi:" + pkg
+	pkg = integrations.NormalizePkgName(pkg)
+	key := "pypi:" + pkg
 
 	var info PackageInfo
-	err := c.FetchWithCache(ctx, cacheKey, refresh, func() error {
-		return c.fetchPackage(ctx, pkg, &info)
-	}, &info)
+	err := c.Cached(ctx, key, refresh, &info, func() error {
+		return c.fetch(ctx, pkg, &info)
+	})
 	if err != nil {
 		return nil, err
 	}
 	return &info, nil
 }
 
-func (c *Client) fetchPackage(ctx context.Context, pkg string, info *PackageInfo) error {
-	url := fmt.Sprintf("%s/%s/json", c.baseURL, pkg)
-
+func (c *Client) fetch(ctx context.Context, pkg string, info *PackageInfo) error {
 	var data apiResponse
-	if err := c.DoRequest(ctx, url, nil, &data); err != nil {
+	if err := c.Get(ctx, fmt.Sprintf("%s/%s/json", c.baseURL, pkg), &data); err != nil {
 		if errors.Is(err, integrations.ErrNotFound) {
 			return fmt.Errorf("%w: pypi package %s", err, pkg)
 		}
@@ -92,16 +86,15 @@ func (c *Client) fetchPackage(ctx context.Context, pkg string, info *PackageInfo
 	return nil
 }
 
-func extractDeps(requiresDist []string) []string {
+func extractDeps(requires []string) []string {
 	seen := make(map[string]bool)
 	var deps []string
-
-	for _, req := range requiresDist {
+	for _, req := range requires {
 		if m := markerRE.FindStringSubmatch(req); len(m) > 1 && skipRE.MatchString(m[1]) {
 			continue
 		}
 		if m := depRE.FindStringSubmatch(req); len(m) > 1 {
-			dep := normalizeName(m[1])
+			dep := integrations.NormalizePkgName(m[1])
 			if !seen[dep] {
 				seen[dep] = true
 				deps = append(deps, dep)
@@ -109,10 +102,6 @@ func extractDeps(requiresDist []string) []string {
 		}
 	}
 	return deps
-}
-
-func normalizeName(name string) string {
-	return strings.ReplaceAll(strings.ToLower(name), "_", "-")
 }
 
 type apiResponse struct {

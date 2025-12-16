@@ -64,13 +64,28 @@ check_prerequisites() {
 
 run_parse_tests() {
     echo ""
-    echo "--- Parse Commands ---"
+    echo "--- Parse Registry ---"
     mkdir -p "$EXAMPLES_DIR/real"
 
     test_parse python flask
     test_parse python openai
     test_parse rust serde
-    test_parse javascript express
+    test_parse javascript yargs
+    test_parse ruby rspec
+    test_parse php symfony/console
+    test_parse java com.google.guava:guava
+    test_parse go github.com/spf13/cobra
+
+    echo ""
+    echo "--- Parse Manifests ---"
+    test_manifest python poetry.lock
+    test_manifest python requirements.txt
+    test_manifest rust Cargo.toml
+    test_manifest javascript package.json
+    test_manifest ruby Gemfile
+    test_manifest php composer.json
+    test_manifest java pom.xml
+    test_manifest go go.mod
 }
 
 run_render_suite() {
@@ -305,7 +320,7 @@ test_parse() {
     local depth=${3:-$DEFAULT_MAX_DEPTH}
     local nodes=${4:-$DEFAULT_MAX_NODES}
     local refresh=${REFRESH:-true}
-    local output="$EXAMPLES_DIR/real/${pkg}.json"
+    local output="$EXAMPLES_DIR/real/${pkg##*/}.json"
 
     echo -n "  $lang/$pkg... "
 
@@ -316,6 +331,34 @@ test_parse() {
         --refresh="$refresh" \
         -o "$output" 2>&1 | filter_warnings; then
         fail "parse returned error"
+    fi
+
+    validate_json "$output"
+    echo "OK"
+}
+
+test_manifest() {
+    local lang=$1
+    local file=$2
+    local depth=${3:-$DEFAULT_MAX_DEPTH}
+    local nodes=${4:-$DEFAULT_MAX_NODES}
+    local manifest_path="$EXAMPLES_DIR/manifest/$file"
+    local output="$OUTPUT_DIR/manifest/${file%.*}.json"
+
+    echo -n "  $lang/$file... "
+
+    if [[ ! -f "$manifest_path" ]]; then
+        fail "manifest not found: $manifest_path"
+    fi
+
+    mkdir -p "$OUTPUT_DIR/manifest"
+
+    if ! $BIN parse "$lang" "$manifest_path" \
+        --enrich \
+        --max-depth "$depth" \
+        --max-nodes "$nodes" \
+        -o "$output" 2>&1 | filter_warnings; then
+        fail "manifest parse returned error"
     fi
 
     validate_json "$output"

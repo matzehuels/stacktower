@@ -5,18 +5,18 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
-	"os"
 	"testing"
 	"time"
+
+	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
 func TestClient_Fetch(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 
-		path := r.URL.Path
-		switch {
-		case path == "/repos/owner/repo":
+		switch r.URL.Path {
+		case "/repos/owner/repo":
 			json.NewEncoder(w).Encode(repoResponse{
 				Stars: 100,
 				Size:  500,
@@ -24,9 +24,9 @@ func TestClient_Fetch(t *testing.T) {
 					SPDXID string `json:"spdx_id"`
 				}{SPDXID: "MIT"},
 			})
-		case path == "/repos/owner/repo/releases/latest":
+		case "/repos/owner/repo/releases/latest":
 			w.WriteHeader(http.StatusNotFound)
-		case path == "/repos/owner/repo/contributors":
+		case "/repos/owner/repo/contributors":
 			json.NewEncoder(w).Encode([]contributorResponse{
 				{Login: "user1", Contributions: 10, Type: "User"},
 			})
@@ -36,11 +36,9 @@ func TestClient_Fetch(t *testing.T) {
 	}))
 	defer server.Close()
 
-	c, _ := NewClient("", time.Hour)
-	c.HTTP = server.Client()
-	c.baseURL = server.URL
+	c := testClient(t, server.URL, "")
 
-	metrics, err := c.Fetch(context.Background(), "owner", "repo", false)
+	metrics, err := c.Fetch(context.Background(), "owner", "repo", true)
 	if err != nil {
 		t.Fatalf("fetch failed: %v", err)
 	}
@@ -97,22 +95,27 @@ func TestExtractURL(t *testing.T) {
 }
 
 func TestNewClient(t *testing.T) {
-	if os.Getenv("CI") == "true" {
-		t.Skip("skipping cache creation test in CI")
-	}
-
 	c, err := NewClient("test-token", time.Hour)
 	if err != nil {
 		t.Fatalf("NewClient failed: %v", err)
 	}
+	if c.Client == nil {
+		t.Error("expected client to be initialized")
+	}
+}
 
-	if c.token != "test-token" {
-		t.Errorf("expected token 'test-token', got %s", c.token)
+func testClient(t *testing.T, serverURL, token string) *Client {
+	t.Helper()
+	cache, err := integrations.NewCache(time.Hour)
+	if err != nil {
+		t.Fatal(err)
 	}
-	if c.Cache == nil {
-		t.Error("expected cache to be initialized")
+	headers := map[string]string{"Accept": "application/vnd.github.v3+json"}
+	if token != "" {
+		headers["Authorization"] = "Bearer " + token
 	}
-	if c.HTTP == nil {
-		t.Error("expected http client to be initialized")
+	return &Client{
+		Client:  integrations.NewClient(cache, headers),
+		baseURL: serverURL,
 	}
 }

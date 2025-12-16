@@ -25,7 +25,7 @@ func fontSizeFor(availWidth, availHeight float64, textLen int) float64 {
 	return max(fontSizeMin, min(fontSizeMax, min(byHeight, byWidth)))
 }
 
-func ShouldRotate(b Block, _ float64) bool {
+func ShouldRotate(b Block) bool {
 	horizSize := fontSizeFor(b.W, b.H, len(b.ID))
 	rotSize := fontSizeFor(b.H, b.W, len(b.ID))
 	if len(b.ID) > 10 {

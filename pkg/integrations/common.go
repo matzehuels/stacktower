@@ -37,39 +37,6 @@ type Contributor struct {
 	Contributions int    `json:"contributions"`
 }
 
-var repoURLKeys = []string{"Source", "Repository", "Code", "Homepage"}
-
-func ExtractRepoURL(re *regexp.Regexp, projectURLs map[string]string, homepage string) (owner, repo string, ok bool) {
-	for _, key := range repoURLKeys {
-		if url, exists := projectURLs[key]; exists {
-			if owner, repo, ok = matchRepoURL(re, url); ok {
-				return owner, repo, true
-			}
-		}
-	}
-	for _, url := range projectURLs {
-		if owner, repo, ok = matchRepoURL(re, url); ok {
-			return owner, repo, true
-		}
-	}
-	if homepage != "" {
-		if owner, repo, ok = matchRepoURL(re, homepage); ok {
-			return owner, repo, true
-		}
-	}
-	return "", "", false
-}
-
-func matchRepoURL(re *regexp.Regexp, url string) (owner, repo string, ok bool) {
-	if strings.Contains(url, "/sponsors/") {
-		return "", "", false
-	}
-	if match := re.FindStringSubmatch(url); len(match) >= 3 {
-		return match[1], match[2], true
-	}
-	return "", "", false
-}
-
 func NewHTTPClient() *http.Client {
 	return &http.Client{Timeout: httpTimeout}
 }
@@ -78,6 +45,55 @@ func NewCache(ttl time.Duration) (*httputil.Cache, error) {
 	return httputil.NewCache("", ttl)
 }
 
-func URLEncode(s string) string {
-	return url.QueryEscape(s)
+func NormalizePkgName(name string) string {
+	return strings.ReplaceAll(strings.ToLower(strings.TrimSpace(name)), "_", "-")
 }
+
+var repoURLReplacer = strings.NewReplacer(
+	"git@github.com:", "https://github.com/",
+	"git://github.com/", "https://github.com/",
+)
+
+func NormalizeRepoURL(raw string) string {
+	if raw == "" {
+		return ""
+	}
+	s := strings.TrimSpace(raw)
+	s = strings.TrimPrefix(s, "git+")
+	s = repoURLReplacer.Replace(s)
+	return strings.TrimSuffix(s, ".git")
+}
+
+var repoURLKeys = []string{"Source", "Repository", "Code", "Homepage"}
+
+func ExtractRepoURL(re *regexp.Regexp, urls map[string]string, homepage string) (owner, repo string, ok bool) {
+	match := func(u string) bool {
+		if strings.Contains(u, "/sponsors/") {
+			return false
+		}
+		if m := re.FindStringSubmatch(u); len(m) >= 3 {
+			owner = m[1]
+			repo = strings.TrimSuffix(m[2], ".git")
+			ok = true
+			return true
+		}
+		return false
+	}
+
+	for _, key := range repoURLKeys {
+		if u, exists := urls[key]; exists && match(u) {
+			return
+		}
+	}
+	for _, u := range urls {
+		if match(u) {
+			return
+		}
+	}
+	if homepage != "" {
+		match(homepage)
+	}
+	return
+}
+
+func URLEncode(s string) string { return url.QueryEscape(s) }

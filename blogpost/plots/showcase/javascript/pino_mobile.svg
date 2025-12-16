@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800.0 1380.0" width="800" height="1380">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800.0 1440.0" width="800" height="1440">
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;display=swap');
@@ -78,9 +78,29 @@
   <a href="https://github.com/mcollina/thread-stream" target="_blank">    <rect x="711.00" y="397.35" width="18.00" height="105.30" fill="rgba(192,192,192,1)"/>
     <text x="720.00" y="450.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 720.00 450.00)">thread-stream</text>
 </a>  </g>
+  <style>
+    .block { transition: stroke-width 0.2s ease; }
+    .block.highlight { stroke-width: 4; }
+    .block-text { transition: transform 0.2s ease; transform-origin: center; transform-box: fill-box; }
+    .block-text.highlight { transform: scale(1.08); font-weight: bold; }
+    a { cursor: pointer; }
+  </style>
+  <script type="text/javascript"><![CDATA[
+    function highlight(pkgs) {
+      document.querySelectorAll('.block').forEach(b => b.classList.toggle('highlight', pkgs.includes(b.id.replace('block-', ''))));
+      document.querySelectorAll('.block-text').forEach(t => t.classList.toggle('highlight', pkgs.includes(t.dataset.block)));
+    }
+    function clearHighlight() {
+      document.querySelectorAll('.block, .block-text').forEach(el => el.classList.remove('highlight'));
+    }
+    document.querySelectorAll('.block').forEach(el => {
+      el.addEventListener('mouseenter', () => highlight([el.id.replace('block-', '')]));
+      el.addEventListener('mouseleave', clearHighlight);
+    });
+  ]]></script>
   <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 272.0 980.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <foreignObject x="30.0" y="1004.0" width="370.0" height="120.0">
+  <foreignObject x="30.0" y="1004.0" width="370.0" height="140.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
       <a href="https://github.com/davidmarkclements" target="_blank" class="maintainer-name" data-packages="atomic-sleep,quick-format-unescaped">#1 @davidmarkclements</a>
       <div class="packages">
@@ -89,17 +109,18 @@
       </div>
     </div>
   </foreignObject>
-  <foreignObject x="400.0" y="1004.0" width="370.0" height="120.0">
+  <foreignObject x="400.0" y="1004.0" width="370.0" height="140.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/mcollina" target="_blank" class="maintainer-name" data-packages="@pinojs/redact,on-exit-leak-free,pino-abstract-transport,quick-format-unescaped,real-require,sonic-boom,split2,thread-stream">#2 @mcollina</a>
+      <a href="https://github.com/mcollina" target="_blank" class="maintainer-name" data-packages="split2,on-exit-leak-free,thread-stream,@pinojs/redact,pino-abstract-transport,sonic-boom,real-require,quick-format-unescaped">#2 @mcollina</a>
       <div class="packages">
-        <span>@pinojs/redact</span>
+        <span>split2</span>
         <span>on-exit-leak-free</span>
-        <span>pino-abstract-transport</span>
+        <span>thread-stream</span>
+        <span style="color:#aaa">+5 more</span>
       </div>
     </div>
   </foreignObject>
-  <foreignObject x="30.0" y="1124.0" width="370.0" height="120.0">
+  <foreignObject x="30.0" y="1144.0" width="370.0" height="140.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
       <a href="https://github.com/BridgeAR" target="_blank" class="maintainer-name" data-packages="safe-stable-stringify">#3 @BridgeAR</a>
       <div class="packages">
@@ -107,7 +128,7 @@
       </div>
     </div>
   </foreignObject>
-  <foreignObject x="400.0" y="1124.0" width="370.0" height="120.0">
+  <foreignObject x="400.0" y="1144.0" width="370.0" height="140.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
       <a href="https://github.com/fastify" target="_blank" class="maintainer-name" data-packages="process-warning">#4 @fastify</a>
       <div class="packages">
@@ -115,7 +136,7 @@
       </div>
     </div>
   </foreignObject>
-  <foreignObject x="215.0" y="1244.0" width="370.0" height="120.0">
+  <foreignObject x="215.0" y="1284.0" width="370.0" height="140.0">
     <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
       <a href="https://github.com/pinojs" target="_blank" class="maintainer-name" data-packages="pino-std-serializers">#5 @pinojs</a>
       <div class="packages">
@@ -124,11 +145,6 @@
     </div>
   </foreignObject>
   <style>
-    .block { transition: stroke-width 0.2s ease; }
-    .block.highlight { stroke-width: 4; }
-    .block-text { transition: transform 0.2s ease; transform-origin: center; transform-box: fill-box; }
-    .block-text.highlight { transform: scale(1.08); font-weight: bold; }
-    a, .package-entry { cursor: pointer; }
     .nebraska-entry {
       text-align: center;
       font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
@@ -157,23 +173,12 @@
     }
   </style>
   <script type="text/javascript"><![CDATA[
-    function highlight(pkgs) {
-      document.querySelectorAll('.block').forEach(b => b.classList.toggle('highlight', pkgs.includes(b.id.replace('block-', ''))));
-      document.querySelectorAll('.block-text').forEach(t => t.classList.toggle('highlight', pkgs.includes(t.dataset.block)));
-    }
-    function clearHighlight() {
-      document.querySelectorAll('.block, .block-text').forEach(el => el.classList.remove('highlight'));
-    }
     document.querySelectorAll('.maintainer-name').forEach(el => {
       el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
       el.addEventListener('mouseleave', clearHighlight);
     });
     document.querySelectorAll('.package-entry').forEach(el => {
       el.addEventListener('mouseenter', () => highlight([el.dataset.package]));
-      el.addEventListener('mouseleave', clearHighlight);
-    });
-    document.querySelectorAll('.block').forEach(el => {
-      el.addEventListener('mouseenter', () => highlight([el.id.replace('block-', '')]));
       el.addEventListener('mouseleave', clearHighlight);
     });
   ]]></script>

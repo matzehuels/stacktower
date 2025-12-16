@@ -8,16 +8,21 @@ Inspired by [XKCD #2347](https://xkcd.com/2347/), Stacktower renders dependency 
 
 📖 **[Read the full story at stacktower.io](https://www.stacktower.io)**
 
-## Quick Start
+## Installation
+
+### Homebrew (macOS/Linux)
+
+```bash
+brew install matzehuels/tap/stacktower
+```
+
+### Go
 
 ```bash
 go install github.com/matzehuels/stacktower@latest
-
-# Render the included Flask example
-stacktower render examples/real/flask.json -t tower -o flask.svg
 ```
 
-Or build from source:
+### From Source
 
 ```bash
 git clone https://github.com/matzehuels/stacktower.git
@@ -25,42 +30,109 @@ cd stacktower
 go build -o stacktower .
 ```
 
+## Quick Start
+
+```bash
+# Render the included Flask example (XKCD-style tower is the default)
+stacktower render examples/real/flask.json -o flask.svg
+```
+
 ## Usage
 
-Stacktower works in two stages: **parse** dependency data from package registries, then **render** visualizations.
+Stacktower works in two stages: **parse** dependency data from package registries or manifest files, then **render** visualizations.
 
 ### Parsing Dependencies
 
+The `parse` command auto-detects whether you're providing a package name or a manifest file:
+
 ```bash
-# Python (PyPI)
-stacktower parse python fastapi -o fastapi.json
-
-# Rust (crates.io)
-stacktower parse rust serde -o serde.json
-
-# JavaScript (npm)
-stacktower parse javascript yup -o yup.json
-
-# PHP (Packagist/Composer)
-stacktower parse php monolog/monolog -o monolog.json
-
-# Ruby (RubyGems)
-stacktower parse ruby rspec -o rspec.json
+stacktower parse <language> <package-or-file> [flags]
 ```
 
-Add `--enrich` with a `GITHUB_TOKEN` to pull repository metadata (stars, maintainers, last commit) for richer visualizations.
+**Supported languages:** `python`, `rust`, `javascript`, `ruby`, `php`, `java`, `go`
+
+#### From Package Registries
+
+```bash
+stacktower parse python fastapi -o fastapi.json                  # PyPI
+stacktower parse rust serde -o serde.json                        # crates.io
+stacktower parse javascript yargs -o yargs.json                  # npm
+stacktower parse ruby rails -o rails.json                        # RubyGems
+stacktower parse php monolog/monolog -o monolog.json             # Packagist
+stacktower parse java com.google.guava:guava -o guava.json       # Maven Central
+stacktower parse go github.com/gin-gonic/gin -o gin.json         # Go Module Proxy
+```
+
+#### From Manifest Files (Auto-Detected)
+
+```bash
+stacktower parse python examples/manifest/poetry.lock -o deps.json
+stacktower parse python examples/manifest/requirements.txt -o deps.json
+stacktower parse rust examples/manifest/Cargo.toml -o deps.json
+stacktower parse javascript examples/manifest/package.json -o deps.json
+stacktower parse ruby examples/manifest/Gemfile -o deps.json
+stacktower parse php examples/manifest/composer.json -o deps.json
+stacktower parse java examples/manifest/pom.xml -o deps.json
+stacktower parse go examples/manifest/go.mod -o deps.json
+```
+
+When the argument exists on disk or matches a known manifest filename, Stacktower automatically parses it as a manifest.
+
+#### Explicit Mode
+
+Force registry or manifest parsing when auto-detection isn't enough:
+
+```bash
+# Force registry lookup
+stacktower parse python registry pypi fastapi
+stacktower parse java registry maven org.springframework:spring-core
+stacktower parse go registry goproxy github.com/spf13/cobra
+
+# Force manifest type
+stacktower parse python manifest poetry examples/manifest/poetry.lock
+stacktower parse python manifest requirements examples/manifest/requirements.txt
+stacktower parse rust manifest cargo examples/manifest/Cargo.toml
+stacktower parse javascript manifest package examples/manifest/package.json
+stacktower parse ruby manifest gemfile examples/manifest/Gemfile
+stacktower parse php manifest composer examples/manifest/composer.json
+stacktower parse java manifest pom examples/manifest/pom.xml
+stacktower parse go manifest gomod examples/manifest/go.mod
+```
+
+#### Metadata Enrichment
+
+By default, Stacktower enriches packages with GitHub metadata (stars, maintainers, last commit) for richer visualizations. Set `GITHUB_TOKEN` to enable this:
+
+```bash
+export GITHUB_TOKEN=your_token
+stacktower parse python fastapi -o fastapi.json
+
+# Disable enrichment if you don't have a token
+stacktower parse python fastapi --enrich=false -o fastapi.json
+```
 
 ### Rendering
 
+The `render` command generates SVG visualizations from parsed JSON graphs:
+
 ```bash
-# Tower visualization (recommended)
-stacktower render fastapi.json -t tower -o fastapi.svg
+stacktower render <file> [flags]
+```
 
-# Hand-drawn style with hover popups
-stacktower render serde.json -t tower --style handdrawn --popups -o serde.svg
+#### Visualization Types
 
-# Traditional node-link diagram
-stacktower render yup.json -t nodelink -o yup.svg
+```bash
+# Hand-drawn XKCD-style tower (default)
+stacktower render examples/real/flask.json -o flask.svg
+
+# Disable hand-drawn effects for a cleaner look
+stacktower render examples/real/serde.json --style simple --randomize=false --popups=false -o serde.svg
+
+# Traditional node-link diagram (uses Graphviz DOT)
+stacktower render examples/real/yargs.json -t nodelink -o yargs.svg
+
+# Multiple types at once (outputs flask_tower.svg, flask_nodelink.svg)
+stacktower render examples/real/flask.json -t tower,nodelink -o flask
 ```
 
 ### Included Examples
@@ -68,13 +140,16 @@ stacktower render yup.json -t nodelink -o yup.svg
 The repository ships with pre-parsed graphs so you can experiment immediately:
 
 ```bash
-# Real packages with full metadata
-stacktower render examples/real/flask.json -t tower --style handdrawn --merge -o flask.svg
-stacktower render examples/real/serde.json -t tower --popups -o serde.svg
-stacktower render examples/real/express.json -t tower --ordering barycentric -o express.svg
+# Real packages with full metadata (XKCD-style by default)
+stacktower render examples/real/flask.json -o flask.svg
+stacktower render examples/real/serde.json -o serde.svg
+stacktower render examples/real/yargs.json -o yargs.svg
+
+# With Nebraska guy ranking
+stacktower render examples/real/flask.json --nebraska -o flask.svg
 
 # Synthetic test cases
-stacktower render examples/test/diamond.json -t tower -o diamond.svg
+stacktower render examples/test/diamond.json -o diamond.svg
 ```
 
 ## Options Reference
@@ -89,29 +164,41 @@ stacktower render examples/test/diamond.json -t tower -o diamond.svg
 
 | Flag | Description |
 |------|-------------|
+| `-o`, `--output` | Output file (stdout if empty) |
 | `--max-depth N` | Maximum dependency depth (default: 10) |
-| `--max-nodes N` | Maximum packages to fetch (default: 100) |
-| `--enrich` | Add repository metadata (requires `GITHUB_TOKEN`) |
+| `--max-nodes N` | Maximum packages to fetch (default: 5000) |
+| `--enrich` | Enrich with GitHub metadata (default: true, requires `GITHUB_TOKEN`) |
 | `--refresh` | Bypass cache |
 
-### Render Options (Tower)
+### Render Options
 
 | Flag | Description |
 |------|-------------|
-| `--style simple\|handdrawn` | Visual style |
-| `--width`, `--height` | Frame dimensions (default: 800×600) |
-| `--edges` | Show dependency edges |
-| `--merge` | Merge subdivider blocks |
-| `--ordering optimal\|barycentric` | Crossing minimization algorithm |
+| `-o`, `--output` | Output file or base path for multiple types |
+| `-t`, `--type` | Visualization type: `tower` (default), `nodelink` |
+| `--normalize` | Apply graph normalization: break cycles, remove transitive edges, assign layers, subdivide long edges (default: true) |
+
+#### Tower Options
+
+| Flag | Description |
+|------|-------------|
+| `--width N` | Frame width in pixels (default: 800) |
+| `--height N` | Frame height in pixels (default: 600) |
+| `--style handdrawn\|simple` | Visual style (default: handdrawn) |
+| `--randomize` | Vary block widths to visualize load-bearing structure (default: true) |
+| `--merge` | Merge subdivider blocks into continuous towers (default: true) |
+| `--popups` | Enable hover popups with package metadata (default: true) |
+| `--nebraska` | Show "Nebraska guy" maintainer ranking panel |
+| `--edges` | Show dependency edges as dashed lines |
+| `--ordering optimal\|barycentric` | Crossing minimization algorithm (default: optimal) |
 | `--ordering-timeout N` | Timeout for optimal search in seconds (default: 60) |
-| `--nebraska` | Show "Nebraska guy" maintainer ranking |
-| `--popups` | Enable hover popups with metadata |
+| `--top-down` | Width flows from roots down; by default width flows from sinks up |
 
-### Render Options (Node-link)
+#### Node-Link Options
 
 | Flag | Description |
 |------|-------------|
-| `--detailed` | Show node metadata in labels |
+| `--detailed` | Show all node metadata in labels |
 
 ## JSON Format
 
@@ -168,7 +255,7 @@ The `--detailed` flag (node-link only) displays **all** meta keys in the node la
 
 ## How It Works
 
-1. **Parse** — Fetch package metadata from registries (PyPI, crates.io, npm, Packagist, RubyGems)
+1. **Parse** — Fetch package metadata from registries or local manifest files
 2. **Reduce** — Remove transitive edges to show only direct dependencies
 3. **Layer** — Assign each package to a row based on its depth
 4. **Order** — Minimize edge crossings using branch-and-bound with PQ-tree pruning
@@ -186,23 +273,142 @@ The ordering step is where the magic happens. Stacktower uses an optimal search 
 
 ## Caching
 
-HTTP responses are cached in `~/.cache/stacktower/` with a 24-hour TTL. Use `--refresh` to bypass.
+HTTP responses are cached in `~/.cache/stacktower/` with a 24-hour TTL. Use `--refresh` to bypass the cache for a single request.
 
-## Adding New Languages
+```bash
+# Clear the entire cache
+stacktower cache clear
 
-To add support for a new package manager (e.g., Go/pkg.go.dev):
+# Show cache directory path
+stacktower cache path
+```
 
-1. **Create a registry client** in `pkg/integrations/<registry>/client.go` — parse the registry API, extract dependencies, use `integrations.BaseClient` for HTTP + caching
+## Architecture
 
-2. **Create a source parser** in `pkg/source/<lang>/<lang>.go` — implement the `source.PackageInfo` interface (`GetName`, `GetVersion`, `GetDependencies`, `ToMetadata`, `ToRepoInfo`)
+Stacktower's dependency parsing follows a clean layered architecture:
 
-3. **Wire into CLI** in `internal/cli/parse.go`:
-   ```go
-   cmd.AddCommand(newParserCmd("<lang> <package>", "Parse <Lang> dependencies",
-       func() (source.Parser, error) { return <lang>.NewParser(source.DefaultCacheTTL) }, &opts))
-   ```
+```
+internal/cli/          # Command-line interface
+pkg/deps/              # Core abstractions and dependency resolution
+├── deps.go            # Options, Package, MetadataProvider types
+├── language.go        # Language definition (registry, manifests, aliases)
+├── resolver.go        # Concurrent dependency crawler
+├── manifest.go        # Manifest parser interface
+├── python/            # Python: PyPI + poetry.lock + requirements.txt
+├── rust/              # Rust: crates.io + Cargo.toml
+├── javascript/        # JavaScript: npm + package.json
+├── ruby/              # Ruby: RubyGems + Gemfile
+├── php/               # PHP: Packagist + composer.json
+├── java/              # Java: Maven Central + pom.xml
+├── golang/            # Go: Go Module Proxy + go.mod
+└── metadata/          # GitHub/GitLab enrichment providers
+pkg/integrations/      # Registry API clients (npm, pypi, crates, etc.)
+```
 
-The generic `source.Parse()` handles concurrent fetching, depth limits, and graph construction automatically.
+### Adding a New Language
+
+1. **Create an integration client** in `pkg/integrations/<registry>/client.go`:
+
+```go
+type Client struct {
+    *integrations.Client
+    baseURL string
+}
+
+type PackageInfo struct {
+    Name         string
+    Version      string
+    Dependencies []string
+    // ... other fields
+}
+
+func NewClient(cacheTTL time.Duration) (*Client, error) {
+    cache, err := integrations.NewCache(cacheTTL)
+    if err != nil {
+        return nil, err
+    }
+    return &Client{
+        Client:  integrations.NewClient(cache, nil),
+        baseURL: "https://registry.example.com",
+    }, nil
+}
+
+func (c *Client) FetchPackage(ctx context.Context, name string, refresh bool) (*PackageInfo, error) {
+    // Implement caching and fetching
+}
+```
+
+2. **Create a language definition** in `pkg/deps/<lang>/<lang>.go`:
+
+```go
+var Language = &deps.Language{
+    Name:            "mylang",
+    DefaultRegistry: "myregistry",
+    RegistryAliases: map[string]string{"alias": "myregistry"},
+    ManifestTypes:   []string{"my.lock"},
+    ManifestAliases: map[string]string{"my.lock": "mylock"},
+    NewResolver:     newResolver,
+    NewManifest:     newManifest,
+    ManifestParsers: manifestParsers,
+}
+
+func newResolver(ttl time.Duration) (deps.Resolver, error) {
+    c, err := myregistry.NewClient(ttl)
+    if err != nil {
+        return nil, err
+    }
+    return deps.NewRegistry("myregistry", fetcher{c}), nil
+}
+
+type fetcher struct{ *myregistry.Client }
+
+func (f fetcher) Fetch(ctx context.Context, name string, refresh bool) (*deps.Package, error) {
+    p, err := f.FetchPackage(ctx, name, refresh)
+    if err != nil {
+        return nil, err
+    }
+    return &deps.Package{
+        Name:         p.Name,
+        Version:      p.Version,
+        Dependencies: p.Dependencies,
+        ManifestFile: "mymanifest.json",
+    }, nil
+}
+```
+
+3. **Register in CLI** in `internal/cli/parse.go`:
+
+```go
+import "github.com/matzehuels/stacktower/pkg/deps/mylang"
+
+var languages = []*deps.Language{
+    // ... existing languages
+    mylang.Language,
+}
+```
+
+### Adding a Manifest Parser
+
+```go
+type MyLockParser struct{}
+
+func (p *MyLockParser) Type() string              { return "my.lock" }
+func (p *MyLockParser) IncludesTransitive() bool  { return true }
+func (p *MyLockParser) Supports(name string) bool { return name == "my.lock" }
+
+func (p *MyLockParser) Parse(path string, opts deps.Options) (*deps.ManifestResult, error) {
+    // Parse file, build dag.DAG
+    g := dag.New(nil)
+    // ... populate nodes and edges
+    return &deps.ManifestResult{
+        Graph:              g,
+        Type:               p.Type(),
+        IncludesTransitive: true,
+    }, nil
+}
+```
+
+The `deps.Registry` handles concurrent fetching with configurable depth/node limits and metadata enrichment automatically.
 
 ## Learn More
 

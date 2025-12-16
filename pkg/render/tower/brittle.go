@@ -49,12 +49,11 @@ func parseDate(v any) time.Time {
 }
 
 func countMaintainers(v any) int {
-	switch val := v.(type) {
+	switch v := v.(type) {
 	case []string:
-		return len(val)
+		return len(v)
 	case []any:
-		return len(val)
-	default:
-		return 0
+		return len(v)
 	}
+	return 0
 }

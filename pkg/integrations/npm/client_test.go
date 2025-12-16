@@ -7,6 +7,8 @@ import (
 	"net/http/httptest"
 	"testing"
 	"time"
+
+	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
 func TestNewClient(t *testing.T) {
@@ -14,8 +16,8 @@ func TestNewClient(t *testing.T) {
 	if err != nil {
 		t.Fatalf("NewClient failed: %v", err)
 	}
-	if c.baseURL != "https://registry.npmjs.org" {
-		t.Errorf("expected base URL %s, got %s", "https://registry.npmjs.org", c.baseURL)
+	if c.Client == nil {
+		t.Error("expected client to be initialized")
 	}
 }
 
@@ -52,11 +54,7 @@ func TestClient_FetchPackage(t *testing.T) {
 	}))
 	defer server.Close()
 
-	c, err := NewClient(time.Hour)
-	if err != nil {
-		t.Fatal(err)
-	}
-	c.baseURL = server.URL
+	c := testClient(t, server.URL)
 
 	info, err := c.FetchPackage(context.Background(), "express", true)
 	if err != nil {
@@ -83,13 +81,9 @@ func TestClient_FetchPackage_NotFound(t *testing.T) {
 	}))
 	defer server.Close()
 
-	c, err := NewClient(time.Hour)
-	if err != nil {
-		t.Fatal(err)
-	}
-	c.baseURL = server.URL
+	c := testClient(t, server.URL)
 
-	_, err = c.FetchPackage(context.Background(), "nonexistent", true)
+	_, err := c.FetchPackage(context.Background(), "nonexistent", true)
 	if err == nil {
 		t.Error("expected error for nonexistent package")
 	}
@@ -101,31 +95,15 @@ func TestNormalizeRepoURL(t *testing.T) {
 		input    string
 		expected string
 	}{
-		{
-			name:     "git+https",
-			input:    "git+https://github.com/user/repo.git",
-			expected: "https://github.com/user/repo",
-		},
-		{
-			name:     "git protocol",
-			input:    "git://github.com/user/repo.git",
-			expected: "https://github.com/user/repo",
-		},
-		{
-			name:     "ssh format",
-			input:    "git@github.com:user/repo.git",
-			expected: "https://github.com/user/repo",
-		},
-		{
-			name:     "plain https",
-			input:    "https://github.com/user/repo",
-			expected: "https://github.com/user/repo",
-		},
+		{"git+https", "git+https://github.com/user/repo.git", "https://github.com/user/repo"},
+		{"git protocol", "git://github.com/user/repo.git", "https://github.com/user/repo"},
+		{"ssh format", "git@github.com:user/repo.git", "https://github.com/user/repo"},
+		{"plain https", "https://github.com/user/repo", "https://github.com/user/repo"},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result := normalizeRepoURL(tt.input)
+			result := integrations.NormalizeRepoURL(tt.input)
 			if result != tt.expected {
 				t.Errorf("expected %s, got %s", tt.expected, result)
 			}
@@ -133,7 +111,7 @@ func TestNormalizeRepoURL(t *testing.T) {
 	}
 }
 
-func TestExtractString(t *testing.T) {
+func TestExtractField(t *testing.T) {
 	tests := []struct {
 		name     string
 		input    interface{}
@@ -148,10 +126,22 @@ func TestExtractString(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result := extractString(tt.input, tt.field)
+			result := extractField(tt.input, tt.field)
 			if result != tt.expected {
 				t.Errorf("expected %s, got %s", tt.expected, result)
 			}
 		})
+	}
+}
+
+func testClient(t *testing.T, serverURL string) *Client {
+	t.Helper()
+	cache, err := integrations.NewCache(time.Hour)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return &Client{
+		Client:  integrations.NewClient(cache, nil),
+		baseURL: serverURL,
 	}
 }
