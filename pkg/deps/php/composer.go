@@ -44,8 +44,9 @@ func (c *ComposerJSON) Parse(path string, opts deps.Options) (*deps.ManifestResu
 	}
 
 	if comp.Name != "" {
-		_ = g.AddNode(dag.Node{ID: comp.Name, Meta: dag.Metadata{"version": comp.Version}})
-		_ = g.AddEdge(dag.Edge{From: projectRoot, To: comp.Name})
+		if root, ok := g.Node(projectRoot); ok {
+			root.Meta["version"] = comp.Version
+		}
 	}
 
 	return &deps.ManifestResult{

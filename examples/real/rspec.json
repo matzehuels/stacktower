@@ -5,7 +5,7 @@
       "meta": {
         "author": "Steven Baker, David Chelimsky, Chad Humphries, Myron Marston",
         "description": "BDD for Ruby. RSpec runner and example groups.",
-        "downloads": 1089541514,
+        "downloads": 1089707881,
         "license": "MIT",
         "repo_archived": false,
         "repo_language": "Ruby",
@@ -28,7 +28,7 @@
       "meta": {
         "author": "Steven Baker, David Chelimsky, Myron Marston",
         "description": "rspec-expectations provides a simple, readable API to express expected outcomes of a code example.",
-        "downloads": 1090669049,
+        "downloads": 1090827252,
         "license": "MIT",
         "repo_archived": false,
         "repo_language": "Ruby",
@@ -51,7 +51,7 @@
       "meta": {
         "author": "Steven Baker, David Chelimsky, Myron Marston",
         "description": "RSpec's 'test double' framework, with support for stubbing and mocking",
-        "downloads": 1083837334,
+        "downloads": 1084000936,
         "license": "MIT",
         "repo_archived": false,
         "repo_language": "Ruby",
@@ -74,7 +74,7 @@
       "meta": {
         "author": "Austin Ziegler",
         "description": "Diff::LCS computes the difference between two Enumerable sequences using the\nMcIlroy-Hunt longest common subsequence (LCS) algorithm. It includes utilities\nto create a simple HTML diff output format and a standard diff-like tool.\n\nThis is release 1.6.1, providing a simple extension that allows for\nDiff::LCS::Change objects to be treated implicitly as arrays and fixes a number\nof formatting issues.\n\nRuby versions below 2.5 are soft-deprecated, which means that older versions are\nno longer part of the CI test suite. If any changes have been introduced that\nbreak those versions, bug reports and patches will be accepted, but it will be\nup to the reporter to verify any fixes prior to release. The next major release\nwill completely break compatibility.",
-        "downloads": 1113606242,
+        "downloads": 1113773186,
         "license": "MIT, Artistic-1.0-Perl, GPL-2.0-or-later",
         "repo_archived": false,
         "repo_language": "Ruby",
@@ -96,7 +96,7 @@
       "meta": {
         "author": "David Chelimsky, Myron Marson, Jon Rowe, Sam Phippen, Xaviery Shay, Bradley Schaefer",
         "description": "Support utilities for RSpec gems",
-        "downloads": 1074303057,
+        "downloads": 1074451731,
         "license": "MIT",
         "repo_archived": false,
         "repo_language": "Ruby",
@@ -119,7 +119,7 @@
       "meta": {
         "author": "Steven Baker, David Chelimsky, Myron Marston",
         "description": "BDD for Ruby",
-        "downloads": 936269128,
+        "downloads": 936385469,
         "license": "MIT",
         "repo_archived": false,
         "repo_language": "Ruby",
@@ -152,19 +152,19 @@
       "to": "rspec-mocks"
     },
     {
-      "from": "rspec-expectations",
+      "from": "rspec-mocks",
       "to": "diff-lcs"
     },
     {
-      "from": "rspec-expectations",
+      "from": "rspec-mocks",
       "to": "rspec-support"
     },
     {
-      "from": "rspec-mocks",
+      "from": "rspec-expectations",
       "to": "diff-lcs"
     },
     {
-      "from": "rspec-mocks",
+      "from": "rspec-expectations",
       "to": "rspec-support"
     },
     {

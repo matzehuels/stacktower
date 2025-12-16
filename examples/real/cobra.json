@@ -1,33 +1,9 @@
 {
   "nodes": [
     {
-      "id": "github.com/spf13/cobra",
+      "id": "github.com/creack/pty",
       "meta": {
-        "repo_archived": false,
-        "repo_language": "Go",
-        "repo_last_commit": "2025-12-15",
-        "repo_last_release": "2025-04-28",
-        "repo_maintainers": [
-          "strib",
-          "patrickxb",
-          "chrisnojima",
-          "maxtaco",
-          "cjb"
-        ],
-        "repo_owner": "keybase",
-        "repo_stars": 9128,
-        "repo_topics": [
-          "chat",
-          "end-to-end-encryption",
-          "go",
-          "kbfs",
-          "keybase",
-          "pgp",
-          "react",
-          "react-native"
-        ],
-        "repo_url": "https://github.com/keybase/client",
-        "version": "v1.10.2"
+        "version": "v1.1.24"
       }
     },
     {
@@ -37,65 +13,11 @@
       }
     },
     {
-      "id": "github.com/rogpeppe/go-internal",
-      "meta": {
-        "version": "v1.14.1"
-      }
-    },
-    {
-      "id": "golang.org/x/sync",
-      "meta": {
-        "version": "v0.19.0"
-      }
-    },
-    {
-      "id": "golang.org/x/term",
-      "meta": {
-        "version": "v0.38.0"
-      }
-    },
-    {
-      "id": "golang.org/x/text",
-      "meta": {
-        "version": "v0.32.0"
-      }
-    },
-    {
-      "id": "github.com/inconshreveable/mousetrap",
-      "meta": {
-        "repo_archived": false,
-        "repo_language": "Go",
-        "repo_last_commit": "2025-12-15",
-        "repo_last_release": "2025-04-28",
-        "repo_maintainers": [
-          "strib",
-          "patrickxb",
-          "chrisnojima",
-          "maxtaco",
-          "cjb"
-        ],
-        "repo_owner": "keybase",
-        "repo_stars": 9128,
-        "repo_topics": [
-          "chat",
-          "end-to-end-encryption",
-          "go",
-          "kbfs",
-          "keybase",
-          "pgp",
-          "react",
-          "react-native"
-        ],
-        "repo_url": "https://github.com/keybase/client",
-        "version": "v1.1.0"
-      }
-    },
-    {
       "id": "github.com/spf13/pflag",
       "meta": {
         "repo_archived": false,
         "repo_language": "Go",
-        "repo_last_commit": "2025-12-15",
+        "repo_last_commit": "2025-12-16",
         "repo_last_release": "2025-04-28",
         "repo_maintainers": [
           "strib",
@@ -127,15 +49,33 @@
       }
     },
     {
+      "id": "github.com/kr/text",
+      "meta": {
+        "version": "v0.2.0"
+      }
+    },
+    {
+      "id": "github.com/rogpeppe/go-internal",
+      "meta": {
+        "version": "v1.14.1"
+      }
+    },
+    {
       "id": "golang.org/x/mod",
       "meta": {
         "version": "v0.31.0"
       }
     },
     {
-      "id": "github.com/yuin/goldmark",
+      "id": "golang.org/x/sync",
       "meta": {
-        "version": "v1.7.13"
+        "version": "v0.19.0"
+      }
+    },
+    {
+      "id": "github.com/russross/blackfriday/v2",
+      "meta": {
+        "version": "v2.1.0"
       }
     },
     {
@@ -151,15 +91,9 @@
       }
     },
     {
-      "id": "github.com/creack/pty",
+      "id": "golang.org/x/tools",
       "meta": {
-        "version": "v1.1.24"
-      }
-    },
-    {
-      "id": "github.com/google/go-cmp",
-      "meta": {
-        "version": "v0.7.0"
+        "version": "v0.40.0"
       }
     },
     {
@@ -169,27 +103,57 @@
       }
     },
     {
+      "id": "golang.org/x/text",
+      "meta": {
+        "version": "v0.32.0"
+      }
+    },
+    {
+      "id": "github.com/inconshreveable/mousetrap",
+      "meta": {
+        "version": "v1.1.0"
+      }
+    },
+    {
       "id": "go.yaml.in/yaml/v3",
       "meta": {
+        "repo_archived": false,
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2025-12-16",
+        "repo_last_release": "2025-11-19",
+        "repo_maintainers": [
+          "torkelo",
+          "bergquist",
+          "ryantxu",
+          "marefr"
+        ],
+        "repo_owner": "grafana",
+        "repo_stars": 71280,
+        "repo_topics": [
+          "alerting",
+          "analytics",
+          "business-intelligence",
+          "dashboard",
+          "data-visualization",
+          "elasticsearch",
+          "go",
+          "grafana",
+          "hacktoberfest",
+          "influxdb",
+          "metrics",
+          "monitoring",
+          "mysql",
+          "postgres",
+          "prometheus"
+        ],
+        "repo_url": "https://github.com/grafana/grafana",
         "version": "v3.0.4"
       }
     },
     {
-      "id": "github.com/russross/blackfriday/v2",
+      "id": "github.com/yuin/goldmark",
       "meta": {
-        "version": "v2.1.0"
-      }
-    },
-    {
-      "id": "github.com/kr/text",
-      "meta": {
-        "version": "v0.2.0"
-      }
-    },
-    {
-      "id": "golang.org/x/tools",
-      "meta": {
-        "version": "v0.40.0"
+        "version": "v1.7.13"
       }
     },
     {
@@ -202,6 +166,48 @@
       "id": "golang.org/x/telemetry",
       "meta": {
         "version": "v0.0.0-20251215142616-e75fd47794af"
+      }
+    },
+    {
+      "id": "github.com/spf13/cobra",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Go",
+        "repo_last_commit": "2025-12-16",
+        "repo_last_release": "2025-04-28",
+        "repo_maintainers": [
+          "strib",
+          "patrickxb",
+          "chrisnojima",
+          "maxtaco",
+          "cjb"
+        ],
+        "repo_owner": "keybase",
+        "repo_stars": 9128,
+        "repo_topics": [
+          "chat",
+          "end-to-end-encryption",
+          "go",
+          "kbfs",
+          "keybase",
+          "pgp",
+          "react",
+          "react-native"
+        ],
+        "repo_url": "https://github.com/keybase/client",
+        "version": "v1.10.2"
+      }
+    },
+    {
+      "id": "github.com/google/go-cmp",
+      "meta": {
+        "version": "v0.7.0"
+      }
+    },
+    {
+      "id": "golang.org/x/term",
+      "meta": {
+        "version": "v0.38.0"
       }
     }
   ],
@@ -223,12 +229,12 @@
       "to": "go.yaml.in/yaml/v3"
     },
     {
-      "from": "github.com/cpuguy83/go-md2man/v2",
-      "to": "github.com/russross/blackfriday/v2"
-    },
-    {
       "from": "go.yaml.in/yaml/v3",
       "to": "gopkg.in/check.v1"
+    },
+    {
+      "from": "github.com/cpuguy83/go-md2man/v2",
+      "to": "github.com/russross/blackfriday/v2"
     },
     {
       "from": "gopkg.in/check.v1",
@@ -259,6 +265,10 @@
       "to": "github.com/creack/pty"
     },
     {
+      "from": "golang.org/x/mod",
+      "to": "golang.org/x/tools"
+    },
+    {
       "from": "golang.org/x/tools",
       "to": "github.com/google/go-cmp"
     },
@@ -283,22 +293,6 @@
       "to": "golang.org/x/telemetry"
     },
     {
-      "from": "golang.org/x/mod",
-      "to": "golang.org/x/tools"
-    },
-    {
-      "from": "golang.org/x/telemetry",
-      "to": "golang.org/x/mod"
-    },
-    {
-      "from": "golang.org/x/telemetry",
-      "to": "golang.org/x/sync"
-    },
-    {
-      "from": "golang.org/x/telemetry",
-      "to": "golang.org/x/sys"
-    },
-    {
       "from": "golang.org/x/net",
       "to": "golang.org/x/crypto"
     },
@@ -313,6 +307,18 @@
     {
       "from": "golang.org/x/net",
       "to": "golang.org/x/text"
+    },
+    {
+      "from": "golang.org/x/telemetry",
+      "to": "golang.org/x/mod"
+    },
+    {
+      "from": "golang.org/x/telemetry",
+      "to": "golang.org/x/sync"
+    },
+    {
+      "from": "golang.org/x/telemetry",
+      "to": "golang.org/x/sys"
     },
     {
       "from": "golang.org/x/term",

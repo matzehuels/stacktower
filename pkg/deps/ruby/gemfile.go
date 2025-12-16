@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"context"
 	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 
@@ -44,6 +45,7 @@ func (gf *Gemfile) Parse(path string, opts deps.Options) (*deps.ManifestResult, 
 		Graph:              g,
 		Type:               gf.Type(),
 		IncludesTransitive: gf.resolver != nil,
+		RootPackage:        extractGemspecName(filepath.Dir(path)),
 	}, nil
 }
 
@@ -72,6 +74,26 @@ func (gf *Gemfile) resolve(ctx context.Context, pkgs []string, opts deps.Options
 }
 
 var gemPattern = regexp.MustCompile(`^\s*gem\s+['"]([^'"]+)['"]`)
+var gemspecNamePattern = regexp.MustCompile(`\.name\s*=\s*['"]([^'"]+)['"]`)
+
+func extractGemspecName(dir string) string {
+	entries, err := os.ReadDir(dir)
+	if err != nil {
+		return ""
+	}
+	for _, e := range entries {
+		if !e.IsDir() && strings.HasSuffix(e.Name(), ".gemspec") {
+			data, err := os.ReadFile(filepath.Join(dir, e.Name()))
+			if err != nil {
+				continue
+			}
+			if m := gemspecNamePattern.FindSubmatch(data); len(m) > 1 {
+				return string(m[1])
+			}
+		}
+	}
+	return ""
+}
 
 func parseGemfile(f *os.File) []string {
 	var gems []string
@@ -81,7 +103,6 @@ func parseGemfile(f *os.File) []string {
 	for scanner.Scan() {
 		line := scanner.Text()
 
-		// Skip comments
 		if strings.HasPrefix(strings.TrimSpace(line), "#") {
 			continue
 		}

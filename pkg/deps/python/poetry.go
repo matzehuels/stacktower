@@ -4,6 +4,7 @@ import (
 	"context"
 	"maps"
 	"os"
+	"path/filepath"
 
 	"github.com/BurntSushi/toml"
 
@@ -24,7 +25,6 @@ func (p *PoetryLock) Parse(path string, opts deps.Options) (*deps.ManifestResult
 	if err != nil {
 		return nil, err
 	}
-
 	var lock lockFile
 	if err := toml.Unmarshal(data, &lock); err != nil {
 		return nil, err
@@ -37,7 +37,32 @@ func (p *PoetryLock) Parse(path string, opts deps.Options) (*deps.ManifestResult
 		Graph:              g,
 		Type:               p.Type(),
 		IncludesTransitive: true,
+		RootPackage:        extractPyprojectName(filepath.Dir(path)),
 	}, nil
+}
+
+func extractPyprojectName(dir string) string {
+	data, err := os.ReadFile(filepath.Join(dir, "pyproject.toml"))
+	if err != nil {
+		return ""
+	}
+	var pyproject struct {
+		Tool struct {
+			Poetry struct {
+				Name string `toml:"name"`
+			} `toml:"poetry"`
+		} `toml:"tool"`
+		Project struct {
+			Name string `toml:"name"`
+		} `toml:"project"`
+	}
+	if err := toml.Unmarshal(data, &pyproject); err != nil {
+		return ""
+	}
+	if pyproject.Tool.Poetry.Name != "" {
+		return pyproject.Tool.Poetry.Name
+	}
+	return pyproject.Project.Name
 }
 
 type lockFile struct {

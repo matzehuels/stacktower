@@ -58,9 +58,8 @@ pretty_assertions = "1.0"
 
 	g := result.Graph.(*dag.DAG)
 
-	// project root + my-crate + 3 deps
-	if got := g.NodeCount(); got != 5 {
-		t.Errorf("NodeCount = %d, want 5", got)
+	if got := g.NodeCount(); got != 4 {
+		t.Errorf("NodeCount = %d, want 4", got)
 	}
 
 	for _, dep := range []string{"serde", "tokio", "pretty_assertions"} {
@@ -71,6 +70,15 @@ pretty_assertions = "1.0"
 
 	if result.RootPackage != "my-crate" {
 		t.Errorf("RootPackage = %q, want %q", result.RootPackage, "my-crate")
+	}
+
+	// Verify version metadata is on the root node
+	if root, ok := g.Node("__project__"); ok {
+		if root.Meta["version"] != "0.1.0" {
+			t.Errorf("root node version = %v, want 0.1.0", root.Meta["version"])
+		}
+	} else {
+		t.Error("__project__ node not found")
 	}
 }
 

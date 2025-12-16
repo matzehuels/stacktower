@@ -46,8 +46,9 @@ func (c *CargoToml) Parse(path string, opts deps.Options) (*deps.ManifestResult,
 
 	rootPackage := cargo.Package.Name
 	if rootPackage != "" {
-		_ = g.AddNode(dag.Node{ID: rootPackage, Meta: dag.Metadata{"version": cargo.Package.Version}})
-		_ = g.AddEdge(dag.Edge{From: projectRoot, To: rootPackage})
+		if root, ok := g.Node(projectRoot); ok {
+			root.Meta["version"] = cargo.Package.Version
+		}
 	}
 
 	return &deps.ManifestResult{

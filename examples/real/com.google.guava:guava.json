@@ -1,38 +1,6 @@
 {
   "nodes": [
     {
-      "id": "org.jspecify:jspecify",
-      "meta": {
-        "repo_archived": false,
-        "repo_language": "Java",
-        "repo_last_commit": "2025-12-15",
-        "repo_last_release": "2025-09-16",
-        "repo_maintainers": [
-          "codahale",
-          "joschi",
-          "arteam",
-          "jplock"
-        ],
-        "repo_owner": "dropwizard",
-        "repo_stars": 8576,
-        "repo_topics": [
-          "dropwizard",
-          "hibernate",
-          "java",
-          "jax-rs",
-          "jdbi",
-          "jersey-framework",
-          "jersey2",
-          "jetty",
-          "rest",
-          "restful-webservices",
-          "web-framework"
-        ],
-        "repo_url": "https://github.com/dropwizard/dropwizard",
-        "version": "1.0.0"
-      }
-    },
-    {
       "id": "com.google.errorprone:error_prone_annotations",
       "meta": {
         "repo_archived": false,
@@ -102,7 +70,7 @@
       "meta": {
         "repo_archived": false,
         "repo_language": "Scala",
-        "repo_last_commit": "2025-12-15",
+        "repo_last_commit": "2025-12-16",
         "repo_maintainers": [
           "dongjoon-hyun",
           "HyukjinKwon",
@@ -140,7 +108,7 @@
           "gastaldi"
         ],
         "repo_owner": "quarkusio",
-        "repo_stars": 15343,
+        "repo_stars": 15345,
         "repo_topics": [
           "cloud-native",
           "hacktoberfest",
@@ -150,6 +118,38 @@
         ],
         "repo_url": "https://github.com/quarkusio/quarkus",
         "version": "9999.0-empty-to-avoid-conflict-with-guava"
+      }
+    },
+    {
+      "id": "org.jspecify:jspecify",
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "Java",
+        "repo_last_commit": "2025-12-15",
+        "repo_last_release": "2025-09-16",
+        "repo_maintainers": [
+          "codahale",
+          "joschi",
+          "arteam",
+          "jplock"
+        ],
+        "repo_owner": "dropwizard",
+        "repo_stars": 8576,
+        "repo_topics": [
+          "dropwizard",
+          "hibernate",
+          "java",
+          "jax-rs",
+          "jdbi",
+          "jersey-framework",
+          "jersey2",
+          "jetty",
+          "rest",
+          "restful-webservices",
+          "web-framework"
+        ],
+        "repo_url": "https://github.com/dropwizard/dropwizard",
+        "version": "1.0.0"
       }
     }
   ],

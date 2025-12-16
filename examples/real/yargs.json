@@ -1,47 +1,24 @@
 {
   "nodes": [
     {
-      "id": "cliui",
+      "id": "yargs",
       "meta": {
-        "author": "Ben Coe",
-        "description": "easily create complex multi-column command-line-interfaces",
-        "license": "ISC",
-        "repo_archived": false,
-        "repo_language": "JavaScript",
-        "repo_last_commit": "2025-12-15",
-        "repo_last_release": "2025-03-17",
-        "repo_maintainers": [
-          "bcoe",
-          "greenkeeperio-bot",
-          "coreyfarrell",
-          "nexdrew"
-        ],
-        "repo_owner": "yargs",
-        "repo_stars": 383,
-        "repo_url": "https://github.com/yargs/cliui",
-        "version": "9.0.1"
-      }
-    },
-    {
-      "id": "escalade",
-      "meta": {
-        "author": "Luke Edwards",
-        "description": "A tiny (183B to 210B) and fast utility to ascend parent directories",
+        "description": "yargs the modern, pirate-themed, successor to optimist.",
         "license": "MIT",
         "repo_archived": false,
         "repo_language": "JavaScript",
-        "repo_last_commit": "2024-08-29",
-        "repo_last_release": "2024-08-29",
+        "repo_last_commit": "2025-12-15",
+        "repo_last_release": "2025-05-27",
         "repo_maintainers": [
-          "lukeed",
-          "ljharb",
-          "NMinhNguyen",
-          "triannguyen"
+          "bcoe",
+          "maxrimue",
+          "nexdrew",
+          "mleguen"
         ],
-        "repo_owner": "lukeed",
-        "repo_stars": 153,
-        "repo_url": "https://github.com/lukeed/escalade",
-        "version": "3.2.0"
+        "repo_owner": "yargs",
+        "repo_stars": 11406,
+        "repo_url": "https://github.com/yargs/yargs",
+        "version": "18.0.0"
       }
     },
     {
@@ -66,50 +43,25 @@
       }
     },
     {
-      "id": "ansi-styles",
+      "id": "cliui",
       "meta": {
-        "author": "Sindre Sorhus",
-        "description": "ANSI escape codes for styling strings in the terminal",
-        "license": "MIT",
+        "author": "Ben Coe",
+        "description": "easily create complex multi-column command-line-interfaces",
+        "license": "ISC",
         "repo_archived": false,
         "repo_language": "JavaScript",
-        "repo_last_commit": "2025-10-01",
-        "repo_last_release": "2025-09-08",
-        "repo_maintainers": [
-          "sindresorhus",
-          "Qix-",
-          "Richienb",
-          "arthurvr",
-          "ExE-Boss"
-        ],
-        "repo_owner": "chalk",
-        "repo_stars": 445,
-        "repo_topics": [
-          "chalk"
-        ],
-        "repo_url": "https://github.com/chalk/ansi-styles",
-        "version": "6.2.3"
-      }
-    },
-    {
-      "id": "yargs",
-      "meta": {
-        "description": "yargs the modern, pirate-themed, successor to optimist.",
-        "license": "MIT",
-        "repo_archived": false,
-        "repo_language": "JavaScript",
-        "repo_last_commit": "2025-11-11",
-        "repo_last_release": "2025-05-27",
+        "repo_last_commit": "2025-12-15",
+        "repo_last_release": "2025-03-17",
         "repo_maintainers": [
           "bcoe",
-          "maxrimue",
-          "nexdrew",
-          "mleguen"
+          "greenkeeperio-bot",
+          "coreyfarrell",
+          "nexdrew"
         ],
         "repo_owner": "yargs",
-        "repo_stars": 11406,
-        "repo_url": "https://github.com/yargs/yargs",
-        "version": "18.0.0"
+        "repo_stars": 383,
+        "repo_url": "https://github.com/yargs/cliui",
+        "version": "9.0.1"
       }
     },
     {
@@ -158,6 +110,55 @@
       }
     },
     {
+      "id": "wrap-ansi",
+      "meta": {
+        "author": "Sindre Sorhus",
+        "description": "Wordwrap a string with ANSI escape codes",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-09-08",
+        "repo_last_release": "2025-09-08",
+        "repo_maintainers": [
+          "sindresorhus",
+          "bcoe",
+          "SamVerschueren",
+          "coreyfarrell",
+          "kevva"
+        ],
+        "repo_owner": "chalk",
+        "repo_stars": 130,
+        "repo_url": "https://github.com/chalk/wrap-ansi",
+        "version": "9.0.2"
+      }
+    },
+    {
+      "id": "ansi-styles",
+      "meta": {
+        "author": "Sindre Sorhus",
+        "description": "ANSI escape codes for styling strings in the terminal",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-10-01",
+        "repo_last_release": "2025-09-08",
+        "repo_maintainers": [
+          "sindresorhus",
+          "Qix-",
+          "Richienb",
+          "arthurvr",
+          "ExE-Boss"
+        ],
+        "repo_owner": "chalk",
+        "repo_stars": 446,
+        "repo_topics": [
+          "chalk"
+        ],
+        "repo_url": "https://github.com/chalk/ansi-styles",
+        "version": "6.2.3"
+      }
+    },
+    {
       "id": "yargs-parser",
       "meta": {
         "author": "Ben Coe",
@@ -165,7 +166,7 @@
         "license": "ISC",
         "repo_archived": false,
         "repo_language": "JavaScript",
-        "repo_last_commit": "2025-08-22",
+        "repo_last_commit": "2025-12-15",
         "repo_last_release": "2025-05-26",
         "repo_maintainers": [
           "bcoe",
@@ -179,23 +180,25 @@
       }
     },
     {
-      "id": "get-east-asian-width",
+      "id": "escalade",
       "meta": {
-        "author": "Sindre Sorhus",
-        "description": "Determine the East Asian Width of a Unicode character",
+        "author": "Luke Edwards",
+        "description": "A tiny (183B to 210B) and fast utility to ascend parent directories",
         "license": "MIT",
         "repo_archived": false,
         "repo_language": "JavaScript",
-        "repo_last_commit": "2025-09-11",
-        "repo_last_release": "2025-09-09",
+        "repo_last_commit": "2024-08-29",
+        "repo_last_release": "2024-08-29",
         "repo_maintainers": [
-          "sindresorhus",
-          "fisker"
+          "lukeed",
+          "ljharb",
+          "NMinhNguyen",
+          "triannguyen"
         ],
-        "repo_owner": "sindresorhus",
-        "repo_stars": 43,
-        "repo_url": "https://github.com/sindresorhus/get-east-asian-width",
-        "version": "1.4.0"
+        "repo_owner": "lukeed",
+        "repo_stars": 153,
+        "repo_url": "https://github.com/lukeed/escalade",
+        "version": "3.2.0"
       }
     },
     {
@@ -222,26 +225,23 @@
       }
     },
     {
-      "id": "wrap-ansi",
+      "id": "get-east-asian-width",
       "meta": {
         "author": "Sindre Sorhus",
-        "description": "Wordwrap a string with ANSI escape codes",
+        "description": "Determine the East Asian Width of a Unicode character",
         "license": "MIT",
         "repo_archived": false,
         "repo_language": "JavaScript",
-        "repo_last_commit": "2025-09-08",
-        "repo_last_release": "2025-09-08",
+        "repo_last_commit": "2025-09-11",
+        "repo_last_release": "2025-09-09",
         "repo_maintainers": [
           "sindresorhus",
-          "bcoe",
-          "SamVerschueren",
-          "coreyfarrell",
-          "kevva"
+          "fisker"
         ],
-        "repo_owner": "chalk",
-        "repo_stars": 130,
-        "repo_url": "https://github.com/chalk/wrap-ansi",
-        "version": "9.0.2"
+        "repo_owner": "sindresorhus",
+        "repo_stars": 43,
+        "repo_url": "https://github.com/sindresorhus/get-east-asian-width",
+        "version": "1.4.0"
       }
     },
     {
@@ -271,6 +271,14 @@
   "edges": [
     {
       "from": "yargs",
+      "to": "y18n"
+    },
+    {
+      "from": "yargs",
+      "to": "yargs-parser"
+    },
+    {
+      "from": "yargs",
       "to": "cliui"
     },
     {
@@ -286,22 +294,6 @@
       "to": "string-width"
     },
     {
-      "from": "yargs",
-      "to": "y18n"
-    },
-    {
-      "from": "yargs",
-      "to": "yargs-parser"
-    },
-    {
-      "from": "string-width",
-      "to": "get-east-asian-width"
-    },
-    {
-      "from": "string-width",
-      "to": "strip-ansi"
-    },
-    {
       "from": "cliui",
       "to": "string-width"
     },
@@ -314,8 +306,20 @@
       "to": "wrap-ansi"
     },
     {
+      "from": "string-width",
+      "to": "get-east-asian-width"
+    },
+    {
+      "from": "string-width",
+      "to": "strip-ansi"
+    },
+    {
       "from": "strip-ansi",
       "to": "ansi-regex"
+    },
+    {
+      "from": "wrap-ansi",
+      "to": "string-width"
     },
     {
       "from": "wrap-ansi",
@@ -324,10 +328,6 @@
     {
       "from": "wrap-ansi",
       "to": "ansi-styles"
-    },
-    {
-      "from": "wrap-ansi",
-      "to": "string-width"
     }
   ]
 }

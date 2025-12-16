@@ -38,6 +38,7 @@ type parseOpts struct {
 	enrich   bool
 	refresh  bool
 	output   string
+	name     string
 }
 
 func (o *parseOpts) resolveOptions(ctx context.Context) deps.Options {
@@ -78,6 +79,7 @@ Examples:
 	cmd.PersistentFlags().BoolVar(&opts.enrich, "enrich", opts.enrich, "enrich with GitHub metadata (requires GITHUB_TOKEN)")
 	cmd.PersistentFlags().BoolVar(&opts.refresh, "refresh", false, "bypass cache")
 	cmd.PersistentFlags().StringVarP(&opts.output, "output", "o", "", "output file (stdout if empty)")
+	cmd.PersistentFlags().StringVarP(&opts.name, "name", "n", "", "project name (for manifest parsing, overrides auto-detection)")
 
 	for _, lang := range languages {
 		cmd.AddCommand(langCmd(lang, &opts))
@@ -185,6 +187,15 @@ func parseManifest(ctx context.Context, opts *parseOpts, parser deps.ManifestPar
 		return err
 	}
 	g := result.Graph.(*dag.DAG)
+
+	name := opts.name
+	if name == "" {
+		name = result.RootPackage
+	}
+	if name != "" {
+		_ = g.RenameNode("__project__", name)
+	}
+
 	prog.done(fmt.Sprintf("Parsed %d packages with %d dependencies", g.NodeCount(), g.EdgeCount()))
 
 	return writeGraph(g, opts.output, logger)

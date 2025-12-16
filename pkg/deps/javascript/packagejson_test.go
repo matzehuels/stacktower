@@ -58,9 +58,8 @@ func TestPackageJSON_Parse(t *testing.T) {
 
 	g := result.Graph.(*dag.DAG)
 
-	// project root + my-package + 3 deps
-	if got := g.NodeCount(); got != 5 {
-		t.Errorf("NodeCount = %d, want 5", got)
+	if got := g.NodeCount(); got != 4 {
+		t.Errorf("NodeCount = %d, want 4", got)
 	}
 
 	for _, dep := range []string{"express", "lodash", "jest"} {
@@ -71,6 +70,14 @@ func TestPackageJSON_Parse(t *testing.T) {
 
 	if result.RootPackage != "my-package" {
 		t.Errorf("RootPackage = %q, want %q", result.RootPackage, "my-package")
+	}
+
+	if root, ok := g.Node("__project__"); ok {
+		if root.Meta["version"] != "1.0.0" {
+			t.Errorf("root node version = %v, want 1.0.0", root.Meta["version"])
+		}
+	} else {
+		t.Error("__project__ node not found")
 	}
 }
 

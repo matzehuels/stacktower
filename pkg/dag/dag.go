@@ -124,6 +124,54 @@ func (d *DAG) RemoveEdge(from, to string) {
 	d.incoming[to] = slices.DeleteFunc(d.incoming[to], func(s string) bool { return s == from })
 }
 
+func (d *DAG) RenameNode(oldID, newID string) error {
+	if newID == "" {
+		return ErrInvalidNodeID
+	}
+	node, ok := d.nodes[oldID]
+	if !ok {
+		return ErrUnknownSourceNode
+	}
+	if _, exists := d.nodes[newID]; exists {
+		return ErrDuplicateNodeID
+	}
+
+	node.ID = newID
+	delete(d.nodes, oldID)
+	d.nodes[newID] = node
+
+	for i := range d.edges {
+		if d.edges[i].From == oldID {
+			d.edges[i].From = newID
+		}
+		if d.edges[i].To == oldID {
+			d.edges[i].To = newID
+		}
+	}
+
+	d.outgoing[newID] = d.outgoing[oldID]
+	delete(d.outgoing, oldID)
+	for id, targets := range d.outgoing {
+		for i, t := range targets {
+			if t == oldID {
+				d.outgoing[id][i] = newID
+			}
+		}
+	}
+
+	d.incoming[newID] = d.incoming[oldID]
+	delete(d.incoming, oldID)
+	for id, sources := range d.incoming {
+		for i, s := range sources {
+			if s == oldID {
+				d.incoming[id][i] = newID
+			}
+		}
+	}
+
+	return nil
+}
+
 func (d *DAG) Nodes() []*Node {
 	nodes := make([]*Node, 0, len(d.nodes))
 	for _, n := range d.nodes {

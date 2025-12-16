@@ -1,114 +1,47 @@
 {
   "nodes": [
     {
-      "id": "anyio",
+      "id": "tqdm",
       "meta": {
-        "description": "High-level concurrency and networking framework on top of asyncio or Trio",
+        "description": "Fast, Extensible Progress Meter",
+        "license": "MPL-2.0 AND MIT",
         "repo_archived": false,
         "repo_language": "Python",
-        "repo_last_commit": "2025-12-15",
-        "repo_last_release": "2025-11-30",
+        "repo_last_commit": "2025-05-22",
+        "repo_last_release": "2024-11-27",
         "repo_maintainers": [
-          "agronholm",
-          "graingert",
-          "gschaffner",
-          "davidbrochart"
+          "casperdcl",
+          "lrq3000",
+          "altendky",
+          "hadim",
+          "richardsheridan"
         ],
-        "repo_owner": "agronholm",
-        "repo_stars": 2325,
+        "repo_owner": "tqdm",
+        "repo_stars": 30778,
         "repo_topics": [
-          "async-await",
-          "asyncio",
-          "trio"
-        ],
-        "repo_url": "https://github.com/agronholm/anyio",
-        "version": "4.12.0"
-      }
-    },
-    {
-      "id": "distro",
-      "meta": {
-        "author": "Nir Cohen",
-        "description": "Distro - an OS platform information API",
-        "license": "Apache License, Version 2.0",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-11-14",
-        "repo_last_release": "2024-01-14",
-        "repo_maintainers": [
-          "nir0s",
-          "andy-maier",
-          "jdufresne",
-          "HorlogeSkynet",
-          "SethMichaelLarson"
-        ],
-        "repo_owner": "python-distro",
-        "repo_stars": 278,
-        "repo_topics": [
-          "distribution",
-          "distro",
-          "hacktoberfest",
-          "linux",
-          "linux-distribution",
+          "cli",
+          "closember",
+          "console",
+          "discord",
+          "gui",
+          "jupyter",
+          "keras",
+          "meter",
+          "pandas",
+          "parallel",
+          "progress",
+          "progress-bar",
+          "progressbar",
+          "progressmeter",
           "python",
-          "python-library"
+          "rate",
+          "telegram",
+          "terminal",
+          "time",
+          "utilities"
         ],
-        "repo_url": "https://github.com/python-distro/distro",
-        "version": "1.9.0"
-      }
-    },
-    {
-      "id": "httpx",
-      "meta": {
-        "description": "The next generation HTTP client.",
-        "license": "BSD-3-Clause",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-12-10",
-        "repo_last_release": "2024-12-06",
-        "repo_maintainers": [
-          "lovelydinosaur",
-          "florimondmanca",
-          "sethmlarson",
-          "karpetrosyan"
-        ],
-        "repo_owner": "encode",
-        "repo_stars": 14844,
-        "repo_topics": [
-          "asyncio",
-          "http",
-          "python",
-          "trio"
-        ],
-        "repo_url": "https://github.com/encode/httpx",
-        "version": "0.28.1"
-      }
-    },
-    {
-      "id": "jiter",
-      "meta": {
-        "description": "Fast iterable JSON parser.",
-        "repo_archived": false,
-        "repo_language": "Rust",
-        "repo_last_commit": "2025-11-09",
-        "repo_last_release": "2025-11-09",
-        "repo_maintainers": [
-          "samuelcolvin",
-          "davidhewitt",
-          "Viicos",
-          "jessekrubin",
-          "msimacek"
-        ],
-        "repo_owner": "pydantic",
-        "repo_stars": 479,
-        "repo_topics": [
-          "json",
-          "json-parser",
-          "pydantic",
-          "rust"
-        ],
-        "repo_url": "https://github.com/pydantic/jiter",
-        "version": "0.12.0"
+        "repo_url": "https://github.com/tqdm/tqdm",
+        "version": "4.67.1"
       }
     },
     {
@@ -130,51 +63,6 @@
         "repo_stars": 541,
         "repo_url": "https://github.com/python/typing_extensions",
         "version": "4.15.0"
-      }
-    },
-    {
-      "id": "httpcore",
-      "meta": {
-        "description": "A minimal low-level HTTP client.",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-12-06",
-        "repo_last_release": "2025-04-24",
-        "repo_maintainers": [
-          "lovelydinosaur",
-          "florimondmanca",
-          "karpetrosyan",
-          "cdeler"
-        ],
-        "repo_owner": "encode",
-        "repo_stars": 526,
-        "repo_url": "https://github.com/encode/httpcore",
-        "version": "1.0.9"
-      }
-    },
-    {
-      "id": "openai",
-      "meta": {
-        "description": "The official Python library for the openai API",
-        "license": "Apache-2.0",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-12-15",
-        "repo_last_release": "2025-12-15",
-        "repo_maintainers": [
-          "stainless-bot",
-          "RobertCraigie",
-          "hallacy",
-          "rachellim"
-        ],
-        "repo_owner": "openai",
-        "repo_stars": 29492,
-        "repo_topics": [
-          "openai",
-          "python"
-        ],
-        "repo_url": "https://github.com/openai/openai-python",
-        "version": "2.12.0"
       }
     },
     {
@@ -206,6 +94,26 @@
       }
     },
     {
+      "id": "httpcore",
+      "meta": {
+        "description": "A minimal low-level HTTP client.",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-06",
+        "repo_last_release": "2025-04-24",
+        "repo_maintainers": [
+          "lovelydinosaur",
+          "florimondmanca",
+          "karpetrosyan",
+          "cdeler"
+        ],
+        "repo_owner": "encode",
+        "repo_stars": 526,
+        "repo_url": "https://github.com/encode/httpcore",
+        "version": "1.0.9"
+      }
+    },
+    {
       "id": "h11",
       "meta": {
         "author": "Nathaniel J. Smith",
@@ -233,148 +141,30 @@
       }
     },
     {
-      "id": "sniffio",
+      "id": "httpx",
       "meta": {
-        "description": "Sniff out which async library your code is running under",
-        "license": "MIT OR Apache-2.0",
+        "description": "The next generation HTTP client.",
+        "license": "BSD-3-Clause",
         "repo_archived": false,
         "repo_language": "Python",
-        "repo_last_commit": "2024-02-25",
+        "repo_last_commit": "2025-12-10",
+        "repo_last_release": "2024-12-06",
         "repo_maintainers": [
-          "njsmith",
-          "graingert",
-          "pquentin",
-          "agronholm",
-          "hugovk"
+          "lovelydinosaur",
+          "florimondmanca",
+          "sethmlarson",
+          "karpetrosyan"
         ],
-        "repo_owner": "python-trio",
-        "repo_stars": 143,
+        "repo_owner": "encode",
+        "repo_stars": 14844,
         "repo_topics": [
-          "async",
           "asyncio",
+          "http",
           "python",
           "trio"
         ],
-        "repo_url": "https://github.com/python-trio/sniffio",
-        "version": "1.3.1"
-      }
-    },
-    {
-      "id": "exceptiongroup",
-      "meta": {
-        "description": "Backport of PEP 654 (exception groups)",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-11-21",
-        "repo_last_release": "2025-11-21",
-        "repo_maintainers": [
-          "agronholm",
-          "jakkdl",
-          "Zac-HD",
-          "cfbolz"
-        ],
-        "repo_owner": "agronholm",
-        "repo_stars": 48,
-        "repo_url": "https://github.com/agronholm/exceptiongroup",
-        "version": "1.3.1"
-      }
-    },
-    {
-      "id": "annotated-types",
-      "meta": {
-        "description": "Reusable constraint types to use with typing.Annotated",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-11-10",
-        "repo_last_release": "2024-05-20",
-        "repo_maintainers": [
-          "adriangb",
-          "samuelcolvin",
-          "Zac-HD",
-          "hugovk",
-          "Viicos"
-        ],
-        "repo_owner": "annotated-types",
-        "repo_stars": 584,
-        "repo_url": "https://github.com/annotated-types/annotated-types",
-        "version": "0.7.0"
-      }
-    },
-    {
-      "id": "pydantic",
-      "meta": {
-        "description": "Data validation using Python type hints",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-12-14",
-        "repo_last_release": "2025-11-26",
-        "repo_maintainers": [
-          "samuelcolvin",
-          "Viicos",
-          "sydney-runkle",
-          "dmontagu"
-        ],
-        "repo_owner": "pydantic",
-        "repo_stars": 26167,
-        "repo_topics": [
-          "hints",
-          "json-schema",
-          "parsing",
-          "pydantic",
-          "python",
-          "python310",
-          "python311",
-          "python312",
-          "python313",
-          "python39",
-          "validation"
-        ],
-        "repo_url": "https://github.com/pydantic/pydantic",
-        "version": "2.12.5"
-      }
-    },
-    {
-      "id": "tqdm",
-      "meta": {
-        "description": "Fast, Extensible Progress Meter",
-        "license": "MPL-2.0 AND MIT",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-05-22",
-        "repo_last_release": "2024-11-27",
-        "repo_maintainers": [
-          "casperdcl",
-          "lrq3000",
-          "altendky",
-          "hadim",
-          "richardsheridan"
-        ],
-        "repo_owner": "tqdm",
-        "repo_stars": 30776,
-        "repo_topics": [
-          "cli",
-          "closember",
-          "console",
-          "discord",
-          "gui",
-          "jupyter",
-          "keras",
-          "meter",
-          "pandas",
-          "parallel",
-          "progress",
-          "progress-bar",
-          "progressbar",
-          "progressmeter",
-          "python",
-          "rate",
-          "telegram",
-          "terminal",
-          "time",
-          "utilities"
-        ],
-        "repo_url": "https://github.com/tqdm/tqdm",
-        "version": "4.67.1"
+        "repo_url": "https://github.com/encode/httpx",
+        "version": "0.28.1"
       }
     },
     {
@@ -385,7 +175,7 @@
         "license": "MPL-2.0",
         "repo_archived": false,
         "repo_language": "Python",
-        "repo_last_commit": "2025-12-09",
+        "repo_last_commit": "2025-12-15",
         "repo_maintainers": [
           "Lukasa",
           "alex",
@@ -418,6 +208,27 @@
       }
     },
     {
+      "id": "annotated-types",
+      "meta": {
+        "description": "Reusable constraint types to use with typing.Annotated",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-10",
+        "repo_last_release": "2024-05-20",
+        "repo_maintainers": [
+          "adriangb",
+          "samuelcolvin",
+          "Zac-HD",
+          "hugovk",
+          "Viicos"
+        ],
+        "repo_owner": "annotated-types",
+        "repo_stars": 584,
+        "repo_url": "https://github.com/annotated-types/annotated-types",
+        "version": "0.7.0"
+      }
+    },
+    {
       "id": "pydantic-core",
       "meta": {
         "description": "Core functionality for Pydantic validation and serialization",
@@ -446,6 +257,163 @@
       }
     },
     {
+      "id": "openai",
+      "meta": {
+        "description": "The official Python library for the openai API",
+        "license": "Apache-2.0",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-15",
+        "repo_last_release": "2025-12-15",
+        "repo_maintainers": [
+          "stainless-bot",
+          "RobertCraigie",
+          "hallacy",
+          "rachellim"
+        ],
+        "repo_owner": "openai",
+        "repo_stars": 29492,
+        "repo_topics": [
+          "openai",
+          "python"
+        ],
+        "repo_url": "https://github.com/openai/openai-python",
+        "version": "2.12.0"
+      }
+    },
+    {
+      "id": "jiter",
+      "meta": {
+        "description": "Fast iterable JSON parser.",
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-11-09",
+        "repo_last_release": "2025-11-09",
+        "repo_maintainers": [
+          "samuelcolvin",
+          "davidhewitt",
+          "Viicos",
+          "jessekrubin",
+          "msimacek"
+        ],
+        "repo_owner": "pydantic",
+        "repo_stars": 479,
+        "repo_topics": [
+          "json",
+          "json-parser",
+          "pydantic",
+          "rust"
+        ],
+        "repo_url": "https://github.com/pydantic/jiter",
+        "version": "0.12.0"
+      }
+    },
+    {
+      "id": "pydantic",
+      "meta": {
+        "description": "Data validation using Python type hints",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-15",
+        "repo_last_release": "2025-11-26",
+        "repo_maintainers": [
+          "samuelcolvin",
+          "Viicos",
+          "sydney-runkle",
+          "dmontagu"
+        ],
+        "repo_owner": "pydantic",
+        "repo_stars": 26169,
+        "repo_topics": [
+          "hints",
+          "json-schema",
+          "parsing",
+          "pydantic",
+          "python",
+          "python310",
+          "python311",
+          "python312",
+          "python313",
+          "python39",
+          "validation"
+        ],
+        "repo_url": "https://github.com/pydantic/pydantic",
+        "version": "2.12.5"
+      }
+    },
+    {
+      "id": "exceptiongroup",
+      "meta": {
+        "description": "Backport of PEP 654 (exception groups)",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-21",
+        "repo_last_release": "2025-11-21",
+        "repo_maintainers": [
+          "agronholm",
+          "jakkdl",
+          "Zac-HD",
+          "cfbolz"
+        ],
+        "repo_owner": "agronholm",
+        "repo_stars": 48,
+        "repo_url": "https://github.com/agronholm/exceptiongroup",
+        "version": "1.3.1"
+      }
+    },
+    {
+      "id": "anyio",
+      "meta": {
+        "description": "High-level concurrency and networking framework on top of asyncio or Trio",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-16",
+        "repo_last_release": "2025-11-30",
+        "repo_maintainers": [
+          "agronholm",
+          "graingert",
+          "gschaffner",
+          "davidbrochart"
+        ],
+        "repo_owner": "agronholm",
+        "repo_stars": 2325,
+        "repo_topics": [
+          "async-await",
+          "asyncio",
+          "trio"
+        ],
+        "repo_url": "https://github.com/agronholm/anyio",
+        "version": "4.12.0"
+      }
+    },
+    {
+      "id": "sniffio",
+      "meta": {
+        "description": "Sniff out which async library your code is running under",
+        "license": "MIT OR Apache-2.0",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2024-02-25",
+        "repo_maintainers": [
+          "njsmith",
+          "graingert",
+          "pquentin",
+          "agronholm",
+          "hugovk"
+        ],
+        "repo_owner": "python-trio",
+        "repo_stars": 143,
+        "repo_topics": [
+          "async",
+          "asyncio",
+          "python",
+          "trio"
+        ],
+        "repo_url": "https://github.com/python-trio/sniffio",
+        "version": "1.3.1"
+      }
+    },
+    {
       "id": "typing-inspection",
       "meta": {
         "description": "Runtime typing introspection tools",
@@ -462,6 +430,38 @@
         "repo_stars": 56,
         "repo_url": "https://github.com/pydantic/typing-inspection",
         "version": "0.4.2"
+      }
+    },
+    {
+      "id": "distro",
+      "meta": {
+        "author": "Nir Cohen",
+        "description": "Distro - an OS platform information API",
+        "license": "Apache License, Version 2.0",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-14",
+        "repo_last_release": "2024-01-14",
+        "repo_maintainers": [
+          "nir0s",
+          "andy-maier",
+          "jdufresne",
+          "HorlogeSkynet",
+          "SethMichaelLarson"
+        ],
+        "repo_owner": "python-distro",
+        "repo_stars": 278,
+        "repo_topics": [
+          "distribution",
+          "distro",
+          "hacktoberfest",
+          "linux",
+          "linux-distribution",
+          "python",
+          "python-library"
+        ],
+        "repo_url": "https://github.com/python-distro/distro",
+        "version": "1.9.0"
       }
     }
   ],
@@ -511,6 +511,22 @@
       "to": "typing-extensions"
     },
     {
+      "from": "pydantic",
+      "to": "annotated-types"
+    },
+    {
+      "from": "pydantic",
+      "to": "pydantic-core"
+    },
+    {
+      "from": "pydantic",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "pydantic",
+      "to": "typing-inspection"
+    },
+    {
       "from": "httpx",
       "to": "anyio"
     },
@@ -531,35 +547,7 @@
       "to": "colorama"
     },
     {
-      "from": "pydantic",
-      "to": "annotated-types"
-    },
-    {
-      "from": "pydantic",
-      "to": "pydantic-core"
-    },
-    {
-      "from": "pydantic",
-      "to": "typing-extensions"
-    },
-    {
-      "from": "pydantic",
-      "to": "typing-inspection"
-    },
-    {
       "from": "exceptiongroup",
-      "to": "typing-extensions"
-    },
-    {
-      "from": "httpcore",
-      "to": "certifi"
-    },
-    {
-      "from": "httpcore",
-      "to": "h11"
-    },
-    {
-      "from": "typing-inspection",
       "to": "typing-extensions"
     },
     {
@@ -569,6 +557,18 @@
     {
       "from": "pydantic-core",
       "to": "typing-extensions"
+    },
+    {
+      "from": "typing-inspection",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "httpcore",
+      "to": "certifi"
+    },
+    {
+      "from": "httpcore",
+      "to": "h11"
     }
   ]
 }

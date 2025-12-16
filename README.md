@@ -78,6 +78,22 @@ stacktower parse go examples/manifest/go.mod -o deps.json
 
 When the argument exists on disk or matches a known manifest filename, Stacktower automatically parses it as a manifest.
 
+The project name (root node) is auto-detected from the manifest or a sibling file:
+- **Cargo.toml**: `[package].name`
+- **go.mod**: `module` directive
+- **package.json**: `name` field
+- **composer.json**: `name` field
+- **pom.xml**: `groupId:artifactId`
+- **poetry.lock / requirements.txt**: `pyproject.toml` (sibling)
+- **Gemfile**: `*.gemspec` (sibling)
+
+Use `--name` to override the auto-detected name:
+
+```bash
+stacktower parse python requirements.txt --name="my-project" -o deps.json
+stacktower parse ruby Gemfile -n my-rails-app -o deps.json
+```
+
 #### Explicit Mode
 
 Force registry or manifest parsing when auto-detection isn't enough:
@@ -165,6 +181,7 @@ stacktower render examples/test/diamond.json -o diamond.svg
 | Flag | Description |
 |------|-------------|
 | `-o`, `--output` | Output file (stdout if empty) |
+| `-n`, `--name` | Project name for manifest parsing (auto-detected from manifest if not set) |
 | `--max-depth N` | Maximum dependency depth (default: 10) |
 | `--max-nodes N` | Maximum packages to fetch (default: 5000) |
 | `--enrich` | Enrich with GitHub metadata (default: true, requires `GITHUB_TOKEN`) |

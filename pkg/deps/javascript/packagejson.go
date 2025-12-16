@@ -44,8 +44,9 @@ func (p *PackageJSON) Parse(path string, opts deps.Options) (*deps.ManifestResul
 	}
 
 	if pkg.Name != "" {
-		_ = g.AddNode(dag.Node{ID: pkg.Name, Meta: dag.Metadata{"version": pkg.Version}})
-		_ = g.AddEdge(dag.Edge{From: projectRoot, To: pkg.Name})
+		if root, ok := g.Node(projectRoot); ok {
+			root.Meta["version"] = pkg.Version
+		}
 	}
 
 	return &deps.ManifestResult{

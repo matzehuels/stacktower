@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"context"
 	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 
@@ -41,10 +42,13 @@ func (r *Requirements) Parse(path string, opts deps.Options) (*deps.ManifestResu
 		g = shallow(pkgs)
 	}
 
+	rootPackage := extractPyprojectName(filepath.Dir(path))
+
 	return &deps.ManifestResult{
 		Graph:              g,
 		Type:               r.Type(),
 		IncludesTransitive: r.resolver != nil,
+		RootPackage:        rootPackage,
 	}, nil
 }
 

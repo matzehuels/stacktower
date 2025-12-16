@@ -1,32 +1,10 @@
 {
   "nodes": [
     {
-      "id": "proc-macro2",
-      "meta": {
-        "description": "A substitute implementation of the compiler's `proc_macro` API to decouple token-based libraries from the procedural macro use case.",
-        "downloads": 851877666,
-        "repo_archived": false,
-        "repo_language": "Rust",
-        "repo_last_commit": "2025-12-14",
-        "repo_last_release": "2025-10-23",
-        "repo_maintainers": [
-          "dtolnay",
-          "alexcrichton",
-          "mystor",
-          "bjorn3",
-          "SergioBenitez"
-        ],
-        "repo_owner": "dtolnay",
-        "repo_stars": 886,
-        "repo_url": "https://github.com/dtolnay/proc-macro2",
-        "version": "1.0.103"
-      }
-    },
-    {
       "id": "quote",
       "meta": {
         "description": "Quasi-quoting macro quote!(...)",
-        "downloads": 833294797,
+        "downloads": 833890336,
         "repo_archived": false,
         "repo_language": "Rust",
         "repo_last_commit": "2025-12-14",
@@ -53,7 +31,7 @@
       "id": "syn",
       "meta": {
         "description": "Parser for Rust source code",
-        "downloads": 1236140715,
+        "downloads": 1237024275,
         "repo_archived": false,
         "repo_language": "Rust",
         "repo_last_commit": "2025-12-15",
@@ -78,7 +56,7 @@
       "id": "unicode-ident",
       "meta": {
         "description": "Determine whether characters have the XID_Start or XID_Continue properties according to Unicode Standard Annex #31",
-        "downloads": 655305060,
+        "downloads": 655874819,
         "repo_archived": false,
         "repo_language": "Rust",
         "repo_last_commit": "2025-12-14",
@@ -98,8 +76,9 @@
     {
       "id": "serde",
       "meta": {
-        "description": "A generic serialization/deserialization framework",
-        "downloads": 741605700,
+        "description": "A serialization framework",
+        "downloads": 1000000,
+        "license": "MIT",
         "repo_archived": false,
         "repo_language": "Rust",
         "repo_last_commit": "2025-11-20",
@@ -120,42 +99,14 @@
           "serde"
         ],
         "repo_url": "https://github.com/serde-rs/serde",
-        "version": "1.0.228"
-      }
-    },
-    {
-      "id": "serde_core",
-      "meta": {
-        "description": "Serde traits only, with no support for derive -- use the `serde` crate instead",
-        "downloads": 51838202,
-        "repo_archived": false,
-        "repo_language": "Rust",
-        "repo_last_commit": "2025-11-20",
-        "repo_last_release": "2025-09-27",
-        "repo_maintainers": [
-          "dtolnay",
-          "erickt",
-          "Mingun",
-          "oli-obk",
-          "mitsuhiko"
-        ],
-        "repo_owner": "serde-rs",
-        "repo_stars": 10226,
-        "repo_topics": [
-          "derive",
-          "no-std",
-          "rust",
-          "serde"
-        ],
-        "repo_url": "https://github.com/serde-rs/serde",
-        "version": "1.0.228"
+        "version": "1.0.0"
       }
     },
     {
       "id": "serde_derive",
       "meta": {
         "description": "Macros 1.1 implementation of #[derive(Serialize, Deserialize)]",
-        "downloads": 685056433,
+        "downloads": 685582831,
         "repo_archived": false,
         "repo_language": "Rust",
         "repo_last_commit": "2025-11-20",
@@ -178,15 +129,33 @@
         "repo_url": "https://github.com/serde-rs/serde",
         "version": "1.0.228"
       }
+    },
+    {
+      "id": "proc-macro2",
+      "meta": {
+        "description": "A substitute implementation of the compiler's `proc_macro` API to decouple token-based libraries from the procedural macro use case.",
+        "downloads": 852478003,
+        "repo_archived": false,
+        "repo_language": "Rust",
+        "repo_last_commit": "2025-12-14",
+        "repo_last_release": "2025-10-23",
+        "repo_maintainers": [
+          "dtolnay",
+          "alexcrichton",
+          "mystor",
+          "bjorn3",
+          "SergioBenitez"
+        ],
+        "repo_owner": "dtolnay",
+        "repo_stars": 886,
+        "repo_url": "https://github.com/dtolnay/proc-macro2",
+        "version": "1.0.103"
+      }
     }
   ],
   "edges": [
     {
       "from": "serde",
-      "to": "serde_core"
-    },
-    {
-      "from": "serde_core",
       "to": "serde_derive"
     },
     {
@@ -210,12 +179,12 @@
       "to": "unicode-ident"
     },
     {
-      "from": "quote",
-      "to": "proc-macro2"
-    },
-    {
       "from": "proc-macro2",
       "to": "unicode-ident"
+    },
+    {
+      "from": "quote",
+      "to": "proc-macro2"
     }
   ]
 }

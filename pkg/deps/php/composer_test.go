@@ -60,9 +60,8 @@ func TestComposerJSON_Parse(t *testing.T) {
 
 	g := result.Graph.(*dag.DAG)
 
-	// project root + vendor/my-package + 3 deps (php and ext-json filtered out)
-	if got := g.NodeCount(); got != 5 {
-		t.Errorf("NodeCount = %d, want 5", got)
+	if got := g.NodeCount(); got != 4 {
+		t.Errorf("NodeCount = %d, want 4", got)
 	}
 
 	for _, dep := range []string{"monolog/monolog", "symfony/console", "phpunit/phpunit"} {
@@ -71,7 +70,6 @@ func TestComposerJSON_Parse(t *testing.T) {
 		}
 	}
 
-	// Verify php and ext-json are filtered
 	if _, ok := g.Node("php"); ok {
 		t.Error("unexpected node 'php' found (should be filtered)")
 	}
@@ -81,6 +79,14 @@ func TestComposerJSON_Parse(t *testing.T) {
 
 	if result.RootPackage != "vendor/my-package" {
 		t.Errorf("RootPackage = %q, want %q", result.RootPackage, "vendor/my-package")
+	}
+
+	if root, ok := g.Node("__project__"); ok {
+		if root.Meta["version"] != "1.0.0" {
+			t.Errorf("root node version = %v, want 1.0.0", root.Meta["version"])
+		}
+	} else {
+		t.Error("__project__ node not found")
 	}
 }
 

@@ -1,184 +1,6 @@
 {
   "nodes": [
     {
-      "id": "importlib-metadata",
-      "meta": {
-        "description": "Read metadata from Python packages",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-08-17",
-        "repo_last_release": "2025-04-27",
-        "repo_maintainers": [
-          "jaraco",
-          "warsaw",
-          "abravalheri",
-          "jherland",
-          "sjma3"
-        ],
-        "repo_owner": "python",
-        "repo_stars": 137,
-        "repo_url": "https://github.com/python/importlib_metadata",
-        "version": "8.7.0"
-      }
-    },
-    {
-      "id": "jinja2",
-      "meta": {
-        "description": "A very fast and expressive template engine.",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-06-14",
-        "repo_last_release": "2025-03-05",
-        "repo_maintainers": [
-          "mitsuhiko",
-          "davidism",
-          "untitaker"
-        ],
-        "repo_owner": "pallets",
-        "repo_stars": 11334,
-        "repo_topics": [
-          "jinja",
-          "jinja2",
-          "pallets",
-          "python",
-          "template-engine",
-          "templates"
-        ],
-        "repo_url": "https://github.com/pallets/jinja",
-        "version": "3.1.6"
-      }
-    },
-    {
-      "id": "zipp",
-      "meta": {
-        "description": "Backport of pathlib-compatible object wrapper for zip files",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-10-19",
-        "repo_last_release": "2025-06-08",
-        "repo_maintainers": [
-          "jaraco",
-          "DimitriPapadopoulos",
-          "layday",
-          "Avasam",
-          "barneygale"
-        ],
-        "repo_owner": "jaraco",
-        "repo_stars": 67,
-        "repo_url": "https://github.com/jaraco/zipp",
-        "version": "3.23.0"
-      }
-    },
-    {
-      "id": "flask",
-      "meta": {
-        "description": "A simple framework for building complex web applications.",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-11-28",
-        "repo_last_release": "2025-08-19",
-        "repo_maintainers": [
-          "davidism",
-          "mitsuhiko",
-          "untitaker",
-          "rduplain",
-          "greyli"
-        ],
-        "repo_owner": "pallets",
-        "repo_stars": 70924,
-        "repo_topics": [
-          "flask",
-          "jinja",
-          "pallets",
-          "python",
-          "web-framework",
-          "werkzeug",
-          "wsgi"
-        ],
-        "repo_url": "https://github.com/pallets/flask",
-        "version": "3.1.2"
-      }
-    },
-    {
-      "id": "blinker",
-      "meta": {
-        "author": "Jason Kirtland",
-        "description": "Fast, simple object-to-object and broadcast signaling",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-11-19",
-        "repo_last_release": "2024-11-08",
-        "repo_maintainers": [
-          "davidism",
-          "jek",
-          "Secrus",
-          "pgjones"
-        ],
-        "repo_owner": "pallets-eco",
-        "repo_stars": 2004,
-        "repo_topics": [
-          "blinker",
-          "python",
-          "signals"
-        ],
-        "repo_url": "https://github.com/pallets-eco/blinker",
-        "version": "1.9.0"
-      }
-    },
-    {
-      "id": "itsdangerous",
-      "meta": {
-        "description": "Safely pass data to untrusted environments and back.",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-06-14",
-        "repo_last_release": "2024-04-16",
-        "repo_maintainers": [
-          "davidism",
-          "mitsuhiko"
-        ],
-        "repo_owner": "pallets",
-        "repo_stars": 3088,
-        "repo_topics": [
-          "hmac",
-          "itsdangerous",
-          "pallets",
-          "python",
-          "security",
-          "serialization"
-        ],
-        "repo_url": "https://github.com/pallets/itsdangerous",
-        "version": "2.2.0"
-      }
-    },
-    {
-      "id": "markupsafe",
-      "meta": {
-        "description": "Safely add untrusted strings to HTML/XML markup.",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-09-27",
-        "repo_last_release": "2025-09-27",
-        "repo_maintainers": [
-          "davidism",
-          "mitsuhiko"
-        ],
-        "repo_owner": "pallets",
-        "repo_stars": 680,
-        "repo_topics": [
-          "html",
-          "html-escape",
-          "jinja",
-          "markupsafe",
-          "pallets",
-          "python",
-          "template-engine"
-        ],
-        "repo_url": "https://github.com/pallets/markupsafe",
-        "version": "3.0.3"
-      }
-    },
-    {
       "id": "werkzeug",
       "meta": {
         "description": "The comprehensive WSGI web application library.",
@@ -226,24 +48,62 @@
       }
     },
     {
-      "id": "typing-extensions",
+      "id": "markupsafe",
       "meta": {
-        "description": "Backported and Experimental Type Hints for Python 3.9+",
+        "description": "Safely add untrusted strings to HTML/XML markup.",
         "repo_archived": false,
         "repo_language": "Python",
-        "repo_last_commit": "2025-12-02",
-        "repo_last_release": "2025-08-25",
+        "repo_last_commit": "2025-09-27",
+        "repo_last_release": "2025-09-27",
         "repo_maintainers": [
-          "JelleZijlstra",
-          "AlexWaygood",
-          "srittau",
-          "brianschubert",
-          "Daraan"
+          "davidism",
+          "mitsuhiko"
         ],
-        "repo_owner": "python",
-        "repo_stars": 541,
-        "repo_url": "https://github.com/python/typing_extensions",
-        "version": "4.15.0"
+        "repo_owner": "pallets",
+        "repo_stars": 680,
+        "repo_topics": [
+          "html",
+          "html-escape",
+          "jinja",
+          "markupsafe",
+          "pallets",
+          "python",
+          "template-engine"
+        ],
+        "repo_url": "https://github.com/pallets/markupsafe",
+        "version": "3.0.3"
+      }
+    },
+    {
+      "id": "flask",
+      "meta": {
+        "author": "Armin Ronacher",
+        "description": "A micro web framework",
+        "license": "BSD-3-Clause",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-28",
+        "repo_last_release": "2025-08-19",
+        "repo_maintainers": [
+          "davidism",
+          "mitsuhiko",
+          "untitaker",
+          "rduplain",
+          "greyli"
+        ],
+        "repo_owner": "pallets",
+        "repo_stars": 70924,
+        "repo_topics": [
+          "flask",
+          "jinja",
+          "pallets",
+          "python",
+          "web-framework",
+          "werkzeug",
+          "wsgi"
+        ],
+        "repo_url": "https://github.com/pallets/flask",
+        "version": "2.0.0"
       }
     },
     {
@@ -261,7 +121,7 @@
           "untitaker"
         ],
         "repo_owner": "pallets",
-        "repo_stars": 17061,
+        "repo_stars": 17060,
         "repo_topics": [
           "cli",
           "click",
@@ -276,27 +136,7 @@
   "edges": [
     {
       "from": "flask",
-      "to": "blinker"
-    },
-    {
-      "from": "flask",
       "to": "click"
-    },
-    {
-      "from": "flask",
-      "to": "importlib-metadata"
-    },
-    {
-      "from": "flask",
-      "to": "itsdangerous"
-    },
-    {
-      "from": "flask",
-      "to": "jinja2"
-    },
-    {
-      "from": "flask",
-      "to": "markupsafe"
     },
     {
       "from": "flask",
@@ -308,18 +148,6 @@
     },
     {
       "from": "werkzeug",
-      "to": "markupsafe"
-    },
-    {
-      "from": "importlib-metadata",
-      "to": "zipp"
-    },
-    {
-      "from": "importlib-metadata",
-      "to": "typing-extensions"
-    },
-    {
-      "from": "jinja2",
       "to": "markupsafe"
     }
   ]
