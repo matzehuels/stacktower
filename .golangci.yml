@@ -1,17 +1,27 @@
 version: "2"
 
-run:
-  timeout: 5m
-  tests: false
+formatters:
+  enable:
+    - gofmt
+    - goimports
+  settings:
+    goimports:
+      local-prefixes:
+        - github.com/matzehuels/stacktower
 
 linters:
+  default: none
   enable:
-    - errcheck
     - govet
     - staticcheck
     - unused
-    - ineffassign
+    - misspell
+    - unconvert
 
-issues:
-  max-issues-per-linter: 0
-  max-same-issues: 0
+  settings:
+    staticcheck:
+      checks:
+        - all
+        - -ST1000
+        - -ST1016
+        - -QF1003

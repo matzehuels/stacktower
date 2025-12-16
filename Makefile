@@ -11,8 +11,7 @@ fmt:
 	@goimports -w -local stacktower .
 
 lint:
-	@go vet ./...
-	@staticcheck ./...
+	@golangci-lint run
 
 test:
 	@go test -race -timeout=2m ./...
@@ -48,7 +47,7 @@ blog-showcase: build
 	@./scripts/blog_showcase.sh
 
 install-tools:
-	@go install honnef.co/go/tools/cmd/staticcheck@latest
+	@go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 	@go install golang.org/x/tools/cmd/goimports@latest
 	@go install golang.org/x/vuln/cmd/govulncheck@latest
 
@@ -68,7 +67,7 @@ help:
 	@echo "make              - Run checks and build"
 	@echo "make check        - Format, lint, test"
 	@echo "make fmt          - Format code"
-	@echo "make lint         - Run go vet and staticcheck"
+	@echo "make lint         - Run golangci-lint"
 	@echo "make test         - Run tests"
 	@echo "make cover        - Run tests with coverage"
 	@echo "make build        - Build binary"
