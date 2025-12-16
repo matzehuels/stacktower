@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/charmbracelet/log"
+
 	"github.com/matzehuels/stacktower/pkg/dag"
 	"github.com/matzehuels/stacktower/pkg/render/tower/ordering"
 )

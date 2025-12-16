@@ -24,22 +24,13 @@ jobs:
           go-version-file: 'go.mod'
           cache: true
 
-      - name: Format check
-        run: |
-          gofmt -s -l . | tee /tmp/gofmt.out
-          test ! -s /tmp/gofmt.out
-
-      - name: Vet
-        run: go vet ./...
+      - name: Lint
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: latest
 
       - name: Test
         run: go test -race -timeout=2m ./...
-
-      - name: Staticcheck
-        uses: dominikh/staticcheck-action@v1
-        with:
-          version: latest
-          install-go: false
 
       - name: Vulncheck
         run: |
