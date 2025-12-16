@@ -1,0 +1,38 @@
+name: Commitlint
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  commitlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check PR title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          # Conventional commit pattern: type(scope)?: description
+          pattern='^(feat|fix|docs|style|refactor|perf|test|chore|ci|build|revert)(\([a-z0-9-]+\))?: .+'
+          
+          if [[ ! "$PR_TITLE" =~ $pattern ]]; then
+            echo "❌ PR title does not follow conventional commits format"
+            echo ""
+            echo "Expected: <type>: <description>"
+            echo "Got: $PR_TITLE"
+            echo ""
+            echo "Valid types: feat, fix, docs, style, refactor, perf, test, chore, ci, build, revert"
+            echo ""
+            echo "Examples:"
+            echo "  feat: add new feature"
+            echo "  fix: resolve memory leak"
+            echo "  feat(parser): add ruby support"
+            exit 1
+          fi
+          
+          echo "✅ PR title follows conventional commits: $PR_TITLE"
+
