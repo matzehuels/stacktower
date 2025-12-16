@@ -5,7 +5,7 @@ go 1.24.11
 require (
 	github.com/BurntSushi/toml v1.5.0
 	github.com/charmbracelet/log v0.4.2
-	github.com/goccy/go-graphviz v0.2.9
+	github.com/goccy/go-graphviz v0.2.10
 	github.com/spf13/cobra v1.10.1
 )
 
