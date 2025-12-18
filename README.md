@@ -160,6 +160,34 @@ stacktower render examples/real/yargs.json -t nodelink -o yargs.svg
 stacktower render examples/real/flask.json -t tower,nodelink -o flask
 ```
 
+#### Output Formats
+
+```bash
+# SVG output (default)
+stacktower render examples/real/flask.json -o flask.svg
+
+# JSON layout export (for external tools or re-rendering)
+stacktower render examples/real/flask.json -f json -o flask.json
+
+# PDF output (requires librsvg: brew install librsvg)
+stacktower render examples/real/flask.json -f pdf -o flask.pdf
+
+# PNG output with 2x scale (requires librsvg)
+stacktower render examples/real/flask.json -f png -o flask.png
+
+# Multiple formats at once (outputs flask.svg, flask.json, flask.pdf)
+stacktower render examples/real/flask.json -f svg,json,pdf -o flask
+
+# Combine multiple types and formats
+stacktower render examples/real/flask.json -t tower,nodelink -f svg,json
+```
+
+Output path behavior:
+- **No `-o`**: Derives from input (`input.json` → `input.<format>`)
+- **Single format**: Uses exact path (`-o out.svg` → `out.svg`)
+- **Multiple formats**: Strips extension, adds format (`-o out.svg -f svg,json` → `out.svg`, `out.json`)
+- **Multiple types**: Adds type suffix (`-t tower,nodelink` → `out_tower.svg`, `out_nodelink.svg`)
+
 ### Included Examples
 
 The repository ships with pre-parsed graphs so you can experiment immediately:
@@ -200,8 +228,9 @@ stacktower render examples/test/diamond.json -o diamond.svg
 
 | Flag | Description |
 |------|-------------|
-| `-o`, `--output` | Output file or base path for multiple types |
-| `-t`, `--type` | Visualization type: `tower` (default), `nodelink` |
+| `-o`, `--output` | Output file or base path for multiple types/formats |
+| `-t`, `--type` | Visualization type(s): `tower` (default), `nodelink` (comma-separated) |
+| `-f`, `--format` | Output format(s): `svg` (default), `json`, `pdf`, `png` (comma-separated) |
 | `--normalize` | Apply graph normalization: break cycles, remove transitive edges, assign layers, subdivide long edges (default: true) |
 
 #### Tower Options
@@ -435,6 +464,70 @@ func (p *MyLockParser) Parse(path string, opts deps.Options) (*deps.ManifestResu
 ```
 
 The `deps.Registry` handles concurrent fetching with configurable depth/node limits and metadata enrichment automatically.
+
+### Adding a New Output Format
+
+Output formats are implemented as "sinks" in `pkg/render/tower/sink/`. Each sink takes a computed `layout.Layout` and renders it to bytes.
+
+1. **Create a sink file** in `pkg/render/tower/sink/<format>.go`:
+
+```go
+package sink
+
+import "github.com/matzehuels/stacktower/pkg/render/tower/layout"
+
+type MyFormatOption func(*myFormatRenderer)
+
+type myFormatRenderer struct {
+    // Configuration fields
+}
+
+func WithMyFormatOption(val string) MyFormatOption {
+    return func(r *myFormatRenderer) { r.option = val }
+}
+
+func RenderMyFormat(l layout.Layout, opts ...MyFormatOption) ([]byte, error) {
+    r := myFormatRenderer{}
+    for _, opt := range opts {
+        opt(&r)
+    }
+    
+    // Access layout data:
+    // - l.FrameWidth, l.FrameHeight: canvas dimensions
+    // - l.MarginX, l.MarginY: margins
+    // - l.Blocks: map[string]Block with position data
+    // - l.RowOrders: node ordering per row
+    
+    // Generate output bytes
+    return []byte("..."), nil
+}
+```
+
+2. **Register in CLI** in `internal/cli/render.go`:
+
+```go
+// Add to validFormats map
+var validFormats = map[string]bool{
+    "svg": true, "json": true, "pdf": true, "png": true,
+    "myformat": true,  // Add your format
+}
+
+// Add case in renderTower()
+switch format {
+case "myformat":
+    logger.Info("Rendering tower as MyFormat")
+    return sink.RenderMyFormat(l, buildMyFormatOpts(g, opts)...)
+// ...
+}
+```
+
+The existing sinks provide examples:
+- **`svg.go`**: Full-featured SVG with styles, interactivity, and popups
+- **`json.go`**: Layout data export for external tools (round-trip capable)
+- **`pdf.go`**: Wrapper that converts SVG via `rsvg-convert`
+- **`png.go`**: Wrapper that converts SVG via `rsvg-convert` with scaling
+
+The JSON format is designed as a complete serialization—it includes all render options (`style`, `seed`, `randomize`, `merged`) and node flags (`auxiliary`, `synthetic`) needed to reproduce the exact visual output.
 
 ## Development
 

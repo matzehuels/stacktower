@@ -25,7 +25,6 @@ type PopupData struct {
 	Stars       int
 	LastCommit  string
 	LastRelease string
-	Maintainers int
 	Archived    bool
 	Brittle     bool
 }

@@ -2,6 +2,7 @@ package cli
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"path/filepath"
 	"strings"
@@ -12,9 +13,11 @@ import (
 	dagtransform "github.com/matzehuels/stacktower/pkg/dag/transform"
 	"github.com/matzehuels/stacktower/pkg/io"
 	"github.com/matzehuels/stacktower/pkg/render/nodelink"
-	"github.com/matzehuels/stacktower/pkg/render/tower"
+	"github.com/matzehuels/stacktower/pkg/render/tower/feature"
+	"github.com/matzehuels/stacktower/pkg/render/tower/layout"
+	"github.com/matzehuels/stacktower/pkg/render/tower/sink"
 	"github.com/matzehuels/stacktower/pkg/render/tower/styles/handdrawn"
-	layouttransform "github.com/matzehuels/stacktower/pkg/render/tower/transform"
+	"github.com/matzehuels/stacktower/pkg/render/tower/transform"
 )
 
 const (
@@ -28,6 +31,7 @@ const (
 type renderOpts struct {
 	output       string
 	vizTypes     []string
+	formats      []string
 	detailed     bool
 	normalize    bool
 	width        float64
@@ -41,11 +45,10 @@ type renderOpts struct {
 	nebraska     bool
 	popups       bool
 	topDown      bool
-	format       string
 }
 
 func newRenderCmd() *cobra.Command {
-	var vizTypesStr string
+	var vizTypesStr, formatsStr string
 	opts := renderOpts{
 		normalize: true,
 		width:     defaultWidth,
@@ -62,15 +65,20 @@ func newRenderCmd() *cobra.Command {
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			opts.vizTypes = parseVizTypes(vizTypesStr)
+			opts.formats = parseFormats(formatsStr)
 			if err := validateStyle(opts.style); err != nil {
+				return err
+			}
+			if err := validateFormats(opts.formats); err != nil {
 				return err
 			}
 			return runRender(cmd.Context(), args[0], &opts)
 		},
 	}
 
-	cmd.Flags().StringVarP(&opts.output, "output", "o", "", "output file (single type) or base path (multiple types)")
-	cmd.Flags().StringVarP(&vizTypesStr, "type", "t", "", "visualization type: tower (default), nodelink")
+	cmd.Flags().StringVarP(&opts.output, "output", "o", "", "output file (single type/format) or base path (multiple)")
+	cmd.Flags().StringVarP(&vizTypesStr, "type", "t", "", "visualization type(s): tower (default), nodelink (comma-separated)")
+	cmd.Flags().StringVarP(&formatsStr, "format", "f", "", "output format(s): svg (default), json, pdf, png (comma-separated)")
 	cmd.Flags().BoolVar(&opts.detailed, "detailed", false, "show detailed information (nodelink)")
 	cmd.Flags().BoolVar(&opts.normalize, "normalize", opts.normalize, "apply normalization pipeline")
 	cmd.Flags().Float64Var(&opts.width, "width", opts.width, "frame width")
@@ -84,7 +92,6 @@ func newRenderCmd() *cobra.Command {
 	cmd.Flags().BoolVar(&opts.nebraska, "nebraska", false, "show Nebraska guy maintainer ranking")
 	cmd.Flags().BoolVar(&opts.popups, "popups", opts.popups, "show hover popups with metadata")
 	cmd.Flags().BoolVar(&opts.topDown, "top-down", false, "use top-down width flow (roots get equal width)")
-	cmd.Flags().StringVar(&opts.format, "format", "svg", "output format: svg (default), json")
 
 	return cmd
 }
@@ -96,11 +103,41 @@ func parseVizTypes(s string) []string {
 	return strings.Split(s, ",")
 }
 
+func parseFormats(s string) []string {
+	if s == "" {
+		return []string{"svg"}
+	}
+	return strings.Split(s, ",")
+}
+
+var validFormats = map[string]bool{"svg": true, "json": true, "pdf": true, "png": true}
+
+func validateFormats(formats []string) error {
+	for _, f := range formats {
+		if !validFormats[f] {
+			return fmt.Errorf("invalid format: %s (must be 'svg', 'json', 'pdf', or 'png')", f)
+		}
+	}
+	return nil
+}
+
 func validateStyle(s string) error {
 	if s != styleSimple && s != styleHanddrawn {
 		return fmt.Errorf("invalid style: %s (must be 'simple' or 'handdrawn')", s)
 	}
 	return nil
+}
+
+func basePath(output, input string) string {
+	if output == "" {
+		return strings.TrimSuffix(input, filepath.Ext(input))
+	}
+	// Strip known format extensions from output path
+	ext := filepath.Ext(output)
+	if validFormats[strings.TrimPrefix(ext, ".")] {
+		return strings.TrimSuffix(output, ext)
+	}
+	return output
 }
 
 func runRender(ctx context.Context, input string, opts *renderOpts) error {
@@ -119,67 +156,81 @@ func runRender(ctx context.Context, input string, opts *renderOpts) error {
 		logger.Infof("Normalized: %d nodes (%+d), %d edges", g.NodeCount(), g.NodeCount()-before, g.EdgeCount())
 	}
 
-	if len(opts.vizTypes) == 1 {
-		return renderSingle(ctx, g, opts.vizTypes[0], opts)
+	if len(opts.vizTypes) == 1 && len(opts.formats) == 1 {
+		return renderSingle(ctx, g, opts.vizTypes[0], opts.formats[0], input, opts)
 	}
 	return renderMultiple(ctx, g, input, opts)
 }
 
-func renderSingle(ctx context.Context, g *dag.DAG, vizType string, opts *renderOpts) error {
+func renderSingle(ctx context.Context, g *dag.DAG, vizType, format string, input string, opts *renderOpts) error {
 	logger := loggerFromContext(ctx)
 
-	svg, err := renderGraph(ctx, g, vizType, opts)
+	data, err := renderGraph(ctx, g, vizType, format, opts)
 	if err != nil {
 		return err
 	}
-	logger.Debugf("Generated SVG: %d bytes", len(svg))
+	logger.Debugf("Generated %s: %d bytes", format, len(data))
 
-	out, err := openOutput(opts.output)
+	// Determine output path: use provided output or derive from input
+	outputPath := opts.output
+	if outputPath == "" {
+		outputPath = basePath("", input) + "." + format
+	}
+
+	out, err := openOutput(outputPath)
 	if err != nil {
 		return err
 	}
 	defer out.Close()
 
-	if _, err = out.Write(svg); err != nil {
+	if _, err = out.Write(data); err != nil {
 		return err
 	}
 
-	if opts.output != "" {
-		logger.Infof("Generated %s", opts.output)
-	}
+	logger.Infof("Generated %s", outputPath)
 	return nil
 }
 
 func renderMultiple(ctx context.Context, g *dag.DAG, input string, opts *renderOpts) error {
-	basePath := opts.output
-	if basePath == "" {
-		basePath = strings.TrimSuffix(input, filepath.Ext(input))
-	}
+	base := basePath(opts.output, input)
 
 	for _, vizType := range opts.vizTypes {
-		if err := renderAndWrite(ctx, g, vizType, basePath, opts); err != nil {
-			return err
+		for _, format := range opts.formats {
+			if err := renderAndWrite(ctx, g, vizType, format, base, opts); err != nil {
+				return err
+			}
 		}
 	}
 	return nil
 }
 
-func renderAndWrite(ctx context.Context, g *dag.DAG, vizType, basePath string, opts *renderOpts) error {
+func renderAndWrite(ctx context.Context, g *dag.DAG, vizType, format, basePath string, opts *renderOpts) error {
 	logger := loggerFromContext(ctx)
 
-	svg, err := renderGraph(ctx, g, vizType, opts)
+	data, err := renderGraph(ctx, g, vizType, format, opts)
+	if errors.Is(err, errSkipFormat) {
+		logger.Debugf("Skipping %s/%s (unsupported combination)", vizType, format)
+		return nil
+	}
 	if err != nil {
-		return fmt.Errorf("%s: %w", vizType, err)
+		return fmt.Errorf("%s/%s: %w", vizType, format, err)
 	}
 
-	path := fmt.Sprintf("%s_%s.svg", basePath, vizType)
+	// Build filename: base_type.format (or base.format if single type)
+	var path string
+	if len(opts.vizTypes) == 1 {
+		path = fmt.Sprintf("%s.%s", basePath, format)
+	} else {
+		path = fmt.Sprintf("%s_%s.%s", basePath, vizType, format)
+	}
+
 	out, err := openOutput(path)
 	if err != nil {
 		return err
 	}
 	defer out.Close()
 
-	if _, err := out.Write(svg); err != nil {
+	if _, err := out.Write(data); err != nil {
 		return err
 	}
 
@@ -187,12 +238,17 @@ func renderAndWrite(ctx context.Context, g *dag.DAG, vizType, basePath string, o
 	return nil
 }
 
-func renderGraph(ctx context.Context, g *dag.DAG, vizType string, opts *renderOpts) ([]byte, error) {
+var errSkipFormat = fmt.Errorf("skip unsupported format")
+
+func renderGraph(ctx context.Context, g *dag.DAG, vizType, format string, opts *renderOpts) ([]byte, error) {
 	switch vizType {
 	case "nodelink":
+		if format != "svg" {
+			return nil, errSkipFormat
+		}
 		return renderNodeLink(ctx, g, opts)
 	case "tower":
-		return renderTower(ctx, g, opts)
+		return renderTower(ctx, g, format, opts)
 	default:
 		return nil, fmt.Errorf("unknown visualization type: %s", vizType)
 	}
@@ -204,7 +260,7 @@ func renderNodeLink(ctx context.Context, g *dag.DAG, opts *renderOpts) ([]byte, 
 	return nodelink.RenderSVG(dot)
 }
 
-func renderTower(ctx context.Context, g *dag.DAG, opts *renderOpts) ([]byte, error) {
+func renderTower(ctx context.Context, g *dag.DAG, format string, opts *renderOpts) ([]byte, error) {
 	logger := loggerFromContext(ctx)
 
 	algo := opts.ordering
@@ -218,67 +274,90 @@ func renderTower(ctx context.Context, g *dag.DAG, opts *renderOpts) ([]byte, err
 		return nil, err
 	}
 
-	layout := tower.Build(g, opts.width, opts.height, layoutOpts...)
-	logger.Debugf("Layout computed: %d blocks", len(layout.Blocks))
+	l := layout.Build(g, opts.width, opts.height, layoutOpts...)
+	logger.Debugf("Layout computed: %d blocks", len(l.Blocks))
 
 	if opts.merge {
-		before := len(layout.Blocks)
-		layout = layouttransform.MergeSubdividers(layout, g)
-		logger.Debugf("Merged subdividers: %d → %d blocks", before, len(layout.Blocks))
+		before := len(l.Blocks)
+		l = transform.MergeSubdividers(l, g)
+		logger.Debugf("Merged subdividers: %d → %d blocks", before, len(l.Blocks))
 	}
 	if opts.randomize {
-		layout = layouttransform.Randomize(layout, g, defaultSeed, nil)
+		l = transform.Randomize(l, g, defaultSeed, nil)
 	}
 
-	switch opts.format {
+	switch format {
 	case "json":
 		logger.Info("Rendering tower layout as JSON")
-		return tower.RenderJSON(layout)
-	case "svg", "":
+		return sink.RenderJSON(l, buildJSONOpts(g, opts)...)
+	case "pdf":
+		logger.Info("Rendering tower PDF")
+		return sink.RenderPDF(l, sink.WithPDFSVGOptions(buildRenderOpts(g, opts)...))
+	case "png":
+		logger.Info("Rendering tower PNG")
+		return sink.RenderPNG(l, sink.WithPNGSVGOptions(buildRenderOpts(g, opts)...))
+	case "svg":
 		logger.Infof("Rendering tower SVG (%s style)", opts.style)
-		return tower.RenderSVG(layout, buildRenderOpts(g, opts)...), nil
+		return sink.RenderSVG(l, buildRenderOpts(g, opts)...), nil
 	default:
-		return nil, fmt.Errorf("unknown format: %s (must be 'svg' or 'json')", opts.format)
+		return nil, fmt.Errorf("unknown format: %s", format)
 	}
 }
 
-func buildLayoutOpts(ctx context.Context, opts *renderOpts) ([]tower.Option, error) {
+func buildLayoutOpts(ctx context.Context, opts *renderOpts) ([]layout.Option, error) {
 	logger := loggerFromContext(ctx)
-	var layoutOpts []tower.Option
+	var layoutOpts []layout.Option
 
 	switch opts.ordering {
 	case "barycentric":
 		// default barycentric, no option needed
 	case "optimal", "":
 		logger.Debugf("Using optimal search with %ds timeout", opts.orderTimeout)
-		layoutOpts = append(layoutOpts, tower.WithOrderer(newOptimalOrderer(ctx, opts.orderTimeout)))
+		layoutOpts = append(layoutOpts, layout.WithOrderer(newOptimalOrderer(ctx, opts.orderTimeout)))
 	default:
 		return nil, fmt.Errorf("unknown ordering: %s", opts.ordering)
 	}
 
 	if opts.topDown {
 		logger.Debug("Using top-down width flow")
-		layoutOpts = append(layoutOpts, tower.WithTopDownWidths())
+		layoutOpts = append(layoutOpts, layout.WithTopDownWidths())
 	}
 	return layoutOpts, nil
 }
 
-func buildRenderOpts(g *dag.DAG, opts *renderOpts) []tower.RenderOption {
-	result := []tower.RenderOption{tower.WithGraph(g)}
+func buildRenderOpts(g *dag.DAG, opts *renderOpts) []sink.SVGOption {
+	result := []sink.SVGOption{sink.WithGraph(g)}
 	if opts.showEdges {
-		result = append(result, tower.WithEdges())
+		result = append(result, sink.WithEdges())
 	}
 	if opts.merge {
-		result = append(result, tower.WithMerged())
+		result = append(result, sink.WithMerged())
 	}
 	if opts.style == styleHanddrawn {
-		result = append(result, tower.WithStyle(handdrawn.New(defaultSeed)))
+		result = append(result, sink.WithStyle(handdrawn.New(defaultSeed)))
 		if opts.nebraska {
-			result = append(result, tower.WithNebraska(tower.RankNebraska(g, 5)))
+			result = append(result, sink.WithNebraska(feature.RankNebraska(g, 5)))
 		}
 		if opts.popups {
-			result = append(result, tower.WithPopups())
+			result = append(result, sink.WithPopups())
 		}
+	}
+	return result
+}
+
+func buildJSONOpts(g *dag.DAG, opts *renderOpts) []sink.JSONOption {
+	result := []sink.JSONOption{sink.WithJSONGraph(g)}
+	if opts.merge {
+		result = append(result, sink.WithJSONMerged())
+	}
+	if opts.randomize {
+		result = append(result, sink.WithJSONRandomize(defaultSeed))
+	}
+	if opts.style != "" {
+		result = append(result, sink.WithJSONStyle(opts.style))
+	}
+	if opts.nebraska {
+		result = append(result, sink.WithJSONNebraska(feature.RankNebraska(g, 5)))
 	}
 	return result
 }
