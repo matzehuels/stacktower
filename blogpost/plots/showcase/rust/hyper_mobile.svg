@@ -8,39 +8,39 @@
 " x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>
     </pattern>
   </defs>
-  <a href="https://github.com/tokio-rs/bytes" target="_blank"><path id="block-bytes" class="block" d="M 78.14 686.12 Q 77.77 652.23 105.18 654.32 Q 132.59 656.40 160.00 654.43 Q 187.41 652.46 214.82 652.23 Q 242.23 652.00 244.21 686.00 Q 246.19 720.00 246.08 753.75 Q 245.98 787.50 245.59 821.25 Q 245.20 855.00 216.31 856.33 Q 187.41 857.67 160.00 856.50 Q 132.59 855.33 105.18 854.22 Q 77.77 853.11 77.72 820.30 Q 77.67 787.50 78.09 753.75 Q 78.51 720.00 78.14 686.12 Z" fill="rgba(240,240,240,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.873 160.00 753.75)"/></a>
-  <a href="https://github.com/hyperium/http" target="_blank"><path id="block-http" class="block" d="M 45.35 485.42 Q 45.00 453.35 78.57 450.97 Q 112.14 448.59 145.71 448.74 Q 179.29 448.90 212.86 450.83 Q 246.43 452.76 280.00 450.58 Q 313.57 448.39 347.14 449.34 Q 380.71 450.28 414.29 448.49 Q 447.86 446.70 481.43 448.13 Q 515.00 449.56 514.39 483.53 Q 513.78 517.50 514.85 551.25 Q 515.92 585.00 517.21 618.75 Q 518.49 652.50 483.17 654.30 Q 447.86 656.10 414.29 655.80 Q 380.71 655.51 347.14 652.62 Q 313.57 649.73 280.00 652.71 Q 246.43 655.70 212.86 654.30 Q 179.29 652.89 145.71 653.32 Q 112.14 653.75 78.57 652.64 Q 45.00 651.53 44.11 618.26 Q 43.23 585.00 44.46 551.25 Q 45.70 517.50 45.35 485.42 Z" fill="rgba(203,203,203,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.164 280.00 551.25)"/></a>
-  <a href="https://github.com/hyperium/http-body" target="_blank"><path id="block-http-body" class="block" d="M 97.58 279.48 Q 98.39 243.96 134.72 245.77 Q 171.04 247.59 207.36 247.25 Q 243.68 246.90 280.00 248.09 Q 316.32 249.27 352.64 249.80 Q 388.96 250.32 425.28 247.97 Q 461.61 245.62 461.67 280.31 Q 461.73 315.00 460.70 348.75 Q 459.67 382.50 460.37 416.25 Q 461.08 450.00 425.02 451.19 Q 388.96 452.38 352.64 452.54 Q 316.32 452.71 280.00 451.24 Q 243.68 449.78 207.36 451.40 Q 171.04 453.03 134.72 449.94 Q 98.39 446.86 96.60 414.68 Q 94.80 382.50 95.78 348.75 Q 96.76 315.00 97.58 279.48 Z" fill="rgba(190,190,190,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.148 280.00 348.75)"/></a>
-  <a href="https://github.com/hyperium/hyper" target="_blank"><path id="block-hyper" class="block" d="M 38.47 78.82 Q 40.00 45.14 76.00 44.82 Q 112.00 44.49 148.00 44.08 Q 184.00 43.67 220.00 43.77 Q 256.00 43.88 292.00 44.42 Q 328.00 44.96 364.00 43.24 Q 400.00 41.51 436.00 44.10 Q 472.00 46.70 508.00 46.19 Q 544.00 45.68 580.00 46.33 Q 616.00 46.98 652.00 46.49 Q 688.00 45.99 724.00 46.21 Q 760.00 46.43 758.33 79.46 Q 756.66 112.50 758.64 146.25 Q 760.62 180.00 760.19 213.75 Q 759.76 247.50 723.88 247.21 Q 688.00 246.92 652.00 247.21 Q 616.00 247.51 580.00 248.73 Q 544.00 249.94 508.00 247.93 Q 472.00 245.91 436.00 246.54 Q 400.00 247.17 364.00 247.98 Q 328.00 248.78 292.00 249.87 Q 256.00 250.96 220.00 247.90 Q 184.00 244.84 148.00 247.56 Q 112.00 250.29 76.00 249.25 Q 40.00 248.22 39.60 214.11 Q 39.21 180.00 38.07 146.25 Q 36.93 112.50 38.47 78.82 Z" fill="rgba(163,163,163,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.474 400.00 146.25)"/></a>
-  <a href="https://github.com/dtolnay/itoa" target="_blank"><path id="block-itoa" class="block" d="M 336.09 685.91 Q 334.82 651.82 356.55 653.72 Q 378.27 655.62 400.00 655.44 Q 421.73 655.25 443.45 653.83 Q 465.18 652.40 464.56 686.20 Q 463.94 720.00 463.79 753.75 Q 463.65 787.50 466.13 821.25 Q 468.62 855.00 445.17 854.55 Q 421.73 854.09 400.00 855.99 Q 378.27 857.88 356.55 858.18 Q 334.82 858.47 332.88 822.99 Q 330.93 787.50 334.14 753.75 Q 337.35 720.00 336.09 685.91 Z" fill="rgba(230,230,230,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.251 400.00 753.75)"/></a>
-  <a href="https://github.com/taiki-e/pin-project-lite" target="_blank"><path id="block-pin-project-lite" class="block" d="M 525.48 483.71 Q 525.00 449.92 563.33 449.72 Q 601.67 449.53 640.00 451.68 Q 678.33 453.83 716.67 450.09 Q 755.00 446.35 753.47 481.93 Q 751.94 517.50 755.31 551.25 Q 758.69 585.00 756.18 618.75 Q 753.68 652.50 754.03 686.25 Q 754.37 720.00 755.58 753.75 Q 756.78 787.50 754.96 821.25 Q 753.14 855.00 715.74 853.26 Q 678.33 851.52 640.00 854.42 Q 601.67 857.33 563.33 857.05 Q 525.00 856.76 523.89 822.13 Q 522.79 787.50 524.02 753.75 Q 525.25 720.00 523.22 686.25 Q 521.19 652.50 524.35 618.75 Q 527.51 585.00 526.74 551.25 Q 525.96 517.50 525.48 483.71 Z" fill="rgba(175,175,175,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.630 640.00 652.50)"/></a>
-  <a href="https://github.com/tokio-rs/tokio" target="_blank"><path id="block-tokio" class="block" d="M 546.63 282.38 Q 548.39 249.76 578.93 249.37 Q 609.46 248.97 640.00 247.82 Q 670.54 246.68 701.07 245.29 Q 731.61 243.89 729.92 279.45 Q 728.24 315.00 731.53 348.75 Q 734.82 382.50 731.40 416.25 Q 727.97 450.00 699.25 450.80 Q 670.54 451.61 640.00 452.08 Q 609.46 452.56 578.93 453.03 Q 548.39 453.51 548.31 418.00 Q 548.23 382.50 546.55 348.75 Q 544.87 315.00 546.63 282.38 Z" fill="rgba(199,199,199,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-1.674 640.00 348.75)"/></a>
+  <a href="https://github.com/tokio-rs/bytes" target="_blank"><path id="block-bytes" class="block" d="M 78.14 686.12 Q 77.77 652.23 105.18 654.32 Q 132.59 656.40 160.00 654.43 Q 187.41 652.46 214.82 652.23 Q 242.23 652.00 244.21 686.00 Q 246.19 720.00 246.08 753.75 Q 245.98 787.50 245.59 821.25 Q 245.20 855.00 216.31 856.33 Q 187.41 857.67 160.00 856.50 Q 132.59 855.33 105.18 854.22 Q 77.77 853.11 77.72 820.30 Q 77.67 787.50 78.09 753.75 Q 78.51 720.00 78.14 686.12 Z" fill="#f0f0f0" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.873 160.00 753.75)"/></a>
+  <a href="https://github.com/hyperium/http" target="_blank"><path id="block-http" class="block" d="M 45.35 485.42 Q 45.00 453.35 78.57 450.97 Q 112.14 448.59 145.71 448.74 Q 179.29 448.90 212.86 450.83 Q 246.43 452.76 280.00 450.58 Q 313.57 448.39 347.14 449.34 Q 380.71 450.28 414.29 448.49 Q 447.86 446.70 481.43 448.13 Q 515.00 449.56 514.39 483.53 Q 513.78 517.50 514.85 551.25 Q 515.92 585.00 517.21 618.75 Q 518.49 652.50 483.17 654.30 Q 447.86 656.10 414.29 655.80 Q 380.71 655.51 347.14 652.62 Q 313.57 649.73 280.00 652.71 Q 246.43 655.70 212.86 654.30 Q 179.29 652.89 145.71 653.32 Q 112.14 653.75 78.57 652.64 Q 45.00 651.53 44.11 618.26 Q 43.23 585.00 44.46 551.25 Q 45.70 517.50 45.35 485.42 Z" fill="#cbcbcb" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.164 280.00 551.25)"/></a>
+  <a href="https://github.com/hyperium/http-body" target="_blank"><path id="block-http-body" class="block" d="M 97.58 279.48 Q 98.39 243.96 134.72 245.77 Q 171.04 247.59 207.36 247.25 Q 243.68 246.90 280.00 248.09 Q 316.32 249.27 352.64 249.80 Q 388.96 250.32 425.28 247.97 Q 461.61 245.62 461.67 280.31 Q 461.73 315.00 460.70 348.75 Q 459.67 382.50 460.37 416.25 Q 461.08 450.00 425.02 451.19 Q 388.96 452.38 352.64 452.54 Q 316.32 452.71 280.00 451.24 Q 243.68 449.78 207.36 451.40 Q 171.04 453.03 134.72 449.94 Q 98.39 446.86 96.60 414.68 Q 94.80 382.50 95.78 348.75 Q 96.76 315.00 97.58 279.48 Z" fill="#bebebe" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.148 280.00 348.75)"/></a>
+  <a href="https://github.com/hyperium/hyper" target="_blank"><path id="block-hyper" class="block" d="M 38.47 78.82 Q 40.00 45.14 76.00 44.82 Q 112.00 44.49 148.00 44.08 Q 184.00 43.67 220.00 43.77 Q 256.00 43.88 292.00 44.42 Q 328.00 44.96 364.00 43.24 Q 400.00 41.51 436.00 44.10 Q 472.00 46.70 508.00 46.19 Q 544.00 45.68 580.00 46.33 Q 616.00 46.98 652.00 46.49 Q 688.00 45.99 724.00 46.21 Q 760.00 46.43 758.33 79.46 Q 756.66 112.50 758.64 146.25 Q 760.62 180.00 760.19 213.75 Q 759.76 247.50 723.88 247.21 Q 688.00 246.92 652.00 247.21 Q 616.00 247.51 580.00 248.73 Q 544.00 249.94 508.00 247.93 Q 472.00 245.91 436.00 246.54 Q 400.00 247.17 364.00 247.98 Q 328.00 248.78 292.00 249.87 Q 256.00 250.96 220.00 247.90 Q 184.00 244.84 148.00 247.56 Q 112.00 250.29 76.00 249.25 Q 40.00 248.22 39.60 214.11 Q 39.21 180.00 38.07 146.25 Q 36.93 112.50 38.47 78.82 Z" fill="#a3a3a3" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.474 400.00 146.25)"/></a>
+  <a href="https://github.com/dtolnay/itoa" target="_blank"><path id="block-itoa" class="block" d="M 336.09 685.91 Q 334.82 651.82 356.55 653.72 Q 378.27 655.62 400.00 655.44 Q 421.73 655.25 443.45 653.83 Q 465.18 652.40 464.56 686.20 Q 463.94 720.00 463.79 753.75 Q 463.65 787.50 466.13 821.25 Q 468.62 855.00 445.17 854.55 Q 421.73 854.09 400.00 855.99 Q 378.27 857.88 356.55 858.18 Q 334.82 858.47 332.88 822.99 Q 330.93 787.50 334.14 753.75 Q 337.35 720.00 336.09 685.91 Z" fill="#e6e6e6" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.251 400.00 753.75)"/></a>
+  <a href="https://github.com/taiki-e/pin-project-lite" target="_blank"><path id="block-pin-project-lite" class="block" d="M 525.48 483.71 Q 525.00 449.92 563.33 449.72 Q 601.67 449.53 640.00 451.68 Q 678.33 453.83 716.67 450.09 Q 755.00 446.35 753.47 481.93 Q 751.94 517.50 755.31 551.25 Q 758.69 585.00 756.18 618.75 Q 753.68 652.50 754.03 686.25 Q 754.37 720.00 755.58 753.75 Q 756.78 787.50 754.96 821.25 Q 753.14 855.00 715.74 853.26 Q 678.33 851.52 640.00 854.42 Q 601.67 857.33 563.33 857.05 Q 525.00 856.76 523.89 822.13 Q 522.79 787.50 524.02 753.75 Q 525.25 720.00 523.22 686.25 Q 521.19 652.50 524.35 618.75 Q 527.51 585.00 526.74 551.25 Q 525.96 517.50 525.48 483.71 Z" fill="#afafaf" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.630 640.00 652.50)"/></a>
+  <a href="https://github.com/tokio-rs/tokio" target="_blank"><path id="block-tokio" class="block" d="M 546.63 282.38 Q 548.39 249.76 578.93 249.37 Q 609.46 248.97 640.00 247.82 Q 670.54 246.68 701.07 245.29 Q 731.61 243.89 729.92 279.45 Q 728.24 315.00 731.53 348.75 Q 734.82 382.50 731.40 416.25 Q 727.97 450.00 699.25 450.80 Q 670.54 451.61 640.00 452.08 Q 609.46 452.56 578.93 453.03 Q 548.39 453.51 548.31 418.00 Q 548.23 382.50 546.55 348.75 Q 544.87 315.00 546.63 282.38 Z" fill="#c7c7c7" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-1.674 640.00 348.75)"/></a>
   <g class="block-text" data-block="bytes">
-  <a href="https://github.com/tokio-rs/bytes" target="_blank">    <rect x="133.00" y="741.75" width="54.00" height="24.00" fill="rgba(240,240,240,1)"/>
+  <a href="https://github.com/tokio-rs/bytes" target="_blank">    <rect x="133.00" y="741.75" width="54.00" height="24.00" fill="#f0f0f0"/>
     <text x="160.00" y="753.75" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">bytes</text>
 </a>  </g>
   <g class="block-text" data-block="http">
-  <a href="https://github.com/hyperium/http" target="_blank">    <rect x="258.40" y="539.25" width="43.20" height="24.00" fill="rgba(203,203,203,1)"/>
+  <a href="https://github.com/hyperium/http" target="_blank">    <rect x="258.40" y="539.25" width="43.20" height="24.00" fill="#cbcbcb"/>
     <text x="280.00" y="551.25" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">http</text>
 </a>  </g>
   <g class="block-text" data-block="http-body">
-  <a href="https://github.com/hyperium/http-body" target="_blank">    <rect x="231.40" y="336.75" width="97.20" height="24.00" fill="rgba(190,190,190,1)"/>
+  <a href="https://github.com/hyperium/http-body" target="_blank">    <rect x="231.40" y="336.75" width="97.20" height="24.00" fill="#bebebe"/>
     <text x="280.00" y="348.75" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">http-body</text>
 </a>  </g>
   <g class="block-text" data-block="hyper">
-  <a href="https://github.com/hyperium/hyper" target="_blank">    <rect x="373.00" y="134.25" width="54.00" height="24.00" fill="rgba(163,163,163,1)"/>
+  <a href="https://github.com/hyperium/hyper" target="_blank">    <rect x="373.00" y="134.25" width="54.00" height="24.00" fill="#a3a3a3"/>
     <text x="400.00" y="146.25" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">hyper</text>
 </a>  </g>
   <g class="block-text" data-block="itoa">
-  <a href="https://github.com/dtolnay/itoa" target="_blank">    <rect x="378.40" y="741.75" width="43.20" height="24.00" fill="rgba(230,230,230,1)"/>
+  <a href="https://github.com/dtolnay/itoa" target="_blank">    <rect x="378.40" y="741.75" width="43.20" height="24.00" fill="#e6e6e6"/>
     <text x="400.00" y="753.75" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">itoa</text>
 </a>  </g>
   <g class="block-text" data-block="pin-project-lite">
-  <a href="https://github.com/taiki-e/pin-project-lite" target="_blank">    <rect x="628.00" y="566.10" width="24.00" height="172.80" fill="rgba(175,175,175,1)"/>
+  <a href="https://github.com/taiki-e/pin-project-lite" target="_blank">    <rect x="628.00" y="566.10" width="24.00" height="172.80" fill="#afafaf"/>
     <text x="640.00" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 640.00 652.50)">pin-project-lite</text>
 </a>  </g>
   <g class="block-text" data-block="tokio">
-  <a href="https://github.com/tokio-rs/tokio" target="_blank">    <rect x="613.00" y="336.75" width="54.00" height="24.00" fill="rgba(199,199,199,1)"/>
+  <a href="https://github.com/tokio-rs/tokio" target="_blank">    <rect x="613.00" y="336.75" width="54.00" height="24.00" fill="#c7c7c7"/>
     <text x="640.00" y="348.75" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">tokio</text>
 </a>  </g>
   <style>
@@ -65,82 +65,38 @@
   ]]></script>
   <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 272.0 980.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <foreignObject x="30.0" y="1004.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/taiki-e" target="_blank" class="maintainer-name" data-packages="pin-project-lite,bytes,tokio">#1 @taiki-e</a>
-      <div class="packages">
-        <span>pin-project-lite</span>
-        <span>bytes</span>
-        <span>tokio</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="400.0" y="1004.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/dtolnay" target="_blank" class="maintainer-name" data-packages="itoa">#2 @dtolnay</a>
-      <div class="packages">
-        <span>itoa</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="30.0" y="1144.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/carllerche" target="_blank" class="maintainer-name" data-packages="bytes,tokio,http">#3 @carllerche</a>
-      <div class="packages">
-        <span>bytes</span>
-        <span>tokio</span>
-        <span>http</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="400.0" y="1144.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/seanmonstar" target="_blank" class="maintainer-name" data-packages="http,http-body,bytes">#4 @seanmonstar</a>
-      <div class="packages">
-        <span>http</span>
-        <span>http-body</span>
-        <span>bytes</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="215.0" y="1284.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/glandium" target="_blank" class="maintainer-name" data-packages="itoa">#5 @glandium</a>
-      <div class="packages">
-        <span>itoa</span>
-      </div>
-    </div>
-  </foreignObject>
+  <a href="https://github.com/taiki-e" target="_blank" class="maintainer-link" data-packages="pin-project-lite,bytes,tokio">
+    <text x="215.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#1 @taiki-e</text>
+  </a>
+  <text class="package-entry" data-package="pin-project-lite" x="215.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">pin-project-lite</text>
+  <text class="package-entry" data-package="bytes" x="215.0" y="1067.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">bytes</text>
+  <text class="package-entry" data-package="tokio" x="215.0" y="1085.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">tokio</text>
+  <a href="https://github.com/dtolnay" target="_blank" class="maintainer-link" data-packages="itoa">
+    <text x="585.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#2 @dtolnay</text>
+  </a>
+  <text class="package-entry" data-package="itoa" x="585.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">itoa</text>
+  <a href="https://github.com/carllerche" target="_blank" class="maintainer-link" data-packages="bytes,tokio,http">
+    <text x="215.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#3 @carllerche</text>
+  </a>
+  <text class="package-entry" data-package="bytes" x="215.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">bytes</text>
+  <text class="package-entry" data-package="tokio" x="215.0" y="1207.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">tokio</text>
+  <text class="package-entry" data-package="http" x="215.0" y="1225.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">http</text>
+  <a href="https://github.com/seanmonstar" target="_blank" class="maintainer-link" data-packages="http,http-body,bytes">
+    <text x="585.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#4 @seanmonstar</text>
+  </a>
+  <text class="package-entry" data-package="http" x="585.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">http</text>
+  <text class="package-entry" data-package="http-body" x="585.0" y="1207.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">http-body</text>
+  <text class="package-entry" data-package="bytes" x="585.0" y="1225.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">bytes</text>
+  <a href="https://github.com/glandium" target="_blank" class="maintainer-link" data-packages="itoa">
+    <text x="400.0" y="1304.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#5 @glandium</text>
+  </a>
+  <text class="package-entry" data-package="itoa" x="400.0" y="1329.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">itoa</text>
   <style>
-    .nebraska-entry {
-      text-align: center;
-      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
-      overflow: hidden;
-      height: 100%;
-    }
-    .nebraska-entry .maintainer-name {
-      display: block;
-      font-size: 24px;
-      color: #333;
-      text-decoration: none;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-      margin-bottom: 8px;
-    }
-    .nebraska-entry .maintainer-name:hover { text-decoration: underline; }
-    .nebraska-entry .packages {
-      font-size: 16px;
-      color: #888;
-      line-height: 1.4;
-    }
-    .nebraska-entry .packages span {
-      display: block;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-    }
+    .maintainer-link text { cursor: pointer; }
+    .maintainer-link:hover text { text-decoration: underline; }
   </style>
   <script type="text/javascript"><![CDATA[
-    document.querySelectorAll('.maintainer-name').forEach(el => {
+    document.querySelectorAll('.maintainer-link').forEach(el => {
       el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
       el.addEventListener('mouseleave', clearHighlight);
     });

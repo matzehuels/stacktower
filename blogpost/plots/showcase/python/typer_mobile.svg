@@ -8,49 +8,49 @@
 " x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>
     </pattern>
   </defs>
-  <a href="https://github.com/pallets/click" target="_blank"><path id="block-click" class="block" d="M 61.58 282.62 Q 60.22 250.25 77.48 249.05 Q 94.74 247.85 112.00 249.46 Q 129.26 251.06 146.52 247.86 Q 163.78 244.66 164.95 279.83 Q 166.12 315.00 165.71 348.75 Q 165.30 382.50 164.53 416.25 Q 163.76 450.00 146.51 451.04 Q 129.26 452.08 112.00 452.75 Q 94.74 453.43 77.48 452.83 Q 60.22 452.24 59.42 417.37 Q 58.63 382.50 60.78 348.75 Q 62.93 315.00 61.58 282.62 Z" fill="rgba(215,215,215,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-1.570 112.00 348.75)"/></a>
-  <a href="https://github.com/tartley/colorama" target="_blank"><path id="block-colorama" class="block" d="M 44.29 482.93 Q 45.00 448.35 67.33 449.15 Q 89.67 449.94 112.00 449.39 Q 134.33 448.84 156.67 450.71 Q 179.00 452.58 180.81 485.04 Q 182.63 517.50 179.42 551.25 Q 176.22 585.00 177.52 618.75 Q 178.82 652.50 180.31 686.25 Q 181.80 720.00 181.29 753.75 Q 180.79 787.50 180.63 821.25 Q 180.46 855.00 157.40 855.86 Q 134.33 856.72 112.00 856.73 Q 89.67 856.74 67.33 857.62 Q 45.00 858.49 45.24 823.00 Q 45.48 787.50 44.20 753.75 Q 42.92 720.00 42.12 686.25 Q 41.32 652.50 44.98 618.75 Q 48.63 585.00 46.11 551.25 Q 43.58 517.50 44.29 482.93 Z" fill="rgba(185,185,185,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.368 112.00 652.50)"/></a>
-  <a href="https://github.com/executablebooks/markdown-it-py" target="_blank"><path id="block-markdown-it-py" class="block" d="M 190.00 484.60 Q 189.00 451.69 211.33 451.60 Q 233.67 451.50 256.00 452.63 Q 278.33 453.76 300.67 450.04 Q 323.00 446.32 322.49 481.91 Q 321.98 517.50 321.21 551.25 Q 320.44 585.00 320.17 618.75 Q 319.89 652.50 299.11 651.90 Q 278.33 651.30 256.00 653.71 Q 233.67 656.12 211.33 652.39 Q 189.00 648.66 187.63 616.83 Q 186.26 585.00 188.63 551.25 Q 191.00 517.50 190.00 484.60 Z" fill="rgba(192,192,192,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-1.372 256.00 551.25)"/></a>
-  <a href="https://github.com/executablebooks/mdurl" target="_blank"><path id="block-mdurl" class="block" d="M 239.62 686.20 Q 240.57 652.39 245.71 653.88 Q 250.86 655.37 256.00 653.60 Q 261.14 651.84 266.29 653.12 Q 271.43 654.40 269.62 687.20 Q 267.80 720.00 271.06 753.75 Q 274.31 787.50 270.95 821.25 Q 267.59 855.00 264.36 855.53 Q 261.14 856.07 256.00 854.11 Q 250.86 852.16 245.71 853.06 Q 240.57 853.96 238.82 820.73 Q 237.08 787.50 237.87 753.75 Q 238.66 720.00 239.62 686.20 Z" fill="rgba(171,171,171,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(1.015 256.00 753.75)"/></a>
-  <a href="https://github.com/pygments/pygments" target="_blank"><path id="block-pygments" class="block" d="M 333.25 484.47 Q 333.00 451.44 355.33 452.55 Q 377.67 453.66 400.00 449.87 Q 422.33 446.08 444.67 446.70 Q 467.00 447.31 466.34 482.41 Q 465.68 517.50 465.40 551.25 Q 465.13 585.00 468.02 618.75 Q 470.92 652.50 468.19 686.25 Q 465.46 720.00 467.34 753.75 Q 469.22 787.50 466.77 821.25 Q 464.31 855.00 443.32 856.63 Q 422.33 858.27 400.00 857.14 Q 377.67 856.01 355.33 856.38 Q 333.00 856.76 334.36 822.13 Q 335.71 787.50 335.14 753.75 Q 334.57 720.00 334.41 686.25 Q 334.25 652.50 335.52 618.75 Q 336.79 585.00 335.14 551.25 Q 333.50 517.50 333.25 484.47 Z" fill="rgba(226,226,226,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.209 400.00 652.50)"/></a>
-  <a href="https://github.com/Textualize/rich" target="_blank"><path id="block-rich" class="block" d="M 218.08 282.98 Q 217.27 250.97 254.18 250.40 Q 291.09 249.84 328.00 250.02 Q 364.91 250.19 401.82 247.08 Q 438.73 243.97 437.47 279.48 Q 436.21 315.00 439.41 348.75 Q 442.62 382.50 440.18 416.25 Q 437.73 450.00 401.32 448.36 Q 364.91 446.72 328.00 447.80 Q 291.09 448.89 254.18 451.40 Q 217.27 453.90 218.37 418.20 Q 219.46 382.50 219.17 348.75 Q 218.88 315.00 218.08 282.98 Z" fill="rgba(225,225,225,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.124 328.00 348.75)"/></a>
-  <a href="https://github.com/sarugaku/shellingham" target="_blank"><path id="block-shellingham" class="block" d="M 497.60 282.44 Q 496.09 249.88 512.06 250.67 Q 528.03 251.46 544.00 248.65 Q 559.97 245.83 575.94 245.10 Q 591.91 244.36 590.99 279.68 Q 590.07 315.00 591.82 348.75 Q 593.56 382.50 593.02 416.25 Q 592.47 450.00 592.84 483.75 Q 593.21 517.50 594.12 551.25 Q 595.03 585.00 594.18 618.75 Q 593.33 652.50 591.39 686.25 Q 589.46 720.00 591.94 753.75 Q 594.42 787.50 591.99 821.25 Q 589.57 855.00 574.77 856.58 Q 559.97 858.15 544.00 856.62 Q 528.03 855.08 512.06 856.52 Q 496.09 857.95 497.76 822.72 Q 499.44 787.50 496.93 753.75 Q 494.43 720.00 494.25 686.25 Q 494.07 652.50 495.58 618.75 Q 497.09 585.00 496.43 551.25 Q 495.77 517.50 496.17 483.75 Q 496.58 450.00 494.83 416.25 Q 493.09 382.50 496.10 348.75 Q 499.11 315.00 497.60 282.44 Z" fill="rgba(205,205,205,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.080 544.00 551.25)"/></a>
-  <a href="https://github.com/fastapi/typer" target="_blank"><path id="block-typer" class="block" d="M 39.85 77.84 Q 40.00 43.19 76.00 44.17 Q 112.00 45.15 148.00 46.49 Q 184.00 47.83 220.00 46.59 Q 256.00 45.35 292.00 46.70 Q 328.00 48.04 364.00 46.69 Q 400.00 45.35 436.00 45.01 Q 472.00 44.68 508.00 46.11 Q 544.00 47.54 580.00 47.33 Q 616.00 47.12 652.00 48.02 Q 688.00 48.92 724.00 46.15 Q 760.00 43.37 760.69 77.94 Q 761.38 112.50 760.08 146.25 Q 758.78 180.00 760.13 213.75 Q 761.49 247.50 724.75 247.87 Q 688.00 248.24 652.00 248.86 Q 616.00 249.49 580.00 246.77 Q 544.00 244.05 508.00 246.03 Q 472.00 248.00 436.00 248.76 Q 400.00 249.52 364.00 247.95 Q 328.00 246.39 292.00 248.33 Q 256.00 250.27 220.00 250.60 Q 184.00 250.92 148.00 248.30 Q 112.00 245.68 76.00 247.10 Q 40.00 248.53 39.80 214.26 Q 39.59 180.00 39.65 146.25 Q 39.71 112.50 39.85 77.84 Z" fill="rgba(181,181,181,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.161 400.00 146.25)"/></a>
-  <a href="https://github.com/python/typing_extensions" target="_blank"><path id="block-typing-extensions" class="block" d="M 651.00 280.91 Q 650.03 246.83 662.68 245.24 Q 675.34 243.66 688.00 243.86 Q 700.66 244.05 713.32 245.31 Q 725.97 246.57 724.83 280.79 Q 723.68 315.00 726.55 348.75 Q 729.42 382.50 726.74 416.25 Q 724.05 450.00 725.30 483.75 Q 726.55 517.50 727.04 551.25 Q 727.54 585.00 727.45 618.75 Q 727.36 652.50 728.41 686.25 Q 729.46 720.00 729.27 753.75 Q 729.08 787.50 729.30 821.25 Q 729.51 855.00 715.09 853.02 Q 700.66 851.03 688.00 851.29 Q 675.34 851.54 662.68 853.85 Q 650.03 856.15 649.41 821.82 Q 648.80 787.50 648.93 753.75 Q 649.07 720.00 650.77 686.25 Q 652.48 652.50 650.03 618.75 Q 647.59 585.00 649.43 551.25 Q 651.27 517.50 649.14 483.75 Q 647.01 450.00 647.20 416.25 Q 647.38 382.50 649.68 348.75 Q 651.97 315.00 651.00 280.91 Z" fill="rgba(227,227,227,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.037 688.00 551.25)"/></a>
+  <a href="https://github.com/pallets/click" target="_blank"><path id="block-click" class="block" d="M 61.58 282.62 Q 60.22 250.25 77.48 249.05 Q 94.74 247.85 112.00 249.46 Q 129.26 251.06 146.52 247.86 Q 163.78 244.66 164.95 279.83 Q 166.12 315.00 165.71 348.75 Q 165.30 382.50 164.53 416.25 Q 163.76 450.00 146.51 451.04 Q 129.26 452.08 112.00 452.75 Q 94.74 453.43 77.48 452.83 Q 60.22 452.24 59.42 417.37 Q 58.63 382.50 60.78 348.75 Q 62.93 315.00 61.58 282.62 Z" fill="#d7d7d7" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-1.570 112.00 348.75)"/></a>
+  <a href="https://github.com/tartley/colorama" target="_blank"><path id="block-colorama" class="block" d="M 44.29 482.93 Q 45.00 448.35 67.33 449.15 Q 89.67 449.94 112.00 449.39 Q 134.33 448.84 156.67 450.71 Q 179.00 452.58 180.81 485.04 Q 182.63 517.50 179.42 551.25 Q 176.22 585.00 177.52 618.75 Q 178.82 652.50 180.31 686.25 Q 181.80 720.00 181.29 753.75 Q 180.79 787.50 180.63 821.25 Q 180.46 855.00 157.40 855.86 Q 134.33 856.72 112.00 856.73 Q 89.67 856.74 67.33 857.62 Q 45.00 858.49 45.24 823.00 Q 45.48 787.50 44.20 753.75 Q 42.92 720.00 42.12 686.25 Q 41.32 652.50 44.98 618.75 Q 48.63 585.00 46.11 551.25 Q 43.58 517.50 44.29 482.93 Z" fill="#b9b9b9" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.368 112.00 652.50)"/></a>
+  <a href="https://github.com/executablebooks/markdown-it-py" target="_blank"><path id="block-markdown-it-py" class="block" d="M 190.00 484.60 Q 189.00 451.69 211.33 451.60 Q 233.67 451.50 256.00 452.63 Q 278.33 453.76 300.67 450.04 Q 323.00 446.32 322.49 481.91 Q 321.98 517.50 321.21 551.25 Q 320.44 585.00 320.17 618.75 Q 319.89 652.50 299.11 651.90 Q 278.33 651.30 256.00 653.71 Q 233.67 656.12 211.33 652.39 Q 189.00 648.66 187.63 616.83 Q 186.26 585.00 188.63 551.25 Q 191.00 517.50 190.00 484.60 Z" fill="#c0c0c0" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-1.372 256.00 551.25)"/></a>
+  <a href="https://github.com/executablebooks/mdurl" target="_blank"><path id="block-mdurl" class="block" d="M 239.62 686.20 Q 240.57 652.39 245.71 653.88 Q 250.86 655.37 256.00 653.60 Q 261.14 651.84 266.29 653.12 Q 271.43 654.40 269.62 687.20 Q 267.80 720.00 271.06 753.75 Q 274.31 787.50 270.95 821.25 Q 267.59 855.00 264.36 855.53 Q 261.14 856.07 256.00 854.11 Q 250.86 852.16 245.71 853.06 Q 240.57 853.96 238.82 820.73 Q 237.08 787.50 237.87 753.75 Q 238.66 720.00 239.62 686.20 Z" fill="#ababab" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(1.015 256.00 753.75)"/></a>
+  <a href="https://github.com/pygments/pygments" target="_blank"><path id="block-pygments" class="block" d="M 333.25 484.47 Q 333.00 451.44 355.33 452.55 Q 377.67 453.66 400.00 449.87 Q 422.33 446.08 444.67 446.70 Q 467.00 447.31 466.34 482.41 Q 465.68 517.50 465.40 551.25 Q 465.13 585.00 468.02 618.75 Q 470.92 652.50 468.19 686.25 Q 465.46 720.00 467.34 753.75 Q 469.22 787.50 466.77 821.25 Q 464.31 855.00 443.32 856.63 Q 422.33 858.27 400.00 857.14 Q 377.67 856.01 355.33 856.38 Q 333.00 856.76 334.36 822.13 Q 335.71 787.50 335.14 753.75 Q 334.57 720.00 334.41 686.25 Q 334.25 652.50 335.52 618.75 Q 336.79 585.00 335.14 551.25 Q 333.50 517.50 333.25 484.47 Z" fill="#e2e2e2" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.209 400.00 652.50)"/></a>
+  <a href="https://github.com/Textualize/rich" target="_blank"><path id="block-rich" class="block" d="M 218.08 282.98 Q 217.27 250.97 254.18 250.40 Q 291.09 249.84 328.00 250.02 Q 364.91 250.19 401.82 247.08 Q 438.73 243.97 437.47 279.48 Q 436.21 315.00 439.41 348.75 Q 442.62 382.50 440.18 416.25 Q 437.73 450.00 401.32 448.36 Q 364.91 446.72 328.00 447.80 Q 291.09 448.89 254.18 451.40 Q 217.27 453.90 218.37 418.20 Q 219.46 382.50 219.17 348.75 Q 218.88 315.00 218.08 282.98 Z" fill="#e1e1e1" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.124 328.00 348.75)"/></a>
+  <a href="https://github.com/sarugaku/shellingham" target="_blank"><path id="block-shellingham" class="block" d="M 497.60 282.44 Q 496.09 249.88 512.06 250.67 Q 528.03 251.46 544.00 248.65 Q 559.97 245.83 575.94 245.10 Q 591.91 244.36 590.99 279.68 Q 590.07 315.00 591.82 348.75 Q 593.56 382.50 593.02 416.25 Q 592.47 450.00 592.84 483.75 Q 593.21 517.50 594.12 551.25 Q 595.03 585.00 594.18 618.75 Q 593.33 652.50 591.39 686.25 Q 589.46 720.00 591.94 753.75 Q 594.42 787.50 591.99 821.25 Q 589.57 855.00 574.77 856.58 Q 559.97 858.15 544.00 856.62 Q 528.03 855.08 512.06 856.52 Q 496.09 857.95 497.76 822.72 Q 499.44 787.50 496.93 753.75 Q 494.43 720.00 494.25 686.25 Q 494.07 652.50 495.58 618.75 Q 497.09 585.00 496.43 551.25 Q 495.77 517.50 496.17 483.75 Q 496.58 450.00 494.83 416.25 Q 493.09 382.50 496.10 348.75 Q 499.11 315.00 497.60 282.44 Z" fill="#cdcdcd" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.080 544.00 551.25)"/></a>
+  <a href="https://github.com/fastapi/typer" target="_blank"><path id="block-typer" class="block" d="M 39.85 77.84 Q 40.00 43.19 76.00 44.17 Q 112.00 45.15 148.00 46.49 Q 184.00 47.83 220.00 46.59 Q 256.00 45.35 292.00 46.70 Q 328.00 48.04 364.00 46.69 Q 400.00 45.35 436.00 45.01 Q 472.00 44.68 508.00 46.11 Q 544.00 47.54 580.00 47.33 Q 616.00 47.12 652.00 48.02 Q 688.00 48.92 724.00 46.15 Q 760.00 43.37 760.69 77.94 Q 761.38 112.50 760.08 146.25 Q 758.78 180.00 760.13 213.75 Q 761.49 247.50 724.75 247.87 Q 688.00 248.24 652.00 248.86 Q 616.00 249.49 580.00 246.77 Q 544.00 244.05 508.00 246.03 Q 472.00 248.00 436.00 248.76 Q 400.00 249.52 364.00 247.95 Q 328.00 246.39 292.00 248.33 Q 256.00 250.27 220.00 250.60 Q 184.00 250.92 148.00 248.30 Q 112.00 245.68 76.00 247.10 Q 40.00 248.53 39.80 214.26 Q 39.59 180.00 39.65 146.25 Q 39.71 112.50 39.85 77.84 Z" fill="#b5b5b5" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.161 400.00 146.25)"/></a>
+  <a href="https://github.com/python/typing_extensions" target="_blank"><path id="block-typing-extensions" class="block" d="M 651.00 280.91 Q 650.03 246.83 662.68 245.24 Q 675.34 243.66 688.00 243.86 Q 700.66 244.05 713.32 245.31 Q 725.97 246.57 724.83 280.79 Q 723.68 315.00 726.55 348.75 Q 729.42 382.50 726.74 416.25 Q 724.05 450.00 725.30 483.75 Q 726.55 517.50 727.04 551.25 Q 727.54 585.00 727.45 618.75 Q 727.36 652.50 728.41 686.25 Q 729.46 720.00 729.27 753.75 Q 729.08 787.50 729.30 821.25 Q 729.51 855.00 715.09 853.02 Q 700.66 851.03 688.00 851.29 Q 675.34 851.54 662.68 853.85 Q 650.03 856.15 649.41 821.82 Q 648.80 787.50 648.93 753.75 Q 649.07 720.00 650.77 686.25 Q 652.48 652.50 650.03 618.75 Q 647.59 585.00 649.43 551.25 Q 651.27 517.50 649.14 483.75 Q 647.01 450.00 647.20 416.25 Q 647.38 382.50 649.68 348.75 Q 651.97 315.00 651.00 280.91 Z" fill="#e3e3e3" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.037 688.00 551.25)"/></a>
   <g class="block-text" data-block="click">
-  <a href="https://github.com/pallets/click" target="_blank">    <rect x="85.00" y="336.75" width="54.00" height="24.00" fill="rgba(215,215,215,1)"/>
+  <a href="https://github.com/pallets/click" target="_blank">    <rect x="85.00" y="336.75" width="54.00" height="24.00" fill="#d7d7d7"/>
     <text x="112.00" y="348.75" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">click</text>
 </a>  </g>
   <g class="block-text" data-block="colorama">
-  <a href="https://github.com/tartley/colorama" target="_blank">    <rect x="68.80" y="640.50" width="86.40" height="24.00" fill="rgba(185,185,185,1)"/>
+  <a href="https://github.com/tartley/colorama" target="_blank">    <rect x="68.80" y="640.50" width="86.40" height="24.00" fill="#b9b9b9"/>
     <text x="112.00" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">colorama</text>
 </a>  </g>
   <g class="block-text" data-block="markdown-it-py">
-  <a href="https://github.com/executablebooks/markdown-it-py" target="_blank">    <rect x="247.62" y="498.44" width="16.77" height="105.62" fill="rgba(192,192,192,1)"/>
+  <a href="https://github.com/executablebooks/markdown-it-py" target="_blank">    <rect x="247.62" y="498.44" width="16.77" height="105.62" fill="#c0c0c0"/>
     <text x="256.00" y="551.25" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16.8" fill="#333" transform="rotate(-90 256.00 551.25)">markdown-it-py</text>
 </a>  </g>
   <g class="block-text" data-block="mdurl">
-  <a href="https://github.com/executablebooks/mdurl" target="_blank">    <rect x="246.74" y="732.92" width="18.52" height="41.66" fill="rgba(171,171,171,1)"/>
+  <a href="https://github.com/executablebooks/mdurl" target="_blank">    <rect x="246.74" y="732.92" width="18.52" height="41.66" fill="#ababab"/>
     <text x="256.00" y="753.75" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.5" fill="#333" transform="rotate(-90 256.00 753.75)">mdurl</text>
 </a>  </g>
   <g class="block-text" data-block="pygments">
-  <a href="https://github.com/pygments/pygments" target="_blank">    <rect x="356.80" y="640.50" width="86.40" height="24.00" fill="rgba(226,226,226,1)"/>
+  <a href="https://github.com/pygments/pygments" target="_blank">    <rect x="356.80" y="640.50" width="86.40" height="24.00" fill="#e2e2e2"/>
     <text x="400.00" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">pygments</text>
 </a>  </g>
   <g class="block-text" data-block="rich">
-  <a href="https://github.com/Textualize/rich" target="_blank">    <rect x="306.40" y="336.75" width="43.20" height="24.00" fill="rgba(225,225,225,1)"/>
+  <a href="https://github.com/Textualize/rich" target="_blank">    <rect x="306.40" y="336.75" width="43.20" height="24.00" fill="#e1e1e1"/>
     <text x="328.00" y="348.75" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">rich</text>
 </a>  </g>
   <g class="block-text" data-block="shellingham">
-  <a href="https://github.com/sarugaku/shellingham" target="_blank">    <rect x="532.00" y="491.85" width="24.00" height="118.80" fill="rgba(205,205,205,1)"/>
+  <a href="https://github.com/sarugaku/shellingham" target="_blank">    <rect x="532.00" y="491.85" width="24.00" height="118.80" fill="#cdcdcd"/>
     <text x="544.00" y="551.25" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 544.00 551.25)">shellingham</text>
 </a>  </g>
   <g class="block-text" data-block="typer">
-  <a href="https://github.com/fastapi/typer" target="_blank">    <rect x="373.00" y="134.25" width="54.00" height="24.00" fill="rgba(181,181,181,1)"/>
+  <a href="https://github.com/fastapi/typer" target="_blank">    <rect x="373.00" y="134.25" width="54.00" height="24.00" fill="#b5b5b5"/>
     <text x="400.00" y="146.25" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">typer</text>
 </a>  </g>
   <g class="block-text" data-block="typing-extensions">
-  <a href="https://github.com/python/typing_extensions" target="_blank">    <rect x="676.00" y="459.45" width="24.00" height="183.60" fill="rgba(227,227,227,1)"/>
+  <a href="https://github.com/python/typing_extensions" target="_blank">    <rect x="676.00" y="459.45" width="24.00" height="183.60" fill="#e3e3e3"/>
     <text x="688.00" y="551.25" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 688.00 551.25)">typing-extensions</text>
 </a>  </g>
   <style>
@@ -75,78 +75,34 @@
   ]]></script>
   <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 272.0 980.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <foreignObject x="30.0" y="1004.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/hukkin" target="_blank" class="maintainer-name" data-packages="mdurl,markdown-it-py">#1 @hukkin</a>
-      <div class="packages">
-        <span>mdurl</span>
-        <span>markdown-it-py</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="400.0" y="1004.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/hugovk" target="_blank" class="maintainer-name" data-packages="mdurl,colorama">#2 @hugovk</a>
-      <div class="packages">
-        <span>mdurl</span>
-        <span>colorama</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="30.0" y="1144.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/tartley" target="_blank" class="maintainer-name" data-packages="colorama">#3 @tartley</a>
-      <div class="packages">
-        <span>colorama</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="400.0" y="1144.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/mib112" target="_blank" class="maintainer-name" data-packages="mdurl">#4 @mib112</a>
-      <div class="packages">
-        <span>mdurl</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="215.0" y="1284.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/chrisjsewell" target="_blank" class="maintainer-name" data-packages="markdown-it-py">#5 @chrisjsewell</a>
-      <div class="packages">
-        <span>markdown-it-py</span>
-      </div>
-    </div>
-  </foreignObject>
+  <a href="https://github.com/hukkin" target="_blank" class="maintainer-link" data-packages="mdurl,markdown-it-py">
+    <text x="215.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#1 @hukkin</text>
+  </a>
+  <text class="package-entry" data-package="mdurl" x="215.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">mdurl</text>
+  <text class="package-entry" data-package="markdown-it-py" x="215.0" y="1067.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">markdown-it-py</text>
+  <a href="https://github.com/hugovk" target="_blank" class="maintainer-link" data-packages="mdurl,colorama">
+    <text x="585.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#2 @hugovk</text>
+  </a>
+  <text class="package-entry" data-package="mdurl" x="585.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">mdurl</text>
+  <text class="package-entry" data-package="colorama" x="585.0" y="1067.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">colorama</text>
+  <a href="https://github.com/tartley" target="_blank" class="maintainer-link" data-packages="colorama">
+    <text x="215.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#3 @tartley</text>
+  </a>
+  <text class="package-entry" data-package="colorama" x="215.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">colorama</text>
+  <a href="https://github.com/mib112" target="_blank" class="maintainer-link" data-packages="mdurl">
+    <text x="585.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#4 @mib112</text>
+  </a>
+  <text class="package-entry" data-package="mdurl" x="585.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">mdurl</text>
+  <a href="https://github.com/chrisjsewell" target="_blank" class="maintainer-link" data-packages="markdown-it-py">
+    <text x="400.0" y="1304.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#5 @chrisjsewell</text>
+  </a>
+  <text class="package-entry" data-package="markdown-it-py" x="400.0" y="1329.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">markdown-it-py</text>
   <style>
-    .nebraska-entry {
-      text-align: center;
-      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
-      overflow: hidden;
-      height: 100%;
-    }
-    .nebraska-entry .maintainer-name {
-      display: block;
-      font-size: 24px;
-      color: #333;
-      text-decoration: none;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-      margin-bottom: 8px;
-    }
-    .nebraska-entry .maintainer-name:hover { text-decoration: underline; }
-    .nebraska-entry .packages {
-      font-size: 16px;
-      color: #888;
-      line-height: 1.4;
-    }
-    .nebraska-entry .packages span {
-      display: block;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-    }
+    .maintainer-link text { cursor: pointer; }
+    .maintainer-link:hover text { text-decoration: underline; }
   </style>
   <script type="text/javascript"><![CDATA[
-    document.querySelectorAll('.maintainer-name').forEach(el => {
+    document.querySelectorAll('.maintainer-link').forEach(el => {
       el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
       el.addEventListener('mouseleave', clearHighlight);
     });

@@ -8,74 +8,74 @@
 " x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>
     </pattern>
   </defs>
-  <a href="https://github.com/pinojs/redact" target="_blank"><path id="block-@pinojs/redact" class="block" d="M 59.48 211.53 Q 59.09 173.07 69.39 173.51 Q 79.70 173.96 90.00 174.70 Q 100.30 175.44 110.61 174.67 Q 120.91 173.90 122.67 211.95 Q 124.43 250.00 122.24 287.50 Q 120.04 325.00 119.89 362.50 Q 119.74 400.00 121.08 437.50 Q 122.41 475.00 111.36 476.65 Q 100.30 478.30 90.00 475.37 Q 79.70 472.44 69.39 473.24 Q 59.09 474.03 57.11 437.02 Q 55.13 400.00 55.85 362.50 Q 56.58 325.00 58.22 287.50 Q 59.87 250.00 59.48 211.53 Z" fill="rgba(172,172,172,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.101 90.00 325.00)"/></a>
-  <a href="https://github.com/davidmarkclements/atomic-sleep" target="_blank"><path id="block-atomic-sleep" class="block brittle" d="M 678.94 348.25 Q 680.00 321.50 693.33 323.61 Q 706.67 325.72 720.00 326.40 Q 733.33 327.08 746.67 327.22 Q 760.00 327.37 759.80 351.18 Q 759.60 375.00 759.68 400.00 Q 759.76 425.00 759.67 450.00 Q 759.59 475.00 746.46 473.47 Q 733.33 471.94 720.00 474.56 Q 706.67 477.18 693.33 477.63 Q 680.00 478.08 680.74 451.54 Q 681.48 425.00 679.68 400.00 Q 677.88 375.00 678.94 348.25 Z" fill="rgba(190,190,190,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-1.372 720.00 400.00)"/></a>
+  <a href="https://github.com/pinojs/redact" target="_blank"><path id="block-@pinojs/redact" class="block" d="M 59.48 211.53 Q 59.09 173.07 69.39 173.51 Q 79.70 173.96 90.00 174.70 Q 100.30 175.44 110.61 174.67 Q 120.91 173.90 122.67 211.95 Q 124.43 250.00 122.24 287.50 Q 120.04 325.00 119.89 362.50 Q 119.74 400.00 121.08 437.50 Q 122.41 475.00 111.36 476.65 Q 100.30 478.30 90.00 475.37 Q 79.70 472.44 69.39 473.24 Q 59.09 474.03 57.11 437.02 Q 55.13 400.00 55.85 362.50 Q 56.58 325.00 58.22 287.50 Q 59.87 250.00 59.48 211.53 Z" fill="#acacac" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.101 90.00 325.00)"/></a>
+  <a href="https://github.com/davidmarkclements/atomic-sleep" target="_blank"><path id="block-atomic-sleep" class="block brittle" d="M 678.94 348.25 Q 680.00 321.50 693.33 323.61 Q 706.67 325.72 720.00 326.40 Q 733.33 327.08 746.67 327.22 Q 760.00 327.37 759.80 351.18 Q 759.60 375.00 759.68 400.00 Q 759.76 425.00 759.67 450.00 Q 759.59 475.00 746.46 473.47 Q 733.33 471.94 720.00 474.56 Q 706.67 477.18 693.33 477.63 Q 680.00 478.08 680.74 451.54 Q 681.48 425.00 679.68 400.00 Q 677.88 375.00 678.94 348.25 Z" fill="#bebebe" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-1.372 720.00 400.00)"/></a>
   <path class="block-texture" d="M 678.94 348.25 Q 680.00 321.50 693.33 323.61 Q 706.67 325.72 720.00 326.40 Q 733.33 327.08 746.67 327.22 Q 760.00 327.37 759.80 351.18 Q 759.60 375.00 759.68 400.00 Q 759.76 425.00 759.67 450.00 Q 759.59 475.00 746.46 473.47 Q 733.33 471.94 720.00 474.56 Q 706.67 477.18 693.33 477.63 Q 680.00 478.08 680.74 451.54 Q 681.48 425.00 679.68 400.00 Q 677.88 375.00 678.94 348.25 Z" fill="url(#brittleTexture)" style="pointer-events: none;" transform="rotate(-1.372 720.00 400.00)"/>
-  <a href="https://github.com/mcollina/on-exit-or-gc" target="_blank"><path id="block-on-exit-leak-free" class="block brittle" d="M 146.50 213.59 Q 148.14 177.17 158.76 174.55 Q 169.38 171.92 180.00 171.68 Q 190.62 171.45 201.24 172.77 Q 211.86 174.10 209.96 212.05 Q 208.05 250.00 209.55 287.50 Q 211.04 325.00 209.46 362.50 Q 207.87 400.00 209.11 437.50 Q 210.35 475.00 200.49 473.49 Q 190.62 471.98 180.00 475.37 Q 169.38 478.75 158.76 477.76 Q 148.14 476.77 149.15 438.39 Q 150.17 400.00 149.89 362.50 Q 149.61 325.00 147.24 287.50 Q 144.87 250.00 146.50 213.59 Z" fill="rgba(246,246,246,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.992 180.00 325.00)"/></a>
+  <a href="https://github.com/mcollina/on-exit-or-gc" target="_blank"><path id="block-on-exit-leak-free" class="block brittle" d="M 146.50 213.59 Q 148.14 177.17 158.76 174.55 Q 169.38 171.92 180.00 171.68 Q 190.62 171.45 201.24 172.77 Q 211.86 174.10 209.96 212.05 Q 208.05 250.00 209.55 287.50 Q 211.04 325.00 209.46 362.50 Q 207.87 400.00 209.11 437.50 Q 210.35 475.00 200.49 473.49 Q 190.62 471.98 180.00 475.37 Q 169.38 478.75 158.76 477.76 Q 148.14 476.77 149.15 438.39 Q 150.17 400.00 149.89 362.50 Q 149.61 325.00 147.24 287.50 Q 144.87 250.00 146.50 213.59 Z" fill="#f6f6f6" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.992 180.00 325.00)"/></a>
   <path class="block-texture" d="M 146.50 213.59 Q 148.14 177.17 158.76 174.55 Q 169.38 171.92 180.00 171.68 Q 190.62 171.45 201.24 172.77 Q 211.86 174.10 209.96 212.05 Q 208.05 250.00 209.55 287.50 Q 211.04 325.00 209.46 362.50 Q 207.87 400.00 209.11 437.50 Q 210.35 475.00 200.49 473.49 Q 190.62 471.98 180.00 475.37 Q 169.38 478.75 158.76 477.76 Q 148.14 476.77 149.15 438.39 Q 150.17 400.00 149.89 362.50 Q 149.61 325.00 147.24 287.50 Q 144.87 250.00 146.50 213.59 Z" fill="url(#brittleTexture)" style="pointer-events: none;" transform="rotate(-0.992 180.00 325.00)"/>
-  <a href="https://github.com/pinojs/pino" target="_blank"><path id="block-pino" class="block" d="M 44.79 50.63 Q 45.00 26.26 78.75 24.21 Q 112.50 22.17 146.25 21.97 Q 180.00 21.78 213.75 24.18 Q 247.50 26.59 281.25 26.79 Q 315.00 27.00 348.75 27.00 Q 382.50 27.01 416.25 27.08 Q 450.00 27.16 483.75 25.20 Q 517.50 23.24 551.25 22.56 Q 585.00 21.88 618.75 23.98 Q 652.50 26.08 686.25 23.88 Q 720.00 21.68 753.75 22.38 Q 787.50 23.08 821.25 24.74 Q 855.00 26.39 855.10 50.70 Q 855.20 75.00 857.00 100.00 Q 858.79 125.00 858.86 150.00 Q 858.93 175.00 823.22 176.58 Q 787.50 178.17 753.75 174.96 Q 720.00 171.76 686.25 174.41 Q 652.50 177.05 618.75 177.17 Q 585.00 177.29 551.25 174.67 Q 517.50 172.04 483.75 172.39 Q 450.00 172.75 416.25 174.75 Q 382.50 176.76 348.75 177.43 Q 315.00 178.10 281.25 177.51 Q 247.50 176.93 213.75 175.27 Q 180.00 173.61 146.25 174.02 Q 112.50 174.43 78.75 175.35 Q 45.00 176.28 46.79 150.64 Q 48.58 125.00 46.58 100.00 Q 44.58 75.00 44.79 50.63 Z" fill="rgba(183,183,183,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.176 450.00 100.00)"/></a>
-  <a href="https://github.com/pinojs/pino-abstract-transport" target="_blank"><path id="block-pino-abstract-transport" class="block" d="M 242.54 201.43 Q 241.40 177.86 250.93 178.29 Q 260.47 178.72 270.00 177.51 Q 279.53 176.30 289.07 177.06 Q 298.60 177.82 297.94 201.41 Q 297.28 225.00 298.39 250.00 Q 299.50 275.00 299.99 300.00 Q 300.48 325.00 290.01 324.88 Q 279.53 324.76 270.00 325.98 Q 260.47 327.20 250.93 327.07 Q 241.40 326.95 242.24 300.98 Q 243.08 275.00 243.38 250.00 Q 243.69 225.00 242.54 201.43 Z" fill="rgba(194,194,194,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(1.819 270.00 250.00)"/></a>
-  <a href="https://github.com/pinojs/pino-std-serializers#readme" target="_blank"><path id="block-pino-std-serializers" class="block" d="M 336.44 213.34 Q 337.33 176.68 344.89 174.40 Q 352.44 172.12 360.00 175.40 Q 367.56 178.68 375.11 177.77 Q 382.67 176.86 382.53 213.43 Q 382.38 250.00 382.00 287.50 Q 381.61 325.00 381.92 362.50 Q 382.24 400.00 382.37 437.50 Q 382.51 475.00 375.03 475.21 Q 367.56 475.42 360.00 474.72 Q 352.44 474.01 344.89 474.55 Q 337.33 475.08 338.41 437.54 Q 339.49 400.00 337.53 362.50 Q 335.56 325.00 335.55 287.50 Q 335.54 250.00 336.44 213.34 Z" fill="rgba(243,243,243,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.389 360.00 325.00)"/></a>
-  <a href="https://github.com/fastify/fastify-warning#readme" target="_blank"><path id="block-process-warning" class="block" d="M 436.91 211.55 Q 435.00 173.10 440.00 175.15 Q 445.00 177.20 450.00 177.41 Q 455.00 177.63 460.00 177.75 Q 465.00 177.86 463.94 213.93 Q 462.88 250.00 462.65 287.50 Q 462.43 325.00 462.33 362.50 Q 462.24 400.00 464.11 437.50 Q 465.98 475.00 460.49 475.03 Q 455.00 475.06 450.00 476.37 Q 445.00 477.68 440.00 476.65 Q 435.00 475.63 433.14 437.81 Q 431.29 400.00 433.46 362.50 Q 435.62 325.00 437.22 287.50 Q 438.81 250.00 436.91 211.55 Z" fill="rgba(239,239,239,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(1.071 450.00 325.00)"/></a>
-  <a href="https://github.com/davidmarkclements/quick-format" target="_blank"><path id="block-quick-format-unescaped" class="block brittle" d="M 526.61 211.70 Q 525.00 173.41 530.00 174.77 Q 535.00 176.13 540.00 174.79 Q 545.00 173.46 550.00 175.10 Q 555.00 176.74 554.74 213.37 Q 554.48 250.00 554.35 287.50 Q 554.21 325.00 556.05 362.50 Q 557.88 400.00 557.01 437.50 Q 556.14 475.00 550.57 475.33 Q 545.00 475.66 540.00 475.20 Q 535.00 474.75 530.00 475.33 Q 525.00 475.92 523.53 437.96 Q 522.06 400.00 523.90 362.50 Q 525.73 325.00 526.97 287.50 Q 528.21 250.00 526.61 211.70 Z" fill="rgba(161,161,161,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.057 540.00 325.00)"/></a>
+  <a href="https://github.com/pinojs/pino" target="_blank"><path id="block-pino" class="block" d="M 44.79 50.63 Q 45.00 26.26 78.75 24.21 Q 112.50 22.17 146.25 21.97 Q 180.00 21.78 213.75 24.18 Q 247.50 26.59 281.25 26.79 Q 315.00 27.00 348.75 27.00 Q 382.50 27.01 416.25 27.08 Q 450.00 27.16 483.75 25.20 Q 517.50 23.24 551.25 22.56 Q 585.00 21.88 618.75 23.98 Q 652.50 26.08 686.25 23.88 Q 720.00 21.68 753.75 22.38 Q 787.50 23.08 821.25 24.74 Q 855.00 26.39 855.10 50.70 Q 855.20 75.00 857.00 100.00 Q 858.79 125.00 858.86 150.00 Q 858.93 175.00 823.22 176.58 Q 787.50 178.17 753.75 174.96 Q 720.00 171.76 686.25 174.41 Q 652.50 177.05 618.75 177.17 Q 585.00 177.29 551.25 174.67 Q 517.50 172.04 483.75 172.39 Q 450.00 172.75 416.25 174.75 Q 382.50 176.76 348.75 177.43 Q 315.00 178.10 281.25 177.51 Q 247.50 176.93 213.75 175.27 Q 180.00 173.61 146.25 174.02 Q 112.50 174.43 78.75 175.35 Q 45.00 176.28 46.79 150.64 Q 48.58 125.00 46.58 100.00 Q 44.58 75.00 44.79 50.63 Z" fill="#b7b7b7" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.176 450.00 100.00)"/></a>
+  <a href="https://github.com/pinojs/pino-abstract-transport" target="_blank"><path id="block-pino-abstract-transport" class="block" d="M 242.54 201.43 Q 241.40 177.86 250.93 178.29 Q 260.47 178.72 270.00 177.51 Q 279.53 176.30 289.07 177.06 Q 298.60 177.82 297.94 201.41 Q 297.28 225.00 298.39 250.00 Q 299.50 275.00 299.99 300.00 Q 300.48 325.00 290.01 324.88 Q 279.53 324.76 270.00 325.98 Q 260.47 327.20 250.93 327.07 Q 241.40 326.95 242.24 300.98 Q 243.08 275.00 243.38 250.00 Q 243.69 225.00 242.54 201.43 Z" fill="#c2c2c2" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(1.819 270.00 250.00)"/></a>
+  <a href="https://github.com/pinojs/pino-std-serializers#readme" target="_blank"><path id="block-pino-std-serializers" class="block" d="M 336.44 213.34 Q 337.33 176.68 344.89 174.40 Q 352.44 172.12 360.00 175.40 Q 367.56 178.68 375.11 177.77 Q 382.67 176.86 382.53 213.43 Q 382.38 250.00 382.00 287.50 Q 381.61 325.00 381.92 362.50 Q 382.24 400.00 382.37 437.50 Q 382.51 475.00 375.03 475.21 Q 367.56 475.42 360.00 474.72 Q 352.44 474.01 344.89 474.55 Q 337.33 475.08 338.41 437.54 Q 339.49 400.00 337.53 362.50 Q 335.56 325.00 335.55 287.50 Q 335.54 250.00 336.44 213.34 Z" fill="#f3f3f3" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.389 360.00 325.00)"/></a>
+  <a href="https://github.com/fastify/fastify-warning#readme" target="_blank"><path id="block-process-warning" class="block" d="M 436.91 211.55 Q 435.00 173.10 440.00 175.15 Q 445.00 177.20 450.00 177.41 Q 455.00 177.63 460.00 177.75 Q 465.00 177.86 463.94 213.93 Q 462.88 250.00 462.65 287.50 Q 462.43 325.00 462.33 362.50 Q 462.24 400.00 464.11 437.50 Q 465.98 475.00 460.49 475.03 Q 455.00 475.06 450.00 476.37 Q 445.00 477.68 440.00 476.65 Q 435.00 475.63 433.14 437.81 Q 431.29 400.00 433.46 362.50 Q 435.62 325.00 437.22 287.50 Q 438.81 250.00 436.91 211.55 Z" fill="#efefef" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(1.071 450.00 325.00)"/></a>
+  <a href="https://github.com/davidmarkclements/quick-format" target="_blank"><path id="block-quick-format-unescaped" class="block brittle" d="M 526.61 211.70 Q 525.00 173.41 530.00 174.77 Q 535.00 176.13 540.00 174.79 Q 545.00 173.46 550.00 175.10 Q 555.00 176.74 554.74 213.37 Q 554.48 250.00 554.35 287.50 Q 554.21 325.00 556.05 362.50 Q 557.88 400.00 557.01 437.50 Q 556.14 475.00 550.57 475.33 Q 545.00 475.66 540.00 475.20 Q 535.00 474.75 530.00 475.33 Q 525.00 475.92 523.53 437.96 Q 522.06 400.00 523.90 362.50 Q 525.73 325.00 526.97 287.50 Q 528.21 250.00 526.61 211.70 Z" fill="#a1a1a1" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.057 540.00 325.00)"/></a>
   <path class="block-texture" d="M 526.61 211.70 Q 525.00 173.41 530.00 174.77 Q 535.00 176.13 540.00 174.79 Q 545.00 173.46 550.00 175.10 Q 555.00 176.74 554.74 213.37 Q 554.48 250.00 554.35 287.50 Q 554.21 325.00 556.05 362.50 Q 557.88 400.00 557.01 437.50 Q 556.14 475.00 550.57 475.33 Q 545.00 475.66 540.00 475.20 Q 535.00 474.75 530.00 475.33 Q 525.00 475.92 523.53 437.96 Q 522.06 400.00 523.90 362.50 Q 525.73 325.00 526.97 287.50 Q 528.21 250.00 526.61 211.70 Z" fill="url(#brittleTexture)" style="pointer-events: none;" transform="rotate(0.057 540.00 325.00)"/>
-  <a href="https://github.com/pinojs/real-require" target="_blank"><path id="block-real-require" class="block brittle" d="M 770.15 351.69 Q 770.00 328.37 783.33 328.56 Q 796.67 328.75 810.00 327.45 Q 823.33 326.16 836.67 324.69 Q 850.00 323.22 850.22 349.11 Q 850.44 375.00 851.78 400.00 Q 853.11 425.00 849.98 450.00 Q 846.85 475.00 835.09 474.44 Q 823.33 473.88 810.00 474.45 Q 796.67 475.03 783.33 473.38 Q 770.00 471.74 768.41 448.37 Q 766.81 425.00 768.56 400.00 Q 770.30 375.00 770.15 351.69 Z" fill="rgba(191,191,191,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-2.116 810.00 400.00)"/></a>
+  <a href="https://github.com/pinojs/real-require" target="_blank"><path id="block-real-require" class="block brittle" d="M 770.15 351.69 Q 770.00 328.37 783.33 328.56 Q 796.67 328.75 810.00 327.45 Q 823.33 326.16 836.67 324.69 Q 850.00 323.22 850.22 349.11 Q 850.44 375.00 851.78 400.00 Q 853.11 425.00 849.98 450.00 Q 846.85 475.00 835.09 474.44 Q 823.33 473.88 810.00 474.45 Q 796.67 475.03 783.33 473.38 Q 770.00 471.74 768.41 448.37 Q 766.81 425.00 768.56 400.00 Q 770.30 375.00 770.15 351.69 Z" fill="#bfbfbf" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-2.116 810.00 400.00)"/></a>
   <path class="block-texture" d="M 770.15 351.69 Q 770.00 328.37 783.33 328.56 Q 796.67 328.75 810.00 327.45 Q 823.33 326.16 836.67 324.69 Q 850.00 323.22 850.22 349.11 Q 850.44 375.00 851.78 400.00 Q 853.11 425.00 849.98 450.00 Q 846.85 475.00 835.09 474.44 Q 823.33 473.88 810.00 474.45 Q 796.67 475.03 783.33 473.38 Q 770.00 471.74 768.41 448.37 Q 766.81 425.00 768.56 400.00 Q 770.30 375.00 770.15 351.69 Z" fill="url(#brittleTexture)" style="pointer-events: none;" transform="rotate(-2.116 810.00 400.00)"/>
-  <a href="https://github.com/BridgeAR/safe-stable-stringify#readme" target="_blank"><path id="block-safe-stable-stringify" class="block" d="M 599.16 211.74 Q 599.60 173.49 609.73 176.03 Q 619.87 178.56 630.00 178.25 Q 640.13 177.94 650.27 177.34 Q 660.40 176.74 660.68 213.37 Q 660.97 250.00 660.87 287.50 Q 660.77 325.00 659.92 362.50 Q 659.08 400.00 659.86 437.50 Q 660.63 475.00 650.38 475.16 Q 640.13 475.32 630.00 475.87 Q 619.87 476.43 609.73 477.63 Q 599.60 478.83 598.33 439.42 Q 597.07 400.00 597.64 362.50 Q 598.22 325.00 598.47 287.50 Q 598.72 250.00 599.16 211.74 Z" fill="rgba(172,172,172,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.768 630.00 325.00)"/></a>
-  <a href="https://github.com/pinojs/sonic-boom" target="_blank"><path id="block-sonic-boom" class="block" d="M 693.57 201.83 Q 694.53 178.65 703.02 176.90 Q 711.51 175.16 720.00 174.02 Q 728.49 172.88 736.98 172.10 Q 745.47 171.32 747.22 198.16 Q 748.98 225.00 747.47 250.00 Q 745.97 275.00 747.29 300.00 Q 748.61 325.00 738.55 325.50 Q 728.49 326.00 720.00 323.67 Q 711.51 321.35 703.02 321.56 Q 694.53 321.77 695.89 298.39 Q 697.25 275.00 694.93 250.00 Q 692.61 225.00 693.57 201.83 Z" fill="rgba(177,177,177,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.111 720.00 250.00)"/></a>
-  <a href="https://github.com/mcollina/split2" target="_blank"><path id="block-split2" class="block brittle" d="M 229.08 348.03 Q 230.00 321.06 243.33 322.34 Q 256.67 323.61 270.00 323.16 Q 283.33 322.72 296.67 323.11 Q 310.00 323.50 308.35 349.25 Q 306.70 375.00 307.43 400.00 Q 308.15 425.00 310.59 450.00 Q 313.03 475.00 298.18 473.10 Q 283.33 471.19 270.00 474.50 Q 256.67 477.81 243.33 476.34 Q 230.00 474.87 229.02 449.94 Q 228.04 425.00 228.10 400.00 Q 228.16 375.00 229.08 348.03 Z" fill="rgba(209,209,209,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.210 270.00 400.00)"/></a>
+  <a href="https://github.com/BridgeAR/safe-stable-stringify#readme" target="_blank"><path id="block-safe-stable-stringify" class="block" d="M 599.16 211.74 Q 599.60 173.49 609.73 176.03 Q 619.87 178.56 630.00 178.25 Q 640.13 177.94 650.27 177.34 Q 660.40 176.74 660.68 213.37 Q 660.97 250.00 660.87 287.50 Q 660.77 325.00 659.92 362.50 Q 659.08 400.00 659.86 437.50 Q 660.63 475.00 650.38 475.16 Q 640.13 475.32 630.00 475.87 Q 619.87 476.43 609.73 477.63 Q 599.60 478.83 598.33 439.42 Q 597.07 400.00 597.64 362.50 Q 598.22 325.00 598.47 287.50 Q 598.72 250.00 599.16 211.74 Z" fill="#acacac" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.768 630.00 325.00)"/></a>
+  <a href="https://github.com/pinojs/sonic-boom" target="_blank"><path id="block-sonic-boom" class="block" d="M 693.57 201.83 Q 694.53 178.65 703.02 176.90 Q 711.51 175.16 720.00 174.02 Q 728.49 172.88 736.98 172.10 Q 745.47 171.32 747.22 198.16 Q 748.98 225.00 747.47 250.00 Q 745.97 275.00 747.29 300.00 Q 748.61 325.00 738.55 325.50 Q 728.49 326.00 720.00 323.67 Q 711.51 321.35 703.02 321.56 Q 694.53 321.77 695.89 298.39 Q 697.25 275.00 694.93 250.00 Q 692.61 225.00 693.57 201.83 Z" fill="#b1b1b1" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.111 720.00 250.00)"/></a>
+  <a href="https://github.com/mcollina/split2" target="_blank"><path id="block-split2" class="block brittle" d="M 229.08 348.03 Q 230.00 321.06 243.33 322.34 Q 256.67 323.61 270.00 323.16 Q 283.33 322.72 296.67 323.11 Q 310.00 323.50 308.35 349.25 Q 306.70 375.00 307.43 400.00 Q 308.15 425.00 310.59 450.00 Q 313.03 475.00 298.18 473.10 Q 283.33 471.19 270.00 474.50 Q 256.67 477.81 243.33 476.34 Q 230.00 474.87 229.02 449.94 Q 228.04 425.00 228.10 400.00 Q 228.16 375.00 229.08 348.03 Z" fill="#d1d1d1" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.210 270.00 400.00)"/></a>
   <path class="block-texture" d="M 229.08 348.03 Q 230.00 321.06 243.33 322.34 Q 256.67 323.61 270.00 323.16 Q 283.33 322.72 296.67 323.11 Q 310.00 323.50 308.35 349.25 Q 306.70 375.00 307.43 400.00 Q 308.15 425.00 310.59 450.00 Q 313.03 475.00 298.18 473.10 Q 283.33 471.19 270.00 474.50 Q 256.67 477.81 243.33 476.34 Q 230.00 474.87 229.02 449.94 Q 228.04 425.00 228.10 400.00 Q 228.16 375.00 229.08 348.03 Z" fill="url(#brittleTexture)" style="pointer-events: none;" transform="rotate(0.210 270.00 400.00)"/>
-  <a href="https://github.com/mcollina/thread-stream" target="_blank"><path id="block-thread-stream" class="block" d="M 796.82 198.07 Q 795.00 171.13 800.00 174.60 Q 805.00 178.07 810.00 174.89 Q 815.00 171.71 820.00 174.06 Q 825.00 176.42 824.16 200.71 Q 823.31 225.00 822.52 250.00 Q 821.74 275.00 824.04 300.00 Q 826.35 325.00 820.68 324.02 Q 815.00 323.04 810.00 322.94 Q 805.00 322.85 800.00 323.87 Q 795.00 324.89 795.49 299.95 Q 795.98 275.00 797.31 250.00 Q 798.65 225.00 796.82 198.07 Z" fill="rgba(192,192,192,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(1.695 810.00 250.00)"/></a>
+  <a href="https://github.com/mcollina/thread-stream" target="_blank"><path id="block-thread-stream" class="block" d="M 796.82 198.07 Q 795.00 171.13 800.00 174.60 Q 805.00 178.07 810.00 174.89 Q 815.00 171.71 820.00 174.06 Q 825.00 176.42 824.16 200.71 Q 823.31 225.00 822.52 250.00 Q 821.74 275.00 824.04 300.00 Q 826.35 325.00 820.68 324.02 Q 815.00 323.04 810.00 322.94 Q 805.00 322.85 800.00 323.87 Q 795.00 324.89 795.49 299.95 Q 795.98 275.00 797.31 250.00 Q 798.65 225.00 796.82 198.07 Z" fill="#c0c0c0" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(1.695 810.00 250.00)"/></a>
   <g class="block-text" data-block="@pinojs/redact">
-  <a href="https://github.com/pinojs/redact" target="_blank">    <rect x="78.00" y="249.40" width="24.00" height="151.20" fill="rgba(172,172,172,1)"/>
+  <a href="https://github.com/pinojs/redact" target="_blank">    <rect x="78.00" y="249.40" width="24.00" height="151.20" fill="#acacac"/>
     <text x="90.00" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 90.00 325.00)">@pinojs/redact</text>
 </a>  </g>
   <g class="block-text" data-block="atomic-sleep">
-  <a href="https://github.com/davidmarkclements/atomic-sleep" target="_blank">    <rect x="712.76" y="360.88" width="14.49" height="78.24" fill="rgba(190,190,190,1)"/>
+  <a href="https://github.com/davidmarkclements/atomic-sleep" target="_blank">    <rect x="712.76" y="360.88" width="14.49" height="78.24" fill="#bebebe"/>
     <text x="720.00" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14.5" fill="#333" transform="rotate(-90 720.00 400.00)">atomic-sleep</text>
 </a>  </g>
   <g class="block-text" data-block="on-exit-leak-free">
-  <a href="https://github.com/mcollina/on-exit-or-gc" target="_blank">    <rect x="169.77" y="246.76" width="20.45" height="156.48" fill="rgba(246,246,246,1)"/>
+  <a href="https://github.com/mcollina/on-exit-or-gc" target="_blank">    <rect x="169.77" y="246.76" width="20.45" height="156.48" fill="#f6f6f6"/>
     <text x="180.00" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="20.5" fill="#333" transform="rotate(-90 180.00 325.00)">on-exit-leak-free</text>
 </a>  </g>
   <g class="block-text" data-block="pino">
-  <a href="https://github.com/pinojs/pino" target="_blank">    <rect x="428.40" y="88.00" width="43.20" height="24.00" fill="rgba(183,183,183,1)"/>
+  <a href="https://github.com/pinojs/pino" target="_blank">    <rect x="428.40" y="88.00" width="43.20" height="24.00" fill="#b7b7b7"/>
     <text x="450.00" y="100.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">pino</text>
 </a>  </g>
   <g class="block-text" data-block="pino-abstract-transport">
-  <a href="https://github.com/pinojs/pino-abstract-transport" target="_blank">    <rect x="266.00" y="208.60" width="8.00" height="82.80" fill="rgba(194,194,194,1)"/>
+  <a href="https://github.com/pinojs/pino-abstract-transport" target="_blank">    <rect x="266.00" y="208.60" width="8.00" height="82.80" fill="#c2c2c2"/>
     <text x="270.00" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="8.0" fill="#333" transform="rotate(-90 270.00 250.00)">pino-abstract-transport</text>
 </a>  </g>
   <g class="block-text" data-block="pino-std-serializers">
-  <a href="https://github.com/pinojs/pino-std-serializers#readme" target="_blank">    <rect x="351.31" y="246.76" width="17.39" height="156.48" fill="rgba(243,243,243,1)"/>
+  <a href="https://github.com/pinojs/pino-std-serializers#readme" target="_blank">    <rect x="351.31" y="246.76" width="17.39" height="156.48" fill="#f3f3f3"/>
     <text x="360.00" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="17.4" fill="#333" transform="rotate(-90 360.00 325.00)">pino-std-serializers</text>
 </a>  </g>
   <g class="block-text" data-block="process-warning">
-  <a href="https://github.com/fastify/fastify-warning#readme" target="_blank">    <rect x="441.00" y="264.25" width="18.00" height="121.50" fill="rgba(239,239,239,1)"/>
+  <a href="https://github.com/fastify/fastify-warning#readme" target="_blank">    <rect x="441.00" y="264.25" width="18.00" height="121.50" fill="#efefef"/>
     <text x="450.00" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 450.00 325.00)">process-warning</text>
 </a>  </g>
   <g class="block-text" data-block="quick-format-unescaped">
-  <a href="https://github.com/davidmarkclements/quick-format" target="_blank">    <rect x="532.10" y="246.76" width="15.81" height="156.48" fill="rgba(161,161,161,1)"/>
+  <a href="https://github.com/davidmarkclements/quick-format" target="_blank">    <rect x="532.10" y="246.76" width="15.81" height="156.48" fill="#a1a1a1"/>
     <text x="540.00" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="15.8" fill="#333" transform="rotate(-90 540.00 325.00)">quick-format-unescaped</text>
 </a>  </g>
   <g class="block-text" data-block="real-require">
-  <a href="https://github.com/pinojs/real-require" target="_blank">    <rect x="802.76" y="360.88" width="14.49" height="78.24" fill="rgba(191,191,191,1)"/>
+  <a href="https://github.com/pinojs/real-require" target="_blank">    <rect x="802.76" y="360.88" width="14.49" height="78.24" fill="#bfbfbf"/>
     <text x="810.00" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14.5" fill="#333" transform="rotate(-90 810.00 400.00)">real-require</text>
 </a>  </g>
   <g class="block-text" data-block="safe-stable-stringify">
-  <a href="https://github.com/BridgeAR/safe-stable-stringify#readme" target="_blank">    <rect x="621.72" y="246.76" width="16.56" height="156.48" fill="rgba(172,172,172,1)"/>
+  <a href="https://github.com/BridgeAR/safe-stable-stringify#readme" target="_blank">    <rect x="621.72" y="246.76" width="16.56" height="156.48" fill="#acacac"/>
     <text x="630.00" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16.6" fill="#333" transform="rotate(-90 630.00 325.00)">safe-stable-stringify</text>
 </a>  </g>
   <g class="block-text" data-block="sonic-boom">
-  <a href="https://github.com/pinojs/sonic-boom" target="_blank">    <rect x="711.31" y="210.88" width="17.39" height="78.24" fill="rgba(177,177,177,1)"/>
+  <a href="https://github.com/pinojs/sonic-boom" target="_blank">    <rect x="711.31" y="210.88" width="17.39" height="78.24" fill="#b1b1b1"/>
     <text x="720.00" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="17.4" fill="#333" transform="rotate(-90 720.00 250.00)">sonic-boom</text>
 </a>  </g>
   <g class="block-text" data-block="split2">
-  <a href="https://github.com/mcollina/split2" target="_blank">    <rect x="258.00" y="367.60" width="24.00" height="64.80" fill="rgba(209,209,209,1)"/>
+  <a href="https://github.com/mcollina/split2" target="_blank">    <rect x="258.00" y="367.60" width="24.00" height="64.80" fill="#d1d1d1"/>
     <text x="270.00" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 270.00 400.00)">split2</text>
 </a>  </g>
   <g class="block-text" data-block="thread-stream">
-  <a href="https://github.com/mcollina/thread-stream" target="_blank">    <rect x="803.31" y="210.88" width="13.37" height="78.24" fill="rgba(192,192,192,1)"/>
+  <a href="https://github.com/mcollina/thread-stream" target="_blank">    <rect x="803.31" y="210.88" width="13.37" height="78.24" fill="#c0c0c0"/>
     <text x="810.00" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="13.4" fill="#333" transform="rotate(-90 810.00 250.00)">thread-stream</text>
 </a>  </g>
   <style>
@@ -100,80 +100,36 @@
   ]]></script>
   <text x="450.0" y="564.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 322.0 580.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <foreignObject x="30.0" y="604.0" width="168.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/davidmarkclements" target="_blank" class="maintainer-name" data-packages="atomic-sleep,quick-format-unescaped">#1 @davidmarkclements</a>
-      <div class="packages">
-        <span>atomic-sleep</span>
-        <span>quick-format-unescaped</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="198.0" y="604.0" width="168.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/mcollina" target="_blank" class="maintainer-name" data-packages="split2,on-exit-leak-free,thread-stream,@pinojs/redact,pino-abstract-transport,sonic-boom,real-require,quick-format-unescaped">#2 @mcollina</a>
-      <div class="packages">
-        <span>split2</span>
-        <span>on-exit-leak-free</span>
-        <span>thread-stream</span>
-        <span style="color:#aaa">+5 more</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="366.0" y="604.0" width="168.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/BridgeAR" target="_blank" class="maintainer-name" data-packages="safe-stable-stringify">#3 @BridgeAR</a>
-      <div class="packages">
-        <span>safe-stable-stringify</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="534.0" y="604.0" width="168.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/fastify" target="_blank" class="maintainer-name" data-packages="process-warning">#4 @fastify</a>
-      <div class="packages">
-        <span>process-warning</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="702.0" y="604.0" width="168.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/pinojs" target="_blank" class="maintainer-name" data-packages="pino-std-serializers">#5 @pinojs</a>
-      <div class="packages">
-        <span>pino-std-serializers</span>
-      </div>
-    </div>
-  </foreignObject>
+  <a href="https://github.com/davidmarkclements" target="_blank" class="maintainer-link" data-packages="atomic-sleep,quick-format-unescaped">
+    <text x="114.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#1 @davidmarkclements</text>
+  </a>
+  <text class="package-entry" data-package="atomic-sleep" x="114.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">atomic-sleep</text>
+  <text class="package-entry" data-package="quick-format-unescaped" x="114.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">quick-format-unescaped</text>
+  <a href="https://github.com/mcollina" target="_blank" class="maintainer-link" data-packages="split2,on-exit-leak-free,thread-stream,@pinojs/redact,pino-abstract-transport,sonic-boom,real-require,quick-format-unescaped">
+    <text x="282.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#2 @mcollina</text>
+  </a>
+  <text class="package-entry" data-package="split2" x="282.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">split2</text>
+  <text class="package-entry" data-package="on-exit-leak-free" x="282.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">on-exit-leak-free</text>
+  <text class="package-entry" data-package="thread-stream" x="282.0" y="685.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">thread-stream</text>
+  <text x="282.0" y="703.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#aaa">+5 more</text>
+  <a href="https://github.com/BridgeAR" target="_blank" class="maintainer-link" data-packages="safe-stable-stringify">
+    <text x="450.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#3 @BridgeAR</text>
+  </a>
+  <text class="package-entry" data-package="safe-stable-stringify" x="450.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">safe-stable-stringify</text>
+  <a href="https://github.com/fastify" target="_blank" class="maintainer-link" data-packages="process-warning">
+    <text x="618.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#4 @fastify</text>
+  </a>
+  <text class="package-entry" data-package="process-warning" x="618.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">process-warning</text>
+  <a href="https://github.com/pinojs" target="_blank" class="maintainer-link" data-packages="pino-std-serializers">
+    <text x="786.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#5 @pinojs</text>
+  </a>
+  <text class="package-entry" data-package="pino-std-serializers" x="786.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">pino-std-serializers</text>
   <style>
-    .nebraska-entry {
-      text-align: center;
-      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
-      overflow: hidden;
-      height: 100%;
-    }
-    .nebraska-entry .maintainer-name {
-      display: block;
-      font-size: 24px;
-      color: #333;
-      text-decoration: none;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-      margin-bottom: 8px;
-    }
-    .nebraska-entry .maintainer-name:hover { text-decoration: underline; }
-    .nebraska-entry .packages {
-      font-size: 16px;
-      color: #888;
-      line-height: 1.4;
-    }
-    .nebraska-entry .packages span {
-      display: block;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-    }
+    .maintainer-link text { cursor: pointer; }
+    .maintainer-link:hover text { text-decoration: underline; }
   </style>
   <script type="text/javascript"><![CDATA[
-    document.querySelectorAll('.maintainer-name').forEach(el => {
+    document.querySelectorAll('.maintainer-link').forEach(el => {
       el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
       el.addEventListener('mouseleave', clearHighlight);
     });

@@ -8,34 +8,34 @@
 " x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>
     </pattern>
   </defs>
-  <a href="https://github.com/crossbeam-rs/crossbeam" target="_blank"><path id="block-crossbeam-deque" class="block" d="M 404.93 397.04 Q 405.00 371.09 440.00 371.72 Q 475.00 372.36 510.00 369.89 Q 545.00 367.42 580.00 368.14 Q 615.00 368.87 650.00 369.57 Q 685.00 370.27 720.00 370.15 Q 755.00 370.02 756.16 396.51 Q 757.31 423.00 754.90 450.00 Q 752.49 477.00 752.78 504.00 Q 753.08 531.00 719.04 532.06 Q 685.00 533.12 650.00 531.25 Q 615.00 529.38 580.00 530.34 Q 545.00 531.30 510.00 530.96 Q 475.00 530.61 440.00 531.22 Q 405.00 531.82 405.81 504.41 Q 406.63 477.00 405.74 450.00 Q 404.85 423.00 404.93 397.04 Z" fill="rgba(233,233,233,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.337 580.00 450.00)"/></a>
-  <a href="https://github.com/crossbeam-rs/crossbeam" target="_blank"><path id="block-crossbeam-epoch" class="block" d="M 455.77 558.80 Q 454.87 532.60 496.58 530.03 Q 538.29 527.45 580.00 528.92 Q 621.71 530.39 663.42 530.91 Q 705.13 531.43 703.64 558.22 Q 702.15 585.00 705.14 612.00 Q 708.13 639.00 705.94 666.00 Q 703.75 693.00 662.73 694.27 Q 621.71 695.54 580.00 693.01 Q 538.29 690.49 496.58 690.39 Q 454.87 690.28 453.02 664.64 Q 451.18 639.00 453.92 612.00 Q 456.67 585.00 455.77 558.80 Z" fill="rgba(194,194,194,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.038 580.00 612.00)"/></a>
-  <a href="https://github.com/crossbeam-rs/crossbeam" target="_blank"><path id="block-crossbeam-utils" class="block" d="M 403.76 721.12 Q 405.00 695.23 440.00 694.02 Q 475.00 692.80 510.00 692.48 Q 545.00 692.16 580.00 691.91 Q 615.00 691.65 650.00 690.37 Q 685.00 689.10 720.00 692.93 Q 755.00 696.75 756.15 721.88 Q 757.31 747.00 754.40 774.00 Q 751.49 801.00 752.22 828.00 Q 752.94 855.00 718.97 854.92 Q 685.00 854.84 650.00 854.08 Q 615.00 853.32 580.00 855.16 Q 545.00 857.00 510.00 854.47 Q 475.00 851.94 440.00 852.23 Q 405.00 852.51 404.39 826.75 Q 403.77 801.00 403.15 774.00 Q 402.52 747.00 403.76 721.12 Z" fill="rgba(244,244,244,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.894 580.00 774.00)"/></a>
-  <a href="https://github.com/rayon-rs/either" target="_blank"><path id="block-either" class="block" d="M 85.10 241.12 Q 84.76 203.24 118.57 204.06 Q 152.38 204.87 186.19 205.66 Q 220.00 206.46 253.81 204.75 Q 287.62 203.05 321.43 206.49 Q 355.24 209.93 356.35 244.47 Q 357.45 279.00 356.08 315.00 Q 354.72 351.00 355.48 387.00 Q 356.25 423.00 357.73 459.00 Q 359.20 495.00 356.34 531.00 Q 353.48 567.00 353.88 603.00 Q 354.28 639.00 355.92 675.00 Q 357.56 711.00 358.18 747.00 Q 358.81 783.00 356.93 819.00 Q 355.06 855.00 321.34 855.76 Q 287.62 856.52 253.81 854.94 Q 220.00 853.37 186.19 854.08 Q 152.38 854.79 118.57 854.69 Q 84.76 854.60 84.08 818.80 Q 83.40 783.00 84.81 747.00 Q 86.22 711.00 85.39 675.00 Q 84.57 639.00 84.68 603.00 Q 84.78 567.00 84.41 531.00 Q 84.03 495.00 86.06 459.00 Q 88.09 423.00 87.63 387.00 Q 87.18 351.00 86.31 315.00 Q 85.44 279.00 85.10 241.12 Z" fill="rgba(238,238,238,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.216 220.00 531.00)"/></a>
-  <a href="https://github.com/rayon-rs/rayon" target="_blank"><path id="block-rayon" class="block" d="M 38.17 73.15 Q 40.00 47.30 76.00 44.74 Q 112.00 42.17 148.00 45.29 Q 184.00 48.40 220.00 46.05 Q 256.00 43.70 292.00 43.09 Q 328.00 42.47 364.00 42.81 Q 400.00 43.15 436.00 44.10 Q 472.00 45.05 508.00 44.30 Q 544.00 43.55 580.00 45.14 Q 616.00 46.74 652.00 46.57 Q 688.00 46.41 724.00 44.81 Q 760.00 43.20 758.62 71.10 Q 757.23 99.00 757.50 126.00 Q 757.77 153.00 760.24 180.00 Q 762.71 207.00 725.35 208.60 Q 688.00 210.20 652.00 207.00 Q 616.00 203.79 580.00 207.10 Q 544.00 210.40 508.00 209.10 Q 472.00 207.81 436.00 207.35 Q 400.00 206.90 364.00 205.48 Q 328.00 204.05 292.00 206.16 Q 256.00 208.28 220.00 205.99 Q 184.00 203.70 148.00 203.48 Q 112.00 203.26 76.00 206.67 Q 40.00 210.08 40.85 181.54 Q 41.69 153.00 39.02 126.00 Q 36.34 99.00 38.17 73.15 Z" fill="rgba(176,176,176,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.304 400.00 126.00)"/></a>
-  <a href="https://github.com/rayon-rs/rayon" target="_blank"><path id="block-rayon-core" class="block" d="M 441.50 232.67 Q 440.60 204.34 475.45 204.18 Q 510.30 204.02 545.15 205.25 Q 580.00 206.48 614.85 207.82 Q 649.70 209.16 684.55 208.74 Q 719.40 208.31 719.82 234.66 Q 720.25 261.00 721.27 288.00 Q 722.29 315.00 721.36 342.00 Q 720.44 369.00 685.07 370.10 Q 649.70 371.19 614.85 369.10 Q 580.00 367.00 545.15 366.77 Q 510.30 366.54 475.45 368.07 Q 440.60 369.60 440.89 342.30 Q 441.18 315.00 441.80 288.00 Q 442.41 261.00 441.50 232.67 Z" fill="rgba(214,214,214,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.948 580.00 288.00)"/></a>
+  <a href="https://github.com/crossbeam-rs/crossbeam" target="_blank"><path id="block-crossbeam-deque" class="block" d="M 404.93 397.04 Q 405.00 371.09 440.00 371.72 Q 475.00 372.36 510.00 369.89 Q 545.00 367.42 580.00 368.14 Q 615.00 368.87 650.00 369.57 Q 685.00 370.27 720.00 370.15 Q 755.00 370.02 756.16 396.51 Q 757.31 423.00 754.90 450.00 Q 752.49 477.00 752.78 504.00 Q 753.08 531.00 719.04 532.06 Q 685.00 533.12 650.00 531.25 Q 615.00 529.38 580.00 530.34 Q 545.00 531.30 510.00 530.96 Q 475.00 530.61 440.00 531.22 Q 405.00 531.82 405.81 504.41 Q 406.63 477.00 405.74 450.00 Q 404.85 423.00 404.93 397.04 Z" fill="#e9e9e9" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.337 580.00 450.00)"/></a>
+  <a href="https://github.com/crossbeam-rs/crossbeam" target="_blank"><path id="block-crossbeam-epoch" class="block" d="M 455.77 558.80 Q 454.87 532.60 496.58 530.03 Q 538.29 527.45 580.00 528.92 Q 621.71 530.39 663.42 530.91 Q 705.13 531.43 703.64 558.22 Q 702.15 585.00 705.14 612.00 Q 708.13 639.00 705.94 666.00 Q 703.75 693.00 662.73 694.27 Q 621.71 695.54 580.00 693.01 Q 538.29 690.49 496.58 690.39 Q 454.87 690.28 453.02 664.64 Q 451.18 639.00 453.92 612.00 Q 456.67 585.00 455.77 558.80 Z" fill="#c2c2c2" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.038 580.00 612.00)"/></a>
+  <a href="https://github.com/crossbeam-rs/crossbeam" target="_blank"><path id="block-crossbeam-utils" class="block" d="M 403.76 721.12 Q 405.00 695.23 440.00 694.02 Q 475.00 692.80 510.00 692.48 Q 545.00 692.16 580.00 691.91 Q 615.00 691.65 650.00 690.37 Q 685.00 689.10 720.00 692.93 Q 755.00 696.75 756.15 721.88 Q 757.31 747.00 754.40 774.00 Q 751.49 801.00 752.22 828.00 Q 752.94 855.00 718.97 854.92 Q 685.00 854.84 650.00 854.08 Q 615.00 853.32 580.00 855.16 Q 545.00 857.00 510.00 854.47 Q 475.00 851.94 440.00 852.23 Q 405.00 852.51 404.39 826.75 Q 403.77 801.00 403.15 774.00 Q 402.52 747.00 403.76 721.12 Z" fill="#f4f4f4" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.894 580.00 774.00)"/></a>
+  <a href="https://github.com/rayon-rs/either" target="_blank"><path id="block-either" class="block" d="M 85.10 241.12 Q 84.76 203.24 118.57 204.06 Q 152.38 204.87 186.19 205.66 Q 220.00 206.46 253.81 204.75 Q 287.62 203.05 321.43 206.49 Q 355.24 209.93 356.35 244.47 Q 357.45 279.00 356.08 315.00 Q 354.72 351.00 355.48 387.00 Q 356.25 423.00 357.73 459.00 Q 359.20 495.00 356.34 531.00 Q 353.48 567.00 353.88 603.00 Q 354.28 639.00 355.92 675.00 Q 357.56 711.00 358.18 747.00 Q 358.81 783.00 356.93 819.00 Q 355.06 855.00 321.34 855.76 Q 287.62 856.52 253.81 854.94 Q 220.00 853.37 186.19 854.08 Q 152.38 854.79 118.57 854.69 Q 84.76 854.60 84.08 818.80 Q 83.40 783.00 84.81 747.00 Q 86.22 711.00 85.39 675.00 Q 84.57 639.00 84.68 603.00 Q 84.78 567.00 84.41 531.00 Q 84.03 495.00 86.06 459.00 Q 88.09 423.00 87.63 387.00 Q 87.18 351.00 86.31 315.00 Q 85.44 279.00 85.10 241.12 Z" fill="#eeeeee" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.216 220.00 531.00)"/></a>
+  <a href="https://github.com/rayon-rs/rayon" target="_blank"><path id="block-rayon" class="block" d="M 38.17 73.15 Q 40.00 47.30 76.00 44.74 Q 112.00 42.17 148.00 45.29 Q 184.00 48.40 220.00 46.05 Q 256.00 43.70 292.00 43.09 Q 328.00 42.47 364.00 42.81 Q 400.00 43.15 436.00 44.10 Q 472.00 45.05 508.00 44.30 Q 544.00 43.55 580.00 45.14 Q 616.00 46.74 652.00 46.57 Q 688.00 46.41 724.00 44.81 Q 760.00 43.20 758.62 71.10 Q 757.23 99.00 757.50 126.00 Q 757.77 153.00 760.24 180.00 Q 762.71 207.00 725.35 208.60 Q 688.00 210.20 652.00 207.00 Q 616.00 203.79 580.00 207.10 Q 544.00 210.40 508.00 209.10 Q 472.00 207.81 436.00 207.35 Q 400.00 206.90 364.00 205.48 Q 328.00 204.05 292.00 206.16 Q 256.00 208.28 220.00 205.99 Q 184.00 203.70 148.00 203.48 Q 112.00 203.26 76.00 206.67 Q 40.00 210.08 40.85 181.54 Q 41.69 153.00 39.02 126.00 Q 36.34 99.00 38.17 73.15 Z" fill="#b0b0b0" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.304 400.00 126.00)"/></a>
+  <a href="https://github.com/rayon-rs/rayon" target="_blank"><path id="block-rayon-core" class="block" d="M 441.50 232.67 Q 440.60 204.34 475.45 204.18 Q 510.30 204.02 545.15 205.25 Q 580.00 206.48 614.85 207.82 Q 649.70 209.16 684.55 208.74 Q 719.40 208.31 719.82 234.66 Q 720.25 261.00 721.27 288.00 Q 722.29 315.00 721.36 342.00 Q 720.44 369.00 685.07 370.10 Q 649.70 371.19 614.85 369.10 Q 580.00 367.00 545.15 366.77 Q 510.30 366.54 475.45 368.07 Q 440.60 369.60 440.89 342.30 Q 441.18 315.00 441.80 288.00 Q 442.41 261.00 441.50 232.67 Z" fill="#d6d6d6" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.948 580.00 288.00)"/></a>
   <g class="block-text" data-block="crossbeam-deque">
-  <a href="https://github.com/crossbeam-rs/crossbeam" target="_blank">    <rect x="499.00" y="438.00" width="162.00" height="24.00" fill="rgba(233,233,233,1)"/>
+  <a href="https://github.com/crossbeam-rs/crossbeam" target="_blank">    <rect x="499.00" y="438.00" width="162.00" height="24.00" fill="#e9e9e9"/>
     <text x="580.00" y="450.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">crossbeam-deque</text>
 </a>  </g>
   <g class="block-text" data-block="crossbeam-epoch">
-  <a href="https://github.com/crossbeam-rs/crossbeam" target="_blank">    <rect x="499.00" y="600.00" width="162.00" height="24.00" fill="rgba(194,194,194,1)"/>
+  <a href="https://github.com/crossbeam-rs/crossbeam" target="_blank">    <rect x="499.00" y="600.00" width="162.00" height="24.00" fill="#c2c2c2"/>
     <text x="580.00" y="612.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">crossbeam-epoch</text>
 </a>  </g>
   <g class="block-text" data-block="crossbeam-utils">
-  <a href="https://github.com/crossbeam-rs/crossbeam" target="_blank">    <rect x="499.00" y="762.00" width="162.00" height="24.00" fill="rgba(244,244,244,1)"/>
+  <a href="https://github.com/crossbeam-rs/crossbeam" target="_blank">    <rect x="499.00" y="762.00" width="162.00" height="24.00" fill="#f4f4f4"/>
     <text x="580.00" y="774.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">crossbeam-utils</text>
 </a>  </g>
   <g class="block-text" data-block="either">
-  <a href="https://github.com/rayon-rs/either" target="_blank">    <rect x="187.60" y="519.00" width="64.80" height="24.00" fill="rgba(238,238,238,1)"/>
+  <a href="https://github.com/rayon-rs/either" target="_blank">    <rect x="187.60" y="519.00" width="64.80" height="24.00" fill="#eeeeee"/>
     <text x="220.00" y="531.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">either</text>
 </a>  </g>
   <g class="block-text" data-block="rayon">
-  <a href="https://github.com/rayon-rs/rayon" target="_blank">    <rect x="373.00" y="114.00" width="54.00" height="24.00" fill="rgba(176,176,176,1)"/>
+  <a href="https://github.com/rayon-rs/rayon" target="_blank">    <rect x="373.00" y="114.00" width="54.00" height="24.00" fill="#b0b0b0"/>
     <text x="400.00" y="126.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">rayon</text>
 </a>  </g>
   <g class="block-text" data-block="rayon-core">
-  <a href="https://github.com/rayon-rs/rayon" target="_blank">    <rect x="526.00" y="276.00" width="108.00" height="24.00" fill="rgba(214,214,214,1)"/>
+  <a href="https://github.com/rayon-rs/rayon" target="_blank">    <rect x="526.00" y="276.00" width="108.00" height="24.00" fill="#d6d6d6"/>
     <text x="580.00" y="288.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">rayon-core</text>
 </a>  </g>
   <style>
@@ -60,85 +60,41 @@
   ]]></script>
   <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 272.0 980.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <foreignObject x="30.0" y="1004.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/taiki-e" target="_blank" class="maintainer-name" data-packages="crossbeam-utils,crossbeam-epoch,crossbeam-deque">#1 @taiki-e</a>
-      <div class="packages">
-        <span>crossbeam-utils</span>
-        <span>crossbeam-epoch</span>
-        <span>crossbeam-deque</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="400.0" y="1004.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/Amanieu" target="_blank" class="maintainer-name" data-packages="crossbeam-utils,crossbeam-epoch,crossbeam-deque">#2 @Amanieu</a>
-      <div class="packages">
-        <span>crossbeam-utils</span>
-        <span>crossbeam-epoch</span>
-        <span>crossbeam-deque</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="30.0" y="1144.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/aturon" target="_blank" class="maintainer-name" data-packages="crossbeam-utils,crossbeam-epoch,crossbeam-deque">#3 @aturon</a>
-      <div class="packages">
-        <span>crossbeam-utils</span>
-        <span>crossbeam-epoch</span>
-        <span>crossbeam-deque</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="400.0" y="1144.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/jeehoonkang" target="_blank" class="maintainer-name" data-packages="crossbeam-utils,crossbeam-epoch,crossbeam-deque">#4 @jeehoonkang</a>
-      <div class="packages">
-        <span>crossbeam-utils</span>
-        <span>crossbeam-epoch</span>
-        <span>crossbeam-deque</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="215.0" y="1284.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/cuviper" target="_blank" class="maintainer-name" data-packages="either,rayon-core">#5 @cuviper</a>
-      <div class="packages">
-        <span>either</span>
-        <span>rayon-core</span>
-      </div>
-    </div>
-  </foreignObject>
+  <a href="https://github.com/taiki-e" target="_blank" class="maintainer-link" data-packages="crossbeam-utils,crossbeam-epoch,crossbeam-deque">
+    <text x="215.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#1 @taiki-e</text>
+  </a>
+  <text class="package-entry" data-package="crossbeam-utils" x="215.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-utils</text>
+  <text class="package-entry" data-package="crossbeam-epoch" x="215.0" y="1067.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-epoch</text>
+  <text class="package-entry" data-package="crossbeam-deque" x="215.0" y="1085.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-deque</text>
+  <a href="https://github.com/Amanieu" target="_blank" class="maintainer-link" data-packages="crossbeam-utils,crossbeam-epoch,crossbeam-deque">
+    <text x="585.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#2 @Amanieu</text>
+  </a>
+  <text class="package-entry" data-package="crossbeam-utils" x="585.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-utils</text>
+  <text class="package-entry" data-package="crossbeam-epoch" x="585.0" y="1067.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-epoch</text>
+  <text class="package-entry" data-package="crossbeam-deque" x="585.0" y="1085.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-deque</text>
+  <a href="https://github.com/aturon" target="_blank" class="maintainer-link" data-packages="crossbeam-utils,crossbeam-epoch,crossbeam-deque">
+    <text x="215.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#3 @aturon</text>
+  </a>
+  <text class="package-entry" data-package="crossbeam-utils" x="215.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-utils</text>
+  <text class="package-entry" data-package="crossbeam-epoch" x="215.0" y="1207.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-epoch</text>
+  <text class="package-entry" data-package="crossbeam-deque" x="215.0" y="1225.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-deque</text>
+  <a href="https://github.com/jeehoonkang" target="_blank" class="maintainer-link" data-packages="crossbeam-utils,crossbeam-epoch,crossbeam-deque">
+    <text x="585.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#4 @jeehoonkang</text>
+  </a>
+  <text class="package-entry" data-package="crossbeam-utils" x="585.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-utils</text>
+  <text class="package-entry" data-package="crossbeam-epoch" x="585.0" y="1207.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-epoch</text>
+  <text class="package-entry" data-package="crossbeam-deque" x="585.0" y="1225.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-deque</text>
+  <a href="https://github.com/cuviper" target="_blank" class="maintainer-link" data-packages="either,rayon-core">
+    <text x="400.0" y="1304.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#5 @cuviper</text>
+  </a>
+  <text class="package-entry" data-package="either" x="400.0" y="1329.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">either</text>
+  <text class="package-entry" data-package="rayon-core" x="400.0" y="1347.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">rayon-core</text>
   <style>
-    .nebraska-entry {
-      text-align: center;
-      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
-      overflow: hidden;
-      height: 100%;
-    }
-    .nebraska-entry .maintainer-name {
-      display: block;
-      font-size: 24px;
-      color: #333;
-      text-decoration: none;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-      margin-bottom: 8px;
-    }
-    .nebraska-entry .maintainer-name:hover { text-decoration: underline; }
-    .nebraska-entry .packages {
-      font-size: 16px;
-      color: #888;
-      line-height: 1.4;
-    }
-    .nebraska-entry .packages span {
-      display: block;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-    }
+    .maintainer-link text { cursor: pointer; }
+    .maintainer-link:hover text { text-decoration: underline; }
   </style>
   <script type="text/javascript"><![CDATA[
-    document.querySelectorAll('.maintainer-name').forEach(el => {
+    document.querySelectorAll('.maintainer-link').forEach(el => {
       el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
       el.addEventListener('mouseleave', clearHighlight);
     });

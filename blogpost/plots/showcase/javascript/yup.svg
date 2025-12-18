@@ -8,37 +8,37 @@
 " x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>
     </pattern>
   </defs>
-  <a href="https://github.com/jquense/expr" target="_blank"><path id="block-property-expr" class="block brittle" d="M 71.48 210.76 Q 71.87 171.53 96.66 175.02 Q 121.46 178.52 146.25 178.69 Q 171.04 178.87 195.84 175.18 Q 220.63 171.48 221.68 210.74 Q 222.72 250.00 220.42 287.50 Q 218.12 325.00 217.52 362.50 Q 216.92 400.00 217.25 437.50 Q 217.58 475.00 194.31 476.84 Q 171.04 478.69 146.25 477.52 Q 121.46 476.35 96.66 474.45 Q 71.87 472.55 71.21 436.28 Q 70.54 400.00 69.61 362.50 Q 68.67 325.00 69.88 287.50 Q 71.09 250.00 71.48 210.76 Z" fill="rgba(172,172,172,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.962 146.25 325.00)"/></a>
+  <a href="https://github.com/jquense/expr" target="_blank"><path id="block-property-expr" class="block brittle" d="M 71.48 210.76 Q 71.87 171.53 96.66 175.02 Q 121.46 178.52 146.25 178.69 Q 171.04 178.87 195.84 175.18 Q 220.63 171.48 221.68 210.74 Q 222.72 250.00 220.42 287.50 Q 218.12 325.00 217.52 362.50 Q 216.92 400.00 217.25 437.50 Q 217.58 475.00 194.31 476.84 Q 171.04 478.69 146.25 477.52 Q 121.46 476.35 96.66 474.45 Q 71.87 472.55 71.21 436.28 Q 70.54 400.00 69.61 362.50 Q 68.67 325.00 69.88 287.50 Q 71.09 250.00 71.48 210.76 Z" fill="#acacac" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.962 146.25 325.00)"/></a>
   <path class="block-texture" d="M 71.48 210.76 Q 71.87 171.53 96.66 175.02 Q 121.46 178.52 146.25 178.69 Q 171.04 178.87 195.84 175.18 Q 220.63 171.48 221.68 210.74 Q 222.72 250.00 220.42 287.50 Q 218.12 325.00 217.52 362.50 Q 216.92 400.00 217.25 437.50 Q 217.58 475.00 194.31 476.84 Q 171.04 478.69 146.25 477.52 Q 121.46 476.35 96.66 474.45 Q 71.87 472.55 71.21 436.28 Q 70.54 400.00 69.61 362.50 Q 68.67 325.00 69.88 287.50 Q 71.09 250.00 71.48 210.76 Z" fill="url(#brittleTexture)" style="pointer-events: none;" transform="rotate(0.962 146.25 325.00)"/>
-  <a href="https://github.com/sindresorhus/tagged-tag" target="_blank"><path id="block-tagged-tag" class="block" d="M 655.86 350.07 Q 657.50 325.14 689.58 323.56 Q 721.67 321.97 753.75 323.51 Q 785.83 325.06 817.92 324.66 Q 850.00 324.26 848.43 349.63 Q 846.87 375.00 847.51 400.00 Q 848.15 425.00 847.25 450.00 Q 846.35 475.00 816.09 476.29 Q 785.83 477.58 753.75 475.18 Q 721.67 472.78 689.58 473.70 Q 657.50 474.63 658.04 449.81 Q 658.58 425.00 656.40 400.00 Q 654.21 375.00 655.86 350.07 Z" fill="rgba(162,162,162,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.141 753.75 400.00)"/></a>
-  <a href="https://github.com/jquense/tiny-case" target="_blank"><path id="block-tiny-case" class="block brittle" d="M 270.32 211.90 Q 272.08 173.80 297.64 175.49 Q 323.19 177.17 348.75 174.85 Q 374.31 172.54 399.86 174.35 Q 425.42 176.17 427.15 213.08 Q 428.87 250.00 427.97 287.50 Q 427.06 325.00 424.37 362.50 Q 421.68 400.00 425.19 437.50 Q 428.71 475.00 401.51 475.79 Q 374.31 476.59 348.75 474.71 Q 323.19 472.83 297.64 472.78 Q 272.08 472.74 272.87 436.37 Q 273.66 400.00 271.48 362.50 Q 269.29 325.00 268.93 287.50 Q 268.57 250.00 270.32 211.90 Z" fill="rgba(222,222,222,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.715 348.75 325.00)"/></a>
+  <a href="https://github.com/sindresorhus/tagged-tag" target="_blank"><path id="block-tagged-tag" class="block" d="M 655.86 350.07 Q 657.50 325.14 689.58 323.56 Q 721.67 321.97 753.75 323.51 Q 785.83 325.06 817.92 324.66 Q 850.00 324.26 848.43 349.63 Q 846.87 375.00 847.51 400.00 Q 848.15 425.00 847.25 450.00 Q 846.35 475.00 816.09 476.29 Q 785.83 477.58 753.75 475.18 Q 721.67 472.78 689.58 473.70 Q 657.50 474.63 658.04 449.81 Q 658.58 425.00 656.40 400.00 Q 654.21 375.00 655.86 350.07 Z" fill="#a2a2a2" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.141 753.75 400.00)"/></a>
+  <a href="https://github.com/jquense/tiny-case" target="_blank"><path id="block-tiny-case" class="block brittle" d="M 270.32 211.90 Q 272.08 173.80 297.64 175.49 Q 323.19 177.17 348.75 174.85 Q 374.31 172.54 399.86 174.35 Q 425.42 176.17 427.15 213.08 Q 428.87 250.00 427.97 287.50 Q 427.06 325.00 424.37 362.50 Q 421.68 400.00 425.19 437.50 Q 428.71 475.00 401.51 475.79 Q 374.31 476.59 348.75 474.71 Q 323.19 472.83 297.64 472.78 Q 272.08 472.74 272.87 436.37 Q 273.66 400.00 271.48 362.50 Q 269.29 325.00 268.93 287.50 Q 268.57 250.00 270.32 211.90 Z" fill="#dedede" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.715 348.75 325.00)"/></a>
   <path class="block-texture" d="M 270.32 211.90 Q 272.08 173.80 297.64 175.49 Q 323.19 177.17 348.75 174.85 Q 374.31 172.54 399.86 174.35 Q 425.42 176.17 427.15 213.08 Q 428.87 250.00 427.97 287.50 Q 427.06 325.00 424.37 362.50 Q 421.68 400.00 425.19 437.50 Q 428.71 475.00 401.51 475.79 Q 374.31 476.59 348.75 474.71 Q 323.19 472.83 297.64 472.78 Q 272.08 472.74 272.87 436.37 Q 273.66 400.00 271.48 362.50 Q 269.29 325.00 268.93 287.50 Q 268.57 250.00 270.32 211.90 Z" fill="url(#brittleTexture)" style="pointer-events: none;" transform="rotate(0.715 348.75 325.00)"/>
-  <a href="https://github.com/marcelklehr/toposort#readme" target="_blank"><path id="block-toposort" class="block brittle" d="M 481.85 211.73 Q 482.43 173.45 505.37 174.97 Q 528.31 176.48 551.25 175.85 Q 574.19 175.22 597.13 174.65 Q 620.07 174.08 621.17 212.04 Q 622.28 250.00 621.60 287.50 Q 620.93 325.00 618.99 362.50 Q 617.05 400.00 617.84 437.50 Q 618.63 475.00 596.41 476.90 Q 574.19 478.80 551.25 475.03 Q 528.31 471.26 505.37 472.41 Q 482.43 473.56 482.67 436.78 Q 482.91 400.00 484.64 362.50 Q 486.36 325.00 483.82 287.50 Q 481.28 250.00 481.85 211.73 Z" fill="rgba(243,243,243,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-1.075 551.25 325.00)"/></a>
+  <a href="https://github.com/marcelklehr/toposort#readme" target="_blank"><path id="block-toposort" class="block brittle" d="M 481.85 211.73 Q 482.43 173.45 505.37 174.97 Q 528.31 176.48 551.25 175.85 Q 574.19 175.22 597.13 174.65 Q 620.07 174.08 621.17 212.04 Q 622.28 250.00 621.60 287.50 Q 620.93 325.00 618.99 362.50 Q 617.05 400.00 617.84 437.50 Q 618.63 475.00 596.41 476.90 Q 574.19 478.80 551.25 475.03 Q 528.31 471.26 505.37 472.41 Q 482.43 473.56 482.67 436.78 Q 482.91 400.00 484.64 362.50 Q 486.36 325.00 483.82 287.50 Q 481.28 250.00 481.85 211.73 Z" fill="#f3f3f3" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-1.075 551.25 325.00)"/></a>
   <path class="block-texture" d="M 481.85 211.73 Q 482.43 173.45 505.37 174.97 Q 528.31 176.48 551.25 175.85 Q 574.19 175.22 597.13 174.65 Q 620.07 174.08 621.17 212.04 Q 622.28 250.00 621.60 287.50 Q 620.93 325.00 618.99 362.50 Q 617.05 400.00 617.84 437.50 Q 618.63 475.00 596.41 476.90 Q 574.19 478.80 551.25 475.03 Q 528.31 471.26 505.37 472.41 Q 482.43 473.56 482.67 436.78 Q 482.91 400.00 484.64 362.50 Q 486.36 325.00 483.82 287.50 Q 481.28 250.00 481.85 211.73 Z" fill="url(#brittleTexture)" style="pointer-events: none;" transform="rotate(-1.075 551.25 325.00)"/>
-  <a href="https://github.com/sindresorhus/type-fest" target="_blank"><path id="block-type-fest" class="block" d="M 698.27 200.21 Q 699.20 175.42 717.38 175.37 Q 735.57 175.32 753.75 174.31 Q 771.93 173.31 790.12 172.38 Q 808.30 171.45 807.14 198.22 Q 805.98 225.00 808.43 250.00 Q 810.89 275.00 810.99 300.00 Q 811.09 325.00 791.51 324.86 Q 771.93 324.72 753.75 325.09 Q 735.57 325.46 717.38 325.85 Q 699.20 326.24 698.26 300.62 Q 697.33 275.00 697.34 250.00 Q 697.35 225.00 698.27 200.21 Z" fill="rgba(192,192,192,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.649 753.75 250.00)"/></a>
-  <a href="https://github.com/jquense/yup" target="_blank"><path id="block-yup" class="block" d="M 46.08 51.23 Q 45.00 27.46 78.75 26.94 Q 112.50 26.42 146.25 27.63 Q 180.00 28.85 213.75 28.43 Q 247.50 28.00 281.25 24.86 Q 315.00 21.72 348.75 25.03 Q 382.50 28.34 416.25 26.06 Q 450.00 23.79 483.75 23.31 Q 517.50 22.84 551.25 25.34 Q 585.00 27.85 618.75 25.91 Q 652.50 23.98 686.25 24.81 Q 720.00 25.63 753.75 23.32 Q 787.50 21.01 821.25 24.40 Q 855.00 27.78 854.72 51.39 Q 854.44 75.00 855.00 100.00 Q 855.55 125.00 855.95 150.00 Q 856.35 175.00 821.93 173.75 Q 787.50 172.50 753.75 175.01 Q 720.00 177.52 686.25 174.38 Q 652.50 171.24 618.75 174.66 Q 585.00 178.09 551.25 176.89 Q 517.50 175.68 483.75 176.30 Q 450.00 176.91 416.25 174.87 Q 382.50 172.84 348.75 173.91 Q 315.00 174.99 281.25 174.28 Q 247.50 173.57 213.75 172.75 Q 180.00 171.93 146.25 171.70 Q 112.50 171.46 78.75 172.18 Q 45.00 172.89 43.59 148.95 Q 42.18 125.00 44.67 100.00 Q 47.16 75.00 46.08 51.23 Z" fill="rgba(177,177,177,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.398 450.00 100.00)"/></a>
+  <a href="https://github.com/sindresorhus/type-fest" target="_blank"><path id="block-type-fest" class="block" d="M 698.27 200.21 Q 699.20 175.42 717.38 175.37 Q 735.57 175.32 753.75 174.31 Q 771.93 173.31 790.12 172.38 Q 808.30 171.45 807.14 198.22 Q 805.98 225.00 808.43 250.00 Q 810.89 275.00 810.99 300.00 Q 811.09 325.00 791.51 324.86 Q 771.93 324.72 753.75 325.09 Q 735.57 325.46 717.38 325.85 Q 699.20 326.24 698.26 300.62 Q 697.33 275.00 697.34 250.00 Q 697.35 225.00 698.27 200.21 Z" fill="#c0c0c0" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.649 753.75 250.00)"/></a>
+  <a href="https://github.com/jquense/yup" target="_blank"><path id="block-yup" class="block" d="M 46.08 51.23 Q 45.00 27.46 78.75 26.94 Q 112.50 26.42 146.25 27.63 Q 180.00 28.85 213.75 28.43 Q 247.50 28.00 281.25 24.86 Q 315.00 21.72 348.75 25.03 Q 382.50 28.34 416.25 26.06 Q 450.00 23.79 483.75 23.31 Q 517.50 22.84 551.25 25.34 Q 585.00 27.85 618.75 25.91 Q 652.50 23.98 686.25 24.81 Q 720.00 25.63 753.75 23.32 Q 787.50 21.01 821.25 24.40 Q 855.00 27.78 854.72 51.39 Q 854.44 75.00 855.00 100.00 Q 855.55 125.00 855.95 150.00 Q 856.35 175.00 821.93 173.75 Q 787.50 172.50 753.75 175.01 Q 720.00 177.52 686.25 174.38 Q 652.50 171.24 618.75 174.66 Q 585.00 178.09 551.25 176.89 Q 517.50 175.68 483.75 176.30 Q 450.00 176.91 416.25 174.87 Q 382.50 172.84 348.75 173.91 Q 315.00 174.99 281.25 174.28 Q 247.50 173.57 213.75 172.75 Q 180.00 171.93 146.25 171.70 Q 112.50 171.46 78.75 172.18 Q 45.00 172.89 43.59 148.95 Q 42.18 125.00 44.67 100.00 Q 47.16 75.00 46.08 51.23 Z" fill="#b1b1b1" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.398 450.00 100.00)"/></a>
   <g class="block-text" data-block="property-expr">
-  <a href="https://github.com/jquense/expr" target="_blank">    <rect x="134.25" y="254.80" width="24.00" height="140.40" fill="rgba(172,172,172,1)"/>
+  <a href="https://github.com/jquense/expr" target="_blank">    <rect x="134.25" y="254.80" width="24.00" height="140.40" fill="#acacac"/>
     <text x="146.25" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 146.25 325.00)">property-expr</text>
 </a>  </g>
   <g class="block-text" data-block="tagged-tag">
-  <a href="https://github.com/sindresorhus/tagged-tag" target="_blank">    <rect x="699.75" y="388.00" width="108.00" height="24.00" fill="rgba(162,162,162,1)"/>
+  <a href="https://github.com/sindresorhus/tagged-tag" target="_blank">    <rect x="699.75" y="388.00" width="108.00" height="24.00" fill="#a2a2a2"/>
     <text x="753.75" y="400.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">tagged-tag</text>
 </a>  </g>
   <g class="block-text" data-block="tiny-case">
-  <a href="https://github.com/jquense/tiny-case" target="_blank">    <rect x="300.15" y="313.00" width="97.20" height="24.00" fill="rgba(222,222,222,1)"/>
+  <a href="https://github.com/jquense/tiny-case" target="_blank">    <rect x="300.15" y="313.00" width="97.20" height="24.00" fill="#dedede"/>
     <text x="348.75" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">tiny-case</text>
 </a>  </g>
   <g class="block-text" data-block="toposort">
-  <a href="https://github.com/marcelklehr/toposort#readme" target="_blank">    <rect x="508.05" y="313.00" width="86.40" height="24.00" fill="rgba(243,243,243,1)"/>
+  <a href="https://github.com/marcelklehr/toposort#readme" target="_blank">    <rect x="508.05" y="313.00" width="86.40" height="24.00" fill="#f3f3f3"/>
     <text x="551.25" y="325.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">toposort</text>
 </a>  </g>
   <g class="block-text" data-block="type-fest">
-  <a href="https://github.com/sindresorhus/type-fest" target="_blank">    <rect x="744.09" y="210.88" width="19.32" height="78.24" fill="rgba(192,192,192,1)"/>
+  <a href="https://github.com/sindresorhus/type-fest" target="_blank">    <rect x="744.09" y="210.88" width="19.32" height="78.24" fill="#c0c0c0"/>
     <text x="753.75" y="250.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="19.3" fill="#333" transform="rotate(-90 753.75 250.00)">type-fest</text>
 </a>  </g>
   <g class="block-text" data-block="yup">
-  <a href="https://github.com/jquense/yup" target="_blank">    <rect x="433.80" y="88.00" width="32.40" height="24.00" fill="rgba(177,177,177,1)"/>
+  <a href="https://github.com/jquense/yup" target="_blank">    <rect x="433.80" y="88.00" width="32.40" height="24.00" fill="#b1b1b1"/>
     <text x="450.00" y="100.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">yup</text>
 </a>  </g>
   <style>
@@ -63,78 +63,34 @@
   ]]></script>
   <text x="450.0" y="564.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 322.0 580.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <foreignObject x="30.0" y="604.0" width="168.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/sindresorhus" target="_blank" class="maintainer-name" data-packages="tagged-tag,type-fest">#1 @sindresorhus</a>
-      <div class="packages">
-        <span>tagged-tag</span>
-        <span>type-fest</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="198.0" y="604.0" width="168.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/marcelklehr" target="_blank" class="maintainer-name" data-packages="toposort">#2 @marcelklehr</a>
-      <div class="packages">
-        <span>toposort</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="366.0" y="604.0" width="168.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/jquense" target="_blank" class="maintainer-name" data-packages="property-expr,tiny-case">#3 @jquense</a>
-      <div class="packages">
-        <span>property-expr</span>
-        <span>tiny-case</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="534.0" y="604.0" width="168.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/Tralafarlaw" target="_blank" class="maintainer-name" data-packages="tiny-case">#4 @Tralafarlaw</a>
-      <div class="packages">
-        <span>tiny-case</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="702.0" y="604.0" width="168.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/corydeppen" target="_blank" class="maintainer-name" data-packages="property-expr">#5 @corydeppen</a>
-      <div class="packages">
-        <span>property-expr</span>
-      </div>
-    </div>
-  </foreignObject>
+  <a href="https://github.com/sindresorhus" target="_blank" class="maintainer-link" data-packages="tagged-tag,type-fest">
+    <text x="114.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#1 @sindresorhus</text>
+  </a>
+  <text class="package-entry" data-package="tagged-tag" x="114.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">tagged-tag</text>
+  <text class="package-entry" data-package="type-fest" x="114.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">type-fest</text>
+  <a href="https://github.com/marcelklehr" target="_blank" class="maintainer-link" data-packages="toposort">
+    <text x="282.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#2 @marcelklehr</text>
+  </a>
+  <text class="package-entry" data-package="toposort" x="282.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">toposort</text>
+  <a href="https://github.com/jquense" target="_blank" class="maintainer-link" data-packages="property-expr,tiny-case">
+    <text x="450.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#3 @jquense</text>
+  </a>
+  <text class="package-entry" data-package="property-expr" x="450.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">property-expr</text>
+  <text class="package-entry" data-package="tiny-case" x="450.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">tiny-case</text>
+  <a href="https://github.com/Tralafarlaw" target="_blank" class="maintainer-link" data-packages="tiny-case">
+    <text x="618.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#4 @Tralafarlaw</text>
+  </a>
+  <text class="package-entry" data-package="tiny-case" x="618.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">tiny-case</text>
+  <a href="https://github.com/corydeppen" target="_blank" class="maintainer-link" data-packages="property-expr">
+    <text x="786.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#5 @corydeppen</text>
+  </a>
+  <text class="package-entry" data-package="property-expr" x="786.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">property-expr</text>
   <style>
-    .nebraska-entry {
-      text-align: center;
-      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
-      overflow: hidden;
-      height: 100%;
-    }
-    .nebraska-entry .maintainer-name {
-      display: block;
-      font-size: 24px;
-      color: #333;
-      text-decoration: none;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-      margin-bottom: 8px;
-    }
-    .nebraska-entry .maintainer-name:hover { text-decoration: underline; }
-    .nebraska-entry .packages {
-      font-size: 16px;
-      color: #888;
-      line-height: 1.4;
-    }
-    .nebraska-entry .packages span {
-      display: block;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-    }
+    .maintainer-link text { cursor: pointer; }
+    .maintainer-link:hover text { text-decoration: underline; }
   </style>
   <script type="text/javascript"><![CDATA[
-    document.querySelectorAll('.maintainer-name').forEach(el => {
+    document.querySelectorAll('.maintainer-link').forEach(el => {
       el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
       el.addEventListener('mouseleave', clearHighlight);
     });

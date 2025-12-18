@@ -8,29 +8,29 @@
 " x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>
     </pattern>
   </defs>
-  <a href="https://github.com/annotated-types/annotated-types" target="_blank"><path id="block-annotated-types" class="block" d="M 72.36 347.13 Q 71.13 311.77 100.75 312.86 Q 130.38 313.96 160.00 314.29 Q 189.62 314.62 219.25 316.49 Q 248.87 318.35 247.85 350.43 Q 246.82 382.50 248.20 416.25 Q 249.57 450.00 249.91 483.75 Q 250.25 517.50 247.74 551.25 Q 245.24 585.00 217.43 586.76 Q 189.62 588.52 160.00 586.73 Q 130.38 584.94 100.75 584.75 Q 71.13 584.57 71.13 551.03 Q 71.13 517.50 69.90 483.75 Q 68.68 450.00 71.14 416.25 Q 73.59 382.50 72.36 347.13 Z" fill="rgba(207,207,207,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.732 160.00 450.00)"/></a>
-  <a href="https://github.com/pydantic/pydantic" target="_blank"><path id="block-pydantic" class="block" d="M 41.84 79.58 Q 40.00 46.67 76.00 47.76 Q 112.00 48.86 148.00 45.87 Q 184.00 42.88 220.00 44.80 Q 256.00 46.73 292.00 44.81 Q 328.00 42.89 364.00 43.38 Q 400.00 43.87 436.00 46.00 Q 472.00 48.12 508.00 47.10 Q 544.00 46.07 580.00 43.81 Q 616.00 41.55 652.00 43.53 Q 688.00 45.52 724.00 43.86 Q 760.00 42.20 759.72 77.35 Q 759.44 112.50 758.84 146.25 Q 758.23 180.00 757.83 213.75 Q 757.43 247.50 759.49 281.25 Q 761.55 315.00 724.77 313.72 Q 688.00 312.43 652.00 313.43 Q 616.00 314.42 580.00 314.93 Q 544.00 315.45 508.00 315.17 Q 472.00 314.90 436.00 313.12 Q 400.00 311.35 364.00 314.47 Q 328.00 317.59 292.00 317.23 Q 256.00 316.86 220.00 316.88 Q 184.00 316.89 148.00 314.64 Q 112.00 312.38 76.00 312.78 Q 40.00 313.18 38.56 280.34 Q 37.13 247.50 37.01 213.75 Q 36.90 180.00 40.29 146.25 Q 43.68 112.50 41.84 79.58 Z" fill="rgba(171,171,171,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.177 400.00 180.00)"/></a>
-  <a href="https://github.com/pydantic/pydantic-core" target="_blank"><path id="block-pydantic-core" class="block" d="M 309.28 348.76 Q 308.39 315.02 338.93 315.36 Q 369.46 315.70 400.00 316.47 Q 430.54 317.23 461.07 316.69 Q 491.61 316.16 492.65 349.33 Q 493.70 382.50 493.37 416.25 Q 493.04 450.00 492.08 483.75 Q 491.12 517.50 490.57 551.25 Q 490.02 585.00 460.28 584.14 Q 430.54 583.29 400.00 582.47 Q 369.46 581.65 338.93 583.43 Q 308.39 585.22 310.31 551.36 Q 312.24 517.50 310.82 483.75 Q 309.41 450.00 309.79 416.25 Q 310.17 382.50 309.28 348.76 Z" fill="rgba(163,163,163,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.976 400.00 450.00)"/></a>
-  <a href="https://github.com/python/typing_extensions" target="_blank"><path id="block-typing-extensions" class="block" d="M 44.69 618.41 Q 45.00 584.33 80.50 582.74 Q 116.00 581.16 151.50 581.36 Q 187.00 581.55 222.50 582.81 Q 258.00 584.07 293.50 583.39 Q 329.00 582.71 364.50 585.58 Q 400.00 588.44 435.50 585.76 Q 471.00 583.08 506.50 584.33 Q 542.00 585.57 577.50 586.07 Q 613.00 586.57 648.50 586.48 Q 684.00 586.39 719.50 587.43 Q 755.00 588.48 756.55 620.49 Q 758.11 652.50 758.32 686.25 Q 758.54 720.00 754.79 753.75 Q 751.03 787.50 751.29 821.25 Q 751.54 855.00 717.77 855.57 Q 684.00 856.15 648.50 854.96 Q 613.00 853.78 577.50 853.91 Q 542.00 854.04 506.50 855.75 Q 471.00 857.45 435.50 855.01 Q 400.00 852.57 364.50 854.41 Q 329.00 856.25 293.50 854.12 Q 258.00 851.99 222.50 852.17 Q 187.00 852.36 151.50 854.65 Q 116.00 856.94 80.50 856.57 Q 45.00 856.19 45.33 821.85 Q 45.66 787.50 45.95 753.75 Q 46.24 720.00 45.31 686.25 Q 44.38 652.50 44.69 618.41 Z" fill="rgba(227,227,227,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.031 400.00 720.00)"/></a>
-  <a href="https://github.com/pydantic/typing-inspection" target="_blank"><path id="block-typing-inspection" class="block" d="M 559.12 348.21 Q 557.77 313.92 585.18 315.34 Q 612.59 316.76 640.00 315.86 Q 667.41 314.96 694.82 315.33 Q 722.23 315.70 721.47 349.10 Q 720.71 382.50 721.68 416.25 Q 722.65 450.00 720.55 483.75 Q 718.45 517.50 719.38 551.25 Q 720.31 585.00 693.86 585.85 Q 667.41 586.70 640.00 585.10 Q 612.59 583.51 585.18 583.44 Q 557.77 583.36 556.29 550.43 Q 554.81 517.50 555.07 483.75 Q 555.33 450.00 557.90 416.25 Q 560.46 382.50 559.12 348.21 Z" fill="rgba(205,205,205,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.697 640.00 450.00)"/></a>
+  <a href="https://github.com/annotated-types/annotated-types" target="_blank"><path id="block-annotated-types" class="block" d="M 72.36 347.13 Q 71.13 311.77 100.75 312.86 Q 130.38 313.96 160.00 314.29 Q 189.62 314.62 219.25 316.49 Q 248.87 318.35 247.85 350.43 Q 246.82 382.50 248.20 416.25 Q 249.57 450.00 249.91 483.75 Q 250.25 517.50 247.74 551.25 Q 245.24 585.00 217.43 586.76 Q 189.62 588.52 160.00 586.73 Q 130.38 584.94 100.75 584.75 Q 71.13 584.57 71.13 551.03 Q 71.13 517.50 69.90 483.75 Q 68.68 450.00 71.14 416.25 Q 73.59 382.50 72.36 347.13 Z" fill="#cfcfcf" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.732 160.00 450.00)"/></a>
+  <a href="https://github.com/pydantic/pydantic" target="_blank"><path id="block-pydantic" class="block" d="M 41.84 79.58 Q 40.00 46.67 76.00 47.76 Q 112.00 48.86 148.00 45.87 Q 184.00 42.88 220.00 44.80 Q 256.00 46.73 292.00 44.81 Q 328.00 42.89 364.00 43.38 Q 400.00 43.87 436.00 46.00 Q 472.00 48.12 508.00 47.10 Q 544.00 46.07 580.00 43.81 Q 616.00 41.55 652.00 43.53 Q 688.00 45.52 724.00 43.86 Q 760.00 42.20 759.72 77.35 Q 759.44 112.50 758.84 146.25 Q 758.23 180.00 757.83 213.75 Q 757.43 247.50 759.49 281.25 Q 761.55 315.00 724.77 313.72 Q 688.00 312.43 652.00 313.43 Q 616.00 314.42 580.00 314.93 Q 544.00 315.45 508.00 315.17 Q 472.00 314.90 436.00 313.12 Q 400.00 311.35 364.00 314.47 Q 328.00 317.59 292.00 317.23 Q 256.00 316.86 220.00 316.88 Q 184.00 316.89 148.00 314.64 Q 112.00 312.38 76.00 312.78 Q 40.00 313.18 38.56 280.34 Q 37.13 247.50 37.01 213.75 Q 36.90 180.00 40.29 146.25 Q 43.68 112.50 41.84 79.58 Z" fill="#ababab" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.177 400.00 180.00)"/></a>
+  <a href="https://github.com/pydantic/pydantic-core" target="_blank"><path id="block-pydantic-core" class="block" d="M 309.28 348.76 Q 308.39 315.02 338.93 315.36 Q 369.46 315.70 400.00 316.47 Q 430.54 317.23 461.07 316.69 Q 491.61 316.16 492.65 349.33 Q 493.70 382.50 493.37 416.25 Q 493.04 450.00 492.08 483.75 Q 491.12 517.50 490.57 551.25 Q 490.02 585.00 460.28 584.14 Q 430.54 583.29 400.00 582.47 Q 369.46 581.65 338.93 583.43 Q 308.39 585.22 310.31 551.36 Q 312.24 517.50 310.82 483.75 Q 309.41 450.00 309.79 416.25 Q 310.17 382.50 309.28 348.76 Z" fill="#a3a3a3" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.976 400.00 450.00)"/></a>
+  <a href="https://github.com/python/typing_extensions" target="_blank"><path id="block-typing-extensions" class="block" d="M 44.69 618.41 Q 45.00 584.33 80.50 582.74 Q 116.00 581.16 151.50 581.36 Q 187.00 581.55 222.50 582.81 Q 258.00 584.07 293.50 583.39 Q 329.00 582.71 364.50 585.58 Q 400.00 588.44 435.50 585.76 Q 471.00 583.08 506.50 584.33 Q 542.00 585.57 577.50 586.07 Q 613.00 586.57 648.50 586.48 Q 684.00 586.39 719.50 587.43 Q 755.00 588.48 756.55 620.49 Q 758.11 652.50 758.32 686.25 Q 758.54 720.00 754.79 753.75 Q 751.03 787.50 751.29 821.25 Q 751.54 855.00 717.77 855.57 Q 684.00 856.15 648.50 854.96 Q 613.00 853.78 577.50 853.91 Q 542.00 854.04 506.50 855.75 Q 471.00 857.45 435.50 855.01 Q 400.00 852.57 364.50 854.41 Q 329.00 856.25 293.50 854.12 Q 258.00 851.99 222.50 852.17 Q 187.00 852.36 151.50 854.65 Q 116.00 856.94 80.50 856.57 Q 45.00 856.19 45.33 821.85 Q 45.66 787.50 45.95 753.75 Q 46.24 720.00 45.31 686.25 Q 44.38 652.50 44.69 618.41 Z" fill="#e3e3e3" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.031 400.00 720.00)"/></a>
+  <a href="https://github.com/pydantic/typing-inspection" target="_blank"><path id="block-typing-inspection" class="block" d="M 559.12 348.21 Q 557.77 313.92 585.18 315.34 Q 612.59 316.76 640.00 315.86 Q 667.41 314.96 694.82 315.33 Q 722.23 315.70 721.47 349.10 Q 720.71 382.50 721.68 416.25 Q 722.65 450.00 720.55 483.75 Q 718.45 517.50 719.38 551.25 Q 720.31 585.00 693.86 585.85 Q 667.41 586.70 640.00 585.10 Q 612.59 583.51 585.18 583.44 Q 557.77 583.36 556.29 550.43 Q 554.81 517.50 555.07 483.75 Q 555.33 450.00 557.90 416.25 Q 560.46 382.50 559.12 348.21 Z" fill="#cdcdcd" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.697 640.00 450.00)"/></a>
   <g class="block-text" data-block="annotated-types">
-  <a href="https://github.com/annotated-types/annotated-types" target="_blank">    <rect x="149.57" y="379.59" width="20.86" height="140.83" fill="rgba(207,207,207,1)"/>
+  <a href="https://github.com/annotated-types/annotated-types" target="_blank">    <rect x="149.57" y="379.59" width="20.86" height="140.83" fill="#cfcfcf"/>
     <text x="160.00" y="450.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="20.9" fill="#333" transform="rotate(-90 160.00 450.00)">annotated-types</text>
 </a>  </g>
   <g class="block-text" data-block="pydantic">
-  <a href="https://github.com/pydantic/pydantic" target="_blank">    <rect x="356.80" y="168.00" width="86.40" height="24.00" fill="rgba(171,171,171,1)"/>
+  <a href="https://github.com/pydantic/pydantic" target="_blank">    <rect x="356.80" y="168.00" width="86.40" height="24.00" fill="#ababab"/>
     <text x="400.00" y="180.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">pydantic</text>
 </a>  </g>
   <g class="block-text" data-block="pydantic-core">
-  <a href="https://github.com/pydantic/pydantic-core" target="_blank">    <rect x="388.00" y="379.80" width="24.00" height="140.40" fill="rgba(163,163,163,1)"/>
+  <a href="https://github.com/pydantic/pydantic-core" target="_blank">    <rect x="388.00" y="379.80" width="24.00" height="140.40" fill="#a3a3a3"/>
     <text x="400.00" y="450.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 400.00 450.00)">pydantic-core</text>
 </a>  </g>
   <g class="block-text" data-block="typing-extensions">
-  <a href="https://github.com/python/typing_extensions" target="_blank">    <rect x="390.80" y="649.59" width="18.41" height="140.83" fill="rgba(227,227,227,1)"/>
+  <a href="https://github.com/python/typing_extensions" target="_blank">    <rect x="390.80" y="649.59" width="18.41" height="140.83" fill="#e3e3e3"/>
     <text x="400.00" y="720.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.4" fill="#333" transform="rotate(-90 400.00 720.00)">typing-extensions</text>
 </a>  </g>
   <g class="block-text" data-block="typing-inspection">
-  <a href="https://github.com/pydantic/typing-inspection" target="_blank">    <rect x="630.80" y="379.59" width="18.41" height="140.83" fill="rgba(205,205,205,1)"/>
+  <a href="https://github.com/pydantic/typing-inspection" target="_blank">    <rect x="630.80" y="379.59" width="18.41" height="140.83" fill="#cdcdcd"/>
     <text x="640.00" y="450.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.4" fill="#333" transform="rotate(-90 640.00 450.00)">typing-inspection</text>
 </a>  </g>
   <style>
@@ -55,80 +55,36 @@
   ]]></script>
   <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 272.0 980.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <foreignObject x="30.0" y="1004.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/samuelcolvin" target="_blank" class="maintainer-name" data-packages="pydantic-core,annotated-types,typing-inspection">#1 @samuelcolvin</a>
-      <div class="packages">
-        <span>pydantic-core</span>
-        <span>annotated-types</span>
-        <span>typing-inspection</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="400.0" y="1004.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/Viicos" target="_blank" class="maintainer-name" data-packages="typing-inspection,annotated-types">#2 @Viicos</a>
-      <div class="packages">
-        <span>typing-inspection</span>
-        <span>annotated-types</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="30.0" y="1144.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/JelleZijlstra" target="_blank" class="maintainer-name" data-packages="typing-extensions">#3 @JelleZijlstra</a>
-      <div class="packages">
-        <span>typing-extensions</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="400.0" y="1144.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/adriangb" target="_blank" class="maintainer-name" data-packages="annotated-types,pydantic-core">#4 @adriangb</a>
-      <div class="packages">
-        <span>annotated-types</span>
-        <span>pydantic-core</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="215.0" y="1284.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/AlexWaygood" target="_blank" class="maintainer-name" data-packages="typing-extensions">#5 @AlexWaygood</a>
-      <div class="packages">
-        <span>typing-extensions</span>
-      </div>
-    </div>
-  </foreignObject>
+  <a href="https://github.com/samuelcolvin" target="_blank" class="maintainer-link" data-packages="pydantic-core,annotated-types,typing-inspection">
+    <text x="215.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#1 @samuelcolvin</text>
+  </a>
+  <text class="package-entry" data-package="pydantic-core" x="215.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">pydantic-core</text>
+  <text class="package-entry" data-package="annotated-types" x="215.0" y="1067.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">annotated-types</text>
+  <text class="package-entry" data-package="typing-inspection" x="215.0" y="1085.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">typing-inspection</text>
+  <a href="https://github.com/Viicos" target="_blank" class="maintainer-link" data-packages="typing-inspection,annotated-types">
+    <text x="585.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#2 @Viicos</text>
+  </a>
+  <text class="package-entry" data-package="typing-inspection" x="585.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">typing-inspection</text>
+  <text class="package-entry" data-package="annotated-types" x="585.0" y="1067.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">annotated-types</text>
+  <a href="https://github.com/JelleZijlstra" target="_blank" class="maintainer-link" data-packages="typing-extensions">
+    <text x="215.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#3 @JelleZijlstra</text>
+  </a>
+  <text class="package-entry" data-package="typing-extensions" x="215.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">typing-extensions</text>
+  <a href="https://github.com/adriangb" target="_blank" class="maintainer-link" data-packages="annotated-types,pydantic-core">
+    <text x="585.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#4 @adriangb</text>
+  </a>
+  <text class="package-entry" data-package="annotated-types" x="585.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">annotated-types</text>
+  <text class="package-entry" data-package="pydantic-core" x="585.0" y="1207.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">pydantic-core</text>
+  <a href="https://github.com/AlexWaygood" target="_blank" class="maintainer-link" data-packages="typing-extensions">
+    <text x="400.0" y="1304.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#5 @AlexWaygood</text>
+  </a>
+  <text class="package-entry" data-package="typing-extensions" x="400.0" y="1329.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">typing-extensions</text>
   <style>
-    .nebraska-entry {
-      text-align: center;
-      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
-      overflow: hidden;
-      height: 100%;
-    }
-    .nebraska-entry .maintainer-name {
-      display: block;
-      font-size: 24px;
-      color: #333;
-      text-decoration: none;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-      margin-bottom: 8px;
-    }
-    .nebraska-entry .maintainer-name:hover { text-decoration: underline; }
-    .nebraska-entry .packages {
-      font-size: 16px;
-      color: #888;
-      line-height: 1.4;
-    }
-    .nebraska-entry .packages span {
-      display: block;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-    }
+    .maintainer-link text { cursor: pointer; }
+    .maintainer-link:hover text { text-decoration: underline; }
   </style>
   <script type="text/javascript"><![CDATA[
-    document.querySelectorAll('.maintainer-name').forEach(el => {
+    document.querySelectorAll('.maintainer-link').forEach(el => {
       el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
       el.addEventListener('mouseleave', clearHighlight);
     });

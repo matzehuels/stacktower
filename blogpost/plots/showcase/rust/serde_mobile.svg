@@ -8,34 +8,34 @@
 " x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>
     </pattern>
   </defs>
-  <a href="https://github.com/dtolnay/proc-macro2" target="_blank"><path id="block-proc-macro2" class="block" d="M 118.81 559.73 Q 117.21 534.46 152.56 530.82 Q 187.91 527.18 223.26 528.39 Q 258.60 529.59 293.95 531.08 Q 329.30 532.57 364.65 530.96 Q 400.00 529.35 435.35 529.11 Q 470.70 528.87 506.05 529.88 Q 541.40 530.89 576.74 531.01 Q 612.09 531.14 647.44 529.52 Q 682.79 527.90 681.31 556.45 Q 679.84 585.00 679.94 612.00 Q 680.04 639.00 682.81 666.00 Q 685.57 693.00 648.83 692.16 Q 612.09 691.33 576.74 693.30 Q 541.40 695.26 506.05 692.87 Q 470.70 690.47 435.35 690.84 Q 400.00 691.21 364.65 693.17 Q 329.30 695.13 293.95 693.18 Q 258.60 691.23 223.26 692.82 Q 187.91 694.42 152.56 693.12 Q 117.21 691.83 116.56 665.42 Q 115.91 639.00 118.17 612.00 Q 120.42 585.00 118.81 559.73 Z" fill="rgba(236,236,236,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.533 400.00 612.00)"/></a>
-  <a href="https://github.com/dtolnay/quote" target="_blank"><path id="block-quote" class="block" d="M 43.50 396.22 Q 45.00 369.44 80.00 368.80 Q 115.00 368.16 150.00 368.30 Q 185.00 368.44 220.00 370.23 Q 255.00 372.03 290.00 371.71 Q 325.00 371.40 360.00 371.66 Q 395.00 371.92 393.58 397.46 Q 392.16 423.00 394.11 450.00 Q 396.06 477.00 394.15 504.00 Q 392.23 531.00 358.62 530.65 Q 325.00 530.30 290.00 531.60 Q 255.00 532.89 220.00 532.49 Q 185.00 532.08 150.00 533.00 Q 115.00 533.92 80.00 531.57 Q 45.00 529.23 43.26 503.11 Q 41.53 477.00 41.76 450.00 Q 41.99 423.00 43.50 396.22 Z" fill="rgba(229,229,229,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.338 220.00 450.00)"/></a>
-  <a href="https://github.com/serde-rs/serde" target="_blank"><path id="block-serde" class="block" d="M 38.61 70.36 Q 40.00 41.73 76.00 41.58 Q 112.00 41.43 148.00 42.16 Q 184.00 42.89 220.00 43.59 Q 256.00 44.29 292.00 43.04 Q 328.00 41.79 364.00 44.88 Q 400.00 47.96 436.00 46.13 Q 472.00 44.31 508.00 43.41 Q 544.00 42.51 580.00 43.71 Q 616.00 44.92 652.00 46.14 Q 688.00 47.35 724.00 46.01 Q 760.00 44.68 760.85 71.84 Q 761.70 99.00 760.62 126.00 Q 759.53 153.00 761.11 180.00 Q 762.68 207.00 725.34 206.34 Q 688.00 205.68 652.00 206.81 Q 616.00 207.94 580.00 206.82 Q 544.00 205.71 508.00 206.57 Q 472.00 207.44 436.00 207.66 Q 400.00 207.88 364.00 206.65 Q 328.00 205.42 292.00 208.12 Q 256.00 210.81 220.00 210.01 Q 184.00 209.21 148.00 206.35 Q 112.00 203.50 76.00 204.90 Q 40.00 206.31 38.07 179.65 Q 36.13 153.00 36.68 126.00 Q 37.22 99.00 38.61 70.36 Z" fill="rgba(210,210,210,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.135 400.00 126.00)"/></a>
-  <a href="https://github.com/serde-rs/serde" target="_blank"><path id="block-serde_derive" class="block" d="M 126.00 234.00 Q 125.66 206.99 159.95 208.62 Q 194.24 210.24 228.54 206.79 Q 262.83 203.34 297.12 203.46 Q 331.41 203.59 365.71 203.71 Q 400.00 203.84 434.29 205.66 Q 468.59 207.47 502.88 207.81 Q 537.17 208.14 571.46 207.19 Q 605.76 206.24 640.05 207.50 Q 674.34 208.76 675.86 234.88 Q 677.39 261.00 677.03 288.00 Q 676.67 315.00 673.80 342.00 Q 670.93 369.00 638.34 367.26 Q 605.76 365.53 571.46 366.20 Q 537.17 366.88 502.88 368.87 Q 468.59 370.87 434.29 371.01 Q 400.00 371.14 365.71 371.08 Q 331.41 371.01 297.12 368.68 Q 262.83 366.36 228.54 367.67 Q 194.24 368.98 159.95 367.48 Q 125.66 365.98 125.30 340.49 Q 124.94 315.00 125.64 288.00 Q 126.35 261.00 126.00 234.00 Z" fill="rgba(176,176,176,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.540 400.00 288.00)"/></a>
-  <a href="https://github.com/dtolnay/syn" target="_blank"><path id="block-syn" class="block" d="M 404.02 396.44 Q 405.00 369.89 440.00 369.01 Q 475.00 368.13 510.00 367.04 Q 545.00 365.94 580.00 366.11 Q 615.00 366.27 650.00 369.21 Q 685.00 372.15 720.00 370.67 Q 755.00 369.19 754.96 396.10 Q 754.93 423.00 756.34 450.00 Q 757.75 477.00 756.32 504.00 Q 754.89 531.00 719.94 530.45 Q 685.00 529.90 650.00 528.71 Q 615.00 527.52 580.00 527.67 Q 545.00 527.81 510.00 529.99 Q 475.00 532.17 440.00 532.68 Q 405.00 533.20 404.21 505.10 Q 403.42 477.00 403.23 450.00 Q 403.04 423.00 404.02 396.44 Z" fill="rgba(233,233,233,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.832 580.00 450.00)"/></a>
-  <a href="https://github.com/dtolnay/unicode-ident" target="_blank"><path id="block-unicode-ident" class="block" d="M 43.08 718.81 Q 45.00 690.63 80.50 692.97 Q 116.00 695.31 151.50 694.58 Q 187.00 693.86 222.50 693.83 Q 258.00 693.80 293.50 691.42 Q 329.00 689.05 364.50 692.47 Q 400.00 695.90 435.50 696.02 Q 471.00 696.14 506.50 694.26 Q 542.00 692.37 577.50 693.95 Q 613.00 695.52 648.50 695.43 Q 684.00 695.35 719.50 693.66 Q 755.00 691.98 755.23 719.49 Q 755.46 747.00 755.80 774.00 Q 756.15 801.00 754.41 828.00 Q 752.67 855.00 718.34 854.52 Q 684.00 854.04 648.50 852.53 Q 613.00 851.01 577.50 851.54 Q 542.00 852.06 506.50 855.27 Q 471.00 858.48 435.50 856.92 Q 400.00 855.36 364.50 855.60 Q 329.00 855.83 293.50 854.57 Q 258.00 853.30 222.50 855.09 Q 187.00 856.88 151.50 857.06 Q 116.00 857.24 80.50 856.36 Q 45.00 855.48 43.93 828.24 Q 42.86 801.00 42.01 774.00 Q 41.15 747.00 43.08 718.81 Z" fill="rgba(163,163,163,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.300 400.00 774.00)"/></a>
+  <a href="https://github.com/dtolnay/proc-macro2" target="_blank"><path id="block-proc-macro2" class="block" d="M 118.81 559.73 Q 117.21 534.46 152.56 530.82 Q 187.91 527.18 223.26 528.39 Q 258.60 529.59 293.95 531.08 Q 329.30 532.57 364.65 530.96 Q 400.00 529.35 435.35 529.11 Q 470.70 528.87 506.05 529.88 Q 541.40 530.89 576.74 531.01 Q 612.09 531.14 647.44 529.52 Q 682.79 527.90 681.31 556.45 Q 679.84 585.00 679.94 612.00 Q 680.04 639.00 682.81 666.00 Q 685.57 693.00 648.83 692.16 Q 612.09 691.33 576.74 693.30 Q 541.40 695.26 506.05 692.87 Q 470.70 690.47 435.35 690.84 Q 400.00 691.21 364.65 693.17 Q 329.30 695.13 293.95 693.18 Q 258.60 691.23 223.26 692.82 Q 187.91 694.42 152.56 693.12 Q 117.21 691.83 116.56 665.42 Q 115.91 639.00 118.17 612.00 Q 120.42 585.00 118.81 559.73 Z" fill="#ececec" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.533 400.00 612.00)"/></a>
+  <a href="https://github.com/dtolnay/quote" target="_blank"><path id="block-quote" class="block" d="M 43.50 396.22 Q 45.00 369.44 80.00 368.80 Q 115.00 368.16 150.00 368.30 Q 185.00 368.44 220.00 370.23 Q 255.00 372.03 290.00 371.71 Q 325.00 371.40 360.00 371.66 Q 395.00 371.92 393.58 397.46 Q 392.16 423.00 394.11 450.00 Q 396.06 477.00 394.15 504.00 Q 392.23 531.00 358.62 530.65 Q 325.00 530.30 290.00 531.60 Q 255.00 532.89 220.00 532.49 Q 185.00 532.08 150.00 533.00 Q 115.00 533.92 80.00 531.57 Q 45.00 529.23 43.26 503.11 Q 41.53 477.00 41.76 450.00 Q 41.99 423.00 43.50 396.22 Z" fill="#e5e5e5" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.338 220.00 450.00)"/></a>
+  <a href="https://github.com/serde-rs/serde" target="_blank"><path id="block-serde" class="block" d="M 38.61 70.36 Q 40.00 41.73 76.00 41.58 Q 112.00 41.43 148.00 42.16 Q 184.00 42.89 220.00 43.59 Q 256.00 44.29 292.00 43.04 Q 328.00 41.79 364.00 44.88 Q 400.00 47.96 436.00 46.13 Q 472.00 44.31 508.00 43.41 Q 544.00 42.51 580.00 43.71 Q 616.00 44.92 652.00 46.14 Q 688.00 47.35 724.00 46.01 Q 760.00 44.68 760.85 71.84 Q 761.70 99.00 760.62 126.00 Q 759.53 153.00 761.11 180.00 Q 762.68 207.00 725.34 206.34 Q 688.00 205.68 652.00 206.81 Q 616.00 207.94 580.00 206.82 Q 544.00 205.71 508.00 206.57 Q 472.00 207.44 436.00 207.66 Q 400.00 207.88 364.00 206.65 Q 328.00 205.42 292.00 208.12 Q 256.00 210.81 220.00 210.01 Q 184.00 209.21 148.00 206.35 Q 112.00 203.50 76.00 204.90 Q 40.00 206.31 38.07 179.65 Q 36.13 153.00 36.68 126.00 Q 37.22 99.00 38.61 70.36 Z" fill="#d2d2d2" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.135 400.00 126.00)"/></a>
+  <a href="https://github.com/serde-rs/serde" target="_blank"><path id="block-serde_derive" class="block" d="M 126.00 234.00 Q 125.66 206.99 159.95 208.62 Q 194.24 210.24 228.54 206.79 Q 262.83 203.34 297.12 203.46 Q 331.41 203.59 365.71 203.71 Q 400.00 203.84 434.29 205.66 Q 468.59 207.47 502.88 207.81 Q 537.17 208.14 571.46 207.19 Q 605.76 206.24 640.05 207.50 Q 674.34 208.76 675.86 234.88 Q 677.39 261.00 677.03 288.00 Q 676.67 315.00 673.80 342.00 Q 670.93 369.00 638.34 367.26 Q 605.76 365.53 571.46 366.20 Q 537.17 366.88 502.88 368.87 Q 468.59 370.87 434.29 371.01 Q 400.00 371.14 365.71 371.08 Q 331.41 371.01 297.12 368.68 Q 262.83 366.36 228.54 367.67 Q 194.24 368.98 159.95 367.48 Q 125.66 365.98 125.30 340.49 Q 124.94 315.00 125.64 288.00 Q 126.35 261.00 126.00 234.00 Z" fill="#b0b0b0" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.540 400.00 288.00)"/></a>
+  <a href="https://github.com/dtolnay/syn" target="_blank"><path id="block-syn" class="block" d="M 404.02 396.44 Q 405.00 369.89 440.00 369.01 Q 475.00 368.13 510.00 367.04 Q 545.00 365.94 580.00 366.11 Q 615.00 366.27 650.00 369.21 Q 685.00 372.15 720.00 370.67 Q 755.00 369.19 754.96 396.10 Q 754.93 423.00 756.34 450.00 Q 757.75 477.00 756.32 504.00 Q 754.89 531.00 719.94 530.45 Q 685.00 529.90 650.00 528.71 Q 615.00 527.52 580.00 527.67 Q 545.00 527.81 510.00 529.99 Q 475.00 532.17 440.00 532.68 Q 405.00 533.20 404.21 505.10 Q 403.42 477.00 403.23 450.00 Q 403.04 423.00 404.02 396.44 Z" fill="#e9e9e9" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.832 580.00 450.00)"/></a>
+  <a href="https://github.com/dtolnay/unicode-ident" target="_blank"><path id="block-unicode-ident" class="block" d="M 43.08 718.81 Q 45.00 690.63 80.50 692.97 Q 116.00 695.31 151.50 694.58 Q 187.00 693.86 222.50 693.83 Q 258.00 693.80 293.50 691.42 Q 329.00 689.05 364.50 692.47 Q 400.00 695.90 435.50 696.02 Q 471.00 696.14 506.50 694.26 Q 542.00 692.37 577.50 693.95 Q 613.00 695.52 648.50 695.43 Q 684.00 695.35 719.50 693.66 Q 755.00 691.98 755.23 719.49 Q 755.46 747.00 755.80 774.00 Q 756.15 801.00 754.41 828.00 Q 752.67 855.00 718.34 854.52 Q 684.00 854.04 648.50 852.53 Q 613.00 851.01 577.50 851.54 Q 542.00 852.06 506.50 855.27 Q 471.00 858.48 435.50 856.92 Q 400.00 855.36 364.50 855.60 Q 329.00 855.83 293.50 854.57 Q 258.00 853.30 222.50 855.09 Q 187.00 856.88 151.50 857.06 Q 116.00 857.24 80.50 856.36 Q 45.00 855.48 43.93 828.24 Q 42.86 801.00 42.01 774.00 Q 41.15 747.00 43.08 718.81 Z" fill="#a3a3a3" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.300 400.00 774.00)"/></a>
   <g class="block-text" data-block="proc-macro2">
-  <a href="https://github.com/dtolnay/proc-macro2" target="_blank">    <rect x="391.46" y="569.75" width="17.07" height="84.50" fill="rgba(236,236,236,1)"/>
+  <a href="https://github.com/dtolnay/proc-macro2" target="_blank">    <rect x="391.46" y="569.75" width="17.07" height="84.50" fill="#ececec"/>
     <text x="400.00" y="612.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="17.1" fill="#333" transform="rotate(-90 400.00 612.00)">proc-macro2</text>
 </a>  </g>
   <g class="block-text" data-block="quote">
-  <a href="https://github.com/dtolnay/quote" target="_blank">    <rect x="193.00" y="438.00" width="54.00" height="24.00" fill="rgba(229,229,229,1)"/>
+  <a href="https://github.com/dtolnay/quote" target="_blank">    <rect x="193.00" y="438.00" width="54.00" height="24.00" fill="#e5e5e5"/>
     <text x="220.00" y="450.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">quote</text>
 </a>  </g>
   <g class="block-text" data-block="serde">
-  <a href="https://github.com/serde-rs/serde" target="_blank">    <rect x="373.00" y="114.00" width="54.00" height="24.00" fill="rgba(210,210,210,1)"/>
+  <a href="https://github.com/serde-rs/serde" target="_blank">    <rect x="373.00" y="114.00" width="54.00" height="24.00" fill="#d2d2d2"/>
     <text x="400.00" y="126.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">serde</text>
 </a>  </g>
   <g class="block-text" data-block="serde_derive">
-  <a href="https://github.com/serde-rs/serde" target="_blank">    <rect x="335.20" y="276.00" width="129.60" height="24.00" fill="rgba(176,176,176,1)"/>
+  <a href="https://github.com/serde-rs/serde" target="_blank">    <rect x="335.20" y="276.00" width="129.60" height="24.00" fill="#b0b0b0"/>
     <text x="400.00" y="288.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">serde_derive</text>
 </a>  </g>
   <g class="block-text" data-block="syn">
-  <a href="https://github.com/dtolnay/syn" target="_blank">    <rect x="563.80" y="438.00" width="32.40" height="24.00" fill="rgba(233,233,233,1)"/>
+  <a href="https://github.com/dtolnay/syn" target="_blank">    <rect x="563.80" y="438.00" width="32.40" height="24.00" fill="#e9e9e9"/>
     <text x="580.00" y="450.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">syn</text>
 </a>  </g>
   <g class="block-text" data-block="unicode-ident">
-  <a href="https://github.com/dtolnay/unicode-ident" target="_blank">    <rect x="329.80" y="762.00" width="140.40" height="24.00" fill="rgba(163,163,163,1)"/>
+  <a href="https://github.com/dtolnay/unicode-ident" target="_blank">    <rect x="329.80" y="762.00" width="140.40" height="24.00" fill="#a3a3a3"/>
     <text x="400.00" y="774.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">unicode-ident</text>
 </a>  </g>
   <style>
@@ -60,83 +60,39 @@
   ]]></script>
   <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 272.0 980.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <foreignObject x="30.0" y="1004.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/dtolnay" target="_blank" class="maintainer-name" data-packages="unicode-ident,proc-macro2,quote,syn,serde_derive">#1 @dtolnay</a>
-      <div class="packages">
-        <span>unicode-ident</span>
-        <span>proc-macro2</span>
-        <span>quote</span>
-        <span style="color:#aaa">+2 more</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="400.0" y="1004.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/mystor" target="_blank" class="maintainer-name" data-packages="quote,syn,proc-macro2">#2 @mystor</a>
-      <div class="packages">
-        <span>quote</span>
-        <span>syn</span>
-        <span>proc-macro2</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="30.0" y="1144.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/alexcrichton" target="_blank" class="maintainer-name" data-packages="proc-macro2,quote,syn">#3 @alexcrichton</a>
-      <div class="packages">
-        <span>proc-macro2</span>
-        <span>quote</span>
-        <span>syn</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="400.0" y="1144.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/Marcondiro" target="_blank" class="maintainer-name" data-packages="unicode-ident">#4 @Marcondiro</a>
-      <div class="packages">
-        <span>unicode-ident</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="215.0" y="1284.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/Jake-Shadle" target="_blank" class="maintainer-name" data-packages="unicode-ident">#5 @Jake-Shadle</a>
-      <div class="packages">
-        <span>unicode-ident</span>
-      </div>
-    </div>
-  </foreignObject>
+  <a href="https://github.com/dtolnay" target="_blank" class="maintainer-link" data-packages="unicode-ident,proc-macro2,quote,syn,serde_derive">
+    <text x="215.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#1 @dtolnay</text>
+  </a>
+  <text class="package-entry" data-package="unicode-ident" x="215.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">unicode-ident</text>
+  <text class="package-entry" data-package="proc-macro2" x="215.0" y="1067.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">proc-macro2</text>
+  <text class="package-entry" data-package="quote" x="215.0" y="1085.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">quote</text>
+  <text x="215.0" y="1103.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#aaa">+2 more</text>
+  <a href="https://github.com/mystor" target="_blank" class="maintainer-link" data-packages="quote,syn,proc-macro2">
+    <text x="585.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#2 @mystor</text>
+  </a>
+  <text class="package-entry" data-package="quote" x="585.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">quote</text>
+  <text class="package-entry" data-package="syn" x="585.0" y="1067.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">syn</text>
+  <text class="package-entry" data-package="proc-macro2" x="585.0" y="1085.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">proc-macro2</text>
+  <a href="https://github.com/alexcrichton" target="_blank" class="maintainer-link" data-packages="proc-macro2,quote,syn">
+    <text x="215.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#3 @alexcrichton</text>
+  </a>
+  <text class="package-entry" data-package="proc-macro2" x="215.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">proc-macro2</text>
+  <text class="package-entry" data-package="quote" x="215.0" y="1207.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">quote</text>
+  <text class="package-entry" data-package="syn" x="215.0" y="1225.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">syn</text>
+  <a href="https://github.com/Marcondiro" target="_blank" class="maintainer-link" data-packages="unicode-ident">
+    <text x="585.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#4 @Marcondiro</text>
+  </a>
+  <text class="package-entry" data-package="unicode-ident" x="585.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">unicode-ident</text>
+  <a href="https://github.com/Jake-Shadle" target="_blank" class="maintainer-link" data-packages="unicode-ident">
+    <text x="400.0" y="1304.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#5 @Jake-Shadle</text>
+  </a>
+  <text class="package-entry" data-package="unicode-ident" x="400.0" y="1329.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">unicode-ident</text>
   <style>
-    .nebraska-entry {
-      text-align: center;
-      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
-      overflow: hidden;
-      height: 100%;
-    }
-    .nebraska-entry .maintainer-name {
-      display: block;
-      font-size: 24px;
-      color: #333;
-      text-decoration: none;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-      margin-bottom: 8px;
-    }
-    .nebraska-entry .maintainer-name:hover { text-decoration: underline; }
-    .nebraska-entry .packages {
-      font-size: 16px;
-      color: #888;
-      line-height: 1.4;
-    }
-    .nebraska-entry .packages span {
-      display: block;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-    }
+    .maintainer-link text { cursor: pointer; }
+    .maintainer-link:hover text { text-decoration: underline; }
   </style>
   <script type="text/javascript"><![CDATA[
-    document.querySelectorAll('.maintainer-name').forEach(el => {
+    document.querySelectorAll('.maintainer-link').forEach(el => {
       el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
       el.addEventListener('mouseleave', clearHighlight);
     });

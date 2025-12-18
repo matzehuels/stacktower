@@ -8,29 +8,29 @@
 " x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>
     </pattern>
   </defs>
-  <a href="https://github.com/certifi/python-certifi" target="_blank"><path id="block-certifi" class="block" d="M 72.84 287.41 Q 71.87 249.82 96.66 248.32 Q 121.46 246.82 146.25 247.37 Q 171.04 247.92 195.84 250.40 Q 220.63 252.89 221.12 288.94 Q 221.62 325.00 221.09 362.50 Q 220.56 400.00 221.81 437.50 Q 223.07 475.00 197.05 473.23 Q 171.04 471.46 146.25 471.88 Q 121.46 472.29 96.66 474.00 Q 71.87 475.72 71.42 437.86 Q 70.98 400.00 72.40 362.50 Q 73.82 325.00 72.84 287.41 Z" fill="rgba(225,225,225,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.797 146.25 362.50)"/></a>
-  <a href="https://github.com/jawah/charset_normalizer" target="_blank"><path id="block-charset-normalizer" class="block" d="M 270.34 287.37 Q 272.08 249.73 297.64 250.69 Q 323.19 251.65 348.75 252.34 Q 374.31 253.04 399.86 253.40 Q 425.42 253.76 427.34 289.38 Q 429.27 325.00 427.58 362.50 Q 425.90 400.00 426.17 437.50 Q 426.43 475.00 400.37 473.87 Q 374.31 472.75 348.75 472.27 Q 323.19 471.79 297.64 474.91 Q 272.08 478.02 272.82 439.01 Q 273.55 400.00 271.07 362.50 Q 268.60 325.00 270.34 287.37 Z" fill="rgba(171,171,171,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.345 348.75 362.50)"/></a>
-  <a href="https://github.com/kjd/idna" target="_blank"><path id="block-idna" class="block" d="M 480.82 287.47 Q 482.43 249.93 505.37 251.00 Q 528.31 252.08 551.25 251.74 Q 574.19 251.40 597.13 248.73 Q 620.07 246.06 621.15 285.53 Q 622.22 325.00 619.47 362.50 Q 616.73 400.00 616.61 437.50 Q 616.49 475.00 595.34 473.84 Q 574.19 472.69 551.25 474.11 Q 528.31 475.52 505.37 476.61 Q 482.43 477.70 481.99 438.85 Q 481.56 400.00 480.38 362.50 Q 479.21 325.00 480.82 287.47 Z" fill="rgba(203,203,203,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.420 551.25 362.50)"/></a>
-  <a href="https://github.com/psf/requests" target="_blank"><path id="block-requests" class="block" d="M 46.34 61.29 Q 45.00 22.58 78.75 24.35 Q 112.50 26.12 146.25 24.47 Q 180.00 22.82 213.75 24.20 Q 247.50 25.59 281.25 24.47 Q 315.00 23.36 348.75 25.13 Q 382.50 26.90 416.25 26.95 Q 450.00 27.00 483.75 26.43 Q 517.50 25.86 551.25 24.34 Q 585.00 22.81 618.75 24.22 Q 652.50 25.64 686.25 23.54 Q 720.00 21.44 753.75 22.11 Q 787.50 22.77 821.25 23.22 Q 855.00 23.66 855.42 61.83 Q 855.84 100.00 854.41 137.50 Q 852.97 175.00 852.37 212.50 Q 851.78 250.00 819.64 251.12 Q 787.50 252.25 753.75 249.85 Q 720.00 247.45 686.25 247.60 Q 652.50 247.74 618.75 248.98 Q 585.00 250.21 551.25 248.46 Q 517.50 246.70 483.75 247.02 Q 450.00 247.34 416.25 248.40 Q 382.50 249.45 348.75 250.07 Q 315.00 250.69 281.25 252.05 Q 247.50 253.42 213.75 253.59 Q 180.00 253.76 146.25 251.55 Q 112.50 249.34 78.75 248.52 Q 45.00 247.70 44.61 211.35 Q 44.23 175.00 45.96 137.50 Q 47.68 100.00 46.34 61.29 Z" fill="rgba(213,213,213,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.200 450.00 137.50)"/></a>
-  <a href="https://github.com/urllib3/urllib3" target="_blank"><path id="block-urllib3" class="block" d="M 698.91 286.82 Q 699.20 248.63 717.38 250.82 Q 735.57 253.00 753.75 250.40 Q 771.93 247.79 790.12 247.11 Q 808.30 246.44 807.04 285.72 Q 805.78 325.00 806.09 362.50 Q 806.40 400.00 807.89 437.50 Q 809.38 475.00 790.66 473.81 Q 771.93 472.62 753.75 474.14 Q 735.57 475.66 717.38 473.76 Q 699.20 471.86 700.81 435.93 Q 702.42 400.00 700.52 362.50 Q 698.62 325.00 698.91 286.82 Z" fill="rgba(238,238,238,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.098 753.75 362.50)"/></a>
+  <a href="https://github.com/certifi/python-certifi" target="_blank"><path id="block-certifi" class="block" d="M 72.84 287.41 Q 71.87 249.82 96.66 248.32 Q 121.46 246.82 146.25 247.37 Q 171.04 247.92 195.84 250.40 Q 220.63 252.89 221.12 288.94 Q 221.62 325.00 221.09 362.50 Q 220.56 400.00 221.81 437.50 Q 223.07 475.00 197.05 473.23 Q 171.04 471.46 146.25 471.88 Q 121.46 472.29 96.66 474.00 Q 71.87 475.72 71.42 437.86 Q 70.98 400.00 72.40 362.50 Q 73.82 325.00 72.84 287.41 Z" fill="#e1e1e1" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.797 146.25 362.50)"/></a>
+  <a href="https://github.com/jawah/charset_normalizer" target="_blank"><path id="block-charset-normalizer" class="block" d="M 270.34 287.37 Q 272.08 249.73 297.64 250.69 Q 323.19 251.65 348.75 252.34 Q 374.31 253.04 399.86 253.40 Q 425.42 253.76 427.34 289.38 Q 429.27 325.00 427.58 362.50 Q 425.90 400.00 426.17 437.50 Q 426.43 475.00 400.37 473.87 Q 374.31 472.75 348.75 472.27 Q 323.19 471.79 297.64 474.91 Q 272.08 478.02 272.82 439.01 Q 273.55 400.00 271.07 362.50 Q 268.60 325.00 270.34 287.37 Z" fill="#ababab" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.345 348.75 362.50)"/></a>
+  <a href="https://github.com/kjd/idna" target="_blank"><path id="block-idna" class="block" d="M 480.82 287.47 Q 482.43 249.93 505.37 251.00 Q 528.31 252.08 551.25 251.74 Q 574.19 251.40 597.13 248.73 Q 620.07 246.06 621.15 285.53 Q 622.22 325.00 619.47 362.50 Q 616.73 400.00 616.61 437.50 Q 616.49 475.00 595.34 473.84 Q 574.19 472.69 551.25 474.11 Q 528.31 475.52 505.37 476.61 Q 482.43 477.70 481.99 438.85 Q 481.56 400.00 480.38 362.50 Q 479.21 325.00 480.82 287.47 Z" fill="#cbcbcb" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.420 551.25 362.50)"/></a>
+  <a href="https://github.com/psf/requests" target="_blank"><path id="block-requests" class="block" d="M 46.34 61.29 Q 45.00 22.58 78.75 24.35 Q 112.50 26.12 146.25 24.47 Q 180.00 22.82 213.75 24.20 Q 247.50 25.59 281.25 24.47 Q 315.00 23.36 348.75 25.13 Q 382.50 26.90 416.25 26.95 Q 450.00 27.00 483.75 26.43 Q 517.50 25.86 551.25 24.34 Q 585.00 22.81 618.75 24.22 Q 652.50 25.64 686.25 23.54 Q 720.00 21.44 753.75 22.11 Q 787.50 22.77 821.25 23.22 Q 855.00 23.66 855.42 61.83 Q 855.84 100.00 854.41 137.50 Q 852.97 175.00 852.37 212.50 Q 851.78 250.00 819.64 251.12 Q 787.50 252.25 753.75 249.85 Q 720.00 247.45 686.25 247.60 Q 652.50 247.74 618.75 248.98 Q 585.00 250.21 551.25 248.46 Q 517.50 246.70 483.75 247.02 Q 450.00 247.34 416.25 248.40 Q 382.50 249.45 348.75 250.07 Q 315.00 250.69 281.25 252.05 Q 247.50 253.42 213.75 253.59 Q 180.00 253.76 146.25 251.55 Q 112.50 249.34 78.75 248.52 Q 45.00 247.70 44.61 211.35 Q 44.23 175.00 45.96 137.50 Q 47.68 100.00 46.34 61.29 Z" fill="#d5d5d5" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.200 450.00 137.50)"/></a>
+  <a href="https://github.com/urllib3/urllib3" target="_blank"><path id="block-urllib3" class="block" d="M 698.91 286.82 Q 699.20 248.63 717.38 250.82 Q 735.57 253.00 753.75 250.40 Q 771.93 247.79 790.12 247.11 Q 808.30 246.44 807.04 285.72 Q 805.78 325.00 806.09 362.50 Q 806.40 400.00 807.89 437.50 Q 809.38 475.00 790.66 473.81 Q 771.93 472.62 753.75 474.14 Q 735.57 475.66 717.38 473.76 Q 699.20 471.86 700.81 435.93 Q 702.42 400.00 700.52 362.50 Q 698.62 325.00 698.91 286.82 Z" fill="#eeeeee" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.098 753.75 362.50)"/></a>
   <g class="block-text" data-block="certifi">
-  <a href="https://github.com/certifi/python-certifi" target="_blank">    <rect x="108.45" y="350.50" width="75.60" height="24.00" fill="rgba(225,225,225,1)"/>
+  <a href="https://github.com/certifi/python-certifi" target="_blank">    <rect x="108.45" y="350.50" width="75.60" height="24.00" fill="#e1e1e1"/>
     <text x="146.25" y="362.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">certifi</text>
 </a>  </g>
   <g class="block-text" data-block="charset-normalizer">
-  <a href="https://github.com/jawah/charset_normalizer" target="_blank">    <rect x="341.51" y="303.82" width="14.49" height="117.36" fill="rgba(171,171,171,1)"/>
+  <a href="https://github.com/jawah/charset_normalizer" target="_blank">    <rect x="341.51" y="303.82" width="14.49" height="117.36" fill="#ababab"/>
     <text x="348.75" y="362.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="14.5" fill="#333" transform="rotate(-90 348.75 362.50)">charset-normalizer</text>
 </a>  </g>
   <g class="block-text" data-block="idna">
-  <a href="https://github.com/kjd/idna" target="_blank">    <rect x="529.65" y="350.50" width="43.20" height="24.00" fill="rgba(203,203,203,1)"/>
+  <a href="https://github.com/kjd/idna" target="_blank">    <rect x="529.65" y="350.50" width="43.20" height="24.00" fill="#cbcbcb"/>
     <text x="551.25" y="362.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">idna</text>
 </a>  </g>
   <g class="block-text" data-block="requests">
-  <a href="https://github.com/psf/requests" target="_blank">    <rect x="406.80" y="125.50" width="86.40" height="24.00" fill="rgba(213,213,213,1)"/>
+  <a href="https://github.com/psf/requests" target="_blank">    <rect x="406.80" y="125.50" width="86.40" height="24.00" fill="#d5d5d5"/>
     <text x="450.00" y="137.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">requests</text>
 </a>  </g>
   <g class="block-text" data-block="urllib3">
-  <a href="https://github.com/urllib3/urllib3" target="_blank">    <rect x="715.95" y="350.50" width="75.60" height="24.00" fill="rgba(238,238,238,1)"/>
+  <a href="https://github.com/urllib3/urllib3" target="_blank">    <rect x="715.95" y="350.50" width="75.60" height="24.00" fill="#eeeeee"/>
     <text x="753.75" y="362.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">urllib3</text>
 </a>  </g>
   <style>
@@ -55,77 +55,33 @@
   ]]></script>
   <text x="450.0" y="564.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 322.0 580.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <foreignObject x="30.0" y="604.0" width="168.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/Lukasa" target="_blank" class="maintainer-name" data-packages="certifi,urllib3">#1 @Lukasa</a>
-      <div class="packages">
-        <span>certifi</span>
-        <span>urllib3</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="198.0" y="604.0" width="168.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/kjd" target="_blank" class="maintainer-name" data-packages="idna">#2 @kjd</a>
-      <div class="packages">
-        <span>idna</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="366.0" y="604.0" width="168.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/Ousret" target="_blank" class="maintainer-name" data-packages="charset-normalizer">#3 @Ousret</a>
-      <div class="packages">
-        <span>charset-normalizer</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="534.0" y="604.0" width="168.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/alex" target="_blank" class="maintainer-name" data-packages="certifi">#4 @alex</a>
-      <div class="packages">
-        <span>certifi</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="702.0" y="604.0" width="168.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/sigmavirus24" target="_blank" class="maintainer-name" data-packages="certifi">#5 @sigmavirus24</a>
-      <div class="packages">
-        <span>certifi</span>
-      </div>
-    </div>
-  </foreignObject>
+  <a href="https://github.com/Lukasa" target="_blank" class="maintainer-link" data-packages="certifi,urllib3">
+    <text x="114.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#1 @Lukasa</text>
+  </a>
+  <text class="package-entry" data-package="certifi" x="114.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">certifi</text>
+  <text class="package-entry" data-package="urllib3" x="114.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">urllib3</text>
+  <a href="https://github.com/kjd" target="_blank" class="maintainer-link" data-packages="idna">
+    <text x="282.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#2 @kjd</text>
+  </a>
+  <text class="package-entry" data-package="idna" x="282.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">idna</text>
+  <a href="https://github.com/Ousret" target="_blank" class="maintainer-link" data-packages="charset-normalizer">
+    <text x="450.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#3 @Ousret</text>
+  </a>
+  <text class="package-entry" data-package="charset-normalizer" x="450.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">charset-normalizer</text>
+  <a href="https://github.com/alex" target="_blank" class="maintainer-link" data-packages="certifi">
+    <text x="618.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#4 @alex</text>
+  </a>
+  <text class="package-entry" data-package="certifi" x="618.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">certifi</text>
+  <a href="https://github.com/sigmavirus24" target="_blank" class="maintainer-link" data-packages="certifi">
+    <text x="786.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#5 @sigmavirus24</text>
+  </a>
+  <text class="package-entry" data-package="certifi" x="786.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">certifi</text>
   <style>
-    .nebraska-entry {
-      text-align: center;
-      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
-      overflow: hidden;
-      height: 100%;
-    }
-    .nebraska-entry .maintainer-name {
-      display: block;
-      font-size: 24px;
-      color: #333;
-      text-decoration: none;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-      margin-bottom: 8px;
-    }
-    .nebraska-entry .maintainer-name:hover { text-decoration: underline; }
-    .nebraska-entry .packages {
-      font-size: 16px;
-      color: #888;
-      line-height: 1.4;
-    }
-    .nebraska-entry .packages span {
-      display: block;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-    }
+    .maintainer-link text { cursor: pointer; }
+    .maintainer-link:hover text { text-decoration: underline; }
   </style>
   <script type="text/javascript"><![CDATA[
-    document.querySelectorAll('.maintainer-name').forEach(el => {
+    document.querySelectorAll('.maintainer-link').forEach(el => {
       el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
       el.addEventListener('mouseleave', clearHighlight);
     });

@@ -8,59 +8,59 @@
 " x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>
     </pattern>
   </defs>
-  <a href="https://github.com/fastapi/annotated-doc" target="_blank"><path id="block-annotated-doc" class="block" d="M 70.83 241.60 Q 71.13 204.19 100.75 207.39 Q 130.38 210.60 160.00 206.91 Q 189.62 203.23 219.25 205.82 Q 248.87 208.41 249.85 243.71 Q 250.83 279.00 248.15 315.00 Q 245.48 351.00 247.13 387.00 Q 248.79 423.00 248.28 459.00 Q 247.78 495.00 246.51 531.00 Q 245.24 567.00 248.65 603.00 Q 252.06 639.00 249.39 675.00 Q 246.72 711.00 249.29 747.00 Q 251.86 783.00 251.01 819.00 Q 250.17 855.00 219.90 853.03 Q 189.62 851.05 160.00 854.87 Q 130.38 858.68 100.75 856.78 Q 71.13 854.87 69.91 818.93 Q 68.69 783.00 70.39 747.00 Q 72.09 711.00 71.15 675.00 Q 70.21 639.00 70.57 603.00 Q 70.92 567.00 71.99 531.00 Q 73.07 495.00 72.53 459.00 Q 72.00 423.00 72.41 387.00 Q 72.82 351.00 71.67 315.00 Q 70.52 279.00 70.83 241.60 Z" fill="rgba(248,248,248,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.086 160.00 531.00)"/></a>
-  <a href="https://github.com/annotated-types/annotated-types" target="_blank"><path id="block-annotated-types" class="block" d="M 286.23 407.88 Q 285.00 365.77 293.33 366.86 Q 301.67 367.96 310.00 368.29 Q 318.33 368.62 326.67 370.49 Q 335.00 372.35 333.98 411.18 Q 332.95 450.00 334.33 490.50 Q 335.70 531.00 336.04 571.50 Q 336.37 612.00 333.87 652.50 Q 331.37 693.00 324.85 694.76 Q 318.33 696.52 310.00 694.73 Q 301.67 692.94 293.33 692.75 Q 285.00 692.57 285.00 652.28 Q 285.00 612.00 283.78 571.50 Q 282.55 531.00 285.01 490.50 Q 287.46 450.00 286.23 407.88 Z" fill="rgba(207,207,207,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.610 310.00 531.00)"/></a>
-  <a href="https://github.com/agronholm/anyio" target="_blank"><path id="block-anyio" class="block" d="M 466.22 396.85 Q 465.00 370.70 501.25 369.78 Q 537.50 368.85 573.75 368.18 Q 610.00 367.51 646.25 367.19 Q 682.50 366.86 718.75 367.69 Q 755.00 368.51 755.33 395.76 Q 755.66 423.00 757.20 450.00 Q 758.74 477.00 756.83 504.00 Q 754.92 531.00 718.71 529.27 Q 682.50 527.54 646.25 528.51 Q 610.00 529.49 573.75 529.90 Q 537.50 530.30 501.25 530.71 Q 465.00 531.12 465.92 504.06 Q 466.84 477.00 467.14 450.00 Q 467.44 423.00 466.22 396.85 Z" fill="rgba(187,187,187,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.730 610.00 450.00)"/></a>
-  <a href="https://github.com/agronholm/exceptiongroup" target="_blank"><path id="block-exceptiongroup" class="block" d="M 475.88 559.81 Q 475.00 534.62 480.00 532.84 Q 485.00 531.07 490.00 531.52 Q 495.00 531.98 500.00 530.06 Q 505.00 528.15 505.81 556.57 Q 506.62 585.00 505.26 612.00 Q 503.90 639.00 503.67 666.00 Q 503.44 693.00 499.22 693.60 Q 495.00 694.20 490.00 692.37 Q 485.00 690.54 480.00 690.29 Q 475.00 690.05 476.01 664.52 Q 477.02 639.00 476.89 612.00 Q 476.76 585.00 475.88 559.81 Z" fill="rgba(243,243,243,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.794 490.00 612.00)"/></a>
-  <a href="https://github.com/fastapi/fastapi" target="_blank"><path id="block-fastapi" class="block" d="M 40.02 70.39 Q 40.00 41.78 76.00 43.24 Q 112.00 44.71 148.00 45.41 Q 184.00 46.12 220.00 45.58 Q 256.00 45.04 292.00 44.76 Q 328.00 44.48 364.00 46.52 Q 400.00 48.55 436.00 46.94 Q 472.00 45.33 508.00 43.79 Q 544.00 42.26 580.00 41.85 Q 616.00 41.45 652.00 41.37 Q 688.00 41.29 724.00 44.87 Q 760.00 48.45 759.35 73.72 Q 758.71 99.00 758.56 126.00 Q 758.42 153.00 758.13 180.00 Q 757.85 207.00 722.92 206.22 Q 688.00 205.45 652.00 205.85 Q 616.00 206.26 580.00 206.59 Q 544.00 206.92 508.00 205.15 Q 472.00 203.38 436.00 204.06 Q 400.00 204.74 364.00 203.91 Q 328.00 203.08 292.00 203.54 Q 256.00 204.00 220.00 205.26 Q 184.00 206.52 148.00 208.35 Q 112.00 210.18 76.00 206.68 Q 40.00 203.17 38.94 178.09 Q 37.87 153.00 38.96 126.00 Q 40.04 99.00 40.02 70.39 Z" fill="rgba(249,249,249,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.423 400.00 126.00)"/></a>
-  <a href="https://github.com/kjd/idna" target="_blank"><path id="block-idna" class="block" d="M 613.65 571.47 Q 613.52 530.93 622.34 532.00 Q 631.17 533.08 640.00 532.74 Q 648.83 532.40 657.66 529.73 Q 666.48 527.06 667.56 569.53 Q 668.63 612.00 665.88 652.50 Q 663.13 693.00 663.02 733.50 Q 662.90 774.00 663.54 814.50 Q 664.17 855.00 656.50 855.26 Q 648.83 855.52 640.00 856.61 Q 631.17 857.70 622.34 855.91 Q 613.52 854.13 611.91 814.07 Q 610.30 774.00 610.26 733.50 Q 610.22 693.00 612.00 652.50 Q 613.78 612.00 613.65 571.47 Z" fill="rgba(203,203,203,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.292 640.00 693.00)"/></a>
-  <a href="https://github.com/pydantic/pydantic" target="_blank"><path id="block-pydantic" class="block" d="M 302.01 234.83 Q 302.29 208.67 324.86 209.76 Q 347.43 210.86 370.00 207.87 Q 392.57 204.88 415.14 206.80 Q 437.71 208.73 436.65 234.86 Q 435.60 261.00 436.09 288.00 Q 436.58 315.00 438.71 342.00 Q 440.83 369.00 416.70 369.53 Q 392.57 370.07 370.00 367.81 Q 347.43 365.55 324.86 367.53 Q 302.29 369.52 300.89 342.26 Q 299.49 315.00 300.61 288.00 Q 301.73 261.00 302.01 234.83 Z" fill="rgba(171,171,171,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.787 370.00 288.00)"/></a>
-  <a href="https://github.com/pydantic/pydantic-core" target="_blank"><path id="block-pydantic-core" class="block" d="M 345.89 409.51 Q 345.00 369.02 353.33 369.36 Q 361.67 369.70 370.00 370.47 Q 378.33 371.23 386.67 370.69 Q 395.00 370.16 396.04 410.08 Q 397.09 450.00 396.76 490.50 Q 396.43 531.00 395.47 571.50 Q 394.52 612.00 393.97 652.50 Q 393.42 693.00 385.87 692.14 Q 378.33 691.29 370.00 690.47 Q 361.67 689.65 353.33 691.43 Q 345.00 693.22 346.92 652.61 Q 348.84 612.00 347.43 571.50 Q 346.02 531.00 346.40 490.50 Q 346.78 450.00 345.89 409.51 Z" fill="rgba(163,163,163,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.814 370.00 531.00)"/></a>
-  <a href="https://github.com/Kludex/starlette" target="_blank"><path id="block-starlette" class="block" d="M 506.96 235.25 Q 506.32 209.50 540.88 208.38 Q 575.44 207.26 610.00 207.52 Q 644.56 207.78 679.12 207.30 Q 713.68 206.81 712.10 233.91 Q 710.52 261.00 710.26 288.00 Q 710.00 315.00 711.49 342.00 Q 712.98 369.00 678.77 369.38 Q 644.56 369.76 610.00 368.74 Q 575.44 367.71 540.88 368.51 Q 506.32 369.31 504.93 342.15 Q 503.53 315.00 505.57 288.00 Q 507.61 261.00 506.96 235.25 Z" fill="rgba(203,203,203,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.154 610.00 288.00)"/></a>
-  <a href="https://github.com/python/typing_extensions" target="_blank"><path id="block-typing-extensions" class="block" d="M 286.55 719.66 Q 285.00 692.33 323.33 690.74 Q 361.67 689.16 400.00 689.36 Q 438.33 689.55 476.67 690.81 Q 515.00 692.07 513.85 719.54 Q 512.71 747.00 515.58 774.00 Q 518.44 801.00 515.76 828.00 Q 513.08 855.00 475.71 855.29 Q 438.33 855.57 400.00 856.07 Q 361.67 856.57 323.33 856.48 Q 285.00 856.39 286.74 828.69 Q 288.48 801.00 288.30 774.00 Q 288.11 747.00 286.55 719.66 Z" fill="rgba(227,227,227,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.097 400.00 774.00)"/></a>
-  <a href="https://github.com/pydantic/typing-inspection" target="_blank"><path id="block-typing-inspection" class="block" d="M 406.35 408.96 Q 405.00 367.92 413.33 369.34 Q 421.67 370.76 430.00 369.86 Q 438.33 368.96 446.67 369.33 Q 455.00 369.70 454.24 409.85 Q 453.47 450.00 454.45 490.50 Q 455.42 531.00 453.32 571.50 Q 451.22 612.00 452.15 652.50 Q 453.08 693.00 445.71 693.85 Q 438.33 694.70 430.00 693.10 Q 421.67 691.51 413.33 691.44 Q 405.00 691.36 403.52 651.68 Q 402.04 612.00 402.30 571.50 Q 402.56 531.00 405.13 490.50 Q 407.69 450.00 406.35 408.96 Z" fill="rgba(205,205,205,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.581 430.00 531.00)"/></a>
+  <a href="https://github.com/fastapi/annotated-doc" target="_blank"><path id="block-annotated-doc" class="block" d="M 70.83 241.60 Q 71.13 204.19 100.75 207.39 Q 130.38 210.60 160.00 206.91 Q 189.62 203.23 219.25 205.82 Q 248.87 208.41 249.85 243.71 Q 250.83 279.00 248.15 315.00 Q 245.48 351.00 247.13 387.00 Q 248.79 423.00 248.28 459.00 Q 247.78 495.00 246.51 531.00 Q 245.24 567.00 248.65 603.00 Q 252.06 639.00 249.39 675.00 Q 246.72 711.00 249.29 747.00 Q 251.86 783.00 251.01 819.00 Q 250.17 855.00 219.90 853.03 Q 189.62 851.05 160.00 854.87 Q 130.38 858.68 100.75 856.78 Q 71.13 854.87 69.91 818.93 Q 68.69 783.00 70.39 747.00 Q 72.09 711.00 71.15 675.00 Q 70.21 639.00 70.57 603.00 Q 70.92 567.00 71.99 531.00 Q 73.07 495.00 72.53 459.00 Q 72.00 423.00 72.41 387.00 Q 72.82 351.00 71.67 315.00 Q 70.52 279.00 70.83 241.60 Z" fill="#f8f8f8" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.086 160.00 531.00)"/></a>
+  <a href="https://github.com/annotated-types/annotated-types" target="_blank"><path id="block-annotated-types" class="block" d="M 286.23 407.88 Q 285.00 365.77 293.33 366.86 Q 301.67 367.96 310.00 368.29 Q 318.33 368.62 326.67 370.49 Q 335.00 372.35 333.98 411.18 Q 332.95 450.00 334.33 490.50 Q 335.70 531.00 336.04 571.50 Q 336.37 612.00 333.87 652.50 Q 331.37 693.00 324.85 694.76 Q 318.33 696.52 310.00 694.73 Q 301.67 692.94 293.33 692.75 Q 285.00 692.57 285.00 652.28 Q 285.00 612.00 283.78 571.50 Q 282.55 531.00 285.01 490.50 Q 287.46 450.00 286.23 407.88 Z" fill="#cfcfcf" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.610 310.00 531.00)"/></a>
+  <a href="https://github.com/agronholm/anyio" target="_blank"><path id="block-anyio" class="block" d="M 466.22 396.85 Q 465.00 370.70 501.25 369.78 Q 537.50 368.85 573.75 368.18 Q 610.00 367.51 646.25 367.19 Q 682.50 366.86 718.75 367.69 Q 755.00 368.51 755.33 395.76 Q 755.66 423.00 757.20 450.00 Q 758.74 477.00 756.83 504.00 Q 754.92 531.00 718.71 529.27 Q 682.50 527.54 646.25 528.51 Q 610.00 529.49 573.75 529.90 Q 537.50 530.30 501.25 530.71 Q 465.00 531.12 465.92 504.06 Q 466.84 477.00 467.14 450.00 Q 467.44 423.00 466.22 396.85 Z" fill="#bbbbbb" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.730 610.00 450.00)"/></a>
+  <a href="https://github.com/agronholm/exceptiongroup" target="_blank"><path id="block-exceptiongroup" class="block" d="M 475.88 559.81 Q 475.00 534.62 480.00 532.84 Q 485.00 531.07 490.00 531.52 Q 495.00 531.98 500.00 530.06 Q 505.00 528.15 505.81 556.57 Q 506.62 585.00 505.26 612.00 Q 503.90 639.00 503.67 666.00 Q 503.44 693.00 499.22 693.60 Q 495.00 694.20 490.00 692.37 Q 485.00 690.54 480.00 690.29 Q 475.00 690.05 476.01 664.52 Q 477.02 639.00 476.89 612.00 Q 476.76 585.00 475.88 559.81 Z" fill="#f3f3f3" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.794 490.00 612.00)"/></a>
+  <a href="https://github.com/fastapi/fastapi" target="_blank"><path id="block-fastapi" class="block" d="M 40.02 70.39 Q 40.00 41.78 76.00 43.24 Q 112.00 44.71 148.00 45.41 Q 184.00 46.12 220.00 45.58 Q 256.00 45.04 292.00 44.76 Q 328.00 44.48 364.00 46.52 Q 400.00 48.55 436.00 46.94 Q 472.00 45.33 508.00 43.79 Q 544.00 42.26 580.00 41.85 Q 616.00 41.45 652.00 41.37 Q 688.00 41.29 724.00 44.87 Q 760.00 48.45 759.35 73.72 Q 758.71 99.00 758.56 126.00 Q 758.42 153.00 758.13 180.00 Q 757.85 207.00 722.92 206.22 Q 688.00 205.45 652.00 205.85 Q 616.00 206.26 580.00 206.59 Q 544.00 206.92 508.00 205.15 Q 472.00 203.38 436.00 204.06 Q 400.00 204.74 364.00 203.91 Q 328.00 203.08 292.00 203.54 Q 256.00 204.00 220.00 205.26 Q 184.00 206.52 148.00 208.35 Q 112.00 210.18 76.00 206.68 Q 40.00 203.17 38.94 178.09 Q 37.87 153.00 38.96 126.00 Q 40.04 99.00 40.02 70.39 Z" fill="#f9f9f9" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.423 400.00 126.00)"/></a>
+  <a href="https://github.com/kjd/idna" target="_blank"><path id="block-idna" class="block" d="M 613.65 571.47 Q 613.52 530.93 622.34 532.00 Q 631.17 533.08 640.00 532.74 Q 648.83 532.40 657.66 529.73 Q 666.48 527.06 667.56 569.53 Q 668.63 612.00 665.88 652.50 Q 663.13 693.00 663.02 733.50 Q 662.90 774.00 663.54 814.50 Q 664.17 855.00 656.50 855.26 Q 648.83 855.52 640.00 856.61 Q 631.17 857.70 622.34 855.91 Q 613.52 854.13 611.91 814.07 Q 610.30 774.00 610.26 733.50 Q 610.22 693.00 612.00 652.50 Q 613.78 612.00 613.65 571.47 Z" fill="#cbcbcb" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.292 640.00 693.00)"/></a>
+  <a href="https://github.com/pydantic/pydantic" target="_blank"><path id="block-pydantic" class="block" d="M 302.01 234.83 Q 302.29 208.67 324.86 209.76 Q 347.43 210.86 370.00 207.87 Q 392.57 204.88 415.14 206.80 Q 437.71 208.73 436.65 234.86 Q 435.60 261.00 436.09 288.00 Q 436.58 315.00 438.71 342.00 Q 440.83 369.00 416.70 369.53 Q 392.57 370.07 370.00 367.81 Q 347.43 365.55 324.86 367.53 Q 302.29 369.52 300.89 342.26 Q 299.49 315.00 300.61 288.00 Q 301.73 261.00 302.01 234.83 Z" fill="#ababab" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.787 370.00 288.00)"/></a>
+  <a href="https://github.com/pydantic/pydantic-core" target="_blank"><path id="block-pydantic-core" class="block" d="M 345.89 409.51 Q 345.00 369.02 353.33 369.36 Q 361.67 369.70 370.00 370.47 Q 378.33 371.23 386.67 370.69 Q 395.00 370.16 396.04 410.08 Q 397.09 450.00 396.76 490.50 Q 396.43 531.00 395.47 571.50 Q 394.52 612.00 393.97 652.50 Q 393.42 693.00 385.87 692.14 Q 378.33 691.29 370.00 690.47 Q 361.67 689.65 353.33 691.43 Q 345.00 693.22 346.92 652.61 Q 348.84 612.00 347.43 571.50 Q 346.02 531.00 346.40 490.50 Q 346.78 450.00 345.89 409.51 Z" fill="#a3a3a3" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.814 370.00 531.00)"/></a>
+  <a href="https://github.com/Kludex/starlette" target="_blank"><path id="block-starlette" class="block" d="M 506.96 235.25 Q 506.32 209.50 540.88 208.38 Q 575.44 207.26 610.00 207.52 Q 644.56 207.78 679.12 207.30 Q 713.68 206.81 712.10 233.91 Q 710.52 261.00 710.26 288.00 Q 710.00 315.00 711.49 342.00 Q 712.98 369.00 678.77 369.38 Q 644.56 369.76 610.00 368.74 Q 575.44 367.71 540.88 368.51 Q 506.32 369.31 504.93 342.15 Q 503.53 315.00 505.57 288.00 Q 507.61 261.00 506.96 235.25 Z" fill="#cbcbcb" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.154 610.00 288.00)"/></a>
+  <a href="https://github.com/python/typing_extensions" target="_blank"><path id="block-typing-extensions" class="block" d="M 286.55 719.66 Q 285.00 692.33 323.33 690.74 Q 361.67 689.16 400.00 689.36 Q 438.33 689.55 476.67 690.81 Q 515.00 692.07 513.85 719.54 Q 512.71 747.00 515.58 774.00 Q 518.44 801.00 515.76 828.00 Q 513.08 855.00 475.71 855.29 Q 438.33 855.57 400.00 856.07 Q 361.67 856.57 323.33 856.48 Q 285.00 856.39 286.74 828.69 Q 288.48 801.00 288.30 774.00 Q 288.11 747.00 286.55 719.66 Z" fill="#e3e3e3" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.097 400.00 774.00)"/></a>
+  <a href="https://github.com/pydantic/typing-inspection" target="_blank"><path id="block-typing-inspection" class="block" d="M 406.35 408.96 Q 405.00 367.92 413.33 369.34 Q 421.67 370.76 430.00 369.86 Q 438.33 368.96 446.67 369.33 Q 455.00 369.70 454.24 409.85 Q 453.47 450.00 454.45 490.50 Q 455.42 531.00 453.32 571.50 Q 451.22 612.00 452.15 652.50 Q 453.08 693.00 445.71 693.85 Q 438.33 694.70 430.00 693.10 Q 421.67 691.51 413.33 691.44 Q 405.00 691.36 403.52 651.68 Q 402.04 612.00 402.30 571.50 Q 402.56 531.00 405.13 490.50 Q 407.69 450.00 406.35 408.96 Z" fill="#cdcdcd" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.581 430.00 531.00)"/></a>
   <g class="block-text" data-block="annotated-doc">
-  <a href="https://github.com/fastapi/annotated-doc" target="_blank">    <rect x="148.00" y="460.80" width="24.00" height="140.40" fill="rgba(248,248,248,1)"/>
+  <a href="https://github.com/fastapi/annotated-doc" target="_blank">    <rect x="148.00" y="460.80" width="24.00" height="140.40" fill="#f8f8f8"/>
     <text x="160.00" y="531.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 160.00 531.00)">annotated-doc</text>
 </a>  </g>
   <g class="block-text" data-block="annotated-types">
-  <a href="https://github.com/annotated-types/annotated-types" target="_blank">    <rect x="298.00" y="450.00" width="24.00" height="162.00" fill="rgba(207,207,207,1)"/>
+  <a href="https://github.com/annotated-types/annotated-types" target="_blank">    <rect x="298.00" y="450.00" width="24.00" height="162.00" fill="#cfcfcf"/>
     <text x="310.00" y="531.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 310.00 531.00)">annotated-types</text>
 </a>  </g>
   <g class="block-text" data-block="anyio">
-  <a href="https://github.com/agronholm/anyio" target="_blank">    <rect x="583.00" y="438.00" width="54.00" height="24.00" fill="rgba(187,187,187,1)"/>
+  <a href="https://github.com/agronholm/anyio" target="_blank">    <rect x="583.00" y="438.00" width="54.00" height="24.00" fill="#bbbbbb"/>
     <text x="610.00" y="450.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">anyio</text>
 </a>  </g>
   <g class="block-text" data-block="exceptiongroup">
-  <a href="https://github.com/agronholm/exceptiongroup" target="_blank">    <rect x="483.29" y="569.75" width="13.41" height="84.50" fill="rgba(243,243,243,1)"/>
+  <a href="https://github.com/agronholm/exceptiongroup" target="_blank">    <rect x="483.29" y="569.75" width="13.41" height="84.50" fill="#f3f3f3"/>
     <text x="490.00" y="612.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="13.4" fill="#333" transform="rotate(-90 490.00 612.00)">exceptiongroup</text>
 </a>  </g>
   <g class="block-text" data-block="fastapi">
-  <a href="https://github.com/fastapi/fastapi" target="_blank">    <rect x="362.20" y="114.00" width="75.60" height="24.00" fill="rgba(249,249,249,1)"/>
+  <a href="https://github.com/fastapi/fastapi" target="_blank">    <rect x="362.20" y="114.00" width="75.60" height="24.00" fill="#f9f9f9"/>
     <text x="400.00" y="126.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">fastapi</text>
 </a>  </g>
   <g class="block-text" data-block="idna">
-  <a href="https://github.com/kjd/idna" target="_blank">    <rect x="628.00" y="671.40" width="24.00" height="43.20" fill="rgba(203,203,203,1)"/>
+  <a href="https://github.com/kjd/idna" target="_blank">    <rect x="628.00" y="671.40" width="24.00" height="43.20" fill="#cbcbcb"/>
     <text x="640.00" y="693.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 640.00 693.00)">idna</text>
 </a>  </g>
   <g class="block-text" data-block="pydantic">
-  <a href="https://github.com/pydantic/pydantic" target="_blank">    <rect x="326.80" y="276.00" width="86.40" height="24.00" fill="rgba(171,171,171,1)"/>
+  <a href="https://github.com/pydantic/pydantic" target="_blank">    <rect x="326.80" y="276.00" width="86.40" height="24.00" fill="#ababab"/>
     <text x="370.00" y="288.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">pydantic</text>
 </a>  </g>
   <g class="block-text" data-block="pydantic-core">
-  <a href="https://github.com/pydantic/pydantic-core" target="_blank">    <rect x="358.00" y="460.80" width="24.00" height="140.40" fill="rgba(163,163,163,1)"/>
+  <a href="https://github.com/pydantic/pydantic-core" target="_blank">    <rect x="358.00" y="460.80" width="24.00" height="140.40" fill="#a3a3a3"/>
     <text x="370.00" y="531.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 370.00 531.00)">pydantic-core</text>
 </a>  </g>
   <g class="block-text" data-block="starlette">
-  <a href="https://github.com/Kludex/starlette" target="_blank">    <rect x="561.40" y="276.00" width="97.20" height="24.00" fill="rgba(203,203,203,1)"/>
+  <a href="https://github.com/Kludex/starlette" target="_blank">    <rect x="561.40" y="276.00" width="97.20" height="24.00" fill="#cbcbcb"/>
     <text x="610.00" y="288.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">starlette</text>
 </a>  </g>
   <g class="block-text" data-block="typing-extensions">
-  <a href="https://github.com/python/typing_extensions" target="_blank">    <rect x="320.02" y="763.55" width="159.95" height="20.91" fill="rgba(227,227,227,1)"/>
+  <a href="https://github.com/python/typing_extensions" target="_blank">    <rect x="320.02" y="763.55" width="159.95" height="20.91" fill="#e3e3e3"/>
     <text x="400.00" y="774.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="20.9" fill="#333">typing-extensions</text>
 </a>  </g>
   <g class="block-text" data-block="typing-inspection">
-  <a href="https://github.com/pydantic/typing-inspection" target="_blank">    <rect x="418.95" y="446.50" width="22.09" height="169.00" fill="rgba(205,205,205,1)"/>
+  <a href="https://github.com/pydantic/typing-inspection" target="_blank">    <rect x="418.95" y="446.50" width="22.09" height="169.00" fill="#cdcdcd"/>
     <text x="430.00" y="531.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="22.1" fill="#333" transform="rotate(-90 430.00 531.00)">typing-inspection</text>
 </a>  </g>
   <style>
@@ -85,84 +85,40 @@
   ]]></script>
   <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 272.0 980.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <foreignObject x="30.0" y="1004.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/agronholm" target="_blank" class="maintainer-name" data-packages="exceptiongroup,anyio">#1 @agronholm</a>
-      <div class="packages">
-        <span>exceptiongroup</span>
-        <span>anyio</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="400.0" y="1004.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/samuelcolvin" target="_blank" class="maintainer-name" data-packages="pydantic-core,pydantic,annotated-types,typing-inspection">#2 @samuelcolvin</a>
-      <div class="packages">
-        <span>pydantic-core</span>
-        <span>pydantic</span>
-        <span>annotated-types</span>
-        <span style="color:#aaa">+1 more</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="30.0" y="1144.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/kjd" target="_blank" class="maintainer-name" data-packages="idna">#3 @kjd</a>
-      <div class="packages">
-        <span>idna</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="400.0" y="1144.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/Viicos" target="_blank" class="maintainer-name" data-packages="typing-inspection,annotated-types,pydantic">#4 @Viicos</a>
-      <div class="packages">
-        <span>typing-inspection</span>
-        <span>annotated-types</span>
-        <span>pydantic</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="215.0" y="1284.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/adriangb" target="_blank" class="maintainer-name" data-packages="annotated-types,pydantic-core,starlette">#5 @adriangb</a>
-      <div class="packages">
-        <span>annotated-types</span>
-        <span>pydantic-core</span>
-        <span>starlette</span>
-      </div>
-    </div>
-  </foreignObject>
+  <a href="https://github.com/agronholm" target="_blank" class="maintainer-link" data-packages="exceptiongroup,anyio">
+    <text x="215.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#1 @agronholm</text>
+  </a>
+  <text class="package-entry" data-package="exceptiongroup" x="215.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">exceptiongroup</text>
+  <text class="package-entry" data-package="anyio" x="215.0" y="1067.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">anyio</text>
+  <a href="https://github.com/samuelcolvin" target="_blank" class="maintainer-link" data-packages="pydantic-core,pydantic,annotated-types,typing-inspection">
+    <text x="585.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#2 @samuelcolvin</text>
+  </a>
+  <text class="package-entry" data-package="pydantic-core" x="585.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">pydantic-core</text>
+  <text class="package-entry" data-package="pydantic" x="585.0" y="1067.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">pydantic</text>
+  <text class="package-entry" data-package="annotated-types" x="585.0" y="1085.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">annotated-types</text>
+  <text x="585.0" y="1103.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#aaa">+1 more</text>
+  <a href="https://github.com/kjd" target="_blank" class="maintainer-link" data-packages="idna">
+    <text x="215.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#3 @kjd</text>
+  </a>
+  <text class="package-entry" data-package="idna" x="215.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">idna</text>
+  <a href="https://github.com/Viicos" target="_blank" class="maintainer-link" data-packages="typing-inspection,annotated-types,pydantic">
+    <text x="585.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#4 @Viicos</text>
+  </a>
+  <text class="package-entry" data-package="typing-inspection" x="585.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">typing-inspection</text>
+  <text class="package-entry" data-package="annotated-types" x="585.0" y="1207.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">annotated-types</text>
+  <text class="package-entry" data-package="pydantic" x="585.0" y="1225.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">pydantic</text>
+  <a href="https://github.com/adriangb" target="_blank" class="maintainer-link" data-packages="annotated-types,pydantic-core,starlette">
+    <text x="400.0" y="1304.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#5 @adriangb</text>
+  </a>
+  <text class="package-entry" data-package="annotated-types" x="400.0" y="1329.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">annotated-types</text>
+  <text class="package-entry" data-package="pydantic-core" x="400.0" y="1347.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">pydantic-core</text>
+  <text class="package-entry" data-package="starlette" x="400.0" y="1365.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">starlette</text>
   <style>
-    .nebraska-entry {
-      text-align: center;
-      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
-      overflow: hidden;
-      height: 100%;
-    }
-    .nebraska-entry .maintainer-name {
-      display: block;
-      font-size: 24px;
-      color: #333;
-      text-decoration: none;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-      margin-bottom: 8px;
-    }
-    .nebraska-entry .maintainer-name:hover { text-decoration: underline; }
-    .nebraska-entry .packages {
-      font-size: 16px;
-      color: #888;
-      line-height: 1.4;
-    }
-    .nebraska-entry .packages span {
-      display: block;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-    }
+    .maintainer-link text { cursor: pointer; }
+    .maintainer-link:hover text { text-decoration: underline; }
   </style>
   <script type="text/javascript"><![CDATA[
-    document.querySelectorAll('.maintainer-name').forEach(el => {
+    document.querySelectorAll('.maintainer-link').forEach(el => {
       el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
       el.addEventListener('mouseleave', clearHighlight);
     });

@@ -8,55 +8,55 @@
 " x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>
     </pattern>
   </defs>
-  <a href="https://github.com/marshallpierce/rust-base64" target="_blank"><path id="block-base64" class="block" d="M 146.85 481.77 Q 147.86 446.04 163.33 447.54 Q 178.81 449.05 194.29 451.06 Q 209.76 453.08 225.24 449.64 Q 240.71 446.20 241.39 481.85 Q 242.07 517.50 243.25 551.25 Q 244.42 585.00 244.51 618.75 Q 244.60 652.50 243.34 686.25 Q 242.09 720.00 242.24 753.75 Q 242.39 787.50 242.38 821.25 Q 242.37 855.00 226.07 856.92 Q 209.76 858.85 194.29 855.22 Q 178.81 851.59 163.33 852.81 Q 147.86 854.03 148.29 820.76 Q 148.73 787.50 147.02 753.75 Q 145.31 720.00 147.12 686.25 Q 148.93 652.50 147.55 618.75 Q 146.16 585.00 146.00 551.25 Q 145.84 517.50 146.85 481.77 Z" fill="rgba(168,168,168,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.260 194.29 652.50)"/></a>
-  <a href="https://github.com/tokio-rs/bytes" target="_blank"><path id="block-bytes" class="block" d="M 271.20 686.12 Q 270.83 652.23 279.60 654.32 Q 288.37 656.40 297.14 654.43 Q 305.91 652.46 314.69 652.23 Q 323.46 652.00 325.44 686.00 Q 327.41 720.00 327.31 753.75 Q 327.21 787.50 326.82 821.25 Q 326.43 855.00 316.17 856.33 Q 305.91 857.67 297.14 856.50 Q 288.37 855.33 279.60 854.22 Q 270.83 853.11 270.78 820.30 Q 270.73 787.50 271.15 753.75 Q 271.57 720.00 271.20 686.12 Z" fill="rgba(240,240,240,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.873 297.14 753.75)"/></a>
-  <a href="https://github.com/hyperium/http" target="_blank"><path id="block-http" class="block" d="M 252.51 485.42 Q 250.71 453.35 283.33 450.97 Q 315.95 448.59 348.57 448.74 Q 381.19 448.90 413.81 450.83 Q 446.43 452.76 445.63 485.13 Q 444.82 517.50 445.77 551.25 Q 446.71 585.00 444.92 618.75 Q 443.13 652.50 412.16 652.28 Q 381.19 652.06 348.57 651.67 Q 315.95 651.28 283.33 652.35 Q 250.71 653.42 252.46 619.21 Q 254.21 585.00 254.26 551.25 Q 254.31 517.50 252.51 485.42 Z" fill="rgba(203,203,203,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.380 348.57 551.25)"/></a>
-  <a href="https://github.com/seanmonstar/httparse" target="_blank"><path id="block-httparse" class="block" d="M 457.92 483.24 Q 456.43 448.99 471.90 450.54 Q 487.38 452.09 502.86 450.14 Q 518.33 448.19 533.81 448.37 Q 549.29 448.56 550.97 483.03 Q 552.66 517.50 551.52 551.25 Q 550.39 585.00 551.40 618.75 Q 552.41 652.50 551.46 686.25 Q 550.52 720.00 548.51 753.75 Q 546.51 787.50 549.01 821.25 Q 551.52 855.00 534.93 855.76 Q 518.33 856.52 502.86 854.69 Q 487.38 852.86 471.90 855.62 Q 456.43 858.38 454.50 822.94 Q 452.56 787.50 455.26 753.75 Q 457.95 720.00 457.41 686.25 Q 456.87 652.50 457.82 618.75 Q 458.78 585.00 459.09 551.25 Q 459.40 517.50 457.92 483.24 Z" fill="rgba(212,212,212,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.453 502.86 652.50)"/></a>
-  <a href="https://github.com/dtolnay/itoa" target="_blank"><path id="block-itoa" class="block" d="M 386.27 685.91 Q 385.00 651.82 390.00 653.72 Q 395.00 655.62 400.00 655.44 Q 405.00 655.25 410.00 653.83 Q 415.00 652.40 414.38 686.20 Q 413.76 720.00 413.61 753.75 Q 413.47 787.50 415.95 821.25 Q 418.44 855.00 411.72 854.55 Q 405.00 854.09 400.00 855.99 Q 395.00 857.88 390.00 858.18 Q 385.00 858.47 383.06 822.99 Q 381.11 787.50 384.32 753.75 Q 387.53 720.00 386.27 685.91 Z" fill="rgba(230,230,230,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.251 400.00 753.75)"/></a>
-  <a href="https://github.com/rust-lang/log" target="_blank"><path id="block-log" class="block" d="M 558.02 484.83 Q 559.29 452.16 574.76 449.39 Q 590.24 446.61 605.71 449.76 Q 621.19 452.91 636.67 453.27 Q 652.14 453.63 651.39 485.57 Q 650.64 517.50 652.97 551.25 Q 655.31 585.00 654.11 618.75 Q 652.91 652.50 653.11 686.25 Q 653.32 720.00 653.79 753.75 Q 654.26 787.50 651.46 821.25 Q 648.67 855.00 634.93 856.46 Q 621.19 857.92 605.71 856.13 Q 590.24 854.33 574.76 855.57 Q 559.29 856.80 557.50 822.15 Q 555.71 787.50 556.86 753.75 Q 558.01 720.00 558.42 686.25 Q 558.82 652.50 557.71 618.75 Q 556.59 585.00 556.67 551.25 Q 556.75 517.50 558.02 484.83 Z" fill="rgba(165,165,165,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.592 605.71 652.50)"/></a>
-  <a href="https://github.com/servo/rust-url" target="_blank"><path id="block-percent-encoding" class="block" d="M 54.67 283.07 Q 55.55 251.13 67.51 250.79 Q 79.47 250.46 91.43 249.37 Q 103.39 248.28 115.35 246.55 Q 127.31 244.82 128.34 279.91 Q 129.37 315.00 129.86 348.75 Q 130.36 382.50 129.54 416.25 Q 128.72 450.00 127.28 483.75 Q 125.83 517.50 125.81 551.25 Q 125.78 585.00 127.37 618.75 Q 128.95 652.50 126.99 686.25 Q 125.02 720.00 124.72 753.75 Q 124.43 787.50 124.27 821.25 Q 124.11 855.00 113.75 856.14 Q 103.39 857.29 91.43 856.71 Q 79.47 856.13 67.51 854.13 Q 55.55 852.12 54.91 819.81 Q 54.27 787.50 53.16 753.75 Q 52.05 720.00 53.56 686.25 Q 55.08 652.50 55.97 618.75 Q 56.86 585.00 58.17 551.25 Q 59.48 517.50 56.27 483.75 Q 53.06 450.00 53.38 416.25 Q 53.69 382.50 53.74 348.75 Q 53.79 315.00 54.67 283.07 Z" fill="rgba(242,242,242,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.448 91.43 551.25)"/></a>
-  <a href="https://github.com/algesten/ureq" target="_blank"><path id="block-ureq" class="block" d="M 39.14 80.16 Q 40.00 47.83 76.00 45.35 Q 112.00 42.86 148.00 42.66 Q 184.00 42.45 220.00 43.23 Q 256.00 44.01 292.00 44.65 Q 328.00 45.28 364.00 44.40 Q 400.00 43.51 436.00 45.00 Q 472.00 46.49 508.00 43.94 Q 544.00 41.39 580.00 42.55 Q 616.00 43.71 652.00 43.31 Q 688.00 42.90 724.00 43.54 Q 760.00 44.18 759.78 78.34 Q 759.56 112.50 758.73 146.25 Q 757.89 180.00 757.24 213.75 Q 756.60 247.50 722.30 246.12 Q 688.00 244.74 652.00 245.60 Q 616.00 246.47 580.00 245.80 Q 544.00 245.13 508.00 248.17 Q 472.00 251.22 436.00 248.84 Q 400.00 246.46 364.00 246.82 Q 328.00 247.17 292.00 248.98 Q 256.00 250.79 220.00 247.18 Q 184.00 243.58 148.00 243.81 Q 112.00 244.05 76.00 245.71 Q 40.00 247.37 41.25 213.69 Q 42.51 180.00 40.39 146.25 Q 38.27 112.50 39.14 80.16 Z" fill="rgba(190,190,190,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.355 400.00 146.25)"/></a>
-  <a href="https://github.com/algesten/ureq-proto" target="_blank"><path id="block-ureq-proto" class="block" d="M 197.78 282.61 Q 199.14 250.22 232.62 248.84 Q 266.10 247.46 299.57 248.92 Q 333.05 250.37 366.52 249.71 Q 400.00 249.04 433.48 246.44 Q 466.95 243.84 500.43 244.06 Q 533.90 244.28 567.38 247.39 Q 600.86 250.50 601.16 282.75 Q 601.47 315.00 603.09 348.75 Q 604.70 382.50 603.56 416.25 Q 602.42 450.00 568.16 449.75 Q 533.90 449.50 500.43 449.51 Q 466.95 449.53 433.48 448.82 Q 400.00 448.11 366.52 449.48 Q 333.05 450.84 299.57 451.92 Q 266.10 453.00 232.62 450.47 Q 199.14 447.95 199.35 415.22 Q 199.55 382.50 197.98 348.75 Q 196.41 315.00 197.78 282.61 Z" fill="rgba(213,213,213,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.478 400.00 348.75)"/></a>
-  <a href="https://github.com/SimonSapin/rust-utf8" target="_blank"><path id="block-utf-8" class="block brittle" d="M 673.58 279.45 Q 675.37 243.90 686.44 243.73 Q 697.51 243.55 708.57 244.03 Q 719.64 244.50 730.70 244.61 Q 741.77 244.72 741.62 279.86 Q 741.46 315.00 743.41 348.75 Q 745.36 382.50 742.98 416.25 Q 740.60 450.00 742.16 483.75 Q 743.73 517.50 744.05 551.25 Q 744.38 585.00 741.19 618.75 Q 738.00 652.50 740.08 686.25 Q 742.17 720.00 742.89 753.75 Q 743.60 787.50 742.00 821.25 Q 740.40 855.00 730.02 853.99 Q 719.64 852.99 708.57 852.01 Q 697.51 851.03 686.44 852.29 Q 675.37 853.55 674.22 820.53 Q 673.07 787.50 673.22 753.75 Q 673.38 720.00 674.38 686.25 Q 675.38 652.50 673.44 618.75 Q 671.49 585.00 671.82 551.25 Q 672.15 517.50 674.82 483.75 Q 677.49 450.00 674.78 416.25 Q 672.06 382.50 671.93 348.75 Q 671.80 315.00 673.58 279.45 Z" fill="rgba(205,205,205,1)" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.189 708.57 551.25)"/></a>
+  <a href="https://github.com/marshallpierce/rust-base64" target="_blank"><path id="block-base64" class="block" d="M 146.85 481.77 Q 147.86 446.04 163.33 447.54 Q 178.81 449.05 194.29 451.06 Q 209.76 453.08 225.24 449.64 Q 240.71 446.20 241.39 481.85 Q 242.07 517.50 243.25 551.25 Q 244.42 585.00 244.51 618.75 Q 244.60 652.50 243.34 686.25 Q 242.09 720.00 242.24 753.75 Q 242.39 787.50 242.38 821.25 Q 242.37 855.00 226.07 856.92 Q 209.76 858.85 194.29 855.22 Q 178.81 851.59 163.33 852.81 Q 147.86 854.03 148.29 820.76 Q 148.73 787.50 147.02 753.75 Q 145.31 720.00 147.12 686.25 Q 148.93 652.50 147.55 618.75 Q 146.16 585.00 146.00 551.25 Q 145.84 517.50 146.85 481.77 Z" fill="#a8a8a8" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.260 194.29 652.50)"/></a>
+  <a href="https://github.com/tokio-rs/bytes" target="_blank"><path id="block-bytes" class="block" d="M 271.20 686.12 Q 270.83 652.23 279.60 654.32 Q 288.37 656.40 297.14 654.43 Q 305.91 652.46 314.69 652.23 Q 323.46 652.00 325.44 686.00 Q 327.41 720.00 327.31 753.75 Q 327.21 787.50 326.82 821.25 Q 326.43 855.00 316.17 856.33 Q 305.91 857.67 297.14 856.50 Q 288.37 855.33 279.60 854.22 Q 270.83 853.11 270.78 820.30 Q 270.73 787.50 271.15 753.75 Q 271.57 720.00 271.20 686.12 Z" fill="#f0f0f0" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.873 297.14 753.75)"/></a>
+  <a href="https://github.com/hyperium/http" target="_blank"><path id="block-http" class="block" d="M 252.51 485.42 Q 250.71 453.35 283.33 450.97 Q 315.95 448.59 348.57 448.74 Q 381.19 448.90 413.81 450.83 Q 446.43 452.76 445.63 485.13 Q 444.82 517.50 445.77 551.25 Q 446.71 585.00 444.92 618.75 Q 443.13 652.50 412.16 652.28 Q 381.19 652.06 348.57 651.67 Q 315.95 651.28 283.33 652.35 Q 250.71 653.42 252.46 619.21 Q 254.21 585.00 254.26 551.25 Q 254.31 517.50 252.51 485.42 Z" fill="#cbcbcb" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.380 348.57 551.25)"/></a>
+  <a href="https://github.com/seanmonstar/httparse" target="_blank"><path id="block-httparse" class="block" d="M 457.92 483.24 Q 456.43 448.99 471.90 450.54 Q 487.38 452.09 502.86 450.14 Q 518.33 448.19 533.81 448.37 Q 549.29 448.56 550.97 483.03 Q 552.66 517.50 551.52 551.25 Q 550.39 585.00 551.40 618.75 Q 552.41 652.50 551.46 686.25 Q 550.52 720.00 548.51 753.75 Q 546.51 787.50 549.01 821.25 Q 551.52 855.00 534.93 855.76 Q 518.33 856.52 502.86 854.69 Q 487.38 852.86 471.90 855.62 Q 456.43 858.38 454.50 822.94 Q 452.56 787.50 455.26 753.75 Q 457.95 720.00 457.41 686.25 Q 456.87 652.50 457.82 618.75 Q 458.78 585.00 459.09 551.25 Q 459.40 517.50 457.92 483.24 Z" fill="#d4d4d4" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.453 502.86 652.50)"/></a>
+  <a href="https://github.com/dtolnay/itoa" target="_blank"><path id="block-itoa" class="block" d="M 386.27 685.91 Q 385.00 651.82 390.00 653.72 Q 395.00 655.62 400.00 655.44 Q 405.00 655.25 410.00 653.83 Q 415.00 652.40 414.38 686.20 Q 413.76 720.00 413.61 753.75 Q 413.47 787.50 415.95 821.25 Q 418.44 855.00 411.72 854.55 Q 405.00 854.09 400.00 855.99 Q 395.00 857.88 390.00 858.18 Q 385.00 858.47 383.06 822.99 Q 381.11 787.50 384.32 753.75 Q 387.53 720.00 386.27 685.91 Z" fill="#e6e6e6" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.251 400.00 753.75)"/></a>
+  <a href="https://github.com/rust-lang/log" target="_blank"><path id="block-log" class="block" d="M 558.02 484.83 Q 559.29 452.16 574.76 449.39 Q 590.24 446.61 605.71 449.76 Q 621.19 452.91 636.67 453.27 Q 652.14 453.63 651.39 485.57 Q 650.64 517.50 652.97 551.25 Q 655.31 585.00 654.11 618.75 Q 652.91 652.50 653.11 686.25 Q 653.32 720.00 653.79 753.75 Q 654.26 787.50 651.46 821.25 Q 648.67 855.00 634.93 856.46 Q 621.19 857.92 605.71 856.13 Q 590.24 854.33 574.76 855.57 Q 559.29 856.80 557.50 822.15 Q 555.71 787.50 556.86 753.75 Q 558.01 720.00 558.42 686.25 Q 558.82 652.50 557.71 618.75 Q 556.59 585.00 556.67 551.25 Q 556.75 517.50 558.02 484.83 Z" fill="#a5a5a5" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.592 605.71 652.50)"/></a>
+  <a href="https://github.com/servo/rust-url" target="_blank"><path id="block-percent-encoding" class="block" d="M 54.67 283.07 Q 55.55 251.13 67.51 250.79 Q 79.47 250.46 91.43 249.37 Q 103.39 248.28 115.35 246.55 Q 127.31 244.82 128.34 279.91 Q 129.37 315.00 129.86 348.75 Q 130.36 382.50 129.54 416.25 Q 128.72 450.00 127.28 483.75 Q 125.83 517.50 125.81 551.25 Q 125.78 585.00 127.37 618.75 Q 128.95 652.50 126.99 686.25 Q 125.02 720.00 124.72 753.75 Q 124.43 787.50 124.27 821.25 Q 124.11 855.00 113.75 856.14 Q 103.39 857.29 91.43 856.71 Q 79.47 856.13 67.51 854.13 Q 55.55 852.12 54.91 819.81 Q 54.27 787.50 53.16 753.75 Q 52.05 720.00 53.56 686.25 Q 55.08 652.50 55.97 618.75 Q 56.86 585.00 58.17 551.25 Q 59.48 517.50 56.27 483.75 Q 53.06 450.00 53.38 416.25 Q 53.69 382.50 53.74 348.75 Q 53.79 315.00 54.67 283.07 Z" fill="#f2f2f2" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.448 91.43 551.25)"/></a>
+  <a href="https://github.com/algesten/ureq" target="_blank"><path id="block-ureq" class="block" d="M 39.14 80.16 Q 40.00 47.83 76.00 45.35 Q 112.00 42.86 148.00 42.66 Q 184.00 42.45 220.00 43.23 Q 256.00 44.01 292.00 44.65 Q 328.00 45.28 364.00 44.40 Q 400.00 43.51 436.00 45.00 Q 472.00 46.49 508.00 43.94 Q 544.00 41.39 580.00 42.55 Q 616.00 43.71 652.00 43.31 Q 688.00 42.90 724.00 43.54 Q 760.00 44.18 759.78 78.34 Q 759.56 112.50 758.73 146.25 Q 757.89 180.00 757.24 213.75 Q 756.60 247.50 722.30 246.12 Q 688.00 244.74 652.00 245.60 Q 616.00 246.47 580.00 245.80 Q 544.00 245.13 508.00 248.17 Q 472.00 251.22 436.00 248.84 Q 400.00 246.46 364.00 246.82 Q 328.00 247.17 292.00 248.98 Q 256.00 250.79 220.00 247.18 Q 184.00 243.58 148.00 243.81 Q 112.00 244.05 76.00 245.71 Q 40.00 247.37 41.25 213.69 Q 42.51 180.00 40.39 146.25 Q 38.27 112.50 39.14 80.16 Z" fill="#bebebe" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.355 400.00 146.25)"/></a>
+  <a href="https://github.com/algesten/ureq-proto" target="_blank"><path id="block-ureq-proto" class="block" d="M 197.78 282.61 Q 199.14 250.22 232.62 248.84 Q 266.10 247.46 299.57 248.92 Q 333.05 250.37 366.52 249.71 Q 400.00 249.04 433.48 246.44 Q 466.95 243.84 500.43 244.06 Q 533.90 244.28 567.38 247.39 Q 600.86 250.50 601.16 282.75 Q 601.47 315.00 603.09 348.75 Q 604.70 382.50 603.56 416.25 Q 602.42 450.00 568.16 449.75 Q 533.90 449.50 500.43 449.51 Q 466.95 449.53 433.48 448.82 Q 400.00 448.11 366.52 449.48 Q 333.05 450.84 299.57 451.92 Q 266.10 453.00 232.62 450.47 Q 199.14 447.95 199.35 415.22 Q 199.55 382.50 197.98 348.75 Q 196.41 315.00 197.78 282.61 Z" fill="#d5d5d5" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.478 400.00 348.75)"/></a>
+  <a href="https://github.com/SimonSapin/rust-utf8" target="_blank"><path id="block-utf-8" class="block brittle" d="M 673.58 279.45 Q 675.37 243.90 686.44 243.73 Q 697.51 243.55 708.57 244.03 Q 719.64 244.50 730.70 244.61 Q 741.77 244.72 741.62 279.86 Q 741.46 315.00 743.41 348.75 Q 745.36 382.50 742.98 416.25 Q 740.60 450.00 742.16 483.75 Q 743.73 517.50 744.05 551.25 Q 744.38 585.00 741.19 618.75 Q 738.00 652.50 740.08 686.25 Q 742.17 720.00 742.89 753.75 Q 743.60 787.50 742.00 821.25 Q 740.40 855.00 730.02 853.99 Q 719.64 852.99 708.57 852.01 Q 697.51 851.03 686.44 852.29 Q 675.37 853.55 674.22 820.53 Q 673.07 787.50 673.22 753.75 Q 673.38 720.00 674.38 686.25 Q 675.38 652.50 673.44 618.75 Q 671.49 585.00 671.82 551.25 Q 672.15 517.50 674.82 483.75 Q 677.49 450.00 674.78 416.25 Q 672.06 382.50 671.93 348.75 Q 671.80 315.00 673.58 279.45 Z" fill="#cdcdcd" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.189 708.57 551.25)"/></a>
   <path class="block-texture" d="M 673.58 279.45 Q 675.37 243.90 686.44 243.73 Q 697.51 243.55 708.57 244.03 Q 719.64 244.50 730.70 244.61 Q 741.77 244.72 741.62 279.86 Q 741.46 315.00 743.41 348.75 Q 745.36 382.50 742.98 416.25 Q 740.60 450.00 742.16 483.75 Q 743.73 517.50 744.05 551.25 Q 744.38 585.00 741.19 618.75 Q 738.00 652.50 740.08 686.25 Q 742.17 720.00 742.89 753.75 Q 743.60 787.50 742.00 821.25 Q 740.40 855.00 730.02 853.99 Q 719.64 852.99 708.57 852.01 Q 697.51 851.03 686.44 852.29 Q 675.37 853.55 674.22 820.53 Q 673.07 787.50 673.22 753.75 Q 673.38 720.00 674.38 686.25 Q 675.38 652.50 673.44 618.75 Q 671.49 585.00 671.82 551.25 Q 672.15 517.50 674.82 483.75 Q 677.49 450.00 674.78 416.25 Q 672.06 382.50 671.93 348.75 Q 671.80 315.00 673.58 279.45 Z" fill="url(#brittleTexture)" style="pointer-events: none;" transform="rotate(-0.189 708.57 551.25)"/>
   <g class="block-text" data-block="base64">
-  <a href="https://github.com/marshallpierce/rust-base64" target="_blank">    <rect x="182.29" y="620.10" width="24.00" height="64.80" fill="rgba(168,168,168,1)"/>
+  <a href="https://github.com/marshallpierce/rust-base64" target="_blank">    <rect x="182.29" y="620.10" width="24.00" height="64.80" fill="#a8a8a8"/>
     <text x="194.29" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 194.29 652.50)">base64</text>
 </a>  </g>
   <g class="block-text" data-block="bytes">
-  <a href="https://github.com/tokio-rs/bytes" target="_blank">    <rect x="285.14" y="726.75" width="24.00" height="54.00" fill="rgba(240,240,240,1)"/>
+  <a href="https://github.com/tokio-rs/bytes" target="_blank">    <rect x="285.14" y="726.75" width="24.00" height="54.00" fill="#f0f0f0"/>
     <text x="297.14" y="753.75" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 297.14 753.75)">bytes</text>
 </a>  </g>
   <g class="block-text" data-block="http">
-  <a href="https://github.com/hyperium/http" target="_blank">    <rect x="326.97" y="539.25" width="43.20" height="24.00" fill="rgba(203,203,203,1)"/>
+  <a href="https://github.com/hyperium/http" target="_blank">    <rect x="326.97" y="539.25" width="43.20" height="24.00" fill="#cbcbcb"/>
     <text x="348.57" y="551.25" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">http</text>
 </a>  </g>
   <g class="block-text" data-block="httparse">
-  <a href="https://github.com/seanmonstar/httparse" target="_blank">    <rect x="490.86" y="609.30" width="24.00" height="86.40" fill="rgba(212,212,212,1)"/>
+  <a href="https://github.com/seanmonstar/httparse" target="_blank">    <rect x="490.86" y="609.30" width="24.00" height="86.40" fill="#d4d4d4"/>
     <text x="502.86" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 502.86 652.50)">httparse</text>
 </a>  </g>
   <g class="block-text" data-block="itoa">
-  <a href="https://github.com/dtolnay/itoa" target="_blank">    <rect x="391.00" y="737.55" width="18.00" height="32.40" fill="rgba(230,230,230,1)"/>
+  <a href="https://github.com/dtolnay/itoa" target="_blank">    <rect x="391.00" y="737.55" width="18.00" height="32.40" fill="#e6e6e6"/>
     <text x="400.00" y="753.75" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 400.00 753.75)">itoa</text>
 </a>  </g>
   <g class="block-text" data-block="log">
-  <a href="https://github.com/rust-lang/log" target="_blank">    <rect x="589.51" y="640.50" width="32.40" height="24.00" fill="rgba(165,165,165,1)"/>
+  <a href="https://github.com/rust-lang/log" target="_blank">    <rect x="589.51" y="640.50" width="32.40" height="24.00" fill="#a5a5a5"/>
     <text x="605.71" y="652.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">log</text>
 </a>  </g>
   <g class="block-text" data-block="percent-encoding">
-  <a href="https://github.com/servo/rust-url" target="_blank">    <rect x="79.43" y="464.85" width="24.00" height="172.80" fill="rgba(242,242,242,1)"/>
+  <a href="https://github.com/servo/rust-url" target="_blank">    <rect x="79.43" y="464.85" width="24.00" height="172.80" fill="#f2f2f2"/>
     <text x="91.43" y="551.25" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 91.43 551.25)">percent-encoding</text>
 </a>  </g>
   <g class="block-text" data-block="ureq">
-  <a href="https://github.com/algesten/ureq" target="_blank">    <rect x="378.40" y="134.25" width="43.20" height="24.00" fill="rgba(190,190,190,1)"/>
+  <a href="https://github.com/algesten/ureq" target="_blank">    <rect x="378.40" y="134.25" width="43.20" height="24.00" fill="#bebebe"/>
     <text x="400.00" y="146.25" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">ureq</text>
 </a>  </g>
   <g class="block-text" data-block="ureq-proto">
-  <a href="https://github.com/algesten/ureq-proto" target="_blank">    <rect x="346.00" y="336.75" width="108.00" height="24.00" fill="rgba(213,213,213,1)"/>
+  <a href="https://github.com/algesten/ureq-proto" target="_blank">    <rect x="346.00" y="336.75" width="108.00" height="24.00" fill="#d5d5d5"/>
     <text x="400.00" y="348.75" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">ureq-proto</text>
 </a>  </g>
   <g class="block-text" data-block="utf-8">
-  <a href="https://github.com/SimonSapin/rust-utf8" target="_blank">    <rect x="696.57" y="524.25" width="24.00" height="54.00" fill="rgba(205,205,205,1)"/>
+  <a href="https://github.com/SimonSapin/rust-utf8" target="_blank">    <rect x="696.57" y="524.25" width="24.00" height="54.00" fill="#cdcdcd"/>
     <text x="708.57" y="551.25" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 708.57 551.25)">utf-8</text>
 </a>  </g>
   <style>
@@ -81,85 +81,41 @@
   ]]></script>
   <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
   <path d="M 272.0 980.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <foreignObject x="30.0" y="1004.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/seanmonstar" target="_blank" class="maintainer-name" data-packages="httparse,http,bytes">#1 @seanmonstar</a>
-      <div class="packages">
-        <span>httparse</span>
-        <span>http</span>
-        <span>bytes</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="400.0" y="1004.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/SimonSapin" target="_blank" class="maintainer-name" data-packages="utf-8,percent-encoding,itoa">#2 @SimonSapin</a>
-      <div class="packages">
-        <span>utf-8</span>
-        <span>percent-encoding</span>
-        <span>itoa</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="30.0" y="1144.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/dtolnay" target="_blank" class="maintainer-name" data-packages="itoa,log">#3 @dtolnay</a>
-      <div class="packages">
-        <span>itoa</span>
-        <span>log</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="400.0" y="1144.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/nox" target="_blank" class="maintainer-name" data-packages="itoa,base64,httparse,percent-encoding">#4 @nox</a>
-      <div class="packages">
-        <span>itoa</span>
-        <span>base64</span>
-        <span>httparse</span>
-        <span style="color:#aaa">+1 more</span>
-      </div>
-    </div>
-  </foreignObject>
-  <foreignObject x="215.0" y="1284.0" width="370.0" height="140.0">
-    <div xmlns="http://www.w3.org/1999/xhtml" class="nebraska-entry">
-      <a href="https://github.com/carllerche" target="_blank" class="maintainer-name" data-packages="bytes,http">#5 @carllerche</a>
-      <div class="packages">
-        <span>bytes</span>
-        <span>http</span>
-      </div>
-    </div>
-  </foreignObject>
+  <a href="https://github.com/seanmonstar" target="_blank" class="maintainer-link" data-packages="httparse,http,bytes">
+    <text x="215.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#1 @seanmonstar</text>
+  </a>
+  <text class="package-entry" data-package="httparse" x="215.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">httparse</text>
+  <text class="package-entry" data-package="http" x="215.0" y="1067.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">http</text>
+  <text class="package-entry" data-package="bytes" x="215.0" y="1085.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">bytes</text>
+  <a href="https://github.com/SimonSapin" target="_blank" class="maintainer-link" data-packages="utf-8,percent-encoding,itoa">
+    <text x="585.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#2 @SimonSapin</text>
+  </a>
+  <text class="package-entry" data-package="utf-8" x="585.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">utf-8</text>
+  <text class="package-entry" data-package="percent-encoding" x="585.0" y="1067.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">percent-encoding</text>
+  <text class="package-entry" data-package="itoa" x="585.0" y="1085.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">itoa</text>
+  <a href="https://github.com/dtolnay" target="_blank" class="maintainer-link" data-packages="itoa,log">
+    <text x="215.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#3 @dtolnay</text>
+  </a>
+  <text class="package-entry" data-package="itoa" x="215.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">itoa</text>
+  <text class="package-entry" data-package="log" x="215.0" y="1207.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">log</text>
+  <a href="https://github.com/nox" target="_blank" class="maintainer-link" data-packages="itoa,base64,httparse,percent-encoding">
+    <text x="585.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#4 @nox</text>
+  </a>
+  <text class="package-entry" data-package="itoa" x="585.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">itoa</text>
+  <text class="package-entry" data-package="base64" x="585.0" y="1207.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">base64</text>
+  <text class="package-entry" data-package="httparse" x="585.0" y="1225.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">httparse</text>
+  <text x="585.0" y="1243.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#aaa">+1 more</text>
+  <a href="https://github.com/carllerche" target="_blank" class="maintainer-link" data-packages="bytes,http">
+    <text x="400.0" y="1304.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#5 @carllerche</text>
+  </a>
+  <text class="package-entry" data-package="bytes" x="400.0" y="1329.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">bytes</text>
+  <text class="package-entry" data-package="http" x="400.0" y="1347.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">http</text>
   <style>
-    .nebraska-entry {
-      text-align: center;
-      font-family: 'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif;
-      overflow: hidden;
-      height: 100%;
-    }
-    .nebraska-entry .maintainer-name {
-      display: block;
-      font-size: 24px;
-      color: #333;
-      text-decoration: none;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-      margin-bottom: 8px;
-    }
-    .nebraska-entry .maintainer-name:hover { text-decoration: underline; }
-    .nebraska-entry .packages {
-      font-size: 16px;
-      color: #888;
-      line-height: 1.4;
-    }
-    .nebraska-entry .packages span {
-      display: block;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-    }
+    .maintainer-link text { cursor: pointer; }
+    .maintainer-link:hover text { text-decoration: underline; }
   </style>
   <script type="text/javascript"><![CDATA[
-    document.querySelectorAll('.maintainer-name').forEach(el => {
+    document.querySelectorAll('.maintainer-link').forEach(el => {
       el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
       el.addEventListener('mouseleave', clearHighlight);
     });
