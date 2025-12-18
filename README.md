@@ -138,7 +138,7 @@ stacktower parse python fastapi --enrich=false -o fastapi.json
 
 ### Rendering
 
-The `render` command generates SVG visualizations from parsed JSON graphs:
+The `render` command generates visualizations from parsed JSON graphs:
 
 ```bash
 stacktower render <file> [flags]
@@ -169,10 +169,10 @@ stacktower render examples/real/flask.json -o flask.svg
 # JSON layout export (for external tools or re-rendering)
 stacktower render examples/real/flask.json -f json -o flask.json
 
-# PDF output (requires librsvg: brew install librsvg)
+# PDF output
 stacktower render examples/real/flask.json -f pdf -o flask.pdf
 
-# PNG output with 2x scale (requires librsvg)
+# PNG output (2x scale by default)
 stacktower render examples/real/flask.json -f png -o flask.png
 
 # Multiple formats at once (outputs flask.svg, flask.json, flask.pdf)
@@ -187,6 +187,10 @@ Output path behavior:
 - **Single format**: Uses exact path (`-o out.svg` → `out.svg`)
 - **Multiple formats**: Strips extension, adds format (`-o out.svg -f svg,json` → `out.svg`, `out.json`)
 - **Multiple types**: Adds type suffix (`-t tower,nodelink` → `out_tower.svg`, `out_nodelink.svg`)
+
+> **Note:** PDF and PNG output requires [librsvg](https://wiki.gnome.org/Projects/LibRsvg):
+> - macOS: `brew install librsvg`
+> - Linux: `apt install librsvg2-bin`
 
 ### Included Examples
 
@@ -300,7 +304,7 @@ These keys are read by specific render flags. All are optional—missing keys si
 | `repo_url` | string | Clickable blocks, `--popups`, `--nebraska` |
 | `repo_stars` | int | `--popups` |
 | `repo_owner` | string | `--nebraska` |
-| `repo_maintainers` | []string | `--nebraska`, `--popups` |
+| `repo_maintainers` | []string | `--nebraska` |
 | `repo_last_commit` | string (date) | `--popups`, brittle detection |
 | `repo_last_release` | string (date) | `--popups` |
 | `repo_archived` | bool | `--popups`, brittle detection |
@@ -315,7 +319,7 @@ The `--detailed` flag (node-link only) displays **all** meta keys in the node la
 3. **Layer** — Assign each package to a row based on its depth
 4. **Order** — Minimize edge crossings using branch-and-bound with PQ-tree pruning
 5. **Layout** — Compute block widths proportional to downstream dependents
-6. **Render** — Generate clean SVG output
+6. **Render** — Generate output in SVG, JSON, PDF, or PNG format
 
 The ordering step is where the magic happens. Stacktower uses an optimal search algorithm that guarantees minimum crossings for small-to-medium graphs. For larger graphs, it gracefully falls back after a configurable timeout.
 
