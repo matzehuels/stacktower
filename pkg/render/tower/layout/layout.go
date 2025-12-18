@@ -1,4 +1,4 @@
-package tower
+package layout
 
 import (
 	"slices"
@@ -13,12 +13,12 @@ const (
 )
 
 type Layout struct {
-	FrameWidth  float64          `json:"width"`
-	FrameHeight float64          `json:"height"`
-	Blocks      map[string]Block `json:"blocks"`
-	RowOrders   map[int][]string `json:"rows,omitempty"`
-	MarginX     float64          `json:"margin_x"`
-	MarginY     float64          `json:"margin_y"`
+	FrameWidth  float64
+	FrameHeight float64
+	Blocks      map[string]Block
+	RowOrders   map[int][]string
+	MarginX     float64
+	MarginY     float64
 }
 
 type Option func(*config)

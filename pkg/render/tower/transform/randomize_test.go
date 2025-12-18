@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/matzehuels/stacktower/pkg/dag"
-	"github.com/matzehuels/stacktower/pkg/render/tower"
+	"github.com/matzehuels/stacktower/pkg/render/tower/layout"
 )
 
 func TestRandomize_Deterministic(t *testing.T) {
@@ -241,13 +241,13 @@ func TestRandomize_MinimumOverlapComplex(t *testing.T) {
 	}
 }
 
-func buildMultiColumnLayout() tower.Layout {
-	return tower.Layout{
+func buildMultiColumnLayout() layout.Layout {
+	return layout.Layout{
 		FrameWidth:  800,
 		FrameHeight: 400,
 		MarginX:     20,
 		MarginY:     20,
-		Blocks: map[string]tower.Block{
+		Blocks: map[string]layout.Block{
 			"A": {NodeID: "A", Left: 20, Right: 420, Bottom: 20, Top: 220},
 			"B": {NodeID: "B", Left: 420, Right: 780, Bottom: 20, Top: 220},
 			"C": {NodeID: "C", Left: 20, Right: 420, Bottom: 220, Top: 420},
@@ -260,13 +260,13 @@ func buildMultiColumnLayout() tower.Layout {
 	}
 }
 
-func buildTestLayout() tower.Layout {
-	return tower.Layout{
+func buildTestLayout() layout.Layout {
+	return layout.Layout{
 		FrameWidth:  800,
 		FrameHeight: 600,
 		MarginX:     20,
 		MarginY:     20,
-		Blocks: map[string]tower.Block{
+		Blocks: map[string]layout.Block{
 			"A": {NodeID: "A", Left: 20, Right: 780, Bottom: 20, Top: 220},
 			"B": {NodeID: "B", Left: 20, Right: 780, Bottom: 220, Top: 420},
 			"C": {NodeID: "C", Left: 20, Right: 780, Bottom: 420, Top: 620},

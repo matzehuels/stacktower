@@ -31,13 +31,14 @@ func (Simple) RenderEdge(buf *bytes.Buffer, e Edge) {
 }
 
 func (Simple) RenderText(buf *bytes.Buffer, b Block) {
-	size := FontSize(b)
 	rotate := ShouldRotate(b)
+	size := FontSize(b)
 	if rotate {
 		size = FontSizeRotated(b)
 	}
+	label := TruncateLabel(b, rotate)
 
-	textW, textH := float64(len(b.Label))*size*textWidthRatio, size*textHeightRatio
+	textW, textH := float64(len(label))*size*textWidthRatio, size*textHeightRatio
 	if rotate {
 		textW, textH = textH, textW
 	}
@@ -49,10 +50,10 @@ func (Simple) RenderText(buf *bytes.Buffer, b Block) {
 
 		if rotate {
 			fmt.Fprintf(buf, `    <text x="%.2f" y="%.2f" text-anchor="middle" dominant-baseline="middle" font-family="Times,serif" font-size="%.1f" fill="#333" transform="rotate(-90 %.2f %.2f)">%s</text>`+"\n",
-				b.CX, b.CY, size, b.CX, b.CY, EscapeXML(b.Label))
+				b.CX, b.CY, size, b.CX, b.CY, EscapeXML(label))
 		} else {
 			fmt.Fprintf(buf, `    <text x="%.2f" y="%.2f" text-anchor="middle" dominant-baseline="middle" font-family="Times,serif" font-size="%.1f" fill="#333">%s</text>`+"\n",
-				b.CX, b.CY, size, EscapeXML(b.Label))
+				b.CX, b.CY, size, EscapeXML(label))
 		}
 	})
 	buf.WriteString("  </g>\n")

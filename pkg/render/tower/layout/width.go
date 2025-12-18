@@ -1,4 +1,4 @@
-package tower
+package layout
 
 import (
 	"math"
@@ -68,7 +68,6 @@ func ComputeWidthsBottomUp(g *dag.DAG, orders map[int][]string, frameWidth float
 	widths := make(map[string]float64, g.NodeCount())
 	maxRow := rows[len(rows)-1]
 
-	// Start from bottom: sinks get equal width
 	if bottomRow := orders[maxRow]; len(bottomRow) > 0 {
 		unit := frameWidth / float64(len(bottomRow))
 		for _, id := range bottomRow {
@@ -76,14 +75,12 @@ func ComputeWidthsBottomUp(g *dag.DAG, orders map[int][]string, frameWidth float
 		}
 	}
 
-	// Propagate upward: parent width = sum of children's contributions
 	for r := maxRow - 1; r >= 0; r-- {
 		currRow := orders[r]
 		if len(currRow) == 0 {
 			continue
 		}
 
-		// Each parent gets width from its children
 		for _, id := range currRow {
 			widths[id] = 0.0
 		}
@@ -93,8 +90,6 @@ func ComputeWidthsBottomUp(g *dag.DAG, orders map[int][]string, frameWidth float
 			if len(kids) == 0 {
 				continue
 			}
-			// Parent gets the sum of its share from each child
-			// Each child divides its width among its parents
 			for _, kid := range kids {
 				parents := g.ParentsInRow(kid, r)
 				if len(parents) > 0 {
@@ -103,7 +98,6 @@ func ComputeWidthsBottomUp(g *dag.DAG, orders map[int][]string, frameWidth float
 			}
 		}
 
-		// Normalize row to fill frame width
 		var sum float64
 		for _, id := range currRow {
 			sum += widths[id]

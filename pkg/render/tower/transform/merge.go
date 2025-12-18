@@ -4,14 +4,14 @@ import (
 	"fmt"
 
 	"github.com/matzehuels/stacktower/pkg/dag"
-	"github.com/matzehuels/stacktower/pkg/render/tower"
+	"github.com/matzehuels/stacktower/pkg/render/tower/layout"
 )
 
-func MergeSubdividers(layout tower.Layout, g *dag.DAG) tower.Layout {
-	blocks := make(map[string]tower.Block)
+func MergeSubdividers(l layout.Layout, g *dag.DAG) layout.Layout {
+	blocks := make(map[string]layout.Block)
 
 	for master, members := range groupByMaster(g) {
-		subgroups := groupByPosition(layout, members)
+		subgroups := groupByPosition(l, members)
 		for _, group := range subgroups {
 			b := merge(group, master)
 			key := master
@@ -22,13 +22,13 @@ func MergeSubdividers(layout tower.Layout, g *dag.DAG) tower.Layout {
 		}
 	}
 
-	return tower.Layout{
-		FrameWidth:  layout.FrameWidth,
-		FrameHeight: layout.FrameHeight,
+	return layout.Layout{
+		FrameWidth:  l.FrameWidth,
+		FrameHeight: l.FrameHeight,
 		Blocks:      blocks,
-		RowOrders:   filterSubdividers(layout.RowOrders, g),
-		MarginX:     layout.MarginX,
-		MarginY:     layout.MarginY,
+		RowOrders:   filterSubdividers(l.RowOrders, g),
+		MarginX:     l.MarginX,
+		MarginY:     l.MarginY,
 	}
 }
 
@@ -40,27 +40,27 @@ func groupByMaster(g *dag.DAG) map[string][]string {
 	return groups
 }
 
-func groupByPosition(layout tower.Layout, members []string) [][]tower.Block {
+func groupByPosition(l layout.Layout, members []string) [][]layout.Block {
 	type pos struct{ l, r int }
-	groups := make(map[pos][]tower.Block)
+	groups := make(map[pos][]layout.Block)
 
 	for _, id := range members {
-		if b, ok := layout.Blocks[id]; ok {
+		if b, ok := l.Blocks[id]; ok {
 			key := pos{int(b.Left + 0.5), int(b.Right + 0.5)}
 			groups[key] = append(groups[key], b)
 		}
 	}
 
-	result := make([][]tower.Block, 0, len(groups))
+	result := make([][]layout.Block, 0, len(groups))
 	for _, g := range groups {
 		result = append(result, g)
 	}
 	return result
 }
 
-func merge(blocks []tower.Block, master string) tower.Block {
+func merge(blocks []layout.Block, master string) layout.Block {
 	if len(blocks) == 0 {
-		return tower.Block{NodeID: master}
+		return layout.Block{NodeID: master}
 	}
 	result := blocks[0]
 	for _, b := range blocks[1:] {

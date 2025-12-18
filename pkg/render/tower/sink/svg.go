@@ -1,4 +1,4 @@
-package tower
+package sink
 
 import (
 	"bytes"
@@ -7,6 +7,8 @@ import (
 	"slices"
 
 	"github.com/matzehuels/stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/render/tower/feature"
+	"github.com/matzehuels/stacktower/pkg/render/tower/layout"
 	"github.com/matzehuels/stacktower/pkg/render/tower/styles"
 )
 
@@ -30,83 +32,82 @@ const blockInteractionJS = `
       el.addEventListener('mouseleave', clearHighlight);
     });`
 
-type RenderOption func(*renderer)
+type SVGOption func(*svgRenderer)
 
-type renderer struct {
+type svgRenderer struct {
 	graph     *dag.DAG
 	style     styles.Style
 	showEdges bool
 	merged    bool
-	nebraska  []NebraskaRanking
+	nebraska  []feature.NebraskaRanking
 	popups    bool
 }
 
-func WithGraph(g *dag.DAG) RenderOption     { return func(r *renderer) { r.graph = g } }
-func WithEdges() RenderOption               { return func(r *renderer) { r.showEdges = true } }
-func WithStyle(s styles.Style) RenderOption { return func(r *renderer) { r.style = s } }
-func WithMerged() RenderOption              { return func(r *renderer) { r.merged = true } }
-func WithNebraska(rankings []NebraskaRanking) RenderOption {
-	return func(r *renderer) { r.nebraska = rankings }
+func WithGraph(g *dag.DAG) SVGOption     { return func(r *svgRenderer) { r.graph = g } }
+func WithEdges() SVGOption               { return func(r *svgRenderer) { r.showEdges = true } }
+func WithStyle(s styles.Style) SVGOption { return func(r *svgRenderer) { r.style = s } }
+func WithMerged() SVGOption              { return func(r *svgRenderer) { r.merged = true } }
+func WithNebraska(rankings []feature.NebraskaRanking) SVGOption {
+	return func(r *svgRenderer) { r.nebraska = rankings }
 }
-func WithPopups() RenderOption { return func(r *renderer) { r.popups = true } }
+func WithPopups() SVGOption { return func(r *svgRenderer) { r.popups = true } }
 
-func RenderSVG(layout Layout, opts ...RenderOption) []byte {
-	r := newRenderer(opts...)
+func RenderSVG(l layout.Layout, opts ...SVGOption) []byte {
+	r := newSVGRenderer(opts...)
 
-	blocks := buildBlocks(layout, r.graph, r.popups)
+	blocks := buildBlocks(l, r.graph, r.popups)
 	slices.SortFunc(blocks, func(a, b styles.Block) int {
 		return cmp.Compare(a.ID, b.ID)
 	})
 
 	var edges []styles.Edge
 	if r.showEdges {
-		edges = buildEdges(layout, r.graph, r.merged)
+		edges = buildEdges(l, r.graph, r.merged)
 	}
 
-	totalHeight := calculateHeight(layout, r.nebraska)
+	totalHeight := calculateHeight(l, r.nebraska)
 
 	var buf bytes.Buffer
 	fmt.Fprintf(&buf, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %.1f %.1f" width="%.0f" height="%.0f">`+"\n",
-		layout.FrameWidth, totalHeight, layout.FrameWidth, totalHeight)
+		l.FrameWidth, totalHeight, l.FrameWidth, totalHeight)
 
 	r.style.RenderDefs(&buf)
-
 	renderContent(&buf, &r, blocks, edges)
 	renderBlockInteraction(&buf)
 
 	if len(r.nebraska) > 0 {
-		RenderNebraskaPanel(&buf, layout.FrameWidth, layout.FrameHeight, r.nebraska)
-		RenderNebraskaScript(&buf)
+		renderNebraskaPanel(&buf, l.FrameWidth, l.FrameHeight, r.nebraska)
+		renderNebraskaScript(&buf)
 	}
 
 	if r.popups {
 		for _, b := range blocks {
 			r.style.RenderPopup(&buf, b)
 		}
-		RenderPopupScript(&buf)
+		renderPopupScript(&buf)
 	}
 
 	buf.WriteString("</svg>\n")
 	return buf.Bytes()
 }
 
-func newRenderer(opts ...RenderOption) renderer {
-	r := renderer{style: styles.Simple{}}
+func newSVGRenderer(opts ...SVGOption) svgRenderer {
+	r := svgRenderer{style: styles.Simple{}}
 	for _, opt := range opts {
 		opt(&r)
 	}
 	return r
 }
 
-func calculateHeight(layout Layout, nebraska []NebraskaRanking) float64 {
-	h := layout.FrameHeight
+func calculateHeight(l layout.Layout, nebraska []feature.NebraskaRanking) float64 {
+	h := l.FrameHeight
 	if len(nebraska) > 0 {
-		h += CalcNebraskaPanelHeight(layout.FrameWidth, layout.FrameHeight)
+		h += calcNebraskaPanelHeight(l.FrameWidth, l.FrameHeight)
 	}
 	return h
 }
 
-func renderContent(buf *bytes.Buffer, r *renderer, blocks []styles.Block, edges []styles.Edge) {
+func renderContent(buf *bytes.Buffer, r *svgRenderer, blocks []styles.Block, edges []styles.Edge) {
 	for _, b := range blocks {
 		r.style.RenderBlock(buf, b)
 	}
@@ -134,7 +135,7 @@ func renderBlockInteraction(buf *bytes.Buffer) {
 	fmt.Fprintf(buf, "  <script type=\"text/javascript\"><![CDATA[%s\n  ]]></script>\n", blockInteractionJS)
 }
 
-func buildBlocks(l Layout, g *dag.DAG, withPopups bool) []styles.Block {
+func buildBlocks(l layout.Layout, g *dag.DAG, withPopups bool) []styles.Block {
 	blocks := make([]styles.Block, 0, len(l.Blocks))
 	for id, b := range l.Blocks {
 		blk := styles.Block{
@@ -147,7 +148,7 @@ func buildBlocks(l Layout, g *dag.DAG, withPopups bool) []styles.Block {
 		if g != nil {
 			if n, ok := g.Node(id); ok && n.Meta != nil {
 				blk.URL, _ = n.Meta["repo_url"].(string)
-				blk.Brittle = IsBrittle(n)
+				blk.Brittle = feature.IsBrittle(n)
 				if withPopups {
 					blk.Popup = extractPopupData(n)
 				}
@@ -158,7 +159,7 @@ func buildBlocks(l Layout, g *dag.DAG, withPopups bool) []styles.Block {
 	return blocks
 }
 
-func buildEdges(l Layout, g *dag.DAG, merged bool) []styles.Edge {
+func buildEdges(l layout.Layout, g *dag.DAG, merged bool) []styles.Edge {
 	if g == nil {
 		return nil
 	}
@@ -168,7 +169,7 @@ func buildEdges(l Layout, g *dag.DAG, merged bool) []styles.Edge {
 	return buildSimpleEdges(l, g)
 }
 
-func buildSimpleEdges(l Layout, g *dag.DAG) []styles.Edge {
+func buildSimpleEdges(l layout.Layout, g *dag.DAG) []styles.Edge {
 	edges := make([]styles.Edge, 0, len(g.Edges()))
 	for _, e := range g.Edges() {
 		src, okS := l.Blocks[e.From]
@@ -185,7 +186,7 @@ func buildSimpleEdges(l Layout, g *dag.DAG) []styles.Edge {
 	return edges
 }
 
-func buildMergedEdges(l Layout, g *dag.DAG) []styles.Edge {
+func buildMergedEdges(l layout.Layout, g *dag.DAG) []styles.Edge {
 	masterOf := func(id string) string {
 		if n, ok := g.Node(id); ok && n.MasterID != "" {
 			return n.MasterID
@@ -193,7 +194,7 @@ func buildMergedEdges(l Layout, g *dag.DAG) []styles.Edge {
 		return id
 	}
 
-	blockFor := func(id string) (Block, bool) {
+	blockFor := func(id string) (layout.Block, bool) {
 		if b, ok := l.Blocks[id]; ok {
 			return b, true
 		}
@@ -202,7 +203,7 @@ func buildMergedEdges(l Layout, g *dag.DAG) []styles.Edge {
 				return b, true
 			}
 		}
-		return Block{}, false
+		return layout.Block{}, false
 	}
 
 	type edgeKey struct{ from, to string }

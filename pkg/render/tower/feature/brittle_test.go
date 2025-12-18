@@ -1,4 +1,4 @@
-package tower
+package feature
 
 import (
 	"testing"

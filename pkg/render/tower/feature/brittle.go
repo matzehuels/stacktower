@@ -1,4 +1,4 @@
-package tower
+package feature
 
 import (
 	"time"
@@ -21,7 +21,7 @@ func IsBrittle(n *dag.Node) bool {
 		return true
 	}
 
-	lastCommit := parseDate(n.Meta["repo_last_commit"])
+	lastCommit := ParseDate(n.Meta["repo_last_commit"])
 	if lastCommit.IsZero() {
 		return false
 	}
@@ -34,12 +34,12 @@ func IsBrittle(n *dag.Node) bool {
 		return false
 	}
 
-	maintainers := countMaintainers(n.Meta["repo_maintainers"])
+	maintainers := CountMaintainers(n.Meta["repo_maintainers"])
 	stars, _ := n.Meta["repo_stars"].(int)
 	return maintainers == 1 || stars < lowStarCount || maintainers <= minMaintainerCount
 }
 
-func parseDate(v any) time.Time {
+func ParseDate(v any) time.Time {
 	s, ok := v.(string)
 	if !ok || s == "" {
 		return time.Time{}
@@ -48,12 +48,22 @@ func parseDate(v any) time.Time {
 	return t
 }
 
-func countMaintainers(v any) int {
+func CountMaintainers(v any) int {
 	switch v := v.(type) {
 	case []string:
 		return len(v)
 	case []any:
 		return len(v)
+	}
+	return 0
+}
+
+func AsInt(v any) int {
+	switch v := v.(type) {
+	case int:
+		return v
+	case float64:
+		return int(v)
 	}
 	return 0
 }

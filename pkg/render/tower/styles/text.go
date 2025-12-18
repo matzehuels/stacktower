@@ -34,6 +34,30 @@ func ShouldRotate(b Block) bool {
 	return rotSize > horizSize
 }
 
+func TruncateLabel(b Block, rotated bool) string {
+	label := b.Label
+	availW := b.W * fontWidthRatio
+	if rotated {
+		availW = b.H * fontWidthRatio
+	}
+
+	fontSize := FontSize(b)
+	if rotated {
+		fontSize = FontSizeRotated(b)
+	}
+
+	charWidth := fontSize * fontCharWidth
+	maxChars := int(availW / charWidth)
+	if maxChars < 3 {
+		maxChars = 3
+	}
+
+	if len(label) <= maxChars {
+		return label
+	}
+	return label[:maxChars-2] + ".."
+}
+
 func EscapeXML(s string) string {
 	var buf bytes.Buffer
 	xml.EscapeText(&buf, []byte(s))

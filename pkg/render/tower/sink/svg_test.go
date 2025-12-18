@@ -1,10 +1,11 @@
-package tower
+package sink
 
 import (
 	"strings"
 	"testing"
 
 	"github.com/matzehuels/stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/render/tower/layout"
 )
 
 func TestRenderSVG_Simple(t *testing.T) {
@@ -12,8 +13,8 @@ func TestRenderSVG_Simple(t *testing.T) {
 	g.AddNode(dag.Node{ID: "A", Row: 0})
 	g.AddNode(dag.Node{ID: "B", Row: 1})
 
-	layout := Build(g, 100, 100)
-	svg := RenderSVG(layout)
+	l := layout.Build(g, 100, 100)
+	svg := RenderSVG(l)
 
 	svgStr := string(svg)
 
@@ -43,8 +44,8 @@ func TestRenderSVG_WithEdges(t *testing.T) {
 	g.AddNode(dag.Node{ID: "B", Row: 1})
 	g.AddEdge(dag.Edge{From: "A", To: "B"})
 
-	layout := Build(g, 100, 100)
-	svg := RenderSVG(layout, WithGraph(g), WithEdges())
+	l := layout.Build(g, 100, 100)
+	svg := RenderSVG(l, WithGraph(g), WithEdges())
 
 	svgStr := string(svg)
 
@@ -63,8 +64,8 @@ func TestRenderSVG_WithoutEdges(t *testing.T) {
 	g.AddNode(dag.Node{ID: "B", Row: 1})
 	g.AddEdge(dag.Edge{From: "A", To: "B"})
 
-	layout := Build(g, 100, 100)
-	svg := RenderSVG(layout)
+	l := layout.Build(g, 100, 100)
+	svg := RenderSVG(l)
 
 	svgStr := string(svg)
 
@@ -84,8 +85,8 @@ func TestRenderSVG_Diamond(t *testing.T) {
 	g.AddEdge(dag.Edge{From: "B", To: "D"})
 	g.AddEdge(dag.Edge{From: "C", To: "D"})
 
-	layout := Build(g, 400, 300)
-	svg := RenderSVG(layout, WithGraph(g), WithEdges())
+	l := layout.Build(g, 400, 300)
+	svg := RenderSVG(l, WithGraph(g), WithEdges())
 
 	svgStr := string(svg)
 
@@ -117,8 +118,8 @@ func TestRenderSVG_WithSubdividersShowsAllEdges(t *testing.T) {
 	g.AddEdge(dag.Edge{From: "A_sub_1", To: "A_sub_2"})
 	g.AddEdge(dag.Edge{From: "A_sub_2", To: "B"})
 
-	layout := Build(g, 100, 100)
-	svg := RenderSVG(layout, WithGraph(g), WithEdges())
+	l := layout.Build(g, 100, 100)
+	svg := RenderSVG(l, WithGraph(g), WithEdges())
 	svgStr := string(svg)
 
 	lineCount := strings.Count(svgStr, "<line")
@@ -137,8 +138,8 @@ func TestRenderSVG_MergedSkipsInternalSubdividerEdges(t *testing.T) {
 	g.AddEdge(dag.Edge{From: "A_sub_1", To: "A_sub_2"})
 	g.AddEdge(dag.Edge{From: "A_sub_2", To: "B"})
 
-	layout := Build(g, 100, 100)
-	svg := RenderSVG(layout, WithGraph(g), WithEdges(), WithMerged())
+	l := layout.Build(g, 100, 100)
+	svg := RenderSVG(l, WithGraph(g), WithEdges(), WithMerged())
 	svgStr := string(svg)
 
 	lineCount := strings.Count(svgStr, "<line")
@@ -159,8 +160,8 @@ func TestRenderSVG_MergedDeduplicatesEdgesToSameMaster(t *testing.T) {
 	g.AddEdge(dag.Edge{From: "C", To: "C_sub_2"})
 	g.AddEdge(dag.Edge{From: "C_sub_2", To: "D"})
 
-	layout := Build(g, 100, 100)
-	svg := RenderSVG(layout, WithGraph(g), WithEdges(), WithMerged())
+	l := layout.Build(g, 100, 100)
+	svg := RenderSVG(l, WithGraph(g), WithEdges(), WithMerged())
 	svgStr := string(svg)
 
 	lineCount := strings.Count(svgStr, "<line")

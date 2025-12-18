@@ -6,7 +6,7 @@ import (
 	"slices"
 
 	"github.com/matzehuels/stacktower/pkg/dag"
-	"github.com/matzehuels/stacktower/pkg/render/tower"
+	"github.com/matzehuels/stacktower/pkg/render/tower/layout"
 )
 
 type Options struct {
@@ -23,26 +23,26 @@ var defaultOpts = Options{
 	MinOverlap:    10.0,
 }
 
-func Randomize(layout tower.Layout, g *dag.DAG, seed uint64, opts *Options) tower.Layout {
+func Randomize(l layout.Layout, g *dag.DAG, seed uint64, opts *Options) layout.Layout {
 	if opts == nil {
 		opts = &defaultOpts
 	}
 	if shrink := max(0.0, min(opts.WidthShrink, 1.0)); shrink == 0 {
-		return layout
+		return l
 	}
 
-	blocks := maps.Clone(layout.Blocks)
-	rows := sortedRows(layout.RowOrders)
+	blocks := maps.Clone(l.Blocks)
+	rows := sortedRows(l.RowOrders)
 	rng := rand.New(rand.NewPCG(seed, seed^0xdeadbeef))
 
-	shrinkCheckerboard(layout.RowOrders, blocks, rows, rng, opts)
+	shrinkCheckerboard(l.RowOrders, blocks, rows, rng, opts)
 	ensureMinimumOverlap(g, blocks, opts.MinOverlap)
 
-	layout.Blocks = blocks
-	return layout
+	l.Blocks = blocks
+	return l
 }
 
-func shrinkCheckerboard(orders map[int][]string, blocks map[string]tower.Block, rows []int, rng *rand.Rand, opts *Options) {
+func shrinkCheckerboard(orders map[int][]string, blocks map[string]layout.Block, rows []int, rng *rand.Rand, opts *Options) {
 	shrink := max(0, min(opts.WidthShrink, 1))
 	for rowIdx, row := range rows {
 		if rowIdx == 0 {
@@ -69,7 +69,7 @@ func sortedRows(orders map[int][]string) []int {
 	return rows
 }
 
-func ensureMinimumOverlap(g *dag.DAG, blocks map[string]tower.Block, minOverlap float64) {
+func ensureMinimumOverlap(g *dag.DAG, blocks map[string]layout.Block, minOverlap float64) {
 	edges := g.Edges()
 
 	for range 10 {

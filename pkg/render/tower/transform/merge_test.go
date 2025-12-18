@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/matzehuels/stacktower/pkg/dag"
-	"github.com/matzehuels/stacktower/pkg/render/tower"
+	"github.com/matzehuels/stacktower/pkg/render/tower/layout"
 )
 
 func TestMergeSubdividers_NoSubdividers(t *testing.T) {
@@ -13,10 +13,10 @@ func TestMergeSubdividers_NoSubdividers(t *testing.T) {
 	_ = g.AddNode(dag.Node{ID: "b", Row: 1})
 	_ = g.AddEdge(dag.Edge{From: "a", To: "b"})
 
-	layout := tower.Layout{
+	layout := layout.Layout{
 		FrameWidth:  100,
 		FrameHeight: 100,
-		Blocks: map[string]tower.Block{
+		Blocks: map[string]layout.Block{
 			"a": {NodeID: "a", Left: 0, Right: 50, Bottom: 50, Top: 100},
 			"b": {NodeID: "b", Left: 0, Right: 50, Bottom: 0, Top: 50},
 		},
@@ -45,10 +45,10 @@ func TestMergeSubdividers_SingleChain(t *testing.T) {
 	_ = g.AddEdge(dag.Edge{From: "a_sub_1", To: "a_sub_2"})
 	_ = g.AddEdge(dag.Edge{From: "a_sub_2", To: "b"})
 
-	layout := tower.Layout{
+	layout := layout.Layout{
 		FrameWidth:  100,
 		FrameHeight: 100,
-		Blocks: map[string]tower.Block{
+		Blocks: map[string]layout.Block{
 			"a":       {NodeID: "a", Left: 0, Right: 50, Bottom: 75, Top: 100},
 			"a_sub_1": {NodeID: "a_sub_1", Left: 0, Right: 50, Bottom: 50, Top: 75},
 			"a_sub_2": {NodeID: "a_sub_2", Left: 0, Right: 50, Bottom: 25, Top: 50},
@@ -90,10 +90,10 @@ func TestMergeSubdividers_MultipleChains(t *testing.T) {
 	_ = g.AddNode(dag.Node{ID: "b_sub_1", Row: 1, Kind: dag.NodeKindSubdivider, MasterID: "b"})
 	_ = g.AddNode(dag.Node{ID: "c", Row: 2})
 
-	layout := tower.Layout{
+	layout := layout.Layout{
 		FrameWidth:  100,
 		FrameHeight: 100,
-		Blocks: map[string]tower.Block{
+		Blocks: map[string]layout.Block{
 			"a":       {NodeID: "a", Left: 0, Right: 25, Bottom: 66, Top: 100},
 			"a_sub_1": {NodeID: "a_sub_1", Left: 0, Right: 25, Bottom: 33, Top: 66},
 			"b":       {NodeID: "b", Left: 25, Right: 50, Bottom: 66, Top: 100},
@@ -121,13 +121,13 @@ func TestMergeSubdividers_PreservesLayoutMetadata(t *testing.T) {
 	g := dag.New(nil)
 	_ = g.AddNode(dag.Node{ID: "a", Row: 0})
 
-	layout := tower.Layout{
+	layout := layout.Layout{
 		FrameWidth:  800,
 		FrameHeight: 600,
 		MarginX:     40,
 		MarginY:     30,
 		RowOrders:   map[int][]string{0: {"a"}},
-		Blocks: map[string]tower.Block{
+		Blocks: map[string]layout.Block{
 			"a": {NodeID: "a", Left: 40, Right: 760, Bottom: 30, Top: 570},
 		},
 	}
@@ -153,8 +153,8 @@ func TestMergeSubdividers_ConsistentPositions_Merges(t *testing.T) {
 	_ = g.AddNode(dag.Node{ID: "a", Row: 0})
 	_ = g.AddNode(dag.Node{ID: "a_sub_1", Row: 1, Kind: dag.NodeKindSubdivider, MasterID: "a"})
 
-	layout := tower.Layout{
-		Blocks: map[string]tower.Block{
+	layout := layout.Layout{
+		Blocks: map[string]layout.Block{
 			"a":       {NodeID: "a", Left: 10, Right: 40, Bottom: 50, Top: 100},
 			"a_sub_1": {NodeID: "a_sub_1", Left: 10, Right: 40, Bottom: 0, Top: 50},
 		},
@@ -187,8 +187,8 @@ func TestMergeSubdividers_InconsistentPositions_MergesSubgroups(t *testing.T) {
 	_ = g.AddNode(dag.Node{ID: "a_sub_1", Row: 1, Kind: dag.NodeKindSubdivider, MasterID: "a"})
 	_ = g.AddNode(dag.Node{ID: "a_sub_2", Row: 2, Kind: dag.NodeKindSubdivider, MasterID: "a"})
 
-	layout := tower.Layout{
-		Blocks: map[string]tower.Block{
+	layout := layout.Layout{
+		Blocks: map[string]layout.Block{
 			"a":       {NodeID: "a", Left: 10, Right: 40, Bottom: 75, Top: 100},
 			"a_sub_1": {NodeID: "a_sub_1", Left: 50, Right: 80, Bottom: 25, Top: 75},
 			"a_sub_2": {NodeID: "a_sub_2", Left: 50, Right: 80, Bottom: 0, Top: 25},
