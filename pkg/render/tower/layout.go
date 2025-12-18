@@ -13,10 +13,12 @@ const (
 )
 
 type Layout struct {
-	FrameWidth, FrameHeight float64
-	Blocks                  map[string]Block
-	RowOrders               map[int][]string
-	MarginX, MarginY        float64
+	FrameWidth  float64          `json:"width"`
+	FrameHeight float64          `json:"height"`
+	Blocks      map[string]Block `json:"blocks"`
+	RowOrders   map[int][]string `json:"rows,omitempty"`
+	MarginX     float64          `json:"margin_x"`
+	MarginY     float64          `json:"margin_y"`
 }
 
 type Option func(*config)

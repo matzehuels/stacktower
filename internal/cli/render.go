@@ -41,6 +41,7 @@ type renderOpts struct {
 	nebraska     bool
 	popups       bool
 	topDown      bool
+	format       string
 }
 
 func newRenderCmd() *cobra.Command {
@@ -83,6 +84,7 @@ func newRenderCmd() *cobra.Command {
 	cmd.Flags().BoolVar(&opts.nebraska, "nebraska", false, "show Nebraska guy maintainer ranking")
 	cmd.Flags().BoolVar(&opts.popups, "popups", opts.popups, "show hover popups with metadata")
 	cmd.Flags().BoolVar(&opts.topDown, "top-down", false, "use top-down width flow (roots get equal width)")
+	cmd.Flags().StringVar(&opts.format, "format", "svg", "output format: svg (default), json")
 
 	return cmd
 }
@@ -228,8 +230,16 @@ func renderTower(ctx context.Context, g *dag.DAG, opts *renderOpts) ([]byte, err
 		layout = layouttransform.Randomize(layout, g, defaultSeed, nil)
 	}
 
-	logger.Infof("Rendering tower SVG (%s style)", opts.style)
-	return tower.RenderSVG(layout, buildRenderOpts(g, opts)...), nil
+	switch opts.format {
+	case "json":
+		logger.Info("Rendering tower layout as JSON")
+		return tower.RenderJSON(layout)
+	case "svg", "":
+		logger.Infof("Rendering tower SVG (%s style)", opts.style)
+		return tower.RenderSVG(layout, buildRenderOpts(g, opts)...), nil
+	default:
+		return nil, fmt.Errorf("unknown format: %s (must be 'svg' or 'json')", opts.format)
+	}
 }
 
 func buildLayoutOpts(ctx context.Context, opts *renderOpts) ([]tower.Option, error) {
