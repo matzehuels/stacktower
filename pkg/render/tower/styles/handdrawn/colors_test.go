@@ -19,7 +19,9 @@ func TestGreyForID(t *testing.T) {
 	}
 
 	// Test that same ID produces same color (deterministic)
-	if greyForID(id1) != greyForID(id1) {
+	grey1a := greyForID(id1)
+	grey1b := greyForID(id1)
+	if grey1a != grey1b {
 		t.Errorf("greyForID() should be deterministic")
 	}
 

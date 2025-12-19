@@ -46,4 +46,3 @@
 //
 // Package names are normalized following PEP 503.
 package pypi
-

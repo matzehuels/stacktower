@@ -105,8 +105,8 @@ func TestWriteDOTNodePNode(t *testing.T) {
 	dot := tree.ToDOT([]string{"a", "b", "c"})
 
 	// P nodes should be labeled "P"
-	if strings.Contains(dot, `label="P"`) {
-		// Good - has P node
+	if !strings.Contains(dot, `label="P"`) {
+		t.Error("ToDOT() should contain P node")
 	}
 }
 
@@ -119,8 +119,8 @@ func TestWriteDOTNodeQNode(t *testing.T) {
 	dot := tree.ToDOT([]string{"a", "b", "c", "d"})
 
 	// Q nodes should be labeled "Q"
-	if strings.Contains(dot, `label="Q"`) {
-		// Good - has Q node
+	if !strings.Contains(dot, `label="Q"`) {
+		t.Error("ToDOT() should contain Q node")
 	}
 }
 
