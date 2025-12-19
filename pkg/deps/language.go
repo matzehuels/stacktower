@@ -5,17 +5,20 @@ import (
 	"time"
 )
 
+// Language defines how to resolve dependencies for a programming language.
+// It maps registry names to resolvers and manifest file types to parsers.
 type Language struct {
-	Name            string
-	DefaultRegistry string
-	RegistryAliases map[string]string
-	ManifestTypes   []string
-	ManifestAliases map[string]string
-	NewResolver     func(ttl time.Duration) (Resolver, error)
-	NewManifest     func(name string, res Resolver) ManifestParser
-	ManifestParsers func(res Resolver) []ManifestParser
+	Name            string                                         // Language identifier (e.g., "python", "rust")
+	DefaultRegistry string                                         // Primary registry (e.g., "pypi", "crates")
+	RegistryAliases map[string]string                              // Alternative names for registries
+	ManifestTypes   []string                                       // Supported manifest types (e.g., "poetry", "cargo")
+	ManifestAliases map[string]string                              // Filename to type mappings
+	NewResolver     func(ttl time.Duration) (Resolver, error)      // Factory for registry resolver
+	NewManifest     func(name string, res Resolver) ManifestParser // Factory for manifest parsers
+	ManifestParsers func(res Resolver) []ManifestParser            // All available manifest parsers
 }
 
+// Registry returns a Resolver for the named registry, resolving aliases.
 func (l *Language) Registry(name string) (Resolver, error) {
 	name = l.alias(l.RegistryAliases, name)
 	if name != l.DefaultRegistry {
@@ -24,10 +27,13 @@ func (l *Language) Registry(name string) (Resolver, error) {
 	return l.NewResolver(DefaultCacheTTL)
 }
 
+// Resolver returns the default registry resolver for this language.
 func (l *Language) Resolver() (Resolver, error) {
 	return l.NewResolver(DefaultCacheTTL)
 }
 
+// Manifest returns a parser for the named manifest type, resolving aliases.
+// Returns nil, false if the manifest type is not supported.
 func (l *Language) Manifest(name string, res Resolver) (ManifestParser, bool) {
 	if l.NewManifest == nil {
 		return nil, false
@@ -36,6 +42,7 @@ func (l *Language) Manifest(name string, res Resolver) (ManifestParser, bool) {
 	return p, p != nil
 }
 
+// HasManifests reports whether this language supports manifest file parsing.
 func (l *Language) HasManifests() bool {
 	return l.NewManifest != nil
 }

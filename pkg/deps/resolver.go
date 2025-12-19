@@ -11,26 +11,37 @@ import (
 
 const workers = 20
 
+// Fetcher retrieves package metadata from a registry.
 type Fetcher interface {
+	// Fetch retrieves package information by name. If refresh is true,
+	// cached data is bypassed.
 	Fetch(ctx context.Context, name string, refresh bool) (*Package, error)
 }
 
+// Resolver builds a dependency graph starting from a root package.
 type Resolver interface {
+	// Resolve fetches the package and its transitive dependencies,
+	// returning a DAG with nodes for each package and edges for dependencies.
 	Resolve(ctx context.Context, pkg string, opts Options) (*dag.DAG, error)
+	// Name returns the resolver's identifier (e.g., "pypi", "npm").
 	Name() string
 }
 
+// Registry implements Resolver by wrapping a Fetcher with concurrent crawling.
 type Registry struct {
 	name    string
 	fetcher Fetcher
 }
 
+// NewRegistry creates a Resolver that crawls dependencies using the given Fetcher.
 func NewRegistry(name string, fetcher Fetcher) *Registry {
 	return &Registry{name: name, fetcher: fetcher}
 }
 
+// Name returns the registry name.
 func (r *Registry) Name() string { return r.name }
 
+// Resolve crawls dependencies starting from pkg, respecting Options limits.
 func (r *Registry) Resolve(ctx context.Context, pkg string, opts Options) (*dag.DAG, error) {
 	c := &crawler{
 		ctx:     ctx,

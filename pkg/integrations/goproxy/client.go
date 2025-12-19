@@ -12,17 +12,21 @@ import (
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
+// ModuleInfo holds metadata for a Go module from the Go module proxy.
 type ModuleInfo struct {
 	Path         string
 	Version      string
 	Dependencies []string
 }
 
+// Client provides access to the Go module proxy API.
+// It handles HTTP requests with caching and automatic retries.
 type Client struct {
 	*integrations.Client
 	baseURL string
 }
 
+// NewClient creates a Go module proxy client with the specified cache TTL.
 func NewClient(cacheTTL time.Duration) (*Client, error) {
 	cache, err := integrations.NewCache(cacheTTL)
 	if err != nil {
@@ -34,6 +38,8 @@ func NewClient(cacheTTL time.Duration) (*Client, error) {
 	}, nil
 }
 
+// FetchModule retrieves metadata for a Go module from the module proxy.
+// If refresh is true, cached data is bypassed.
 func (c *Client) FetchModule(ctx context.Context, mod string, refresh bool) (*ModuleInfo, error) {
 	mod = normalizePath(mod)
 	key := "goproxy:" + mod

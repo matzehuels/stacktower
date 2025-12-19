@@ -8,6 +8,8 @@ import (
 	"github.com/matzehuels/stacktower/pkg/integrations/packagist"
 )
 
+// Language provides PHP dependency resolution via Packagist.
+// Supports composer.json manifest files.
 var Language = &deps.Language{
 	Name:            "php",
 	DefaultRegistry: "packagist",

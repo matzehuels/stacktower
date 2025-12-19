@@ -9,6 +9,8 @@ import (
 	"github.com/matzehuels/stacktower/pkg/integrations/pypi"
 )
 
+// Language provides Python dependency resolution via PyPI.
+// Supports poetry.lock and requirements.txt manifest files.
 var Language = &deps.Language{
 	Name:            "python",
 	DefaultRegistry: "pypi",

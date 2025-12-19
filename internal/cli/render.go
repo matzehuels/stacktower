@@ -243,10 +243,7 @@ var errSkipFormat = fmt.Errorf("skip unsupported format")
 func renderGraph(ctx context.Context, g *dag.DAG, vizType, format string, opts *renderOpts) ([]byte, error) {
 	switch vizType {
 	case "nodelink":
-		if format != "svg" {
-			return nil, errSkipFormat
-		}
-		return renderNodeLink(ctx, g, opts)
+		return renderNodeLink(ctx, g, format, opts)
 	case "tower":
 		return renderTower(ctx, g, format, opts)
 	default:
@@ -254,10 +251,26 @@ func renderGraph(ctx context.Context, g *dag.DAG, vizType, format string, opts *
 	}
 }
 
-func renderNodeLink(ctx context.Context, g *dag.DAG, opts *renderOpts) ([]byte, error) {
-	loggerFromContext(ctx).Info("Generating node-link diagram")
+func renderNodeLink(ctx context.Context, g *dag.DAG, format string, opts *renderOpts) ([]byte, error) {
+	logger := loggerFromContext(ctx)
+	logger.Info("Generating node-link diagram")
 	dot := nodelink.ToDOT(g, nodelink.Options{Detailed: opts.detailed})
-	return nodelink.RenderSVG(dot)
+
+	switch format {
+	case "svg":
+		logger.Info("Rendering node-link SVG")
+		return nodelink.RenderSVG(dot)
+	case "pdf":
+		logger.Info("Rendering node-link PDF")
+		return nodelink.RenderPDF(dot)
+	case "png":
+		logger.Info("Rendering node-link PNG")
+		return nodelink.RenderPNG(dot, 2.0)
+	case "json":
+		return nil, errSkipFormat // JSON layout export only makes sense for tower
+	default:
+		return nil, fmt.Errorf("unknown format: %s", format)
+	}
 }
 
 func renderTower(ctx context.Context, g *dag.DAG, format string, opts *renderOpts) ([]byte, error) {

@@ -13,12 +13,21 @@ import (
 	"github.com/goccy/go-graphviz"
 
 	"github.com/matzehuels/stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/render"
 )
 
+// Options configures node-link diagram rendering.
 type Options struct {
+	// Detailed includes row numbers and metadata in node labels.
+	// When false, only the node ID is shown.
 	Detailed bool
 }
 
+// ToDOT converts a DAG to Graphviz DOT format for node-link visualization.
+// The resulting DOT string can be rendered using [RenderSVG], [RenderPDF], or [RenderPNG].
+//
+// Subdivider nodes (created by [dag/transform.Subdivide]) are rendered with dashed
+// outlines and grey fill to distinguish them from regular nodes.
 func ToDOT(g *dag.DAG, opts Options) string {
 	var buf bytes.Buffer
 	buf.WriteString("digraph G {\n")
@@ -65,6 +74,8 @@ func fmtAttrs(n dag.Node, label string) []string {
 	return attrs
 }
 
+// RenderSVG renders a DOT graph to SVG using Graphviz.
+// Returns the SVG bytes ready for display or further conversion with [render.ToPDF] or [render.ToPNG].
 func RenderSVG(dot string) ([]byte, error) {
 	ctx := context.Background()
 	gv, err := graphviz.New(ctx)
@@ -107,4 +118,30 @@ func normalizeViewBox(svg []byte) []byte {
 		w, h, w, h)
 
 	return svgTagRe.ReplaceAll(svg, []byte(newSvg))
+}
+
+// RenderPDF renders a DOT graph as PDF via SVG conversion.
+// This is a convenience wrapper around [RenderSVG] and [render.ToPDF].
+//
+// Requires librsvg: brew install librsvg (macOS), apt install librsvg2-bin (Linux).
+func RenderPDF(dot string) ([]byte, error) {
+	svg, err := RenderSVG(dot)
+	if err != nil {
+		return nil, err
+	}
+	return render.ToPDF(svg)
+}
+
+// RenderPNG renders a DOT graph as PNG via SVG conversion.
+// This is a convenience wrapper around [RenderSVG] and [render.ToPNG].
+//
+// A scale of 2.0 produces a 2x resolution image suitable for high-DPI displays.
+//
+// Requires librsvg: brew install librsvg (macOS), apt install librsvg2-bin (Linux).
+func RenderPNG(dot string, scale float64) ([]byte, error) {
+	svg, err := RenderSVG(dot)
+	if err != nil {
+		return nil, err
+	}
+	return render.ToPNG(svg, scale)
 }

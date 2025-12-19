@@ -8,6 +8,8 @@ import (
 	"github.com/matzehuels/stacktower/pkg/integrations/npm"
 )
 
+// Language provides JavaScript/TypeScript dependency resolution via npm.
+// Supports package.json manifest files.
 var Language = &deps.Language{
 	Name:            "javascript",
 	DefaultRegistry: "npm",

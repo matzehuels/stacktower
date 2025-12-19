@@ -16,6 +16,7 @@ var (
 	skipRE   = regexp.MustCompile(`extra|dev|test`)
 )
 
+// PackageInfo holds metadata for a Python package from PyPI.
 type PackageInfo struct {
 	Name         string
 	Version      string
@@ -27,11 +28,14 @@ type PackageInfo struct {
 	Author       string
 }
 
+// Client provides access to the PyPI package registry API.
+// It handles HTTP requests with caching and automatic retries.
 type Client struct {
 	*integrations.Client
 	baseURL string
 }
 
+// NewClient creates a PyPI client with the specified cache TTL.
 func NewClient(cacheTTL time.Duration) (*Client, error) {
 	cache, err := integrations.NewCache(cacheTTL)
 	if err != nil {
@@ -43,6 +47,8 @@ func NewClient(cacheTTL time.Duration) (*Client, error) {
 	}, nil
 }
 
+// FetchPackage retrieves metadata for a Python package from PyPI.
+// If refresh is true, cached data is bypassed.
 func (c *Client) FetchPackage(ctx context.Context, pkg string, refresh bool) (*PackageInfo, error) {
 	pkg = integrations.NormalizePkgName(pkg)
 	key := "pypi:" + pkg

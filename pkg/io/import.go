@@ -14,6 +14,9 @@ var kindFromString = map[string]dag.NodeKind{
 	"auxiliary":  dag.NodeKindAuxiliary,
 }
 
+// ReadJSON decodes a JSON graph from r into a DAG.
+// The JSON must have "nodes" and "edges" arrays. Node "kind" and "row"
+// fields are optional; missing values use defaults.
 func ReadJSON(r io.Reader) (*dag.DAG, error) {
 	var data graph
 	if err := json.NewDecoder(r).Decode(&data); err != nil {
@@ -42,6 +45,8 @@ func ReadJSON(r io.Reader) (*dag.DAG, error) {
 	return g, nil
 }
 
+// ImportJSON reads a JSON file at path and returns the decoded DAG.
+// This is a convenience wrapper around [ReadJSON] for file-based input.
 func ImportJSON(path string) (*dag.DAG, error) {
 	f, err := os.Open(path)
 	if err != nil {

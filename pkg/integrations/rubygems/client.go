@@ -10,6 +10,7 @@ import (
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
+// GemInfo holds metadata for a Ruby gem from RubyGems.
 type GemInfo struct {
 	Name          string
 	Version       string
@@ -22,11 +23,14 @@ type GemInfo struct {
 	Authors       string
 }
 
+// Client provides access to the RubyGems package registry API.
+// It handles HTTP requests with caching and automatic retries.
 type Client struct {
 	*integrations.Client
 	baseURL string
 }
 
+// NewClient creates a RubyGems client with the specified cache TTL.
 func NewClient(cacheTTL time.Duration) (*Client, error) {
 	cache, err := integrations.NewCache(cacheTTL)
 	if err != nil {
@@ -38,6 +42,8 @@ func NewClient(cacheTTL time.Duration) (*Client, error) {
 	}, nil
 }
 
+// FetchGem retrieves metadata for a Ruby gem from RubyGems.
+// If refresh is true, cached data is bypassed.
 func (c *Client) FetchGem(ctx context.Context, gem string, refresh bool) (*GemInfo, error) {
 	gem = strings.ToLower(strings.TrimSpace(gem))
 	key := "rubygems:" + gem

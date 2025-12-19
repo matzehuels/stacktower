@@ -7,20 +7,22 @@ import (
 )
 
 const (
-	DefaultMaxDepth = 50
-	DefaultMaxNodes = 5000
-	DefaultCacheTTL = 24 * time.Hour
+	DefaultMaxDepth = 50             // Default maximum dependency depth
+	DefaultMaxNodes = 5000           // Default maximum packages to fetch
+	DefaultCacheTTL = 24 * time.Hour // Default HTTP cache duration
 )
 
+// Options configures dependency resolution behavior.
 type Options struct {
-	MaxDepth          int
-	MaxNodes          int
-	CacheTTL          time.Duration
-	Refresh           bool
-	MetadataProviders []MetadataProvider
-	Logger            func(string, ...any)
+	MaxDepth          int                  // Maximum depth to traverse (default: 50)
+	MaxNodes          int                  // Maximum packages to fetch (default: 5000)
+	CacheTTL          time.Duration        // HTTP cache duration (default: 24h)
+	Refresh           bool                 // Bypass cache for fresh data
+	MetadataProviders []MetadataProvider   // Sources for enrichment (GitHub, etc.)
+	Logger            func(string, ...any) // Progress/error callback (optional)
 }
 
+// WithDefaults returns a copy of Options with zero values replaced by defaults.
 func (o Options) WithDefaults() Options {
 	opts := o
 	if opts.MaxDepth <= 0 {
@@ -38,33 +40,39 @@ func (o Options) WithDefaults() Options {
 	return opts
 }
 
+// MetadataProvider enriches package nodes with external data (e.g., GitHub stars).
 type MetadataProvider interface {
+	// Name returns the provider identifier (e.g., "github").
 	Name() string
+	// Enrich fetches additional metadata for the package.
 	Enrich(ctx context.Context, pkg *PackageRef, refresh bool) (map[string]any, error)
 }
 
+// PackageRef identifies a package for metadata enrichment lookups.
 type PackageRef struct {
-	Name         string
-	Version      string
-	ProjectURLs  map[string]string
-	HomePage     string
-	ManifestFile string
+	Name         string            // Package name
+	Version      string            // Package version
+	ProjectURLs  map[string]string // URLs from registry (repository, homepage, etc.)
+	HomePage     string            // Homepage URL
+	ManifestFile string            // Associated manifest file type
 }
 
+// Package holds metadata fetched from a package registry.
 type Package struct {
-	Name         string
-	Version      string
-	Dependencies []string
-	Description  string
-	License      string
-	Author       string
-	Downloads    int
-	Repository   string
-	HomePage     string
-	ProjectURLs  map[string]string
-	ManifestFile string
+	Name         string            // Package name
+	Version      string            // Latest or specified version
+	Dependencies []string          // Direct dependency names
+	Description  string            // Package summary/description
+	License      string            // License identifier
+	Author       string            // Primary author or maintainer
+	Downloads    int               // Download count (where available)
+	Repository   string            // Source repository URL
+	HomePage     string            // Project homepage URL
+	ProjectURLs  map[string]string // Additional URLs from registry
+	ManifestFile string            // Associated manifest type
 }
 
+// Metadata converts Package fields to a map for node metadata.
 func (p *Package) Metadata() map[string]any {
 	m := map[string]any{"version": p.Version}
 	if p.Description != "" {
@@ -82,6 +90,7 @@ func (p *Package) Metadata() map[string]any {
 	return m
 }
 
+// Ref creates a PackageRef for metadata provider lookups.
 func (p *Package) Ref() *PackageRef {
 	urls := maps.Clone(p.ProjectURLs)
 	if urls == nil {

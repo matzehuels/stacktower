@@ -9,6 +9,7 @@ import (
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
+// CrateInfo holds metadata for a Rust crate from crates.io.
 type CrateInfo struct {
 	Name         string
 	Version      string
@@ -20,11 +21,14 @@ type CrateInfo struct {
 	Downloads    int
 }
 
+// Client provides access to the crates.io package registry API.
+// It handles HTTP requests with caching and automatic retries.
 type Client struct {
 	*integrations.Client
 	baseURL string
 }
 
+// NewClient creates a crates.io client with the specified cache TTL.
 func NewClient(cacheTTL time.Duration) (*Client, error) {
 	cache, err := integrations.NewCache(cacheTTL)
 	if err != nil {
@@ -39,6 +43,8 @@ func NewClient(cacheTTL time.Duration) (*Client, error) {
 	}, nil
 }
 
+// FetchCrate retrieves metadata for a Rust crate from crates.io.
+// If refresh is true, cached data is bypassed.
 func (c *Client) FetchCrate(ctx context.Context, crate string, refresh bool) (*CrateInfo, error) {
 	key := "crates:" + crate
 

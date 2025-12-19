@@ -40,6 +40,116 @@ make e2e        # End-to-end tests
 make cover      # Tests with coverage
 ```
 
+## Architecture
+
+Stacktower follows a clean layered architecture. See the [pkg.go.dev documentation](https://pkg.go.dev/github.com/matzehuels/stacktower) for detailed API docs.
+
+```
+internal/cli/          # Command-line interface
+pkg/dag/               # Core DAG data structure
+├── transform/         # Graph normalization (transitive reduction, subdivision)
+└── perm/              # PQ-tree and permutation algorithms
+pkg/deps/              # Dependency resolution from registries
+├── python/            # Python: PyPI + poetry.lock + requirements.txt
+├── rust/              # Rust: crates.io + Cargo.toml
+├── javascript/        # JavaScript: npm + package.json
+├── ruby/              # Ruby: RubyGems + Gemfile
+├── php/               # PHP: Packagist + composer.json
+├── java/              # Java: Maven Central + pom.xml
+├── golang/            # Go: Go Module Proxy + go.mod
+└── metadata/          # GitHub/GitLab enrichment providers
+pkg/integrations/      # Registry API clients (npm, pypi, crates, etc.)
+pkg/render/tower/      # Tower visualization
+├── ordering/          # Barycentric and optimal ordering algorithms
+├── layout/            # Block position computation
+├── sink/              # Output formats (SVG, JSON, PDF, PNG)
+└── styles/            # Visual styles (handdrawn, simple)
+pkg/io/                # JSON import/export
+```
+
+## Adding a New Language
+
+1. **Create an integration client** in `pkg/integrations/<registry>/client.go`:
+
+```go
+type Client struct {
+    *integrations.Client
+    baseURL string
+}
+
+func NewClient(cacheTTL time.Duration) (*Client, error) {
+    cache, err := integrations.NewCache(cacheTTL)
+    if err != nil {
+        return nil, err
+    }
+    return &Client{
+        Client:  integrations.NewClient(cache, nil),
+        baseURL: "https://registry.example.com",
+    }, nil
+}
+
+func (c *Client) FetchPackage(ctx context.Context, name string, refresh bool) (*PackageInfo, error) {
+    // Implement caching and fetching
+}
+```
+
+2. **Create a language definition** in `pkg/deps/<lang>/<lang>.go`:
+
+```go
+var Language = &deps.Language{
+    Name:            "mylang",
+    DefaultRegistry: "myregistry",
+    RegistryAliases: map[string]string{"alias": "myregistry"},
+    ManifestTypes:   []string{"my.lock"},
+    ManifestAliases: map[string]string{"my.lock": "mylock"},
+    NewResolver:     newResolver,
+    NewManifest:     newManifest,
+    ManifestParsers: manifestParsers,
+}
+```
+
+3. **Register in CLI** in `internal/cli/parse.go`
+
+See [`pkg/deps`](https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/deps) for detailed documentation.
+
+## Adding a Manifest Parser
+
+Implement the `ManifestParser` interface:
+
+```go
+type MyLockParser struct{}
+
+func (p *MyLockParser) Type() string              { return "my.lock" }
+func (p *MyLockParser) IncludesTransitive() bool  { return true }
+func (p *MyLockParser) Supports(name string) bool { return name == "my.lock" }
+
+func (p *MyLockParser) Parse(path string, opts deps.Options) (*deps.ManifestResult, error) {
+    g := dag.New(nil)
+    // ... populate nodes and edges
+    return &deps.ManifestResult{Graph: g, Type: p.Type(), IncludesTransitive: true}, nil
+}
+```
+
+## Adding a New Output Format
+
+Output formats are "sinks" in `pkg/render/tower/sink/`. Each sink takes a `layout.Layout` and renders it to bytes.
+
+1. **Create a sink file** in `pkg/render/tower/sink/<format>.go`:
+
+```go
+func RenderMyFormat(l layout.Layout, opts ...MyFormatOption) ([]byte, error) {
+    // Access layout data:
+    // - l.FrameWidth, l.FrameHeight: canvas dimensions
+    // - l.Blocks: map[string]Block with position data
+    // - l.RowOrders: node ordering per row
+    return []byte("..."), nil
+}
+```
+
+2. **Register in CLI** in `internal/cli/render.go`
+
+See [`pkg/render/tower/sink`](https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/render/tower/sink) for existing implementations.
+
 ## Questions?
 
 Open an [issue](https://github.com/matzehuels/stacktower/issues) — we're happy to help!

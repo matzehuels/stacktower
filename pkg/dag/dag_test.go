@@ -503,3 +503,112 @@ func TestMeta(t *testing.T) {
 		t.Errorf("Meta()[graph] = %v, want %q", result["graph"], "test")
 	}
 }
+
+func TestInDegree(t *testing.T) {
+	g := New(nil)
+	g.AddNode(Node{ID: "a", Row: 0})
+	g.AddNode(Node{ID: "b", Row: 0})
+	g.AddNode(Node{ID: "c", Row: 1})
+	g.AddEdge(Edge{From: "a", To: "c"})
+	g.AddEdge(Edge{From: "b", To: "c"})
+
+	if got := g.InDegree("c"); got != 2 {
+		t.Errorf("InDegree(c) = %d, want 2", got)
+	}
+	if got := g.InDegree("a"); got != 0 {
+		t.Errorf("InDegree(a) = %d, want 0", got)
+	}
+}
+
+func TestPosMapFromIDs(t *testing.T) {
+	ids := []string{"a", "b", "c"}
+	m := PosMap(ids)
+
+	if m["a"] != 0 {
+		t.Errorf("PosMap[a] = %d, want 0", m["a"])
+	}
+	if m["b"] != 1 {
+		t.Errorf("PosMap[b] = %d, want 1", m["b"])
+	}
+	if m["c"] != 2 {
+		t.Errorf("PosMap[c] = %d, want 2", m["c"])
+	}
+}
+
+func TestNodePosMap(t *testing.T) {
+	nodes := []*Node{
+		{ID: "x"},
+		{ID: "y"},
+		{ID: "z"},
+	}
+	m := NodePosMap(nodes)
+
+	if m["x"] != 0 {
+		t.Errorf("NodePosMap[x] = %d, want 0", m["x"])
+	}
+	if m["y"] != 1 {
+		t.Errorf("NodePosMap[y] = %d, want 1", m["y"])
+	}
+	if m["z"] != 2 {
+		t.Errorf("NodePosMap[z] = %d, want 2", m["z"])
+	}
+}
+
+func TestNodeIDs(t *testing.T) {
+	nodes := []*Node{
+		{ID: "first"},
+		{ID: "second"},
+		{ID: "third"},
+	}
+	ids := NodeIDs(nodes)
+
+	want := []string{"first", "second", "third"}
+	if len(ids) != len(want) {
+		t.Fatalf("NodeIDs() length = %d, want %d", len(ids), len(want))
+	}
+	for i, id := range ids {
+		if id != want[i] {
+			t.Errorf("NodeIDs()[%d] = %q, want %q", i, id, want[i])
+		}
+	}
+}
+
+func TestIsSubdivider(t *testing.T) {
+	n := Node{Kind: NodeKindSubdivider}
+	if !n.IsSubdivider() {
+		t.Error("IsSubdivider() should return true for NodeKindSubdivider")
+	}
+
+	n2 := Node{Kind: NodeKindRegular}
+	if n2.IsSubdivider() {
+		t.Error("IsSubdivider() should return false for NodeKindRegular")
+	}
+}
+
+func TestValidateEdgeConsistency(t *testing.T) {
+	g := New(nil)
+	g.AddNode(Node{ID: "a", Row: 0})
+	g.AddNode(Node{ID: "b", Row: 1})
+	g.AddEdge(Edge{From: "a", To: "b"})
+
+	// Valid DAG should pass validation
+	if err := g.Validate(); err != nil {
+		t.Errorf("Validate() unexpected error: %v", err)
+	}
+}
+
+func TestValidateDetectsCycles(t *testing.T) {
+	g := New(nil)
+	g.AddNode(Node{ID: "a", Row: 0})
+	g.AddNode(Node{ID: "b", Row: 1})
+	g.AddNode(Node{ID: "c", Row: 2})
+	g.AddEdge(Edge{From: "a", To: "b"})
+	g.AddEdge(Edge{From: "b", To: "c"})
+	// Manually create a back edge to form a cycle
+	g.outgoing["c"] = append(g.outgoing["c"], "a")
+	g.incoming["a"] = append(g.incoming["a"], "c")
+
+	if err := g.Validate(); err != ErrGraphHasCycle {
+		t.Errorf("Validate() error = %v, want ErrGraphHasCycle", err)
+	}
+}

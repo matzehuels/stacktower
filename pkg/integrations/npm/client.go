@@ -12,6 +12,7 @@ import (
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
+// PackageInfo holds metadata for a JavaScript/TypeScript package from npm.
 type PackageInfo struct {
 	Name         string
 	Version      string
@@ -23,11 +24,14 @@ type PackageInfo struct {
 	Author       string
 }
 
+// Client provides access to the npm package registry API.
+// It handles HTTP requests with caching and automatic retries.
 type Client struct {
 	*integrations.Client
 	baseURL string
 }
 
+// NewClient creates an npm client with the specified cache TTL.
 func NewClient(cacheTTL time.Duration) (*Client, error) {
 	cache, err := integrations.NewCache(cacheTTL)
 	if err != nil {
@@ -39,6 +43,8 @@ func NewClient(cacheTTL time.Duration) (*Client, error) {
 	}, nil
 }
 
+// FetchPackage retrieves metadata for a JavaScript/TypeScript package from npm.
+// If refresh is true, cached data is bypassed.
 func (c *Client) FetchPackage(ctx context.Context, pkg string, refresh bool) (*PackageInfo, error) {
 	pkg = strings.ToLower(strings.TrimSpace(pkg))
 	key := "npm:" + pkg

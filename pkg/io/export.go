@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"os"
 
 	"github.com/matzehuels/stacktower/pkg/dag"
 )
@@ -30,6 +31,9 @@ type edge struct {
 	To   string `json:"to"`
 }
 
+// WriteJSON encodes a DAG as JSON and writes it to w.
+// The output includes all nodes (with metadata and kind) and edges.
+// This format can be re-imported with [ReadJSON] for round-trip processing.
 func WriteJSON(g *dag.DAG, w io.Writer) error {
 	out := graph{
 		Nodes: make([]node, len(g.Nodes())),
@@ -57,4 +61,15 @@ func WriteJSON(g *dag.DAG, w io.Writer) error {
 		return fmt.Errorf("encode: %w", err)
 	}
 	return nil
+}
+
+// ExportJSON writes a DAG to a JSON file at path.
+// This is a convenience wrapper around [WriteJSON] for file-based output.
+func ExportJSON(g *dag.DAG, path string) error {
+	f, err := os.Create(path)
+	if err != nil {
+		return fmt.Errorf("create %s: %w", path, err)
+	}
+	defer f.Close()
+	return WriteJSON(g, f)
 }

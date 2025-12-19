@@ -342,196 +342,41 @@ stacktower cache clear
 stacktower cache path
 ```
 
-## Architecture
+## Using as a Library
 
-Stacktower's dependency parsing follows a clean layered architecture:
-
-```
-internal/cli/          # Command-line interface
-pkg/deps/              # Core abstractions and dependency resolution
-├── deps.go            # Options, Package, MetadataProvider types
-├── language.go        # Language definition (registry, manifests, aliases)
-├── resolver.go        # Concurrent dependency crawler
-├── manifest.go        # Manifest parser interface
-├── python/            # Python: PyPI + poetry.lock + requirements.txt
-├── rust/              # Rust: crates.io + Cargo.toml
-├── javascript/        # JavaScript: npm + package.json
-├── ruby/              # Ruby: RubyGems + Gemfile
-├── php/               # PHP: Packagist + composer.json
-├── java/              # Java: Maven Central + pom.xml
-├── golang/            # Go: Go Module Proxy + go.mod
-└── metadata/          # GitHub/GitLab enrichment providers
-pkg/integrations/      # Registry API clients (npm, pypi, crates, etc.)
-```
-
-### Adding a New Language
-
-1. **Create an integration client** in `pkg/integrations/<registry>/client.go`:
+Stacktower can be used as a Go library for programmatic graph visualization.
 
 ```go
-type Client struct {
-    *integrations.Client
-    baseURL string
-}
+import (
+    "github.com/matzehuels/stacktower/pkg/dag"
+    "github.com/matzehuels/stacktower/pkg/dag/transform"
+    "github.com/matzehuels/stacktower/pkg/render/tower/layout"
+    "github.com/matzehuels/stacktower/pkg/render/tower/sink"
+)
 
-type PackageInfo struct {
-    Name         string
-    Version      string
-    Dependencies []string
-    // ... other fields
-}
+// Build a graph
+g := dag.New(nil)
+g.AddNode(dag.Node{ID: "app", Row: 0})
+g.AddNode(dag.Node{ID: "lib", Row: 1})
+g.AddEdge(dag.Edge{From: "app", To: "lib"})
 
-func NewClient(cacheTTL time.Duration) (*Client, error) {
-    cache, err := integrations.NewCache(cacheTTL)
-    if err != nil {
-        return nil, err
-    }
-    return &Client{
-        Client:  integrations.NewClient(cache, nil),
-        baseURL: "https://registry.example.com",
-    }, nil
-}
-
-func (c *Client) FetchPackage(ctx context.Context, name string, refresh bool) (*PackageInfo, error) {
-    // Implement caching and fetching
-}
+// Normalize and render
+transform.Normalize(g)
+l := layout.Build(g, 800, 600)
+svg := sink.RenderSVG(l, sink.WithGraph(g), sink.WithPopups())
 ```
 
-2. **Create a language definition** in `pkg/deps/<lang>/<lang>.go`:
+📚 **[Full API documentation on pkg.go.dev](https://pkg.go.dev/github.com/matzehuels/stacktower)**
 
-```go
-var Language = &deps.Language{
-    Name:            "mylang",
-    DefaultRegistry: "myregistry",
-    RegistryAliases: map[string]string{"alias": "myregistry"},
-    ManifestTypes:   []string{"my.lock"},
-    ManifestAliases: map[string]string{"my.lock": "mylock"},
-    NewResolver:     newResolver,
-    NewManifest:     newManifest,
-    ManifestParsers: manifestParsers,
-}
+Key packages:
+- [`pkg/dag`](https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/dag) — DAG data structure and crossing algorithms
+- [`pkg/dag/transform`](https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/dag/transform) — Graph normalization pipeline
+- [`pkg/render/tower`](https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/render/tower) — Layout, ordering, and rendering
+- [`pkg/deps`](https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/deps) — Dependency resolution from registries
 
-func newResolver(ttl time.Duration) (deps.Resolver, error) {
-    c, err := myregistry.NewClient(ttl)
-    if err != nil {
-        return nil, err
-    }
-    return deps.NewRegistry("myregistry", fetcher{c}), nil
-}
+## Contributing
 
-type fetcher struct{ *myregistry.Client }
-
-func (f fetcher) Fetch(ctx context.Context, name string, refresh bool) (*deps.Package, error) {
-    p, err := f.FetchPackage(ctx, name, refresh)
-    if err != nil {
-        return nil, err
-    }
-    return &deps.Package{
-        Name:         p.Name,
-        Version:      p.Version,
-        Dependencies: p.Dependencies,
-        ManifestFile: "mymanifest.json",
-    }, nil
-}
-```
-
-3. **Register in CLI** in `internal/cli/parse.go`:
-
-```go
-import "github.com/matzehuels/stacktower/pkg/deps/mylang"
-
-var languages = []*deps.Language{
-    // ... existing languages
-    mylang.Language,
-}
-```
-
-### Adding a Manifest Parser
-
-```go
-type MyLockParser struct{}
-
-func (p *MyLockParser) Type() string              { return "my.lock" }
-func (p *MyLockParser) IncludesTransitive() bool  { return true }
-func (p *MyLockParser) Supports(name string) bool { return name == "my.lock" }
-
-func (p *MyLockParser) Parse(path string, opts deps.Options) (*deps.ManifestResult, error) {
-    // Parse file, build dag.DAG
-    g := dag.New(nil)
-    // ... populate nodes and edges
-    return &deps.ManifestResult{
-        Graph:              g,
-        Type:               p.Type(),
-        IncludesTransitive: true,
-    }, nil
-}
-```
-
-The `deps.Registry` handles concurrent fetching with configurable depth/node limits and metadata enrichment automatically.
-
-### Adding a New Output Format
-
-Output formats are implemented as "sinks" in `pkg/render/tower/sink/`. Each sink takes a computed `layout.Layout` and renders it to bytes.
-
-1. **Create a sink file** in `pkg/render/tower/sink/<format>.go`:
-
-```go
-package sink
-
-import "github.com/matzehuels/stacktower/pkg/render/tower/layout"
-
-type MyFormatOption func(*myFormatRenderer)
-
-type myFormatRenderer struct {
-    // Configuration fields
-}
-
-func WithMyFormatOption(val string) MyFormatOption {
-    return func(r *myFormatRenderer) { r.option = val }
-}
-
-func RenderMyFormat(l layout.Layout, opts ...MyFormatOption) ([]byte, error) {
-    r := myFormatRenderer{}
-    for _, opt := range opts {
-        opt(&r)
-    }
-    
-    // Access layout data:
-    // - l.FrameWidth, l.FrameHeight: canvas dimensions
-    // - l.MarginX, l.MarginY: margins
-    // - l.Blocks: map[string]Block with position data
-    // - l.RowOrders: node ordering per row
-    
-    // Generate output bytes
-    return []byte("..."), nil
-}
-```
-
-2. **Register in CLI** in `internal/cli/render.go`:
-
-```go
-// Add to validFormats map
-var validFormats = map[string]bool{
-    "svg": true, "json": true, "pdf": true, "png": true,
-    "myformat": true,  // Add your format
-}
-
-// Add case in renderTower()
-switch format {
-case "myformat":
-    logger.Info("Rendering tower as MyFormat")
-    return sink.RenderMyFormat(l, buildMyFormatOpts(g, opts)...)
-// ...
-}
-```
-
-The existing sinks provide examples:
-- **`svg.go`**: Full-featured SVG with styles, interactivity, and popups
-- **`json.go`**: Layout data export for external tools (round-trip capable)
-- **`pdf.go`**: Wrapper that converts SVG via `rsvg-convert`
-- **`png.go`**: Wrapper that converts SVG via `rsvg-convert` with scaling
-
-The JSON format is designed as a complete serialization—it includes all render options (`style`, `seed`, `randomize`, `merged`) and node flags (`auxiliary`, `synthetic`) needed to reproduce the exact visual output.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding new languages, manifest parsers, or output formats.
 
 ## Development
 

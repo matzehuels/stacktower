@@ -12,11 +12,15 @@ import (
 
 var repoURLPattern = regexp.MustCompile(`https?://github\.com/([^/]+)/([^/]+?)(?:\.git)?(?:[/?#]|$)`)
 
+// Client provides access to the GitHub API for repository metadata enrichment.
+// It handles HTTP requests with caching, automatic retries, and optional authentication.
 type Client struct {
 	*integrations.Client
 	baseURL string
 }
 
+// NewClient creates a GitHub API client with optional authentication.
+// Pass an empty string for token to use unauthenticated requests (lower rate limits).
 func NewClient(token string, cacheTTL time.Duration) (*Client, error) {
 	cache, err := integrations.NewCache(cacheTTL)
 	if err != nil {
@@ -34,6 +38,8 @@ func NewClient(token string, cacheTTL time.Duration) (*Client, error) {
 	}, nil
 }
 
+// Fetch retrieves repository metrics (stars, maintainers, activity) from GitHub.
+// If refresh is true, cached data is bypassed.
 func (c *Client) Fetch(ctx context.Context, owner, repo string, refresh bool) (*integrations.RepoMetrics, error) {
 	key := "github:" + owner + "/" + repo
 

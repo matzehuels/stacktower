@@ -6,11 +6,18 @@ import (
 	"time"
 )
 
+// RetryableError wraps an error to indicate it should trigger a retry.
+// Wrap transient failures (network timeouts, 5xx responses) with this type
+// so that [Retry] knows to attempt the operation again.
 type RetryableError struct{ Err error }
 
 func (e *RetryableError) Error() string { return e.Err.Error() }
 func (e *RetryableError) Unwrap() error { return e.Err }
 
+// Retry executes fn up to attempts times with exponential backoff.
+// It only retries errors wrapped with [RetryableError]; other errors are
+// returned immediately. The delay doubles after each failed attempt.
+// Returns the last error if all attempts fail, or ctx.Err() if cancelled.
 func Retry(ctx context.Context, attempts int, delay time.Duration, fn func() error) error {
 	attempts = max(attempts, 1)
 	var lastErr error
@@ -34,6 +41,8 @@ func Retry(ctx context.Context, attempts int, delay time.Duration, fn func() err
 	return lastErr
 }
 
+// RetryWithBackoff is a convenience wrapper around [Retry] with sensible
+// defaults: 3 attempts with 1 second initial delay (doubling each retry).
 func RetryWithBackoff(ctx context.Context, fn func() error) error {
 	return Retry(ctx, 3, time.Second, fn)
 }

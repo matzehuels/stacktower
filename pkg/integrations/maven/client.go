@@ -13,6 +13,7 @@ import (
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
+// ArtifactInfo holds metadata for a Java artifact from Maven Central.
 type ArtifactInfo struct {
 	GroupID      string
 	ArtifactID   string
@@ -26,11 +27,14 @@ func (a *ArtifactInfo) Coordinate() string {
 	return a.GroupID + ":" + a.ArtifactID
 }
 
+// Client provides access to the Maven Central repository API.
+// It handles HTTP requests with caching and automatic retries.
 type Client struct {
 	*integrations.Client
 	baseURL string
 }
 
+// NewClient creates a Maven Central client with the specified cache TTL.
 func NewClient(cacheTTL time.Duration) (*Client, error) {
 	cache, err := integrations.NewCache(cacheTTL)
 	if err != nil {
@@ -42,6 +46,9 @@ func NewClient(cacheTTL time.Duration) (*Client, error) {
 	}, nil
 }
 
+// FetchArtifact retrieves metadata for a Java artifact from Maven Central.
+// The coordinate should be in the format "groupId:artifactId".
+// If refresh is true, cached data is bypassed.
 func (c *Client) FetchArtifact(ctx context.Context, coordinate string, refresh bool) (*ArtifactInfo, error) {
 	groupID, artifactID, err := parseCoordinate(coordinate)
 	if err != nil {

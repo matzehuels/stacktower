@@ -8,6 +8,8 @@ import (
 	"github.com/matzehuels/stacktower/pkg/integrations/goproxy"
 )
 
+// Language provides Go dependency resolution via the Go module proxy.
+// Supports go.mod manifest files.
 var Language = &deps.Language{
 	Name:            "go",
 	DefaultRegistry: "goproxy",

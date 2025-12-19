@@ -1,0 +1,61 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Go source files
+*.go text eol=lf
+
+# Bash scripts
+*.sh text eol=lf
+
+# Markdown and documentation
+*.md text eol=lf
+
+# JSON and data files
+*.json text eol=lf
+*.xml text eol=lf
+*.toml text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+
+# Lock files (generated, but treat as text)
+*.lock text eol=lf linguist-generated=true
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+
+# SVG files - mark as generated/binary to avoid noisy diffs in examples
+*.svg linguist-generated=true
+
+# Output and coverage files - mark as generated
+*.out linguist-generated=true
+coverage*.out linguist-generated=true
+
+# Example outputs - mark as generated
+/output/** linguist-generated=true
+/examples/real/*.json linguist-generated=true
+/examples/test/*.json linguist-generated=true
+
+# Cache files
+/blogpost/cache/** linguist-generated=true
+
+# Archive files
+*.zip binary
+*.tar binary
+*.gz binary
+*.tgz binary
+*.bz2 binary
+
+# Go binaries
+/bin/* binary
+
+# Treat go.sum as generated (don't show in diffs by default on GitHub)
+go.sum linguist-generated=true
+

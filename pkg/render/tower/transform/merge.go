@@ -7,6 +7,16 @@ import (
 	"github.com/matzehuels/stacktower/pkg/render/tower/layout"
 )
 
+// MergeSubdividers combines subdivider blocks into continuous vertical columns.
+// Subdivider nodes (created by [dag/transform.Subdivide] to break long edges)
+// are grouped by their MasterID and horizontal position, then merged into
+// single blocks spanning from top to bottom.
+//
+// This creates cleaner visuals where a package's vertical "column" is rendered
+// as one continuous block rather than separate segments per row.
+//
+// The returned layout has subdivider nodes removed from RowOrders and replaced
+// with merged blocks keyed by their master ID.
 func MergeSubdividers(l layout.Layout, g *dag.DAG) layout.Layout {
 	blocks := make(map[string]layout.Block)
 

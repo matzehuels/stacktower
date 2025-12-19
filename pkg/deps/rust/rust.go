@@ -8,6 +8,8 @@ import (
 	"github.com/matzehuels/stacktower/pkg/integrations/crates"
 )
 
+// Language provides Rust dependency resolution via crates.io.
+// Supports Cargo.toml manifest files.
 var Language = &deps.Language{
 	Name:            "rust",
 	DefaultRegistry: "crates",

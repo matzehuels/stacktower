@@ -9,10 +9,14 @@ import (
 
 var repoURLPattern = regexp.MustCompile(`https?://gitlab\.com/([^/]+)/([^/]+)`)
 
+// Client provides access to the GitLab API for repository metadata enrichment.
+// It handles HTTP requests with caching, automatic retries, and optional authentication.
 type Client struct {
 	*integrations.Client
 }
 
+// NewClient creates a GitLab API client with optional authentication.
+// Pass an empty string for token to use unauthenticated requests (lower rate limits).
 func NewClient(token string, cacheTTL time.Duration) (*Client, error) {
 	cache, err := integrations.NewCache(cacheTTL)
 	if err != nil {

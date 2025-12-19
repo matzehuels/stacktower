@@ -5,11 +5,15 @@ import (
 	"slices"
 )
 
+// CrossingWorkspace provides reusable buffers for crossing calculations.
+// Create with NewCrossingWorkspace and reuse across multiple calls.
 type CrossingWorkspace struct {
 	ft  []int
 	pos []int
 }
 
+// NewCrossingWorkspace creates a workspace for counting crossings.
+// maxWidth should be the maximum number of nodes in any row.
 func NewCrossingWorkspace(maxWidth int) *CrossingWorkspace {
 	return &CrossingWorkspace{
 		ft:  make([]int, maxWidth+2),
@@ -17,6 +21,7 @@ func NewCrossingWorkspace(maxWidth int) *CrossingWorkspace {
 	}
 }
 
+// CountCrossings returns the total edge crossings for the given row orderings.
 func CountCrossings(g *DAG, orders map[int][]string) int {
 	rows := slices.Sorted(maps.Keys(orders))
 	crossings := 0
@@ -27,6 +32,8 @@ func CountCrossings(g *DAG, orders map[int][]string) int {
 	return crossings
 }
 
+// CountLayerCrossings counts edge crossings between two adjacent rows.
+// Uses a Fenwick tree for O(E log V) performance.
 func CountLayerCrossings(g *DAG, upper, lower []string) int {
 	if len(upper) == 0 || len(lower) == 0 {
 		return 0
@@ -71,6 +78,9 @@ func CountLayerCrossings(g *DAG, upper, lower []string) int {
 	return crossings
 }
 
+// CountCrossingsIdx counts crossings using index-based edges and permutations.
+// This is an optimized version for the branch-and-bound search that avoids
+// string lookups. edges[i] contains the indices of children for upper node i.
 func CountCrossingsIdx(edges [][]int, upperPerm, lowerPerm []int, ws *CrossingWorkspace) int {
 	if len(upperPerm) == 0 || len(lowerPerm) == 0 {
 		return 0
@@ -108,10 +118,13 @@ func CountCrossingsIdx(edges [][]int, upperPerm, lowerPerm []int, ws *CrossingWo
 	return crossings
 }
 
+// CountPairCrossings counts how many crossings swapping left and right would cause.
+// If useParents is true, considers edges to the row above; otherwise, to the row below.
 func CountPairCrossings(g *DAG, left, right string, adjOrder []string, useParents bool) int {
 	return CountPairCrossingsWithPos(g, left, right, PosMap(adjOrder), useParents)
 }
 
+// CountPairCrossingsWithPos is like CountPairCrossings but takes a precomputed position map.
 func CountPairCrossingsWithPos(g *DAG, left, right string, adjPos map[string]int, useParents bool) int {
 	var lnbr, rnbr []string
 	if useParents {

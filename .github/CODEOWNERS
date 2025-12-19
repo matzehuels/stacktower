@@ -1,0 +1,30 @@
+# CODEOWNERS
+# 
+# This file defines individuals or teams responsible for code in this repository.
+# Code owners are automatically requested for review when someone opens a pull request
+# that modifies code that they own.
+#
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owner for everything in the repo
+* @matzehuels
+
+# Core packages
+/pkg/ @matzehuels
+/internal/ @matzehuels
+
+# CI/CD and infrastructure
+/.github/ @matzehuels
+/Makefile @matzehuels
+
+# Documentation
+/README.md @matzehuels
+/CONTRIBUTING.md @matzehuels
+/CODE_OF_CONDUCT.md @matzehuels
+/SECURITY.md @matzehuels
+/blogpost/ @matzehuels
+
+# Dependencies
+/go.mod @matzehuels
+/go.sum @matzehuels
+

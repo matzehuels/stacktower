@@ -8,6 +8,8 @@ import (
 	"github.com/matzehuels/stacktower/pkg/integrations/maven"
 )
 
+// Language provides Java dependency resolution via Maven Central.
+// Supports pom.xml manifest files.
 var Language = &deps.Language{
 	Name:            "java",
 	DefaultRegistry: "maven",

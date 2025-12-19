@@ -8,6 +8,8 @@ import (
 	"github.com/matzehuels/stacktower/pkg/integrations/rubygems"
 )
 
+// Language provides Ruby dependency resolution via RubyGems.
+// Supports Gemfile manifest files.
 var Language = &deps.Language{
 	Name:            "ruby",
 	DefaultRegistry: "rubygems",

@@ -9,11 +9,22 @@ import (
 	"github.com/matzehuels/stacktower/pkg/render/tower/layout"
 )
 
+// Options configures the randomization behavior for [Randomize].
 type Options struct {
-	WidthShrink   float64
+	// WidthShrink is the maximum shrink factor applied to blocks (0-1).
+	// Higher values create more width variation. Default: 0.85.
+	WidthShrink float64
+
+	// MinBlockWidth is the minimum allowed block width in pixels.
+	// Blocks will not shrink below this size. Default: 30.
 	MinBlockWidth float64
-	MinGap        float64
-	MinOverlap    float64
+
+	// MinGap is the minimum gap between adjacent blocks in pixels. Default: 5.
+	MinGap float64
+
+	// MinOverlap is the minimum horizontal overlap required between connected
+	// blocks (parent-child pairs). Blocks are expanded if needed. Default: 10.
+	MinOverlap float64
 }
 
 var defaultOpts = Options{
@@ -23,6 +34,15 @@ var defaultOpts = Options{
 	MinOverlap:    10.0,
 }
 
+// Randomize applies controlled random variation to block widths.
+// It creates a checkerboard pattern by shrinking alternating rows, which
+// mimics hand-drawn diagrams and adds visual interest.
+//
+// The seed ensures reproducible randomness—the same seed produces identical
+// layouts. Pass nil for opts to use defaults.
+//
+// After shrinking, the function ensures connected blocks maintain minimum
+// overlap so dependency edges remain visually clear.
 func Randomize(l layout.Layout, g *dag.DAG, seed uint64, opts *Options) layout.Layout {
 	if opts == nil {
 		opts = &defaultOpts

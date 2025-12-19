@@ -2,6 +2,8 @@ package perm
 
 import "slices"
 
+// Seq returns a slice [0, 1, 2, ..., n-1].
+// Useful for initializing permutations or creating index sequences.
 func Seq(n int) []int {
 	result := make([]int, n)
 	for i := range result {
@@ -10,6 +12,7 @@ func Seq(n int) []int {
 	return result
 }
 
+// Factorial returns n! (n factorial). Returns 1 for n <= 1.
 func Factorial(n int) int {
 	result := 1
 	for i := 2; i <= n; i++ {
@@ -18,6 +21,9 @@ func Factorial(n int) int {
 	return result
 }
 
+// Generate returns permutations of [0, 1, ..., n-1] using Heap's algorithm.
+// If limit > 0, returns at most limit permutations; otherwise returns all n!.
+// Each returned slice is a separate allocation safe to modify.
 func Generate(n, limit int) [][]int {
 	if n == 0 {
 		return [][]int{{}}
