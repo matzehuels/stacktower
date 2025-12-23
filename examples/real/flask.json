@@ -1,6 +1,53 @@
 {
   "nodes": [
     {
+      "id": "importlib-metadata",
+      "meta": {
+        "description": "Read metadata from Python packages",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-21",
+        "repo_last_release": "2025-12-21",
+        "repo_maintainers": [
+          "jaraco",
+          "warsaw",
+          "abravalheri",
+          "jherland",
+          "sjma3"
+        ],
+        "repo_owner": "python",
+        "repo_stars": 138,
+        "repo_url": "https://github.com/python/importlib_metadata",
+        "version": "8.7.1"
+      }
+    },
+    {
+      "id": "itsdangerous",
+      "meta": {
+        "description": "Safely pass data to untrusted environments and back.",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-06-14",
+        "repo_last_release": "2024-04-16",
+        "repo_maintainers": [
+          "davidism",
+          "mitsuhiko"
+        ],
+        "repo_owner": "pallets",
+        "repo_stars": 3093,
+        "repo_topics": [
+          "hmac",
+          "itsdangerous",
+          "pallets",
+          "python",
+          "security",
+          "serialization"
+        ],
+        "repo_url": "https://github.com/pallets/itsdangerous",
+        "version": "2.2.0"
+      }
+    },
+    {
       "id": "werkzeug",
       "meta": {
         "description": "The comprehensive WSGI web application library.",
@@ -15,7 +62,7 @@
           "DasIch"
         ],
         "repo_owner": "pallets",
-        "repo_stars": 6824,
+        "repo_stars": 6825,
         "repo_topics": [
           "http",
           "pallets",
@@ -42,9 +89,36 @@
           "jdufresne"
         ],
         "repo_owner": "tartley",
-        "repo_stars": 3756,
+        "repo_stars": 3758,
         "repo_url": "https://github.com/tartley/colorama",
         "version": "0.4.6"
+      }
+    },
+    {
+      "id": "jinja2",
+      "meta": {
+        "description": "A very fast and expressive template engine.",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-06-14",
+        "repo_last_release": "2025-03-05",
+        "repo_maintainers": [
+          "mitsuhiko",
+          "davidism",
+          "untitaker"
+        ],
+        "repo_owner": "pallets",
+        "repo_stars": 11342,
+        "repo_topics": [
+          "jinja",
+          "jinja2",
+          "pallets",
+          "python",
+          "template-engine",
+          "templates"
+        ],
+        "repo_url": "https://github.com/pallets/jinja",
+        "version": "3.1.6"
       }
     },
     {
@@ -60,7 +134,7 @@
           "mitsuhiko"
         ],
         "repo_owner": "pallets",
-        "repo_stars": 680,
+        "repo_stars": 682,
         "repo_topics": [
           "html",
           "html-escape",
@@ -75,11 +149,30 @@
       }
     },
     {
+      "id": "zipp",
+      "meta": {
+        "description": "Backport of pathlib-compatible object wrapper for zip files",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-10-19",
+        "repo_last_release": "2025-06-08",
+        "repo_maintainers": [
+          "jaraco",
+          "DimitriPapadopoulos",
+          "layday",
+          "Avasam",
+          "barneygale"
+        ],
+        "repo_owner": "jaraco",
+        "repo_stars": 67,
+        "repo_url": "https://github.com/jaraco/zipp",
+        "version": "3.23.0"
+      }
+    },
+    {
       "id": "flask",
       "meta": {
-        "author": "Armin Ronacher",
-        "description": "A micro web framework",
-        "license": "BSD-3-Clause",
+        "description": "A simple framework for building complex web applications.",
         "repo_archived": false,
         "repo_language": "Python",
         "repo_last_commit": "2025-11-28",
@@ -92,7 +185,7 @@
           "greyli"
         ],
         "repo_owner": "pallets",
-        "repo_stars": 70924,
+        "repo_stars": 70955,
         "repo_topics": [
           "flask",
           "jinja",
@@ -103,7 +196,33 @@
           "wsgi"
         ],
         "repo_url": "https://github.com/pallets/flask",
-        "version": "2.0.0"
+        "version": "3.1.2"
+      }
+    },
+    {
+      "id": "blinker",
+      "meta": {
+        "author": "Jason Kirtland",
+        "description": "Fast, simple object-to-object and broadcast signaling",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-11-19",
+        "repo_last_release": "2024-11-08",
+        "repo_maintainers": [
+          "davidism",
+          "jek",
+          "Secrus",
+          "pgjones"
+        ],
+        "repo_owner": "pallets-eco",
+        "repo_stars": 2008,
+        "repo_topics": [
+          "blinker",
+          "python",
+          "signals"
+        ],
+        "repo_url": "https://github.com/pallets-eco/blinker",
+        "version": "1.9.0"
       }
     },
     {
@@ -121,7 +240,7 @@
           "untitaker"
         ],
         "repo_owner": "pallets",
-        "repo_stars": 17060,
+        "repo_stars": 17074,
         "repo_topics": [
           "cli",
           "click",
@@ -136,19 +255,47 @@
   "edges": [
     {
       "from": "flask",
+      "to": "blinker"
+    },
+    {
+      "from": "flask",
       "to": "click"
+    },
+    {
+      "from": "flask",
+      "to": "importlib-metadata"
+    },
+    {
+      "from": "flask",
+      "to": "itsdangerous"
+    },
+    {
+      "from": "flask",
+      "to": "jinja2"
+    },
+    {
+      "from": "flask",
+      "to": "markupsafe"
     },
     {
       "from": "flask",
       "to": "werkzeug"
     },
     {
+      "from": "werkzeug",
+      "to": "markupsafe"
+    },
+    {
+      "from": "jinja2",
+      "to": "markupsafe"
+    },
+    {
       "from": "click",
       "to": "colorama"
     },
     {
-      "from": "werkzeug",
-      "to": "markupsafe"
+      "from": "importlib-metadata",
+      "to": "zipp"
     }
   ]
 }

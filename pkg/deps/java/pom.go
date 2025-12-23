@@ -12,6 +12,8 @@ import (
 
 const projectRoot = "__project__"
 
+// POMParser parses Maven pom.xml files. It extracts dependencies and
+// optionally resolves them via Maven Central.
 type POMParser struct {
 	resolver deps.Resolver
 }

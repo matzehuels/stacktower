@@ -15,24 +15,31 @@ import (
 
 const maxCandidatesBase = 10000
 
+// OptimalSearch implements a branch-and-bound search algorithm to find the
+// mathematically optimal horizontal ordering (minimum crossings). It uses
+// PQ-trees to prune the search space to only include orderings that satisfy
+// structural constraints (Consecutive Ones Property).
 type OptimalSearch struct {
 	Progress func(explored, pruned, best int)
 	Timeout  time.Duration
 	Debug    func(info DebugInfo)
 }
 
+// DebugInfo contains diagnostic information about the optimal search process.
 type DebugInfo struct {
 	Rows      []RowDebugInfo
 	MaxDepth  int
 	TotalRows int
 }
 
+// RowDebugInfo contains diagnostic information for a single row during search.
 type RowDebugInfo struct {
 	Row        int
 	NodeCount  int
 	Candidates int
 }
 
+// OrderRows implements the [Orderer] interface by performing an optimal search.
 func (o OptimalSearch) OrderRows(g *dag.DAG) map[int][]string {
 	rows := g.RowIDs()
 	if len(rows) == 0 {

@@ -13,22 +13,36 @@ import (
 )
 
 // ModuleInfo holds metadata for a Go module from the Go module proxy.
+//
+// Dependencies include only direct dependencies; indirect dependencies (marked with "// indirect") are excluded.
+// Some modules (pre-modules or minimal modules) may not have a go.mod file; Dependencies will be nil/empty.
+//
+// Zero values: All string fields are empty, Dependencies is nil.
+// This struct is safe for concurrent reads after construction.
 type ModuleInfo struct {
-	Path         string
-	Version      string
-	Dependencies []string
+	Path         string   // Module path (e.g., "github.com/spf13/cobra", never empty in valid info)
+	Version      string   // Latest version from @latest endpoint (e.g., "v1.8.0", never empty in valid info)
+	Dependencies []string // Direct dependency module paths (nil or empty if none or no go.mod)
 }
 
 // Client provides access to the Go module proxy API.
 // It handles HTTP requests with caching and automatic retries.
+//
+// All methods are safe for concurrent use by multiple goroutines.
 type Client struct {
 	*integrations.Client
 	baseURL string
 }
 
 // NewClient creates a Go module proxy client with the specified cache TTL.
+//
+// The cacheTTL parameter sets how long responses are cached.
+// Typical values: 1-24 hours for production, 0 for testing (no cache).
+//
+// Returns an error if the cache directory cannot be created or accessed.
+// The returned Client is safe for concurrent use.
 func NewClient(cacheTTL time.Duration) (*Client, error) {
-	cache, err := integrations.NewCache(cacheTTL)
+	cache, err := integrations.NewCacheWithNamespace("goproxy:", cacheTTL)
 	if err != nil {
 		return nil, err
 	}
@@ -39,10 +53,32 @@ func NewClient(cacheTTL time.Duration) (*Client, error) {
 }
 
 // FetchModule retrieves metadata for a Go module from the module proxy.
-// If refresh is true, cached data is bypassed.
+//
+// The mod parameter should be a full module path (e.g., "github.com/user/repo").
+// Module paths with uppercase letters are escaped per the Go module proxy protocol.
+// Module path cannot be empty; an empty string will result in an API error.
+//
+// If refresh is true, the cache is bypassed and a fresh API call is made.
+// If refresh is false, cached data is returned if available and not expired.
+//
+// This method performs two API calls:
+//  1. @latest endpoint to get the latest version
+//  2. .mod endpoint to fetch and parse go.mod for dependencies
+//
+// go.mod fetch failures are silently ignored; Dependencies will be nil/empty if it fails.
+// This is normal for pre-module packages or minimal modules without dependencies.
+//
+// Returns:
+//   - ModuleInfo populated with metadata on success
+//   - [integrations.ErrNotFound] if the module doesn't exist
+//   - [integrations.ErrNetwork] for HTTP failures (timeout, 5xx, etc.)
+//   - Other errors for JSON decoding failures
+//
+// The returned ModuleInfo pointer is never nil if err is nil.
+// This method is safe for concurrent use.
 func (c *Client) FetchModule(ctx context.Context, mod string, refresh bool) (*ModuleInfo, error) {
 	mod = normalizePath(mod)
-	key := "goproxy:" + mod
+	key := mod
 
 	var info ModuleInfo
 	err := c.Cached(ctx, key, refresh, &info, func() error {

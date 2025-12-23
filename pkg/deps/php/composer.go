@@ -12,6 +12,8 @@ import (
 
 const projectRoot = "__project__"
 
+// ComposerJSON parses composer.json files. It extracts direct and dev
+// dependencies and optionally resolves them via Packagist.
 type ComposerJSON struct {
 	resolver deps.Resolver
 }

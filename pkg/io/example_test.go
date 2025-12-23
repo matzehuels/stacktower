@@ -78,6 +78,31 @@ func ExampleReadJSON() {
 	// Children of app: [lib]
 }
 
+func ExampleExportJSON() {
+	// Build a simple graph
+	g := dag.New(nil)
+	_ = g.AddNode(dag.Node{ID: "server"})
+	_ = g.AddNode(dag.Node{ID: "database", Row: 1})
+	_ = g.AddEdge(dag.Edge{From: "server", To: "database"})
+
+	// Export to a file
+	tmpDir := os.TempDir()
+	path := filepath.Join(tmpDir, "exported-graph.json")
+	defer os.Remove(path)
+
+	if err := io.ExportJSON(g, path); err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	// Verify the file was created
+	if _, err := os.Stat(path); err == nil {
+		fmt.Println("Graph exported successfully")
+	}
+	// Output:
+	// Graph exported successfully
+}
+
 func ExampleImportJSON() {
 	// Create a temporary JSON file
 	tmpDir := os.TempDir()

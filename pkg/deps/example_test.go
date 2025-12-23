@@ -72,10 +72,17 @@ func ExampleDetectManifest() {
 	// DetectManifest finds the right parser for a manifest file.
 	// In real usage, you would get parsers from a Language definition:
 	//
+	//   import "github.com/matzehuels/stacktower/pkg/deps/python"
+	//
 	//   parsers := python.Language.ManifestParsers(nil)
 	//   parser, err := deps.DetectManifest("poetry.lock", parsers...)
+	//   if err != nil {
+	//       log.Fatal(err)
+	//   }
+	//   result, err := parser.Parse("poetry.lock", opts)
 	//
 	// The function matches filename patterns to find a suitable parser.
+	// Returns an error if no parser recognizes the file.
 
 	fmt.Println("DetectManifest matches filename to parser type")
 	// Output:
@@ -128,4 +135,31 @@ func ExampleOptions_limits() {
 	// MaxDepth: 10
 	// MaxNodes: 100
 	// Refresh: true
+}
+
+func ExampleNewRegistry() {
+	// NewRegistry wraps a Fetcher with concurrent crawling logic.
+	// In real usage, you would pass a registry-specific fetcher:
+	//
+	//   import (
+	//       "github.com/matzehuels/stacktower/pkg/deps"
+	//       "github.com/matzehuels/stacktower/pkg/integrations/pypi"
+	//   )
+	//
+	//   client := pypi.NewClient(24 * time.Hour)
+	//   fetcher := pypi.NewFetcher(client)
+	//   resolver := deps.NewRegistry("pypi", fetcher)
+	//
+	//   ctx := context.Background()
+	//   g, err := resolver.Resolve(ctx, "requests", deps.Options{
+	//       MaxDepth: 5,
+	//       MaxNodes: 100,
+	//   })
+	//
+	// The resolver uses a worker pool to fetch packages concurrently,
+	// respecting the MaxDepth and MaxNodes limits.
+
+	fmt.Println("NewRegistry creates a concurrent dependency resolver")
+	// Output:
+	// NewRegistry creates a concurrent dependency resolver
 }

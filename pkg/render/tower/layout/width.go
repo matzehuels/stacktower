@@ -8,6 +8,9 @@ import (
 
 const eps = 1e-9
 
+// ComputeWidths assigns horizontal widths to nodes by distributing the
+// frame width among top-level nodes and propagating that width down to
+// children. This results in "top-heavy" towers where the root nodes are wide.
 func ComputeWidths(g *dag.DAG, orders map[int][]string, frameWidth float64) map[string]float64 {
 	rows := g.RowIDs()
 	if len(rows) == 0 {
@@ -59,6 +62,10 @@ func ComputeWidths(g *dag.DAG, orders map[int][]string, frameWidth float64) map[
 	return widths
 }
 
+// ComputeWidthsBottomUp assigns horizontal widths to nodes by distributing
+// the frame width among bottom-level nodes and propagating that width up
+// to parents. This results in "bottom-heavy" towers where the leaf nodes
+// provide a wide base.
 func ComputeWidthsBottomUp(g *dag.DAG, orders map[int][]string, frameWidth float64) map[string]float64 {
 	rows := g.RowIDs()
 	if len(rows) == 0 {

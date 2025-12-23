@@ -14,6 +14,8 @@ import (
 
 const projectRoot = "__project__"
 
+// PoetryLock parses poetry.lock files. It provides a full transitive closure
+// of the dependency graph without needing to contact a registry.
 type PoetryLock struct{}
 
 func (p *PoetryLock) Type() string              { return "poetry.lock" }

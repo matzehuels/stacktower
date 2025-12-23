@@ -2,8 +2,10 @@ package perm
 
 import "slices"
 
-// Seq returns a slice [0, 1, 2, ..., n-1].
-// Useful for initializing permutations or creating index sequences.
+// Seq returns a slice containing the sequence [0, 1, 2, ..., n-1].
+// This is useful for initializing permutation arrays or creating index sequences.
+//
+// For n <= 0, Seq returns an empty slice.
 func Seq(n int) []int {
 	result := make([]int, n)
 	for i := range result {
@@ -12,7 +14,11 @@ func Seq(n int) []int {
 	return result
 }
 
-// Factorial returns n! (n factorial). Returns 1 for n <= 1.
+// Factorial returns n! (n factorial), the product 1 × 2 × ... × n.
+// For n <= 1, Factorial returns 1.
+//
+// This function is useful for calculating the size of the full permutation space.
+// Note that factorials grow extremely fast: 13! = 6,227,020,800 exceeds 32-bit int.
 func Factorial(n int) int {
 	result := 1
 	for i := 2; i <= n; i++ {
@@ -22,8 +28,21 @@ func Factorial(n int) int {
 }
 
 // Generate returns permutations of [0, 1, ..., n-1] using Heap's algorithm.
-// If limit > 0, returns at most limit permutations; otherwise returns all n!.
-// Each returned slice is a separate allocation safe to modify.
+//
+// If limit > 0, Generate returns at most limit permutations.
+// If limit <= 0, Generate returns all n! permutations.
+//
+// Each returned slice is a separate allocation, safe to modify without affecting others.
+//
+// Generate handles edge cases gracefully:
+//   - n = 0: returns [[]] (one empty permutation)
+//   - n = 1: returns [[0]] (one single-element permutation)
+//
+// For n >= 13, the number of permutations exceeds billions. Always use a limit
+// when n is large, or your program will exhaust memory.
+//
+// Heap's algorithm generates permutations in a non-lexicographic order, but
+// efficiently produces each permutation exactly once.
 func Generate(n, limit int) [][]int {
 	if n == 0 {
 		return [][]int{{}}

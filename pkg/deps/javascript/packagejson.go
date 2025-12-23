@@ -12,6 +12,8 @@ import (
 
 const projectRoot = "__project__"
 
+// PackageJSON parses package.json files. It extracts dependencies,
+// devDependencies, and peerDependencies.
 type PackageJSON struct {
 	resolver deps.Resolver
 }

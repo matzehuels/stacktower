@@ -12,6 +12,8 @@ const (
 	defaultMarginRatio = 0.05
 )
 
+// Layout represents the computed physical positions and dimensions of all
+// blocks in a tower visualization.
 type Layout struct {
 	FrameWidth  float64
 	FrameHeight float64
@@ -21,6 +23,7 @@ type Layout struct {
 	MarginY     float64
 }
 
+// Option configures the layout generation process.
 type Option func(*config)
 
 type config struct {
@@ -30,22 +33,34 @@ type config struct {
 	topDownFlow bool
 }
 
+// WithOrderer sets the algorithm used to determine the horizontal ordering
+// of blocks in each row. Defaults to [ordering.Barycentric].
 func WithOrderer(o ordering.Orderer) Option {
 	return func(c *config) { c.orderer = o }
 }
 
+// WithAuxiliaryRatio sets the height of auxiliary rows (separator beams)
+// relative to regular rows. Defaults to 0.2.
 func WithAuxiliaryRatio(r float64) Option {
 	return func(c *config) { c.auxRatio = r }
 }
 
+// WithMarginRatio sets the outer margin of the tower relative to the total
+// frame size. Defaults to 0.05.
 func WithMarginRatio(r float64) Option {
 	return func(c *config) { c.marginRatio = r }
 }
 
+// WithTopDownWidths configures width computation to flow from parents to
+// children (top-down). The default is bottom-up, where blocks are sized
+// to support what is above them.
 func WithTopDownWidths() Option {
 	return func(c *config) { c.topDownFlow = true }
 }
 
+// Build computes a physical layout for the given DAG within the specified
+// width and height constraints. It applies row ordering, width computation,
+// and coordinate assignment.
 func Build(g *dag.DAG, width, height float64, opts ...Option) Layout {
 	cfg := config{
 		orderer:     ordering.Barycentric{},

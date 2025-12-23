@@ -12,6 +12,9 @@ import (
 
 const projectRoot = "__project__"
 
+// GoModParser parses go.mod files. It extracts direct dependencies and
+// optionally resolves them via the Go Module Proxy if a [deps.Resolver]
+// is provided.
 type GoModParser struct {
 	resolver deps.Resolver
 }

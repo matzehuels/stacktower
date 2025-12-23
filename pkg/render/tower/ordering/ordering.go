@@ -7,15 +7,21 @@ import (
 	"github.com/matzehuels/stacktower/pkg/dag"
 )
 
+// Orderer is an interface for horizontal row ordering algorithms.
+// An orderer determines the horizontal sequence of nodes in each row
+// to minimize edge crossings.
 type Orderer interface {
 	OrderRows(g *dag.DAG) map[int][]string
 }
 
+// ContextOrderer is an Orderer that supports cancellation and timeouts
+// via a context.
 type ContextOrderer interface {
 	Orderer
 	OrderRowsContext(ctx context.Context, g *dag.DAG) map[int][]string
 }
 
+// Quality represents the desired trade-off between ordering speed and quality.
 type Quality int
 
 const (

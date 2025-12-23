@@ -1,13 +1,14 @@
-// Package io provides JSON import and export for dependency graphs.
+// Package io provides JSON import and export for directed acyclic graphs (DAGs).
 //
 // # Overview
 //
-// Stacktower uses a simple JSON format as its interchange format. This allows:
+// This package enables serialization of dependency graphs to and from a simple
+// JSON format. The format is designed for:
 //
 //   - Visualization of any directed graph, not just package dependencies
 //   - Integration with external tools that produce or consume graph data
 //   - Caching of parsed dependency data for faster re-rendering
-//   - Round-trip preservation of layout decisions and render options
+//   - Round-trip preservation: import, render, export, and re-import identically
 //
 // # JSON Format
 //
@@ -58,21 +59,37 @@
 //	    log.Fatal(err)
 //	}
 //
+// Both functions validate the JSON structure and DAG constraints (no cycles,
+// no duplicate node IDs). Errors are wrapped with context about which node or
+// edge caused the problem.
+//
 // # Export
 //
 // Use [ExportJSON] to write a graph to a file, or [WriteJSON] to write to any
 // io.Writer:
 //
 //	err := io.ExportJSON(g, "output.json")
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
 //
 // The export includes all node and edge data, including synthetic nodes
-// (subdividers, auxiliaries) and their metadata. This enables round-trip:
-// import a graph, render it, export the result, and re-render identically.
+// (subdividers, auxiliaries) and their metadata. Row assignments, node kinds,
+// and all metadata are preserved. This enables full round-trip fidelity:
+// import a graph, transform it, export the result, and re-import identically.
+//
+// # Concurrency
+//
+// All functions in this package are safe to call concurrently with other
+// readers of the same DAG, but not with concurrent modifications to the DAG.
+// The [ReadJSON] and [ImportJSON] functions create independent DAG instances
+// that can be used and modified freely after import.
 //
 // # Layout Export
 //
-// For external tools that need computed positions, use the JSON sink in
-// [render/tower/sink] which exports the complete [layout.Layout] including
+// This package exports the logical graph structure only (nodes, edges, metadata).
+// For external tools that need computed layout positions, use the JSON sink in
+// [render/tower/sink], which exports the complete [layout.Layout] including
 // block coordinates, row orderings, and all render options.
 //
 // [render/tower/sink]: github.com/matzehuels/stacktower/pkg/render/tower/sink

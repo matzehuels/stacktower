@@ -73,7 +73,7 @@ run_parse_tests() {
     test_parse javascript yargs
     test_parse ruby rspec
     test_parse php symfony/console
-    test_parse java com.google.guava_guava
+    test_parse java com.google.guava:guava
     test_parse go github.com/spf13/cobra
 
     echo ""
@@ -320,7 +320,10 @@ test_parse() {
     local depth=${3:-$DEFAULT_MAX_DEPTH}
     local nodes=${4:-$DEFAULT_MAX_NODES}
     local refresh=${REFRESH:-true}
-    local output="$EXAMPLES_DIR/real/${pkg##*/}.json"
+    # Extract basename and replace colons with underscores (colons not allowed in filenames)
+    local basename="${pkg##*/}"
+    basename="${basename//:/_}"
+    local output="$EXAMPLES_DIR/real/${basename}.json"
 
     echo -n "  $lang/$pkg... "
 

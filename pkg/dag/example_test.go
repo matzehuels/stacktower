@@ -79,6 +79,38 @@ func ExampleDAG_metadata() {
 	// Version: 0.100.0
 }
 
+func ExampleDAG_Validate() {
+	// Validate checks for consecutive rows and cycles
+	g := dag.New(nil)
+	_ = g.AddNode(dag.Node{ID: "a", Row: 0})
+	_ = g.AddNode(dag.Node{ID: "b", Row: 1})
+	_ = g.AddNode(dag.Node{ID: "c", Row: 2})
+	_ = g.AddEdge(dag.Edge{From: "a", To: "b"})
+	_ = g.AddEdge(dag.Edge{From: "b", To: "c"})
+
+	if err := g.Validate(); err != nil {
+		fmt.Println("Invalid:", err)
+	} else {
+		fmt.Println("Valid DAG")
+	}
+	// Output:
+	// Valid DAG
+}
+
+func ExampleDAG_Validate_nonConsecutive() {
+	// Edges must connect consecutive rows
+	g := dag.New(nil)
+	_ = g.AddNode(dag.Node{ID: "a", Row: 0})
+	_ = g.AddNode(dag.Node{ID: "b", Row: 2}) // skips row 1
+	_ = g.AddEdge(dag.Edge{From: "a", To: "b"})
+
+	if err := g.Validate(); err != nil {
+		fmt.Println("Error:", err)
+	}
+	// Output:
+	// Error: edges must connect consecutive rows
+}
+
 func ExampleNode_synthetic() {
 	// Synthetic nodes are created during graph transformation
 	regular := dag.Node{ID: "lib", Kind: dag.NodeKindRegular}
@@ -121,4 +153,75 @@ func ExampleCountLayerCrossings() {
 	// Output:
 	// Crossings: 1
 	// After reorder: 0
+}
+
+func ExampleCountCrossings() {
+	// Count total crossings across all row pairs
+	g := dag.New(nil)
+	_ = g.AddNode(dag.Node{ID: "A", Row: 0})
+	_ = g.AddNode(dag.Node{ID: "B", Row: 0})
+	_ = g.AddNode(dag.Node{ID: "C", Row: 1})
+	_ = g.AddNode(dag.Node{ID: "D", Row: 1})
+	_ = g.AddNode(dag.Node{ID: "E", Row: 2})
+	_ = g.AddNode(dag.Node{ID: "F", Row: 2})
+
+	// Create a crossing pattern
+	_ = g.AddEdge(dag.Edge{From: "A", To: "D"})
+	_ = g.AddEdge(dag.Edge{From: "B", To: "C"})
+	_ = g.AddEdge(dag.Edge{From: "C", To: "F"})
+	_ = g.AddEdge(dag.Edge{From: "D", To: "E"})
+
+	orders := map[int][]string{
+		0: {"A", "B"},
+		1: {"C", "D"},
+		2: {"E", "F"},
+	}
+
+	total := dag.CountCrossings(g, orders)
+	fmt.Println("Total crossings:", total)
+	// Output:
+	// Total crossings: 2
+}
+
+func ExamplePosMap() {
+	// Convert a node ordering to a position lookup map
+	ordering := []string{"app", "lib", "core"}
+	positions := dag.PosMap(ordering)
+
+	fmt.Println("Position of 'lib':", positions["lib"])
+	fmt.Println("Position of 'core':", positions["core"])
+	// Output:
+	// Position of 'lib': 1
+	// Position of 'core': 2
+}
+
+func ExampleDAG_ChildrenInRow() {
+	// Query children in a specific row
+	g := dag.New(nil)
+	_ = g.AddNode(dag.Node{ID: "a", Row: 0})
+	_ = g.AddNode(dag.Node{ID: "b", Row: 1})
+	_ = g.AddNode(dag.Node{ID: "c", Row: 2})
+	_ = g.AddNode(dag.Node{ID: "d", Row: 2})
+	_ = g.AddEdge(dag.Edge{From: "a", To: "b"})
+	_ = g.AddEdge(dag.Edge{From: "a", To: "c"}) // skips row 1
+	_ = g.AddEdge(dag.Edge{From: "a", To: "d"}) // skips row 1
+
+	// Find children specifically in row 2
+	childrenInRow2 := g.ChildrenInRow("a", 2)
+	fmt.Println("Children in row 2:", len(childrenInRow2))
+	// Output:
+	// Children in row 2: 2
+}
+
+func ExampleNewCrossingWorkspace() {
+	// Reuse a workspace for efficient crossing calculations
+	// Determine maximum row width in your graph
+	maxWidth := 10
+
+	// Create a workspace sized for that maximum
+	ws := dag.NewCrossingWorkspace(maxWidth)
+
+	// Now use ws with CountCrossingsIdx for optimization loops
+	// (typically used internally by ordering algorithms)
+	_ = ws
 }

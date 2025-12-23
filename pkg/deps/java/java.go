@@ -2,6 +2,7 @@ package java
 
 import (
 	"context"
+	"strings"
 	"time"
 
 	"github.com/matzehuels/stacktower/pkg/deps"
@@ -19,6 +20,7 @@ var Language = &deps.Language{
 	NewResolver:     newResolver,
 	NewManifest:     newManifest,
 	ManifestParsers: manifestParsers,
+	NormalizeName:   NormalizeCoordinate,
 }
 
 func newResolver(ttl time.Duration) (deps.Resolver, error) {
@@ -32,7 +34,8 @@ func newResolver(ttl time.Duration) (deps.Resolver, error) {
 type fetcher struct{ *maven.Client }
 
 func (f fetcher) Fetch(ctx context.Context, name string, refresh bool) (*deps.Package, error) {
-	a, err := f.FetchArtifact(ctx, name, refresh)
+	coord := NormalizeCoordinate(name)
+	a, err := f.FetchArtifact(ctx, coord, refresh)
 	if err != nil {
 		return nil, err
 	}
@@ -44,6 +47,27 @@ func (f fetcher) Fetch(ctx context.Context, name string, refresh bool) (*deps.Pa
 		HomePage:     a.URL,
 		ManifestFile: "pom.xml",
 	}, nil
+}
+
+// NormalizeCoordinate converts filename-safe coordinates to Maven format.
+// Since colons are not allowed in filenames (especially on Windows and in some
+// build tools), underscores can be used as a substitute. This function converts
+// "groupId_artifactId" to "groupId:artifactId" when no colon is present.
+//
+// Examples:
+//   - "com.google.guava:guava" → "com.google.guava:guava" (unchanged)
+//   - "com.google.guava_guava" → "com.google.guava:guava" (converted)
+func NormalizeCoordinate(coord string) string {
+	if strings.Contains(coord, ":") {
+		return coord
+	}
+	// Replace the last underscore with a colon
+	// GroupIds follow reverse domain notation (no underscores typically)
+	// while artifactIds may contain hyphens or underscores
+	if idx := strings.LastIndex(coord, "_"); idx != -1 {
+		return coord[:idx] + ":" + coord[idx+1:]
+	}
+	return coord
 }
 
 func newManifest(name string, res deps.Resolver) deps.ManifestParser {

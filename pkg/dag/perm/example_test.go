@@ -149,3 +149,42 @@ func ExampleSeq() {
 	// Output:
 	// [0 1 2 3 4]
 }
+
+func ExamplePQTree_EnumerateFunc() {
+	tree := perm.NewPQTree(4)
+	tree.Reduce([]int{0, 1, 2})
+
+	// Stream permutations without allocating all at once
+	count := 0
+	tree.EnumerateFunc(func(perm []int) bool {
+		fmt.Println(perm)
+		count++
+		return count < 3 // Stop after 3
+	})
+	fmt.Printf("Processed %d permutations\n", count)
+	// Output:
+	// [0 1 2 3]
+	// [1 0 2 3]
+	// [2 0 1 3]
+	// Processed 3 permutations
+}
+
+func ExamplePQTree_Clone() {
+	tree := perm.NewPQTree(4)
+	tree.Reduce([]int{0, 1})
+
+	// Try different constraints on branches
+	branch1 := tree.Clone()
+	branch1.Reduce([]int{2, 3})
+
+	branch2 := tree.Clone()
+	branch2.Reduce([]int{1, 2})
+
+	fmt.Println("Original:", tree.ValidCount())
+	fmt.Println("Branch 1:", branch1.ValidCount())
+	fmt.Println("Branch 2:", branch2.ValidCount())
+	// Output:
+	// Original: 12
+	// Branch 1: 8
+	// Branch 2: 4
+}

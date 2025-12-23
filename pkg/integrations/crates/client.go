@@ -10,27 +10,46 @@ import (
 )
 
 // CrateInfo holds metadata for a Rust crate from crates.io.
+//
+// The Version field contains the max_version (latest stable or highest version).
+// Dependencies include only "normal" (non-dev, non-optional) dependencies.
+//
+// Zero values: All string fields are empty, Dependencies is nil, Downloads is 0.
+// A Downloads value of 0 is valid for newly published crates.
+// This struct is safe for concurrent reads after construction.
 type CrateInfo struct {
-	Name         string
-	Version      string
-	Dependencies []string
-	Repository   string
-	HomePage     string
-	Description  string
-	License      string
-	Downloads    int
+	Name         string   // Crate name (e.g., "serde", never empty in valid info)
+	Version      string   // Latest version (e.g., "1.0.193", never empty in valid info)
+	Dependencies []string // Normal dependency crate names (nil or empty if none)
+	Repository   string   // Repository URL (may be empty)
+	HomePage     string   // Homepage URL (may be empty)
+	Description  string   // Crate description (may be empty)
+	License      string   // License identifier(s) (may be empty or "MIT OR Apache-2.0")
+	Downloads    int      // Total download count across all versions (0 for new crates)
 }
 
 // Client provides access to the crates.io package registry API.
 // It handles HTTP requests with caching and automatic retries.
+//
+// All methods are safe for concurrent use by multiple goroutines.
+//
+// Note: crates.io requires a User-Agent header; this client sets one automatically.
 type Client struct {
 	*integrations.Client
 	baseURL string
 }
 
 // NewClient creates a crates.io client with the specified cache TTL.
+//
+// The cacheTTL parameter sets how long responses are cached.
+// Typical values: 1-24 hours for production, 0 for testing (no cache).
+//
+// The client includes a User-Agent header as required by crates.io API policy.
+//
+// Returns an error if the cache directory cannot be created or accessed.
+// The returned Client is safe for concurrent use.
 func NewClient(cacheTTL time.Duration) (*Client, error) {
-	cache, err := integrations.NewCache(cacheTTL)
+	cache, err := integrations.NewCacheWithNamespace("crates:", cacheTTL)
 	if err != nil {
 		return nil, err
 	}
@@ -44,9 +63,26 @@ func NewClient(cacheTTL time.Duration) (*Client, error) {
 }
 
 // FetchCrate retrieves metadata for a Rust crate from crates.io.
-// If refresh is true, cached data is bypassed.
+//
+// The crate parameter is case-sensitive and must match the published crate name exactly.
+// Crate name cannot be empty; an empty string will result in an API error.
+//
+// If refresh is true, the cache is bypassed and a fresh API call is made.
+// If refresh is false, cached data is returned if available and not expired.
+//
+// Dependency fetching failures are silently ignored; Dependencies will be empty/nil
+// if the secondary API call fails. This is not considered an error.
+//
+// Returns:
+//   - CrateInfo populated with metadata on success
+//   - [integrations.ErrNotFound] if the crate doesn't exist
+//   - [integrations.ErrNetwork] for HTTP failures (timeout, 5xx, etc.)
+//   - Other errors for JSON decoding failures
+//
+// The returned CrateInfo pointer is never nil if err is nil.
+// This method is safe for concurrent use.
 func (c *Client) FetchCrate(ctx context.Context, crate string, refresh bool) (*CrateInfo, error) {
-	key := "crates:" + crate
+	key := crate
 
 	var info CrateInfo
 	err := c.Cached(ctx, key, refresh, &info, func() error {

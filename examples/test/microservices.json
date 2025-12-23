@@ -74,44 +74,44 @@
   ],
   "edges": [
     {
-      "from": "user-db",
-      "to": "web-server"
+      "from": "web-server",
+      "to": "user-db"
     },
     {
-      "from": "message-queue",
-      "to": "web-server"
+      "from": "web-server",
+      "to": "message-queue"
     },
     {
-      "from": "logger",
-      "to": "web-server"
+      "from": "web-server",
+      "to": "logger"
     },
     {
-      "from": "metrics",
-      "to": "web-server"
+      "from": "web-server",
+      "to": "metrics"
     },
     {
-      "from": "message-queue",
-      "to": "worker-pool"
+      "from": "worker-pool",
+      "to": "message-queue"
+    },
+    {
+      "from": "worker-pool",
+      "to": "analytics"
+    },
+    {
+      "from": "worker-pool",
+      "to": "external-api"
+    },
+    {
+      "from": "worker-pool",
+      "to": "logger"
     },
     {
       "from": "analytics",
-      "to": "worker-pool"
+      "to": "user-db"
     },
     {
-      "from": "external-api",
-      "to": "worker-pool"
-    },
-    {
-      "from": "logger",
-      "to": "worker-pool"
-    },
-    {
-      "from": "user-db",
-      "to": "analytics"
-    },
-    {
-      "from": "metrics",
-      "to": "analytics"
+      "from": "analytics",
+      "to": "metrics"
     }
   ]
 }

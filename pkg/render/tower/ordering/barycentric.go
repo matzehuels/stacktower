@@ -9,10 +9,14 @@ import (
 
 const defaultPasses = 24
 
+// Barycentric implements a fast heuristic for edge crossing minimization
+// based on the Sugiyama framework. It iteratively reorders rows by the
+// average position (barycenter) of their neighbors in adjacent rows.
 type Barycentric struct {
 	Passes int
 }
 
+// OrderRows implements the [Orderer] interface using the barycentric heuristic.
 func (b Barycentric) OrderRows(g *dag.DAG) map[int][]string {
 	rows := g.RowIDs()
 	if len(rows) == 0 {
