@@ -22,6 +22,8 @@ import (
 	pkgio "github.com/matzehuels/stacktower/pkg/io"
 )
 
+// languages is the list of supported package ecosystems.
+// Each language provides resolvers for package registries and manifest parsers.
 var languages = []*deps.Language{
 	python.Language,
 	rust.Language,
@@ -32,15 +34,20 @@ var languages = []*deps.Language{
 	golang.Language,
 }
 
+// parseOpts holds the command-line flags for the parse command.
+// These options control dependency resolution depth, caching, and metadata enrichment.
 type parseOpts struct {
-	maxDepth int
-	maxNodes int
-	enrich   bool
-	refresh  bool
-	output   string
-	name     string
+	maxDepth int    // maximum dependency tree depth
+	maxNodes int    // maximum total nodes to fetch
+	enrich   bool   // whether to fetch GitHub metadata
+	refresh  bool   // bypass HTTP cache
+	output   string // output file path (stdout if empty)
+	name     string // override project name for manifest parsing
 }
 
+// resolveOptions converts parseOpts into deps.Options for the resolver.
+// If metadata enrichment fails (e.g., missing GITHUB_TOKEN), a warning is logged
+// and enrichment is disabled rather than failing the entire operation.
 func (o *parseOpts) resolveOptions(ctx context.Context) deps.Options {
 	logger := loggerFromContext(ctx)
 	providers, err := metadataProviders(o.enrich)
@@ -57,6 +64,14 @@ func (o *parseOpts) resolveOptions(ctx context.Context) deps.Options {
 	}
 }
 
+// newParseCmd creates the parse command with language-specific subcommands.
+// It supports parsing from package registries (e.g., "parse python requests")
+// or from local manifest files (e.g., "parse python poetry.lock").
+//
+// Default options:
+//   - maxDepth: 10 levels of transitive dependencies
+//   - maxNodes: 5000 packages maximum
+//   - enrich: true (fetch GitHub metadata if GITHUB_TOKEN is set)
 func newParseCmd() *cobra.Command {
 	opts := parseOpts{maxDepth: 10, maxNodes: 5000, enrich: true}
 
@@ -88,6 +103,9 @@ Examples:
 	return cmd
 }
 
+// langCmd creates a language-specific parse subcommand (e.g., "parse python").
+// The command auto-detects whether the argument is a package name or manifest file
+// using smartParse.
 func langCmd(lang *deps.Language, opts *parseOpts) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   fmt.Sprintf("%s <package-or-file>", lang.Name),
@@ -106,6 +124,8 @@ func langCmd(lang *deps.Language, opts *parseOpts) *cobra.Command {
 	return cmd
 }
 
+// registryCmd creates the "registry" subcommand for explicit registry selection.
+// Example: "parse python registry pypi requests" to force PyPI even if the default changes.
 func registryCmd(lang *deps.Language, opts *parseOpts) *cobra.Command {
 	return &cobra.Command{
 		Use:   fmt.Sprintf("registry <%s> <package>", lang.DefaultRegistry),
@@ -116,11 +136,18 @@ func registryCmd(lang *deps.Language, opts *parseOpts) *cobra.Command {
 			if err != nil {
 				return err
 			}
-			return resolve(c.Context(), opts, res, args[1])
+			pkg := args[1]
+			// Normalize package name if the language supports it
+			if lang.NormalizeName != nil {
+				pkg = lang.NormalizeName(pkg)
+			}
+			return resolve(c.Context(), opts, res, pkg)
 		},
 	}
 }
 
+// manifestCmd creates the "manifest" subcommand for explicit manifest type selection.
+// Example: "parse python manifest poetry poetry.lock" to force Poetry format.
 func manifestCmd(lang *deps.Language, opts *parseOpts) *cobra.Command {
 	return &cobra.Command{
 		Use:   fmt.Sprintf("manifest <%s> <file>", strings.Join(lang.ManifestTypes, "|")),
@@ -140,6 +167,9 @@ func manifestCmd(lang *deps.Language, opts *parseOpts) *cobra.Command {
 	}
 }
 
+// smartParse auto-detects whether arg is a manifest file or package name.
+// If looksLikeFile returns true and the language supports manifests, it parses as a file.
+// Otherwise, it resolves as a package from the default registry.
 func smartParse(ctx context.Context, lang *deps.Language, opts *parseOpts, arg string) error {
 	if lang.HasManifests() && looksLikeFile(arg) {
 		return parseManifestAuto(ctx, lang, opts, arg)
@@ -148,9 +178,15 @@ func smartParse(ctx context.Context, lang *deps.Language, opts *parseOpts, arg s
 	if err != nil {
 		return err
 	}
+	// Normalize package name if the language supports it (e.g., Maven coordinate normalization)
+	if lang.NormalizeName != nil {
+		arg = lang.NormalizeName(arg)
+	}
 	return resolve(ctx, opts, res, arg)
 }
 
+// parseManifestAuto attempts to detect the manifest file type and parse it.
+// It returns an error if detection fails or if the file format is unsupported.
 func parseManifestAuto(ctx context.Context, lang *deps.Language, opts *parseOpts, filePath string) error {
 	res, err := lang.Resolver()
 	if err != nil {
@@ -163,6 +199,8 @@ func parseManifestAuto(ctx context.Context, lang *deps.Language, opts *parseOpts
 	return parseManifest(ctx, opts, parser, filePath)
 }
 
+// resolve fetches the dependency graph for pkg from the given resolver.
+// It logs progress and writes the resulting graph as JSON to opts.output (or stdout).
 func resolve(ctx context.Context, opts *parseOpts, res deps.Resolver, pkg string) error {
 	logger := loggerFromContext(ctx)
 	logger.Infof("Resolving %s from %s", pkg, res.Name())
@@ -177,6 +215,8 @@ func resolve(ctx context.Context, opts *parseOpts, res deps.Resolver, pkg string
 	return writeGraph(g, opts.output, logger)
 }
 
+// parseManifest parses a manifest file and writes the resulting dependency graph.
+// If opts.name is set, it renames the root node from "__project__" to the specified name.
 func parseManifest(ctx context.Context, opts *parseOpts, parser deps.ManifestParser, filePath string) error {
 	logger := loggerFromContext(ctx)
 	logger.Infof("Parsing %s (%s)", filePath, parser.Type())
@@ -201,6 +241,9 @@ func parseManifest(ctx context.Context, opts *parseOpts, parser deps.ManifestPar
 	return writeGraph(g, opts.output, logger)
 }
 
+// looksLikeFile returns true if arg appears to be a file path rather than a package name.
+// It checks if the file exists or has a known manifest extension (.txt, .lock, .toml, .xml).
+// Known manifest files like "go.mod" and "pom.xml" always return true.
 func looksLikeFile(arg string) bool {
 	if _, err := os.Stat(arg); err == nil {
 		return true
@@ -214,6 +257,8 @@ func looksLikeFile(arg string) bool {
 		lower == "pom.xml"
 }
 
+// writeGraph serializes g as JSON to the specified path (or stdout if empty).
+// The logger is notified on success with the output path.
 func writeGraph(g *dag.DAG, path string, logger interface{ Infof(string, ...any) }) error {
 	out, err := openOutput(path)
 	if err != nil {
@@ -230,6 +275,9 @@ func writeGraph(g *dag.DAG, path string, logger interface{ Infof(string, ...any)
 	return nil
 }
 
+// metadataProviders returns GitHub metadata providers if enrich is true.
+// It requires the GITHUB_TOKEN environment variable.
+// If the token is missing or invalid, an error is returned.
 func metadataProviders(enrich bool) ([]deps.MetadataProvider, error) {
 	if !enrich {
 		return nil, nil
@@ -245,10 +293,16 @@ func metadataProviders(enrich bool) ([]deps.MetadataProvider, error) {
 	return []deps.MetadataProvider{gh}, nil
 }
 
+// nopCloser wraps an io.Writer with a no-op Close method.
+// It is used to make os.Stdout compatible with io.WriteCloser.
 type nopCloser struct{ io.Writer }
 
+// Close implements io.Closer with a no-op.
 func (nopCloser) Close() error { return nil }
 
+// openOutput returns a WriteCloser for the given path.
+// If path is empty, it returns os.Stdout wrapped in nopCloser.
+// Otherwise, it creates the file at path, overwriting if it exists.
 func openOutput(path string) (io.WriteCloser, error) {
 	if path == "" {
 		return nopCloser{os.Stdout}, nil

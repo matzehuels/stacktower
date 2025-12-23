@@ -167,3 +167,45 @@ func TestRetryableError(t *testing.T) {
 		t.Errorf("got Unwrap() = %v, want %v", got, inner)
 	}
 }
+
+func TestRetryable(t *testing.T) {
+	t.Run("wrapsError", func(t *testing.T) {
+		inner := errors.New("test error")
+		err := Retryable(inner)
+
+		if err == nil {
+			t.Fatal("expected non-nil error")
+		}
+		if !errors.Is(err, inner) {
+			t.Error("errors.Is failed to match wrapped error")
+		}
+		var retryErr *RetryableError
+		if !errors.As(err, &retryErr) {
+			t.Error("expected RetryableError type")
+		}
+	})
+
+	t.Run("nilInput", func(t *testing.T) {
+		err := Retryable(nil)
+		if err != nil {
+			t.Errorf("got %v, want nil", err)
+		}
+	})
+
+	t.Run("usedInRetry", func(t *testing.T) {
+		attempts := 0
+		err := Retry(context.Background(), 3, time.Millisecond, func() error {
+			attempts++
+			if attempts < 2 {
+				return Retryable(errors.New("retry me"))
+			}
+			return nil
+		})
+		if err != nil {
+			t.Errorf("unexpected error: %v", err)
+		}
+		if attempts != 2 {
+			t.Errorf("got %d attempts, want 2", attempts)
+		}
+	})
+}

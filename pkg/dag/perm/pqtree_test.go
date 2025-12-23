@@ -149,6 +149,136 @@ func TestPQTree_ValidCount(t *testing.T) {
 	}
 }
 
+func TestPQTree_Clone(t *testing.T) {
+	// Test that clone creates independent copy
+	original := NewPQTree(5)
+	original.Reduce([]int{0, 1, 2})
+
+	originalCountBefore := original.ValidCount()
+	originalStringBefore := original.String()
+
+	clone := original.Clone()
+
+	// Verify initial state matches
+	if clone.ValidCount() != originalCountBefore {
+		t.Errorf("Clone ValidCount %d != original %d", clone.ValidCount(), originalCountBefore)
+	}
+
+	if clone.String() != originalStringBefore {
+		t.Errorf("Clone structure doesn't match:\nClone:    %s\nOriginal: %s", clone.String(), originalStringBefore)
+	}
+
+	// Modify clone - should not affect original
+	ok := clone.Reduce([]int{3, 4})
+	if !ok {
+		t.Fatal("Clone reduce failed")
+	}
+
+	cloneCountAfter := clone.ValidCount()
+	originalCountAfter := original.ValidCount()
+	originalStringAfter := original.String()
+
+	t.Logf("Original before: count=%d, structure=%s", originalCountBefore, originalStringBefore)
+	t.Logf("Original after:  count=%d, structure=%s", originalCountAfter, originalStringAfter)
+	t.Logf("Clone after:     count=%d, structure=%s", cloneCountAfter, clone.String())
+
+	// Verify original unchanged
+	if originalCountAfter != originalCountBefore {
+		t.Errorf("Original ValidCount changed from %d to %d", originalCountBefore, originalCountAfter)
+	}
+
+	if originalStringAfter != originalStringBefore {
+		t.Errorf("Original structure changed from %s to %s", originalStringBefore, originalStringAfter)
+	}
+
+	// Verify clone changed
+	if cloneCountAfter >= originalCountBefore {
+		t.Errorf("Clone ValidCount should be less than %d after constraint, got %d", originalCountBefore, cloneCountAfter)
+	}
+}
+
+func TestPQTree_CloneEmpty(t *testing.T) {
+	original := NewPQTree(0)
+	clone := original.Clone()
+
+	if clone.ValidCount() != 1 {
+		t.Errorf("Empty clone ValidCount = %d, want 1", clone.ValidCount())
+	}
+}
+
+func TestPQTree_EnumerateFunc(t *testing.T) {
+	tree := NewPQTree(3)
+
+	// Collect via EnumerateFunc
+	var collected [][]int
+	count := tree.EnumerateFunc(func(perm []int) bool {
+		collected = append(collected, slices.Clone(perm))
+		return true
+	})
+
+	if count != 6 {
+		t.Errorf("EnumerateFunc returned count %d, want 6", count)
+	}
+
+	if len(collected) != 6 {
+		t.Errorf("Collected %d permutations, want 6", len(collected))
+	}
+
+	// Verify all unique
+	seen := make(map[string]bool)
+	for _, p := range collected {
+		key := ""
+		for _, v := range p {
+			key += string(rune('0' + v))
+		}
+		if seen[key] {
+			t.Errorf("EnumerateFunc generated duplicate: %v", p)
+		}
+		seen[key] = true
+	}
+}
+
+func TestPQTree_EnumerateFuncEarlyStop(t *testing.T) {
+	tree := NewPQTree(4)
+
+	// Stop after 3 permutations
+	stopAfter := 3
+	collected := 0
+	count := tree.EnumerateFunc(func(perm []int) bool {
+		collected++
+		return collected < stopAfter
+	})
+
+	if count != stopAfter {
+		t.Errorf("EnumerateFunc count = %d, want %d", count, stopAfter)
+	}
+
+	if collected != stopAfter {
+		t.Errorf("Collected %d permutations, want %d", collected, stopAfter)
+	}
+}
+
+func TestPQTree_EnumerateFuncEmptyTree(t *testing.T) {
+	tree := NewPQTree(0)
+
+	called := false
+	count := tree.EnumerateFunc(func(perm []int) bool {
+		called = true
+		if len(perm) != 0 {
+			t.Errorf("Expected empty permutation, got %v", perm)
+		}
+		return true
+	})
+
+	if !called {
+		t.Error("EnumerateFunc should call function for empty tree")
+	}
+
+	if count != 1 {
+		t.Errorf("EnumerateFunc count = %d, want 1", count)
+	}
+}
+
 func areConsecutive(perm, subset []int) bool {
 	if len(subset) <= 1 {
 		return true

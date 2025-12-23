@@ -5,6 +5,21 @@ import (
 	"strings"
 )
 
+// PQTree is a data structure that compactly represents a family of permutations
+// satisfying "consecutive ones" constraints.
+//
+// A PQ-tree encodes the valid orderings of n elements where certain subsets
+// must appear consecutively. The tree represents all permutations that satisfy
+// the applied constraints, allowing efficient pruning of invalid orderings.
+//
+// The tree has two types of internal nodes:
+//   - P-nodes (Permutable): children can appear in any order (n! orderings)
+//   - Q-nodes (seQuence): children have a fixed order, reversible (2 orderings)
+//
+// PQTree is not safe for concurrent use. If multiple goroutines access a PQTree,
+// they must be synchronized with external locking.
+//
+// The zero value of PQTree is not usable; use NewPQTree to create instances.
 type PQTree struct {
 	root   *pqNode
 	leaves []*pqNode
@@ -37,6 +52,20 @@ type pqNode struct {
 	partialCount int
 }
 
+// NewPQTree creates a PQ-tree representing all n! permutations of n elements.
+//
+// The elements are numbered [0, 1, ..., n-1]. Initially, no constraints are
+// applied, so all n! orderings are valid. Call Reduce to apply consecutive-ones
+// constraints that restrict the set of valid permutations.
+//
+// For n = 0, NewPQTree returns a tree representing one empty permutation.
+// For n = 1, NewPQTree returns a tree with a single element.
+//
+// The returned PQTree is ready to use and can be modified with Reduce or
+// queried with Enumerate, ValidCount, and String methods.
+//
+// To explore multiple constraint branches without mutating the original tree,
+// use Clone to create independent copies.
 func NewPQTree(n int) *PQTree {
 	if n == 0 {
 		return &PQTree{}
@@ -59,6 +88,29 @@ func NewPQTree(n int) *PQTree {
 	return &PQTree{root: root, leaves: leaves}
 }
 
+// Reduce applies a consecutive-ones constraint to the tree.
+//
+// After calling Reduce(constraint), only permutations where all elements in
+// constraint appear consecutively (in any order) remain valid. Multiple calls
+// to Reduce apply cumulative constraints, further restricting the valid set.
+//
+// Reduce returns true if the constraint is satisfiable with previously applied
+// constraints, false if the constraint creates a contradiction. When Reduce
+// returns false, the tree is left in an undefined state and should not be used
+// further.
+//
+// The constraint slice is not modified. Element indices must be in the range
+// [0, n-1] where n is the value passed to NewPQTree. Out-of-range indices are
+// silently ignored.
+//
+// Trivial constraints (length 0, 1, or equal to tree size) are always satisfiable
+// and have no effect on the tree structure.
+//
+// Example:
+//
+//	tree := perm.NewPQTree(5)
+//	tree.Reduce([]int{1, 2, 3})  // Elements 1, 2, 3 must be consecutive
+//	tree.Reduce([]int{0, 1})     // Elements 0, 1 must be consecutive
 func (t *PQTree) Reduce(constraint []int) bool {
 	if t.root == nil || len(constraint) <= 1 || len(constraint) == len(t.leaves) {
 		return true
@@ -76,6 +128,82 @@ func (t *PQTree) Reduce(constraint []int) bool {
 	}
 
 	return t.reduce(t.root)
+}
+
+// Clone creates an independent deep copy of the PQ-tree.
+//
+// The cloned tree has identical structure and represents the same set of valid
+// permutations, but can be modified independently without affecting the original.
+// This is useful for exploring multiple constraint branches in search algorithms.
+//
+// Clone copies the entire internal tree structure. For large trees, this operation
+// may be expensive. Consider cloning only when necessary.
+//
+// Example:
+//
+//	tree := perm.NewPQTree(5)
+//	tree.Reduce([]int{1, 2, 3})
+//
+//	// Try two different additional constraints
+//	branch1 := tree.Clone()
+//	branch1.Reduce([]int{0, 1})  // Branch 1 constraint
+//
+//	branch2 := tree.Clone()
+//	branch2.Reduce([]int{3, 4})  // Branch 2 constraint
+//
+//	// Original tree unchanged
+//	fmt.Println(tree.ValidCount())
+func (t *PQTree) Clone() *PQTree {
+	if t.root == nil {
+		return &PQTree{}
+	}
+
+	// Map old nodes to new nodes for parent/leaf pointer fixup
+	nodeMap := make(map[*pqNode]*pqNode)
+
+	// Clone the tree structure
+	newRoot := t.cloneNode(t.root, nodeMap)
+
+	// Rebuild leaves slice
+	newLeaves := make([]*pqNode, len(t.leaves))
+	for i, oldLeaf := range t.leaves {
+		newLeaves[i] = nodeMap[oldLeaf]
+	}
+
+	return &PQTree{
+		root:   newRoot,
+		leaves: newLeaves,
+	}
+}
+
+func (t *PQTree) cloneNode(n *pqNode, nodeMap map[*pqNode]*pqNode) *pqNode {
+	if n == nil {
+		return nil
+	}
+
+	// Check if already cloned (shouldn't happen in tree, but safe)
+	if clone, exists := nodeMap[n]; exists {
+		return clone
+	}
+
+	// Create new node with same basic fields
+	clone := &pqNode{
+		kind:  n.kind,
+		value: n.value,
+		mark:  n.mark,
+	}
+	nodeMap[n] = clone
+
+	// Clone children recursively
+	if len(n.children) > 0 {
+		clone.children = make([]*pqNode, len(n.children))
+		for i, child := range n.children {
+			clone.children[i] = t.cloneNode(child, nodeMap)
+			clone.children[i].parent = clone
+		}
+	}
+
+	return clone
 }
 
 func (t *PQTree) clearMarks(n *pqNode) {
@@ -355,6 +483,30 @@ func (t *PQTree) mergeQNodes(parent *pqNode, idx int) {
 	parent.children = newChildren
 }
 
+// Enumerate returns all valid permutations represented by the tree.
+//
+// If limit > 0, Enumerate returns at most limit permutations.
+// If limit <= 0, Enumerate returns all valid permutations.
+//
+// Each returned slice is a separate allocation containing element indices in
+// permuted order. The slices are safe to modify without affecting the tree or
+// other returned permutations.
+//
+// The order of returned permutations is not specified and may change between
+// calls or Go versions.
+//
+// For trees with a large ValidCount, always use a limit to avoid memory exhaustion.
+// A tree with strong constraints might have only a few hundred valid orderings,
+// while an unconstrained tree has n! orderings.
+//
+// For memory-efficient streaming without allocating all results at once, use
+// EnumerateFunc instead.
+//
+// Example:
+//
+//	tree := perm.NewPQTree(4)
+//	tree.Reduce([]int{0, 1, 2})
+//	orderings := tree.Enumerate(10)  // Get first 10 valid orderings
 func (t *PQTree) Enumerate(limit int) [][]int {
 	if t.root == nil {
 		return [][]int{{}}
@@ -366,6 +518,49 @@ func (t *PQTree) Enumerate(limit int) [][]int {
 		return limit <= 0 || len(results) < limit
 	})
 	return results
+}
+
+// EnumerateFunc generates valid permutations one at a time via callback.
+//
+// EnumerateFunc calls fn for each valid permutation until fn returns false or
+// all permutations are exhausted. This is memory-efficient for large result sets
+// since permutations are generated on-demand rather than allocated all at once.
+//
+// The callback fn receives a permutation slice that is valid only for the
+// duration of the call. If the caller needs to retain the permutation, it must
+// copy it (e.g., with slices.Clone).
+//
+// EnumerateFunc returns the number of permutations processed before stopping.
+// If fn always returns true, the return value equals ValidCount().
+//
+// The order of generated permutations is not specified and may change between
+// calls or Go versions.
+//
+// Example:
+//
+//	tree := perm.NewPQTree(10)
+//	tree.Reduce([]int{0, 1, 2, 3, 4})
+//
+//	// Process first 100 permutations without allocating all at once
+//	count := 0
+//	tree.EnumerateFunc(func(perm []int) bool {
+//		// Process perm here
+//		fmt.Println(perm)
+//		count++
+//		return count < 100  // Stop after 100
+//	})
+func (t *PQTree) EnumerateFunc(fn func([]int) bool) int {
+	if t.root == nil {
+		fn([]int{})
+		return 1
+	}
+
+	count := 0
+	t.enumerateLazy(t.root, nil, func(perm []int) bool {
+		count++
+		return fn(perm)
+	})
+	return count
 }
 
 // enumerateLazy generates permutations one at a time via callback.
@@ -447,6 +642,25 @@ func (t *PQTree) enumerateChildrenLazy(children []*pqNode, prefix []int, emit fu
 	})
 }
 
+// ValidCount returns the number of valid permutations represented by the tree.
+//
+// ValidCount efficiently computes the count without enumerating all permutations.
+// The count reflects all constraints applied via Reduce.
+//
+// The count is computed from the tree structure:
+//   - P-nodes multiply by n! (factorial of child count)
+//   - Q-nodes multiply by 2 (forward and reverse)
+//   - Leaf nodes contribute 1
+//
+// For large trees, the count may be accurate even when Enumerate(0) would
+// exhaust memory. Use ValidCount to check if enumeration is feasible before
+// calling Enumerate without a limit.
+//
+// Example:
+//
+//	tree := perm.NewPQTree(5)           // 5! = 120 permutations
+//	tree.Reduce([]int{1, 2, 3})
+//	fmt.Println(tree.ValidCount())      // Much less than 120
 func (t *PQTree) ValidCount() int {
 	if t.root == nil {
 		return 1
@@ -472,10 +686,36 @@ func (t *PQTree) countPerms(node *pqNode) int {
 	}
 }
 
+// String returns a human-readable representation of the tree structure.
+//
+// The representation uses a nested notation:
+//   - P-nodes (permutable): enclosed in curly braces {}
+//   - Q-nodes (sequence): enclosed in square brackets []
+//   - Leaf nodes: shown as single digits 0-9, or (a), (b), ... for indices >= 10
+//
+// String is equivalent to StringWithLabels(nil).
+//
+// Example output: "{0 {1 2 3} 4}" represents a tree where elements 1, 2, 3
+// must be consecutive but can permute among themselves.
 func (t *PQTree) String() string {
 	return t.StringWithLabels(nil)
 }
 
+// StringWithLabels returns a human-readable representation using custom labels.
+//
+// The labels slice maps element indices to strings. If labels[i] exists, element i
+// is displayed as labels[i] instead of its numeric index. This is useful for
+// showing meaningful names in debugging output or examples.
+//
+// If labels is nil or shorter than needed, numeric indices are used as fallback.
+// The labels slice is not modified.
+//
+// Example:
+//
+//	tree := perm.NewPQTree(3)
+//	labels := []string{"app", "auth", "db"}
+//	tree.Reduce([]int{0, 1})
+//	fmt.Println(tree.StringWithLabels(labels))  // "{app auth} db" (or similar)
 func (t *PQTree) StringWithLabels(labels []string) string {
 	if t.root == nil {
 		return "(empty)"

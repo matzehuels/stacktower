@@ -14,6 +14,8 @@ import (
 
 const projectRoot = "__project__"
 
+// Gemfile parses Ruby Gemfiles. It extracts gems and optionally resolves
+// them via RubyGems.
 type Gemfile struct {
 	resolver deps.Resolver
 }

@@ -13,6 +13,8 @@ import (
 
 const projectRoot = "__project__"
 
+// CargoToml parses Cargo.toml files. It extracts direct, dev, and build
+// dependencies.
 type CargoToml struct {
 	resolver deps.Resolver
 }

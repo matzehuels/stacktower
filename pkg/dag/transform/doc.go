@@ -62,13 +62,30 @@
 // dependencies. This function removes the minimum edges needed to restore
 // acyclicity using a DFS-based approach.
 //
+// # Goroutine Safety
+//
+// All functions in this package modify the input DAG in place and are NOT safe
+// for concurrent use. Callers must ensure exclusive access to the DAG during
+// transformation. The DAG itself is not internally synchronized.
+//
 // # Usage
 //
 // For most use cases, call [Normalize] which applies all transformations:
 //
-//	transform.Normalize(g) // Modifies g in place
+//	g := dag.New(nil)
+//	// ... populate graph ...
+//	result := transform.Normalize(g) // Modifies g in place, returns metrics
+//	fmt.Printf("Removed %d cycles, %d transitive edges\n",
+//	    result.CyclesRemoved, result.TransitiveEdgesRemoved)
 //
-// For fine-grained control, apply transformations individually:
+// To skip specific transformations, use [NormalizeWithOptions]:
+//
+//	result := transform.NormalizeWithOptions(g, transform.NormalizeOptions{
+//	    SkipTransitiveReduction: true, // Keep all edges
+//	    SkipSeparators:          true, // Accept crossings
+//	})
+//
+// For fine-grained control, apply transformations individually in this order:
 //
 //	transform.BreakCycles(g)
 //	transform.TransitiveReduction(g)

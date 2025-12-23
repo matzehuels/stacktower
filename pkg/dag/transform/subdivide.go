@@ -6,6 +6,48 @@ import (
 	"github.com/matzehuels/stacktower/pkg/dag"
 )
 
+// Subdivide breaks edges that span multiple rows into sequences of single-row
+// edges connected by synthetic subdivider nodes.
+//
+// Subdivide ensures every edge in the graph connects nodes in consecutive rows
+// (parent.Row + 1 == child.Row). Any edge spanning multiple rows is replaced
+// by a chain of [dag.NodeKindSubdivider] nodes. For example:
+//
+//	Before: app (row 0) → core (row 3)  [spans 3 rows]
+//	After:  app → app_sub_1 → app_sub_2 → core  [3 single-row edges]
+//
+// Each subdivider maintains a MasterID field linking back to the original
+// source node, allowing renderers to visually merge subdividers into
+// continuous vertical blocks.
+//
+// # Sink Extension
+//
+// Subdivide also extends all sink nodes (nodes with out-degree 0) to the
+// bottom row of the graph by appending subdivider chains. This ensures tower
+// layouts have a flat foundation where all columns reach the bottom.
+//
+// # Node IDs
+//
+// Subdivider nodes are assigned unique IDs of the form "master_sub_row" (e.g.,
+// "app_sub_1"). If a collision occurs, a numeric suffix is appended
+// ("app_sub_1__2"). All generated IDs are tracked to guarantee uniqueness.
+//
+// # Edge Metadata
+//
+// Subdivide preserves edge metadata only on the final edge in each subdivided
+// chain (the edge entering the original target). Intermediate subdivider edges
+// have no metadata.
+//
+// # Nil Handling
+//
+// Subdivide panics if g is nil. If g is empty (zero nodes), the function
+// returns immediately.
+//
+// # Performance
+//
+// Time complexity is O(V·D) where V is nodes and D is the maximum depth (row
+// count), as each node may spawn subdividers equal to the depth. Space
+// complexity is O(V) for tracking used IDs.
 func Subdivide(g *dag.DAG) {
 	gen := newIDGen(g.Nodes())
 	subdivideLongEdges(g, gen)

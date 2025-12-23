@@ -14,15 +14,31 @@ var repoURLPattern = regexp.MustCompile(`https?://github\.com/([^/]+)/([^/]+?)(?
 
 // Client provides access to the GitHub API for repository metadata enrichment.
 // It handles HTTP requests with caching, automatic retries, and optional authentication.
+//
+// All methods are safe for concurrent use by multiple goroutines.
 type Client struct {
 	*integrations.Client
 	baseURL string
 }
 
 // NewClient creates a GitHub API client with optional authentication.
-// Pass an empty string for token to use unauthenticated requests (lower rate limits).
+//
+// The token parameter is a GitHub personal access token for authentication.
+// Pass an empty string to use unauthenticated requests.
+//
+// Rate limits:
+//   - Unauthenticated: 60 requests/hour per IP
+//   - Authenticated: 5,000 requests/hour per token
+//
+// Authentication is strongly recommended for production use to avoid rate limiting.
+//
+// The cacheTTL parameter sets how long responses are cached.
+// Typical values: 1-24 hours for production, 0 for testing (no cache).
+//
+// Returns an error if the cache directory cannot be created or accessed.
+// The returned Client is safe for concurrent use.
 func NewClient(token string, cacheTTL time.Duration) (*Client, error) {
-	cache, err := integrations.NewCache(cacheTTL)
+	cache, err := integrations.NewCacheWithNamespace("github:", cacheTTL)
 	if err != nil {
 		return nil, err
 	}
@@ -39,9 +55,30 @@ func NewClient(token string, cacheTTL time.Duration) (*Client, error) {
 }
 
 // Fetch retrieves repository metrics (stars, maintainers, activity) from GitHub.
-// If refresh is true, cached data is bypassed.
+//
+// Parameters:
+//   - owner: Repository owner username (e.g., "pallets")
+//   - repo: Repository name (e.g., "flask")
+//   - refresh: If true, bypass cache and fetch fresh data
+//
+// The method performs up to 3 API calls:
+//  1. Repository metadata (required)
+//  2. Latest release data (optional, silently ignored if no releases)
+//  3. Contributors list (optional, top 5, silently ignored on failure)
+//
+// If refresh is true, the cache is bypassed and a fresh API call is made.
+// If refresh is false, cached data is returned if available and not expired.
+//
+// Returns:
+//   - RepoMetrics populated with repository data on success
+//   - [integrations.ErrNotFound] if the repository doesn't exist
+//   - [integrations.ErrNetwork] for HTTP failures (timeout, 5xx, rate limits, etc.)
+//   - Other errors for JSON decoding failures
+//
+// The returned RepoMetrics pointer is never nil if err is nil.
+// This method is safe for concurrent use.
 func (c *Client) Fetch(ctx context.Context, owner, repo string, refresh bool) (*integrations.RepoMetrics, error) {
-	key := "github:" + owner + "/" + repo
+	key := owner + "/" + repo
 
 	var m integrations.RepoMetrics
 	err := c.Cached(ctx, key, refresh, &m, func() error {
@@ -121,8 +158,27 @@ func (c *Client) fetchContributors(ctx context.Context, owner, repo string) ([]i
 	return result, nil
 }
 
+// SearchPackageRepo searches GitHub code for a manifest file containing a package name.
+//
+// This is useful for finding repository URLs when package metadata doesn't include them.
+//
+// Parameters:
+//   - pkgName: Package name to search for (exact match in manifest file)
+//   - manifestFile: Manifest filename to search in (e.g., "package.json", "Gemfile")
+//
+// Example:
+//
+//	owner, repo, ok := client.SearchPackageRepo(ctx, "fastapi", "pyproject.toml")
+//
+// Returns:
+//   - owner: Repository owner username (empty if not found)
+//   - repo: Repository name (empty if not found)
+//   - ok: true if a match was found, false otherwise
+//
+// Search results are always cached (refresh=false) to conserve GitHub API quota.
+// This method is safe for concurrent use.
 func (c *Client) SearchPackageRepo(ctx context.Context, pkgName, manifestFile string) (owner, repo string, ok bool) {
-	key := fmt.Sprintf("github:search:%s:%s", manifestFile, pkgName)
+	key := fmt.Sprintf("search:%s:%s", manifestFile, pkgName)
 
 	var result searchResult
 	_ = c.Cached(ctx, key, false, &result, func() error {
@@ -144,6 +200,21 @@ func (c *Client) doSearch(ctx context.Context, pkgName, manifestFile string) (ow
 	return item.Repository.Owner.Login, item.Repository.Name, true
 }
 
+// ExtractURL extracts GitHub repository owner and name from package URLs.
+//
+// This function searches through urls map and homepage for GitHub URLs.
+// It looks for patterns like "https://github.com/owner/repo".
+//
+// Parameters:
+//   - urls: Map of URL keys to URL values from package metadata (may be nil)
+//   - homepage: Fallback homepage URL (may be empty)
+//
+// Returns:
+//   - owner: Repository owner username (empty if not found)
+//   - repo: Repository name (empty if not found)
+//   - ok: true if a GitHub URL was found, false otherwise
+//
+// This function is safe for concurrent use.
 func ExtractURL(urls map[string]string, homepage string) (owner, repo string, ok bool) {
 	return integrations.ExtractRepoURL(repoURLPattern, urls, homepage)
 }

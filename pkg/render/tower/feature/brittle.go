@@ -13,6 +13,9 @@ const (
 	minMaintainerCount = 2
 )
 
+// IsBrittle returns true if a node represents a package that is potentially
+// unmaintained or risky to depend on. It checks for archived repositories,
+// long periods of inactivity, and low maintainer counts.
 func IsBrittle(n *dag.Node) bool {
 	if n == nil || n.Meta == nil {
 		return false

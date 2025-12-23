@@ -7,7 +7,7 @@
         "license": "MIT",
         "repo_archived": false,
         "repo_language": "JavaScript",
-        "repo_last_commit": "2025-12-15",
+        "repo_last_commit": "2025-12-20",
         "repo_last_release": "2025-05-27",
         "repo_maintainers": [
           "bcoe",
@@ -16,7 +16,7 @@
           "mleguen"
         ],
         "repo_owner": "yargs",
-        "repo_stars": 11406,
+        "repo_stars": 11410,
         "repo_url": "https://github.com/yargs/yargs",
         "version": "18.0.0"
       }
@@ -43,25 +43,24 @@
       }
     },
     {
-      "id": "cliui",
+      "id": "yargs-parser",
       "meta": {
         "author": "Ben Coe",
-        "description": "easily create complex multi-column command-line-interfaces",
+        "description": "the mighty option parser used by yargs",
         "license": "ISC",
         "repo_archived": false,
         "repo_language": "JavaScript",
         "repo_last_commit": "2025-12-15",
-        "repo_last_release": "2025-03-17",
+        "repo_last_release": "2025-05-26",
         "repo_maintainers": [
           "bcoe",
-          "greenkeeperio-bot",
-          "coreyfarrell",
-          "nexdrew"
+          "elas7",
+          "juergba"
         ],
         "repo_owner": "yargs",
-        "repo_stars": 383,
-        "repo_url": "https://github.com/yargs/cliui",
-        "version": "9.0.1"
+        "repo_stars": 520,
+        "repo_url": "https://github.com/yargs/yargs-parser",
+        "version": "22.0.0"
       }
     },
     {
@@ -87,26 +86,23 @@
       }
     },
     {
-      "id": "string-width",
+      "id": "get-east-asian-width",
       "meta": {
         "author": "Sindre Sorhus",
-        "description": "Get the visual width of a string - the number of columns required to display it",
+        "description": "Determine the East Asian Width of a Unicode character",
         "license": "MIT",
         "repo_archived": false,
         "repo_language": "JavaScript",
-        "repo_last_commit": "2025-09-01",
-        "repo_last_release": "2025-09-01",
+        "repo_last_commit": "2025-09-11",
+        "repo_last_release": "2025-09-09",
         "repo_maintainers": [
           "sindresorhus",
-          "fisker",
-          "coreyfarrell",
-          "BendingBender",
-          "adam2k"
+          "fisker"
         ],
         "repo_owner": "sindresorhus",
-        "repo_stars": 513,
-        "repo_url": "https://github.com/sindresorhus/string-width",
-        "version": "8.1.0"
+        "repo_stars": 43,
+        "repo_url": "https://github.com/sindresorhus/get-east-asian-width",
+        "version": "1.4.0"
       }
     },
     {
@@ -150,7 +146,7 @@
           "ExE-Boss"
         ],
         "repo_owner": "chalk",
-        "repo_stars": 446,
+        "repo_stars": 447,
         "repo_topics": [
           "chalk"
         ],
@@ -159,24 +155,48 @@
       }
     },
     {
-      "id": "yargs-parser",
+      "id": "string-width",
+      "meta": {
+        "author": "Sindre Sorhus",
+        "description": "Get the visual width of a string - the number of columns required to display it",
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "JavaScript",
+        "repo_last_commit": "2025-09-01",
+        "repo_last_release": "2025-09-01",
+        "repo_maintainers": [
+          "sindresorhus",
+          "fisker",
+          "coreyfarrell",
+          "BendingBender",
+          "adam2k"
+        ],
+        "repo_owner": "sindresorhus",
+        "repo_stars": 513,
+        "repo_url": "https://github.com/sindresorhus/string-width",
+        "version": "8.1.0"
+      }
+    },
+    {
+      "id": "cliui",
       "meta": {
         "author": "Ben Coe",
-        "description": "the mighty option parser used by yargs",
+        "description": "easily create complex multi-column command-line-interfaces",
         "license": "ISC",
         "repo_archived": false,
         "repo_language": "JavaScript",
         "repo_last_commit": "2025-12-15",
-        "repo_last_release": "2025-05-26",
+        "repo_last_release": "2025-03-17",
         "repo_maintainers": [
           "bcoe",
-          "elas7",
-          "juergba"
+          "greenkeeperio-bot",
+          "coreyfarrell",
+          "nexdrew"
         ],
         "repo_owner": "yargs",
-        "repo_stars": 520,
-        "repo_url": "https://github.com/yargs/yargs-parser",
-        "version": "22.0.0"
+        "repo_stars": 383,
+        "repo_url": "https://github.com/yargs/cliui",
+        "version": "9.0.1"
       }
     },
     {
@@ -219,29 +239,9 @@
           "kevva"
         ],
         "repo_owner": "chalk",
-        "repo_stars": 428,
+        "repo_stars": 430,
         "repo_url": "https://github.com/chalk/strip-ansi",
         "version": "7.1.2"
-      }
-    },
-    {
-      "id": "get-east-asian-width",
-      "meta": {
-        "author": "Sindre Sorhus",
-        "description": "Determine the East Asian Width of a Unicode character",
-        "license": "MIT",
-        "repo_archived": false,
-        "repo_language": "JavaScript",
-        "repo_last_commit": "2025-09-11",
-        "repo_last_release": "2025-09-09",
-        "repo_maintainers": [
-          "sindresorhus",
-          "fisker"
-        ],
-        "repo_owner": "sindresorhus",
-        "repo_stars": 43,
-        "repo_url": "https://github.com/sindresorhus/get-east-asian-width",
-        "version": "1.4.0"
       }
     },
     {
@@ -271,6 +271,10 @@
   "edges": [
     {
       "from": "yargs",
+      "to": "string-width"
+    },
+    {
+      "from": "yargs",
       "to": "y18n"
     },
     {
@@ -290,8 +294,12 @@
       "to": "get-caller-file"
     },
     {
-      "from": "yargs",
-      "to": "string-width"
+      "from": "string-width",
+      "to": "get-east-asian-width"
+    },
+    {
+      "from": "string-width",
+      "to": "strip-ansi"
     },
     {
       "from": "cliui",
@@ -306,20 +314,8 @@
       "to": "wrap-ansi"
     },
     {
-      "from": "string-width",
-      "to": "get-east-asian-width"
-    },
-    {
-      "from": "string-width",
-      "to": "strip-ansi"
-    },
-    {
       "from": "strip-ansi",
       "to": "ansi-regex"
-    },
-    {
-      "from": "wrap-ansi",
-      "to": "string-width"
     },
     {
       "from": "wrap-ansi",
@@ -328,6 +324,10 @@
     {
       "from": "wrap-ansi",
       "to": "ansi-styles"
+    },
+    {
+      "from": "wrap-ansi",
+      "to": "string-width"
     }
   ]
 }

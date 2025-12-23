@@ -11,28 +11,43 @@ import (
 )
 
 // GemInfo holds metadata for a Ruby gem from RubyGems.
+//
+// Gem names are normalized to lowercase.
+// Dependencies include only runtime dependencies; development dependencies are excluded.
+//
+// Zero values: All string fields are empty, Dependencies is nil, Downloads is 0.
+// A Downloads value of 0 is valid for newly published gems.
+// This struct is safe for concurrent reads after construction.
 type GemInfo struct {
-	Name          string
-	Version       string
-	Dependencies  []string
-	SourceCodeURI string
-	HomepageURI   string
-	Description   string
-	License       string
-	Downloads     int
-	Authors       string
+	Name          string   // Gem name, normalized lowercase (e.g., "rails", never empty in valid info)
+	Version       string   // Current version (e.g., "7.1.2", never empty in valid info)
+	Dependencies  []string // Runtime dependency gem names, normalized (nil or empty if none)
+	SourceCodeURI string   // Source code repository URL (may be empty)
+	HomepageURI   string   // Homepage URL (may be empty)
+	Description   string   // Gem description/info (may be empty)
+	License       string   // License(s), comma-separated if multiple (may be empty)
+	Downloads     int      // Total download count (0 for new gems)
+	Authors       string   // Author name(s) (may be empty)
 }
 
 // Client provides access to the RubyGems package registry API.
 // It handles HTTP requests with caching and automatic retries.
+//
+// All methods are safe for concurrent use by multiple goroutines.
 type Client struct {
 	*integrations.Client
 	baseURL string
 }
 
 // NewClient creates a RubyGems client with the specified cache TTL.
+//
+// The cacheTTL parameter sets how long responses are cached.
+// Typical values: 1-24 hours for production, 0 for testing (no cache).
+//
+// Returns an error if the cache directory cannot be created or accessed.
+// The returned Client is safe for concurrent use.
 func NewClient(cacheTTL time.Duration) (*Client, error) {
-	cache, err := integrations.NewCache(cacheTTL)
+	cache, err := integrations.NewCacheWithNamespace("rubygems:", cacheTTL)
 	if err != nil {
 		return nil, err
 	}
@@ -43,10 +58,24 @@ func NewClient(cacheTTL time.Duration) (*Client, error) {
 }
 
 // FetchGem retrieves metadata for a Ruby gem from RubyGems.
-// If refresh is true, cached data is bypassed.
+//
+// The gem parameter is normalized to lowercase with whitespace trimmed.
+// Gem name cannot be empty; an empty string will result in an API error.
+//
+// If refresh is true, the cache is bypassed and a fresh API call is made.
+// If refresh is false, cached data is returned if available and not expired.
+//
+// Returns:
+//   - GemInfo populated with metadata on success
+//   - [integrations.ErrNotFound] if the gem doesn't exist
+//   - [integrations.ErrNetwork] for HTTP failures (timeout, 5xx, etc.)
+//   - Other errors for JSON decoding failures
+//
+// The returned GemInfo pointer is never nil if err is nil.
+// This method is safe for concurrent use.
 func (c *Client) FetchGem(ctx context.Context, gem string, refresh bool) (*GemInfo, error) {
 	gem = strings.ToLower(strings.TrimSpace(gem))
-	key := "rubygems:" + gem
+	key := gem
 
 	var info GemInfo
 	err := c.Cached(ctx, key, refresh, &info, func() error {

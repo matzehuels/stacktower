@@ -14,29 +14,46 @@ import (
 )
 
 // ArtifactInfo holds metadata for a Java artifact from Maven Central.
+//
+// Artifacts are identified by "groupId:artifactId" coordinates.
+// Dependencies include only compile-scope dependencies; test, provided, and optional deps are excluded.
+// Dependencies with unresolved Maven properties (${...}) are skipped.
+//
+// Zero values: All string fields are empty, Dependencies is nil.
+// This struct is safe for concurrent reads after construction.
 type ArtifactInfo struct {
-	GroupID      string
-	ArtifactID   string
-	Version      string
-	Dependencies []string
-	Description  string
-	URL          string
+	GroupID      string   // Maven groupId (e.g., "com.google.guava", never empty in valid info)
+	ArtifactID   string   // Maven artifactId (e.g., "guava", never empty in valid info)
+	Version      string   // Latest version (e.g., "32.1.3-jre", never empty in valid info)
+	Dependencies []string // Compile-scope dependency coordinates (nil or empty if none or POM fetch failed)
+	Description  string   // Artifact description from POM (may be empty)
+	URL          string   // URL to the POM file on Maven Central (never empty in valid info)
 }
 
+// Coordinate returns the Maven coordinate string "groupId:artifactId".
+// Example: "com.google.guava:guava"
 func (a *ArtifactInfo) Coordinate() string {
 	return a.GroupID + ":" + a.ArtifactID
 }
 
 // Client provides access to the Maven Central repository API.
 // It handles HTTP requests with caching and automatic retries.
+//
+// All methods are safe for concurrent use by multiple goroutines.
 type Client struct {
 	*integrations.Client
 	baseURL string
 }
 
 // NewClient creates a Maven Central client with the specified cache TTL.
+//
+// The cacheTTL parameter sets how long responses are cached.
+// Typical values: 1-24 hours for production, 0 for testing (no cache).
+//
+// Returns an error if the cache directory cannot be created or accessed.
+// The returned Client is safe for concurrent use.
 func NewClient(cacheTTL time.Duration) (*Client, error) {
-	cache, err := integrations.NewCache(cacheTTL)
+	cache, err := integrations.NewCacheWithNamespace("maven:", cacheTTL)
 	if err != nil {
 		return nil, err
 	}
@@ -47,15 +64,36 @@ func NewClient(cacheTTL time.Duration) (*Client, error) {
 }
 
 // FetchArtifact retrieves metadata for a Java artifact from Maven Central.
-// The coordinate should be in the format "groupId:artifactId".
-// If refresh is true, cached data is bypassed.
+//
+// The coordinate parameter must be in the format "groupId:artifactId".
+// Examples: "com.google.guava:guava", "org.apache.commons:commons-lang3"
+// Coordinate cannot be empty or missing the colon separator.
+//
+// If refresh is true, the cache is bypassed and a fresh API call is made.
+// If refresh is false, cached data is returned if available and not expired.
+//
+// This method performs two API calls:
+//  1. Maven Central Search API to find the latest version
+//  2. Direct POM fetch to extract dependencies
+//
+// POM fetch failures are silently ignored; Dependencies will be empty/nil if it fails.
+//
+// Returns:
+//   - ArtifactInfo populated with metadata on success
+//   - [integrations.ErrNotFound] if the artifact doesn't exist
+//   - [integrations.ErrNetwork] for HTTP failures (timeout, 5xx, etc.)
+//   - Error if coordinate format is invalid
+//   - Other errors for JSON decoding failures
+//
+// The returned ArtifactInfo pointer is never nil if err is nil.
+// This method is safe for concurrent use.
 func (c *Client) FetchArtifact(ctx context.Context, coordinate string, refresh bool) (*ArtifactInfo, error) {
 	groupID, artifactID, err := parseCoordinate(coordinate)
 	if err != nil {
 		return nil, err
 	}
 
-	key := "maven:" + coordinate
+	key := coordinate
 
 	var info ArtifactInfo
 	err = c.Cached(ctx, key, refresh, &info, func() error {

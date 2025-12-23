@@ -21,11 +21,14 @@ func MergeSubdividers(l layout.Layout, g *dag.DAG) layout.Layout {
 	blocks := make(map[string]layout.Block)
 
 	for master, members := range groupByMaster(g) {
-		subgroups := groupByPosition(l, members)
+		subgroups := groupByPosition(l, g, members)
 		for _, group := range subgroups {
-			b := merge(group, master)
+			b := merge(group.blocks, master)
 			key := master
-			if len(subgroups) > 1 {
+			// Only add @position suffix for subdivider-only groups when there are
+			// multiple groups. The group containing the master keeps the master's ID
+			// to match RowOrders.
+			if len(subgroups) > 1 && !group.containsMaster {
 				key = fmt.Sprintf("%s@%.0f", master, b.Left)
 			}
 			blocks[key] = b
@@ -50,20 +53,32 @@ func groupByMaster(g *dag.DAG) map[string][]string {
 	return groups
 }
 
-func groupByPosition(l layout.Layout, members []string) [][]layout.Block {
+type positionGroup struct {
+	blocks         []layout.Block
+	containsMaster bool
+}
+
+func groupByPosition(l layout.Layout, g *dag.DAG, members []string) []positionGroup {
 	type pos struct{ l, r int }
-	groups := make(map[pos][]layout.Block)
+	groups := make(map[pos]*positionGroup)
 
 	for _, id := range members {
 		if b, ok := l.Blocks[id]; ok {
 			key := pos{int(b.Left + 0.5), int(b.Right + 0.5)}
-			groups[key] = append(groups[key], b)
+			if groups[key] == nil {
+				groups[key] = &positionGroup{}
+			}
+			groups[key].blocks = append(groups[key].blocks, b)
+			// Check if this member is the master node itself (not a subdivider)
+			if n, ok := g.Node(id); ok && !n.IsSubdivider() {
+				groups[key].containsMaster = true
+			}
 		}
 	}
 
-	result := make([][]layout.Block, 0, len(groups))
-	for _, g := range groups {
-		result = append(result, g)
+	result := make([]positionGroup, 0, len(groups))
+	for _, grp := range groups {
+		result = append(result, *grp)
 	}
 	return result
 }

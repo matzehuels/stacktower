@@ -119,3 +119,94 @@ func TestNewCache_DefaultDir(t *testing.T) {
 		t.Errorf("directory not created: %v", err)
 	}
 }
+
+func TestCache_Namespace(t *testing.T) {
+	c, _ := NewCache(t.TempDir(), time.Hour)
+
+	t.Run("basicNamespacing", func(t *testing.T) {
+		pypi := c.Namespace("pypi:")
+		npm := c.Namespace("npm:")
+
+		// Set values in different namespaces
+		if err := pypi.Set("requests", "pypi-data"); err != nil {
+			t.Fatalf("pypi.Set() failed: %v", err)
+		}
+		if err := npm.Set("requests", "npm-data"); err != nil {
+			t.Fatalf("npm.Set() failed: %v", err)
+		}
+
+		// Retrieve from namespaced caches
+		var pypiVal, npmVal string
+		ok, err := pypi.Get("requests", &pypiVal)
+		if !ok || err != nil {
+			t.Fatalf("pypi.Get() = %v, %v; want true, nil", ok, err)
+		}
+		ok, err = npm.Get("requests", &npmVal)
+		if !ok || err != nil {
+			t.Fatalf("npm.Get() = %v, %v; want true, nil", ok, err)
+		}
+
+		if pypiVal != "pypi-data" {
+			t.Errorf("got pypi value %q, want %q", pypiVal, "pypi-data")
+		}
+		if npmVal != "npm-data" {
+			t.Errorf("got npm value %q, want %q", npmVal, "npm-data")
+		}
+
+		// Values should not cross-contaminate
+		_, _ = pypi.Get("requests", &npmVal)
+		if npmVal != "pypi-data" {
+			t.Error("namespace isolation violated")
+		}
+	})
+
+	t.Run("chainedNamespacing", func(t *testing.T) {
+		python := c.Namespace("python:")
+		pypi := python.Namespace("pypi:")
+
+		if err := pypi.Set("test", "value"); err != nil {
+			t.Fatalf("Set() failed: %v", err)
+		}
+
+		var result string
+		ok, err := pypi.Get("test", &result)
+		if !ok || err != nil || result != "value" {
+			t.Errorf("Get() = %v, %v, %q; want true, nil, %q", ok, err, result, "value")
+		}
+
+		// Should not be accessible without full prefix
+		found, _ := python.Get("test", &result)
+		if found {
+			t.Error("value accessible without full namespace chain")
+		}
+	})
+
+	t.Run("emptyPrefix", func(t *testing.T) {
+		ns := c.Namespace("")
+		if err := ns.Set("key", "value"); err != nil {
+			t.Fatalf("Set() failed: %v", err)
+		}
+
+		var result string
+		ok, err := ns.Get("key", &result)
+		if !ok || err != nil || result != "value" {
+			t.Errorf("Get() = %v, %v, %q; want true, nil, %q", ok, err, result, "value")
+		}
+
+		// Should be same as parent cache
+		ok, err = c.Get("key", &result)
+		if !ok || err != nil || result != "value" {
+			t.Error("empty namespace should behave like parent")
+		}
+	})
+
+	t.Run("preservesDirAndTTL", func(t *testing.T) {
+		ns := c.Namespace("test:")
+		if ns.Dir() != c.Dir() {
+			t.Errorf("Dir() = %s, want %s", ns.Dir(), c.Dir())
+		}
+		if ns.TTL() != c.TTL() {
+			t.Errorf("TTL() = %v, want %v", ns.TTL(), c.TTL())
+		}
+	})
+}

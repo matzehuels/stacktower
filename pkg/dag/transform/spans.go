@@ -9,12 +9,78 @@ import (
 	"github.com/matzehuels/stacktower/pkg/dag"
 )
 
+// ResolveSpanOverlaps identifies and resolves impossible crossing patterns by
+// inserting separator beam nodes.
+//
+// ResolveSpanOverlaps detects "tangle motifs"—subgraph patterns where multiple
+// parent nodes share multiple child nodes in a way that guarantees edge
+// crossings regardless of child ordering. The canonical example is a complete
+// bipartite graph K(2,2):
+//
+//	auth → logging    auth → metrics
+//	api  → logging    api  → metrics
+//
+// No matter how you order {logging, metrics}, edges must cross. Rather than
+// accepting crossings, ResolveSpanOverlaps inserts a [dag.NodeKindAuxiliary]
+// separator node that routes edges through a shared intermediate:
+//
+//	auth → separator → logging
+//	api  → separator → metrics
+//
+// This eliminates crossings by factoring shared dependencies through a beam.
+//
+// # Detection Algorithm
+//
+// ResolveSpanOverlaps processes rows bottom-up. For each row, it:
+//  1. Computes the "span" of each parent (min/max child positions)
+//  2. Counts how many parent spans overlap each gap between children
+//  3. Where 2+ parents overlap, inserts a separator and reroutes edges
+//  4. Repeats until no overlaps remain (may insert multiple separators per row)
+//
+// # Separator Nodes
+//
+// Separator nodes are inserted in a new row between parents and children,
+// shifting all lower rows down. Separator IDs are generated as
+// "Sep_row_firstChild_lastChild" with numeric suffixes if needed for
+// uniqueness.
+//
+// # Eligibility Rules
+//
+// A parent is eligible for separator insertion only if:
+//   - It has 2+ children in the target row
+//   - ALL its children are in that single row (no splitting across rows)
+//   - None of its children are subdividers of the same master (avoids splitting logical columns)
+//
+// Separators are inserted in gaps between children where canInsertBetween
+// returns true (respects subdivider master boundaries).
+//
+// # Multiple Passes
+//
+// ResolveSpanOverlaps may make multiple passes over a row, inserting separators
+// iteratively until no overlaps remain. Each insertion shifts rows and
+// recomputes spans.
+//
+// # Nil Handling
+//
+// ResolveSpanOverlaps panics if d is nil. If d is empty (zero nodes), the
+// function returns immediately.
+//
+// # Performance
+//
+// Time complexity is O(R·P·C·I) where R is the number of rows, P is the
+// average number of parents per row, C is children per parent, and I is the
+// number of separator insertion iterations (typically 1-3). For typical
+// dependency graphs, this is effectively O(V) where V is the number of nodes.
+//
+// Space complexity is O(V) for tracking used node IDs.
 func ResolveSpanOverlaps(d *dag.DAG) {
 	usedIDs := nodeIDSet(d.Nodes())
-	for _, row := range d.RowIDs() {
-		if row > 0 {
-			for insertSeparatorAt(d, row, usedIDs) {
-			}
+	// Process row boundaries by index (not row number) since separator insertion
+	// shifts row numbers but not our position in the traversal.
+	for i := 1; i < d.RowCount(); i++ {
+		row := d.RowIDs()[i]
+		for insertSeparatorAt(d, row, usedIDs) {
+			row = d.RowIDs()[i] // re-fetch: same index, new row number
 		}
 	}
 }

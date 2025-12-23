@@ -34,6 +34,10 @@ const (
 	maintainerWeight = 1.0
 )
 
+// RankNebraska identifies the most influential maintainers in the dependency
+// graph using the Nebraska ranking algorithm. Maintainers are scored based
+// on the "depth" of their packages in the tower (i.e., how many things
+// depend on them).
 func RankNebraska(g *dag.DAG, topN int) []NebraskaRanking {
 	scores := make(map[string]float64)
 	packages := make(map[string][]PackageRole)

@@ -15,8 +15,32 @@ var kindFromString = map[string]dag.NodeKind{
 }
 
 // ReadJSON decodes a JSON graph from r into a DAG.
-// The JSON must have "nodes" and "edges" arrays. Node "kind" and "row"
-// fields are optional; missing values use defaults.
+//
+// The input must be a JSON object with "nodes" and "edges" arrays:
+//
+//	{
+//	  "nodes": [{"id": "a"}, {"id": "b"}],
+//	  "edges": [{"from": "a", "to": "b"}]
+//	}
+//
+// Each node must have an "id" field. Optional fields:
+//   - row: integer layer assignment (defaults to 0)
+//   - kind: "subdivider" or "auxiliary" (defaults to normal node)
+//   - meta: object with arbitrary key-value pairs
+//
+// Each edge must have "from" and "to" fields that reference node IDs.
+//
+// ReadJSON returns an error if:
+//   - The JSON is malformed or invalid
+//   - A node has a duplicate ID
+//   - An edge references an unknown node ID
+//   - Adding a node or edge violates DAG constraints (e.g., creates a cycle)
+//
+// Errors are wrapped with context describing which node or edge caused
+// the problem. Use errors.Is or errors.As to check for specific DAG errors.
+//
+// The returned DAG is independent of r and can be modified safely after
+// ReadJSON returns. ReadJSON does not close r.
 func ReadJSON(r io.Reader) (*dag.DAG, error) {
 	var data graph
 	if err := json.NewDecoder(r).Decode(&data); err != nil {
@@ -46,7 +70,14 @@ func ReadJSON(r io.Reader) (*dag.DAG, error) {
 }
 
 // ImportJSON reads a JSON file at path and returns the decoded DAG.
-// This is a convenience wrapper around [ReadJSON] for file-based input.
+//
+// ImportJSON opens the file, decodes it using [ReadJSON], and closes the
+// file. If the file cannot be opened, or if decoding fails, ImportJSON
+// returns an error describing the failure. The error wraps the underlying
+// cause with the file path for context.
+//
+// ImportJSON returns the same validation errors as [ReadJSON] for malformed
+// graphs or DAG constraint violations.
 func ImportJSON(path string) (*dag.DAG, error) {
 	f, err := os.Open(path)
 	if err != nil {

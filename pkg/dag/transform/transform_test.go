@@ -32,16 +32,22 @@ func buildDiamondDAG() *dag.DAG {
 func TestNormalize_EmptyGraph_ReturnsEmpty(t *testing.T) {
 	g := dag.New(nil)
 	result := Normalize(g)
-	if result.NodeCount() != 0 {
-		t.Errorf("expected 0 nodes, got %d", result.NodeCount())
+	if g.NodeCount() != 0 {
+		t.Errorf("expected 0 nodes, got %d", g.NodeCount())
+	}
+	if result.CyclesRemoved != 0 || result.TransitiveEdgesRemoved != 0 || result.SubdividersAdded != 0 {
+		t.Errorf("expected zero metrics for empty graph, got %+v", result)
 	}
 }
 
 func TestNormalize_SimpleGraph_AppliesPipeline(t *testing.T) {
 	g := buildSimpleDAG()
 	result := Normalize(g)
-	if result.NodeCount() == 0 {
+	if g.NodeCount() == 0 {
 		t.Error("expected non-empty result")
+	}
+	if result == nil {
+		t.Error("expected non-nil result")
 	}
 }
 
@@ -354,17 +360,17 @@ func TestNormalize_CompleteWorkflow(t *testing.T) {
 
 	result := Normalize(g)
 
-	if result.EdgeCount() != 3 {
-		t.Errorf("expected 3 edges after reduction, got %d", result.EdgeCount())
+	if g.EdgeCount() != 3 {
+		t.Errorf("expected 3 edges after reduction, got %d", g.EdgeCount())
 	}
 
-	nodeA, _ := result.Node("a")
+	nodeA, _ := g.Node("a")
 	if nodeA.Row != 0 {
 		t.Errorf("expected node a at row 0, got %d", nodeA.Row)
 	}
 
 	allNodesHaveRows := true
-	for _, n := range result.Nodes() {
+	for _, n := range g.Nodes() {
 		if !n.IsSubdivider() {
 			if n.Row < 0 {
 				allNodesHaveRows = false
@@ -375,16 +381,23 @@ func TestNormalize_CompleteWorkflow(t *testing.T) {
 	if !allNodesHaveRows {
 		t.Error("not all nodes have valid rows assigned")
 	}
+
+	if result.TransitiveEdgesRemoved != 1 {
+		t.Errorf("expected 1 transitive edge removed, got %d", result.TransitiveEdgesRemoved)
+	}
 }
 
-func TestNormalize_ReturnsSameInstance(t *testing.T) {
+func TestNormalize_ReturnsResult(t *testing.T) {
 	g := dag.New(nil)
 	_ = g.AddNode(dag.Node{ID: "a"})
 
 	result := Normalize(g)
 
-	if result != g {
-		t.Error("Normalize should return the same DAG instance (in-place modification)")
+	if result == nil {
+		t.Error("Normalize should return a non-nil TransformResult")
+	}
+	if g.NodeCount() != 1 {
+		t.Error("Normalize should modify DAG in-place")
 	}
 }
 
@@ -398,9 +411,9 @@ func TestNormalize_IntegrationWithSubdivision(t *testing.T) {
 
 	result := Normalize(g)
 
-	nodeA, _ := result.Node("a")
-	nodeB, _ := result.Node("b")
-	nodeC, _ := result.Node("c")
+	nodeA, _ := g.Node("a")
+	nodeB, _ := g.Node("b")
+	nodeC, _ := g.Node("c")
 
 	if nodeA.Row != 0 || nodeB.Row != 0 {
 		t.Error("roots should be at row 0")
@@ -409,9 +422,13 @@ func TestNormalize_IntegrationWithSubdivision(t *testing.T) {
 		t.Errorf("node c should be at row 1, got %d", nodeC.Row)
 	}
 
-	for _, n := range result.Nodes() {
+	for _, n := range g.Nodes() {
 		if n.Row < 0 {
 			t.Errorf("node %s has invalid row %d", n.ID, n.Row)
 		}
+	}
+
+	if result == nil {
+		t.Error("expected non-nil result")
 	}
 }

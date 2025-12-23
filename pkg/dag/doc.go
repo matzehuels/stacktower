@@ -12,6 +12,21 @@
 // drawing that powers tower visualizations. It enables efficient crossing
 // detection and ordering algorithms.
 //
+// # Basic Usage
+//
+// Create a new graph with [New], add nodes with [DAG.AddNode], and edges with
+// [DAG.AddEdge]. Nodes must have unique IDs, and edges can only connect
+// existing nodes in consecutive rows (From.Row+1 == To.Row):
+//
+//	g := dag.New(nil)
+//	g.AddNode(dag.Node{ID: "app", Row: 0})
+//	g.AddNode(dag.Node{ID: "lib", Row: 1})
+//	g.AddEdge(dag.Edge{From: "app", To: "lib"})
+//
+// Query the graph structure with [DAG.Children], [DAG.Parents], [DAG.NodesInRow],
+// and related methods. Use [DAG.Validate] to verify structural integrity before
+// rendering or transformations.
+//
 // # Node Types
 //
 // The package supports three node kinds to handle real-world graph structures:
@@ -35,25 +50,19 @@
 // (binary indexed tree) to count inversions in O(E log V) time, enabling
 // fast evaluation of millions of candidate orderings during optimization.
 //
-// # Working with the DAG
-//
-// Create a new graph with [New], add nodes with [DAG.AddNode], and edges with
-// [DAG.AddEdge]. Nodes must have unique IDs, and edges can only connect
-// existing nodes.
-//
-//	g := dag.New(nil)
-//	g.AddNode(dag.Node{ID: "app", Row: 0})
-//	g.AddNode(dag.Node{ID: "lib", Row: 1})
-//	g.AddEdge(dag.Edge{From: "app", To: "lib"})
-//
-// Query the graph structure with [DAG.Children], [DAG.Parents], [DAG.NodesInRow],
-// and related methods. Use [DAG.Validate] to verify structural integrity.
-//
 // # Metadata
 //
 // Both nodes and the graph itself support arbitrary metadata via [Metadata] maps.
 // This is used to store package information (version, description, repository URL)
-// and render options (style, seed) that flow through the pipeline.
+// and render options (style, seed) that flow through the pipeline. Metadata maps
+// are never nil after creation - empty maps are automatically initialized.
+//
+// # Concurrency
+//
+// DAG instances are not safe for concurrent use. Callers must synchronize access
+// if multiple goroutines read or modify the same graph. Immutable operations like
+// counting crossings on a read-only graph can safely run in parallel across
+// different goroutines.
 //
 // # Related Packages
 //
@@ -64,7 +73,8 @@
 //   - Layer assignment (assign rows based on depth)
 //
 // The [perm] subpackage provides permutation algorithms including the PQ-tree
-// data structure for efficiently generating only valid orderings.
+// data structure for efficiently generating only valid orderings that preserve
+// crossing-free constraints.
 //
 // [transform]: github.com/matzehuels/stacktower/pkg/dag/transform
 // [perm]: github.com/matzehuels/stacktower/pkg/dag/perm

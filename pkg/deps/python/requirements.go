@@ -14,6 +14,9 @@ import (
 
 var depNameRE = regexp.MustCompile(`^([a-zA-Z0-9][-a-zA-Z0-9._]*)`)
 
+// Requirements parses requirements.txt files. By default, it only provides
+// direct dependencies. If a [deps.Resolver] is provided, it can resolve
+// the full transitive closure.
 type Requirements struct {
 	resolver deps.Resolver
 }

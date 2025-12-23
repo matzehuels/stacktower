@@ -27,8 +27,12 @@ const (
 	fontFamily = `'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif`
 )
 
+// HandDrawn implements a casual, hand-drawn visual style with wobbly
+// lines and "Patrick Hand" typography.
 type HandDrawn struct{ seed uint64 }
 
+// New creates a new HandDrawn style with the given seed forReproducible
+// line wobbling.
 func New(seed uint64) *HandDrawn { return &HandDrawn{seed: seed} }
 
 func (h *HandDrawn) RenderDefs(buf *bytes.Buffer) {

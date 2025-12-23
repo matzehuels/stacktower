@@ -1,0 +1,449 @@
+{
+  "nodes": [
+    {
+      "id": "click",
+      "meta": {
+        "description": "Composable command line interface toolkit",
+        "version": "8.3.1"
+      }
+    },
+    {
+      "id": "csscompressor",
+      "meta": {
+        "author": "Yury Selivanov",
+        "description": "A python port of YUI CSS Compressor",
+        "license": "BSD",
+        "version": "0.9.5"
+      }
+    },
+    {
+      "id": "feedwerk",
+      "meta": {
+        "author": "phil",
+        "description": "The atom feed generator from werkzeug.",
+        "license": "BSD-3-Clause",
+        "version": "1.2.0"
+      }
+    },
+    {
+      "id": "flask",
+      "meta": {
+        "description": "A simple framework for building complex web applications.",
+        "version": "3.1.2"
+      }
+    },
+    {
+      "id": "pyyaml",
+      "meta": {
+        "author": "Kirill Simonov",
+        "description": "YAML parser and emitter for Python",
+        "license": "MIT",
+        "version": "6.0.3"
+      }
+    },
+    {
+      "id": "frozen-flask",
+      "meta": {
+        "description": "Freezes a Flask application into a set of static files.",
+        "license": "Copyright (c) 2010-2012 by Simon Sapin and contributors. See AUTHORS\n        for more details.\n        \n        Some rights reserved.\n        \n        Redistribution and use in source and binary forms, with or without\n        modification, are permitted provided that the following conditions are\n        met:\n        \n            * Redistributions of source code must retain the above copyright\n              notice, this list of conditions and the following disclaimer.\n        \n            * Redistributions in binary form must reproduce the above\n              copyright notice, this list of conditions and the following\n              disclaimer in the documentation and/or other materials provided\n              with the distribution.\n        \n            * The names of the contributors may not be used to endorse or\n              promote products derived from this software without specific\n              prior written permission.\n        \n        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n        \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n        LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n        A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT\n        OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\n        SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT\n        LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,\n        DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY\n        THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n        (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\n        OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.",
+        "version": "1.0.2"
+      }
+    },
+    {
+      "id": "htmlmin2",
+      "meta": {
+        "author": "Dave Mankoff",
+        "description": "An HTML Minifier",
+        "license": "BSD",
+        "version": "0.1.13"
+      }
+    },
+    {
+      "id": "beautifulsoup4",
+      "meta": {
+        "description": "Screen-scraping library",
+        "license": "MIT License",
+        "version": "4.14.3"
+      }
+    },
+    {
+      "id": "soupsieve",
+      "meta": {
+        "description": "A modern CSS selector implementation for Beautiful Soup.",
+        "version": "2.8.1"
+      }
+    },
+    {
+      "id": "typing-extensions",
+      "meta": {
+        "description": "Backported and Experimental Type Hints for Python 3.9+",
+        "version": "4.15.0"
+      }
+    },
+    {
+      "id": "jinja2",
+      "meta": {
+        "description": "A very fast and expressive template engine.",
+        "version": "3.1.6"
+      }
+    },
+    {
+      "id": "zipp",
+      "meta": {
+        "description": "Backport of pathlib-compatible object wrapper for zip files",
+        "version": "3.23.0"
+      }
+    },
+    {
+      "id": "markdown",
+      "meta": {
+        "author": "Manfred Stienstra, Yuri Takhteyev",
+        "description": "Python implementation of John Gruber's Markdown.",
+        "version": "3.10"
+      }
+    },
+    {
+      "id": "jsmin",
+      "meta": {
+        "author": "Dave St.Germain",
+        "description": "JavaScript minifier.",
+        "license": "MIT License",
+        "version": "3.0.1"
+      }
+    },
+    {
+      "id": "htmd",
+      "meta": {
+        "virtual": true
+      }
+    },
+    {
+      "id": "colorama",
+      "meta": {
+        "description": "Cross-platform colored terminal text.",
+        "version": "0.4.6"
+      }
+    },
+    {
+      "id": "blinker",
+      "meta": {
+        "author": "Jason Kirtland",
+        "description": "Fast, simple object-to-object and broadcast signaling",
+        "version": "1.9.0"
+      }
+    },
+    {
+      "id": "importlib-metadata",
+      "meta": {
+        "description": "Read metadata from Python packages",
+        "version": "8.7.0"
+      }
+    },
+    {
+      "id": "flask-flatpages",
+      "meta": {
+        "author": "Simon Sapin, Igor Davydenko, Padraic Calpin",
+        "description": "Provides flat static pages to a Flask application",
+        "version": "0.8.3"
+      }
+    },
+    {
+      "id": "pytz",
+      "meta": {
+        "author": "Stuart Bishop",
+        "description": "World timezone definitions, modern and historical",
+        "license": "MIT",
+        "version": "2025.2"
+      }
+    },
+    {
+      "id": "watchdog",
+      "meta": {
+        "author": "Mickaël Schoentgen",
+        "description": "Filesystem events monitoring",
+        "license": "Apache-2.0",
+        "version": "6.0.0"
+      }
+    },
+    {
+      "id": "werkzeug",
+      "meta": {
+        "description": "The comprehensive WSGI web application library.",
+        "version": "3.1.4"
+      }
+    },
+    {
+      "id": "markupsafe",
+      "meta": {
+        "description": "Safely add untrusted strings to HTML/XML markup.",
+        "version": "3.0.3"
+      }
+    },
+    {
+      "id": "itsdangerous",
+      "meta": {
+        "description": "Safely pass data to untrusted environments and back.",
+        "version": "2.2.0"
+      }
+    },
+    {
+      "id": "six",
+      "meta": {
+        "author": "Benjamin Peterson",
+        "description": "Python 2 and 3 compatibility utilities",
+        "license": "MIT",
+        "version": "1.17.0"
+      }
+    },
+    {
+      "id": "pygments",
+      "meta": {
+        "description": "Pygments is a syntax highlighting package written in Python.",
+        "license": "BSD-2-Clause",
+        "version": "2.19.2"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "beautifulsoup4",
+      "to": "soupsieve"
+    },
+    {
+      "from": "beautifulsoup4",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "htmd",
+      "to": "beautifulsoup4"
+    },
+    {
+      "from": "click",
+      "to": "colorama"
+    },
+    {
+      "from": "htmd",
+      "to": "click"
+    },
+    {
+      "from": "htmd",
+      "to": "csscompressor"
+    },
+    {
+      "from": "feedwerk",
+      "to": "werkzeug"
+    },
+    {
+      "from": "feedwerk",
+      "to": "markupsafe"
+    },
+    {
+      "from": "werkzeug",
+      "to": "markupsafe"
+    },
+    {
+      "from": "htmd",
+      "to": "feedwerk"
+    },
+    {
+      "from": "flask",
+      "to": "blinker"
+    },
+    {
+      "from": "flask",
+      "to": "click"
+    },
+    {
+      "from": "flask",
+      "to": "importlib-metadata"
+    },
+    {
+      "from": "flask",
+      "to": "itsdangerous"
+    },
+    {
+      "from": "flask",
+      "to": "jinja2"
+    },
+    {
+      "from": "flask",
+      "to": "markupsafe"
+    },
+    {
+      "from": "flask",
+      "to": "werkzeug"
+    },
+    {
+      "from": "werkzeug",
+      "to": "markupsafe"
+    },
+    {
+      "from": "click",
+      "to": "colorama"
+    },
+    {
+      "from": "jinja2",
+      "to": "markupsafe"
+    },
+    {
+      "from": "importlib-metadata",
+      "to": "zipp"
+    },
+    {
+      "from": "importlib-metadata",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "htmd",
+      "to": "flask"
+    },
+    {
+      "from": "flask-flatpages",
+      "to": "flask"
+    },
+    {
+      "from": "flask-flatpages",
+      "to": "jinja2"
+    },
+    {
+      "from": "flask-flatpages",
+      "to": "markdown"
+    },
+    {
+      "from": "flask-flatpages",
+      "to": "pyyaml"
+    },
+    {
+      "from": "flask-flatpages",
+      "to": "pytz"
+    },
+    {
+      "from": "flask-flatpages",
+      "to": "six"
+    },
+    {
+      "from": "flask",
+      "to": "blinker"
+    },
+    {
+      "from": "flask",
+      "to": "click"
+    },
+    {
+      "from": "flask",
+      "to": "importlib-metadata"
+    },
+    {
+      "from": "flask",
+      "to": "itsdangerous"
+    },
+    {
+      "from": "flask",
+      "to": "jinja2"
+    },
+    {
+      "from": "flask",
+      "to": "markupsafe"
+    },
+    {
+      "from": "flask",
+      "to": "werkzeug"
+    },
+    {
+      "from": "jinja2",
+      "to": "markupsafe"
+    },
+    {
+      "from": "werkzeug",
+      "to": "markupsafe"
+    },
+    {
+      "from": "importlib-metadata",
+      "to": "zipp"
+    },
+    {
+      "from": "importlib-metadata",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "click",
+      "to": "colorama"
+    },
+    {
+      "from": "htmd",
+      "to": "flask-flatpages"
+    },
+    {
+      "from": "frozen-flask",
+      "to": "flask"
+    },
+    {
+      "from": "flask",
+      "to": "blinker"
+    },
+    {
+      "from": "flask",
+      "to": "click"
+    },
+    {
+      "from": "flask",
+      "to": "importlib-metadata"
+    },
+    {
+      "from": "flask",
+      "to": "itsdangerous"
+    },
+    {
+      "from": "flask",
+      "to": "jinja2"
+    },
+    {
+      "from": "flask",
+      "to": "markupsafe"
+    },
+    {
+      "from": "flask",
+      "to": "werkzeug"
+    },
+    {
+      "from": "importlib-metadata",
+      "to": "zipp"
+    },
+    {
+      "from": "importlib-metadata",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "werkzeug",
+      "to": "markupsafe"
+    },
+    {
+      "from": "jinja2",
+      "to": "markupsafe"
+    },
+    {
+      "from": "click",
+      "to": "colorama"
+    },
+    {
+      "from": "htmd",
+      "to": "frozen-flask"
+    },
+    {
+      "from": "htmd",
+      "to": "htmlmin2"
+    },
+    {
+      "from": "htmd",
+      "to": "jsmin"
+    },
+    {
+      "from": "htmd",
+      "to": "pygments"
+    },
+    {
+      "from": "htmd",
+      "to": "watchdog"
+    }
+  ]
+}

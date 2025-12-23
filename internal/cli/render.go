@@ -21,32 +21,44 @@ import (
 )
 
 const (
-	styleSimple    = "simple"
-	styleHanddrawn = "handdrawn"
-	defaultWidth   = 800
-	defaultHeight  = 600
-	defaultSeed    = 42
+	styleSimple    = "simple"    // plain rectangular blocks
+	styleHanddrawn = "handdrawn" // hand-drawn sketch style with randomized widths
+	defaultWidth   = 800         // default SVG viewport width
+	defaultHeight  = 600         // default SVG viewport height
+	defaultSeed    = 42          // random seed for reproducible randomization
 )
 
+// renderOpts holds the command-line flags for the render command.
+// These options control visualization style, layout algorithms, and output formats.
 type renderOpts struct {
-	output       string
-	vizTypes     []string
-	formats      []string
-	detailed     bool
-	normalize    bool
-	width        float64
-	height       float64
-	showEdges    bool
-	style        string
-	ordering     string
-	orderTimeout int
-	randomize    bool
-	merge        bool
-	nebraska     bool
-	popups       bool
-	topDown      bool
+	output       string   // output file path (or base path for multiple outputs)
+	vizTypes     []string // visualization types: "tower", "nodelink"
+	formats      []string // output formats: "svg", "pdf", "png", "json"
+	detailed     bool     // show detailed metadata in nodelink diagrams
+	normalize    bool     // apply DAG normalization (remove cycles, transitive edges, add subdividers)
+	width        float64  // viewport width in pixels
+	height       float64  // viewport height in pixels
+	showEdges    bool     // draw dependency edges in tower view
+	style        string   // visual style: "simple" or "handdrawn"
+	ordering     string   // ordering algorithm: "optimal" or "barycentric"
+	orderTimeout int      // timeout in seconds for optimal search
+	randomize    bool     // randomize block widths for hand-drawn effect
+	merge        bool     // merge subdivider blocks into single towers
+	nebraska     bool     // show Nebraska guy maintainer ranking
+	popups       bool     // enable hover popups with metadata
+	topDown      bool     // use top-down width allocation (roots get equal width)
 }
 
+// newRenderCmd creates the render command for generating visualizations.
+// It supports multiple visualization types (tower, nodelink) and output formats (SVG, PDF, PNG, JSON).
+//
+// Default settings:
+//   - normalize: true (clean up cycles and transitive edges)
+//   - style: handdrawn (sketch-style with randomized widths)
+//   - width: 800px, height: 600px
+//   - ordering: optimal (with 60s timeout)
+//   - merge: true (combine subdividers into single towers)
+//   - popups: true (show metadata on hover)
 func newRenderCmd() *cobra.Command {
 	var vizTypesStr, formatsStr string
 	opts := renderOpts{
@@ -96,6 +108,8 @@ func newRenderCmd() *cobra.Command {
 	return cmd
 }
 
+// parseVizTypes parses the --type flag into a slice of visualization types.
+// If empty, defaults to ["tower"].
 func parseVizTypes(s string) []string {
 	if s == "" {
 		return []string{"tower"}
@@ -103,6 +117,8 @@ func parseVizTypes(s string) []string {
 	return strings.Split(s, ",")
 }
 
+// parseFormats parses the --format flag into a slice of output formats.
+// If empty, defaults to ["svg"].
 func parseFormats(s string) []string {
 	if s == "" {
 		return []string{"svg"}
@@ -110,8 +126,11 @@ func parseFormats(s string) []string {
 	return strings.Split(s, ",")
 }
 
+// validFormats is the set of supported output formats.
 var validFormats = map[string]bool{"svg": true, "json": true, "pdf": true, "png": true}
 
+// validateFormats checks that all requested formats are valid.
+// It returns an error if any format is not in validFormats.
 func validateFormats(formats []string) error {
 	for _, f := range formats {
 		if !validFormats[f] {
@@ -121,6 +140,7 @@ func validateFormats(formats []string) error {
 	return nil
 }
 
+// validateStyle checks that the style is either "simple" or "handdrawn".
 func validateStyle(s string) error {
 	if s != styleSimple && s != styleHanddrawn {
 		return fmt.Errorf("invalid style: %s (must be 'simple' or 'handdrawn')", s)
@@ -128,6 +148,10 @@ func validateStyle(s string) error {
 	return nil
 }
 
+// basePath derives the base output path from the output and input file paths.
+// If output is empty, it strips the extension from input.
+// If output has a format extension (.svg, .pdf, etc.), it strips that extension.
+// This is used when generating multiple files (e.g., graph_tower.svg, graph_nodelink.svg).
 func basePath(output, input string) string {
 	if output == "" {
 		return strings.TrimSuffix(input, filepath.Ext(input))
@@ -140,6 +164,8 @@ func basePath(output, input string) string {
 	return output
 }
 
+// runRender loads the graph from input, optionally normalizes it, and renders it to the requested formats.
+// If opts.normalize is true, the graph is cleaned up by removing cycles, transitive edges, and adding subdividers.
 func runRender(ctx context.Context, input string, opts *renderOpts) error {
 	logger := loggerFromContext(ctx)
 	logger.Infof("Rendering %s", input)
@@ -151,9 +177,11 @@ func runRender(ctx context.Context, input string, opts *renderOpts) error {
 	logger.Infof("Loaded graph: %d nodes, %d edges", g.NodeCount(), g.EdgeCount())
 
 	if opts.normalize {
-		before := g.NodeCount()
-		g = dagtransform.Normalize(g)
-		logger.Infof("Normalized: %d nodes (%+d), %d edges", g.NodeCount(), g.NodeCount()-before, g.EdgeCount())
+		result := dagtransform.Normalize(g)
+		logger.Infof("Normalized: %d nodes, %d edges (removed %d cycles, %d transitive edges; added %d subdividers, %d separators)",
+			g.NodeCount(), g.EdgeCount(),
+			result.CyclesRemoved, result.TransitiveEdgesRemoved,
+			result.SubdividersAdded, result.SeparatorsAdded)
 	}
 
 	if len(opts.vizTypes) == 1 && len(opts.formats) == 1 {
@@ -162,6 +190,8 @@ func runRender(ctx context.Context, input string, opts *renderOpts) error {
 	return renderMultiple(ctx, g, input, opts)
 }
 
+// renderSingle renders a single visualization type and format to a single output file.
+// If opts.output is empty, the output path is derived from the input file name.
 func renderSingle(ctx context.Context, g *dag.DAG, vizType, format string, input string, opts *renderOpts) error {
 	logger := loggerFromContext(ctx)
 
@@ -191,6 +221,8 @@ func renderSingle(ctx context.Context, g *dag.DAG, vizType, format string, input
 	return nil
 }
 
+// renderMultiple renders all requested visualization type/format combinations to separate files.
+// File names are derived from basePath and include the visualization type when multiple types are requested.
 func renderMultiple(ctx context.Context, g *dag.DAG, input string, opts *renderOpts) error {
 	base := basePath(opts.output, input)
 
@@ -204,6 +236,8 @@ func renderMultiple(ctx context.Context, g *dag.DAG, input string, opts *renderO
 	return nil
 }
 
+// renderAndWrite renders a single viz/format combination and writes it to a file.
+// If the combination is unsupported (e.g., nodelink JSON), it is silently skipped with a debug log.
 func renderAndWrite(ctx context.Context, g *dag.DAG, vizType, format, basePath string, opts *renderOpts) error {
 	logger := loggerFromContext(ctx)
 
@@ -238,8 +272,11 @@ func renderAndWrite(ctx context.Context, g *dag.DAG, vizType, format, basePath s
 	return nil
 }
 
+// errSkipFormat is a sentinel error indicating an unsupported format/visualization combination.
 var errSkipFormat = fmt.Errorf("skip unsupported format")
 
+// renderGraph dispatches to the appropriate renderer based on vizType.
+// It returns errSkipFormat for unsupported combinations (e.g., nodelink JSON).
 func renderGraph(ctx context.Context, g *dag.DAG, vizType, format string, opts *renderOpts) ([]byte, error) {
 	switch vizType {
 	case "nodelink":
@@ -251,6 +288,8 @@ func renderGraph(ctx context.Context, g *dag.DAG, vizType, format string, opts *
 	}
 }
 
+// renderNodeLink generates a node-link (force-directed) diagram using Graphviz.
+// It supports SVG, PDF, and PNG formats. JSON is not supported (returns errSkipFormat).
 func renderNodeLink(ctx context.Context, g *dag.DAG, format string, opts *renderOpts) ([]byte, error) {
 	logger := loggerFromContext(ctx)
 	logger.Info("Generating node-link diagram")
@@ -273,6 +312,9 @@ func renderNodeLink(ctx context.Context, g *dag.DAG, format string, opts *render
 	}
 }
 
+// renderTower generates a tower visualization with layered blocks.
+// It computes the layout using the specified ordering algorithm (optimal or barycentric),
+// optionally merges subdividers and randomizes widths, then renders to the requested format.
 func renderTower(ctx context.Context, g *dag.DAG, format string, opts *renderOpts) ([]byte, error) {
 	logger := loggerFromContext(ctx)
 
@@ -317,6 +359,8 @@ func renderTower(ctx context.Context, g *dag.DAG, format string, opts *renderOpt
 	}
 }
 
+// buildLayoutOpts constructs layout.Options based on the ordering algorithm and width flow settings.
+// The "optimal" algorithm uses branch-and-bound search with a timeout; "barycentric" is the default.
 func buildLayoutOpts(ctx context.Context, opts *renderOpts) ([]layout.Option, error) {
 	logger := loggerFromContext(ctx)
 	var layoutOpts []layout.Option
@@ -338,6 +382,8 @@ func buildLayoutOpts(ctx context.Context, opts *renderOpts) ([]layout.Option, er
 	return layoutOpts, nil
 }
 
+// buildRenderOpts constructs SVG rendering options based on style, edges, and feature flags.
+// The handdrawn style supports Nebraska maintainer ranking and hover popups.
 func buildRenderOpts(g *dag.DAG, opts *renderOpts) []sink.SVGOption {
 	result := []sink.SVGOption{sink.WithGraph(g)}
 	if opts.showEdges {
@@ -358,6 +404,7 @@ func buildRenderOpts(g *dag.DAG, opts *renderOpts) []sink.SVGOption {
 	return result
 }
 
+// buildJSONOpts constructs JSON rendering options including graph metadata and feature flags.
 func buildJSONOpts(g *dag.DAG, opts *renderOpts) []sink.JSONOption {
 	result := []sink.JSONOption{sink.WithJSONGraph(g)}
 	if opts.merge {
