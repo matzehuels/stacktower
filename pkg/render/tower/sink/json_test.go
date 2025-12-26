@@ -6,6 +6,7 @@ import (
 
 	"github.com/matzehuels/stacktower/pkg/dag"
 	"github.com/matzehuels/stacktower/pkg/render/tower/feature"
+	towerio "github.com/matzehuels/stacktower/pkg/render/tower/io"
 	"github.com/matzehuels/stacktower/pkg/render/tower/layout"
 )
 
@@ -30,7 +31,7 @@ func TestRenderJSON(t *testing.T) {
 		t.Fatalf("RenderJSON() error: %v", err)
 	}
 
-	var out jsonOutput
+	var out towerio.LayoutData
 	if err := json.Unmarshal(data, &out); err != nil {
 		t.Fatalf("json.Unmarshal() error: %v", err)
 	}
@@ -68,7 +69,7 @@ func TestRenderJSONWithOptions(t *testing.T) {
 		t.Fatalf("RenderJSON() error: %v", err)
 	}
 
-	var out jsonOutput
+	var out towerio.LayoutData
 	if err := json.Unmarshal(data, &out); err != nil {
 		t.Fatalf("json.Unmarshal() error: %v", err)
 	}
@@ -107,7 +108,7 @@ func TestRenderJSONWithGraph(t *testing.T) {
 		t.Fatalf("RenderJSON() error: %v", err)
 	}
 
-	var out jsonOutput
+	var out towerio.LayoutData
 	if err := json.Unmarshal(data, &out); err != nil {
 		t.Fatalf("json.Unmarshal() error: %v", err)
 	}
@@ -145,7 +146,7 @@ func TestRenderJSONWithMergedEdges(t *testing.T) {
 		t.Fatalf("RenderJSON() error: %v", err)
 	}
 
-	var out jsonOutput
+	var out towerio.LayoutData
 	if err := json.Unmarshal(data, &out); err != nil {
 		t.Fatalf("json.Unmarshal() error: %v", err)
 	}
@@ -190,7 +191,7 @@ func TestRenderJSONWithNebraska(t *testing.T) {
 		t.Fatalf("RenderJSON() error: %v", err)
 	}
 
-	var out jsonOutput
+	var out towerio.LayoutData
 	if err := json.Unmarshal(data, &out); err != nil {
 		t.Fatalf("json.Unmarshal() error: %v", err)
 	}
@@ -239,7 +240,7 @@ func TestRenderJSONWithNodeMeta(t *testing.T) {
 		t.Fatalf("RenderJSON() error: %v", err)
 	}
 
-	var out jsonOutput
+	var out towerio.LayoutData
 	if err := json.Unmarshal(data, &out); err != nil {
 		t.Fatalf("json.Unmarshal() error: %v", err)
 	}
@@ -263,111 +264,72 @@ func TestRenderJSONWithNodeMeta(t *testing.T) {
 	}
 }
 
-func TestExtractJSONMetaNilMeta(t *testing.T) {
-	n := &dag.Node{ID: "test", Meta: nil}
-	m := extractJSONMeta(n)
-	if m != nil {
-		t.Error("extractJSONMeta() should return nil for node with nil meta")
-	}
-}
-
-func TestExtractJSONMetaEmptyMeta(t *testing.T) {
-	n := &dag.Node{ID: "test", Meta: dag.Metadata{}}
-	m := extractJSONMeta(n)
-	if m != nil {
-		t.Error("extractJSONMeta() should return nil for node with empty meaningful meta")
-	}
-}
-
-func TestExtractJSONMetaWithSummary(t *testing.T) {
-	n := &dag.Node{
-		ID: "test",
-		Meta: dag.Metadata{
-			"summary": "A summary description",
-		},
-	}
-	m := extractJSONMeta(n)
-	if m == nil {
-		t.Fatal("extractJSONMeta() should not return nil")
-	}
-	if m.Description != "A summary description" {
-		t.Errorf("Description = %q, want %q", m.Description, "A summary description")
-	}
-}
-
-func TestBuildJSONEdgesFiltersInvalidBlocks(t *testing.T) {
-	g := dag.New(nil)
-	g.AddNode(dag.Node{ID: "a", Row: 0})
-	g.AddNode(dag.Node{ID: "b", Row: 1})
-	g.AddNode(dag.Node{ID: "c", Row: 2})
-	g.AddEdge(dag.Edge{From: "a", To: "b"})
-	g.AddEdge(dag.Edge{From: "b", To: "c"})
-
-	// Layout only has "a" and "b", not "c"
-	l := layout.Layout{
+// TestRenderJSONRoundTrip verifies that a layout can be exported and re-imported
+func TestRenderJSONRoundTrip(t *testing.T) {
+	original := layout.Layout{
+		FrameWidth:  800,
+		FrameHeight: 600,
+		MarginX:     40,
+		MarginY:     30,
 		Blocks: map[string]layout.Block{
-			"a": {NodeID: "a"},
-			"b": {NodeID: "b"},
+			"pkg-a": {NodeID: "pkg-a", Left: 40, Right: 200, Bottom: 30, Top: 100},
+			"pkg-b": {NodeID: "pkg-b", Left: 200, Right: 400, Bottom: 100, Top: 200},
+		},
+		RowOrders: map[int][]string{
+			0: {"pkg-a"},
+			1: {"pkg-b"},
 		},
 	}
 
-	edges := buildJSONEdges(l, g, false)
-
-	// Should only include a->b, not b->c (since c is not in layout)
-	if len(edges) != 1 {
-		t.Errorf("edges count = %d, want 1", len(edges))
+	// Export
+	data, err := RenderJSON(original, WithJSONStyle("handdrawn"), WithJSONRandomize(42))
+	if err != nil {
+		t.Fatalf("RenderJSON() error: %v", err)
 	}
-	if len(edges) > 0 && (edges[0].From != "a" || edges[0].To != "b") {
-		t.Errorf("edge = {%q -> %q}, want {a -> b}", edges[0].From, edges[0].To)
+
+	// Import using towerio
+	imported, meta, err := towerio.ReadLayout(jsonReader(data))
+	if err != nil {
+		t.Fatalf("ReadLayout() error: %v", err)
+	}
+
+	// Verify layout dimensions
+	if imported.FrameWidth != original.FrameWidth {
+		t.Errorf("FrameWidth = %v, want %v", imported.FrameWidth, original.FrameWidth)
+	}
+	if imported.FrameHeight != original.FrameHeight {
+		t.Errorf("FrameHeight = %v, want %v", imported.FrameHeight, original.FrameHeight)
+	}
+
+	// Verify blocks
+	if len(imported.Blocks) != len(original.Blocks) {
+		t.Errorf("Blocks count = %d, want %d", len(imported.Blocks), len(original.Blocks))
+	}
+
+	// Verify metadata
+	if meta.Style != "handdrawn" {
+		t.Errorf("meta.Style = %q, want %q", meta.Style, "handdrawn")
+	}
+	if meta.Seed != 42 {
+		t.Errorf("meta.Seed = %d, want 42", meta.Seed)
 	}
 }
 
-func TestWithJSONGraphOption(t *testing.T) {
-	g := dag.New(nil)
-	r := &jsonRenderer{}
-	opt := WithJSONGraph(g)
-	opt(r)
-	if r.graph != g {
-		t.Error("WithJSONGraph should set graph")
-	}
+// jsonReader wraps []byte for io.Reader
+type jsonReaderImpl struct {
+	data []byte
+	pos  int
 }
 
-func TestWithJSONMergedOption(t *testing.T) {
-	r := &jsonRenderer{}
-	opt := WithJSONMerged()
-	opt(r)
-	if !r.merged {
-		t.Error("WithJSONMerged should set merged=true")
-	}
+func jsonReader(data []byte) *jsonReaderImpl {
+	return &jsonReaderImpl{data: data}
 }
 
-func TestWithJSONRandomizeOption(t *testing.T) {
-	r := &jsonRenderer{}
-	opt := WithJSONRandomize(42)
-	opt(r)
-	if !r.randomize {
-		t.Error("WithJSONRandomize should set randomize=true")
+func (r *jsonReaderImpl) Read(p []byte) (n int, err error) {
+	if r.pos >= len(r.data) {
+		return 0, nil
 	}
-	if r.seed != 42 {
-		t.Errorf("seed = %d, want 42", r.seed)
-	}
-}
-
-func TestWithJSONStyleOption(t *testing.T) {
-	r := &jsonRenderer{}
-	opt := WithJSONStyle("custom")
-	opt(r)
-	if r.style != "custom" {
-		t.Errorf("style = %q, want %q", r.style, "custom")
-	}
-}
-
-func TestWithJSONNebraskaOption(t *testing.T) {
-	rankings := []feature.NebraskaRanking{{Maintainer: "test"}}
-	r := &jsonRenderer{}
-	opt := WithJSONNebraska(rankings)
-	opt(r)
-	if len(r.nebraska) != 1 {
-		t.Errorf("nebraska count = %d, want 1", len(r.nebraska))
-	}
+	n = copy(p, r.data[r.pos:])
+	r.pos += n
+	return n, nil
 }

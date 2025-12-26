@@ -4,34 +4,6 @@ import (
 	"testing"
 )
 
-func TestParseVizTypes(t *testing.T) {
-	tests := []struct {
-		name  string
-		input string
-		want  []string
-	}{
-		{"empty defaults to tower", "", []string{"tower"}},
-		{"single type", "tower", []string{"tower"}},
-		{"multiple types", "tower,nodelink", []string{"tower", "nodelink"}},
-		{"nodelink only", "nodelink", []string{"nodelink"}},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			got := parseVizTypes(tt.input)
-			if len(got) != len(tt.want) {
-				t.Errorf("parseVizTypes(%q) length = %d, want %d", tt.input, len(got), len(tt.want))
-				return
-			}
-			for i, v := range got {
-				if v != tt.want[i] {
-					t.Errorf("parseVizTypes(%q)[%d] = %q, want %q", tt.input, i, v, tt.want[i])
-				}
-			}
-		})
-	}
-}
-
 func TestParseFormats(t *testing.T) {
 	tests := []struct {
 		name  string
@@ -40,8 +12,8 @@ func TestParseFormats(t *testing.T) {
 	}{
 		{"empty defaults to svg", "", []string{"svg"}},
 		{"single format", "svg", []string{"svg"}},
-		{"multiple formats", "svg,json,pdf", []string{"svg", "json", "pdf"}},
-		{"json only", "json", []string{"json"}},
+		{"multiple formats", "svg,pdf,png", []string{"svg", "pdf", "png"}},
+		{"pdf only", "pdf", []string{"pdf"}},
 	}
 
 	for _, tt := range tests {
@@ -67,11 +39,11 @@ func TestValidateFormats(t *testing.T) {
 		wantErr bool
 	}{
 		{"valid svg", []string{"svg"}, false},
-		{"valid json", []string{"json"}, false},
 		{"valid pdf", []string{"pdf"}, false},
 		{"valid png", []string{"png"}, false},
-		{"valid multiple", []string{"svg", "json", "pdf", "png"}, false},
+		{"valid multiple", []string{"svg", "pdf", "png"}, false},
 		{"invalid format", []string{"invalid"}, true},
+		{"json not allowed", []string{"json"}, true}, // json is layout output, not render
 		{"mixed valid invalid", []string{"svg", "invalid"}, true},
 		{"empty slice", []string{}, false},
 	}
@@ -108,43 +80,22 @@ func TestValidateStyle(t *testing.T) {
 	}
 }
 
-func TestBasePath(t *testing.T) {
-	tests := []struct {
-		name   string
-		output string
-		input  string
-		want   string
-	}{
-		{"empty output uses input", "", "/path/to/file.json", "/path/to/file"},
-		{"output without format ext", "/out/file", "/in/file.json", "/out/file"},
-		{"output with svg ext", "/out/file.svg", "/in/file.json", "/out/file"},
-		{"output with json ext", "/out/file.json", "/in/file.json", "/out/file"},
-		{"output with pdf ext", "/out/file.pdf", "/in/file.json", "/out/file"},
-		{"output with png ext", "/out/file.png", "/in/file.json", "/out/file"},
-		{"output with unknown ext", "/out/file.txt", "/in/file.json", "/out/file.txt"},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := basePath(tt.output, tt.input); got != tt.want {
-				t.Errorf("basePath(%q, %q) = %q, want %q", tt.output, tt.input, got, tt.want)
-			}
-		})
-	}
-}
-
 func TestValidFormatsMap(t *testing.T) {
 	expected := map[string]bool{
-		"svg":  true,
-		"json": true,
-		"pdf":  true,
-		"png":  true,
+		"svg": true,
+		"pdf": true,
+		"png": true,
 	}
 
 	for k, v := range expected {
 		if validFormats[k] != v {
 			t.Errorf("validFormats[%q] = %v, want %v", k, validFormats[k], v)
 		}
+	}
+
+	// json is NOT a valid render format (it's layout output)
+	if validFormats["json"] {
+		t.Error("validFormats[json] should be false")
 	}
 
 	if validFormats["invalid"] {

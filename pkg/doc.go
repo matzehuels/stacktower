@@ -4,12 +4,14 @@
 //
 // Stacktower transforms dependency trees into visual tower diagrams where packages
 // rest on what they depend on—inspired by XKCD #2347 ("Dependency"). The pkg
-// directory contains reusable Go libraries organized into four main areas:
+// directory contains reusable Go libraries organized into six main areas:
 //
-//  1. Dependency Resolution ([deps], [integrations], [httputil])
+//  1. Dependency Resolution ([deps], [integrations], [kv])
 //  2. Graph Data Structures ([dag])
-//  3. Visualization Rendering ([render])
+//  3. Visualization Rendering ([render], [pipeline])
 //  4. Data Import/Export ([io])
+//  5. Infrastructure ([artifact], [cache], [queue], [storage], [session], [jobs], [config], [errors], [hash])
+//  6. Utilities (none)
 //
 // # Architecture
 //
@@ -65,7 +67,7 @@
 // crates.io, RubyGems, Packagist, Maven, Go proxy). Each subpackage implements
 // registry-specific API calls with caching and retry logic.
 //
-// [httputil] - Shared HTTP utilities for caching and retry logic.
+// [kv] - Generic key-value storage with TTL and high-level caching.
 //
 // [deps/metadata] - Repository metadata enrichment from GitHub/GitLab (stars,
 // maintainers, activity) used for Nebraska ranking and brittle detection.
@@ -102,6 +104,41 @@
 // ## Data Import/Export
 //
 // [io] - Import/export dependency graphs in JSON node-link format.
+//
+// ## Infrastructure
+//
+// [pipeline] - Complete visualization pipeline (parse → layout → render) used
+// by CLI, API, and worker. Ensures consistent behavior across all entry points.
+//
+// [artifact] - Unified artifact caching and storage service for the CLI.
+// Implements a two-tier caching strategy:
+//
+//   - Tier 1 (Cache Index): Fast TTL-based lookup mapping hash(inputs) → storage_key
+//   - Tier 2 (Storage): Durable artifact storage (storage_key → artifact_bytes)
+//
+// On cache hit, retrieves artifacts from storage using the cached key. When TTL
+// expires or --refresh is set, recomputes and upserts the artifact.
+//
+// [cache] - Two-tier caching with Redis (fast lookup) and MongoDB (durable storage).
+// Defines interfaces for LookupCache and Store backends.
+//
+// [queue] - Job queue interface with memory and Redis implementations. Supports
+// job lifecycle (pending, running, completed, failed, cancelled).
+//
+// [storage] - Artifact storage interface with memory and GridFS implementations.
+// Used to store rendered outputs (SVG, PNG, PDF).
+//
+// [session] - Session management for authenticated users. Provides memory, Redis,
+// and file-based backends for sessions and OAuth state tokens.
+//
+// [jobs] - Job payload definitions (VisualizePayload, ParsePayload, LayoutPayload).
+// Single source of truth for job parameters.
+//
+// [config] - Shared configuration and constants (e.g., TTLs).
+//
+// [errors] - Shared sentinel errors used across packages.
+//
+// [hash] - Shared hashing utilities (SHA-256).
 //
 // # Common Workflows
 //
@@ -143,7 +180,6 @@
 //
 // [deps]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/deps
 // [integrations]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/integrations
-// [httputil]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/httputil
 // [dag]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/dag
 // [dag/transform]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/dag/transform
 // [dag/perm]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/dag/perm
@@ -157,6 +193,14 @@
 // [render/tower/feature]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/render/tower/feature
 // [render/nodelink]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/render/nodelink
 // [io]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/io
+// [pipeline]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/pipeline
+// [artifact]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/artifact
+// [cache]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/cache
+// [queue]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/queue
+// [storage]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/storage
+// [session]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/session
+// [jobs]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/jobs
+// [kv]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/kv
 //
 // [render/tower/styles/handdrawn]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/render/tower/styles/handdrawn
 package pkg

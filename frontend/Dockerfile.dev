@@ -1,0 +1,17 @@
+# Development Dockerfile - uses Vite dev server with hot reload
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install dependencies first (cached layer)
+COPY package*.json ./
+RUN npm ci
+
+# Don't copy source - we'll mount it as a volume
+# This enables hot-reload
+
+EXPOSE 5173
+
+# Vite dev server with host binding for Docker
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+

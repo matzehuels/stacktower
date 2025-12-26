@@ -5,9 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/charmbracelet/log"
-
 	"github.com/matzehuels/stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/logging"
 	"github.com/matzehuels/stacktower/pkg/render/tower/ordering"
 )
 
@@ -18,8 +17,8 @@ import (
 // The orderer is not safe for concurrent use; it maintains internal state for logging.
 type optimalOrderer struct {
 	ordering.OptimalSearch
-	prog                     *progress
-	logger                   *log.Logger
+	prog                     *logging.Progress
+	logger                   *logging.Logger
 	lastExplored, lastPruned int
 	lastBest                 int
 	start, lastLog           time.Time
@@ -31,9 +30,9 @@ type optimalOrderer struct {
 //
 // The orderer logs progress updates including initial solutions, improvements, and periodic heartbeats.
 func newOptimalOrderer(ctx context.Context, timeoutSec int) ordering.Orderer {
-	logger := loggerFromContext(ctx)
+	logger := logging.FromContext(ctx)
 	o := &optimalOrderer{
-		prog:     newProgress(logger),
+		prog:     logging.NewProgress(logger),
 		logger:   logger,
 		lastBest: -1,
 		start:    time.Now(),
@@ -105,7 +104,7 @@ func (o *optimalOrderer) onDebug(info ordering.DebugInfo) {
 func (o *optimalOrderer) OrderRows(g *dag.DAG) map[int][]string {
 	result := o.OptimalSearch.OrderRows(g)
 	crossings := dag.CountCrossings(g, result)
-	o.prog.done(fmt.Sprintf("Layout complete: %d crossings", crossings))
+	o.prog.Done(fmt.Sprintf("Layout complete: %d crossings", crossings))
 
 	if crossings >= 0 {
 		o.logger.Infof("Best: %d crossings (explored: %d, pruned: %d)", crossings, o.lastExplored, o.lastPruned)

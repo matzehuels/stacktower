@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	charmlog "github.com/charmbracelet/log"
+	"github.com/matzehuels/stacktower/pkg/logging"
 	"github.com/spf13/cobra"
 )
 
@@ -59,11 +59,11 @@ func Execute() error {
 		Version:      version,
 		SilenceUsage: true,
 		PersistentPreRun: func(cmd *cobra.Command, args []string) {
-			level := charmlog.InfoLevel
+			level := logging.LevelInfo
 			if verbose {
-				level = charmlog.DebugLevel
+				level = logging.LevelDebug
 			}
-			ctx := withLogger(cmd.Context(), newLogger(os.Stderr, level))
+			ctx := logging.WithLogger(cmd.Context(), logging.New(os.Stderr, level))
 			cmd.SetContext(ctx)
 		},
 	}
@@ -72,9 +72,12 @@ func Execute() error {
 	root.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "enable verbose logging")
 
 	root.AddCommand(newParseCmd())
+	root.AddCommand(newLayoutCmd())
+	root.AddCommand(newVisualizeCmd())
 	root.AddCommand(newRenderCmd())
 	root.AddCommand(newCacheCmd())
 	root.AddCommand(newPQTreeCmd())
+	root.AddCommand(newGitHubCmd())
 
 	return root.ExecuteContext(context.Background())
 }

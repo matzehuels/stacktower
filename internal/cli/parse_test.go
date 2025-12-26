@@ -2,6 +2,8 @@ package cli
 
 import (
 	"testing"
+
+	"github.com/matzehuels/stacktower/pkg/deps/languages"
 )
 
 func TestLooksLikeFile(t *testing.T) {
@@ -31,27 +33,6 @@ func TestLooksLikeFile(t *testing.T) {
 	}
 }
 
-func TestMetadataProviders(t *testing.T) {
-	// Test with enrich=false
-	providers, err := metadataProviders(false)
-	if err != nil {
-		t.Errorf("metadataProviders(false) error: %v", err)
-	}
-	if providers != nil {
-		t.Errorf("metadataProviders(false) should return nil, got %v", providers)
-	}
-}
-
-func TestMetadataProvidersNoToken(t *testing.T) {
-	// Save and clear GITHUB_TOKEN (t.Setenv restores automatically at test end)
-	t.Setenv("GITHUB_TOKEN", "")
-
-	_, err := metadataProviders(true)
-	if err == nil {
-		t.Error("metadataProviders(true) should return error when GITHUB_TOKEN not set")
-	}
-}
-
 func TestNopCloser(t *testing.T) {
 	nc := nopCloser{}
 	if err := nc.Close(); err != nil {
@@ -60,20 +41,20 @@ func TestNopCloser(t *testing.T) {
 }
 
 func TestLanguagesRegistered(t *testing.T) {
-	if len(languages) == 0 {
-		t.Error("languages slice should not be empty")
+	if len(languages.All) == 0 {
+		t.Error("languages.All slice should not be empty")
 	}
 
 	// Check that all expected languages are present
 	expectedLangs := []string{"python", "rust", "javascript", "ruby", "php", "java", "go"}
 	langNames := make(map[string]bool)
-	for _, lang := range languages {
+	for _, lang := range languages.All {
 		langNames[lang.Name] = true
 	}
 
 	for _, expected := range expectedLangs {
 		if !langNames[expected] {
-			t.Errorf("languages missing %q", expected)
+			t.Errorf("languages.All missing %q", expected)
 		}
 	}
 }

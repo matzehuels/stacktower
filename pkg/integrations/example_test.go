@@ -78,6 +78,6 @@ func Example_errors() {
 	fmt.Println("ErrNotFound:", integrations.ErrNotFound)
 	fmt.Println("ErrNetwork:", integrations.ErrNetwork)
 	// Output:
-	// ErrNotFound: resource not found
+	// ErrNotFound: not found
 	// ErrNetwork: network error
 }

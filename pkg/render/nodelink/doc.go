@@ -1,42 +1,61 @@
-// Package nodelink renders dependency graphs as traditional node-link diagrams.
+// Package nodelink provides node-and-edge graph visualization using Graphviz.
 //
-// # Overview
+// This package implements a traditional graph visualization where nodes are
+// represented as boxes and dependencies are shown as directed edges between them.
 //
-// This package produces directed graph visualizations using Graphviz, where
-// nodes appear as boxes connected by arrows. It's an alternative to the
-// tower visualization for cases where a traditional diagram is preferred.
+// # Architecture
+//
+// Unlike the tower visualization which separates layout computation from rendering,
+// nodelink uses Graphviz which handles both in a single step:
+//
+//	Tower:    DAG → layout.Build() → Layout → sink.RenderSVG() → SVG
+//	Nodelink: DAG → ToDOT() → DOT → RenderSVG() → SVG
+//
+// The DOT format serves as the intermediate representation (similar to tower's
+// layout.json), enabling re-rendering without re-parsing the dependency graph.
+//
+// # Pipeline Integration
+//
+// In the job system, nodelink follows the same three-stage pattern:
+//
+//	Parse:  manifest/package → graph.json (DAG)
+//	Layout: graph.json → layout.dot (Graphviz DOT format)
+//	Export: layout.dot → svg/png/pdf
+//
+// # Layout Engines
+//
+// Graphviz provides several layout engines via the Engine option:
+//
+//   - dot: Hierarchical (default) - best for dependency graphs
+//   - neato: Spring model - for undirected graphs
+//   - fdp: Force-directed - for clustering
+//   - circo: Circular - for cyclic structures
+//   - twopi: Radial - for tree-like graphs
 //
 // # Usage
 //
-// Convert a DAG to DOT format, then render to SVG:
+// Direct usage (bypassing the job system):
 //
-//	dot := nodelink.ToDOT(g, nodelink.Options{Detailed: false})
-//	svg, err := nodelink.RenderSVG(dot)
+//	g, _ := resolver.Resolve(ctx, "requests", opts)
+//	dot := nodelink.ToDOT(g, nodelink.Options{})
+//	svg, _ := nodelink.RenderSVG(dot)
 //
-// For PDF or PNG output, use the render functions:
+// Via the API:
 //
-//	pdf, err := nodelink.RenderPDF(dot)
-//	png, err := nodelink.RenderPNG(dot, 2.0)  // 2x scale
+//	// Step 1: Parse
+//	POST /api/v1/parse {language: "python", package: "requests"}
+//	// → graph.json
 //
-// # Options
+//	// Step 2: Layout
+//	POST /api/v1/layout {graph_path: "job-123/graph.json", viz_type: "nodelink"}
+//	// → layout.dot
 //
-// The [Options] struct controls diagram generation:
+//	// Step 3: Export
+//	POST /api/v1/export {layout_path: "job-456/layout.dot", formats: ["svg"]}
+//	// → nodelink.svg
 //
-//   - Detailed: When true, node labels include all metadata (row, version, etc.)
+// # Subdividers
 //
-// # DOT Format
-//
-// The [ToDOT] function produces Graphviz DOT source that can be:
-//
-//   - Rendered directly via [RenderSVG]
-//   - Saved and processed with external Graphviz tools
-//   - Customized before rendering
-//
-// The generated DOT uses top-to-bottom layout (rankdir=TB) with rounded
-// box nodes, matching the tower visualization's vertical orientation.
-//
-// # Dependencies
-//
-// This package uses [github.com/goccy/go-graphviz] for in-process SVG
-// rendering. PDF and PNG conversion requires librsvg (rsvg-convert).
+// Subdivider nodes (created by dag/transform.Subdivide) are rendered with dashed
+// outlines and grey fill to visually distinguish them from regular dependency nodes.
 package nodelink

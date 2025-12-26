@@ -1,0 +1,47 @@
+# Production compose - use this for deployment
+#
+# Usage:
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+#
+# Or set COMPOSE_FILE env var:
+#   export COMPOSE_FILE=docker-compose.yml:docker-compose.prod.yml
+#   docker compose up -d
+
+services:
+  frontend:
+    # Use production build (nginx serving static files)
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+
+  api:
+    # Production settings
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
+    restart: always
+
+  worker:
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 512M
+    restart: always
+
+  # Disable admin UIs in production
+  mongo-express:
+    deploy:
+      replicas: 0
+
+  redis-commander:
+    deploy:
+      replicas: 0
+

@@ -1,0 +1,172 @@
+# Stacktower Development Environment
+#
+# Services:
+#   - frontend: React playground UI (port 3000)
+#   - api:      HTTP API server (port 8080)
+#   - worker:   Background job processor
+#   - redis:    Queue + Cache backend
+#   - mongodb:  Document storage for graphs, layouts, and artifacts
+#
+# Usage:
+#   docker compose up -d           # Start all services
+#   docker compose logs -f api     # View API logs
+#   docker compose down -v         # Stop and remove volumes
+
+services:
+  # ==========================================================================
+  # Application Services
+  # ==========================================================================
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:80"  # Frontend at localhost:3001
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # No command needed - uses env vars for backend config
+    ports:
+      - "8080:8080"
+    environment:
+      # Server
+      STACKTOWER_HOST: "0.0.0.0"
+      STACKTOWER_PORT: "8080"
+      
+      # Redis (queue + cache)
+      STACKTOWER_REDIS_ADDR: "redis:6379"
+      STACKTOWER_QUEUE_BACKEND: "redis"
+      STACKTOWER_CACHE_BACKEND: "redis"
+      
+      # MongoDB Storage
+      STACKTOWER_STORAGE_BACKEND: "mongodb"
+      STACKTOWER_MONGODB_URI: "mongodb://mongodb:27017"
+      STACKTOWER_MONGODB_DATABASE: "stacktower"
+      
+      # GitHub token for metadata enrichment
+      GITHUB_TOKEN: "${GITHUB_TOKEN:-}"
+      
+      # GitHub OAuth (for repo integration)
+      # Create an OAuth App at: https://github.com/settings/developers
+      GITHUB_CLIENT_ID: "${GITHUB_CLIENT_ID:-}"
+      GITHUB_CLIENT_SECRET: "${GITHUB_CLIENT_SECRET:-}"
+      GITHUB_REDIRECT_URI: "http://localhost:8080/api/v1/auth/github/callback"
+      FRONTEND_URL: "http://localhost:3000"
+    depends_on:
+      redis:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["--worker"]
+    environment:
+      # Redis (queue + cache)
+      STACKTOWER_REDIS_ADDR: "redis:6379"
+      STACKTOWER_QUEUE_BACKEND: "redis"
+      STACKTOWER_CACHE_BACKEND: "redis"
+      
+      # MongoDB Storage
+      STACKTOWER_STORAGE_BACKEND: "mongodb"
+      STACKTOWER_MONGODB_URI: "mongodb://mongodb:27017"
+      STACKTOWER_MONGODB_DATABASE: "stacktower"
+      
+      # GitHub token for metadata enrichment
+      GITHUB_TOKEN: "${GITHUB_TOKEN:-}"
+      
+      # Anthropic API key for AI-powered analysis
+      ANTHROPIC_API_KEY: "${ANTHROPIC_API_KEY:-}"
+    depends_on:
+      redis:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+    restart: unless-stopped
+    deploy:
+      replicas: 2  # Run multiple workers for parallel processing
+
+  # ==========================================================================
+  # Infrastructure Services
+  # ==========================================================================
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --appendonly yes
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    environment:
+      # For production, set these to secure values
+      # MONGO_INITDB_ROOT_USERNAME: admin
+      # MONGO_INITDB_ROOT_PASSWORD: secret
+      MONGO_INITDB_DATABASE: stacktower
+    volumes:
+      - mongodb_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+    restart: unless-stopped
+
+  # MongoDB admin UI - http://localhost:8081
+  mongo-express:
+    image: mongo-express:latest
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_URL: "mongodb://mongodb:27017"
+      ME_CONFIG_BASICAUTH: "false"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # Redis admin UI - http://localhost:8082
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    platform: linux/amd64  # Emulate on ARM (slower but works)
+    ports:
+      - "8082:8081"
+    environment:
+      REDIS_HOSTS: "local:redis:6379"
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+  mongodb_data:
+
+networks:
+  default:
+    name: stacktower

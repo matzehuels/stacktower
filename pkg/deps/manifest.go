@@ -3,6 +3,7 @@ package deps
 import (
 	"fmt"
 	"path/filepath"
+	"strings"
 )
 
 // ManifestParser reads dependency information from local manifest files.
@@ -96,4 +97,129 @@ func DetectManifest(path string, parsers ...ManifestParser) (ManifestParser, err
 		}
 	}
 	return nil, fmt.Errorf("unsupported manifest: %s", name)
+}
+
+// ManifestInfo describes a manifest file and its support status.
+type ManifestInfo struct {
+	// Filename is the manifest file name (e.g., "package.json", "go.mod").
+	Filename string
+
+	// Language is the language name (e.g., "python", "javascript").
+	Language string
+
+	// ManifestType is the internal type identifier (e.g., "poetry", "cargo").
+	ManifestType string
+
+	// Supported indicates whether stacktower can parse this manifest.
+	Supported bool
+}
+
+// KnownManifests lists all manifest files that stacktower knows about.
+// This includes both supported manifests (from Language.ManifestAliases) and
+// commonly encountered manifests that are not yet supported.
+//
+// The languages parameter should contain all Language definitions to aggregate.
+// Additional unsupported manifests can be added via extraUnsupported.
+func KnownManifests(languages []*Language, extraUnsupported map[string]string) []ManifestInfo {
+	var result []ManifestInfo
+	seen := make(map[string]bool)
+
+	// First, add all supported manifests from languages
+	for _, lang := range languages {
+		for filename, manifestType := range lang.ManifestAliases {
+			if seen[filename] {
+				continue
+			}
+			seen[filename] = true
+			result = append(result, ManifestInfo{
+				Filename:     filename,
+				Language:     lang.Name,
+				ManifestType: manifestType,
+				Supported:    true,
+			})
+		}
+	}
+
+	// Then add extra unsupported manifests
+	for filename, language := range extraUnsupported {
+		if seen[filename] {
+			continue
+		}
+		seen[filename] = true
+		result = append(result, ManifestInfo{
+			Filename:     filename,
+			Language:     language,
+			ManifestType: "",
+			Supported:    false,
+		})
+	}
+
+	return result
+}
+
+// SupportedManifests returns a map of filename -> language for all supported manifests.
+// This is a convenience function for quick lookups.
+func SupportedManifests(languages []*Language) map[string]string {
+	result := make(map[string]string)
+	for _, lang := range languages {
+		for filename := range lang.ManifestAliases {
+			result[filename] = lang.Name
+		}
+	}
+	return result
+}
+
+// IsManifestSupported checks if a manifest filename is supported by any of the languages.
+func IsManifestSupported(filename string, languages []*Language) bool {
+	for _, lang := range languages {
+		if _, ok := lang.ManifestAliases[filename]; ok {
+			return true
+		}
+	}
+	return false
+}
+
+// GetManifestLanguage returns the language name for a manifest file, if supported.
+// Returns empty string if the manifest is not supported.
+func GetManifestLanguage(filename string, languages []*Language) string {
+	for _, lang := range languages {
+		if _, ok := lang.ManifestAliases[filename]; ok {
+			return lang.Name
+		}
+	}
+	return ""
+}
+
+// NormalizeLanguageName maps external language names (e.g., from GitHub API)
+// to our standard internal names. Returns the original (lowercased) if no mapping exists.
+func NormalizeLanguageName(name string, languages []*Language) string {
+	if name == "" {
+		return ""
+	}
+
+	// Build a case-insensitive lookup map
+	lower := strings.ToLower(name)
+
+	// Check against our language names
+	for _, lang := range languages {
+		if strings.ToLower(lang.Name) == lower {
+			return lang.Name
+		}
+	}
+
+	// Common aliases not covered by Language.Name
+	aliases := map[string]string{
+		"golang": "go",
+	}
+	if mapped, ok := aliases[lower]; ok {
+		// Find the actual language name
+		for _, lang := range languages {
+			if lang.Name == mapped {
+				return lang.Name
+			}
+		}
+	}
+
+	// Return lowercase if no match
+	return lower
 }

@@ -88,10 +88,11 @@
 // # Layout Export
 //
 // This package exports the logical graph structure only (nodes, edges, metadata).
-// For external tools that need computed layout positions, use the JSON sink in
-// [render/tower/sink], which exports the complete [layout.Layout] including
-// block coordinates, row orderings, and all render options.
+// For computed layout positions (block coordinates, row orderings), use the
+// visualization-specific I/O packages:
 //
-// [render/tower/sink]: github.com/matzehuels/stacktower/pkg/render/tower/sink
-// [layout.Layout]: github.com/matzehuels/stacktower/pkg/render/tower/layout.Layout
+//   - [render/tower/io]: Tower visualization layouts
+//   - [render/nodelink/io]: Nodelink visualization layouts (planned)
+//
+// [render/tower/io]: github.com/matzehuels/stacktower/pkg/render/tower/io
 package io

@@ -9,11 +9,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/httputil"
+	"github.com/matzehuels/stacktower/pkg/kv"
 )
 
 func TestNewClient(t *testing.T) {
-	cache, _ := httputil.NewCache("", time.Hour)
+	s := kv.NewMemoryStore()
+	cache := kv.NewCache(s, time.Hour)
 	headers := map[string]string{"Authorization": "Bearer token"}
 
 	client := NewClient(cache, headers)
@@ -33,7 +34,7 @@ func TestNewClient(t *testing.T) {
 }
 
 func TestNewClientNilHeaders(t *testing.T) {
-	cache, _ := httputil.NewCache("", time.Hour)
+	cache, _ := NewCache(time.Hour)
 	client := NewClient(cache, nil)
 
 	if client == nil {
@@ -57,7 +58,7 @@ func TestClientGet(t *testing.T) {
 	}))
 	defer server.Close()
 
-	cache, _ := httputil.NewCache("", time.Hour)
+	cache := kv.NewCache(kv.NewMemoryStore(), time.Hour)
 	client := NewClient(cache, nil)
 	client.http = server.Client()
 
@@ -80,7 +81,7 @@ func TestClientGetWithHeaders(t *testing.T) {
 	}))
 	defer server.Close()
 
-	cache, _ := httputil.NewCache("", time.Hour)
+	cache := kv.NewCache(kv.NewMemoryStore(), time.Hour)
 	client := NewClient(cache, map[string]string{"X-Default": "default"})
 	client.http = server.Client()
 
@@ -103,7 +104,7 @@ func TestClientGetWithHeadersOverridesDefaults(t *testing.T) {
 	}))
 	defer server.Close()
 
-	cache, _ := httputil.NewCache("", time.Hour)
+	cache := kv.NewCache(kv.NewMemoryStore(), time.Hour)
 	client := NewClient(cache, map[string]string{"X-Override": "default"})
 	client.http = server.Client()
 
@@ -123,7 +124,7 @@ func TestClientGetText(t *testing.T) {
 	}))
 	defer server.Close()
 
-	cache, _ := httputil.NewCache("", time.Hour)
+	cache := kv.NewCache(kv.NewMemoryStore(), time.Hour)
 	client := NewClient(cache, nil)
 	client.http = server.Client()
 
@@ -142,7 +143,7 @@ func TestClientGet404(t *testing.T) {
 	}))
 	defer server.Close()
 
-	cache, _ := httputil.NewCache("", time.Hour)
+	cache := kv.NewCache(kv.NewMemoryStore(), time.Hour)
 	client := NewClient(cache, nil)
 	client.http = server.Client()
 
@@ -159,7 +160,7 @@ func TestClientGet500(t *testing.T) {
 	}))
 	defer server.Close()
 
-	cache, _ := httputil.NewCache("", time.Hour)
+	cache := kv.NewCache(kv.NewMemoryStore(), time.Hour)
 	client := NewClient(cache, nil)
 	client.http = server.Client()
 
@@ -169,14 +170,14 @@ func TestClientGet500(t *testing.T) {
 		t.Error("Get() should return error for 500")
 	}
 
-	var retryErr *httputil.RetryableError
+	var retryErr *kv.RetryableError
 	if !errors.As(err, &retryErr) {
 		t.Errorf("Get() error should be RetryableError, got %T", err)
 	}
 }
 
 func TestClientCached(t *testing.T) {
-	cache, _ := httputil.NewCache("", time.Hour)
+	cache := kv.NewCache(kv.NewMemoryStore(), time.Hour)
 	client := NewClient(cache, nil)
 
 	fetchCount := 0
@@ -206,7 +207,7 @@ func TestClientCached(t *testing.T) {
 }
 
 func TestClientCachedRefresh(t *testing.T) {
-	cache, _ := httputil.NewCache("", time.Hour)
+	cache := kv.NewCache(kv.NewMemoryStore(), time.Hour)
 	client := NewClient(cache, nil)
 
 	fetchCount := 0
@@ -229,7 +230,7 @@ func TestClientCachedRefresh(t *testing.T) {
 }
 
 func TestClientCachedFetchError(t *testing.T) {
-	cache, _ := httputil.NewCache("", time.Hour)
+	cache := kv.NewCache(kv.NewMemoryStore(), time.Hour)
 	client := NewClient(cache, nil)
 
 	var value string
@@ -314,7 +315,7 @@ func TestCheckStatus(t *testing.T) {
 					t.Errorf("checkStatus() error = %v, want %v", err, tt.wantType)
 				}
 				if tt.isRetryErr {
-					var retryErr *httputil.RetryableError
+					var retryErr *kv.RetryableError
 					if !errors.As(err, &retryErr) {
 						t.Errorf("checkStatus() error should be RetryableError, got %T", err)
 					}
@@ -410,7 +411,7 @@ func TestNewHTTPClient(t *testing.T) {
 func TestNewCache(t *testing.T) {
 	cache, err := NewCache(time.Hour)
 	if err != nil {
-		t.Fatalf("NewCache() error: %v", err)
+		t.Fatalf("NewCache failed: %v", err)
 	}
 	if cache == nil {
 		t.Error("NewCache() returned nil")
