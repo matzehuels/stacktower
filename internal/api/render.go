@@ -10,8 +10,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
-	"github.com/matzehuels/stacktower/pkg/queue"
+	"github.com/matzehuels/stacktower/pkg/infra/cache"
+	"github.com/matzehuels/stacktower/pkg/infra/queue"
 )
 
 // =============================================================================

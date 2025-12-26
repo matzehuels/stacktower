@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/matzehuels/stacktower/pkg/logging"
+	"github.com/matzehuels/stacktower/pkg/infra/common"
 	"github.com/spf13/cobra"
 )
 
@@ -59,11 +59,11 @@ func Execute() error {
 		Version:      version,
 		SilenceUsage: true,
 		PersistentPreRun: func(cmd *cobra.Command, args []string) {
-			level := logging.LevelInfo
+			level := common.LogInfo
 			if verbose {
-				level = logging.LevelDebug
+				level = common.LogDebug
 			}
-			ctx := logging.WithLogger(cmd.Context(), logging.New(os.Stderr, level))
+			ctx := common.WithLogger(cmd.Context(), common.NewLogger(os.Stderr, level))
 			cmd.SetContext(ctx)
 		},
 	}

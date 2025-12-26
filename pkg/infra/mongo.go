@@ -13,7 +13,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/gridfs"
 	"go.mongodb.org/mongo-driver/mongo/options"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
+	"github.com/matzehuels/stacktower/pkg/infra/cache"
 )
 
 // =============================================================================
@@ -168,15 +168,6 @@ func (s *mongoStore) StoreGraph(ctx context.Context, graph *cache.Graph) error {
 	return err
 }
 
-func (s *mongoStore) DeleteGraph(ctx context.Context, id string) error {
-	objID, err := primitive.ObjectIDFromHex(id)
-	if err != nil {
-		return fmt.Errorf("invalid graph ID: %w", err)
-	}
-	_, err = s.graphs.DeleteOne(ctx, bson.M{"_id": objID})
-	return err
-}
-
 // Render operations
 
 func (s *mongoStore) GetRender(ctx context.Context, id string) (*cache.Render, error) {
@@ -192,37 +183,6 @@ func (s *mongoStore) GetRender(ctx context.Context, id string) (*cache.Render, e
 	if err != nil {
 		return nil, fmt.Errorf("find render: %w", err)
 	}
-	s.renders.UpdateByID(ctx, objID, bson.M{"$set": bson.M{"accessed_at": time.Now()}})
-	return &render, nil
-}
-
-func (s *mongoStore) GetRenderByGraphAndOptions(ctx context.Context, userID, graphHash string, layoutOpts cache.LayoutOptions) (*cache.Render, error) {
-	filter := bson.M{
-		"user_id": userID, "graph_hash": graphHash,
-		"layout_options.viz_type": layoutOpts.VizType,
-		"layout_options.width":    layoutOpts.Width,
-		"layout_options.height":   layoutOpts.Height,
-	}
-	if layoutOpts.Ordering != "" {
-		filter["layout_options.ordering"] = layoutOpts.Ordering
-	}
-	if layoutOpts.Merge {
-		filter["layout_options.merge"] = true
-	}
-	if layoutOpts.Randomize {
-		filter["layout_options.randomize"] = true
-		filter["layout_options.seed"] = layoutOpts.Seed
-	}
-
-	var render cache.Render
-	err := s.renders.FindOne(ctx, filter).Decode(&render)
-	if err == mongo.ErrNoDocuments {
-		return nil, nil
-	}
-	if err != nil {
-		return nil, fmt.Errorf("find render: %w", err)
-	}
-	objID, _ := primitive.ObjectIDFromHex(render.ID)
 	s.renders.UpdateByID(ctx, objID, bson.M{"$set": bson.M{"accessed_at": time.Now()}})
 	return &render, nil
 }

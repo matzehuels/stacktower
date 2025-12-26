@@ -9,14 +9,12 @@ import (
 	"testing"
 	"time"
 
+	"github.com/matzehuels/stacktower/pkg/infra/artifact"
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
 func TestNewClient(t *testing.T) {
-	c, err := NewClient(time.Hour)
-	if err != nil {
-		t.Fatalf("NewClient failed: %v", err)
-	}
+	c := NewClient(artifact.NullBackend{}, time.Hour)
 	if c.Client == nil {
 		t.Error("expected client to be initialized")
 	}
@@ -200,12 +198,8 @@ func TestP2Version_UnmarshalJSON(t *testing.T) {
 
 func testClient(t *testing.T, serverURL string) *Client {
 	t.Helper()
-	cache, err := integrations.NewCache(time.Hour)
-	if err != nil {
-		t.Fatal(err)
-	}
 	return &Client{
-		Client:  integrations.NewClient(cache, nil),
+		Client:  integrations.NewClient(artifact.NullBackend{}, "packagist:", time.Hour, nil),
 		baseURL: serverURL,
 	}
 }

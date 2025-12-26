@@ -50,9 +50,10 @@ import (
 
 	"github.com/charmbracelet/log"
 
-	"github.com/matzehuels/stacktower/pkg/dag"
-	"github.com/matzehuels/stacktower/pkg/render/tower/layout"
-	"github.com/matzehuels/stacktower/pkg/render/tower/ordering"
+	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/matzehuels/stacktower/pkg/core/render/tower/layout"
+	"github.com/matzehuels/stacktower/pkg/core/render/tower/ordering"
+	"github.com/matzehuels/stacktower/pkg/infra/artifact"
 )
 
 // Options contains all configuration for the visualization pipeline.
@@ -178,7 +179,9 @@ func (o *Options) IsNodelink() bool {
 }
 
 // Execute runs the complete parse → layout → render pipeline.
-func Execute(ctx context.Context, opts Options) (*Result, error) {
+// The backend parameter provides caching for HTTP responses during dependency resolution.
+// Use artifact.NullBackend{} to disable caching.
+func Execute(ctx context.Context, backend artifact.Backend, opts Options) (*Result, error) {
 	if err := opts.ValidateAndSetDefaults(); err != nil {
 		return nil, fmt.Errorf("invalid options: %w", err)
 	}
@@ -189,7 +192,7 @@ func Execute(ctx context.Context, opts Options) (*Result, error) {
 
 	// Stage 1: Parse
 	parseStart := time.Now()
-	g, err := Parse(ctx, opts)
+	g, err := Parse(ctx, backend, opts)
 	if err != nil {
 		return nil, fmt.Errorf("parse: %w", err)
 	}

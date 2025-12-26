@@ -7,11 +7,12 @@ import (
 
 	"github.com/charmbracelet/log"
 
-	"github.com/matzehuels/stacktower/pkg/dag"
-	dagtransform "github.com/matzehuels/stacktower/pkg/dag/transform"
-	"github.com/matzehuels/stacktower/pkg/deps"
-	"github.com/matzehuels/stacktower/pkg/deps/languages"
-	"github.com/matzehuels/stacktower/pkg/deps/metadata"
+	"github.com/matzehuels/stacktower/pkg/core/dag"
+	dagtransform "github.com/matzehuels/stacktower/pkg/core/dag/transform"
+	"github.com/matzehuels/stacktower/pkg/core/deps"
+	"github.com/matzehuels/stacktower/pkg/core/deps/languages"
+	"github.com/matzehuels/stacktower/pkg/core/deps/metadata"
+	"github.com/matzehuels/stacktower/pkg/infra/artifact"
 )
 
 // ParseOptions contains options for dependency parsing.
@@ -30,21 +31,21 @@ type ParseOptions struct {
 }
 
 // Parse resolves dependencies for a package or manifest.
-func Parse(ctx context.Context, opts Options) (*dag.DAG, error) {
+func Parse(ctx context.Context, backend artifact.Backend, opts Options) (*dag.DAG, error) {
 	lang := languages.Find(opts.Language)
 	if lang == nil {
 		return nil, fmt.Errorf("unsupported language: %s", opts.Language)
 	}
 
-	resolveOpts := buildResolveOptions(opts)
+	resolveOpts := buildResolveOptions(backend, opts)
 
 	var g *dag.DAG
 	var err error
 
 	if opts.Manifest != "" {
-		g, err = parseManifest(ctx, lang, opts, resolveOpts)
+		g, err = parseManifest(ctx, backend, lang, opts, resolveOpts)
 	} else {
-		g, err = resolvePackage(ctx, lang, opts.Package, resolveOpts)
+		g, err = resolvePackage(ctx, backend, lang, opts.Package, resolveOpts)
 	}
 
 	if err != nil {
@@ -59,7 +60,7 @@ func Parse(ctx context.Context, opts Options) (*dag.DAG, error) {
 }
 
 // buildResolveOptions creates deps.Options from pipeline options.
-func buildResolveOptions(opts Options) deps.Options {
+func buildResolveOptions(backend artifact.Backend, opts Options) deps.Options {
 	resolveOpts := deps.Options{
 		MaxDepth: opts.MaxDepth,
 		MaxNodes: opts.MaxNodes,
@@ -80,18 +81,16 @@ func buildResolveOptions(opts Options) deps.Options {
 		token = os.Getenv("GITHUB_TOKEN")
 	}
 	if opts.Enrich && token != "" {
-		gh, err := metadata.NewGitHub(token, deps.DefaultCacheTTL)
-		if err == nil {
-			resolveOpts.MetadataProviders = []deps.MetadataProvider{gh}
-		}
+		gh := metadata.NewGitHub(backend, token, deps.DefaultCacheTTL)
+		resolveOpts.MetadataProviders = []deps.MetadataProvider{gh}
 	}
 
 	return resolveOpts
 }
 
 // resolvePackage resolves dependencies from a package registry.
-func resolvePackage(ctx context.Context, lang *deps.Language, pkg string, opts deps.Options) (*dag.DAG, error) {
-	resolver, err := lang.Resolver()
+func resolvePackage(ctx context.Context, backend artifact.Backend, lang *deps.Language, pkg string, opts deps.Options) (*dag.DAG, error) {
+	resolver, err := lang.Resolver(backend)
 	if err != nil {
 		return nil, fmt.Errorf("get resolver: %w", err)
 	}
@@ -110,8 +109,8 @@ func resolvePackage(ctx context.Context, lang *deps.Language, pkg string, opts d
 }
 
 // parseManifest parses dependencies from a manifest file or content.
-func parseManifest(ctx context.Context, lang *deps.Language, opts Options, resolveOpts deps.Options) (*dag.DAG, error) {
-	resolver, err := lang.Resolver()
+func parseManifest(ctx context.Context, backend artifact.Backend, lang *deps.Language, opts Options, resolveOpts deps.Options) (*dag.DAG, error) {
+	resolver, err := lang.Resolver(backend)
 	if err != nil {
 		return nil, fmt.Errorf("get resolver: %w", err)
 	}

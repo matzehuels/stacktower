@@ -8,7 +8,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/matzehuels/stacktower/pkg/dag/perm"
+	"github.com/matzehuels/stacktower/pkg/core/dag/perm"
 )
 
 // newPQTreeCmd creates the pqtree command for visualizing PQ-tree constraints.

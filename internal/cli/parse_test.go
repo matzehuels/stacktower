@@ -3,7 +3,7 @@ package cli
 import (
 	"testing"
 
-	"github.com/matzehuels/stacktower/pkg/deps/languages"
+	"github.com/matzehuels/stacktower/pkg/core/deps/languages"
 )
 
 func TestLooksLikeFile(t *testing.T) {

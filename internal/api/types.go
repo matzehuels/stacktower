@@ -3,8 +3,8 @@ package api
 import (
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
-	"github.com/matzehuels/stacktower/pkg/jobs"
+	"github.com/matzehuels/stacktower/internal/jobs"
+	"github.com/matzehuels/stacktower/pkg/infra/cache"
 )
 
 // RenderRequest is the request body for POST /api/v1/render.

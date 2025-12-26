@@ -4,17 +4,17 @@ import (
 	"bytes"
 	"context"
 
-	"github.com/matzehuels/stacktower/pkg/artifact"
-	"github.com/matzehuels/stacktower/pkg/config"
-	"github.com/matzehuels/stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/matzehuels/stacktower/pkg/infra/artifact"
+	"github.com/matzehuels/stacktower/pkg/infra/common"
 	pkgio "github.com/matzehuels/stacktower/pkg/io"
 )
 
 // Default TTLs for caching.
 const (
-	GraphTTL  = config.GraphTTL
-	LayoutTTL = config.LayoutTTL
-	RenderTTL = config.RenderTTL
+	GraphTTL  = common.GraphTTL
+	LayoutTTL = common.LayoutTTL
+	RenderTTL = common.RenderTTL
 )
 
 // Service wraps the pipeline with caching support.
@@ -67,7 +67,7 @@ func (s *Service) Parse(ctx context.Context, opts Options) (*dag.DAG, []byte, bo
 	}
 
 	// Parse
-	g, err := Parse(ctx, opts)
+	g, err := Parse(ctx, s.backend, opts)
 	if err != nil {
 		return nil, nil, false, err
 	}

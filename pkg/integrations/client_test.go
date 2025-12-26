@@ -9,15 +9,18 @@ import (
 	"testing"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/kv"
+	"github.com/matzehuels/stacktower/pkg/infra/artifact"
+	"github.com/matzehuels/stacktower/pkg/infra/common"
 )
 
 func TestNewClient(t *testing.T) {
-	s := kv.NewMemoryStore()
-	cache := kv.NewCache(s, time.Hour)
-	headers := map[string]string{"Authorization": "Bearer token"}
+	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+		CacheDir: t.TempDir(),
+	})
+	defer backend.Close()
 
-	client := NewClient(cache, headers)
+	headers := map[string]string{"Authorization": "Bearer token"}
+	client := NewClient(backend, "test:", time.Hour, headers)
 
 	if client == nil {
 		t.Fatal("NewClient() returned nil")
@@ -25,8 +28,8 @@ func TestNewClient(t *testing.T) {
 	if client.http == nil {
 		t.Error("NewClient() http client is nil")
 	}
-	if client.cache != cache {
-		t.Error("NewClient() cache not set correctly")
+	if client.backend != backend {
+		t.Error("NewClient() backend not set correctly")
 	}
 	if client.headers["Authorization"] != "Bearer token" {
 		t.Error("NewClient() headers not set correctly")
@@ -34,8 +37,12 @@ func TestNewClient(t *testing.T) {
 }
 
 func TestNewClientNilHeaders(t *testing.T) {
-	cache, _ := NewCache(time.Hour)
-	client := NewClient(cache, nil)
+	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+		CacheDir: t.TempDir(),
+	})
+	defer backend.Close()
+
+	client := NewClient(backend, "test:", time.Hour, nil)
 
 	if client == nil {
 		t.Fatal("NewClient() returned nil")
@@ -58,8 +65,12 @@ func TestClientGet(t *testing.T) {
 	}))
 	defer server.Close()
 
-	cache := kv.NewCache(kv.NewMemoryStore(), time.Hour)
-	client := NewClient(cache, nil)
+	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+		CacheDir: t.TempDir(),
+	})
+	defer backend.Close()
+
+	client := NewClient(backend, "test:", time.Hour, nil)
 	client.http = server.Client()
 
 	var resp response
@@ -81,8 +92,12 @@ func TestClientGetWithHeaders(t *testing.T) {
 	}))
 	defer server.Close()
 
-	cache := kv.NewCache(kv.NewMemoryStore(), time.Hour)
-	client := NewClient(cache, map[string]string{"X-Default": "default"})
+	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+		CacheDir: t.TempDir(),
+	})
+	defer backend.Close()
+
+	client := NewClient(backend, "test:", time.Hour, map[string]string{"X-Default": "default"})
 	client.http = server.Client()
 
 	var resp map[string]string
@@ -104,8 +119,12 @@ func TestClientGetWithHeadersOverridesDefaults(t *testing.T) {
 	}))
 	defer server.Close()
 
-	cache := kv.NewCache(kv.NewMemoryStore(), time.Hour)
-	client := NewClient(cache, map[string]string{"X-Override": "default"})
+	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+		CacheDir: t.TempDir(),
+	})
+	defer backend.Close()
+
+	client := NewClient(backend, "test:", time.Hour, map[string]string{"X-Override": "default"})
 	client.http = server.Client()
 
 	var resp map[string]string
@@ -124,8 +143,12 @@ func TestClientGetText(t *testing.T) {
 	}))
 	defer server.Close()
 
-	cache := kv.NewCache(kv.NewMemoryStore(), time.Hour)
-	client := NewClient(cache, nil)
+	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+		CacheDir: t.TempDir(),
+	})
+	defer backend.Close()
+
+	client := NewClient(backend, "test:", time.Hour, nil)
 	client.http = server.Client()
 
 	text, err := client.GetText(context.Background(), server.URL)
@@ -143,8 +166,12 @@ func TestClientGet404(t *testing.T) {
 	}))
 	defer server.Close()
 
-	cache := kv.NewCache(kv.NewMemoryStore(), time.Hour)
-	client := NewClient(cache, nil)
+	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+		CacheDir: t.TempDir(),
+	})
+	defer backend.Close()
+
+	client := NewClient(backend, "test:", time.Hour, nil)
 	client.http = server.Client()
 
 	var resp map[string]string
@@ -160,8 +187,12 @@ func TestClientGet500(t *testing.T) {
 	}))
 	defer server.Close()
 
-	cache := kv.NewCache(kv.NewMemoryStore(), time.Hour)
-	client := NewClient(cache, nil)
+	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+		CacheDir: t.TempDir(),
+	})
+	defer backend.Close()
+
+	client := NewClient(backend, "test:", time.Hour, nil)
 	client.http = server.Client()
 
 	var resp map[string]string
@@ -170,15 +201,19 @@ func TestClientGet500(t *testing.T) {
 		t.Error("Get() should return error for 500")
 	}
 
-	var retryErr *kv.RetryableError
+	var retryErr *common.RetryableError
 	if !errors.As(err, &retryErr) {
 		t.Errorf("Get() error should be RetryableError, got %T", err)
 	}
 }
 
 func TestClientCached(t *testing.T) {
-	cache := kv.NewCache(kv.NewMemoryStore(), time.Hour)
-	client := NewClient(cache, nil)
+	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+		CacheDir: t.TempDir(),
+	})
+	defer backend.Close()
+
+	client := NewClient(backend, "test:", time.Hour, nil)
 
 	fetchCount := 0
 	type testData struct {
@@ -207,8 +242,12 @@ func TestClientCached(t *testing.T) {
 }
 
 func TestClientCachedRefresh(t *testing.T) {
-	cache := kv.NewCache(kv.NewMemoryStore(), time.Hour)
-	client := NewClient(cache, nil)
+	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+		CacheDir: t.TempDir(),
+	})
+	defer backend.Close()
+
+	client := NewClient(backend, "test:", time.Hour, nil)
 
 	fetchCount := 0
 	var value string
@@ -230,8 +269,12 @@ func TestClientCachedRefresh(t *testing.T) {
 }
 
 func TestClientCachedFetchError(t *testing.T) {
-	cache := kv.NewCache(kv.NewMemoryStore(), time.Hour)
-	client := NewClient(cache, nil)
+	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+		CacheDir: t.TempDir(),
+	})
+	defer backend.Close()
+
+	client := NewClient(backend, "test:", time.Hour, nil)
 
 	var value string
 
@@ -315,7 +358,7 @@ func TestCheckStatus(t *testing.T) {
 					t.Errorf("checkStatus() error = %v, want %v", err, tt.wantType)
 				}
 				if tt.isRetryErr {
-					var retryErr *kv.RetryableError
+					var retryErr *common.RetryableError
 					if !errors.As(err, &retryErr) {
 						t.Errorf("checkStatus() error should be RetryableError, got %T", err)
 					}
@@ -405,15 +448,5 @@ func TestNewHTTPClient(t *testing.T) {
 	}
 	if client.Timeout != httpTimeout {
 		t.Errorf("Timeout = %v, want %v", client.Timeout, httpTimeout)
-	}
-}
-
-func TestNewCache(t *testing.T) {
-	cache, err := NewCache(time.Hour)
-	if err != nil {
-		t.Fatalf("NewCache failed: %v", err)
-	}
-	if cache == nil {
-		t.Error("NewCache() returned nil")
 	}
 }

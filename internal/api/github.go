@@ -9,8 +9,8 @@ import (
 
 	"github.com/matzehuels/stacktower/pkg/infra"
 	"github.com/matzehuels/stacktower/pkg/integrations/github"
-	"github.com/matzehuels/stacktower/pkg/queue"
-	"github.com/matzehuels/stacktower/pkg/session"
+	"github.com/matzehuels/stacktower/pkg/infra/queue"
+	"github.com/matzehuels/stacktower/pkg/infra/session"
 )
 
 // getGitHubOAuthConfig returns GitHub OAuth configuration from environment.

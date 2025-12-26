@@ -7,26 +7,28 @@ import (
 	"strings"
 	"time"
 
-	pkgerr "github.com/matzehuels/stacktower/pkg/errors"
-	"github.com/matzehuels/stacktower/pkg/kv"
+	"github.com/matzehuels/stacktower/pkg/infra/common"
 )
 
 // httpTimeout is the default timeout for all HTTP requests to registry APIs.
 // Individual registries do not override this value.
 const httpTimeout = 10 * time.Second
 
+// DefaultHTTPCacheTTL is the default TTL for HTTP response caching.
+const DefaultHTTPCacheTTL = common.HTTPCacheTTL
+
 var (
 	// ErrNotFound is returned when a package or resource doesn't exist in the registry.
 	// This corresponds to HTTP 404 responses.
 	// Callers should check with errors.Is(err, integrations.ErrNotFound).
 	// This error is never wrapped with additional context.
-	ErrNotFound = pkgerr.ErrNotFound
+	ErrNotFound = common.ErrNotFound
 
 	// ErrNetwork is returned for HTTP failures (timeouts, connection errors, 5xx responses).
-	// This error may be wrapped with [httpcache.RetryableError] for 5xx status codes.
+	// This error may be wrapped with [common.RetryableError] for 5xx status codes.
 	// Callers should check with errors.Is(err, integrations.ErrNetwork) for any network issue,
-	// or errors.As(err, &httpcache.RetryableError{}) to detect retryable failures specifically.
-	ErrNetwork = pkgerr.ErrNetwork
+	// or errors.As(err, &common.RetryableError{}) to detect retryable failures specifically.
+	ErrNetwork = common.ErrNetwork
 )
 
 // RepoMetrics holds repository-level data fetched from GitHub or GitLab.
@@ -67,33 +69,6 @@ type Contributor struct {
 // Returns a new client on every call; clients are not pooled.
 func NewHTTPClient() *http.Client {
 	return &http.Client{Timeout: httpTimeout}
-}
-
-// NewCache creates a cache with the default filesystem store and given TTL.
-func NewCache(ttl time.Duration) (*kv.Cache, error) {
-	return NewFilesystemCache("", ttl)
-}
-
-// NewFilesystemCache creates a cache using the filesystem store.
-// This is a convenience function for CLI/local development.
-//
-// If dir is empty, uses ~/.cache/stacktower/.
-func NewFilesystemCache(dir string, ttl time.Duration) (*kv.Cache, error) {
-	s, err := kv.NewFilesystemStore(dir)
-	if err != nil {
-		return nil, err
-	}
-	return kv.NewCache(s, ttl), nil
-}
-
-// NewCacheWithNamespace creates a namespaced cache for a specific registry.
-// If dir is empty, uses the default directory ~/.cache/stacktower/.
-func NewCacheWithNamespace(namespace string, ttl time.Duration) (*kv.Cache, error) {
-	cache, err := NewFilesystemCache("", ttl)
-	if err != nil {
-		return nil, err
-	}
-	return cache.Namespace(namespace), nil
 }
 
 // NormalizePkgName converts a package name to its canonical form.

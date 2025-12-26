@@ -94,5 +94,5 @@
 //   - [render/tower/io]: Tower visualization layouts
 //   - [render/nodelink/io]: Nodelink visualization layouts (planned)
 //
-// [render/tower/io]: github.com/matzehuels/stacktower/pkg/render/tower/io
+// [render/tower/io]: github.com/matzehuels/stacktower/pkg/core/render/tower/io
 package io

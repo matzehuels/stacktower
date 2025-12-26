@@ -12,13 +12,13 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/spf13/cobra"
 
-	"github.com/matzehuels/stacktower/pkg/dag"
-	"github.com/matzehuels/stacktower/pkg/deps"
-	"github.com/matzehuels/stacktower/pkg/deps/languages"
+	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/matzehuels/stacktower/pkg/core/deps"
+	"github.com/matzehuels/stacktower/pkg/core/deps/languages"
 	"github.com/matzehuels/stacktower/pkg/infra"
+	"github.com/matzehuels/stacktower/pkg/infra/common"
 	"github.com/matzehuels/stacktower/pkg/integrations/github"
 	pkgio "github.com/matzehuels/stacktower/pkg/io"
-	"github.com/matzehuels/stacktower/pkg/logging"
 	"github.com/matzehuels/stacktower/pkg/pipeline"
 )
 
@@ -94,7 +94,7 @@ func parseAuto(ctx context.Context, lang *deps.Language, opts *parseOpts, arg st
 
 // parsePackage parses a package using the pipeline service.
 func parsePackage(ctx context.Context, lang *deps.Language, opts *parseOpts, pkg string) error {
-	logger := logging.FromContext(ctx)
+	logger := common.LoggerFromContext(ctx)
 
 	// Create pipeline service
 	svc, cleanup, err := newPipelineService(opts.noCache, logger)
@@ -116,7 +116,7 @@ func parsePackage(ctx context.Context, lang *deps.Language, opts *parseOpts, pkg
 	}
 
 	logger.Infof("Resolving %s/%s", lang.Name, pkg)
-	prog := logging.NewProgress(logger)
+	prog := common.NewProgress(logger)
 
 	// Parse via pipeline
 	g, data, cacheHit, err := svc.Parse(ctx, pipelineOpts)
@@ -132,7 +132,7 @@ func parsePackage(ctx context.Context, lang *deps.Language, opts *parseOpts, pkg
 
 // parseManifest parses a manifest file using the pipeline service.
 func parseManifest(ctx context.Context, lang *deps.Language, opts *parseOpts, filePath string) error {
-	logger := logging.FromContext(ctx)
+	logger := common.LoggerFromContext(ctx)
 
 	// Read manifest content
 	manifestContent, err := os.ReadFile(filePath)
@@ -161,7 +161,7 @@ func parseManifest(ctx context.Context, lang *deps.Language, opts *parseOpts, fi
 	}
 
 	logger.Infof("Parsing %s", filepath.Base(filePath))
-	prog := logging.NewProgress(logger)
+	prog := common.NewProgress(logger)
 
 	// Parse via pipeline
 	g, data, cacheHit, err := svc.Parse(ctx, pipelineOpts)
@@ -279,7 +279,7 @@ Examples:
 }
 
 func runParseGitHub(ctx context.Context, args []string, opts *parseOpts, publicOnly bool) error {
-	logger := logging.FromContext(ctx)
+	logger := common.LoggerFromContext(ctx)
 
 	sess, err := LoadGitHubSession()
 	if err != nil {

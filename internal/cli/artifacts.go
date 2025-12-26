@@ -4,8 +4,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/matzehuels/stacktower/pkg/artifact"
-	"github.com/matzehuels/stacktower/pkg/logging"
+	"github.com/matzehuels/stacktower/pkg/infra/artifact"
+	"github.com/matzehuels/stacktower/pkg/infra/common"
 	"github.com/matzehuels/stacktower/pkg/pipeline"
 )
 
@@ -20,7 +20,7 @@ func artifactCacheDir() string {
 
 // newPipelineService creates a pipeline service with optional caching.
 // If noCache is true, returns a service without caching.
-func newPipelineService(noCache bool, logger *logging.Logger) (*pipeline.Service, func(), error) {
+func newPipelineService(noCache bool, logger *common.Logger) (*pipeline.Service, func(), error) {
 	if noCache {
 		return pipeline.NewService(nil), func() {}, nil
 	}

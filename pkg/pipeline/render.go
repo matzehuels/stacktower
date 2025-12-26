@@ -4,13 +4,13 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/matzehuels/stacktower/pkg/dag"
-	"github.com/matzehuels/stacktower/pkg/render/nodelink"
-	"github.com/matzehuels/stacktower/pkg/render/tower/feature"
-	towerio "github.com/matzehuels/stacktower/pkg/render/tower/io"
-	"github.com/matzehuels/stacktower/pkg/render/tower/layout"
-	"github.com/matzehuels/stacktower/pkg/render/tower/sink"
-	"github.com/matzehuels/stacktower/pkg/render/tower/styles/handdrawn"
+	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/matzehuels/stacktower/pkg/core/render/nodelink"
+	"github.com/matzehuels/stacktower/pkg/core/render/tower/feature"
+	towerio "github.com/matzehuels/stacktower/pkg/core/render/tower/io"
+	"github.com/matzehuels/stacktower/pkg/core/render/tower/layout"
+	"github.com/matzehuels/stacktower/pkg/core/render/tower/sink"
+	"github.com/matzehuels/stacktower/pkg/core/render/tower/styles/handdrawn"
 )
 
 // RenderOptions contains options for output rendering.

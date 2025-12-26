@@ -54,13 +54,12 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/matzehuels/stacktower/pkg/artifact"
-	"github.com/matzehuels/stacktower/pkg/cache"
-	"github.com/matzehuels/stacktower/pkg/logging"
+	"github.com/matzehuels/stacktower/pkg/infra/artifact"
+	"github.com/matzehuels/stacktower/pkg/infra/cache"
+	"github.com/matzehuels/stacktower/pkg/infra/common"
+	"github.com/matzehuels/stacktower/pkg/infra/queue"
+	"github.com/matzehuels/stacktower/pkg/infra/session"
 	"github.com/matzehuels/stacktower/pkg/pipeline"
-	"github.com/matzehuels/stacktower/pkg/queue"
-	"github.com/matzehuels/stacktower/pkg/session"
-	"github.com/matzehuels/stacktower/pkg/storage"
 )
 
 // Server is the HTTP API server.
@@ -68,11 +67,10 @@ type Server struct {
 	queue            queue.Queue
 	cache            cache.Cache        // Two-tier cache (Redis lookup + MongoDB storage)
 	pipeline         *pipeline.Service  // Pipeline service for parse/layout/render
-	storage          storage.Storage    // Artifact storage (memory or GridFS)
 	sessions         session.Store      // Session storage (memory or Redis)
 	states           session.StateStore // OAuth state storage (memory or Redis)
 	manifestPatterns map[string]string  // Manifest filename -> language
-	logger           *logging.Logger    // Logger for server events
+	logger           *common.Logger     // Logger for server events
 	host             string             // Address to bind to
 	port             int                // Port to listen on
 	readTimeout      time.Duration      // Max duration for reading requests
@@ -125,18 +123,13 @@ func WithStates(store session.StateStore) Option {
 	return func(s *Server) { s.states = store }
 }
 
-// WithStorage sets the artifact storage.
-func WithStorage(store storage.Storage) Option {
-	return func(s *Server) { s.storage = store }
-}
-
 // WithManifestPatterns sets the manifest detection patterns.
 func WithManifestPatterns(patterns map[string]string) Option {
 	return func(s *Server) { s.manifestPatterns = patterns }
 }
 
 // WithLogger sets the logger for server events.
-func WithLogger(logger *logging.Logger) Option {
+func WithLogger(logger *common.Logger) Option {
 	return func(s *Server) { s.logger = logger }
 }
 
@@ -151,7 +144,7 @@ func New(q queue.Queue, c cache.Cache, opts ...Option) *Server {
 		pipeline:       pipelineSvc,
 		sessions:       session.NewMemoryStore(),
 		states:         session.NewMemoryStateStore(),
-		logger:         logging.Discard(),
+		logger:         common.DiscardLogger(),
 		host:           "0.0.0.0",
 		port:           8080,
 		readTimeout:    30 * time.Second,

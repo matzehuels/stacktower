@@ -9,11 +9,11 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
-	"github.com/matzehuels/stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/infra/cache"
+	"github.com/matzehuels/stacktower/pkg/core/dag"
 	pkgio "github.com/matzehuels/stacktower/pkg/io"
 	"github.com/matzehuels/stacktower/pkg/pipeline"
-	"github.com/matzehuels/stacktower/pkg/queue"
+	"github.com/matzehuels/stacktower/pkg/infra/queue"
 )
 
 // =============================================================================

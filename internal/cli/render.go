@@ -9,7 +9,7 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/matzehuels/stacktower/pkg/io"
-	"github.com/matzehuels/stacktower/pkg/logging"
+	"github.com/matzehuels/stacktower/pkg/infra/common"
 	"github.com/matzehuels/stacktower/pkg/pipeline"
 )
 
@@ -132,7 +132,7 @@ func validateStyle(s string) error {
 
 // runRender loads the graph and renders via pipeline.
 func runRender(ctx context.Context, input string, opts *renderOpts) error {
-	logger := logging.FromContext(ctx)
+	logger := common.LoggerFromContext(ctx)
 
 	// Load graph
 	g, err := io.ImportJSON(input)
@@ -184,7 +184,7 @@ func runRender(ctx context.Context, input string, opts *renderOpts) error {
 
 // writeRenderArtifacts writes rendered artifacts to files.
 func writeRenderArtifacts(ctx context.Context, artifacts map[string][]byte, opts *renderOpts, input, status string) error {
-	logger := logging.FromContext(ctx)
+	logger := common.LoggerFromContext(ctx)
 
 	// Derive base path
 	base := opts.output

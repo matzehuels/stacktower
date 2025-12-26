@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/dag"
-	"github.com/matzehuels/stacktower/pkg/logging"
-	"github.com/matzehuels/stacktower/pkg/render/tower/ordering"
+	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/matzehuels/stacktower/pkg/infra/common"
+	"github.com/matzehuels/stacktower/pkg/core/render/tower/ordering"
 )
 
 // optimalOrderer wraps ordering.OptimalSearch with progress logging and debug output.
@@ -17,8 +17,8 @@ import (
 // The orderer is not safe for concurrent use; it maintains internal state for logging.
 type optimalOrderer struct {
 	ordering.OptimalSearch
-	prog                     *logging.Progress
-	logger                   *logging.Logger
+	prog                     *common.Progress
+	logger                   *common.Logger
 	lastExplored, lastPruned int
 	lastBest                 int
 	start, lastLog           time.Time
@@ -30,9 +30,9 @@ type optimalOrderer struct {
 //
 // The orderer logs progress updates including initial solutions, improvements, and periodic heartbeats.
 func newOptimalOrderer(ctx context.Context, timeoutSec int) ordering.Orderer {
-	logger := logging.FromContext(ctx)
+	logger := common.LoggerFromContext(ctx)
 	o := &optimalOrderer{
-		prog:     logging.NewProgress(logger),
+		prog:     common.NewProgress(logger),
 		logger:   logger,
 		lastBest: -1,
 		start:    time.Now(),

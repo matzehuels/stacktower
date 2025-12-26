@@ -10,6 +10,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/matzehuels/stacktower/pkg/infra/artifact"
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
@@ -107,12 +108,8 @@ func TestJoinLicenses(t *testing.T) {
 
 func testClient(t *testing.T, serverURL string) *Client {
 	t.Helper()
-	cache, err := integrations.NewCache(time.Hour)
-	if err != nil {
-		t.Fatal(err)
-	}
 	return &Client{
-		Client:  integrations.NewClient(cache, nil),
+		Client:  integrations.NewClient(artifact.NullBackend{}, "rubygems:", time.Hour, nil),
 		baseURL: serverURL,
 	}
 }

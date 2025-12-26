@@ -3,13 +3,13 @@ package pipeline
 import (
 	"bytes"
 
-	"github.com/matzehuels/stacktower/pkg/dag"
-	dagtransform "github.com/matzehuels/stacktower/pkg/dag/transform"
-	"github.com/matzehuels/stacktower/pkg/render/nodelink"
-	towerio "github.com/matzehuels/stacktower/pkg/render/tower/io"
-	"github.com/matzehuels/stacktower/pkg/render/tower/layout"
-	"github.com/matzehuels/stacktower/pkg/render/tower/ordering"
-	"github.com/matzehuels/stacktower/pkg/render/tower/transform"
+	"github.com/matzehuels/stacktower/pkg/core/dag"
+	dagtransform "github.com/matzehuels/stacktower/pkg/core/dag/transform"
+	"github.com/matzehuels/stacktower/pkg/core/render/nodelink"
+	towerio "github.com/matzehuels/stacktower/pkg/core/render/tower/io"
+	"github.com/matzehuels/stacktower/pkg/core/render/tower/layout"
+	"github.com/matzehuels/stacktower/pkg/core/render/tower/ordering"
+	"github.com/matzehuels/stacktower/pkg/core/render/tower/transform"
 )
 
 // LayoutOptions contains options for layout computation.

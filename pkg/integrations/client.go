@@ -6,39 +6,49 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"time"
 
-	"github.com/matzehuels/stacktower/pkg/kv"
+	"github.com/matzehuels/stacktower/pkg/infra/artifact"
+	"github.com/matzehuels/stacktower/pkg/infra/common"
 )
 
 // Client provides shared HTTP functionality for all registry API clients.
 // It handles caching, retry logic, and common request headers.
 //
 // Client is safe for concurrent use by multiple goroutines.
-// The underlying HTTP client, cache, and headers are all goroutine-safe.
+// The underlying HTTP client, backend, and headers are all goroutine-safe.
 //
 // Zero values: Do not use an uninitialized Client; always create via [NewClient].
 type Client struct {
-	http    *http.Client
-	cache   *kv.Cache
-	headers map[string]string
+	http      *http.Client
+	backend   artifact.Backend
+	namespace string        // Cache key prefix (e.g., "pypi:", "npm:")
+	ttl       time.Duration // Cache TTL
+	headers   map[string]string
 }
 
-// NewClient creates a Client with the given cache and default headers.
+// NewClient creates a Client with the given backend and default headers.
 // Headers are applied to all requests made through this client.
 //
 // Parameters:
-//   - cache: Cache instance for storing responses (must not be nil). Create with
-//     [NewCacheWithNamespace] for registry-specific caching.
+//   - backend: Backend for caching HTTP responses (must not be nil).
+//   - namespace: Cache key prefix for this client (e.g., "pypi:", "npm:").
+//   - ttl: How long to cache responses.
 //   - headers: Default HTTP headers for all requests. Pass nil if no default headers
 //     are needed. Common examples: "Authorization", "User-Agent", "Accept".
 //
 // The returned Client is safe for concurrent use by multiple goroutines.
-// Panics if cache is nil.
-func NewClient(cache *kv.Cache, headers map[string]string) *Client {
+// Panics if backend is nil.
+func NewClient(backend artifact.Backend, namespace string, ttl time.Duration, headers map[string]string) *Client {
+	if backend == nil {
+		panic("backend must not be nil")
+	}
 	return &Client{
-		http:    NewHTTPClient(),
-		cache:   cache,
-		headers: headers,
+		http:      NewHTTPClient(),
+		backend:   backend,
+		namespace: namespace,
+		ttl:       ttl,
+		headers:   headers,
 	}
 }
 
@@ -54,11 +64,11 @@ func NewClient(cache *kv.Cache, headers map[string]string) *Client {
 //
 // Behavior:
 //  1. If refresh=false and cache hit: returns nil immediately with v populated
-//  2. If cache miss or refresh=true: calls fetch with automatic retry on [kv.RetryableError]
+//  2. If cache miss or refresh=true: calls fetch with automatic retry on [common.RetryableError]
 //  3. On successful fetch: stores result in cache (ignoring cache write errors)
 //
 // The fetch function should populate v and return nil on success, or return an error.
-// Network errors should be wrapped with [kv.Retryable] to enable retry.
+// Network errors should be wrapped with [common.Retryable] to enable retry.
 //
 // Returns:
 //   - nil on success (v is populated)
@@ -68,14 +78,21 @@ func NewClient(cache *kv.Cache, headers map[string]string) *Client {
 // This method is safe for concurrent use on the same Client.
 func (c *Client) Cached(ctx context.Context, key string, refresh bool, v any, fetch func() error) error {
 	if !refresh {
-		if ok, _ := c.cache.Get(ctx, key, v); ok {
-			return nil
+		// Try to get from cache
+		data, hit, _ := c.backend.GetHTTP(ctx, c.namespace, key)
+		if hit {
+			if err := json.Unmarshal(data, v); err == nil {
+				return nil
+			}
 		}
 	}
-	if err := kv.RetryWithBackoff(ctx, fetch); err != nil {
+	if err := common.RetryWithBackoff(ctx, fetch); err != nil {
 		return err
 	}
-	_ = c.cache.Set(ctx, key, v)
+	// Store in cache (ignore errors)
+	if data, err := json.Marshal(v); err == nil {
+		_ = c.backend.SetHTTP(ctx, c.namespace, key, data, c.ttl)
+	}
 	return nil
 }
 
@@ -89,7 +106,7 @@ func (c *Client) Cached(ctx context.Context, key string, refresh bool, v any, fe
 //
 // Returns:
 //   - [ErrNotFound] for HTTP 404 responses
-//   - [ErrNetwork] wrapped with [kv.RetryableError] for HTTP 5xx responses
+//   - [ErrNetwork] wrapped with [httpcache.RetryableError] for HTTP 5xx responses
 //   - [ErrNetwork] for connection failures and timeouts
 //   - json decoding errors if response is not valid JSON
 //
@@ -164,7 +181,7 @@ func (c *Client) doRequest(ctx context.Context, url string, headers map[string]s
 
 	resp, err := c.http.Do(req)
 	if err != nil {
-		return nil, kv.Retryable(fmt.Errorf("%w: %v", ErrNetwork, err))
+		return nil, common.Retryable(fmt.Errorf("%w: %v", ErrNetwork, err))
 	}
 
 	if err := checkStatus(resp.StatusCode); err != nil {
@@ -181,7 +198,7 @@ func checkStatus(code int) error {
 	case code == http.StatusNotFound:
 		return ErrNotFound
 	case code >= 500:
-		return kv.Retryable(fmt.Errorf("%w: status %d", ErrNetwork, code))
+		return common.Retryable(fmt.Errorf("%w: status %d", ErrNetwork, code))
 	default:
 		return fmt.Errorf("%w: status %d", ErrNetwork, code)
 	}

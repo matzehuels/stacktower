@@ -13,11 +13,11 @@ import (
 	"github.com/charmbracelet/lipgloss/table"
 	"github.com/spf13/cobra"
 
-	"github.com/matzehuels/stacktower/pkg/deps"
-	"github.com/matzehuels/stacktower/pkg/deps/languages"
+	"github.com/matzehuels/stacktower/pkg/core/deps"
+	"github.com/matzehuels/stacktower/pkg/core/deps/languages"
 	"github.com/matzehuels/stacktower/pkg/infra"
 	"github.com/matzehuels/stacktower/pkg/integrations/github"
-	"github.com/matzehuels/stacktower/pkg/session"
+	"github.com/matzehuels/stacktower/pkg/infra/session"
 )
 
 // cliSessionTTL is the duration for CLI sessions (long-lived for convenience).

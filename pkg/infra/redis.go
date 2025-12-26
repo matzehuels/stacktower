@@ -42,9 +42,9 @@ import (
 
 	"github.com/redis/go-redis/v9"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
-	"github.com/matzehuels/stacktower/pkg/queue"
-	"github.com/matzehuels/stacktower/pkg/session"
+	"github.com/matzehuels/stacktower/pkg/infra/cache"
+	"github.com/matzehuels/stacktower/pkg/infra/queue"
+	"github.com/matzehuels/stacktower/pkg/infra/session"
 )
 
 // =============================================================================
@@ -437,20 +437,12 @@ func (c *redisLookupCache) SetGraphEntry(ctx context.Context, key string, entry 
 	return c.setEntry(ctx, "stacktower:graph:"+key, entry)
 }
 
-func (c *redisLookupCache) DeleteGraphEntry(ctx context.Context, key string) error {
-	return c.client.Del(ctx, "stacktower:graph:"+key).Err()
-}
-
 func (c *redisLookupCache) GetRenderEntry(ctx context.Context, key string) (*cache.CacheEntry, error) {
 	return c.getEntry(ctx, "stacktower:render:"+key)
 }
 
 func (c *redisLookupCache) SetRenderEntry(ctx context.Context, key string, entry *cache.CacheEntry) error {
 	return c.setEntry(ctx, "stacktower:render:"+key, entry)
-}
-
-func (c *redisLookupCache) DeleteRenderEntry(ctx context.Context, key string) error {
-	return c.client.Del(ctx, "stacktower:render:"+key).Err()
 }
 
 func (c *redisLookupCache) getEntry(ctx context.Context, key string) (*cache.CacheEntry, error) {
@@ -482,6 +474,25 @@ func (c *redisLookupCache) setEntry(ctx context.Context, key string, entry *cach
 		ttl = cache.GraphTTL
 	}
 	return c.client.Set(ctx, key, data, ttl).Err()
+}
+
+func (c *redisLookupCache) GetHTTP(ctx context.Context, key string) ([]byte, bool, error) {
+	data, err := c.client.Get(ctx, "stacktower:http:"+key).Bytes()
+	if err == redis.Nil {
+		return nil, false, nil
+	}
+	if err != nil {
+		return nil, false, fmt.Errorf("redis get: %w", err)
+	}
+	return data, true, nil
+}
+
+func (c *redisLookupCache) SetHTTP(ctx context.Context, key string, data []byte, ttl time.Duration) error {
+	return c.client.Set(ctx, "stacktower:http:"+key, data, ttl).Err()
+}
+
+func (c *redisLookupCache) DeleteHTTP(ctx context.Context, key string) error {
+	return c.client.Del(ctx, "stacktower:http:"+key).Err()
 }
 
 func (c *redisLookupCache) Close() error { return nil }

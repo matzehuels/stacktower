@@ -10,7 +10,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/matzehuels/stacktower/pkg/logging"
+	"github.com/matzehuels/stacktower/pkg/infra/common"
 	"github.com/matzehuels/stacktower/pkg/pipeline"
 )
 
@@ -69,7 +69,7 @@ Use 'render' as a shortcut to go directly from graph.json to visual output.`,
 
 // runVisualize loads the layout and renders it via pipeline.
 func runVisualize(ctx context.Context, input string, opts *visualizeOpts) error {
-	logger := logging.FromContext(ctx)
+	logger := common.LoggerFromContext(ctx)
 
 	// Read layout file
 	layoutData, err := os.ReadFile(input)
@@ -128,7 +128,7 @@ func detectVizType(data []byte) (string, error) {
 
 // writeArtifacts writes all artifacts to files.
 func writeArtifacts(ctx context.Context, artifacts map[string][]byte, formats []string, input, output, status string) error {
-	logger := logging.FromContext(ctx)
+	logger := common.LoggerFromContext(ctx)
 
 	// Derive base path
 	base := output

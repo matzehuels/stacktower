@@ -6,7 +6,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/matzehuels/stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/pkg/core/dag"
 )
 
 var kindFromString = map[string]dag.NodeKind{

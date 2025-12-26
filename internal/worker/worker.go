@@ -30,13 +30,13 @@ import (
 	"github.com/charmbracelet/log"
 	"github.com/google/uuid"
 
-	"github.com/matzehuels/stacktower/pkg/artifact"
-	"github.com/matzehuels/stacktower/pkg/cache"
-	"github.com/matzehuels/stacktower/pkg/dag"
+	"github.com/matzehuels/stacktower/internal/jobs"
+	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/matzehuels/stacktower/pkg/infra/artifact"
+	"github.com/matzehuels/stacktower/pkg/infra/cache"
+	"github.com/matzehuels/stacktower/pkg/infra/queue"
 	"github.com/matzehuels/stacktower/pkg/io"
-	"github.com/matzehuels/stacktower/pkg/jobs"
 	"github.com/matzehuels/stacktower/pkg/pipeline"
-	"github.com/matzehuels/stacktower/pkg/queue"
 )
 
 // Config holds worker configuration.

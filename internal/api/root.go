@@ -11,13 +11,13 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/matzehuels/stacktower/internal/worker"
-	"github.com/matzehuels/stacktower/pkg/cache"
-	"github.com/matzehuels/stacktower/pkg/deps"
-	"github.com/matzehuels/stacktower/pkg/deps/languages"
+	"github.com/matzehuels/stacktower/pkg/core/deps"
+	"github.com/matzehuels/stacktower/pkg/core/deps/languages"
 	"github.com/matzehuels/stacktower/pkg/infra"
-	"github.com/matzehuels/stacktower/pkg/logging"
-	"github.com/matzehuels/stacktower/pkg/queue"
-	"github.com/matzehuels/stacktower/pkg/session"
+	"github.com/matzehuels/stacktower/pkg/infra/cache"
+	"github.com/matzehuels/stacktower/pkg/infra/common"
+	"github.com/matzehuels/stacktower/pkg/infra/queue"
+	"github.com/matzehuels/stacktower/pkg/infra/session"
 )
 
 // Execute runs the API server CLI.
@@ -169,7 +169,7 @@ func runAPIOnly(ctx context.Context, q queue.Queue, c cache.Cache, sessionStore 
 		WithSessions(sessionStore),
 		WithStates(stateStore),
 		WithManifestPatterns(deps.SupportedManifests(languages.All)),
-		WithLogger(logging.Default()),
+		WithLogger(common.DefaultLogger()),
 	)
 
 	errCh := make(chan error, 1)
@@ -211,7 +211,7 @@ func runLocal(ctx context.Context, q queue.Queue, c cache.Cache, sessionStore se
 		WithSessions(sessionStore),
 		WithStates(stateStore),
 		WithManifestPatterns(deps.SupportedManifests(languages.All)),
-		WithLogger(logging.Default()),
+		WithLogger(common.DefaultLogger()),
 	)
 
 	serverErrCh := make(chan error, 1)

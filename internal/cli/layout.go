@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/matzehuels/stacktower/pkg/io"
-	"github.com/matzehuels/stacktower/pkg/logging"
+	"github.com/matzehuels/stacktower/pkg/infra/common"
 	"github.com/matzehuels/stacktower/pkg/pipeline"
 )
 
@@ -75,7 +75,7 @@ Results are cached locally for faster subsequent runs.`,
 
 // runLayout loads the graph, computes the layout via pipeline, and writes output.
 func runLayout(ctx context.Context, input string, opts *layoutOpts) error {
-	logger := logging.FromContext(ctx)
+	logger := common.LoggerFromContext(ctx)
 
 	// Load graph
 	g, err := io.ImportJSON(input)
