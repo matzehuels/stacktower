@@ -7,6 +7,7 @@ require (
 	github.com/charmbracelet/bubbletea v1.3.10
 	github.com/charmbracelet/lipgloss v1.1.0
 	github.com/charmbracelet/log v0.4.2
+	github.com/go-chi/chi/v5 v5.2.3
 	github.com/goccy/go-graphviz v0.2.9
 	github.com/google/uuid v1.6.0
 	github.com/redis/go-redis/v9 v9.17.2

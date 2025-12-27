@@ -7,7 +7,6 @@ import (
 )
 
 // ReadLayout deserializes a nodelink layout from JSON.
-//
 // Returns the layout data and metadata for configuring renderers.
 func ReadLayout(r io.Reader) (*LayoutData, *LayoutMeta, error) {
 	var data LayoutData
@@ -18,6 +17,11 @@ func ReadLayout(r io.Reader) (*LayoutData, *LayoutMeta, error) {
 	// Validate viz type
 	if data.VizType != "" && data.VizType != VizType {
 		return nil, nil, fmt.Errorf("unexpected viz_type: %q (expected %q)", data.VizType, VizType)
+	}
+
+	// Validate DOT content
+	if data.DOT == "" {
+		return nil, nil, fmt.Errorf("layout missing DOT content")
 	}
 
 	meta := &LayoutMeta{

@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/matzehuels/stacktower/pkg/core/deps"
-	"github.com/matzehuels/stacktower/pkg/infra/artifact"
+	"github.com/matzehuels/stacktower/pkg/infra/storage"
 	"github.com/matzehuels/stacktower/pkg/integrations"
 	"github.com/matzehuels/stacktower/pkg/integrations/pypi"
 )
@@ -25,7 +25,7 @@ var Language = &deps.Language{
 	ManifestParsers: manifestParsers,
 }
 
-func newResolver(backend artifact.Backend, ttl time.Duration) (deps.Resolver, error) {
+func newResolver(backend storage.Backend, ttl time.Duration) (deps.Resolver, error) {
 	c := pypi.NewClient(backend, ttl)
 	return deps.NewRegistry("pypi", fetcher{c}), nil
 }

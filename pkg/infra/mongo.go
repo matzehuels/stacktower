@@ -13,7 +13,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/gridfs"
 	"go.mongodb.org/mongo-driver/mongo/options"
 
-	"github.com/matzehuels/stacktower/pkg/infra/cache"
+	"github.com/matzehuels/stacktower/pkg/infra/storage"
 )
 
 // =============================================================================
@@ -69,8 +69,16 @@ func NewMongo(ctx context.Context, cfg MongoConfig) (*Mongo, error) {
 	}, nil
 }
 
-// Store returns a cache.Store for document operations.
-func (m *Mongo) Store() cache.Store {
+// DocumentStore returns a storage.DocumentStore for document operations.
+func (m *Mongo) DocumentStore() storage.DocumentStore {
+	if m.store == nil {
+		m.store = newMongoStore(m.database)
+	}
+	return m.store
+}
+
+// OperationStore returns a storage.OperationStore for operation logging.
+func (m *Mongo) OperationStore() storage.OperationStore {
 	if m.store == nil {
 		m.store = newMongoStore(m.database)
 	}
@@ -99,15 +107,17 @@ func (m *Mongo) Info() string {
 // =============================================================================
 
 type mongoStore struct {
-	db      *mongo.Database
-	graphs  *mongo.Collection
-	renders *mongo.Collection
-	gridfs  *gridfs.Bucket
+	db         *mongo.Database
+	graphs     *mongo.Collection
+	renders    *mongo.Collection
+	operations *mongo.Collection
+	gridfs     *gridfs.Bucket
 }
 
 func newMongoStore(db *mongo.Database) *mongoStore {
 	graphs := db.Collection("graphs")
 	renders := db.Collection("renders")
+	operations := db.Collection("operations")
 
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
@@ -124,20 +134,25 @@ func newMongoStore(db *mongo.Database) *mongoStore {
 		{Keys: bson.D{{Key: "user_id", Value: 1}, {Key: "graph_hash", Value: 1}}},
 		{Keys: bson.D{{Key: "graph_id", Value: 1}}},
 	})
+	operations.Indexes().CreateMany(ctx, []mongo.IndexModel{
+		{Keys: bson.D{{Key: "user_id", Value: 1}, {Key: "created_at", Value: -1}}},
+		{Keys: bson.D{{Key: "user_id", Value: 1}, {Key: "type", Value: 1}, {Key: "created_at", Value: -1}}},
+		{Keys: bson.D{{Key: "created_at", Value: 1}}, Options: options.Index().SetExpireAfterSeconds(90 * 24 * 60 * 60)}, // TTL 90 days
+	})
 
 	bucket, _ := gridfs.NewBucket(db, options.GridFSBucket().SetName("render_artifacts"))
 
-	return &mongoStore{db: db, graphs: graphs, renders: renders, gridfs: bucket}
+	return &mongoStore{db: db, graphs: graphs, renders: renders, operations: operations, gridfs: bucket}
 }
 
 // Graph operations
 
-func (s *mongoStore) GetGraph(ctx context.Context, id string) (*cache.Graph, error) {
+func (s *mongoStore) GetGraphDoc(ctx context.Context, id string) (*storage.Graph, error) {
 	objID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		return nil, fmt.Errorf("invalid graph ID: %w", err)
 	}
-	var graph cache.Graph
+	var graph storage.Graph
 	err = s.graphs.FindOne(ctx, bson.M{"_id": objID}).Decode(&graph)
 	if err == mongo.ErrNoDocuments {
 		return nil, nil
@@ -148,7 +163,7 @@ func (s *mongoStore) GetGraph(ctx context.Context, id string) (*cache.Graph, err
 	return &graph, nil
 }
 
-func (s *mongoStore) StoreGraph(ctx context.Context, graph *cache.Graph) error {
+func (s *mongoStore) StoreGraphDoc(ctx context.Context, graph *storage.Graph) error {
 	now := time.Now()
 	graph.UpdatedAt = now
 	if graph.ID == "" {
@@ -170,12 +185,12 @@ func (s *mongoStore) StoreGraph(ctx context.Context, graph *cache.Graph) error {
 
 // Render operations
 
-func (s *mongoStore) GetRender(ctx context.Context, id string) (*cache.Render, error) {
+func (s *mongoStore) GetRenderDoc(ctx context.Context, id string) (*storage.Render, error) {
 	objID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		return nil, fmt.Errorf("invalid render ID: %w", err)
 	}
-	var render cache.Render
+	var render storage.Render
 	err = s.renders.FindOne(ctx, bson.M{"_id": objID}).Decode(&render)
 	if err == mongo.ErrNoDocuments {
 		return nil, nil
@@ -187,7 +202,7 @@ func (s *mongoStore) GetRender(ctx context.Context, id string) (*cache.Render, e
 	return &render, nil
 }
 
-func (s *mongoStore) StoreRender(ctx context.Context, render *cache.Render) error {
+func (s *mongoStore) StoreRenderDoc(ctx context.Context, render *storage.Render) error {
 	now := time.Now()
 	if render.ID == "" {
 		render.ID = primitive.NewObjectID().Hex()
@@ -198,13 +213,13 @@ func (s *mongoStore) StoreRender(ctx context.Context, render *cache.Render) erro
 	return err
 }
 
-func (s *mongoStore) DeleteRender(ctx context.Context, id string) error {
+func (s *mongoStore) DeleteRenderDoc(ctx context.Context, id string) error {
 	objID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		return fmt.Errorf("invalid render ID: %w", err)
 	}
 
-	var render cache.Render
+	var render storage.Render
 	s.renders.FindOne(ctx, bson.M{"_id": objID}).Decode(&render)
 
 	// Delete artifacts
@@ -220,7 +235,7 @@ func (s *mongoStore) DeleteRender(ctx context.Context, id string) error {
 	return err
 }
 
-func (s *mongoStore) ListRenders(ctx context.Context, userID string, limit, offset int) ([]*cache.Render, int64, error) {
+func (s *mongoStore) ListRenderDocs(ctx context.Context, userID string, limit, offset int) ([]*storage.Render, int64, error) {
 	filter := bson.M{"user_id": userID}
 	total, err := s.renders.CountDocuments(ctx, filter)
 	if err != nil {
@@ -234,7 +249,7 @@ func (s *mongoStore) ListRenders(ctx context.Context, userID string, limit, offs
 	}
 	defer cursor.Close(ctx)
 
-	var renders []*cache.Render
+	var renders []*storage.Render
 	if err := cursor.All(ctx, &renders); err != nil {
 		return nil, 0, err
 	}
@@ -268,6 +283,173 @@ func (s *mongoStore) GetArtifact(ctx context.Context, artifactID string) ([]byte
 	return io.ReadAll(stream)
 }
 
+// Scoped operations (with authorization)
+
+func (s *mongoStore) GetGraphDocScoped(ctx context.Context, id string, userID string) (*storage.Graph, error) {
+	graph, err := s.GetGraphDoc(ctx, id)
+	if err != nil || graph == nil {
+		return graph, err
+	}
+
+	// Check authorization for user-scoped graphs
+	if graph.Scope == storage.ScopeUser && graph.UserID != userID {
+		return nil, storage.ErrAccessDenied
+	}
+
+	return graph, nil
+}
+
+func (s *mongoStore) GetRenderDocScoped(ctx context.Context, id string, userID string) (*storage.Render, error) {
+	render, err := s.GetRenderDoc(ctx, id)
+	if err != nil || render == nil {
+		return render, err
+	}
+
+	// Renders are always user-scoped
+	if render.UserID != userID {
+		return nil, storage.ErrAccessDenied
+	}
+
+	return render, nil
+}
+
+func (s *mongoStore) DeleteRenderDocScoped(ctx context.Context, id string, userID string) error {
+	// First check ownership
+	render, err := s.GetRenderDocScoped(ctx, id, userID)
+	if err != nil {
+		return err
+	}
+	if render == nil {
+		return nil
+	}
+
+	// Delete via normal method
+	return s.DeleteRenderDoc(ctx, id)
+}
+
+func (s *mongoStore) GetArtifactScoped(ctx context.Context, artifactID string, userID string) ([]byte, error) {
+	// Find the render that owns this artifact
+	var render storage.Render
+	filter := bson.M{
+		"$or": []bson.M{
+			{"artifacts.svg": artifactID},
+			{"artifacts.png": artifactID},
+			{"artifacts.pdf": artifactID},
+		},
+	}
+	err := s.renders.FindOne(ctx, filter).Decode(&render)
+	if err == mongo.ErrNoDocuments {
+		// Artifact not associated with a render - allow access (shared artifact)
+		return s.GetArtifact(ctx, artifactID)
+	}
+	if err != nil {
+		return nil, fmt.Errorf("find artifact owner: %w", err)
+	}
+
+	// Check ownership
+	if render.UserID != userID {
+		return nil, storage.ErrAccessDenied
+	}
+
+	return s.GetArtifact(ctx, artifactID)
+}
+
+// OperationStore implementation
+
+func (s *mongoStore) RecordOperation(ctx context.Context, op *storage.Operation) error {
+	if op.ID == "" {
+		op.ID = primitive.NewObjectID().Hex()
+	}
+	if op.CreatedAt.IsZero() {
+		op.CreatedAt = time.Now()
+	}
+
+	_, err := s.operations.InsertOne(ctx, op)
+	return err
+}
+
+func (s *mongoStore) ListOperations(ctx context.Context, userID string, opType storage.OperationType, limit, offset int) ([]*storage.Operation, int64, error) {
+	filter := bson.M{"user_id": userID}
+	if opType != "" {
+		filter["type"] = opType
+	}
+
+	total, err := s.operations.CountDocuments(ctx, filter)
+	if err != nil {
+		return nil, 0, err
+	}
+
+	opts := options.Find().SetSort(bson.D{{Key: "created_at", Value: -1}}).SetLimit(int64(limit)).SetSkip(int64(offset))
+	cursor, err := s.operations.Find(ctx, filter, opts)
+	if err != nil {
+		return nil, 0, err
+	}
+	defer cursor.Close(ctx)
+
+	var ops []*storage.Operation
+	if err := cursor.All(ctx, &ops); err != nil {
+		return nil, 0, err
+	}
+	return ops, total, nil
+}
+
+func (s *mongoStore) CountOperationsInWindow(ctx context.Context, userID string, opType storage.OperationType, windowStart int64) (int64, error) {
+	filter := bson.M{
+		"user_id":    userID,
+		"type":       opType,
+		"created_at": bson.M{"$gte": time.Unix(windowStart, 0)},
+	}
+	return s.operations.CountDocuments(ctx, filter)
+}
+
+func (s *mongoStore) GetOperationStats(ctx context.Context, userID string) (*storage.UserOperationStats, error) {
+	pipeline := mongo.Pipeline{
+		{{Key: "$match", Value: bson.M{"user_id": userID}}},
+		{{Key: "$group", Value: bson.M{
+			"_id":              nil,
+			"total_operations": bson.M{"$sum": 1},
+			"total_parses":     bson.M{"$sum": bson.M{"$cond": bson.A{bson.M{"$eq": bson.A{"$type", "parse"}}, 1, 0}}},
+			"total_layouts":    bson.M{"$sum": bson.M{"$cond": bson.A{bson.M{"$eq": bson.A{"$type", "layout"}}, 1, 0}}},
+			"total_renders":    bson.M{"$sum": bson.M{"$cond": bson.A{bson.M{"$eq": bson.A{"$type", "render"}}, 1, 0}}},
+			"total_cache_hits": bson.M{"$sum": bson.M{"$cond": bson.A{"$stats.cache_hit", 1, 0}}},
+		}}},
+	}
+
+	cursor, err := s.operations.Aggregate(ctx, pipeline)
+	if err != nil {
+		return nil, err
+	}
+	defer cursor.Close(ctx)
+
+	var results []struct {
+		TotalOperations int64 `bson:"total_operations"`
+		TotalParses     int64 `bson:"total_parses"`
+		TotalLayouts    int64 `bson:"total_layouts"`
+		TotalRenders    int64 `bson:"total_renders"`
+		TotalCacheHits  int64 `bson:"total_cache_hits"`
+	}
+	if err := cursor.All(ctx, &results); err != nil {
+		return nil, err
+	}
+
+	if len(results) == 0 {
+		return &storage.UserOperationStats{}, nil
+	}
+
+	return &storage.UserOperationStats{
+		TotalOperations: results[0].TotalOperations,
+		TotalParses:     results[0].TotalParses,
+		TotalLayouts:    results[0].TotalLayouts,
+		TotalRenders:    results[0].TotalRenders,
+		TotalCacheHits:  results[0].TotalCacheHits,
+	}, nil
+}
+
+func (s *mongoStore) Ping(ctx context.Context) error {
+	return s.db.Client().Ping(ctx, nil)
+}
+
 func (s *mongoStore) Close() error { return nil }
 
-var _ cache.Store = (*mongoStore)(nil)
+var _ storage.DocumentStore = (*mongoStore)(nil)
+var _ storage.OperationStore = (*mongoStore)(nil)

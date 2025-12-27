@@ -181,6 +181,35 @@ func (q *MemoryQueue) List(ctx context.Context, statuses ...Status) ([]*Job, err
 	return result, nil
 }
 
+func (q *MemoryQueue) ListByUser(ctx context.Context, userID string, statuses ...Status) ([]*Job, error) {
+	q.mu.RLock()
+	defer q.mu.RUnlock()
+
+	filterByStatus := len(statuses) > 0
+	statusMap := make(map[Status]bool)
+	for _, s := range statuses {
+		statusMap[s] = true
+	}
+
+	var result []*Job
+	for _, job := range q.jobs {
+		// Check user_id in payload
+		jobUserID, ok := job.Payload["user_id"].(string)
+		if !ok || jobUserID != userID {
+			continue
+		}
+		if filterByStatus && !statusMap[job.Status] {
+			continue
+		}
+		result = append(result, job)
+	}
+
+	sort.Slice(result, func(i, j int) bool {
+		return result[i].CreatedAt.After(result[j].CreatedAt)
+	})
+	return result, nil
+}
+
 func (q *MemoryQueue) Delete(ctx context.Context, jobID string) error {
 	q.mu.Lock()
 	defer q.mu.Unlock()
@@ -205,6 +234,15 @@ func (q *MemoryQueue) Delete(ctx context.Context, jobID string) error {
 	}
 
 	delete(q.jobs, jobID)
+	return nil
+}
+
+func (q *MemoryQueue) Ping(ctx context.Context) error {
+	q.mu.RLock()
+	defer q.mu.RUnlock()
+	if q.closed {
+		return fmt.Errorf("queue is closed")
+	}
 	return nil
 }
 

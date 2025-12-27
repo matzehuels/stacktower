@@ -5,24 +5,11 @@ import (
 
 	"github.com/matzehuels/stacktower/pkg/core/dag"
 	dagtransform "github.com/matzehuels/stacktower/pkg/core/dag/transform"
-	"github.com/matzehuels/stacktower/pkg/core/render/nodelink"
+	nodelinkio "github.com/matzehuels/stacktower/pkg/core/render/nodelink/io"
 	towerio "github.com/matzehuels/stacktower/pkg/core/render/tower/io"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/layout"
-	"github.com/matzehuels/stacktower/pkg/core/render/tower/ordering"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/transform"
 )
-
-// LayoutOptions contains options for layout computation.
-type LayoutOptions struct {
-	VizType   string
-	Width     float64
-	Height    float64
-	Ordering  string
-	Merge     bool
-	Randomize bool
-	Seed      uint64
-	Orderer   ordering.Orderer
-}
 
 // ComputeLayout computes visual positions for a dependency graph.
 // If opts.Normalize is true, normalizes the graph before computing layout.
@@ -34,7 +21,7 @@ func ComputeLayout(g *dag.DAG, opts Options) (layout.Layout, []byte, error) {
 	}
 
 	if opts.IsNodelink() {
-		return computeNodelinkLayout(g)
+		return computeNodelinkLayout(g, opts)
 	}
 	return computeTowerLayout(g, opts)
 }
@@ -79,10 +66,25 @@ func computeTowerLayout(g *dag.DAG, opts Options) (layout.Layout, []byte, error)
 }
 
 // computeNodelinkLayout computes a node-link (Graphviz) layout.
-func computeNodelinkLayout(g *dag.DAG) (layout.Layout, []byte, error) {
-	dot := nodelink.ToDOT(g, nodelink.Options{Detailed: false})
-	// Return empty layout since nodelink uses DOT string directly
-	return layout.Layout{}, []byte(dot), nil
+func computeNodelinkLayout(g *dag.DAG, opts Options) (layout.Layout, []byte, error) {
+	// Build write options
+	writeOpts := []nodelinkio.WriteOption{
+		nodelinkio.WithGraph(g),
+		nodelinkio.WithDimensions(opts.Width, opts.Height),
+		nodelinkio.WithEngine("dot"),
+	}
+	if opts.Style != "" {
+		writeOpts = append(writeOpts, nodelinkio.WithStyle(opts.Style))
+	}
+
+	// Serialize layout (includes DOT generation)
+	layoutData, err := nodelinkio.WriteLayout(writeOpts...)
+	if err != nil {
+		return layout.Layout{}, nil, err
+	}
+
+	// Return empty layout since nodelink uses DOT string from JSON
+	return layout.Layout{}, layoutData, nil
 }
 
 // LayoutFromData deserializes a layout from JSON data.

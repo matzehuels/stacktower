@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/infra/artifact"
+	"github.com/matzehuels/stacktower/pkg/infra/storage"
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
@@ -25,7 +25,7 @@ type Client struct {
 // NewClient creates a GitHub API client with optional authentication.
 //
 // Parameters:
-//   - backend: Cache backend for HTTP response caching (use artifact.NullBackend{} for no caching)
+//   - backend: Cache backend for HTTP response caching (use storage.NullBackend{} for no caching)
 //   - token: GitHub personal access token (empty string for unauthenticated)
 //   - cacheTTL: How long responses are cached (typical: 1-24 hours)
 //
@@ -35,7 +35,7 @@ type Client struct {
 //
 // Authentication is strongly recommended for production use to avoid rate limiting.
 // The returned Client is safe for concurrent use.
-func NewClient(backend artifact.Backend, token string, cacheTTL time.Duration) *Client {
+func NewClient(backend storage.Backend, token string, cacheTTL time.Duration) *Client {
 	headers := map[string]string{"Accept": "application/vnd.github.v3+json"}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token

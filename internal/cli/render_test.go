@@ -2,6 +2,8 @@ package cli
 
 import (
 	"testing"
+
+	"github.com/matzehuels/stacktower/pkg/pipeline"
 )
 
 func TestParseFormats(t *testing.T) {
@@ -50,9 +52,9 @@ func TestValidateFormats(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := validateFormats(tt.formats)
+			err := pipeline.ValidateFormats(tt.formats)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("validateFormats(%v) error = %v, wantErr %v", tt.formats, err, tt.wantErr)
+				t.Errorf("ValidateFormats(%v) error = %v, wantErr %v", tt.formats, err, tt.wantErr)
 			}
 		})
 	}
@@ -72,9 +74,9 @@ func TestValidateStyle(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := validateStyle(tt.style)
+			err := pipeline.ValidateStyle(tt.style)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("validateStyle(%q) error = %v, wantErr %v", tt.style, err, tt.wantErr)
+				t.Errorf("ValidateStyle(%q) error = %v, wantErr %v", tt.style, err, tt.wantErr)
 			}
 		})
 	}
@@ -88,38 +90,38 @@ func TestValidFormatsMap(t *testing.T) {
 	}
 
 	for k, v := range expected {
-		if validFormats[k] != v {
-			t.Errorf("validFormats[%q] = %v, want %v", k, validFormats[k], v)
+		if pipeline.ValidFormats[k] != v {
+			t.Errorf("ValidFormats[%q] = %v, want %v", k, pipeline.ValidFormats[k], v)
 		}
 	}
 
-	// json is NOT a valid render format (it's layout output)
-	if validFormats["json"] {
-		t.Error("validFormats[json] should be false")
+	// json is NOT a valid render format (it's layout output).
+	if pipeline.ValidFormats["json"] {
+		t.Error("ValidFormats[json] should be false")
 	}
 
-	if validFormats["invalid"] {
-		t.Error("validFormats[invalid] should be false")
+	if pipeline.ValidFormats["invalid"] {
+		t.Error("ValidFormats[invalid] should be false")
 	}
 }
 
 func TestStyleConstants(t *testing.T) {
-	if styleSimple != "simple" {
-		t.Errorf("styleSimple = %q, want %q", styleSimple, "simple")
+	if pipeline.StyleSimple != "simple" {
+		t.Errorf("pipeline.StyleSimple = %q, want %q", pipeline.StyleSimple, "simple")
 	}
-	if styleHanddrawn != "handdrawn" {
-		t.Errorf("styleHanddrawn = %q, want %q", styleHanddrawn, "handdrawn")
+	if pipeline.StyleHanddrawn != "handdrawn" {
+		t.Errorf("pipeline.StyleHanddrawn = %q, want %q", pipeline.StyleHanddrawn, "handdrawn")
 	}
 }
 
 func TestDefaultConstants(t *testing.T) {
-	if defaultWidth != 800 {
-		t.Errorf("defaultWidth = %v, want 800", defaultWidth)
+	if pipeline.DefaultWidth != 800 {
+		t.Errorf("pipeline.DefaultWidth = %v, want 800", pipeline.DefaultWidth)
 	}
-	if defaultHeight != 600 {
-		t.Errorf("defaultHeight = %v, want 600", defaultHeight)
+	if pipeline.DefaultHeight != 600 {
+		t.Errorf("pipeline.DefaultHeight = %v, want 600", pipeline.DefaultHeight)
 	}
-	if defaultSeed != 42 {
-		t.Errorf("defaultSeed = %v, want 42", defaultSeed)
+	if pipeline.DefaultSeed != 42 {
+		t.Errorf("pipeline.DefaultSeed = %v, want 42", pipeline.DefaultSeed)
 	}
 }

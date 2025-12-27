@@ -8,8 +8,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/infra/artifact"
-	"github.com/matzehuels/stacktower/pkg/infra/common"
+	"github.com/matzehuels/stacktower/pkg/infra/storage"
 )
 
 // Client provides shared HTTP functionality for all registry API clients.
@@ -21,7 +20,7 @@ import (
 // Zero values: Do not use an uninitialized Client; always create via [NewClient].
 type Client struct {
 	http      *http.Client
-	backend   artifact.Backend
+	backend   storage.Backend
 	namespace string        // Cache key prefix (e.g., "pypi:", "npm:")
 	ttl       time.Duration // Cache TTL
 	headers   map[string]string
@@ -39,7 +38,7 @@ type Client struct {
 //
 // The returned Client is safe for concurrent use by multiple goroutines.
 // Panics if backend is nil.
-func NewClient(backend artifact.Backend, namespace string, ttl time.Duration, headers map[string]string) *Client {
+func NewClient(backend storage.Backend, namespace string, ttl time.Duration, headers map[string]string) *Client {
 	if backend == nil {
 		panic("backend must not be nil")
 	}
@@ -64,11 +63,11 @@ func NewClient(backend artifact.Backend, namespace string, ttl time.Duration, he
 //
 // Behavior:
 //  1. If refresh=false and cache hit: returns nil immediately with v populated
-//  2. If cache miss or refresh=true: calls fetch with automatic retry on [common.RetryableError]
+//  2. If cache miss or refresh=true: calls fetch with automatic retry on [RetryableError]
 //  3. On successful fetch: stores result in cache (ignoring cache write errors)
 //
 // The fetch function should populate v and return nil on success, or return an error.
-// Network errors should be wrapped with [common.Retryable] to enable retry.
+// Network errors should be wrapped with [Retryable] to enable retry.
 //
 // Returns:
 //   - nil on success (v is populated)
@@ -86,7 +85,7 @@ func (c *Client) Cached(ctx context.Context, key string, refresh bool, v any, fe
 			}
 		}
 	}
-	if err := common.RetryWithBackoff(ctx, fetch); err != nil {
+	if err := storage.RetryWithBackoff(ctx, fetch); err != nil {
 		return err
 	}
 	// Store in cache (ignore errors)
@@ -106,7 +105,7 @@ func (c *Client) Cached(ctx context.Context, key string, refresh bool, v any, fe
 //
 // Returns:
 //   - [ErrNotFound] for HTTP 404 responses
-//   - [ErrNetwork] wrapped with [httpcache.RetryableError] for HTTP 5xx responses
+//   - [ErrNetwork] wrapped with [RetryableError] for HTTP 5xx responses
 //   - [ErrNetwork] for connection failures and timeouts
 //   - json decoding errors if response is not valid JSON
 //
@@ -181,7 +180,7 @@ func (c *Client) doRequest(ctx context.Context, url string, headers map[string]s
 
 	resp, err := c.http.Do(req)
 	if err != nil {
-		return nil, common.Retryable(fmt.Errorf("%w: %v", ErrNetwork, err))
+		return nil, storage.Retryable(fmt.Errorf("%w: %v", ErrNetwork, err))
 	}
 
 	if err := checkStatus(resp.StatusCode); err != nil {
@@ -198,7 +197,7 @@ func checkStatus(code int) error {
 	case code == http.StatusNotFound:
 		return ErrNotFound
 	case code >= 500:
-		return common.Retryable(fmt.Errorf("%w: status %d", ErrNetwork, code))
+		return storage.Retryable(fmt.Errorf("%w: status %d", ErrNetwork, code))
 	default:
 		return fmt.Errorf("%w: status %d", ErrNetwork, code)
 	}

@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/matzehuels/stacktower/pkg/core/deps"
-	"github.com/matzehuels/stacktower/pkg/infra/artifact"
+	"github.com/matzehuels/stacktower/pkg/infra/storage"
 	"github.com/matzehuels/stacktower/pkg/integrations/rubygems"
 )
 
@@ -35,7 +35,7 @@ func manifestParsers(res deps.Resolver) []deps.ManifestParser {
 	return []deps.ManifestParser{&Gemfile{resolver: res}}
 }
 
-func newResolver(backend artifact.Backend, ttl time.Duration) (deps.Resolver, error) {
+func newResolver(backend storage.Backend, ttl time.Duration) (deps.Resolver, error) {
 	c := rubygems.NewClient(backend, ttl)
 	return deps.NewRegistry("rubygems", fetcher{c}), nil
 }

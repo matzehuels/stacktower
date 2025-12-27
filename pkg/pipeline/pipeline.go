@@ -53,42 +53,116 @@ import (
 	"github.com/matzehuels/stacktower/pkg/core/dag"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/layout"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/ordering"
-	"github.com/matzehuels/stacktower/pkg/infra/artifact"
+	"github.com/matzehuels/stacktower/pkg/infra/storage"
 )
 
+// =============================================================================
+// Default values - single source of truth for CLI, API, and Worker
+// =============================================================================
+
+const (
+	// DefaultMaxDepth is the maximum dependency traversal depth.
+	DefaultMaxDepth = 10
+
+	// DefaultMaxNodes is the maximum number of nodes to fetch.
+	DefaultMaxNodes = 5000
+
+	// DefaultWidth is the default frame width in pixels.
+	DefaultWidth = 800.0
+
+	// DefaultHeight is the default frame height in pixels.
+	DefaultHeight = 600.0
+
+	// DefaultVizType is the default visualization type.
+	DefaultVizType = "tower"
+
+	// DefaultStyle is the default visual style.
+	DefaultStyle = "handdrawn"
+
+	// DefaultSeed is the default random seed for reproducibility.
+	DefaultSeed = uint64(42)
+
+	// DefaultOrdering is the default ordering algorithm.
+	DefaultOrdering = "optimal"
+)
+
+// VizType constants for visualization types.
+const (
+	VizTypeTower    = "tower"
+	VizTypeNodelink = "nodelink"
+)
+
+// Style constants for visual styles.
+const (
+	StyleSimple    = "simple"
+	StyleHanddrawn = "handdrawn"
+)
+
+// Format constants for output formats.
+const (
+	FormatSVG = "svg"
+	FormatPNG = "png"
+	FormatPDF = "pdf"
+)
+
+// ValidFormats is the set of supported output formats.
+var ValidFormats = map[string]bool{
+	FormatSVG: true,
+	FormatPNG: true,
+	FormatPDF: true,
+}
+
+// ValidStyles is the set of supported visual styles.
+var ValidStyles = map[string]bool{
+	StyleSimple:    true,
+	StyleHanddrawn: true,
+}
+
+// ValidVizTypes is the set of supported visualization types.
+var ValidVizTypes = map[string]bool{
+	VizTypeTower:    true,
+	VizTypeNodelink: true,
+}
+
 // Options contains all configuration for the visualization pipeline.
+// This struct supports JSON serialization for API requests.
 type Options struct {
+	// User context (for scoped storage and authorization)
+	UserID string        `json:"user_id,omitempty"`
+	Scope  storage.Scope `json:"scope,omitempty"`
+
 	// Parse options
-	Language         string // Package ecosystem (required)
-	Package          string // Package name (required unless Manifest is provided)
-	Manifest         string // Raw manifest content
-	ManifestFilename string // Filename for manifest parsing
-	MaxDepth         int    // Max dependency depth (default: 10)
-	MaxNodes         int    // Max nodes to fetch (default: 5000)
-	Enrich           bool   // Fetch GitHub metadata
-	Refresh          bool   // Bypass cache
-	Normalize        bool   // Apply DAG normalization
+	Language         string `json:"language"`
+	Package          string `json:"package,omitempty"`
+	Manifest         string `json:"manifest,omitempty"`
+	ManifestFilename string `json:"manifest_filename,omitempty"`
+	Repo             string `json:"repo,omitempty"` // GitHub repository (owner/repo) for tracking
+	MaxDepth         int    `json:"max_depth,omitempty"`
+	MaxNodes         int    `json:"max_nodes,omitempty"`
+	Enrich           bool   `json:"enrich,omitempty"`
+	Refresh          bool   `json:"refresh,omitempty"`
+	Normalize        bool   `json:"normalize,omitempty"`
 
 	// Layout options
-	VizType   string  // "tower" or "nodelink" (default: "tower")
-	Width     float64 // Frame width (default: 800)
-	Height    float64 // Frame height (default: 600)
-	Ordering  string  // Ordering algorithm: "optimal", "barycentric"
-	Merge     bool    // Merge subdivider blocks
-	Randomize bool    // Randomize block widths
-	Seed      uint64  // Random seed (default: 42)
+	VizType   string  `json:"viz_type,omitempty"`
+	Width     float64 `json:"width,omitempty"`
+	Height    float64 `json:"height,omitempty"`
+	Ordering  string  `json:"ordering,omitempty"`
+	Merge     bool    `json:"merge,omitempty"`
+	Randomize bool    `json:"randomize,omitempty"`
+	Seed      uint64  `json:"seed,omitempty"`
 
 	// Render options
-	Formats   []string // Output formats: "svg", "png", "pdf", "json"
-	Style     string   // Visual style: "simple", "handdrawn" (default)
-	ShowEdges bool     // Draw dependency edges
-	Nebraska  bool     // Show Nebraska maintainer ranking
-	Popups    bool     // Enable hover popups
+	Formats   []string `json:"formats,omitempty"`
+	Style     string   `json:"style,omitempty"`
+	ShowEdges bool     `json:"show_edges,omitempty"`
+	Nebraska  bool     `json:"nebraska,omitempty"`
+	Popups    bool     `json:"popups,omitempty"`
 
-	// Runtime options
-	Logger      *log.Logger      // Logger for progress messages
-	GitHubToken string           // Token for metadata enrichment
-	Orderer     ordering.Orderer // Custom ordering algorithm
+	// Runtime options (not serialized)
+	Logger      *log.Logger      `json:"-"`
+	GitHubToken string           `json:"-"`
+	Orderer     ordering.Orderer `json:"-"`
 }
 
 // Result contains the outputs of a pipeline run.
@@ -118,8 +192,53 @@ type Stats struct {
 	RenderTime time.Duration
 }
 
-// ValidateAndSetDefaults checks required fields and applies defaults.
+// ValidateFormat checks that a format is valid.
+func ValidateFormat(format string) error {
+	if !ValidFormats[format] {
+		return fmt.Errorf("invalid format: %q (must be one of: svg, png, pdf)", format)
+	}
+	return nil
+}
+
+// ValidateFormats checks that all formats are valid.
+func ValidateFormats(formats []string) error {
+	for _, f := range formats {
+		if err := ValidateFormat(f); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// ValidateStyle checks that a style is valid.
+func ValidateStyle(style string) error {
+	if !ValidStyles[style] {
+		return fmt.Errorf("invalid style: %q (must be one of: simple, handdrawn)", style)
+	}
+	return nil
+}
+
+// ValidateVizType checks that a visualization type is valid.
+func ValidateVizType(vizType string) error {
+	if !ValidVizTypes[vizType] {
+		return fmt.Errorf("invalid viz_type: %q (must be one of: tower, nodelink)", vizType)
+	}
+	return nil
+}
+
+// ValidateAndSetDefaults checks required fields and applies defaults for the full pipeline.
+// Use ValidateForParse, ValidateForLayout, or ValidateForRender for stage-specific validation.
 func (o *Options) ValidateAndSetDefaults() error {
+	if err := o.ValidateForParse(); err != nil {
+		return err
+	}
+	o.SetLayoutDefaults()
+	o.SetRenderDefaults()
+	return nil
+}
+
+// ValidateForParse checks required fields for parsing.
+func (o *Options) ValidateForParse() error {
 	if o.Language == "" {
 		return fmt.Errorf("language is required")
 	}
@@ -130,41 +249,76 @@ func (o *Options) ValidateAndSetDefaults() error {
 		return fmt.Errorf("manifest_filename is required when manifest is provided")
 	}
 
-	// Parse defaults
+	// Parse defaults.
 	if o.MaxDepth == 0 {
-		o.MaxDepth = 10
+		o.MaxDepth = DefaultMaxDepth
 	}
 	if o.MaxNodes == 0 {
-		o.MaxNodes = 5000
+		o.MaxNodes = DefaultMaxNodes
 	}
 
-	// Layout defaults
-	if o.VizType == "" {
-		o.VizType = "tower"
-	}
-	if o.Width == 0 {
-		o.Width = 800
-	}
-	if o.Height == 0 {
-		o.Height = 600
-	}
-	if o.Seed == 0 {
-		o.Seed = 42
-	}
-
-	// Render defaults
-	if len(o.Formats) == 0 {
-		o.Formats = []string{"svg"}
-	}
-	if o.Style == "" {
-		o.Style = "handdrawn"
-	}
-
-	// Logger default
+	// Logger default.
 	if o.Logger == nil {
 		o.Logger = log.NewWithOptions(io.Discard, log.Options{})
 	}
 
+	return nil
+}
+
+// SetLayoutDefaults sets default values for layout computation.
+func (o *Options) SetLayoutDefaults() {
+	if o.VizType == "" {
+		o.VizType = DefaultVizType
+	}
+	if o.Width == 0 {
+		o.Width = DefaultWidth
+	}
+	if o.Height == 0 {
+		o.Height = DefaultHeight
+	}
+	if o.Seed == 0 {
+		o.Seed = DefaultSeed
+	}
+	if o.Logger == nil {
+		o.Logger = log.NewWithOptions(io.Discard, log.Options{})
+	}
+}
+
+// ValidateForLayout validates and sets defaults for layout computation.
+func (o *Options) ValidateForLayout() error {
+	o.SetLayoutDefaults()
+	if err := ValidateVizType(o.VizType); err != nil {
+		return err
+	}
+	return nil
+}
+
+// SetRenderDefaults sets default values for rendering.
+func (o *Options) SetRenderDefaults() {
+	if len(o.Formats) == 0 {
+		o.Formats = []string{FormatSVG}
+	}
+	if o.Style == "" {
+		o.Style = DefaultStyle
+	}
+	if o.Logger == nil {
+		o.Logger = log.NewWithOptions(io.Discard, log.Options{})
+	}
+}
+
+// ValidateForRender validates and sets defaults for rendering.
+func (o *Options) ValidateForRender() error {
+	o.SetLayoutDefaults()
+	o.SetRenderDefaults()
+	if err := ValidateVizType(o.VizType); err != nil {
+		return err
+	}
+	if err := ValidateFormats(o.Formats); err != nil {
+		return err
+	}
+	if err := ValidateStyle(o.Style); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -180,8 +334,8 @@ func (o *Options) IsNodelink() bool {
 
 // Execute runs the complete parse → layout → render pipeline.
 // The backend parameter provides caching for HTTP responses during dependency resolution.
-// Use artifact.NullBackend{} to disable caching.
-func Execute(ctx context.Context, backend artifact.Backend, opts Options) (*Result, error) {
+// Use storage.NullBackend{} to disable caching.
+func Execute(ctx context.Context, backend storage.Backend, opts Options) (*Result, error) {
 	if err := opts.ValidateAndSetDefaults(); err != nil {
 		return nil, fmt.Errorf("invalid options: %w", err)
 	}

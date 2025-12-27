@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/infra/artifact"
+	"github.com/matzehuels/stacktower/pkg/infra/storage"
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
@@ -111,7 +111,7 @@ func TestNormalizePkgName(t *testing.T) {
 func testClient(t *testing.T, serverURL string) *Client {
 	t.Helper()
 	return &Client{
-		Client:  integrations.NewClient(artifact.NullBackend{}, "pypi:", time.Hour, nil),
+		Client:  integrations.NewClient(storage.NullBackend{}, "pypi:", time.Hour, nil),
 		baseURL: serverURL,
 	}
 }

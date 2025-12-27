@@ -15,9 +15,8 @@
 //
 // The infra package is organized into sub-packages:
 //
-//   - cache: Two-tier caching for graphs, renders, and HTTP responses (Redis+MongoDB)
-//   - artifact: Unified caching backend for pipeline artifacts AND HTTP responses
-//     (LocalBackend for CLI, ProdBackend for API/Worker)
+//   - storage: Unified storage backends for caching and persistence
+//     (FileBackend for CLI, DistributedBackend for API/Worker, MemoryBackend for testing)
 //   - session: User session management
 //   - queue: Job queue abstraction
 //   - common: Shared constants, errors, hash utilities, retry logic
@@ -29,14 +28,15 @@
 //   - Queue() → queue.Queue (job queue via Redis Streams)
 //   - Sessions() → session.Store (session storage)
 //   - OAuthStates() → session.StateStore (OAuth state tokens)
-//   - Cache() → cache.LookupCache (fast TTL-based lookups, Tier 1)
+//   - Index() → storage.Index (fast TTL-based lookups, Tier 1)
+//   - HTTPCache() → storage.HTTPCache (HTTP response caching)
 //   - Raw() → *redis.Client (for advanced operations)
 //
 // # MongoDB Client (mongo.go)
 //
 // The Mongo struct wraps a single mongo.Client and provides:
 //
-//   - Store() → cache.Store (graph and render storage, Tier 2)
+//   - DocumentStore() → storage.DocumentStore (graph and render storage, Tier 2)
 //   - Database() → *mongo.Database (for GridFS and custom queries)
 //
 // # Usage Example
@@ -55,11 +55,17 @@
 //	}
 //	defer mongo.Close()
 //
-//	// Use unified clients
-//	cache := cache.NewCombinedCache(redis.Cache(), mongo.Store())
+//	// Create distributed backend from Redis + MongoDB
+//	backend := storage.NewDistributedBackend(
+//	    redis.Index(),
+//	    mongo.DocumentStore(),
+//	    redis.HTTPCache(),
+//	)
+//
+//	// Use in API server
 //	server := api.New(
 //	    redis.Queue(),
-//	    cache,
+//	    backend,
 //	    api.WithSessions(redis.Sessions()),
 //	    api.WithStates(redis.OAuthStates()),
 //	)

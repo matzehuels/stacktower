@@ -10,12 +10,12 @@
 //   - queue.Queue (job queue via Redis Streams)
 //   - session.Store (session storage with TTL)
 //   - session.StateStore (OAuth state tokens)
-//   - cache.LookupCache (fast lookup cache, Tier 1)
+//   - storage.Index (fast lookup cache, Tier 1)
 //
 // # MongoDB Client
 //
 // The MongoDB client implements:
-//   - cache.Store (document storage for graphs, renders)
+//   - storage.DocumentStore (document storage for graphs, renders)
 //   - Provides GridFS bucket for binary artifacts
 //
 // # Usage
@@ -38,13 +38,14 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"sort"
 	"time"
 
 	"github.com/redis/go-redis/v9"
 
-	"github.com/matzehuels/stacktower/pkg/infra/cache"
 	"github.com/matzehuels/stacktower/pkg/infra/queue"
 	"github.com/matzehuels/stacktower/pkg/infra/session"
+	"github.com/matzehuels/stacktower/pkg/infra/storage"
 )
 
 // =============================================================================
@@ -54,8 +55,9 @@ import (
 // Redis is a unified Redis client that provides sub-interfaces for
 // queue, session, and cache operations.
 type Redis struct {
-	client *redis.Client
-	config RedisConfig
+	client    *redis.Client
+	config    RedisConfig
+	encryptor *session.TokenEncryptor // Optional: encrypts access tokens at rest
 }
 
 // NewRedis creates a new unified Redis client.
@@ -116,6 +118,29 @@ func NewRedis(ctx context.Context, cfg RedisConfig) (*Redis, error) {
 	return &Redis{client: client, config: cfg}, nil
 }
 
+// WithSessionEncryption configures token encryption for sessions.
+// Call this after NewRedis to enable at-rest encryption of access tokens.
+// The key must be a base64-encoded 32-byte key.
+// If key is empty, encryption is disabled (not recommended for production).
+func (r *Redis) WithSessionEncryption(encodedKey string) error {
+	if encodedKey == "" {
+		return nil // Encryption disabled
+	}
+
+	key, err := session.ParseKey(encodedKey)
+	if err != nil {
+		return fmt.Errorf("parse session key: %w", err)
+	}
+
+	encryptor, err := session.NewTokenEncryptor(key)
+	if err != nil {
+		return fmt.Errorf("create encryptor: %w", err)
+	}
+
+	r.encryptor = encryptor
+	return nil
+}
+
 // Queue returns a job queue using Redis Streams.
 func (r *Redis) Queue() queue.Queue {
 	return &redisQueue{
@@ -130,8 +155,13 @@ func (r *Redis) Queue() queue.Queue {
 }
 
 // Sessions returns a session store with TTL.
+// If an encryption key was configured, access tokens are encrypted at rest.
 func (r *Redis) Sessions() session.Store {
-	return &redisSessionStore{client: r.client, prefix: "stacktower:session:"}
+	store := &redisSessionStore{client: r.client, prefix: "stacktower:session:"}
+	if r.encryptor != nil {
+		return session.NewEncryptingStore(store, r.encryptor)
+	}
+	return store
 }
 
 // OAuthStates returns an OAuth state token store.
@@ -139,9 +169,19 @@ func (r *Redis) OAuthStates() session.StateStore {
 	return &redisStateStore{client: r.client, prefix: "stacktower:oauth_state:"}
 }
 
-// Cache returns a lookup cache (Tier 1 of two-tier caching).
-func (r *Redis) Cache() cache.LookupCache {
-	return &redisLookupCache{client: r.client}
+// Index returns the cache index (Tier 1 of two-tier caching).
+func (r *Redis) Index() storage.Index {
+	return &redisIndex{client: r.client}
+}
+
+// HTTPCache returns the HTTP response cache.
+func (r *Redis) HTTPCache() storage.HTTPCache {
+	return &redisHTTPCache{client: r.client}
+}
+
+// RateLimiter returns the rate limiter for quota management.
+func (r *Redis) RateLimiter() storage.RateLimiter {
+	return &redisRateLimiter{client: r.client}
 }
 
 // Raw returns the underlying redis.Client for advanced operations.
@@ -157,6 +197,11 @@ func (r *Redis) Close() error {
 // Info returns connection info for logging.
 func (r *Redis) Info() string {
 	return fmt.Sprintf("redis (%s)", r.config.Addr)
+}
+
+// Ping checks if Redis is reachable.
+func (r *Redis) Ping(ctx context.Context) error {
+	return r.client.Ping(ctx).Err()
 }
 
 // =============================================================================
@@ -190,7 +235,17 @@ func (q *redisQueue) Enqueue(ctx context.Context, job *queue.Job) error {
 		return fmt.Errorf("enqueue job: %w", err)
 	}
 
-	return q.client.Set(ctx, q.jobKey(job.ID), data, 24*time.Hour).Err()
+	if err := q.client.Set(ctx, q.jobKey(job.ID), data, 24*time.Hour).Err(); err != nil {
+		return err
+	}
+
+	// Add to user's job index if user_id is present in payload
+	if userID, ok := job.Payload["user_id"].(string); ok && userID != "" {
+		q.client.SAdd(ctx, q.userJobsKey(userID), job.ID)
+		q.client.Expire(ctx, q.userJobsKey(userID), 7*24*time.Hour) // Expire user job sets after 7 days
+	}
+
+	return nil
 }
 
 func (q *redisQueue) Dequeue(ctx context.Context, jobTypes ...string) (*queue.Job, error) {
@@ -323,18 +378,107 @@ func (q *redisQueue) Cancel(ctx context.Context, jobID string) error {
 }
 
 func (q *redisQueue) List(ctx context.Context, statuses ...queue.Status) ([]*queue.Job, error) {
-	return nil, fmt.Errorf("List not implemented for Redis queue")
+	// Scan all job keys
+	var cursor uint64
+	var allJobs []*queue.Job
+	statusMap := make(map[queue.Status]bool)
+	for _, s := range statuses {
+		statusMap[s] = true
+	}
+	filterByStatus := len(statuses) > 0
+
+	for {
+		keys, nextCursor, err := q.client.Scan(ctx, cursor, "stacktower:queue:job:*", 100).Result()
+		if err != nil {
+			return nil, fmt.Errorf("scan job keys: %w", err)
+		}
+
+		for _, key := range keys {
+			data, err := q.client.Get(ctx, key).Bytes()
+			if err != nil {
+				continue
+			}
+			var job queue.Job
+			if err := json.Unmarshal(data, &job); err != nil {
+				continue
+			}
+			if filterByStatus && !statusMap[job.Status] {
+				continue
+			}
+			allJobs = append(allJobs, &job)
+		}
+
+		cursor = nextCursor
+		if cursor == 0 {
+			break
+		}
+	}
+
+	// Sort by creation time (newest first)
+	sort.Slice(allJobs, func(i, j int) bool {
+		return allJobs[i].CreatedAt.After(allJobs[j].CreatedAt)
+	})
+
+	return allJobs, nil
+}
+
+func (q *redisQueue) ListByUser(ctx context.Context, userID string, statuses ...queue.Status) ([]*queue.Job, error) {
+	// Get job IDs from user's job set
+	jobIDs, err := q.client.SMembers(ctx, q.userJobsKey(userID)).Result()
+	if err != nil {
+		return nil, fmt.Errorf("get user jobs: %w", err)
+	}
+
+	statusMap := make(map[queue.Status]bool)
+	for _, s := range statuses {
+		statusMap[s] = true
+	}
+	filterByStatus := len(statuses) > 0
+
+	var jobs []*queue.Job
+	for _, jobID := range jobIDs {
+		job, err := q.Get(ctx, jobID)
+		if err != nil {
+			// Job might have expired, remove from index
+			q.client.SRem(ctx, q.userJobsKey(userID), jobID)
+			continue
+		}
+		if filterByStatus && !statusMap[job.Status] {
+			continue
+		}
+		jobs = append(jobs, job)
+	}
+
+	// Sort by creation time (newest first)
+	sort.Slice(jobs, func(i, j int) bool {
+		return jobs[i].CreatedAt.After(jobs[j].CreatedAt)
+	})
+
+	return jobs, nil
 }
 
 func (q *redisQueue) Delete(ctx context.Context, jobID string) error {
+	// Try to get the job to clean up user index
+	job, err := q.Get(ctx, jobID)
+	if err == nil && job != nil {
+		if userID, ok := job.Payload["user_id"].(string); ok && userID != "" {
+			q.client.SRem(ctx, q.userJobsKey(userID), jobID)
+		}
+	}
+
 	q.client.Del(ctx, q.msgIDKey(jobID))
 	return q.client.Del(ctx, q.jobKey(jobID)).Err()
 }
 
+func (q *redisQueue) Ping(ctx context.Context) error {
+	return q.client.Ping(ctx).Err()
+}
+
 func (q *redisQueue) Close() error { return nil }
 
-func (q *redisQueue) jobKey(id string) string   { return "stacktower:queue:job:" + id }
-func (q *redisQueue) msgIDKey(id string) string { return "stacktower:queue:msgid:" + id }
+func (q *redisQueue) jobKey(id string) string          { return "stacktower:queue:job:" + id }
+func (q *redisQueue) msgIDKey(id string) string        { return "stacktower:queue:msgid:" + id }
+func (q *redisQueue) userJobsKey(userID string) string { return "stacktower:queue:user:" + userID }
 
 var _ queue.Queue = (*redisQueue)(nil)
 
@@ -422,30 +566,30 @@ func (s *redisStateStore) Cleanup(ctx context.Context) error { return nil }
 var _ session.StateStore = (*redisStateStore)(nil)
 
 // =============================================================================
-// Cache Lookup Implementation
+// Index Implementation (storage.Index)
 // =============================================================================
 
-type redisLookupCache struct {
+type redisIndex struct {
 	client *redis.Client
 }
 
-func (c *redisLookupCache) GetGraphEntry(ctx context.Context, key string) (*cache.CacheEntry, error) {
+func (c *redisIndex) GetGraphEntry(ctx context.Context, key string) (*storage.CacheEntry, error) {
 	return c.getEntry(ctx, "stacktower:graph:"+key)
 }
 
-func (c *redisLookupCache) SetGraphEntry(ctx context.Context, key string, entry *cache.CacheEntry) error {
+func (c *redisIndex) SetGraphEntry(ctx context.Context, key string, entry *storage.CacheEntry) error {
 	return c.setEntry(ctx, "stacktower:graph:"+key, entry)
 }
 
-func (c *redisLookupCache) GetRenderEntry(ctx context.Context, key string) (*cache.CacheEntry, error) {
+func (c *redisIndex) GetRenderEntry(ctx context.Context, key string) (*storage.CacheEntry, error) {
 	return c.getEntry(ctx, "stacktower:render:"+key)
 }
 
-func (c *redisLookupCache) SetRenderEntry(ctx context.Context, key string, entry *cache.CacheEntry) error {
+func (c *redisIndex) SetRenderEntry(ctx context.Context, key string, entry *storage.CacheEntry) error {
 	return c.setEntry(ctx, "stacktower:render:"+key, entry)
 }
 
-func (c *redisLookupCache) getEntry(ctx context.Context, key string) (*cache.CacheEntry, error) {
+func (c *redisIndex) getEntry(ctx context.Context, key string) (*storage.CacheEntry, error) {
 	data, err := c.client.Get(ctx, key).Bytes()
 	if err == redis.Nil {
 		return nil, nil
@@ -453,7 +597,7 @@ func (c *redisLookupCache) getEntry(ctx context.Context, key string) (*cache.Cac
 	if err != nil {
 		return nil, fmt.Errorf("redis get: %w", err)
 	}
-	var entry cache.CacheEntry
+	var entry storage.CacheEntry
 	if err := json.Unmarshal(data, &entry); err != nil {
 		return nil, fmt.Errorf("unmarshal entry: %w", err)
 	}
@@ -464,19 +608,35 @@ func (c *redisLookupCache) getEntry(ctx context.Context, key string) (*cache.Cac
 	return &entry, nil
 }
 
-func (c *redisLookupCache) setEntry(ctx context.Context, key string, entry *cache.CacheEntry) error {
+func (c *redisIndex) setEntry(ctx context.Context, key string, entry *storage.CacheEntry) error {
 	data, err := json.Marshal(entry)
 	if err != nil {
 		return fmt.Errorf("marshal entry: %w", err)
 	}
 	ttl := time.Until(entry.ExpiresAt)
 	if ttl <= 0 {
-		ttl = cache.GraphTTL
+		ttl = storage.GraphTTL
 	}
 	return c.client.Set(ctx, key, data, ttl).Err()
 }
 
-func (c *redisLookupCache) GetHTTP(ctx context.Context, key string) ([]byte, bool, error) {
+func (c *redisIndex) Ping(ctx context.Context) error {
+	return c.client.Ping(ctx).Err()
+}
+
+func (c *redisIndex) Close() error { return nil }
+
+var _ storage.Index = (*redisIndex)(nil)
+
+// =============================================================================
+// HTTP Cache Implementation (storage.HTTPCache)
+// =============================================================================
+
+type redisHTTPCache struct {
+	client *redis.Client
+}
+
+func (c *redisHTTPCache) GetHTTP(ctx context.Context, key string) ([]byte, bool, error) {
 	data, err := c.client.Get(ctx, "stacktower:http:"+key).Bytes()
 	if err == redis.Nil {
 		return nil, false, nil
@@ -487,14 +647,149 @@ func (c *redisLookupCache) GetHTTP(ctx context.Context, key string) ([]byte, boo
 	return data, true, nil
 }
 
-func (c *redisLookupCache) SetHTTP(ctx context.Context, key string, data []byte, ttl time.Duration) error {
+func (c *redisHTTPCache) SetHTTP(ctx context.Context, key string, data []byte, ttl time.Duration) error {
 	return c.client.Set(ctx, "stacktower:http:"+key, data, ttl).Err()
 }
 
-func (c *redisLookupCache) DeleteHTTP(ctx context.Context, key string) error {
+func (c *redisHTTPCache) DeleteHTTP(ctx context.Context, key string) error {
 	return c.client.Del(ctx, "stacktower:http:"+key).Err()
 }
 
-func (c *redisLookupCache) Close() error { return nil }
+var _ storage.HTTPCache = (*redisHTTPCache)(nil)
 
-var _ cache.LookupCache = (*redisLookupCache)(nil)
+// =============================================================================
+// Rate Limiter Implementation (storage.RateLimiter)
+// =============================================================================
+
+type redisRateLimiter struct {
+	client *redis.Client
+}
+
+func (r *redisRateLimiter) CheckRateLimit(ctx context.Context, userID string, opType storage.OperationType, quota storage.QuotaConfig) error {
+	key := r.rateLimitKey(userID, opType)
+
+	count, err := r.client.Get(ctx, key).Int()
+	if err == redis.Nil {
+		return nil // No limit set yet
+	}
+	if err != nil {
+		return fmt.Errorf("check rate limit: %w", err)
+	}
+
+	var limit int
+	switch opType {
+	case storage.OpTypeParse:
+		limit = quota.MaxParsesPerHour
+	case storage.OpTypeLayout:
+		limit = quota.MaxLayoutsPerHour
+	case storage.OpTypeRender:
+		limit = quota.MaxRendersPerHour
+	}
+
+	if count >= limit {
+		return storage.ErrRateLimited
+	}
+	return nil
+}
+
+func (r *redisRateLimiter) IncrementRateLimit(ctx context.Context, userID string, opType storage.OperationType) error {
+	key := r.rateLimitKey(userID, opType)
+
+	pipe := r.client.Pipeline()
+	incr := pipe.Incr(ctx, key)
+	pipe.Expire(ctx, key, time.Hour) // 1 hour sliding window
+	_, err := pipe.Exec(ctx)
+	if err != nil {
+		return fmt.Errorf("increment rate limit: %w", err)
+	}
+
+	_ = incr.Val() // Result not needed
+	return nil
+}
+
+func (r *redisRateLimiter) GetRateLimitStatus(ctx context.Context, userID string, quota storage.QuotaConfig) (*storage.RateLimitStatus, error) {
+	pipe := r.client.Pipeline()
+
+	parseKey := r.rateLimitKey(userID, storage.OpTypeParse)
+	layoutKey := r.rateLimitKey(userID, storage.OpTypeLayout)
+	renderKey := r.rateLimitKey(userID, storage.OpTypeRender)
+	storageKey := r.storageKey(userID)
+
+	parsesCmd := pipe.Get(ctx, parseKey)
+	layoutsCmd := pipe.Get(ctx, layoutKey)
+	rendersCmd := pipe.Get(ctx, renderKey)
+	storageCmd := pipe.Get(ctx, storageKey)
+	ttlCmd := pipe.TTL(ctx, parseKey)
+
+	pipe.Exec(ctx)
+
+	getInt := func(cmd *redis.StringCmd) int {
+		v, _ := cmd.Int()
+		return v
+	}
+	getInt64 := func(cmd *redis.StringCmd) int64 {
+		v, _ := cmd.Int64()
+		return v
+	}
+
+	windowResetAt := time.Now().Add(time.Hour).Unix()
+	if ttl := ttlCmd.Val(); ttl > 0 {
+		windowResetAt = time.Now().Add(ttl).Unix()
+	}
+
+	return &storage.RateLimitStatus{
+		ParsesUsed:        getInt(parsesCmd),
+		ParsesLimit:       quota.MaxParsesPerHour,
+		LayoutsUsed:       getInt(layoutsCmd),
+		LayoutsLimit:      quota.MaxLayoutsPerHour,
+		RendersUsed:       getInt(rendersCmd),
+		RendersLimit:      quota.MaxRendersPerHour,
+		StorageBytesUsed:  getInt64(storageCmd),
+		StorageBytesLimit: quota.MaxStorageBytes,
+		WindowResetAt:     windowResetAt,
+	}, nil
+}
+
+func (r *redisRateLimiter) CheckStorageQuota(ctx context.Context, userID string, bytesToAdd int64, quota storage.QuotaConfig) error {
+	key := r.storageKey(userID)
+
+	current, err := r.client.Get(ctx, key).Int64()
+	if err == redis.Nil {
+		current = 0
+	} else if err != nil {
+		return fmt.Errorf("check storage quota: %w", err)
+	}
+
+	if current+bytesToAdd > quota.MaxStorageBytes {
+		return storage.ErrQuotaExceeded
+	}
+	return nil
+}
+
+func (r *redisRateLimiter) UpdateStorageUsage(ctx context.Context, userID string, byteDelta int64) error {
+	key := r.storageKey(userID)
+
+	if byteDelta > 0 {
+		return r.client.IncrBy(ctx, key, byteDelta).Err()
+	} else if byteDelta < 0 {
+		// Decrement but don't go below 0
+		result := r.client.IncrBy(ctx, key, byteDelta)
+		if result.Err() != nil {
+			return result.Err()
+		}
+		if result.Val() < 0 {
+			return r.client.Set(ctx, key, 0, 0).Err()
+		}
+	}
+	return nil
+}
+
+func (r *redisRateLimiter) rateLimitKey(userID string, opType storage.OperationType) string {
+	return fmt.Sprintf("stacktower:ratelimit:%s:%s", userID, opType)
+}
+
+func (r *redisRateLimiter) storageKey(userID string) string {
+	return "stacktower:storage:" + userID
+}
+
+var _ storage.RateLimiter = (*redisRateLimiter)(nil)

@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/matzehuels/stacktower/pkg/core/deps"
-	"github.com/matzehuels/stacktower/pkg/infra/artifact"
+	"github.com/matzehuels/stacktower/pkg/infra/storage"
 	"github.com/matzehuels/stacktower/pkg/integrations/github"
 )
 
@@ -13,7 +13,7 @@ type GitHub struct {
 	client *github.Client
 }
 
-func NewGitHub(backend artifact.Backend, token string, cacheTTL time.Duration) *GitHub {
+func NewGitHub(backend storage.Backend, token string, cacheTTL time.Duration) *GitHub {
 	c := github.NewClient(backend, token, cacheTTL)
 	return &GitHub{c}
 }

@@ -4,11 +4,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/infra/artifact"
+	"github.com/matzehuels/stacktower/pkg/infra/storage"
 )
 
 func TestNewResolver(t *testing.T) {
-	r, err := Language.NewResolver(artifact.NullBackend{}, time.Minute)
+	r, err := Language.NewResolver(storage.NullBackend{}, time.Minute)
 	if err != nil {
 		t.Fatalf("NewResolver failed: %v", err)
 	}

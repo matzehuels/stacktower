@@ -10,13 +10,17 @@ import (
 	"os"
 	"strconv"
 	"time"
+
+	"github.com/matzehuels/stacktower/pkg/infra/storage"
 )
 
 // Config holds all infrastructure configuration.
 type Config struct {
-	Redis  RedisConfig
-	Mongo  MongoConfig
-	GitHub GitHubConfig
+	Redis   RedisConfig
+	Mongo   MongoConfig
+	GitHub  GitHubConfig
+	Session SessionConfig
+	Quota   storage.QuotaConfig
 }
 
 // RedisConfig holds Redis connection settings.
@@ -53,12 +57,26 @@ type GitHubConfig struct {
 	FrontendURL  string // FRONTEND_URL (redirect after OAuth)
 }
 
+// SessionConfig holds session encryption settings.
+type SessionConfig struct {
+	EncryptionKey string // STACKTOWER_SESSION_KEY (base64-encoded 32-byte key)
+}
+
 // Load reads all configuration from environment variables.
 func Load() *Config {
 	return &Config{
-		Redis:  LoadRedisConfig(),
-		Mongo:  LoadMongoConfig(),
-		GitHub: LoadGitHubConfig(),
+		Redis:   LoadRedisConfig(),
+		Mongo:   LoadMongoConfig(),
+		GitHub:  LoadGitHubConfig(),
+		Session: LoadSessionConfig(),
+		Quota:   LoadQuotaConfig(),
+	}
+}
+
+// LoadSessionConfig reads session configuration from environment.
+func LoadSessionConfig() SessionConfig {
+	return SessionConfig{
+		EncryptionKey: env("STACKTOWER_SESSION_KEY", ""),
 	}
 }
 
@@ -102,6 +120,17 @@ func LoadGitHubConfig() GitHubConfig {
 	}
 }
 
+// LoadQuotaConfig reads quota/rate-limiting configuration from environment.
+func LoadQuotaConfig() storage.QuotaConfig {
+	return storage.QuotaConfig{
+		MaxParsesPerHour:  envInt("STACKTOWER_QUOTA_PARSES_PER_HOUR", 100),
+		MaxLayoutsPerHour: envInt("STACKTOWER_QUOTA_LAYOUTS_PER_HOUR", 200),
+		MaxRendersPerHour: envInt("STACKTOWER_QUOTA_RENDERS_PER_HOUR", 100),
+		MaxStorageBytes:   envInt64("STACKTOWER_QUOTA_STORAGE_BYTES", 500*1024*1024), // 500MB
+		MaxRendersStored:  envInt("STACKTOWER_QUOTA_RENDERS_STORED", 1000),
+	}
+}
+
 // Validate checks that required fields are set for API mode.
 func (c *Config) ValidateForAPI() error {
 	if c.Redis.Addr == "" {
@@ -136,6 +165,15 @@ func env(key, defaultValue string) string {
 func envInt(key string, defaultValue int) int {
 	if v := os.Getenv(key); v != "" {
 		if i, err := strconv.Atoi(v); err == nil {
+			return i
+		}
+	}
+	return defaultValue
+}
+
+func envInt64(key string, defaultValue int64) int64 {
+	if v := os.Getenv(key); v != "" {
+		if i, err := strconv.ParseInt(v, 10, 64); err == nil {
 			return i
 		}
 	}

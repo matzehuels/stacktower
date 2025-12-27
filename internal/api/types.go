@@ -3,57 +3,55 @@ package api
 import (
 	"time"
 
-	"github.com/matzehuels/stacktower/internal/jobs"
-	"github.com/matzehuels/stacktower/pkg/infra/cache"
+	"github.com/matzehuels/stacktower/pkg/infra/storage"
+	"github.com/matzehuels/stacktower/pkg/pipeline"
+)
+
+// APIError represents a structured error response.
+type APIError struct {
+	Code    string      `json:"code"`
+	Message string      `json:"message"`
+	Details interface{} `json:"details,omitempty"`
+}
+
+// Common error codes for client-side handling.
+const (
+	ErrCodeValidation     = "VALIDATION_ERROR"
+	ErrCodeUnauthorized   = "UNAUTHORIZED"
+	ErrCodeForbidden      = "FORBIDDEN"
+	ErrCodeNotFound       = "NOT_FOUND"
+	ErrCodeRateLimited    = "RATE_LIMITED"
+	ErrCodeInternal       = "INTERNAL_ERROR"
+	ErrCodeServiceUnavail = "SERVICE_UNAVAILABLE"
+	ErrCodeBadRequest     = "BAD_REQUEST"
 )
 
 // RenderRequest is the request body for POST /api/v1/render.
-// It embeds RenderPayload and adds API-specific fields.
+// It embeds pipeline.Options for all rendering configuration.
+// Access validation via req.Options.ValidateAndSetDefaults().
 type RenderRequest struct {
-	jobs.RenderPayload
-
-	// Repo is the GitHub repository ("owner/repo") for manifest sources.
-	Repo string `json:"repo,omitempty"`
-
-	// Refresh forces bypassing all caches.
-	Refresh bool `json:"refresh,omitempty"`
-}
-
-// IsPublic returns true if this is a public package (vs private manifest).
-func (r *RenderRequest) IsPublic() bool {
-	return r.Manifest == ""
+	pipeline.Options
 }
 
 // GraphOptions extracts graph-related options for cache keys.
-func (r *RenderRequest) GraphOptions() cache.GraphOptions {
-	return cache.GraphOptions{
-		MaxDepth:  r.MaxDepth,
-		MaxNodes:  r.MaxNodes,
-		Normalize: r.Normalize,
+func (r *RenderRequest) GraphOptions() storage.GraphOptions {
+	return storage.GraphOptions{
+		MaxDepth:  r.Options.MaxDepth,
+		MaxNodes:  r.Options.MaxNodes,
+		Normalize: r.Options.Normalize,
 	}
 }
 
 // LayoutOptions extracts layout-related options for cache keys.
-func (r *RenderRequest) LayoutOptions() cache.LayoutOptions {
-	return cache.LayoutOptions{
-		VizType:   r.VizType,
-		Width:     r.Width,
-		Height:    r.Height,
-		Ordering:  r.Ordering,
-		Merge:     r.Merge,
-		Randomize: r.Randomize,
-		Seed:      r.Seed,
-	}
-}
-
-// RenderOptions extracts render-related options.
-func (r *RenderRequest) RenderOptions() cache.RenderOptions {
-	return cache.RenderOptions{
-		Formats:   r.Formats,
-		Style:     r.Style,
-		ShowEdges: r.ShowEdges,
-		Nebraska:  r.Nebraska,
-		Popups:    r.Popups,
+func (r *RenderRequest) LayoutOptions() storage.LayoutOptions {
+	return storage.LayoutOptions{
+		VizType:   r.Options.VizType,
+		Width:     r.Options.Width,
+		Height:    r.Options.Height,
+		Ordering:  r.Options.Ordering,
+		Merge:     r.Options.Merge,
+		Randomize: r.Options.Randomize,
+		Seed:      r.Options.Seed,
 	}
 }
 
@@ -123,4 +121,69 @@ type RenderHistoryItem struct {
 	EdgeCount int               `json:"edge_count"`
 	Artifacts map[string]string `json:"artifacts"`
 	CreatedAt time.Time         `json:"created_at"`
+}
+
+// =============================================================================
+// Parse Endpoint Types
+// =============================================================================
+
+// ParseRequest is the request body for POST /api/v1/parse.
+// Embeds pipeline.Options for all parsing configuration.
+type ParseRequest struct {
+	pipeline.Options
+}
+
+// ParseResponse is the response for POST /api/v1/parse.
+type ParseResponse struct {
+	Status    string `json:"status"`           // "pending" or "completed"
+	JobID     string `json:"job_id,omitempty"` // For async polling
+	Graph     []byte `json:"graph,omitempty"`
+	NodeCount int    `json:"node_count,omitempty"`
+	EdgeCount int    `json:"edge_count,omitempty"`
+	Cached    bool   `json:"cached,omitempty"`
+	Error     string `json:"error,omitempty"`
+}
+
+// =============================================================================
+// Layout Endpoint Types
+// =============================================================================
+
+// LayoutRequest is the request body for POST /api/v1/layout.
+// Embeds pipeline.Options for layout configuration, plus graph data fields.
+type LayoutRequest struct {
+	pipeline.Options
+	Graph   []byte `json:"graph"`    // Inline graph JSON
+	GraphID string `json:"graph_id"` // Or reference to stored graph
+}
+
+// LayoutResponse is the response for POST /api/v1/layout.
+type LayoutResponse struct {
+	Status string `json:"status"`           // "pending" or "completed"
+	JobID  string `json:"job_id,omitempty"` // For async polling
+	Layout []byte `json:"layout,omitempty"`
+	Cached bool   `json:"cached,omitempty"`
+	Error  string `json:"error,omitempty"`
+}
+
+// =============================================================================
+// Visualize Endpoint Types
+// =============================================================================
+
+// VisualizeRequest is the request body for POST /api/v1/visualize.
+type VisualizeRequest struct {
+	Layout    []byte   `json:"layout"`
+	Graph     []byte   `json:"graph,omitempty"` // Optional, for popups/nebraska
+	VizType   string   `json:"viz_type,omitempty"`
+	Formats   []string `json:"formats,omitempty"`
+	Style     string   `json:"style,omitempty"`
+	ShowEdges bool     `json:"show_edges,omitempty"`
+	Popups    bool     `json:"popups,omitempty"`
+}
+
+// VisualizeResponse is the response for POST /api/v1/visualize.
+type VisualizeResponse struct {
+	Status    string            `json:"status"`
+	Artifacts map[string]string `json:"artifacts,omitempty"` // format -> base64-encoded data
+	Cached    bool              `json:"cached,omitempty"`
+	Error     string            `json:"error,omitempty"`
 }

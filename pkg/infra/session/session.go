@@ -58,19 +58,19 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"errors"
+	"fmt"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/infra/common"
 	"github.com/matzehuels/stacktower/pkg/integrations/github"
 )
 
 // Sentinel errors for session operations.
 var (
 	// ErrNotFound is returned when a session does not exist.
-	ErrNotFound = common.ErrNotFound
+	ErrNotFound = errors.New("not found")
 
 	// ErrExpired is returned when a session has exceeded its TTL.
-	ErrExpired = common.ErrExpired
+	ErrExpired = errors.New("expired")
 
 	// ErrInvalidState is returned when an OAuth state token is invalid or already used.
 	ErrInvalidState = errors.New("invalid or expired state token")
@@ -88,6 +88,16 @@ type Session struct {
 // IsExpired returns true if the session has expired.
 func (s *Session) IsExpired() bool {
 	return time.Now().After(s.ExpiresAt)
+}
+
+// UserID returns a storage-compatible user identifier.
+// Format: "github:{id}" to namespace by auth provider.
+// This format is used in cache keys and document ownership.
+func (s *Session) UserID() string {
+	if s == nil || s.User == nil {
+		return ""
+	}
+	return fmt.Sprintf("github:%d", s.User.ID)
 }
 
 // Store is the interface for session storage backends.
@@ -126,10 +136,10 @@ type StateStore interface {
 // Default durations.
 const (
 	// DefaultTTL is the default session duration.
-	DefaultTTL = common.SessionTTL
+	DefaultTTL = 24 * time.Hour
 
 	// DefaultStateTTL is the default OAuth state token duration.
-	DefaultStateTTL = common.OAuthStateTTL
+	DefaultStateTTL = 10 * time.Minute
 )
 
 // GenerateID creates a cryptographically secure random session ID.

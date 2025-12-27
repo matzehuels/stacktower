@@ -185,9 +185,19 @@ type Queue interface {
 	// Results are ordered by creation time (newest first).
 	List(ctx context.Context, statuses ...Status) ([]*Job, error)
 
+	// ListByUser returns jobs for a specific user, optionally filtered by status.
+	// This is more efficient than List + filtering for user-specific queries.
+	// The userID should match the "user_id" field in the job payload.
+	// Results are ordered by creation time (newest first).
+	ListByUser(ctx context.Context, userID string, statuses ...Status) ([]*Job, error)
+
 	// Delete removes a job from the queue.
 	// This is typically used for cleanup of old completed jobs.
 	Delete(ctx context.Context, jobID string) error
+
+	// Ping checks if the queue backend is reachable.
+	// Used for health checks.
+	Ping(ctx context.Context) error
 
 	// Close releases any resources held by the queue (connections, goroutines, etc.).
 	Close() error

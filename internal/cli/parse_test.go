@@ -7,17 +7,31 @@ import (
 )
 
 func TestLooksLikeFile(t *testing.T) {
+	// Test cases based on actual language definitions in pkg/core/deps.
+	// Only manifests defined in Language.ManifestAliases are recognized.
 	tests := []struct {
 		name string
 		arg  string
 		want bool
 	}{
-		{"txt extension", "requirements.txt", true},
-		{"lock extension", "poetry.lock", true},
-		{"toml extension", "pyproject.toml", true},
-		{"xml extension", "pom.xml", true},
+		// Recognized manifest files (from language definitions)
+		{"requirements.txt", "requirements.txt", true},
+		{"poetry.lock", "poetry.lock", true},
+		{"pom.xml", "pom.xml", true},
 		{"go.mod", "go.mod", true},
-		{"GO.MOD uppercase", "GO.MOD", true},
+		{"package.json", "package.json", true},
+		{"Cargo.toml", "Cargo.toml", true},
+		{"cargo.toml lowercase", "cargo.toml", true},
+		{"Gemfile", "Gemfile", true},
+		{"composer.json", "composer.json", true},
+
+		// Not in language definitions (even if reasonable)
+		// pyproject.toml is not in Python's ManifestAliases
+		{"pyproject.toml not defined", "pyproject.toml", false},
+		// Case sensitivity: go.mod is defined, but GO.MOD is not
+		{"GO.MOD uppercase not matched", "GO.MOD", false},
+
+		// Package names (not files)
 		{"package name", "requests", false},
 		{"package with version", "requests==2.0", false},
 		{"package with dash", "my-package", false},

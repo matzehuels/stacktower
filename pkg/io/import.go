@@ -49,7 +49,7 @@ func ReadJSON(r io.Reader) (*dag.DAG, error) {
 
 	g := dag.New(nil)
 	for _, n := range data.Nodes {
-		nd := dag.Node{ID: n.ID, Meta: n.Meta}
+		nd := dag.Node{ID: n.ID, Meta: n.Meta, MasterID: n.MasterID}
 		if n.Row != nil {
 			nd.Row = *n.Row
 		}

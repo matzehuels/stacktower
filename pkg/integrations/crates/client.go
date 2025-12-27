@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/infra/artifact"
+	"github.com/matzehuels/stacktower/pkg/infra/storage"
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
@@ -43,12 +43,12 @@ type Client struct {
 // NewClient creates a crates.io client with the given cache backend.
 //
 // Parameters:
-//   - backend: Cache backend for HTTP response caching (use artifact.NullBackend{} for no caching)
+//   - backend: Cache backend for HTTP response caching (use storage.NullBackend{} for no caching)
 //   - cacheTTL: How long responses are cached (typical: 1-24 hours)
 //
 // The client includes a User-Agent header as required by crates.io API policy.
 // The returned Client is safe for concurrent use.
-func NewClient(backend artifact.Backend, cacheTTL time.Duration) *Client {
+func NewClient(backend storage.Backend, cacheTTL time.Duration) *Client {
 	headers := map[string]string{
 		"User-Agent": "stacktower/1.0 (https://github.com/matzehuels/stacktower)",
 	}

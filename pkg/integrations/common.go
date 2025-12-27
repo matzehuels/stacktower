@@ -7,28 +7,22 @@ import (
 	"strings"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/infra/common"
+	"github.com/matzehuels/stacktower/pkg/infra/storage"
 )
 
 // httpTimeout is the default timeout for all HTTP requests to registry APIs.
 // Individual registries do not override this value.
 const httpTimeout = 10 * time.Second
 
-// DefaultHTTPCacheTTL is the default TTL for HTTP response caching.
-const DefaultHTTPCacheTTL = common.HTTPCacheTTL
-
+// Sentinel errors - re-exported from storage for API consistency.
+// These are the canonical definitions; use storage.ErrNotFound/ErrNetwork directly when possible.
 var (
 	// ErrNotFound is returned when a package or resource doesn't exist in the registry.
 	// This corresponds to HTTP 404 responses.
-	// Callers should check with errors.Is(err, integrations.ErrNotFound).
-	// This error is never wrapped with additional context.
-	ErrNotFound = common.ErrNotFound
+	ErrNotFound = storage.ErrNotFound
 
 	// ErrNetwork is returned for HTTP failures (timeouts, connection errors, 5xx responses).
-	// This error may be wrapped with [common.RetryableError] for 5xx status codes.
-	// Callers should check with errors.Is(err, integrations.ErrNetwork) for any network issue,
-	// or errors.As(err, &common.RetryableError{}) to detect retryable failures specifically.
-	ErrNetwork = common.ErrNetwork
+	ErrNetwork = storage.ErrNetwork
 )
 
 // RepoMetrics holds repository-level data fetched from GitHub or GitLab.

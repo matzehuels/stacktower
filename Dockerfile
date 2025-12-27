@@ -25,7 +25,7 @@ COPY . .
 # Build with cache mounts for faster incremental builds
 RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \
-    CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -o /stacktower ./cmd/api
+    CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -o /stacktowerd ./cmd/server
 
 # Runtime stage
 FROM alpine:3.20
@@ -50,7 +50,7 @@ RUN addgroup -g 1000 stacktower && \
 WORKDIR /app
 
 # Copy binary from builder
-COPY --from=builder /stacktower /usr/local/bin/stacktower
+COPY --from=builder /stacktowerd /usr/local/bin/stacktowerd
 
 # Create directories for local storage (optional fallback)
 RUN mkdir -p /data/storage /data/cache && \
@@ -72,6 +72,6 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 
 # Default command (can be overridden)
 # Use --worker for worker-only mode
-ENTRYPOINT ["/usr/local/bin/stacktower"]
+ENTRYPOINT ["/usr/local/bin/stacktowerd"]
 CMD []
 

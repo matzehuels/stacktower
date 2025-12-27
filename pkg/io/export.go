@@ -1,6 +1,7 @@
 package io
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -21,10 +22,11 @@ type graph struct {
 }
 
 type node struct {
-	ID   string       `json:"id"`
-	Row  *int         `json:"row,omitempty"`
-	Kind string       `json:"kind,omitempty"`
-	Meta dag.Metadata `json:"meta,omitempty"`
+	ID       string       `json:"id"`
+	Row      *int         `json:"row,omitempty"`
+	Kind     string       `json:"kind,omitempty"`
+	MasterID string       `json:"master_id,omitempty"`
+	Meta     dag.Metadata `json:"meta,omitempty"`
 }
 
 type edge struct {
@@ -71,7 +73,7 @@ func WriteJSON(g *dag.DAG, w io.Writer) error {
 	}
 
 	for i, n := range nodes {
-		nd := node{ID: n.ID, Meta: n.Meta}
+		nd := node{ID: n.ID, Meta: n.Meta, MasterID: n.MasterID}
 		if n.Row != 0 {
 			row := n.Row
 			nd.Row = &row
@@ -112,4 +114,16 @@ func ExportJSON(g *dag.DAG, path string) error {
 	}
 	defer f.Close()
 	return WriteJSON(g, f)
+}
+
+// SerializeDAG converts a DAG to JSON bytes.
+// This is a convenience function for in-memory serialization.
+//
+// The output can be read back with [ReadJSON] to produce an identical DAG.
+func SerializeDAG(g *dag.DAG) ([]byte, error) {
+	var buf bytes.Buffer
+	if err := WriteJSON(g, &buf); err != nil {
+		return nil, err
+	}
+	return buf.Bytes(), nil
 }

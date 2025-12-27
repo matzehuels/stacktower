@@ -30,7 +30,7 @@
 // # Shared Infrastructure
 //
 // The [Client] type provides shared HTTP functionality used by all registry
-// clients, including HTTP response caching via [artifact.Backend].
+// clients, including HTTP response caching via [storage.Backend].
 //
 // # Adding a New Registry
 //
@@ -51,6 +51,6 @@
 // [goproxy]: github.com/matzehuels/stacktower/pkg/integrations/goproxy
 // [github]: github.com/matzehuels/stacktower/pkg/integrations/github
 // [gitlab]: github.com/matzehuels/stacktower/pkg/integrations/gitlab
-// [artifact.Backend]: github.com/matzehuels/stacktower/pkg/infra/artifact.Backend
+// [storage.Backend]: github.com/matzehuels/stacktower/pkg/infra/storage.Backend
 // [deps]: github.com/matzehuels/stacktower/pkg/core/deps
 package integrations

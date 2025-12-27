@@ -2,28 +2,18 @@ package pipeline
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 
 	"github.com/matzehuels/stacktower/pkg/core/dag"
 	"github.com/matzehuels/stacktower/pkg/core/render/nodelink"
+	nodelinkio "github.com/matzehuels/stacktower/pkg/core/render/nodelink/io"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/feature"
 	towerio "github.com/matzehuels/stacktower/pkg/core/render/tower/io"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/layout"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/sink"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/styles/handdrawn"
 )
-
-// RenderOptions contains options for output rendering.
-type RenderOptions struct {
-	VizType   string
-	Formats   []string
-	Style     string
-	ShowEdges bool
-	Nebraska  bool
-	Popups    bool
-	Merge     bool
-	Seed      uint64
-}
 
 // Render generates output artifacts in the requested formats.
 // If l is empty (Blocks == nil), it will be deserialized from layoutData.
@@ -36,7 +26,12 @@ func Render(l layout.Layout, layoutData []byte, g *dag.DAG, opts Options) (map[s
 
 // renderNodelink generates nodelink outputs using Graphviz.
 func renderNodelink(layoutData []byte, opts Options) (map[string][]byte, error) {
-	dot := string(layoutData)
+	// Extract DOT from layout JSON
+	dot, err := extractDOT(layoutData)
+	if err != nil {
+		return nil, fmt.Errorf("extract DOT from layout: %w", err)
+	}
+
 	artifacts := make(map[string][]byte)
 
 	for _, format := range opts.Formats {
@@ -51,8 +46,8 @@ func renderNodelink(layoutData []byte, opts Options) (map[string][]byte, error) 
 		case "pdf":
 			data, err = nodelink.RenderPDF(dot)
 		case "json":
-			// JSON layout not supported for nodelink
-			continue
+			// Return the layout JSON itself
+			data = layoutData
 		default:
 			return nil, fmt.Errorf("unsupported nodelink format: %s", format)
 		}
@@ -64,6 +59,23 @@ func renderNodelink(layoutData []byte, opts Options) (map[string][]byte, error) 
 	}
 
 	return artifacts, nil
+}
+
+// extractDOT extracts the DOT string from nodelink layout JSON.
+// Falls back to treating the data as raw DOT if JSON parsing fails.
+func extractDOT(data []byte) (string, error) {
+	// Try to parse as nodelink layout JSON
+	layoutData, _, err := nodelinkio.ReadLayout(bytes.NewReader(data))
+	if err == nil && layoutData.DOT != "" {
+		return layoutData.DOT, nil
+	}
+
+	// Fall back to treating data as raw DOT (for backwards compatibility)
+	if len(data) > 0 && data[0] != '{' {
+		return string(data), nil
+	}
+
+	return "", fmt.Errorf("invalid nodelink layout: %w", err)
 }
 
 // renderTower generates tower outputs.
@@ -175,7 +187,10 @@ func buildJSONOptions(g *dag.DAG, opts Options) []sink.JSONOption {
 // RenderFromLayoutData renders output from serialized layout data.
 // This is useful when the layout was computed elsewhere (e.g., cached).
 func RenderFromLayoutData(layoutData []byte, g *dag.DAG, opts Options) (map[string][]byte, error) {
-	if opts.IsNodelink() {
+	// Detect viz type from layout JSON
+	vizType := detectVizType(layoutData)
+	if vizType == nodelinkio.VizType {
+		opts.VizType = VizTypeNodelink
 		return renderNodelink(layoutData, opts)
 	}
 
@@ -196,4 +211,15 @@ func RenderFromLayoutData(layoutData []byte, g *dag.DAG, opts Options) (map[stri
 	}
 
 	return renderTower(l, layoutData, g, opts)
+}
+
+// detectVizType reads the viz_type field from layout JSON.
+func detectVizType(data []byte) string {
+	var header struct {
+		VizType string `json:"viz_type"`
+	}
+	if err := json.Unmarshal(data, &header); err != nil {
+		return ""
+	}
+	return header.VizType
 }

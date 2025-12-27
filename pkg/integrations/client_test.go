@@ -9,12 +9,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/infra/artifact"
-	"github.com/matzehuels/stacktower/pkg/infra/common"
+	"github.com/matzehuels/stacktower/pkg/infra/storage"
 )
 
 func TestNewClient(t *testing.T) {
-	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+	backend, _ := storage.NewFileBackend(storage.FileConfig{
 		CacheDir: t.TempDir(),
 	})
 	defer backend.Close()
@@ -37,7 +36,7 @@ func TestNewClient(t *testing.T) {
 }
 
 func TestNewClientNilHeaders(t *testing.T) {
-	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+	backend, _ := storage.NewFileBackend(storage.FileConfig{
 		CacheDir: t.TempDir(),
 	})
 	defer backend.Close()
@@ -65,7 +64,7 @@ func TestClientGet(t *testing.T) {
 	}))
 	defer server.Close()
 
-	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+	backend, _ := storage.NewFileBackend(storage.FileConfig{
 		CacheDir: t.TempDir(),
 	})
 	defer backend.Close()
@@ -92,7 +91,7 @@ func TestClientGetWithHeaders(t *testing.T) {
 	}))
 	defer server.Close()
 
-	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+	backend, _ := storage.NewFileBackend(storage.FileConfig{
 		CacheDir: t.TempDir(),
 	})
 	defer backend.Close()
@@ -119,7 +118,7 @@ func TestClientGetWithHeadersOverridesDefaults(t *testing.T) {
 	}))
 	defer server.Close()
 
-	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+	backend, _ := storage.NewFileBackend(storage.FileConfig{
 		CacheDir: t.TempDir(),
 	})
 	defer backend.Close()
@@ -143,7 +142,7 @@ func TestClientGetText(t *testing.T) {
 	}))
 	defer server.Close()
 
-	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+	backend, _ := storage.NewFileBackend(storage.FileConfig{
 		CacheDir: t.TempDir(),
 	})
 	defer backend.Close()
@@ -166,7 +165,7 @@ func TestClientGet404(t *testing.T) {
 	}))
 	defer server.Close()
 
-	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+	backend, _ := storage.NewFileBackend(storage.FileConfig{
 		CacheDir: t.TempDir(),
 	})
 	defer backend.Close()
@@ -187,7 +186,7 @@ func TestClientGet500(t *testing.T) {
 	}))
 	defer server.Close()
 
-	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+	backend, _ := storage.NewFileBackend(storage.FileConfig{
 		CacheDir: t.TempDir(),
 	})
 	defer backend.Close()
@@ -201,14 +200,14 @@ func TestClientGet500(t *testing.T) {
 		t.Error("Get() should return error for 500")
 	}
 
-	var retryErr *common.RetryableError
+	var retryErr *storage.RetryableError
 	if !errors.As(err, &retryErr) {
 		t.Errorf("Get() error should be RetryableError, got %T", err)
 	}
 }
 
 func TestClientCached(t *testing.T) {
-	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+	backend, _ := storage.NewFileBackend(storage.FileConfig{
 		CacheDir: t.TempDir(),
 	})
 	defer backend.Close()
@@ -242,7 +241,7 @@ func TestClientCached(t *testing.T) {
 }
 
 func TestClientCachedRefresh(t *testing.T) {
-	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+	backend, _ := storage.NewFileBackend(storage.FileConfig{
 		CacheDir: t.TempDir(),
 	})
 	defer backend.Close()
@@ -269,7 +268,7 @@ func TestClientCachedRefresh(t *testing.T) {
 }
 
 func TestClientCachedFetchError(t *testing.T) {
-	backend, _ := artifact.NewLocalBackend(artifact.LocalBackendConfig{
+	backend, _ := storage.NewFileBackend(storage.FileConfig{
 		CacheDir: t.TempDir(),
 	})
 	defer backend.Close()
@@ -358,7 +357,7 @@ func TestCheckStatus(t *testing.T) {
 					t.Errorf("checkStatus() error = %v, want %v", err, tt.wantType)
 				}
 				if tt.isRetryErr {
-					var retryErr *common.RetryableError
+					var retryErr *storage.RetryableError
 					if !errors.As(err, &retryErr) {
 						t.Errorf("checkStatus() error should be RetryableError, got %T", err)
 					}

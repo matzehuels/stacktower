@@ -71,12 +71,9 @@
 //
 // ## Infrastructure
 //
-// [infra/cache] - Two-tier cache (Redis + MongoDB) for API server. Stores
-// user renders, graph data, and HTTP response caching for registry APIs.
-//
-// [infra/artifact] - Unified caching backend for both pipeline artifacts
-// (graphs, layouts, renders) AND HTTP response caching (PyPI, npm, etc.).
-// LocalBackend for CLI, ProdBackend for API/worker.
+// [infra/storage] - Unified storage backends for caching and persistence.
+// FileBackend for CLI (filesystem), DistributedBackend for API/Worker
+// (Redis + MongoDB), MemoryBackend for testing.
 //
 // ## External Integrations
 //
@@ -115,32 +112,21 @@
 // [pipeline] - Complete visualization pipeline (parse → layout → render) used
 // by CLI, API, and worker. Ensures consistent behavior across all entry points.
 //
-// [artifact] - Unified artifact caching and storage service for the CLI.
-// Implements a two-tier caching strategy:
+// [storage] - Unified storage backends implementing a two-tier caching strategy:
 //
-//   - Tier 1 (Cache Index): Fast TTL-based lookup mapping hash(inputs) → storage_key
-//   - Tier 2 (Storage): Durable artifact storage (storage_key → artifact_bytes)
+//   - Tier 1 (Index): Fast TTL-based lookup via Redis (hash(inputs) → document_id)
+//   - Tier 2 (DocumentStore): Durable storage via MongoDB (documents + GridFS)
 //
-// On cache hit, retrieves artifacts from storage using the cached key. When TTL
-// expires or --refresh is set, recomputes and upserts the artifact.
-//
-// [cache] - Two-tier caching with Redis (fast lookup) and MongoDB (durable storage).
-// Defines interfaces for LookupCache and Store backends.
+// Three implementations: FileBackend (CLI), DistributedBackend (API/Worker),
+// MemoryBackend (testing).
 //
 // [queue] - Job queue interface with memory and Redis implementations. Supports
 // job lifecycle (pending, running, completed, failed, cancelled).
 //
-// [storage] - Artifact storage interface with memory and GridFS implementations.
-// Used to store rendered outputs (SVG, PNG, PDF).
-//
 // [session] - Session management for authenticated users. Provides memory, Redis,
 // and file-based backends for sessions and OAuth state tokens.
 //
-// [config] - Shared configuration and constants (e.g., TTLs).
-//
-// [errors] - Shared sentinel errors used across packages.
-//
-// [hash] - Shared hashing utilities (SHA-256).
+// [common] - Shared configuration, constants (TTLs), errors, and hash utilities.
 //
 // # Common Workflows
 //
@@ -185,8 +171,7 @@
 // [core/dag]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/dag
 // [core/render]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/render
 // [infra]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/infra
-// [infra/cache]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/infra/cache
-// [infra/artifact]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/infra/artifact
+// [infra/storage]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/infra/storage
 // [integrations]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/integrations
 // [dag/transform]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/dag/transform
 // [dag/perm]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/dag/perm
@@ -201,10 +186,10 @@
 // [render/nodelink]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/render/nodelink
 // [io]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/io
 // [pipeline]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/pipeline
-// [artifact]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/infra/artifact
-// [cache]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/infra/cache
+// [storage]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/infra/storage
 // [queue]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/infra/queue
 // [session]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/infra/session
+// [common]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/infra/common
 //
 // [deps]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/deps
 // [dag]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/dag

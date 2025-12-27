@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/matzehuels/stacktower/pkg/core/dag"
-	"github.com/matzehuels/stacktower/pkg/infra/artifact"
+	"github.com/matzehuels/stacktower/pkg/infra/storage"
 )
 
 var _ ManifestParser = (*mockManifestParser)(nil)
@@ -37,7 +37,7 @@ func TestLanguageRegistry(t *testing.T) {
 		Name:            "test",
 		DefaultRegistry: "default-reg",
 		RegistryAliases: map[string]string{"alias": "default-reg"},
-		NewResolver: func(backend artifact.Backend, ttl time.Duration) (Resolver, error) {
+		NewResolver: func(backend storage.Backend, ttl time.Duration) (Resolver, error) {
 			return &mockResolver{name: "default-reg"}, nil
 		},
 	}
@@ -68,7 +68,7 @@ func TestLanguageRegistry(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			res, err := lang.Registry(artifact.NullBackend{}, tt.registry)
+			res, err := lang.Registry(storage.NullBackend{}, tt.registry)
 			if tt.wantErr {
 				if err == nil {
 					t.Error("Registry() expected error, got nil")
@@ -92,12 +92,12 @@ func TestLanguageRegistryError(t *testing.T) {
 	lang := &Language{
 		Name:            "test",
 		DefaultRegistry: "default-reg",
-		NewResolver: func(backend artifact.Backend, ttl time.Duration) (Resolver, error) {
+		NewResolver: func(backend storage.Backend, ttl time.Duration) (Resolver, error) {
 			return nil, expectedErr
 		},
 	}
 
-	_, err := lang.Registry(artifact.NullBackend{}, "default-reg")
+	_, err := lang.Registry(storage.NullBackend{}, "default-reg")
 	if err != expectedErr {
 		t.Errorf("Registry() error = %v, want %v", err, expectedErr)
 	}
@@ -107,12 +107,12 @@ func TestLanguageResolver(t *testing.T) {
 	lang := &Language{
 		Name:            "test",
 		DefaultRegistry: "default-reg",
-		NewResolver: func(backend artifact.Backend, ttl time.Duration) (Resolver, error) {
+		NewResolver: func(backend storage.Backend, ttl time.Duration) (Resolver, error) {
 			return &mockResolver{name: "default-reg"}, nil
 		},
 	}
 
-	res, err := lang.Resolver(artifact.NullBackend{})
+	res, err := lang.Resolver(storage.NullBackend{})
 	if err != nil {
 		t.Errorf("Resolver() unexpected error: %v", err)
 	}
