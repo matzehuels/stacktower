@@ -63,7 +63,7 @@ func buildResolveOptions(backend storage.Backend, opts Options) deps.Options {
 	if token == "" {
 		token = os.Getenv("GITHUB_TOKEN")
 	}
-	if opts.Enrich && token != "" {
+	if opts.ShouldEnrich() && token != "" {
 		gh := metadata.NewGitHub(backend, token, deps.DefaultCacheTTL)
 		resolveOpts.MetadataProviders = []deps.MetadataProvider{gh}
 	}

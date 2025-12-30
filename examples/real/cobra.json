@@ -1,139 +1,217 @@
 {
   "nodes": [
     {
-      "id": "golang.org/x/crypto",
+      "id": "github.com/cpuguy83/go-md2man/v2",
+      "row": 1,
       "meta": {
-        "version": "v0.46.0"
-      }
-    },
-    {
-      "id": "golang.org/x/term",
-      "meta": {
-        "version": "v0.38.0"
-      }
-    },
-    {
-      "id": "github.com/rogpeppe/go-internal",
-      "meta": {
-        "version": "v1.14.1"
-      }
-    },
-    {
-      "id": "golang.org/x/mod",
-      "meta": {
-        "version": "v0.31.0"
+        "version": "v2.0.7"
       }
     },
     {
       "id": "github.com/creack/pty",
+      "row": 5,
       "meta": {
         "version": "v1.1.24"
       }
     },
     {
+      "id": "github.com/creack/pty_sub_10",
+      "row": 10,
+      "kind": "subdivider",
+      "master_id": "github.com/creack/pty"
+    },
+    {
+      "id": "github.com/creack/pty_sub_6",
+      "row": 6,
+      "kind": "subdivider",
+      "master_id": "github.com/creack/pty"
+    },
+    {
+      "id": "github.com/creack/pty_sub_7",
+      "row": 7,
+      "kind": "subdivider",
+      "master_id": "github.com/creack/pty"
+    },
+    {
+      "id": "github.com/creack/pty_sub_8",
+      "row": 8,
+      "kind": "subdivider",
+      "master_id": "github.com/creack/pty"
+    },
+    {
+      "id": "github.com/creack/pty_sub_9",
+      "row": 9,
+      "kind": "subdivider",
+      "master_id": "github.com/creack/pty"
+    },
+    {
       "id": "github.com/google/go-cmp",
+      "row": 7,
       "meta": {
         "version": "v0.7.0"
       }
     },
     {
-      "id": "github.com/yuin/goldmark",
-      "meta": {
-        "version": "v1.7.13"
-      }
+      "id": "github.com/google/go-cmp_sub_10",
+      "row": 10,
+      "kind": "subdivider",
+      "master_id": "github.com/google/go-cmp"
     },
     {
-      "id": "golang.org/x/tools",
-      "meta": {
-        "version": "v0.40.0"
-      }
+      "id": "github.com/google/go-cmp_sub_8",
+      "row": 8,
+      "kind": "subdivider",
+      "master_id": "github.com/google/go-cmp"
     },
     {
-      "id": "github.com/cpuguy83/go-md2man/v2",
-      "meta": {
-        "repo_archived": false,
-        "repo_language": "Go",
-        "repo_last_commit": "2025-12-22",
-        "repo_last_release": "2025-11-20",
-        "repo_maintainers": [
-          "Roasbeef",
-          "guggero",
-          "yyforyongyu",
-          "cfromknecht",
-          "halseth"
-        ],
-        "repo_owner": "lightningnetwork",
-        "repo_stars": 8074,
-        "repo_topics": [
-          "bitcoin",
-          "blockchain",
-          "cryptocurrency",
-          "cryptography",
-          "lightning",
-          "lightning-network",
-          "micropayments",
-          "payments",
-          "peer-to-peer",
-          "protocol"
-        ],
-        "repo_url": "https://github.com/lightningnetwork/lnd",
-        "version": "v2.0.7"
-      }
+      "id": "github.com/google/go-cmp_sub_9",
+      "row": 9,
+      "kind": "subdivider",
+      "master_id": "github.com/google/go-cmp"
     },
     {
       "id": "github.com/inconshreveable/mousetrap",
+      "row": 1,
       "meta": {
         "version": "v1.1.0"
       }
     },
     {
-      "id": "github.com/russross/blackfriday/v2",
-      "meta": {
-        "version": "v2.1.0"
-      }
+      "id": "github.com/inconshreveable/mousetrap_sub_10",
+      "row": 10,
+      "kind": "subdivider",
+      "master_id": "github.com/inconshreveable/mousetrap"
     },
     {
-      "id": "gopkg.in/check.v1",
-      "meta": {
-        "version": "v1.0.0-20201130134442-10cb98267c6c"
-      }
+      "id": "github.com/inconshreveable/mousetrap_sub_2",
+      "row": 2,
+      "kind": "subdivider",
+      "master_id": "github.com/inconshreveable/mousetrap"
+    },
+    {
+      "id": "github.com/inconshreveable/mousetrap_sub_3",
+      "row": 3,
+      "kind": "subdivider",
+      "master_id": "github.com/inconshreveable/mousetrap"
+    },
+    {
+      "id": "github.com/inconshreveable/mousetrap_sub_4",
+      "row": 4,
+      "kind": "subdivider",
+      "master_id": "github.com/inconshreveable/mousetrap"
+    },
+    {
+      "id": "github.com/inconshreveable/mousetrap_sub_5",
+      "row": 5,
+      "kind": "subdivider",
+      "master_id": "github.com/inconshreveable/mousetrap"
+    },
+    {
+      "id": "github.com/inconshreveable/mousetrap_sub_6",
+      "row": 6,
+      "kind": "subdivider",
+      "master_id": "github.com/inconshreveable/mousetrap"
+    },
+    {
+      "id": "github.com/inconshreveable/mousetrap_sub_7",
+      "row": 7,
+      "kind": "subdivider",
+      "master_id": "github.com/inconshreveable/mousetrap"
+    },
+    {
+      "id": "github.com/inconshreveable/mousetrap_sub_8",
+      "row": 8,
+      "kind": "subdivider",
+      "master_id": "github.com/inconshreveable/mousetrap"
+    },
+    {
+      "id": "github.com/inconshreveable/mousetrap_sub_9",
+      "row": 9,
+      "kind": "subdivider",
+      "master_id": "github.com/inconshreveable/mousetrap"
     },
     {
       "id": "github.com/kr/pretty",
+      "row": 3,
       "meta": {
         "version": "v0.3.1"
       }
     },
     {
-      "id": "golang.org/x/text",
-      "meta": {
-        "version": "v0.32.0"
-      }
-    },
-    {
       "id": "github.com/kr/text",
+      "row": 4,
       "meta": {
         "version": "v0.2.0"
       }
     },
     {
-      "id": "golang.org/x/sys",
+      "id": "github.com/rogpeppe/go-internal",
+      "row": 4,
       "meta": {
-        "version": "v0.39.0"
+        "version": "v1.14.1"
       }
     },
     {
-      "id": "golang.org/x/telemetry",
+      "id": "github.com/russross/blackfriday/v2",
+      "row": 2,
       "meta": {
-        "version": "v0.0.0-20251222180846-3f2a21fb04ff"
+        "version": "v2.1.0"
       }
+    },
+    {
+      "id": "github.com/russross/blackfriday/v2_sub_10",
+      "row": 10,
+      "kind": "subdivider",
+      "master_id": "github.com/russross/blackfriday/v2"
+    },
+    {
+      "id": "github.com/russross/blackfriday/v2_sub_3",
+      "row": 3,
+      "kind": "subdivider",
+      "master_id": "github.com/russross/blackfriday/v2"
+    },
+    {
+      "id": "github.com/russross/blackfriday/v2_sub_4",
+      "row": 4,
+      "kind": "subdivider",
+      "master_id": "github.com/russross/blackfriday/v2"
+    },
+    {
+      "id": "github.com/russross/blackfriday/v2_sub_5",
+      "row": 5,
+      "kind": "subdivider",
+      "master_id": "github.com/russross/blackfriday/v2"
+    },
+    {
+      "id": "github.com/russross/blackfriday/v2_sub_6",
+      "row": 6,
+      "kind": "subdivider",
+      "master_id": "github.com/russross/blackfriday/v2"
+    },
+    {
+      "id": "github.com/russross/blackfriday/v2_sub_7",
+      "row": 7,
+      "kind": "subdivider",
+      "master_id": "github.com/russross/blackfriday/v2"
+    },
+    {
+      "id": "github.com/russross/blackfriday/v2_sub_8",
+      "row": 8,
+      "kind": "subdivider",
+      "master_id": "github.com/russross/blackfriday/v2"
+    },
+    {
+      "id": "github.com/russross/blackfriday/v2_sub_9",
+      "row": 9,
+      "kind": "subdivider",
+      "master_id": "github.com/russross/blackfriday/v2"
     },
     {
       "id": "github.com/spf13/cobra",
       "meta": {
         "repo_archived": false,
         "repo_language": "TypeScript",
-        "repo_last_commit": "2025-12-22",
+        "repo_last_commit": "2025-12-27",
         "repo_last_release": "2025-12-16",
         "repo_maintainers": [
           "torkelo",
@@ -142,7 +220,7 @@
           "marefr"
         ],
         "repo_owner": "grafana",
-        "repo_stars": 71404,
+        "repo_stars": 71468,
         "repo_topics": [
           "alerting",
           "analytics",
@@ -166,10 +244,11 @@
     },
     {
       "id": "github.com/spf13/pflag",
+      "row": 1,
       "meta": {
         "repo_archived": false,
         "repo_language": "Go",
-        "repo_last_commit": "2025-12-22",
+        "repo_last_commit": "2025-12-23",
         "repo_last_release": "2025-11-20",
         "repo_maintainers": [
           "Roasbeef",
@@ -179,7 +258,7 @@
           "halseth"
         ],
         "repo_owner": "lightningnetwork",
-        "repo_stars": 8074,
+        "repo_stars": 8076,
         "repo_topics": [
           "bitcoin",
           "blockchain",
@@ -197,21 +276,225 @@
       }
     },
     {
-      "id": "go.yaml.in/yaml/v3",
+      "id": "github.com/spf13/pflag_sub_10",
+      "row": 10,
+      "kind": "subdivider",
+      "master_id": "github.com/spf13/pflag"
+    },
+    {
+      "id": "github.com/spf13/pflag_sub_2",
+      "row": 2,
+      "kind": "subdivider",
+      "master_id": "github.com/spf13/pflag"
+    },
+    {
+      "id": "github.com/spf13/pflag_sub_3",
+      "row": 3,
+      "kind": "subdivider",
+      "master_id": "github.com/spf13/pflag"
+    },
+    {
+      "id": "github.com/spf13/pflag_sub_4",
+      "row": 4,
+      "kind": "subdivider",
+      "master_id": "github.com/spf13/pflag"
+    },
+    {
+      "id": "github.com/spf13/pflag_sub_5",
+      "row": 5,
+      "kind": "subdivider",
+      "master_id": "github.com/spf13/pflag"
+    },
+    {
+      "id": "github.com/spf13/pflag_sub_6",
+      "row": 6,
+      "kind": "subdivider",
+      "master_id": "github.com/spf13/pflag"
+    },
+    {
+      "id": "github.com/spf13/pflag_sub_7",
+      "row": 7,
+      "kind": "subdivider",
+      "master_id": "github.com/spf13/pflag"
+    },
+    {
+      "id": "github.com/spf13/pflag_sub_8",
+      "row": 8,
+      "kind": "subdivider",
+      "master_id": "github.com/spf13/pflag"
+    },
+    {
+      "id": "github.com/spf13/pflag_sub_9",
+      "row": 9,
+      "kind": "subdivider",
+      "master_id": "github.com/spf13/pflag"
+    },
+    {
+      "id": "github.com/yuin/goldmark",
+      "row": 7,
       "meta": {
+        "version": "v1.7.13"
+      }
+    },
+    {
+      "id": "github.com/yuin/goldmark_sub_10",
+      "row": 10,
+      "kind": "subdivider",
+      "master_id": "github.com/yuin/goldmark"
+    },
+    {
+      "id": "github.com/yuin/goldmark_sub_8",
+      "row": 8,
+      "kind": "subdivider",
+      "master_id": "github.com/yuin/goldmark"
+    },
+    {
+      "id": "github.com/yuin/goldmark_sub_9",
+      "row": 9,
+      "kind": "subdivider",
+      "master_id": "github.com/yuin/goldmark"
+    },
+    {
+      "id": "go.yaml.in/yaml/v3",
+      "row": 1,
+      "meta": {
+        "repo_archived": false,
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2025-12-27",
+        "repo_last_release": "2025-12-16",
+        "repo_maintainers": [
+          "torkelo",
+          "bergquist",
+          "ryantxu",
+          "marefr"
+        ],
+        "repo_owner": "grafana",
+        "repo_stars": 71468,
+        "repo_topics": [
+          "alerting",
+          "analytics",
+          "business-intelligence",
+          "dashboard",
+          "data-visualization",
+          "elasticsearch",
+          "go",
+          "grafana",
+          "hacktoberfest",
+          "influxdb",
+          "metrics",
+          "monitoring",
+          "mysql",
+          "postgres",
+          "prometheus"
+        ],
+        "repo_url": "https://github.com/grafana/grafana",
         "version": "v3.0.4"
       }
     },
     {
+      "id": "golang.org/x/crypto",
+      "row": 8,
+      "meta": {
+        "version": "v0.46.0"
+      }
+    },
+    {
+      "id": "golang.org/x/mod",
+      "row": 5,
+      "meta": {
+        "version": "v0.31.0"
+      }
+    },
+    {
       "id": "golang.org/x/net",
+      "row": 7,
       "meta": {
         "version": "v0.48.0"
       }
     },
     {
       "id": "golang.org/x/sync",
+      "row": 8,
       "meta": {
         "version": "v0.19.0"
+      }
+    },
+    {
+      "id": "golang.org/x/sync_sub_10",
+      "row": 10,
+      "kind": "subdivider",
+      "master_id": "golang.org/x/sync"
+    },
+    {
+      "id": "golang.org/x/sync_sub_9",
+      "row": 9,
+      "kind": "subdivider",
+      "master_id": "golang.org/x/sync"
+    },
+    {
+      "id": "golang.org/x/sys",
+      "row": 10,
+      "meta": {
+        "version": "v0.39.0"
+      }
+    },
+    {
+      "id": "golang.org/x/telemetry",
+      "row": 7,
+      "meta": {
+        "version": "v0.0.0-20251222180846-3f2a21fb04ff"
+      }
+    },
+    {
+      "id": "golang.org/x/telemetry_sub_8",
+      "row": 8,
+      "kind": "subdivider",
+      "master_id": "golang.org/x/telemetry"
+    },
+    {
+      "id": "golang.org/x/telemetry_sub_9",
+      "row": 9,
+      "kind": "subdivider",
+      "master_id": "golang.org/x/telemetry"
+    },
+    {
+      "id": "golang.org/x/term",
+      "row": 9,
+      "meta": {
+        "version": "v0.38.0"
+      }
+    },
+    {
+      "id": "golang.org/x/text",
+      "row": 8,
+      "meta": {
+        "version": "v0.32.0"
+      }
+    },
+    {
+      "id": "golang.org/x/text_sub_10",
+      "row": 10,
+      "kind": "subdivider",
+      "master_id": "golang.org/x/text"
+    },
+    {
+      "id": "golang.org/x/text_sub_9",
+      "row": 9,
+      "kind": "subdivider",
+      "master_id": "golang.org/x/text"
+    },
+    {
+      "id": "golang.org/x/tools",
+      "row": 6,
+      "meta": {
+        "version": "v0.40.0"
+      }
+    },
+    {
+      "id": "gopkg.in/check.v1",
+      "row": 2,
+      "meta": {
+        "version": "v1.0.0-20201130134442-10cb98267c6c"
       }
     }
   ],
@@ -233,12 +516,12 @@
       "to": "go.yaml.in/yaml/v3"
     },
     {
-      "from": "github.com/cpuguy83/go-md2man/v2",
-      "to": "github.com/russross/blackfriday/v2"
-    },
-    {
       "from": "go.yaml.in/yaml/v3",
       "to": "gopkg.in/check.v1"
+    },
+    {
+      "from": "github.com/cpuguy83/go-md2man/v2",
+      "to": "github.com/russross/blackfriday/v2"
     },
     {
       "from": "gopkg.in/check.v1",
@@ -253,20 +536,16 @@
       "to": "github.com/rogpeppe/go-internal"
     },
     {
+      "from": "github.com/kr/text",
+      "to": "github.com/creack/pty"
+    },
+    {
       "from": "github.com/rogpeppe/go-internal",
       "to": "golang.org/x/mod"
     },
     {
-      "from": "github.com/rogpeppe/go-internal",
-      "to": "golang.org/x/sys"
-    },
-    {
-      "from": "github.com/rogpeppe/go-internal",
+      "from": "golang.org/x/mod",
       "to": "golang.org/x/tools"
-    },
-    {
-      "from": "github.com/kr/text",
-      "to": "github.com/creack/pty"
     },
     {
       "from": "golang.org/x/tools",
@@ -278,35 +557,11 @@
     },
     {
       "from": "golang.org/x/tools",
-      "to": "golang.org/x/mod"
-    },
-    {
-      "from": "golang.org/x/tools",
       "to": "golang.org/x/net"
     },
     {
       "from": "golang.org/x/tools",
-      "to": "golang.org/x/sync"
-    },
-    {
-      "from": "golang.org/x/tools",
       "to": "golang.org/x/telemetry"
-    },
-    {
-      "from": "golang.org/x/mod",
-      "to": "golang.org/x/tools"
-    },
-    {
-      "from": "golang.org/x/telemetry",
-      "to": "golang.org/x/mod"
-    },
-    {
-      "from": "golang.org/x/telemetry",
-      "to": "golang.org/x/sync"
-    },
-    {
-      "from": "golang.org/x/telemetry",
-      "to": "golang.org/x/sys"
     },
     {
       "from": "golang.org/x/net",
@@ -314,27 +569,11 @@
     },
     {
       "from": "golang.org/x/net",
-      "to": "golang.org/x/sys"
-    },
-    {
-      "from": "golang.org/x/net",
-      "to": "golang.org/x/term"
-    },
-    {
-      "from": "golang.org/x/net",
       "to": "golang.org/x/text"
     },
     {
-      "from": "golang.org/x/text",
-      "to": "golang.org/x/tools"
-    },
-    {
-      "from": "golang.org/x/crypto",
-      "to": "golang.org/x/net"
-    },
-    {
-      "from": "golang.org/x/crypto",
-      "to": "golang.org/x/sys"
+      "from": "golang.org/x/telemetry",
+      "to": "golang.org/x/sync"
     },
     {
       "from": "golang.org/x/crypto",
@@ -343,6 +582,182 @@
     {
       "from": "golang.org/x/term",
       "to": "golang.org/x/sys"
+    },
+    {
+      "from": "golang.org/x/telemetry",
+      "to": "golang.org/x/telemetry_sub_8"
+    },
+    {
+      "from": "golang.org/x/telemetry_sub_8",
+      "to": "golang.org/x/telemetry_sub_9"
+    },
+    {
+      "from": "golang.org/x/telemetry_sub_9",
+      "to": "golang.org/x/sys"
+    },
+    {
+      "from": "github.com/russross/blackfriday/v2",
+      "to": "github.com/russross/blackfriday/v2_sub_3"
+    },
+    {
+      "from": "github.com/russross/blackfriday/v2_sub_3",
+      "to": "github.com/russross/blackfriday/v2_sub_4"
+    },
+    {
+      "from": "github.com/russross/blackfriday/v2_sub_4",
+      "to": "github.com/russross/blackfriday/v2_sub_5"
+    },
+    {
+      "from": "github.com/russross/blackfriday/v2_sub_5",
+      "to": "github.com/russross/blackfriday/v2_sub_6"
+    },
+    {
+      "from": "github.com/russross/blackfriday/v2_sub_6",
+      "to": "github.com/russross/blackfriday/v2_sub_7"
+    },
+    {
+      "from": "github.com/russross/blackfriday/v2_sub_7",
+      "to": "github.com/russross/blackfriday/v2_sub_8"
+    },
+    {
+      "from": "github.com/russross/blackfriday/v2_sub_8",
+      "to": "github.com/russross/blackfriday/v2_sub_9"
+    },
+    {
+      "from": "github.com/russross/blackfriday/v2_sub_9",
+      "to": "github.com/russross/blackfriday/v2_sub_10"
+    },
+    {
+      "from": "github.com/creack/pty",
+      "to": "github.com/creack/pty_sub_6"
+    },
+    {
+      "from": "github.com/creack/pty_sub_6",
+      "to": "github.com/creack/pty_sub_7"
+    },
+    {
+      "from": "github.com/creack/pty_sub_7",
+      "to": "github.com/creack/pty_sub_8"
+    },
+    {
+      "from": "github.com/creack/pty_sub_8",
+      "to": "github.com/creack/pty_sub_9"
+    },
+    {
+      "from": "github.com/creack/pty_sub_9",
+      "to": "github.com/creack/pty_sub_10"
+    },
+    {
+      "from": "github.com/yuin/goldmark",
+      "to": "github.com/yuin/goldmark_sub_8"
+    },
+    {
+      "from": "github.com/yuin/goldmark_sub_8",
+      "to": "github.com/yuin/goldmark_sub_9"
+    },
+    {
+      "from": "github.com/yuin/goldmark_sub_9",
+      "to": "github.com/yuin/goldmark_sub_10"
+    },
+    {
+      "from": "github.com/spf13/pflag",
+      "to": "github.com/spf13/pflag_sub_2"
+    },
+    {
+      "from": "github.com/spf13/pflag_sub_2",
+      "to": "github.com/spf13/pflag_sub_3"
+    },
+    {
+      "from": "github.com/spf13/pflag_sub_3",
+      "to": "github.com/spf13/pflag_sub_4"
+    },
+    {
+      "from": "github.com/spf13/pflag_sub_4",
+      "to": "github.com/spf13/pflag_sub_5"
+    },
+    {
+      "from": "github.com/spf13/pflag_sub_5",
+      "to": "github.com/spf13/pflag_sub_6"
+    },
+    {
+      "from": "github.com/spf13/pflag_sub_6",
+      "to": "github.com/spf13/pflag_sub_7"
+    },
+    {
+      "from": "github.com/spf13/pflag_sub_7",
+      "to": "github.com/spf13/pflag_sub_8"
+    },
+    {
+      "from": "github.com/spf13/pflag_sub_8",
+      "to": "github.com/spf13/pflag_sub_9"
+    },
+    {
+      "from": "github.com/spf13/pflag_sub_9",
+      "to": "github.com/spf13/pflag_sub_10"
+    },
+    {
+      "from": "github.com/google/go-cmp",
+      "to": "github.com/google/go-cmp_sub_8"
+    },
+    {
+      "from": "github.com/google/go-cmp_sub_8",
+      "to": "github.com/google/go-cmp_sub_9"
+    },
+    {
+      "from": "github.com/google/go-cmp_sub_9",
+      "to": "github.com/google/go-cmp_sub_10"
+    },
+    {
+      "from": "golang.org/x/sync",
+      "to": "golang.org/x/sync_sub_9"
+    },
+    {
+      "from": "golang.org/x/sync_sub_9",
+      "to": "golang.org/x/sync_sub_10"
+    },
+    {
+      "from": "golang.org/x/text",
+      "to": "golang.org/x/text_sub_9"
+    },
+    {
+      "from": "golang.org/x/text_sub_9",
+      "to": "golang.org/x/text_sub_10"
+    },
+    {
+      "from": "github.com/inconshreveable/mousetrap",
+      "to": "github.com/inconshreveable/mousetrap_sub_2"
+    },
+    {
+      "from": "github.com/inconshreveable/mousetrap_sub_2",
+      "to": "github.com/inconshreveable/mousetrap_sub_3"
+    },
+    {
+      "from": "github.com/inconshreveable/mousetrap_sub_3",
+      "to": "github.com/inconshreveable/mousetrap_sub_4"
+    },
+    {
+      "from": "github.com/inconshreveable/mousetrap_sub_4",
+      "to": "github.com/inconshreveable/mousetrap_sub_5"
+    },
+    {
+      "from": "github.com/inconshreveable/mousetrap_sub_5",
+      "to": "github.com/inconshreveable/mousetrap_sub_6"
+    },
+    {
+      "from": "github.com/inconshreveable/mousetrap_sub_6",
+      "to": "github.com/inconshreveable/mousetrap_sub_7"
+    },
+    {
+      "from": "github.com/inconshreveable/mousetrap_sub_7",
+      "to": "github.com/inconshreveable/mousetrap_sub_8"
+    },
+    {
+      "from": "github.com/inconshreveable/mousetrap_sub_8",
+      "to": "github.com/inconshreveable/mousetrap_sub_9"
+    },
+    {
+      "from": "github.com/inconshreveable/mousetrap_sub_9",
+      "to": "github.com/inconshreveable/mousetrap_sub_10"
     }
   ]
 }

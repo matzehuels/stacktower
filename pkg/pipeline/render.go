@@ -8,7 +8,6 @@ import (
 	"github.com/matzehuels/stacktower/pkg/core/dag"
 	"github.com/matzehuels/stacktower/pkg/core/render/nodelink"
 	nodelinkio "github.com/matzehuels/stacktower/pkg/core/render/nodelink/io"
-	"github.com/matzehuels/stacktower/pkg/core/render/tower/feature"
 	towerio "github.com/matzehuels/stacktower/pkg/core/render/tower/io"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/layout"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/sink"
@@ -115,7 +114,7 @@ func renderTower(l layout.Layout, layoutData []byte, g *dag.DAG, opts Options) (
 		case "pdf":
 			data, err = sink.RenderPDF(l, sink.WithPDFSVGOptions(svgOpts...))
 		case "json":
-			data, err = sink.RenderJSON(l, buildJSONOptions(g, opts)...)
+			data = layoutData
 		default:
 			return nil, fmt.Errorf("unsupported tower format: %s", format)
 		}
@@ -150,38 +149,12 @@ func buildSVGOptions(g *dag.DAG, opts Options) []sink.SVGOption {
 		}
 		svgOpts = append(svgOpts, sink.WithStyle(handdrawn.New(seed)))
 
-		if opts.Nebraska && g != nil {
-			svgOpts = append(svgOpts, sink.WithNebraska(feature.RankNebraska(g, 5)))
-		}
 		if opts.Popups && g != nil {
 			svgOpts = append(svgOpts, sink.WithPopups())
 		}
 	}
 
 	return svgOpts
-}
-
-// buildJSONOptions builds JSON rendering options.
-func buildJSONOptions(g *dag.DAG, opts Options) []sink.JSONOption {
-	var jsonOpts []sink.JSONOption
-
-	if g != nil {
-		jsonOpts = append(jsonOpts, sink.WithJSONGraph(g))
-	}
-	if opts.Merge {
-		jsonOpts = append(jsonOpts, sink.WithJSONMerged())
-	}
-	if opts.Randomize {
-		jsonOpts = append(jsonOpts, sink.WithJSONRandomize(opts.Seed))
-	}
-	if opts.Style != "" {
-		jsonOpts = append(jsonOpts, sink.WithJSONStyle(opts.Style))
-	}
-	if opts.Nebraska && g != nil {
-		jsonOpts = append(jsonOpts, sink.WithJSONNebraska(feature.RankNebraska(g, 5)))
-	}
-
-	return jsonOpts
 }
 
 // RenderFromLayoutData renders output from serialized layout data.

@@ -24,8 +24,8 @@ func execute() error {
 
 	root := &cobra.Command{
 		Use:          "stacktower",
-		Short:        "StackTower visualizes dependency graphs as towers",
-		Long:         `StackTower is a CLI tool for visualizing complex dependency graphs as tiered tower structures, making it easier to understand layering and flow.`,
+		Short:        "Stacktower visualizes dependency graphs as towers",
+		Long:         `Stacktower is a CLI tool for visualizing complex dependency graphs as tiered tower structures, making it easier to understand layering and flow.`,
 		Version:      buildinfo.Version,
 		SilenceUsage: true,
 		PersistentPreRun: func(cmd *cobra.Command, args []string) {

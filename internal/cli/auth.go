@@ -3,6 +3,7 @@ package cli
 import (
 	"context"
 	"fmt"
+	"net/url"
 	"os/exec"
 	"runtime"
 	"time"
@@ -14,11 +15,10 @@ import (
 )
 
 // cliSessionTTL is the duration for CLI sessions.
-// CLI sessions are long-lived (90 days) for user convenience since re-authentication
-// requires manual browser interaction via device flow. This matches GitHub's default
-// token expiration for OAuth apps and provides a good balance between security
-// and usability for local development tools.
-const cliSessionTTL = 90 * 24 * time.Hour
+// 30 days balances user convenience (avoiding frequent re-authentication via device flow)
+// with security (limiting exposure window if credentials are compromised).
+// Users can re-authenticate with 'stacktower github login' when sessions expire.
+const cliSessionTTL = 30 * 24 * time.Hour
 
 // getCLIStore returns the CLI session store.
 func getCLIStore() (*session.CLIStore, error) {
@@ -74,15 +74,24 @@ func deleteGitHubSession(ctx context.Context) error {
 }
 
 // openBrowser opens the specified URL in the default browser.
-func openBrowser(url string) error {
+// It validates the URL scheme to prevent command injection via malicious URLs.
+func openBrowser(rawURL string) error {
+	parsed, err := url.Parse(rawURL)
+	if err != nil {
+		return fmt.Errorf("invalid URL: %w", err)
+	}
+	if parsed.Scheme != "https" && parsed.Scheme != "http" {
+		return fmt.Errorf("URL scheme must be http or https, got %q", parsed.Scheme)
+	}
+
 	var cmd *exec.Cmd
 	switch runtime.GOOS {
 	case "darwin":
-		cmd = exec.Command("open", url)
+		cmd = exec.Command("open", rawURL)
 	case "linux":
-		cmd = exec.Command("xdg-open", url)
+		cmd = exec.Command("xdg-open", rawURL)
 	case "windows":
-		cmd = exec.Command("cmd", "/c", "start", url)
+		cmd = exec.Command("cmd", "/c", "start", rawURL)
 	default:
 		return fmt.Errorf("unsupported platform: %s", runtime.GOOS)
 	}

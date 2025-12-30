@@ -6,7 +6,6 @@ import (
 	"errors"
 	"net"
 	"net/http"
-	"regexp"
 	"runtime/debug"
 	"strings"
 	"time"
@@ -24,6 +23,15 @@ const (
 	requestIDKey contextKey = "requestID"
 )
 
+// csrfSafeMethods are HTTP methods that don't require CSRF validation.
+// GET and HEAD are safe because they don't modify state.
+// OPTIONS is used for CORS preflight.
+var csrfSafeMethods = map[string]bool{
+	http.MethodGet:     true,
+	http.MethodHead:    true,
+	http.MethodOptions: true,
+}
+
 // getUserID extracts the authenticated user ID from the request context.
 // Returns empty string if not authenticated (should not happen if requireAuth middleware is used).
 func getUserID(r *http.Request) string {
@@ -31,6 +39,13 @@ func getUserID(r *http.Request) string {
 		return v
 	}
 	return ""
+}
+
+// getUserIDOptional is a package-level function for handlers to get the user ID
+// without requiring auth middleware. It returns the user ID if present in context,
+// or empty string if not authenticated.
+func getUserIDOptional(r *http.Request) string {
+	return getUserID(r)
 }
 
 // getSessionFromContext extracts the session from the request context.
@@ -42,13 +57,25 @@ func getSessionFromContext(r *http.Request) *session.Session {
 	return nil
 }
 
+// localUserID is the mock user ID used when --no-auth is enabled.
+const localUserID = "local"
+
 // requireAuth is middleware that enforces authentication.
 // It extracts the session from the cookie and injects userID and session into context.
+// If noAuth is enabled (standalone mode), it injects a mock local user instead.
 func (s *Server) requireAuth(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// If noAuth is enabled, inject a mock local user
+		if s.noAuth {
+			ctx := context.WithValue(r.Context(), userIDKey, localUserID)
+			ctx = context.WithValue(ctx, sessionKey, session.MockLocal())
+			next.ServeHTTP(w, r.WithContext(ctx))
+			return
+		}
+
 		sess := s.getSession(r)
 		if sess == nil {
-			s.errorResponse(w, http.StatusUnauthorized, "authentication required")
+			s.errorResponse(w, http.StatusUnauthorized, errMsgAuthRequired)
 			return
 		}
 
@@ -83,7 +110,8 @@ func (s *Server) rateLimitFor(opType storage.OperationType) func(http.Handler) h
 				return
 			}
 
-			if !s.checkRateLimit(w, r, userID, opType) {
+			ctx := s.handlerContext()
+			if !s.checkRateLimit(ctx, w, r, userID, opType) {
 				return // Response already sent by checkRateLimit
 			}
 			next.ServeHTTP(w, r)
@@ -101,8 +129,9 @@ func (s *Server) rateLimitVisualize(next http.Handler) http.Handler {
 			userID = "ip:" + getClientIP(r, s.trustProxyHeaders)
 		}
 
+		ctx := s.handlerContext()
 		// Use layout operation type for visualize (CPU-bound, similar cost)
-		if !s.checkRateLimit(w, r, userID, storage.OpTypeLayout) {
+		if !s.checkRateLimit(ctx, w, r, userID, storage.OpTypeLayout) {
 			return
 		}
 		next.ServeHTTP(w, r)
@@ -178,7 +207,7 @@ func (s *Server) recoverer(next http.Handler) http.Handler {
 					"method", r.Method,
 					"stack", string(stack),
 					"request_id", getRequestID(r))
-				s.errorResponse(w, http.StatusInternalServerError, "internal server error")
+				s.errorResponse(w, http.StatusInternalServerError, errMsgInternalError)
 			}
 		}()
 		next.ServeHTTP(w, r)
@@ -222,44 +251,6 @@ func (s *Server) logging(next http.Handler) http.Handler {
 	})
 }
 
-// Regex patterns for GitHub resource validation.
-var (
-	// GitHub usernames/orgs: 1-39 alphanumeric or hyphen, not starting with hyphen
-	validGitHubOwner = regexp.MustCompile(`^[a-zA-Z0-9][a-zA-Z0-9-]{0,38}$`)
-	// GitHub repo names: 1-100 alphanumeric, hyphen, underscore, or dot
-	validGitHubRepo = regexp.MustCompile(`^[a-zA-Z0-9._-]{1,100}$`)
-)
-
-// validateGitHubOwner validates a GitHub username or organization name.
-func validateGitHubOwner(owner string) error {
-	if owner == "" {
-		return errors.New("owner is required")
-	}
-	if !validGitHubOwner.MatchString(owner) {
-		return errors.New("invalid owner format")
-	}
-	return nil
-}
-
-// validateGitHubRepo validates a GitHub repository name.
-func validateGitHubRepo(repo string) error {
-	if repo == "" {
-		return errors.New("repo is required")
-	}
-	if !validGitHubRepo.MatchString(repo) {
-		return errors.New("invalid repo format")
-	}
-	return nil
-}
-
-// validateGitHubRepoParams validates both owner and repo parameters.
-func validateGitHubRepoParams(owner, repo string) error {
-	if err := validateGitHubOwner(owner); err != nil {
-		return err
-	}
-	return validateGitHubRepo(repo)
-}
-
 // responseWriter wraps http.ResponseWriter to capture status code.
 // It also implements optional interfaces (Hijacker, Flusher) by delegation.
 type responseWriter struct {
@@ -296,4 +287,84 @@ func (rw *responseWriter) Flush() {
 	if f, ok := rw.ResponseWriter.(http.Flusher); ok {
 		f.Flush()
 	}
+}
+
+// csrfProtection validates that state-changing requests come from allowed origins.
+// This provides defense-in-depth alongside SameSite=Strict cookies.
+//
+// The middleware checks:
+//  1. Safe methods (GET, HEAD, OPTIONS) are allowed through
+//  2. Origin header must match allowed origins (if present)
+//  3. Referer header must match allowed origins (fallback if Origin missing)
+//
+// This is simpler than token-based CSRF and works well with JSON APIs.
+func (s *Server) csrfProtection(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Safe methods don't need CSRF protection
+		if csrfSafeMethods[r.Method] {
+			next.ServeHTTP(w, r)
+			return
+		}
+
+		// Check Origin header first (modern browsers send this)
+		origin := r.Header.Get("Origin")
+		if origin != "" {
+			if !s.isAllowedOrigin(origin) {
+				s.logger.Warn("CSRF: origin mismatch",
+					"origin", origin,
+					"method", r.Method,
+					"path", r.URL.Path,
+					"request_id", getRequestID(r))
+				s.errorResponse(w, http.StatusForbidden, errMsgCrossOrigin)
+				return
+			}
+			next.ServeHTTP(w, r)
+			return
+		}
+
+		// Fallback to Referer header (some requests may not have Origin)
+		referer := r.Header.Get("Referer")
+		if referer != "" {
+			if !s.isAllowedReferer(referer) {
+				s.logger.Warn("CSRF: referer mismatch",
+					"referer", referer,
+					"method", r.Method,
+					"path", r.URL.Path,
+					"request_id", getRequestID(r))
+				s.errorResponse(w, http.StatusForbidden, errMsgCrossOrigin)
+				return
+			}
+			next.ServeHTTP(w, r)
+			return
+		}
+
+		// No Origin or Referer - reject for authenticated requests, allow for API clients
+		// API clients (non-browser) don't send Origin/Referer and are CSRF-safe
+		// Browser requests always send one of them
+		if s.getSession(r) != nil {
+			// Authenticated browser request without Origin/Referer is suspicious
+			s.logger.Warn("CSRF: no origin or referer for authenticated request",
+				"method", r.Method,
+				"path", r.URL.Path,
+				"request_id", getRequestID(r))
+			s.errorResponse(w, http.StatusForbidden, errMsgOriginInvalid)
+			return
+		}
+
+		// Allow unauthenticated requests without Origin/Referer (API clients)
+		next.ServeHTTP(w, r)
+	})
+}
+
+// isAllowedReferer checks if the Referer URL starts with an allowed origin.
+func (s *Server) isAllowedReferer(referer string) bool {
+	for _, allowed := range s.allowOrigins {
+		if allowed == "*" {
+			return true
+		}
+		if strings.HasPrefix(referer, allowed) {
+			return true
+		}
+	}
+	return false
 }

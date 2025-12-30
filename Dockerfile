@@ -15,9 +15,33 @@ RUN --mount=type=cache,target=/go/pkg/mod \
     go mod download -x
 
 # =============================================================================
-# Stage 2: Build (uses cached deps, only rebuilds on source changes)
+# Stage 2: Development (hot-reload with Air)
+# =============================================================================
+FROM deps AS dev
+
+# Install runtime + dev tools
+RUN apk add --no-cache \
+    graphviz \
+    rsvg-convert \
+    ttf-dejavu
+
+# Install Air for hot-reloading (pinned to version compatible with Go 1.24)
+RUN go install github.com/air-verse/air@v1.61.5
+
+WORKDIR /app
+
+EXPOSE 8080
+
+# Air watches for changes and rebuilds
+CMD ["air", "-c", ".air.toml"]
+
+# =============================================================================
+# Stage 3: Build (production binary)
 # =============================================================================
 FROM deps AS builder
+
+ARG VERSION=dev
+ARG COMMIT=unknown
 
 # Copy source code
 COPY . .
@@ -25,16 +49,20 @@ COPY . .
 # Build with cache mounts for faster incremental builds
 RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \
-    CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -o /stacktowerd ./cmd/server
+    CGO_ENABLED=0 GOOS=linux go build \
+    -ldflags="-w -s -X github.com/matzehuels/stacktower/pkg/buildinfo.Version=${VERSION} -X github.com/matzehuels/stacktower/pkg/buildinfo.Commit=${COMMIT}" \
+    -o /stacktowerd ./cmd/stacktowerd
 
-# Runtime stage
-FROM alpine:3.20
+# =============================================================================
+# Stage 4: Production Runtime
+# =============================================================================
+FROM alpine:3.20 AS prod
 
 # Install runtime dependencies
 # - ca-certificates: for HTTPS requests to package registries
-# - git: for cloning repositories during agent analysis
+# - git: for cloning repositories during analysis
 # - graphviz: for nodelink visualization
-# - rsvg-convert: for SVG to PNG/PDF conversion (separate from librsvg on Alpine)
+# - rsvg-convert: for SVG to PNG/PDF conversion
 # - ttf-dejavu: fonts for rendering
 RUN apk add --no-cache \
     ca-certificates \
@@ -52,26 +80,23 @@ WORKDIR /app
 # Copy binary from builder
 COPY --from=builder /stacktowerd /usr/local/bin/stacktowerd
 
-# Create directories for local storage (optional fallback)
-RUN mkdir -p /data/storage /data/cache && \
-    chown -R stacktower:stacktower /data
+# Create data directory (for any local storage needs)
+RUN mkdir -p /data && chown -R stacktower:stacktower /data
 
 USER stacktower
 
-# Default environment variables
-ENV STACKTOWER_STORAGE_DIR=/data/storage \
-    STACKTOWER_CACHE_DIR=/data/cache \
-    STACKTOWER_HOST=0.0.0.0 \
-    STACKTOWER_PORT=8080
-
+# Default port
 EXPOSE 8080
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD wget -q --spider http://localhost:8080/health || exit 1
 
-# Default command (can be overridden)
-# Use --worker for worker-only mode
+# Entrypoint - mode is determined by STACKTOWER_MODE env var or flags
+# Examples:
+#   docker run stacktower                     # API server (default)
+#   docker run stacktower --worker            # Worker only
+#   docker run stacktower --all               # API + Worker
+#   docker run stacktower standalone          # Standalone mode
 ENTRYPOINT ["/usr/local/bin/stacktowerd"]
 CMD []
-

@@ -10,26 +10,30 @@ import (
 	"github.com/matzehuels/stacktower/pkg/infra/storage"
 )
 
-// handleGetArtifact handles GET /api/v1/artifacts/{artifactID}
-// Auth handled by middleware.
+// handleGetArtifact handles GET /api/v1/artifacts/{artifactID}.
+// Uses optional auth - public artifacts (canonical renders) are accessible without auth.
+//
+// Authorization strategy: Returns 403 Forbidden for access denied because private artifacts
+// belong to renders owned by specific users. Canonical (shared) artifacts are public.
 func (s *Server) handleGetArtifact(w http.ResponseWriter, r *http.Request) {
-	userID := getUserID(r)
+	ctx := s.handlerContext()
+	userID := getUserIDOptional(r)
 	artifactID := chi.URLParam(r, "artifactID")
 
 	if artifactID == "" {
-		s.errorResponse(w, http.StatusBadRequest, errFieldRequired("artifact ID"))
+		s.errorResponse(w, http.StatusBadRequest, msgFieldRequired("artifact ID"))
 		return
 	}
 
 	// Use scoped method - enforces authorization via parent render
-	data, err := s.backend.DocumentStore().GetArtifactScoped(r.Context(), artifactID, userID)
+	data, err := ctx.Backend.DocumentStore().GetArtifactScoped(r.Context(), artifactID, userID)
 	if errors.Is(err, storage.ErrAccessDenied) {
-		s.errorResponse(w, http.StatusForbidden, "access denied")
+		s.errorResponse(w, http.StatusForbidden, errMsgAccessDenied)
 		return
 	}
 	if err != nil {
-		s.logger.Debug("artifact not found", "artifact_id", artifactID, "user_id", userID, "error", err, "request_id", getRequestID(r))
-		s.errorResponse(w, http.StatusNotFound, errResourceNotFound("artifact"))
+		ctx.Logger.Debug("artifact not found", "artifact_id", artifactID, "user_id", userID, "error", err, "request_id", getRequestID(r))
+		s.errorResponse(w, http.StatusNotFound, msgResourceNotFound("artifact"))
 		return
 	}
 
@@ -42,7 +46,7 @@ func (s *Server) handleGetArtifact(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", contentType)
 	w.Header().Set("Content-Length", strconv.Itoa(len(data)))
 	if _, err := w.Write(data); err != nil {
-		s.logger.Error("failed to write artifact response",
+		ctx.Logger.Error("failed to write artifact response",
 			"error", err,
 			"artifact_id", artifactID,
 			"request_id", getRequestID(r))

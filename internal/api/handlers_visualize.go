@@ -11,20 +11,22 @@ import (
 	"github.com/matzehuels/stacktower/pkg/pipeline"
 )
 
-// handleVisualize handles POST /api/v1/visualize
+// handleVisualize handles POST /api/v1/visualize.
 // This runs SYNCHRONOUSLY on the API server since it's just rendering
 // from existing layout data (fast operation, no external calls).
-// No auth required - it's CPU-bound only with no storage side effects.
+// Uses optionalAuth - anonymous users get IP-based rate limiting.
 func (s *Server) handleVisualize(w http.ResponseWriter, r *http.Request) {
+	ctx := s.handlerContext()
+
 	var req VisualizeRequest
 	if err := s.decodeJSON(w, r, &req); err != nil {
-		s.errorResponse(w, http.StatusBadRequest, errInvalidJSON(err))
+		s.errorResponse(w, http.StatusBadRequest, msgInvalidJSON(err))
 		return
 	}
 
 	// Validate layout input requirement
 	if len(req.Layout) == 0 {
-		s.errorResponse(w, http.StatusBadRequest, errFieldRequired("layout"))
+		s.errorResponse(w, http.StatusBadRequest, msgFieldRequired("layout"))
 		return
 	}
 
@@ -46,16 +48,21 @@ func (s *Server) handleVisualize(w http.ResponseWriter, r *http.Request) {
 		Style:     req.Style,
 		ShowEdges: req.ShowEdges,
 		Popups:    req.Popups,
-		Logger:    s.logger,
+		Logger:    ctx.Logger,
 	}
 
 	// Render SYNCHRONOUSLY via pipeline service
-	artifacts, cached, err := s.pipeline.Visualize(r.Context(), req.Layout, g, opts)
+	artifacts, cached, err := ctx.Pipeline.Visualize(r.Context(), req.Layout, g, opts)
 	if err != nil {
-		s.logger.Error("visualize failed", "error", err, "request_id", getRequestID(r))
-		s.errorResponse(w, http.StatusInternalServerError, "visualization failed")
+		ctx.Logger.Error("visualize failed", "error", err, "request_id", getRequestID(r))
+		s.errorResponse(w, http.StatusInternalServerError, errMsgVisualizeFailed)
 		return
 	}
+
+	ctx.Logger.Debug("visualize completed",
+		"formats", len(artifacts),
+		"cached", cached,
+		"request_id", getRequestID(r))
 
 	// Encode artifacts as base64
 	encoded := make(map[string]string)

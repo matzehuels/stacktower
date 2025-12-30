@@ -1,21 +1,74 @@
-import { useState } from 'react';
-import type { Language, VizType, VisualizeRequest } from '../types/api';
-import { LANGUAGES } from '../types/api';
+/**
+ * Form for submitting package visualization requests.
+ */
+
+import { useState, useMemo, useCallback } from 'react';
+import { Zap, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Combobox, type ComboboxOption } from '@/components/ui/combobox';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { LanguageIcon } from '@/components/icons';
+import { usePackageSuggestions } from '@/hooks/queries';
+import type { RenderRequest } from '@/types/api';
+import type { Language } from '@/config/constants';
+import { LANGUAGES } from '@/config/constants';
+import { cn } from '@/lib/utils';
+
+// Simple debounce hook
+function useDebounce<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useMemo(() => {
+    const timer = setTimeout(() => setDebouncedValue(value), delay);
+    return () => clearTimeout(timer);
+  }, [value, delay]);
+
+  return debouncedValue;
+}
 
 interface Props {
-  onSubmit: (request: VisualizeRequest) => void;
+  onSubmit: (request: RenderRequest) => void;
   isLoading: boolean;
 }
 
 export function PlaygroundForm({ onSubmit, isLoading }: Props) {
   const [language, setLanguage] = useState<Language>('python');
   const [packageName, setPackageName] = useState('');
-  const [vizType, setVizType] = useState<VizType>('tower');
+  const [searchQuery, setSearchQuery] = useState('');
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [maxDepth, setMaxDepth] = useState(10);
   const [maxNodes, setMaxNodes] = useState(500);
 
   const selectedLang = LANGUAGES.find(l => l.value === language);
+
+  // Debounce search query for API calls
+  const debouncedQuery = useDebounce(searchQuery, 200);
+  
+  // Fetch package suggestions
+  const { data: suggestions = [], isLoading: suggestionsLoading } = usePackageSuggestions(
+    language,
+    debouncedQuery
+  );
+
+  // Convert suggestions to combobox options
+  const options: ComboboxOption[] = useMemo(() => {
+    return suggestions.map((s) => ({
+      value: s.package,
+      label: s.package,
+      secondary: s.popularity > 0 ? `${s.popularity} saved` : undefined,
+    }));
+  }, [suggestions]);
+
+  const handleInputChange = useCallback((value: string) => {
+    setSearchQuery(value);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,138 +77,135 @@ export function PlaygroundForm({ onSubmit, isLoading }: Props) {
     onSubmit({
       language,
       package: packageName.trim(),
-      formats: ['svg', 'png', 'pdf'],
-      viz_type: vizType,
+      formats: ['svg', 'png', 'pdf', 'json'],
+      viz_type: 'tower', // Default to tower, user can switch in visualization view
       max_depth: maxDepth,
       max_nodes: maxNodes,
+      merge: true,
     });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Main inputs */}
       <div className="flex gap-3">
         {/* Language selector */}
-        <div className="w-40">
-          <label className="block text-[10px] font-medium text-[var(--color-text-muted)] uppercase tracking-wider mb-1.5">
+        <div className="w-48">
+          <label className="block text-xs font-medium text-muted-foreground mb-2">
             Registry
           </label>
-          <select
+          <Select
             value={language}
-            onChange={e => setLanguage(e.target.value as Language)}
+            onValueChange={(value) => setLanguage(value as Language)}
             disabled={isLoading}
-            className="select font-mono"
           >
+            <SelectTrigger>
+              <SelectValue>
+                <span className="flex items-center gap-2">
+                  <LanguageIcon language={language} className="h-4 w-4" />
+                  <span className="font-mono">{LANGUAGES.find(l => l.value === language)?.label.split(' (')[0]}</span>
+                </span>
+              </SelectValue>
+            </SelectTrigger>
+            <SelectContent>
             {LANGUAGES.map(lang => (
-              <option key={lang.value} value={lang.value}>
-                {lang.label.split(' ')[0]}
-              </option>
+                <SelectItem key={lang.value} value={lang.value}>
+                  <span className="flex items-center gap-2">
+                    <LanguageIcon language={lang.value} className="h-4 w-4" />
+                    <span className="font-mono">{lang.label.split(' (')[0]}</span>
+                  </span>
+                </SelectItem>
             ))}
-          </select>
+            </SelectContent>
+          </Select>
         </div>
 
-        {/* Package name input */}
+        {/* Package name input with autocomplete */}
         <div className="flex-1">
-          <label className="block text-[10px] font-medium text-[var(--color-text-muted)] uppercase tracking-wider mb-1.5">
+          <label className="block text-xs font-medium text-muted-foreground mb-2">
             Package
           </label>
-          <input
-            type="text"
+          <Combobox
             value={packageName}
-            onChange={e => setPackageName(e.target.value)}
+            onChange={setPackageName}
+            options={options}
             placeholder={selectedLang?.placeholder}
             disabled={isLoading}
-            className="input font-mono"
+            loading={suggestionsLoading}
+            onInputChange={handleInputChange}
           />
         </div>
 
-        {/* Viz type */}
-        <div className="w-28">
-          <label className="block text-[10px] font-medium text-[var(--color-text-muted)] uppercase tracking-wider mb-1.5">
-            Style
-          </label>
-          <select
-            value={vizType}
-            onChange={e => setVizType(e.target.value as VizType)}
-            disabled={isLoading}
-            className="select"
-          >
-            <option value="tower">Tower</option>
-            <option value="nodelink">Graph</option>
-          </select>
-        </div>
-
-        {/* Submit */}
+        {/* Submit button */}
         <div className="flex items-end">
-          <button
+          <Button
             type="submit"
             disabled={isLoading || !packageName.trim()}
-            className="btn btn-primary h-[34px]"
+            size="lg"
           >
             {isLoading ? (
               <>
-                <svg className="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                </svg>
-                <span>Analyzing</span>
+                <span className="h-4 w-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2" />
+                Analyzing
               </>
             ) : (
               <>
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-                <span>Analyze</span>
+                <Zap className="h-4 w-4 mr-2" />
+                Generate
               </>
             )}
-          </button>
+          </Button>
         </div>
       </div>
 
       {/* Advanced options toggle */}
-      <button
-        type="button"
-        onClick={() => setShowAdvanced(!showAdvanced)}
-        className="text-[11px] text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)] transition-colors flex items-center gap-1"
-      >
-        <svg className={`w-3 h-3 transition-transform ${showAdvanced ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-        </svg>
-        Advanced
-      </button>
-      
-      {showAdvanced && (
-        <div className="flex gap-3 pt-2 border-t border-[var(--color-border)] animate-fade-in">
-          <div className="w-32">
-            <label className="block text-[10px] font-medium text-[var(--color-text-muted)] uppercase tracking-wider mb-1.5">
-              Max Depth
-            </label>
-            <input
-              type="number"
-              min={1}
-              max={20}
-              value={maxDepth}
-              onChange={e => setMaxDepth(Number(e.target.value))}
-              disabled={isLoading}
-              className="input font-mono"
-            />
+      <div className="pt-2 border-t border-border">
+        <button
+          type="button"
+          onClick={() => setShowAdvanced(!showAdvanced)}
+          className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <ChevronRight className={cn('h-3 w-3 transition-transform', showAdvanced && 'rotate-90')} />
+          <span>Advanced options</span>
+        </button>
+
+        {showAdvanced && (
+          <div className="flex gap-4 mt-4 animate-in fade-in slide-in-from-top-2 duration-200">
+            {/* Max depth */}
+            <div className="w-24">
+              <label className="block text-xs font-medium text-muted-foreground mb-2">
+                Max Depth
+              </label>
+              <Input
+                type="number"
+                min={1}
+                max={20}
+                value={maxDepth}
+                onChange={e => setMaxDepth(Number(e.target.value))}
+                disabled={isLoading}
+                className="h-9 font-mono"
+              />
+            </div>
+
+            {/* Max nodes */}
+            <div className="w-24">
+              <label className="block text-xs font-medium text-muted-foreground mb-2">
+                Max Nodes
+              </label>
+              <Input
+                type="number"
+                min={10}
+                max={5000}
+                step={10}
+                value={maxNodes}
+                onChange={e => setMaxNodes(Number(e.target.value))}
+                disabled={isLoading}
+                className="h-9 font-mono"
+              />
+            </div>
           </div>
-          <div className="w-32">
-            <label className="block text-[10px] font-medium text-[var(--color-text-muted)] uppercase tracking-wider mb-1.5">
-              Max Nodes
-            </label>
-            <input
-              type="number"
-              min={10}
-              max={5000}
-              step={10}
-              value={maxNodes}
-              onChange={e => setMaxNodes(Number(e.target.value))}
-              disabled={isLoading}
-              className="input font-mono"
-            />
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </form>
   );
 }

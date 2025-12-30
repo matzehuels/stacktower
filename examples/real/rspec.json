@@ -1,57 +1,17 @@
 {
   "nodes": [
     {
-      "id": "rspec-mocks",
-      "meta": {
-        "author": "Steven Baker, David Chelimsky, Myron Marston",
-        "description": "RSpec's 'test double' framework, with support for stubbing and mocking",
-        "downloads": 1086156206,
-        "license": "MIT",
-        "repo_archived": false,
-        "repo_language": "Ruby",
-        "repo_last_commit": "2025-12-12",
-        "repo_maintainers": [
-          "myronmarston",
-          "JonRowe",
-          "dchelimsky",
-          "alindeman",
-          "xaviershay"
-        ],
-        "repo_owner": "rspec",
-        "repo_stars": 81,
-        "repo_url": "https://github.com/rspec/rspec",
-        "version": "3.13.7"
-      }
-    },
-    {
-      "id": "rspec-support",
-      "meta": {
-        "author": "David Chelimsky, Myron Marson, Jon Rowe, Sam Phippen, Xaviery Shay, Bradley Schaefer",
-        "description": "Support utilities for RSpec gems",
-        "downloads": 1076638938,
-        "license": "MIT",
-        "repo_archived": false,
-        "repo_language": "Ruby",
-        "repo_last_commit": "2025-12-12",
-        "repo_maintainers": [
-          "myronmarston",
-          "JonRowe",
-          "dchelimsky",
-          "alindeman",
-          "xaviershay"
-        ],
-        "repo_owner": "rspec",
-        "repo_stars": 81,
-        "repo_url": "https://github.com/rspec/rspec",
-        "version": "3.13.6"
-      }
+      "id": "Sep_2_diff-lcs_rspec-support",
+      "row": 2,
+      "kind": "auxiliary"
     },
     {
       "id": "diff-lcs",
+      "row": 3,
       "meta": {
         "author": "Austin Ziegler",
         "description": "Diff::LCS computes the difference between two Enumerable sequences using the\nMcIlroy-Hunt longest common subsequence (LCS) algorithm. It includes utilities\nto create a simple HTML diff output format and a standard diff-like tool.\n\nThis is release 1.6.1, providing a simple extension that allows for\nDiff::LCS::Change objects to be treated implicitly as arrays and fixes a number\nof formatting issues.\n\nRuby versions below 2.5 are soft-deprecated, which means that older versions are\nno longer part of the CI test suite. If any changes have been introduced that\nbreak those versions, bug reports and patches will be accepted, but it will be\nup to the reporter to verify any fixes prior to release. The next major release\nwill completely break compatibility.",
-        "downloads": 1116219630,
+        "downloads": 1117364922,
         "license": "MIT, Artistic-1.0-Perl, GPL-2.0-or-later",
         "repo_archived": false,
         "repo_language": "Ruby",
@@ -73,11 +33,11 @@
       "meta": {
         "author": "Steven Baker, David Chelimsky, Myron Marston",
         "description": "BDD for Ruby",
-        "downloads": 938043191,
+        "downloads": 938766750,
         "license": "MIT",
         "repo_archived": false,
         "repo_language": "Ruby",
-        "repo_last_commit": "2025-12-12",
+        "repo_last_commit": "2025-12-27",
         "repo_maintainers": [
           "myronmarston",
           "JonRowe",
@@ -93,14 +53,15 @@
     },
     {
       "id": "rspec-core",
+      "row": 1,
       "meta": {
         "author": "Steven Baker, David Chelimsky, Chad Humphries, Myron Marston",
         "description": "BDD for Ruby. RSpec runner and example groups.",
-        "downloads": 1091901505,
+        "downloads": 1092849508,
         "license": "MIT",
         "repo_archived": false,
         "repo_language": "Ruby",
-        "repo_last_commit": "2025-12-12",
+        "repo_last_commit": "2025-12-27",
         "repo_maintainers": [
           "myronmarston",
           "JonRowe",
@@ -116,14 +77,15 @@
     },
     {
       "id": "rspec-expectations",
+      "row": 1,
       "meta": {
         "author": "Steven Baker, David Chelimsky, Myron Marston",
         "description": "rspec-expectations provides a simple, readable API to express expected outcomes of a code example.",
-        "downloads": 1092953359,
+        "downloads": 1093903874,
         "license": "MIT",
         "repo_archived": false,
         "repo_language": "Ruby",
-        "repo_last_commit": "2025-12-12",
+        "repo_last_commit": "2025-12-27",
         "repo_maintainers": [
           "myronmarston",
           "JonRowe",
@@ -135,6 +97,54 @@
         "repo_stars": 81,
         "repo_url": "https://github.com/rspec/rspec",
         "version": "3.13.5"
+      }
+    },
+    {
+      "id": "rspec-mocks",
+      "row": 1,
+      "meta": {
+        "author": "Steven Baker, David Chelimsky, Myron Marston",
+        "description": "RSpec's 'test double' framework, with support for stubbing and mocking",
+        "downloads": 1087085901,
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "Ruby",
+        "repo_last_commit": "2025-12-27",
+        "repo_maintainers": [
+          "myronmarston",
+          "JonRowe",
+          "dchelimsky",
+          "alindeman",
+          "xaviershay"
+        ],
+        "repo_owner": "rspec",
+        "repo_stars": 81,
+        "repo_url": "https://github.com/rspec/rspec",
+        "version": "3.13.7"
+      }
+    },
+    {
+      "id": "rspec-support",
+      "row": 3,
+      "meta": {
+        "author": "David Chelimsky, Myron Marson, Jon Rowe, Sam Phippen, Xaviery Shay, Bradley Schaefer",
+        "description": "Support utilities for RSpec gems",
+        "downloads": 1077596920,
+        "license": "MIT",
+        "repo_archived": false,
+        "repo_language": "Ruby",
+        "repo_last_commit": "2025-12-27",
+        "repo_maintainers": [
+          "myronmarston",
+          "JonRowe",
+          "dchelimsky",
+          "alindeman",
+          "xaviershay"
+        ],
+        "repo_owner": "rspec",
+        "repo_stars": 81,
+        "repo_url": "https://github.com/rspec/rspec",
+        "version": "3.13.6"
       }
     }
   ],
@@ -153,22 +163,22 @@
     },
     {
       "from": "rspec-core",
-      "to": "rspec-support"
-    },
-    {
-      "from": "rspec-expectations",
-      "to": "diff-lcs"
-    },
-    {
-      "from": "rspec-expectations",
-      "to": "rspec-support"
+      "to": "Sep_2_diff-lcs_rspec-support"
     },
     {
       "from": "rspec-mocks",
+      "to": "Sep_2_diff-lcs_rspec-support"
+    },
+    {
+      "from": "rspec-expectations",
+      "to": "Sep_2_diff-lcs_rspec-support"
+    },
+    {
+      "from": "Sep_2_diff-lcs_rspec-support",
       "to": "diff-lcs"
     },
     {
-      "from": "rspec-mocks",
+      "from": "Sep_2_diff-lcs_rspec-support",
       "to": "rspec-support"
     }
   ]

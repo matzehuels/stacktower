@@ -17,11 +17,12 @@ func (s *Server) handleHealth(w http.ResponseWriter, r *http.Request) {
 // handleHealthReady checks if dependencies (Redis, MongoDB) are reachable.
 // Use this for Kubernetes readiness probes.
 func (s *Server) handleHealthReady(w http.ResponseWriter, r *http.Request) {
-	ctx, cancel := context.WithTimeout(r.Context(), 3*time.Second)
+	hctx := s.handlerContext()
+	rctx, cancel := context.WithTimeout(r.Context(), 3*time.Second)
 	defer cancel()
 
 	// Check queue (Redis) connectivity
-	if err := s.queue.Ping(ctx); err != nil {
+	if err := hctx.Queue.Ping(rctx); err != nil {
 		s.jsonResponse(w, http.StatusServiceUnavailable, map[string]interface{}{
 			"status": "unhealthy",
 			"check":  "queue",
@@ -31,7 +32,7 @@ func (s *Server) handleHealthReady(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Check backend (Redis Index + MongoDB) connectivity
-	if err := s.backend.Ping(ctx); err != nil {
+	if err := hctx.Backend.Ping(rctx); err != nil {
 		s.jsonResponse(w, http.StatusServiceUnavailable, map[string]interface{}{
 			"status": "unhealthy",
 			"check":  "backend",

@@ -100,16 +100,23 @@ const (
 
 // Format constants for output formats.
 const (
-	FormatSVG = "svg"
-	FormatPNG = "png"
-	FormatPDF = "pdf"
+	FormatSVG  = "svg"
+	FormatPNG  = "png"
+	FormatPDF  = "pdf"
+	FormatJSON = "json"
 )
 
 // ValidFormats is the set of supported output formats.
 var ValidFormats = map[string]bool{
-	FormatSVG: true,
-	FormatPNG: true,
-	FormatPDF: true,
+	FormatSVG:  true,
+	FormatPNG:  true,
+	FormatPDF:  true,
+	FormatJSON: true,
+}
+
+// errFieldRequired returns a consistent error for missing required fields.
+func errFieldRequired(field string) error {
+	return fmt.Errorf("%s is required", field)
 }
 
 // ValidStyles is the set of supported visual styles.
@@ -139,7 +146,7 @@ type Options struct {
 	Repo             string `json:"repo,omitempty"` // GitHub repository (owner/repo) for tracking
 	MaxDepth         int    `json:"max_depth,omitempty"`
 	MaxNodes         int    `json:"max_nodes,omitempty"`
-	Enrich           bool   `json:"enrich,omitempty"`
+	SkipEnrich       bool   `json:"skip_enrich,omitempty"` // Skip metadata enrichment (default: false = enrich)
 	Refresh          bool   `json:"refresh,omitempty"`
 	Normalize        bool   `json:"normalize,omitempty"`
 
@@ -163,6 +170,10 @@ type Options struct {
 	Logger      *log.Logger      `json:"-"`
 	GitHubToken string           `json:"-"`
 	Orderer     ordering.Orderer `json:"-"`
+
+	// validated tracks whether ValidateAndSetDefaults has been called.
+	// This makes validation idempotent and helps detect programming errors.
+	validated bool `json:"-"`
 }
 
 // Result contains the outputs of a pipeline run.
@@ -170,10 +181,14 @@ type Result struct {
 	// Graph is the parsed dependency graph.
 	Graph *dag.DAG
 
+	// GraphHash is the content hash of the graph.
+	GraphHash string
+
 	// Layout contains the computed visual positions.
 	Layout layout.Layout
 
 	// LayoutData is the serialized layout (JSON).
+	// Note: Nebraska rankings are embedded in the layout JSON, not stored separately.
 	LayoutData []byte
 
 	// Artifacts contains rendered outputs keyed by format.
@@ -195,7 +210,7 @@ type Stats struct {
 // ValidateFormat checks that a format is valid.
 func ValidateFormat(format string) error {
 	if !ValidFormats[format] {
-		return fmt.Errorf("invalid format: %q (must be one of: svg, png, pdf)", format)
+		return fmt.Errorf("invalid format: %q (must be one of: svg, png, pdf, json)", format)
 	}
 	return nil
 }
@@ -227,26 +242,31 @@ func ValidateVizType(vizType string) error {
 }
 
 // ValidateAndSetDefaults checks required fields and applies defaults for the full pipeline.
+// This method is idempotent - calling it multiple times has the same effect as calling it once.
 // Use ValidateForParse, ValidateForLayout, or ValidateForRender for stage-specific validation.
 func (o *Options) ValidateAndSetDefaults() error {
+	if o.validated {
+		return nil // Already validated, skip
+	}
 	if err := o.ValidateForParse(); err != nil {
 		return err
 	}
 	o.SetLayoutDefaults()
 	o.SetRenderDefaults()
+	o.validated = true
 	return nil
 }
 
 // ValidateForParse checks required fields for parsing.
 func (o *Options) ValidateForParse() error {
 	if o.Language == "" {
-		return fmt.Errorf("language is required")
+		return errFieldRequired("language")
 	}
 	if o.Package == "" && o.Manifest == "" {
-		return fmt.Errorf("package or manifest is required")
+		return errFieldRequired("package or manifest")
 	}
 	if o.Manifest != "" && o.ManifestFilename == "" {
-		return fmt.Errorf("manifest_filename is required when manifest is provided")
+		return errFieldRequired("manifest_filename")
 	}
 
 	// Parse defaults.
@@ -332,6 +352,12 @@ func (o *Options) IsNodelink() bool {
 	return o.VizType == "nodelink"
 }
 
+// ShouldEnrich returns whether metadata enrichment should be performed.
+// Returns true unless SkipEnrich is explicitly set.
+func (o *Options) ShouldEnrich() bool {
+	return !o.SkipEnrich
+}
+
 // Execute runs the complete parse → layout → render pipeline.
 // The backend parameter provides caching for HTTP responses during dependency resolution.
 // Use storage.NullBackend{} to disable caching.
@@ -362,21 +388,22 @@ func Execute(ctx context.Context, backend storage.Backend, opts Options) (*Resul
 
 	// Stage 2: Layout
 	layoutStart := time.Now()
-	l, layoutData, err := ComputeLayout(g, opts)
+	layoutResult, err := ComputeLayout(g, opts)
 	if err != nil {
 		return nil, fmt.Errorf("layout: %w", err)
 	}
-	result.Layout = l
-	result.LayoutData = layoutData
+	result.Layout = layoutResult.Layout
+	result.LayoutData = layoutResult.LayoutData
+	// Note: Nebraska rankings are embedded in LayoutData, not stored separately
 	result.Stats.LayoutTime = time.Since(layoutStart)
 
 	opts.Logger.Info("computed layout",
-		"blocks", len(l.Blocks),
+		"blocks", len(layoutResult.Layout.Blocks),
 		"duration", result.Stats.LayoutTime)
 
 	// Stage 3: Render
 	renderStart := time.Now()
-	artifacts, err := Render(l, layoutData, g, opts)
+	artifacts, err := Render(layoutResult.Layout, layoutResult.LayoutData, g, opts)
 	if err != nil {
 		return nil, fmt.Errorf("render: %w", err)
 	}

@@ -258,8 +258,10 @@ func (c *crawler) handle(r result, root string) error {
 		return nil
 	}
 
-	// Add package node to graph
+	// Add package node to graph (mutex protects DAG mutations)
+	c.mu.Lock()
 	_ = c.g.AddNode(dag.Node{ID: r.name})
+	c.mu.Unlock()
 	atomic.AddInt32(&c.nodeCount, 1)
 
 	// Collect metadata for later application
@@ -284,9 +286,11 @@ func (c *crawler) enqueueDeps(r result) {
 	count := atomic.LoadInt32(&c.nodeCount)
 
 	for _, dep := range r.pkg.Dependencies {
-		// Always add nodes and edges, even if not fetching
+		// Always add nodes and edges, even if not fetching (mutex protects DAG)
+		c.mu.Lock()
 		_ = c.g.AddNode(dag.Node{ID: dep})
 		_ = c.g.AddEdge(dag.Edge{From: r.name, To: dep})
+		c.mu.Unlock()
 
 		// Only fetch if under node limit
 		if int(count) < c.opts.MaxNodes {

@@ -3,6 +3,7 @@ package storage
 import (
 	"bytes"
 	"context"
+	"encoding/json"
 	"time"
 
 	"github.com/matzehuels/stacktower/pkg/core/dag"
@@ -18,26 +19,23 @@ import (
 //
 //	redis, _ := infra.NewRedis(ctx, cfg.Redis)
 //	mongo, _ := infra.NewMongo(ctx, cfg.Mongo)
-//	backend := storage.NewDistributedBackend(redis.Index(), mongo.DocumentStore(), redis.HTTPCache(), redis.RateLimiter(), mongo.OperationStore())
+//	backend := storage.NewDistributedBackend(redis.Index(), mongo.DocumentStore(), redis.HTTPCache(), redis.RateLimiter())
 type DistributedBackend struct {
 	index     Index
 	docstore  DocumentStore
 	httpCache HTTPCache
 	limiter   RateLimiter
-	opStore   OperationStore
 }
 
 // NewDistributedBackend creates a production backend with Redis + MongoDB.
 // The httpCache parameter provides HTTP response caching (typically backed by Redis).
 // The limiter parameter provides rate limiting (typically backed by Redis).
-// The opStore parameter provides operation logging (typically backed by MongoDB).
-func NewDistributedBackend(index Index, docstore DocumentStore, httpCache HTTPCache, limiter RateLimiter, opStore OperationStore) *DistributedBackend {
+func NewDistributedBackend(index Index, docstore DocumentStore, httpCache HTTPCache, limiter RateLimiter) *DistributedBackend {
 	return &DistributedBackend{
 		index:     index,
 		docstore:  docstore,
 		httpCache: httpCache,
 		limiter:   limiter,
-		opStore:   opStore,
 	}
 }
 
@@ -58,8 +56,14 @@ func (b *DistributedBackend) GetGraph(ctx context.Context, hash string) (*dag.DA
 		return nil, false, nil
 	}
 
-	// Deserialize graph
-	g, err := pkgio.ReadJSON(bytes.NewReader(stored.Data))
+	// Deserialize graph - convert BSON to JSON-safe format, then to DAG
+	// (primitive.D -> map, primitive.A -> slice, etc.)
+	jsonSafe := ToJSONSafe(stored.Data)
+	jsonData, err := json.Marshal(jsonSafe)
+	if err != nil {
+		return nil, false, nil
+	}
+	g, err := pkgio.ReadJSON(bytes.NewReader(jsonData))
 	if err != nil {
 		return nil, false, nil
 	}
@@ -91,8 +95,14 @@ func (b *DistributedBackend) GetGraphScoped(ctx context.Context, hash string, us
 		return nil, false, nil
 	}
 
-	// Deserialize graph
-	g, err := pkgio.ReadJSON(bytes.NewReader(stored.Data))
+	// Deserialize graph - convert BSON to JSON-safe format, then to DAG
+	// (primitive.D -> map, primitive.A -> slice, etc.)
+	jsonSafe := ToJSONSafe(stored.Data)
+	jsonData, err := json.Marshal(jsonSafe)
+	if err != nil {
+		return nil, false, nil
+	}
+	g, err := pkgio.ReadJSON(bytes.NewReader(jsonData))
 	if err != nil {
 		return nil, false, nil
 	}
@@ -101,12 +111,18 @@ func (b *DistributedBackend) GetGraphScoped(ctx context.Context, hash string, us
 }
 
 func (b *DistributedBackend) PutGraphScoped(ctx context.Context, hash string, g *dag.DAG, ttl time.Duration, scope Scope, userID string, meta GraphMeta) error {
-	// Serialize graph
+	// Serialize graph to JSON
 	var buf bytes.Buffer
 	if err := pkgio.WriteJSON(g, &buf); err != nil {
 		return err
 	}
-	data := buf.Bytes()
+	jsonData := buf.Bytes()
+
+	// Unmarshal JSON to interface{} for BSON document storage
+	var dataDoc interface{}
+	if err := json.Unmarshal(jsonData, &dataDoc); err != nil {
+		return err
+	}
 
 	// Create graph record with full metadata
 	stored := &Graph{
@@ -115,10 +131,11 @@ func (b *DistributedBackend) PutGraphScoped(ctx context.Context, hash string, g 
 		Language:    meta.Language,
 		Package:     meta.Package,
 		Repo:        meta.Repo,
-		ContentHash: Hash(data),
+		Options:     meta.Options, // Store options for cache key reconstruction
+		ContentHash: Hash(jsonData),
 		NodeCount:   g.NodeCount(),
 		EdgeCount:   g.EdgeCount(),
-		Data:        data,
+		Data:        dataDoc, // Store as BSON document
 	}
 
 	// For ScopeUser, userID is required
@@ -139,9 +156,8 @@ func (b *DistributedBackend) PutGraphScoped(ctx context.Context, hash string, g 
 }
 
 func (b *DistributedBackend) GetLayout(ctx context.Context, hash string) ([]byte, bool, error) {
-	// Use render entry mechanism with special prefix for layouts
-	layoutKey := "layout:" + hash
-	entry, err := b.index.GetRenderEntry(ctx, layoutKey)
+	// hash already includes scope prefix from Keys.LayoutCacheKey (e.g., "layout:global:..." or "layout:user:...")
+	entry, err := b.index.GetRenderEntry(ctx, hash)
 	if err != nil || entry == nil || entry.IsExpired() {
 		return nil, false, nil
 	}
@@ -155,25 +171,28 @@ func (b *DistributedBackend) GetLayout(ctx context.Context, hash string) ([]byte
 	return data, true, nil
 }
 
-func (b *DistributedBackend) PutLayout(ctx context.Context, hash string, data []byte, ttl time.Duration) error {
-	layoutKey := "layout:" + hash
+func (b *DistributedBackend) PutLayout(ctx context.Context, hash string, data []byte, ttl time.Duration, scope Scope, userID string) error {
+	// hash already includes scope prefix from Keys.LayoutCacheKey
 
 	// Store as artifact
-	artifactID, err := b.docstore.StoreArtifact(ctx, "layout", hash+".json", data)
+	// Note: We use "layout" as renderID and hash as filename to namespace it,
+	// but we pass userID to enforce ownership/scoping in the underlying store.
+	artifactID, err := b.docstore.StoreArtifact(ctx, "layout", hash+".json", data, userID)
 	if err != nil {
 		return err
 	}
 
 	// Update index
-	return b.index.SetRenderEntry(ctx, layoutKey, &CacheEntry{
+	return b.index.SetRenderEntry(ctx, hash, &CacheEntry{
 		DocumentID: artifactID,
 		ExpiresAt:  time.Now().Add(ttl),
 	})
 }
 
 func (b *DistributedBackend) GetRender(ctx context.Context, hash, format string) ([]byte, bool, error) {
-	renderKey := "render:" + hash + ":" + format
-	entry, err := b.index.GetRenderEntry(ctx, renderKey)
+	// hash already includes scope and format prefix from Keys.ArtifactCacheKey
+	// (e.g., "artifact:global:..." or "artifact:user:...")
+	entry, err := b.index.GetRenderEntry(ctx, hash)
 	if err != nil || entry == nil || entry.IsExpired() {
 		return nil, false, nil
 	}
@@ -186,34 +205,35 @@ func (b *DistributedBackend) GetRender(ctx context.Context, hash, format string)
 	return data, true, nil
 }
 
-func (b *DistributedBackend) PutRender(ctx context.Context, hash, format string, data []byte, ttl time.Duration) error {
-	renderKey := "render:" + hash + ":" + format
+func (b *DistributedBackend) PutRender(ctx context.Context, hash, format string, data []byte, ttl time.Duration, scope Scope, userID string) error {
+	// hash already includes scope and format prefix from Keys.ArtifactCacheKey
 
 	// Store as artifact
-	artifactID, err := b.docstore.StoreArtifact(ctx, "render", hash+"."+format, data)
+	// We use "render" as renderID prefix for cache entries
+	artifactID, err := b.docstore.StoreArtifact(ctx, "render", hash+"."+format, data, userID)
 	if err != nil {
 		return err
 	}
 
 	// Update index
-	return b.index.SetRenderEntry(ctx, renderKey, &CacheEntry{
+	return b.index.SetRenderEntry(ctx, hash, &CacheEntry{
 		DocumentID: artifactID,
 		ExpiresAt:  time.Now().Add(ttl),
 	})
 }
 
 func (b *DistributedBackend) GetHTTP(ctx context.Context, namespace, key string) ([]byte, bool, error) {
-	cacheKey := namespace + HashKey(key)
+	cacheKey := namespace + ":" + HashKey(key)
 	return b.httpCache.GetHTTP(ctx, cacheKey)
 }
 
 func (b *DistributedBackend) SetHTTP(ctx context.Context, namespace, key string, data []byte, ttl time.Duration) error {
-	cacheKey := namespace + HashKey(key)
+	cacheKey := namespace + ":" + HashKey(key)
 	return b.httpCache.SetHTTP(ctx, cacheKey, data, ttl)
 }
 
 func (b *DistributedBackend) DeleteHTTP(ctx context.Context, namespace, key string) error {
-	cacheKey := namespace + HashKey(key)
+	cacheKey := namespace + ":" + HashKey(key)
 	return b.httpCache.DeleteHTTP(ctx, cacheKey)
 }
 
@@ -248,11 +268,6 @@ func (b *DistributedBackend) RateLimiter() RateLimiter {
 	return b.limiter
 }
 
-// OperationStore returns the underlying OperationStore for operation logging.
-func (b *DistributedBackend) OperationStore() OperationStore {
-	return b.opStore
-}
-
 // Ping checks if the backend services are reachable.
 // Returns an error if any dependency (Redis or MongoDB) is unavailable.
 func (b *DistributedBackend) Ping(ctx context.Context) error {
@@ -272,19 +287,6 @@ func (b *DistributedBackend) CheckRateLimit(ctx context.Context, userID string, 
 		return nil // Rate limiting disabled
 	}
 	return b.limiter.CheckRateLimit(ctx, userID, opType, quota)
-}
-
-// RecordOperation logs an operation and increments rate limit counter.
-func (b *DistributedBackend) RecordOperation(ctx context.Context, op *Operation) error {
-	if b.opStore != nil {
-		if err := b.opStore.RecordOperation(ctx, op); err != nil {
-			return err
-		}
-	}
-	if b.limiter != nil {
-		return b.limiter.IncrementRateLimit(ctx, op.UserID, op.Type)
-	}
-	return nil
 }
 
 // Ensure DistributedBackend implements Backend

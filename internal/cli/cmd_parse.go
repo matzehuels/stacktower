@@ -36,7 +36,7 @@ Examples:
 
 	cmd.PersistentFlags().IntVar(&opts.MaxDepth, "max-depth", opts.MaxDepth, "maximum dependency depth")
 	cmd.PersistentFlags().IntVar(&opts.MaxNodes, "max-nodes", opts.MaxNodes, "maximum nodes to fetch")
-	cmd.PersistentFlags().BoolVar(&opts.Enrich, "enrich", opts.Enrich, "enrich with GitHub metadata (requires GITHUB_TOKEN)")
+	cmd.PersistentFlags().BoolVar(&opts.SkipEnrich, "skip-enrich", opts.SkipEnrich, "skip metadata enrichment (GitHub descriptions, etc.)")
 	cmd.PersistentFlags().BoolVar(&opts.Normalize, "normalize", opts.Normalize, "apply DAG normalization")
 	cmd.PersistentFlags().StringVarP(&opts.Output, "output", "o", "", "output file (stdout if empty)")
 	cmd.PersistentFlags().StringVarP(&opts.Name, "name", "n", "", "project name (for manifest parsing)")

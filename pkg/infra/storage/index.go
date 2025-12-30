@@ -2,7 +2,6 @@ package storage
 
 import (
 	"context"
-	"fmt"
 	"time"
 )
 
@@ -103,23 +102,61 @@ type RateLimitStatus struct {
 // =============================================================================
 // Key Generation Utilities
 // =============================================================================
-
-// GraphCacheKey generates a cache key for a dependency graph.
-func GraphCacheKey(scope Scope, userID, language, packageOrManifest string, opts GraphOptions) string {
-	optsHash := OptionsHash(opts)
-	if scope == ScopeGlobal {
-		return fmt.Sprintf("graph:global:%s:%s:%s", language, packageOrManifest, optsHash)
-	}
-	return fmt.Sprintf("graph:user:%s:%s:%s:%s", userID, language, packageOrManifest, optsHash)
-}
-
-// RenderCacheKey generates a cache key for a user's render.
-func RenderCacheKey(userID, graphHash string, layoutOpts LayoutOptions) string {
-	optsHash := OptionsHash(layoutOpts)
-	return fmt.Sprintf("render:user:%s:%s:%s", userID, graphHash[:16], optsHash)
-}
+//
+// Note: Key generation has been consolidated into keys.go.
+// Use storage.Keys.* methods for all key generation.
+// The functions below are deprecated wrappers for backward compatibility.
 
 // OptionsHash computes a short hash of options for cache keys.
+// This is the canonical implementation used by KeyBuilder.
+//
+// Security note: 16 hex chars (64 bits) is intentionally short since this is
+// only used for cache key differentiation. A collision just causes a cache miss
+// or serving cached data with slightly different options - not a security issue.
 func OptionsHash(opts interface{}) string {
-	return HashJSON(opts)[:16] // hex hash, 8 bytes = 16 chars
+	return HashJSON(opts)[:16]
 }
+
+// =============================================================================
+// Memory HTTP Cache (for standalone/development mode)
+// =============================================================================
+
+// MemoryHTTPCache is a simple in-memory HTTP cache.
+type MemoryHTTPCache struct {
+	entries map[string]*memoryHTTPEntry
+}
+
+type memoryHTTPEntry struct {
+	data      []byte
+	expiresAt time.Time
+}
+
+// NewMemoryHTTPCache creates a new in-memory HTTP cache.
+func NewMemoryHTTPCache() *MemoryHTTPCache {
+	return &MemoryHTTPCache{
+		entries: make(map[string]*memoryHTTPEntry),
+	}
+}
+
+func (c *MemoryHTTPCache) GetHTTP(ctx context.Context, key string) ([]byte, bool, error) {
+	entry, ok := c.entries[key]
+	if !ok || time.Now().After(entry.expiresAt) {
+		return nil, false, nil
+	}
+	return entry.data, true, nil
+}
+
+func (c *MemoryHTTPCache) SetHTTP(ctx context.Context, key string, data []byte, ttl time.Duration) error {
+	c.entries[key] = &memoryHTTPEntry{
+		data:      data,
+		expiresAt: time.Now().Add(ttl),
+	}
+	return nil
+}
+
+func (c *MemoryHTTPCache) DeleteHTTP(ctx context.Context, key string) error {
+	delete(c.entries, key)
+	return nil
+}
+
+var _ HTTPCache = (*MemoryHTTPCache)(nil)

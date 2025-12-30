@@ -81,6 +81,7 @@ type Server struct {
 	allowOrigins      []string
 	secureCookies     bool // Use Secure flag on cookies (should be true in production)
 	trustProxyHeaders bool // Trust X-Forwarded-For and X-Real-IP headers (only behind trusted proxy)
+	noAuth            bool // Bypass authentication entirely (standalone mode only)
 	router            chi.Router
 	http              *http.Server
 }
@@ -171,6 +172,13 @@ func WithTrustProxyHeaders(trust bool) Option {
 	return func(s *Server) { s.trustProxyHeaders = trust }
 }
 
+// WithNoAuth disables authentication entirely.
+// All requests are treated as coming from a mock "local" user.
+// ONLY use this for local standalone development - never in production!
+func WithNoAuth(noAuth bool) Option {
+	return func(s *Server) { s.noAuth = noAuth }
+}
+
 // New creates a new API server with the given options.
 func New(q queue.Queue, backend *storage.DistributedBackend, opts ...Option) *Server {
 	srv := &Server{
@@ -226,11 +234,24 @@ func (s *Server) setupRoutes() chi.Router {
 	r.Use(requestID)
 	r.Use(s.apiVersionHeader)
 	r.Use(s.cors)
+	r.Use(s.csrfProtection) // Validate Origin/Referer for state-changing requests
 	r.Use(s.logging)
 
 	// Health checks (no auth, no timeout)
 	r.Get("/health", s.handleHealth)            // Liveness probe
 	r.Get("/health/ready", s.handleHealthReady) // Readiness probe
+
+	// Public stats (no auth required - for landing page)
+	r.Get("/api/v1/stats", s.handlePublicStats)
+
+	// Supported integrations (no auth required - for landing page)
+	r.Get("/api/v1/integrations", s.handleIntegrations)
+
+	// Package suggestions (no auth required - for autocomplete)
+	r.Get("/api/v1/packages/suggestions", s.handlePackageSuggestions)
+
+	// Explore (public discovery, optionalAuth for in_library field)
+	r.With(s.optionalAuth).Get("/api/v1/explore", s.handleExplore)
 
 	// API v1 routes
 	r.Route("/api/v1", func(r chi.Router) {
@@ -256,15 +277,23 @@ func (s *Server) setupRoutes() chi.Router {
 		// Render routes
 		r.Route("/render", func(r chi.Router) {
 			r.With(s.requireAuth, s.rateLimitFor(storage.OpTypeRender)).Post("/", s.handleRender)
-			r.With(s.requireAuth).Get("/{renderID}", s.handleGetRender)
+			r.With(s.optionalAuth).Get("/{renderID}", s.handleGetRender) // Allow unauthenticated access to public/canonical renders
 			r.With(s.requireAuth).Delete("/{renderID}", s.handleDeleteRender)
 		})
 
-		// History
-		r.With(s.requireAuth).Get("/history", s.handleHistory)
+		// Library (user's saved towers)
+		r.Route("/library", func(r chi.Router) {
+			r.Use(s.requireAuth)
+			r.Get("/", s.handleLibrary)
+			r.Put("/{language}/{package}", s.handleSaveToLibrary)
+			r.Delete("/{language}/{package}", s.handleRemoveFromLibrary)
+		})
 
 		// Artifacts
-		r.With(s.requireAuth).Get("/artifacts/{artifactID}", s.handleGetArtifact)
+		r.With(s.optionalAuth).Get("/artifacts/{artifactID}", s.handleGetArtifact)
+
+		// Graphs (dependency data)
+		r.With(s.optionalAuth).Get("/graphs/{graphID}", s.handleGetGraph)
 
 		// Jobs (require auth to prevent information leakage)
 		r.Route("/jobs", func(r chi.Router) {

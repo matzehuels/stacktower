@@ -19,7 +19,7 @@ func NewGitHubCmd() *cobra.Command {
 		Long: `Authenticate with GitHub and interact with your repositories.
 
 Use the device flow to authenticate without needing a web browser callback.
-Your session is stored in ~/.config/stacktower/sessions/`,
+Your session is stored in ~/.stacktower/sessions/`,
 	}
 
 	cmd.AddCommand(newGitHubLoginCmd())

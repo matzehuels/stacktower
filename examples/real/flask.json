@@ -1,83 +1,72 @@
 {
   "nodes": [
     {
-      "id": "importlib-metadata",
+      "id": "blinker",
+      "row": 1,
       "meta": {
-        "description": "Read metadata from Python packages",
+        "author": "Jason Kirtland",
+        "description": "Fast, simple object-to-object and broadcast signaling",
+        "license": "MIT License",
         "repo_archived": false,
         "repo_language": "Python",
-        "repo_last_commit": "2025-12-21",
-        "repo_last_release": "2025-12-21",
-        "repo_maintainers": [
-          "jaraco",
-          "warsaw",
-          "abravalheri",
-          "jherland",
-          "sjma3"
-        ],
-        "repo_owner": "python",
-        "repo_stars": 138,
-        "repo_url": "https://github.com/python/importlib_metadata",
-        "version": "8.7.1"
-      }
-    },
-    {
-      "id": "itsdangerous",
-      "meta": {
-        "description": "Safely pass data to untrusted environments and back.",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-06-14",
-        "repo_last_release": "2024-04-16",
+        "repo_last_commit": "2025-11-19",
+        "repo_last_release": "2024-11-08",
         "repo_maintainers": [
           "davidism",
-          "mitsuhiko"
+          "jek",
+          "Secrus",
+          "pgjones"
         ],
-        "repo_owner": "pallets",
-        "repo_stars": 3093,
+        "repo_owner": "pallets-eco",
+        "repo_stars": 2010,
         "repo_topics": [
-          "hmac",
-          "itsdangerous",
-          "pallets",
+          "blinker",
           "python",
-          "security",
-          "serialization"
+          "signals"
         ],
-        "repo_url": "https://github.com/pallets/itsdangerous",
-        "version": "2.2.0"
+        "repo_url": "https://github.com/pallets-eco/blinker",
+        "version": "1.9.0"
       }
     },
     {
-      "id": "werkzeug",
+      "id": "blinker_sub_2",
+      "row": 2,
+      "kind": "subdivider",
+      "master_id": "blinker"
+    },
+    {
+      "id": "click",
+      "row": 1,
       "meta": {
-        "description": "The comprehensive WSGI web application library.",
+        "description": "Composable command line interface toolkit",
         "repo_archived": false,
         "repo_language": "Python",
-        "repo_last_commit": "2025-12-02",
-        "repo_last_release": "2025-11-29",
+        "repo_last_commit": "2025-12-24",
+        "repo_last_release": "2025-11-15",
         "repo_maintainers": [
+          "davidism",
           "mitsuhiko",
-          "davidism",
-          "untitaker",
-          "DasIch"
+          "Rowlando13",
+          "untitaker"
         ],
         "repo_owner": "pallets",
-        "repo_stars": 6825,
+        "repo_stars": 17080,
         "repo_topics": [
-          "http",
+          "cli",
+          "click",
           "pallets",
-          "python",
-          "werkzeug",
-          "wsgi"
+          "python"
         ],
-        "repo_url": "https://github.com/pallets/werkzeug",
-        "version": "3.1.4"
+        "repo_url": "https://github.com/pallets/click",
+        "version": "8.3.1"
       }
     },
     {
       "id": "colorama",
+      "row": 2,
       "meta": {
         "description": "Cross-platform colored terminal text.",
+        "license": "BSD License",
         "repo_archived": false,
         "repo_language": "Python",
         "repo_last_commit": "2025-07-09",
@@ -92,81 +81,6 @@
         "repo_stars": 3758,
         "repo_url": "https://github.com/tartley/colorama",
         "version": "0.4.6"
-      }
-    },
-    {
-      "id": "jinja2",
-      "meta": {
-        "description": "A very fast and expressive template engine.",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-06-14",
-        "repo_last_release": "2025-03-05",
-        "repo_maintainers": [
-          "mitsuhiko",
-          "davidism",
-          "untitaker"
-        ],
-        "repo_owner": "pallets",
-        "repo_stars": 11342,
-        "repo_topics": [
-          "jinja",
-          "jinja2",
-          "pallets",
-          "python",
-          "template-engine",
-          "templates"
-        ],
-        "repo_url": "https://github.com/pallets/jinja",
-        "version": "3.1.6"
-      }
-    },
-    {
-      "id": "markupsafe",
-      "meta": {
-        "description": "Safely add untrusted strings to HTML/XML markup.",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-09-27",
-        "repo_last_release": "2025-09-27",
-        "repo_maintainers": [
-          "davidism",
-          "mitsuhiko"
-        ],
-        "repo_owner": "pallets",
-        "repo_stars": 682,
-        "repo_topics": [
-          "html",
-          "html-escape",
-          "jinja",
-          "markupsafe",
-          "pallets",
-          "python",
-          "template-engine"
-        ],
-        "repo_url": "https://github.com/pallets/markupsafe",
-        "version": "3.0.3"
-      }
-    },
-    {
-      "id": "zipp",
-      "meta": {
-        "description": "Backport of pathlib-compatible object wrapper for zip files",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-10-19",
-        "repo_last_release": "2025-06-08",
-        "repo_maintainers": [
-          "jaraco",
-          "DimitriPapadopoulos",
-          "layday",
-          "Avasam",
-          "barneygale"
-        ],
-        "repo_owner": "jaraco",
-        "repo_stars": 67,
-        "repo_url": "https://github.com/jaraco/zipp",
-        "version": "3.23.0"
       }
     },
     {
@@ -185,7 +99,7 @@
           "greyli"
         ],
         "repo_owner": "pallets",
-        "repo_stars": 70955,
+        "repo_stars": 70971,
         "repo_topics": [
           "flask",
           "jinja",
@@ -200,55 +114,166 @@
       }
     },
     {
-      "id": "blinker",
+      "id": "importlib-metadata",
+      "row": 1,
       "meta": {
-        "author": "Jason Kirtland",
-        "description": "Fast, simple object-to-object and broadcast signaling",
+        "description": "Read metadata from Python packages",
         "repo_archived": false,
         "repo_language": "Python",
-        "repo_last_commit": "2025-11-19",
-        "repo_last_release": "2024-11-08",
+        "repo_last_commit": "2025-12-26",
+        "repo_last_release": "2025-12-21",
         "repo_maintainers": [
-          "davidism",
-          "jek",
-          "Secrus",
-          "pgjones"
+          "jaraco",
+          "warsaw",
+          "abravalheri",
+          "jherland",
+          "sjma3"
         ],
-        "repo_owner": "pallets-eco",
-        "repo_stars": 2008,
-        "repo_topics": [
-          "blinker",
-          "python",
-          "signals"
-        ],
-        "repo_url": "https://github.com/pallets-eco/blinker",
-        "version": "1.9.0"
+        "repo_owner": "python",
+        "repo_stars": 138,
+        "repo_url": "https://github.com/python/importlib_metadata",
+        "version": "8.7.1"
       }
     },
     {
-      "id": "click",
+      "id": "itsdangerous",
+      "row": 1,
       "meta": {
-        "description": "Composable command line interface toolkit",
+        "description": "Safely pass data to untrusted environments and back.",
+        "license": "BSD License",
         "repo_archived": false,
         "repo_language": "Python",
-        "repo_last_commit": "2025-12-10",
-        "repo_last_release": "2025-11-15",
+        "repo_last_commit": "2025-06-14",
+        "repo_last_release": "2024-04-16",
         "repo_maintainers": [
           "davidism",
+          "mitsuhiko"
+        ],
+        "repo_owner": "pallets",
+        "repo_stars": 3095,
+        "repo_topics": [
+          "hmac",
+          "itsdangerous",
+          "pallets",
+          "python",
+          "security",
+          "serialization"
+        ],
+        "repo_url": "https://github.com/pallets/itsdangerous",
+        "version": "2.2.0"
+      }
+    },
+    {
+      "id": "itsdangerous_sub_2",
+      "row": 2,
+      "kind": "subdivider",
+      "master_id": "itsdangerous"
+    },
+    {
+      "id": "jinja2",
+      "row": 1,
+      "meta": {
+        "description": "A very fast and expressive template engine.",
+        "license": "BSD License",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-06-14",
+        "repo_last_release": "2025-03-05",
+        "repo_maintainers": [
           "mitsuhiko",
-          "Rowlando13",
+          "davidism",
           "untitaker"
         ],
         "repo_owner": "pallets",
-        "repo_stars": 17074,
+        "repo_stars": 11348,
         "repo_topics": [
-          "cli",
-          "click",
+          "jinja",
+          "jinja2",
           "pallets",
-          "python"
+          "python",
+          "template-engine",
+          "templates"
         ],
-        "repo_url": "https://github.com/pallets/click",
-        "version": "8.3.1"
+        "repo_url": "https://github.com/pallets/jinja",
+        "version": "3.1.6"
+      }
+    },
+    {
+      "id": "markupsafe",
+      "row": 2,
+      "meta": {
+        "description": "Safely add untrusted strings to HTML/XML markup.",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-09-27",
+        "repo_last_release": "2025-09-27",
+        "repo_maintainers": [
+          "davidism",
+          "mitsuhiko"
+        ],
+        "repo_owner": "pallets",
+        "repo_stars": 685,
+        "repo_topics": [
+          "html",
+          "html-escape",
+          "jinja",
+          "markupsafe",
+          "pallets",
+          "python",
+          "template-engine"
+        ],
+        "repo_url": "https://github.com/pallets/markupsafe",
+        "version": "3.0.3"
+      }
+    },
+    {
+      "id": "werkzeug",
+      "row": 1,
+      "meta": {
+        "description": "The comprehensive WSGI web application library.",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-12-02",
+        "repo_last_release": "2025-11-29",
+        "repo_maintainers": [
+          "mitsuhiko",
+          "davidism",
+          "untitaker",
+          "DasIch"
+        ],
+        "repo_owner": "pallets",
+        "repo_stars": 6827,
+        "repo_topics": [
+          "http",
+          "pallets",
+          "python",
+          "werkzeug",
+          "wsgi"
+        ],
+        "repo_url": "https://github.com/pallets/werkzeug",
+        "version": "3.1.4"
+      }
+    },
+    {
+      "id": "zipp",
+      "row": 2,
+      "meta": {
+        "description": "Backport of pathlib-compatible object wrapper for zip files",
+        "repo_archived": false,
+        "repo_language": "Python",
+        "repo_last_commit": "2025-10-19",
+        "repo_last_release": "2025-06-08",
+        "repo_maintainers": [
+          "jaraco",
+          "DimitriPapadopoulos",
+          "layday",
+          "Avasam",
+          "barneygale"
+        ],
+        "repo_owner": "jaraco",
+        "repo_stars": 67,
+        "repo_url": "https://github.com/jaraco/zipp",
+        "version": "3.23.0"
       }
     }
   ],
@@ -275,18 +300,18 @@
     },
     {
       "from": "flask",
-      "to": "markupsafe"
-    },
-    {
-      "from": "flask",
       "to": "werkzeug"
     },
     {
-      "from": "werkzeug",
-      "to": "markupsafe"
+      "from": "importlib-metadata",
+      "to": "zipp"
     },
     {
       "from": "jinja2",
+      "to": "markupsafe"
+    },
+    {
+      "from": "werkzeug",
       "to": "markupsafe"
     },
     {
@@ -294,8 +319,12 @@
       "to": "colorama"
     },
     {
-      "from": "importlib-metadata",
-      "to": "zipp"
+      "from": "itsdangerous",
+      "to": "itsdangerous_sub_2"
+    },
+    {
+      "from": "blinker",
+      "to": "blinker_sub_2"
     }
   ]
 }

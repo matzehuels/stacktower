@@ -78,11 +78,11 @@ func runParseGitHub(ctx context.Context, args []string, opts *ParseCmdOpts, publ
 	var selectedManifest github.ManifestFile
 
 	if len(args) == 1 {
-		parts := strings.SplitN(args[0], "/", 2)
-		if len(parts) != 2 {
-			return fmt.Errorf("invalid repo format, use owner/repo")
+		var err error
+		owner, repo, err = github.ParseRepoRef(args[0])
+		if err != nil {
+			return err
 		}
-		owner, repo = parts[0], parts[1]
 		term.PrintInfo("Repository: %s", term.StyleHighlight.Render(owner+"/"+repo))
 	} else {
 		spinner := term.NewSpinner("Fetching and scanning repositories...")

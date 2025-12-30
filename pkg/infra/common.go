@@ -80,7 +80,10 @@ func (p *Progress) Elapsed() time.Duration {
 // ctxKey is the type for context keys used in this package.
 type ctxKey int
 
-const loggerKey ctxKey = 0
+const (
+	loggerKey  ctxKey = 0
+	traceIDKey ctxKey = 1
+)
 
 // WithLogger returns a new context with the given logger attached.
 func WithLogger(ctx context.Context, l *Logger) context.Context {
@@ -93,6 +96,35 @@ func LoggerFromContext(ctx context.Context) *Logger {
 		return l
 	}
 	return DefaultLogger()
+}
+
+// =============================================================================
+// Trace ID Support
+// =============================================================================
+
+// WithTraceID returns a new context with the trace ID attached.
+// The trace ID is used for correlating logs across services (API → Worker).
+func WithTraceID(ctx context.Context, traceID string) context.Context {
+	return context.WithValue(ctx, traceIDKey, traceID)
+}
+
+// TraceIDFromContext retrieves the trace ID from ctx.
+// Returns empty string if no trace ID is set.
+func TraceIDFromContext(ctx context.Context) string {
+	if id, ok := ctx.Value(traceIDKey).(string); ok {
+		return id
+	}
+	return ""
+}
+
+// LoggerWithTraceID returns a logger with the trace ID field pre-set.
+// If no trace ID is in the context, returns the logger unchanged.
+func LoggerWithTraceID(ctx context.Context, l *Logger) *Logger {
+	traceID := TraceIDFromContext(ctx)
+	if traceID == "" {
+		return l
+	}
+	return l.With("trace_id", traceID)
 }
 
 // =============================================================================

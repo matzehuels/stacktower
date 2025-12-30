@@ -1,0 +1,1064 @@
+openapi: 3.1.0
+info:
+  title: Stacktower API
+  description: |
+    REST API for the Stacktower dependency visualization platform.
+    
+    ## Authentication
+    
+    Authentication is handled via GitHub OAuth. Initiate the flow by redirecting 
+    to `/api/v1/auth/github`. After successful authentication, a session cookie 
+    is set that authenticates subsequent requests.
+    
+    ## Rate Limiting
+    
+    API endpoints are rate-limited per user:
+    - Parse: 100 requests/hour
+    - Layout: 200 requests/hour  
+    - Render: 100 requests/hour
+    
+    When rate limited, the API returns `429 Too Many Requests`.
+    
+    ## Async Jobs
+    
+    Parse, layout, and render operations are processed asynchronously. The API 
+    returns a `job_id` that can be polled via `GET /api/v1/jobs/{jobID}` to 
+    check status and retrieve results.
+    
+  version: 1.0.0
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  contact:
+    name: Stacktower
+    url: https://github.com/matzehuels/stacktower
+
+servers:
+  - url: http://localhost:8080
+    description: Local development
+  - url: https://api.stacktower.dev
+    description: Production
+
+tags:
+  - name: auth
+    description: Authentication endpoints
+  - name: parse
+    description: Dependency parsing
+  - name: layout
+    description: Layout computation
+  - name: render
+    description: Full rendering pipeline
+  - name: visualize
+    description: Visualization from layout
+  - name: jobs
+    description: Async job management
+  - name: history
+    description: User render history
+  - name: repos
+    description: GitHub repository integration
+  - name: health
+    description: Health checks
+
+paths:
+  /health:
+    get:
+      summary: Liveness check
+      description: Simple health check for liveness probes
+      tags: [health]
+      responses:
+        '200':
+          description: Server is alive
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /health/ready:
+    get:
+      summary: Readiness check
+      description: Checks if all dependencies (Redis, MongoDB) are reachable
+      tags: [health]
+      responses:
+        '200':
+          description: Server is ready
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '503':
+          description: Service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthErrorResponse'
+
+  /api/v1/auth/github:
+    get:
+      summary: Initiate GitHub OAuth
+      description: Redirects to GitHub for OAuth authorization
+      tags: [auth]
+      responses:
+        '307':
+          description: Redirect to GitHub
+        '503':
+          description: OAuth not configured
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/auth/github/callback:
+    get:
+      summary: GitHub OAuth callback
+      description: Handles the OAuth callback from GitHub
+      tags: [auth]
+      parameters:
+        - name: code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: state
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '307':
+          description: Redirect to frontend with session cookie
+        '400':
+          description: Invalid state or code
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/auth/me:
+    get:
+      summary: Get current user
+      description: Returns the authenticated user's information
+      tags: [auth]
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: User information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/v1/auth/logout:
+    post:
+      summary: Logout
+      description: Invalidates the current session
+      tags: [auth]
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: Logged out successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: logged out
+
+  /api/v1/parse:
+    post:
+      summary: Parse dependencies
+      description: |
+        Parses dependencies from a package registry or manifest file.
+        Returns immediately with a job_id for async processing.
+      tags: [parse]
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParseRequest'
+      responses:
+        '200':
+          description: Cache hit - returns parsed graph directly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParseResponse'
+        '202':
+          description: Job queued for processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParseResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+
+  /api/v1/layout:
+    post:
+      summary: Compute layout
+      description: |
+        Computes visualization layout from a dependency graph.
+        Returns immediately with a job_id for async processing.
+      tags: [layout]
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LayoutRequest'
+      responses:
+        '202':
+          description: Job queued for processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LayoutResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+
+  /api/v1/visualize:
+    post:
+      summary: Render from layout
+      description: |
+        Renders visualization from a computed layout. This runs synchronously
+        as it's CPU-only with no external dependencies.
+      tags: [visualize]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VisualizeRequest'
+      responses:
+        '200':
+          description: Visualization complete
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VisualizeResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+
+  /api/v1/render:
+    post:
+      summary: Full render pipeline
+      description: |
+        Runs the complete parse → layout → visualize pipeline.
+        Returns immediately with a job_id for async processing.
+      tags: [render]
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RenderRequest'
+      responses:
+        '200':
+          description: Cache hit - returns render result directly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RenderResponse'
+        '202':
+          description: Job queued for processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RenderResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+
+  /api/v1/render/{renderID}:
+    get:
+      summary: Get render result
+      description: Retrieves a completed render by ID
+      tags: [render]
+      security:
+        - cookieAuth: []
+      parameters:
+        - $ref: '#/components/parameters/renderID'
+      responses:
+        '200':
+          description: Render result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RenderResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      summary: Delete render
+      description: Deletes a render and its artifacts
+      tags: [render]
+      security:
+        - cookieAuth: []
+      parameters:
+        - $ref: '#/components/parameters/renderID'
+      responses:
+        '200':
+          description: Render deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/v1/jobs:
+    get:
+      summary: List jobs
+      description: Lists the current user's jobs with optional status filter
+      tags: [jobs]
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, processing, completed, failed]
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: List of jobs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/v1/jobs/{jobID}:
+    get:
+      summary: Get job status
+      description: Returns the status and result of a job
+      tags: [jobs]
+      security:
+        - cookieAuth: []
+      parameters:
+        - $ref: '#/components/parameters/jobID'
+      responses:
+        '200':
+          description: Job status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      summary: Cancel/delete job
+      description: Cancels a pending job or deletes a completed job
+      tags: [jobs]
+      security:
+        - cookieAuth: []
+      parameters:
+        - $ref: '#/components/parameters/jobID'
+      responses:
+        '200':
+          description: Job cancelled or deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/v1/history:
+    get:
+      summary: Get render history
+      description: Lists the user's render history
+      tags: [history]
+      security:
+        - cookieAuth: []
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      responses:
+        '200':
+          description: Render history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoryResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/v1/artifacts/{artifactID}:
+    get:
+      summary: Download artifact
+      description: Downloads a rendered artifact (SVG, PNG, or PDF)
+      tags: [render]
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: artifactID
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Artifact data
+          content:
+            image/svg+xml: {}
+            image/png: {}
+            application/pdf: {}
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/v1/repos:
+    get:
+      summary: List repositories
+      description: Lists the authenticated user's GitHub repositories
+      tags: [repos]
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: List of repositories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Repository'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/v1/repos/{owner}/{repo}/manifests:
+    get:
+      summary: Detect manifests
+      description: Detects manifest files in a repository
+      tags: [repos]
+      security:
+        - cookieAuth: []
+      parameters:
+        - $ref: '#/components/parameters/owner'
+        - $ref: '#/components/parameters/repo'
+      responses:
+        '200':
+          description: Detected manifests
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ManifestFile'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/v1/repos/{owner}/{repo}/analyze:
+    post:
+      summary: Analyze repository
+      description: Analyzes dependencies from a repository manifest
+      tags: [repos]
+      security:
+        - cookieAuth: []
+      parameters:
+        - $ref: '#/components/parameters/owner'
+        - $ref: '#/components/parameters/repo'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [manifest_path]
+              properties:
+                manifest_path:
+                  type: string
+                  description: Path to manifest file in repository
+                formats:
+                  type: array
+                  items:
+                    type: string
+                    enum: [svg, png, pdf]
+      responses:
+        '202':
+          description: Analysis job queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: session
+
+  parameters:
+    renderID:
+      name: renderID
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    jobID:
+      name: jobID
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    owner:
+      name: owner
+      in: path
+      required: true
+      schema:
+        type: string
+    repo:
+      name: repo
+      in: path
+      required: true
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        default: 20
+        maximum: 100
+    offset:
+      name: offset
+      in: query
+      schema:
+        type: integer
+        default: 0
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Access denied
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    RateLimited:
+      description: Rate limit exceeded
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+  schemas:
+    ErrorResponse:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          enum: [VALIDATION_ERROR, UNAUTHORIZED, FORBIDDEN, NOT_FOUND, RATE_LIMITED, INTERNAL_ERROR, SERVICE_UNAVAILABLE, BAD_REQUEST]
+        message:
+          type: string
+        details:
+          type: object
+
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [ok, ready]
+        time:
+          type: string
+          format: date-time
+
+    HealthErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: unhealthy
+        check:
+          type: string
+        error:
+          type: string
+
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        login:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        avatar_url:
+          type: string
+
+    ParseRequest:
+      type: object
+      required: [language]
+      properties:
+        language:
+          type: string
+          description: Programming language (python, javascript, rust, etc.)
+        package:
+          type: string
+          description: Package name (mutually exclusive with manifest)
+        manifest:
+          type: string
+          description: Manifest file content (mutually exclusive with package)
+        manifest_filename:
+          type: string
+          description: Original manifest filename (required with manifest)
+        max_depth:
+          type: integer
+          default: 10
+        max_nodes:
+          type: integer
+          default: 5000
+        normalize:
+          type: boolean
+          default: true
+        enrich:
+          type: boolean
+          default: true
+        refresh:
+          type: boolean
+          default: false
+
+    ParseResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [pending, completed]
+        job_id:
+          type: string
+        graph:
+          type: string
+          format: byte
+        node_count:
+          type: integer
+        edge_count:
+          type: integer
+        cached:
+          type: boolean
+        error:
+          type: string
+
+    LayoutRequest:
+      type: object
+      properties:
+        graph:
+          type: string
+          format: byte
+          description: Graph JSON (mutually exclusive with graph_id)
+        graph_id:
+          type: string
+          description: Reference to stored graph (mutually exclusive with graph)
+        viz_type:
+          type: string
+          enum: [tower, nodelink]
+          default: tower
+        width:
+          type: number
+          default: 800
+        height:
+          type: number
+          default: 600
+        ordering:
+          type: string
+          enum: [optimal, barycentric]
+          default: optimal
+        merge:
+          type: boolean
+          default: true
+        randomize:
+          type: boolean
+          default: true
+        seed:
+          type: integer
+          default: 42
+
+    LayoutResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [pending, completed]
+        job_id:
+          type: string
+        layout:
+          type: string
+          format: byte
+        cached:
+          type: boolean
+        error:
+          type: string
+
+    VisualizeRequest:
+      type: object
+      required: [layout]
+      properties:
+        layout:
+          type: string
+          format: byte
+          description: Layout JSON
+        graph:
+          type: string
+          format: byte
+          description: Optional graph for popups/nebraska
+        viz_type:
+          type: string
+          enum: [tower, nodelink]
+        formats:
+          type: array
+          items:
+            type: string
+            enum: [svg, png, pdf]
+          default: [svg]
+        style:
+          type: string
+          enum: [simple, handdrawn]
+          default: handdrawn
+        show_edges:
+          type: boolean
+          default: false
+        popups:
+          type: boolean
+          default: true
+
+    VisualizeResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [completed]
+        artifacts:
+          type: object
+          additionalProperties:
+            type: string
+            description: Base64-encoded artifact data
+        cached:
+          type: boolean
+        error:
+          type: string
+
+    RenderRequest:
+      type: object
+      required: [language]
+      properties:
+        language:
+          type: string
+        package:
+          type: string
+        manifest:
+          type: string
+        manifest_filename:
+          type: string
+        max_depth:
+          type: integer
+          default: 10
+        max_nodes:
+          type: integer
+          default: 5000
+        normalize:
+          type: boolean
+          default: true
+        viz_type:
+          type: string
+          enum: [tower, nodelink]
+          default: tower
+        width:
+          type: number
+          default: 800
+        height:
+          type: number
+          default: 600
+        formats:
+          type: array
+          items:
+            type: string
+            enum: [svg, png, pdf]
+          default: [svg]
+        style:
+          type: string
+          enum: [simple, handdrawn]
+          default: handdrawn
+        refresh:
+          type: boolean
+          default: false
+
+    RenderResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [pending, completed]
+        render_id:
+          type: string
+        job_id:
+          type: string
+        cached:
+          type: boolean
+        stale:
+          type: boolean
+        refreshing:
+          type: boolean
+        refresh_job_id:
+          type: string
+        result:
+          $ref: '#/components/schemas/RenderResult'
+        error:
+          type: string
+
+    RenderResult:
+      type: object
+      properties:
+        artifacts:
+          type: object
+          additionalProperties:
+            type: string
+            description: Artifact URL path
+        node_count:
+          type: integer
+        edge_count:
+          type: integer
+        viz_type:
+          type: string
+          enum: [tower, nodelink]
+        source:
+          $ref: '#/components/schemas/RenderSourceInfo'
+
+    RenderSourceInfo:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [package, manifest]
+        language:
+          type: string
+        package:
+          type: string
+        repo:
+          type: string
+
+    JobResponse:
+      type: object
+      properties:
+        job_id:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+
+    JobStatusResponse:
+      type: object
+      properties:
+        job_id:
+          type: string
+        type:
+          type: string
+          enum: [parse, layout, render]
+        status:
+          type: string
+          enum: [pending, processing, completed, failed]
+        created_at:
+          type: string
+          format: date-time
+        started_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+        duration:
+          type: string
+        result:
+          type: object
+        error:
+          type: string
+
+    JobListResponse:
+      type: object
+      properties:
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobStatusResponse'
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+
+    HistoryResponse:
+      type: object
+      properties:
+        renders:
+          type: array
+          items:
+            $ref: '#/components/schemas/RenderHistoryItem'
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+
+    RenderHistoryItem:
+      type: object
+      properties:
+        id:
+          type: string
+        source:
+          $ref: '#/components/schemas/RenderSourceInfo'
+        node_count:
+          type: integer
+        edge_count:
+          type: integer
+        graph_url:
+          type: string
+          description: Shared JSON graph URL
+        renders:
+          type: array
+          items:
+            $ref: '#/components/schemas/VizTypeRender'
+          description: Available viz types with their artifacts
+        created_at:
+          type: string
+          format: date-time
+
+    VizTypeRender:
+      type: object
+      properties:
+        viz_type:
+          type: string
+          enum: [tower, nodelink]
+        artifacts:
+          type: object
+          additionalProperties:
+            type: string
+          nullable: true
+          description: Artifact URLs (svg, png, pdf). Null if not yet fetched.
+
+    Repository:
+      type: object
+      properties:
+        id:
+          type: integer
+        full_name:
+          type: string
+        description:
+          type: string
+        html_url:
+          type: string
+        private:
+          type: boolean
+        language:
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+
+    ManifestFile:
+      type: object
+      properties:
+        name:
+          type: string
+        path:
+          type: string
+        language:
+          type: string
+
+    PackageSuggestionsResponse:
+      type: object
+      properties:
+        suggestions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PackageSuggestion'
+
+    PackageSuggestion:
+      type: object
+      properties:
+        package:
+          type: string
+        language:
+          type: string
+        render_count:
+          type: integer
+          description: Number of times this package has been rendered (popularity metric)
+

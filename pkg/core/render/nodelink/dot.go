@@ -33,7 +33,7 @@ func ToDOT(g *dag.DAG, opts Options) string {
 	buf.WriteString("digraph G {\n")
 	buf.WriteString("  rankdir=TB;\n")
 	buf.WriteString("  bgcolor=\"transparent\";\n")
-	buf.WriteString("  node [shape=box, style=\"rounded,filled\", fillcolor=white, fontsize=24, margin=\"0.2,0.1\"];\n")
+	buf.WriteString("  node [shape=box, style=\"rounded,filled\", fillcolor=white, fontname=\"sans-serif\", fontsize=24, margin=\"0.4,0.2\"];\n")
 	buf.WriteString("  ranksep=0.5;\n")
 	buf.WriteString("  nodesep=0.3;\n")
 	buf.WriteString("\n")

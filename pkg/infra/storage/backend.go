@@ -60,7 +60,8 @@ type Backend interface {
 
 	// PutLayout stores layout data with its input hash and TTL.
 	// The hash should be computed from the layout inputs (graph hash, viz type, dimensions).
-	PutLayout(ctx context.Context, hash string, data []byte, ttl time.Duration) error
+	// For ScopeUser, userID is required.
+	PutLayout(ctx context.Context, hash string, data []byte, ttl time.Duration, scope Scope, userID string) error
 
 	// GetRender retrieves a cached render artifact by hash and format.
 	// format is typically "svg", "png", or "pdf".
@@ -68,7 +69,8 @@ type Backend interface {
 
 	// PutRender stores a render artifact with its input hash, format, and TTL.
 	// The hash should be computed from the render inputs (layout hash, style options).
-	PutRender(ctx context.Context, hash, format string, data []byte, ttl time.Duration) error
+	// For ScopeUser, userID is required.
+	PutRender(ctx context.Context, hash, format string, data []byte, ttl time.Duration, scope Scope, userID string) error
 
 	// GetHTTP retrieves a cached HTTP response by namespace and key.
 	// namespace isolates different registries (e.g., "pypi:", "npm:").
@@ -96,6 +98,7 @@ type GraphMeta struct {
 	Language string
 	Package  string
 	Repo     string
+	Options  GraphOptions // Options used to generate this graph (for cache reconstruction)
 }
 
 // NullBackend is a no-op backend that never caches anything.
@@ -122,7 +125,7 @@ func (NullBackend) GetLayout(ctx context.Context, hash string) ([]byte, bool, er
 	return nil, false, nil
 }
 
-func (NullBackend) PutLayout(ctx context.Context, hash string, data []byte, ttl time.Duration) error {
+func (NullBackend) PutLayout(ctx context.Context, hash string, data []byte, ttl time.Duration, scope Scope, userID string) error {
 	return nil
 }
 
@@ -130,7 +133,7 @@ func (NullBackend) GetRender(ctx context.Context, hash, format string) ([]byte, 
 	return nil, false, nil
 }
 
-func (NullBackend) PutRender(ctx context.Context, hash, format string, data []byte, ttl time.Duration) error {
+func (NullBackend) PutRender(ctx context.Context, hash, format string, data []byte, ttl time.Duration, scope Scope, userID string) error {
 	return nil
 }
 

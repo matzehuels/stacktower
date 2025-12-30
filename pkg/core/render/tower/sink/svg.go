@@ -30,6 +30,10 @@ const blockInteractionJS = `
     document.querySelectorAll('.block').forEach(el => {
       el.addEventListener('mouseenter', () => highlight([el.id.replace('block-', '')]));
       el.addEventListener('mouseleave', clearHighlight);
+    });
+    document.querySelectorAll('.block-text').forEach(el => {
+      el.addEventListener('mouseenter', () => highlight([el.dataset.block]));
+      el.addEventListener('mouseleave', clearHighlight);
     });`
 
 type SVGOption func(*svgRenderer)
@@ -76,7 +80,8 @@ func RenderSVG(l layout.Layout, opts ...SVGOption) []byte {
 	renderBlockInteraction(&buf)
 
 	if len(r.nebraska) > 0 {
-		renderNebraskaPanel(&buf, l.FrameWidth, l.FrameHeight, r.nebraska)
+		// Nebraska panel starts after the frame height + watermark margin
+		renderNebraskaPanel(&buf, l.FrameWidth, l.FrameHeight+watermarkMargin, r.nebraska)
 		renderNebraskaScript(&buf)
 	}
 
@@ -86,6 +91,9 @@ func RenderSVG(l layout.Layout, opts ...SVGOption) []byte {
 		}
 		renderPopupScript(&buf)
 	}
+
+	// Add watermark
+	renderWatermark(&buf, l.FrameWidth)
 
 	buf.WriteString("</svg>\n")
 	return buf.Bytes()
@@ -99,8 +107,10 @@ func newSVGRenderer(opts ...SVGOption) svgRenderer {
 	return r
 }
 
+const watermarkMargin = 40.0 // Space reserved at top for watermark
+
 func calculateHeight(l layout.Layout, nebraska []feature.NebraskaRanking) float64 {
-	h := l.FrameHeight
+	h := l.FrameHeight + watermarkMargin // Add space for watermark at top
 	if len(nebraska) > 0 {
 		h += calcNebraskaPanelHeight(l.FrameWidth, l.FrameHeight)
 	}
@@ -108,6 +118,9 @@ func calculateHeight(l layout.Layout, nebraska []feature.NebraskaRanking) float6
 }
 
 func renderContent(buf *bytes.Buffer, r *svgRenderer, blocks []styles.Block, edges []styles.Edge) {
+	// Shift all content down by watermark margin to make room at top
+	buf.WriteString(fmt.Sprintf(`  <g transform="translate(0, %.1f)">`+"\n", watermarkMargin))
+
 	for _, b := range blocks {
 		r.style.RenderBlock(buf, b)
 	}
@@ -120,6 +133,8 @@ func renderContent(buf *bytes.Buffer, r *svgRenderer, blocks []styles.Block, edg
 		}
 		r.style.RenderText(buf, b)
 	}
+
+	buf.WriteString("  </g>\n")
 }
 
 func shouldSkipText(g *dag.DAG, id string) bool {
@@ -235,4 +250,34 @@ func buildMergedEdges(l layout.Layout, g *dag.DAG) []styles.Edge {
 		})
 	}
 	return edges
+}
+
+// renderWatermark adds a watermark with the Stacktower logo centered at the top
+func renderWatermark(buf *bytes.Buffer, frameWidth float64) {
+	// Center horizontally in the reserved watermark space at top
+	x := (frameWidth - 120) / 2     // Center the watermark (icon + text width ~120)
+	y := (watermarkMargin - 10) / 2 // Vertically center in the watermark margin space
+
+	// Stacktower icon (Layers icon from favicon.svg, scaled to match text height)
+	// Original viewBox is 0 0 24 24, we scale it to ~16x16 to match 14px text
+	icon := `<g transform="scale(0.67)">
+      <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>`
+
+	buf.WriteString(fmt.Sprintf(`  <a href="https://www.stacktower.io" target="_blank" rel="noopener">
+    <g transform="translate(%.1f, %.1f)" class="watermark">
+      %s
+      <text x="20" y="11" font-family="sans-serif" font-size="14" font-weight="500" fill="#000">stacktower.io</text>
+    </g>
+  </a>
+`, x, y, icon))
+
+	// Add hover effect
+	buf.WriteString(`  <style>
+    .watermark { transition: opacity 0.2s ease; opacity: 1; }
+    .watermark:hover { opacity: 0.7; }
+  </style>
+`)
 }

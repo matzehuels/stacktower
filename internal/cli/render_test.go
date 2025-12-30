@@ -43,9 +43,10 @@ func TestValidateFormats(t *testing.T) {
 		{"valid svg", []string{"svg"}, false},
 		{"valid pdf", []string{"pdf"}, false},
 		{"valid png", []string{"png"}, false},
+		{"valid json", []string{"json"}, false}, // json is a valid format for graph data export
 		{"valid multiple", []string{"svg", "pdf", "png"}, false},
+		{"valid all", []string{"svg", "pdf", "png", "json"}, false},
 		{"invalid format", []string{"invalid"}, true},
-		{"json not allowed", []string{"json"}, true}, // json is layout output, not render
 		{"mixed valid invalid", []string{"svg", "invalid"}, true},
 		{"empty slice", []string{}, false},
 	}
@@ -84,20 +85,16 @@ func TestValidateStyle(t *testing.T) {
 
 func TestValidFormatsMap(t *testing.T) {
 	expected := map[string]bool{
-		"svg": true,
-		"pdf": true,
-		"png": true,
+		"svg":  true,
+		"pdf":  true,
+		"png":  true,
+		"json": true, // json is valid for graph data export
 	}
 
 	for k, v := range expected {
 		if pipeline.ValidFormats[k] != v {
 			t.Errorf("ValidFormats[%q] = %v, want %v", k, pipeline.ValidFormats[k], v)
 		}
-	}
-
-	// json is NOT a valid render format (it's layout output).
-	if pipeline.ValidFormats["json"] {
-		t.Error("ValidFormats[json] should be false")
 	}
 
 	if pipeline.ValidFormats["invalid"] {

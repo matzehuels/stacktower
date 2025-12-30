@@ -16,8 +16,8 @@ import (
 type JobPayload struct {
 	Options
 
-	// Cache keys (for linking results)
-	GraphCacheKey string `json:"graph_cache_key,omitempty"`
+	// Tracing - flows from API request through to worker for log correlation.
+	TraceID string `json:"trace_id,omitempty"`
 
 	// For layout jobs: reference to existing graph
 	GraphID   string `json:"graph_id,omitempty"`
@@ -66,12 +66,7 @@ func (p *JobPayload) IsPublic() bool {
 }
 
 // DetermineScope returns the appropriate scope based on payload content.
+// Delegates to storage.DetermineScope for single source of truth.
 func (p *JobPayload) DetermineScope() storage.Scope {
-	if p.Options.Scope != "" {
-		return p.Options.Scope
-	}
-	if p.Options.Manifest != "" {
-		return storage.ScopeUser
-	}
-	return storage.ScopeGlobal
+	return storage.DetermineScope(p.Options.Scope, p.Options.Manifest != "")
 }

@@ -45,6 +45,57 @@
 //   - MemoryBackend: In-memory storage for testing and development
 //   - NullBackend: No-op backend that never caches (for testing)
 //
+// # Cache Key Schema
+//
+// All cache keys follow a consistent namespaced format managed by [Keys]:
+//
+//	{type}:{scope}:{identifiers}:{options_hash}
+//
+// Graph Keys (dependency graphs):
+//
+//	Global packages (shared across all users):
+//	  graph:global:{language}:{package}:{options_hash}
+//	  Example: graph:global:python:flask:a1b2c3d4e5f6g7h8
+//
+//	User-scoped manifests (private to user):
+//	  graph:user:{user_id}:{language}:{manifest_hash}:{options_hash}
+//	  Example: graph:user:12345:python:abc123def456ghi789jkl012:a1b2c3d4
+//
+// Layout Keys (computed layouts - scoped same as source graph):
+//
+//	Global (public packages):
+//	  layout:global:{graph_hash}:{options_hash}
+//	  Example: layout:global:deadbeef:a1b2c3d4
+//
+//	User-scoped (private manifests):
+//	  layout:user:{user_id}:{graph_hash}:{options_hash}
+//	  Example: layout:user:12345:deadbeef:a1b2c3d4
+//
+// Artifact Keys (rendered SVG/PNG/PDF - scoped same as source graph):
+//
+//	Global (public packages):
+//	  artifact:global:{combined_hash}:{format}
+//	  Example: artifact:global:cafebabe:svg
+//
+//	User-scoped (private manifests):
+//	  artifact:user:{user_id}:{combined_hash}:{format}
+//	  Example: artifact:user:12345:cafebabe:svg
+//
+// User History Keys (for history page):
+//
+//	render:user:{user_id}:{language}:{package}:{viz_type}
+//	Example: render:user:12345:python:flask:tower
+//
+// # Public vs Private Data
+//
+// Public packages from registries (PyPI, npm, etc.) are stored with [ScopeGlobal].
+// These are shared across all users - if User A visualizes "flask", User B
+// benefits from the cached graph.
+//
+// Private manifests are stored with [ScopeUser]. The cache key includes the
+// user ID, ensuring isolation. Authorization is enforced at the API layer
+// via scoped methods like [DocumentStore.GetGraphDocScoped].
+//
 // # Usage
 //
 // CLI (local file caching):
@@ -69,6 +120,14 @@
 // Integrations (HTTP caching):
 //
 //	client := integrations.NewClient(backend, "pypi:", 24*time.Hour, nil)
+//
+// Key Generation (always use [Keys]):
+//
+//	// Generate a graph cache key
+//	key := storage.Keys.GraphKey(storage.ScopeGlobal, "", "python", "flask", opts)
+//
+//	// Generate a render history key
+//	key := storage.Keys.RenderHistoryKey(userID, "python", "flask", "tower")
 //
 // # Two-Tier Caching (Distributed Mode)
 //

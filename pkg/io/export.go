@@ -9,6 +9,7 @@ import (
 	"slices"
 
 	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/matzehuels/stacktower/pkg/core/render/tower/feature"
 )
 
 var kindToString = map[dag.NodeKind]string{
@@ -25,6 +26,7 @@ type node struct {
 	ID       string       `json:"id"`
 	Row      *int         `json:"row,omitempty"`
 	Kind     string       `json:"kind,omitempty"`
+	Brittle  bool         `json:"brittle,omitempty"`
 	MasterID string       `json:"master_id,omitempty"`
 	Meta     dag.Metadata `json:"meta,omitempty"`
 }
@@ -81,6 +83,8 @@ func WriteJSON(g *dag.DAG, w io.Writer) error {
 		if s, ok := kindToString[n.Kind]; ok {
 			nd.Kind = s
 		}
+		// Compute brittle status based on metadata (archived, stale, low maintainers)
+		nd.Brittle = feature.IsBrittle(n)
 		out.Nodes[i] = nd
 	}
 	for i, e := range g.Edges() {

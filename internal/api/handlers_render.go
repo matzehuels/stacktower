@@ -1,11 +1,9 @@
 package api
 
 import (
-	"context"
+	"encoding/json"
 	"errors"
-	"fmt"
 	"net/http"
-	"time"
 
 	"github.com/go-chi/chi/v5"
 
@@ -16,205 +14,197 @@ import (
 
 // handleRender handles POST /api/v1/render.
 // This ALWAYS queues a job for async processing (full pipeline: parse → layout → visualize).
-// Auth and rate limiting handled by middleware.
+// Auth enforced by requireAuth middleware.
 func (s *Server) handleRender(w http.ResponseWriter, r *http.Request) {
+	ctx := s.handlerContext()
 	userID := getUserID(r)
 
-	// Parse request
 	var req RenderRequest
 	if err := s.decodeJSON(w, r, &req); err != nil {
-		s.errorResponse(w, http.StatusBadRequest, errInvalidRequest(err))
+		s.errorResponse(w, http.StatusBadRequest, msgInvalidRequest(err))
 		return
 	}
 
+	// Set tower-specific defaults and validate
+	setWebAPIDefaults(&req.Options)
 	if err := req.Options.ValidateAndSetDefaults(); err != nil {
 		s.errorResponse(w, http.StatusBadRequest, err.Error())
 		return
 	}
+	req.Options.UserID = userID
 
-	ctx := r.Context()
-
-	// Determine scope and cache key
-	var scope storage.Scope
-	var pkgOrManifest string
-	if req.Manifest == "" { // public package
-		scope = storage.ScopeGlobal
-		pkgOrManifest = req.Package
-	} else {
-		scope = storage.ScopeUser
-		pkgOrManifest = storage.Hash([]byte(req.Manifest))[:16]
-	}
-	graphCacheKey := storage.GraphCacheKey(scope, userID, req.Language, pkgOrManifest, req.GraphOptions())
-
-	// Check cache first (fast path) - return cached render if available
+	// Fast path: check cached render
 	if !req.Refresh {
-		if resp := s.checkCachedRender(ctx, userID, graphCacheKey, &req); resp != nil {
-			s.jsonResponse(w, http.StatusOK, *resp)
+		if record := ctx.Pipeline.GetCachedRenderRecord(r.Context(), req.Options); record != nil {
+			s.jsonResponse(w, http.StatusOK, renderRecordToResponse(record, true))
 			return
 		}
 	}
 
 	// Queue job for async processing
-	jobID, err := s.enqueueRenderJob(ctx, userID, &req, scope, graphCacheKey)
-	if err != nil {
-		s.logger.Error("failed to enqueue render job", "error", err, "user_id", userID, "request_id", getRequestID(r))
-		s.errorResponse(w, http.StatusInternalServerError, "failed to start render job")
-		return
+	job := s.enqueueJob(ctx, w, r, queue.TypeRender, JobRequest{
+		UserID:  userID,
+		TraceID: getRequestID(r),
+		Options: req.Options,
+	})
+	if job == nil {
+		return // Error response already sent
 	}
 
 	s.jsonResponse(w, http.StatusAccepted, RenderResponse{
 		Status: "pending",
-		JobID:  jobID,
+		JobID:  job.ID,
 	})
 }
 
-// checkCachedRender checks if there's a cached render result available.
-func (s *Server) checkCachedRender(ctx context.Context, userID, graphCacheKey string, req *RenderRequest) *RenderResponse {
-	// Check for cached graph
-	graphEntry, _ := s.backend.Index().GetGraphEntry(ctx, graphCacheKey)
-	if graphEntry == nil || graphEntry.IsExpired() {
-		return nil
-	}
-
-	storedGraph, err := s.backend.DocumentStore().GetGraphDoc(ctx, graphEntry.DocumentID)
-	if err != nil || storedGraph == nil {
-		return nil
-	}
-
-	// Check for cached render
-	layoutOpts := req.LayoutOptions()
-	renderCacheKey := storage.RenderCacheKey(userID, storedGraph.ContentHash, layoutOpts)
-
-	renderEntry, _ := s.backend.Index().GetRenderEntry(ctx, renderCacheKey)
-	if renderEntry == nil || renderEntry.IsExpired() {
-		return nil
-	}
-
-	storedRender, err := s.backend.DocumentStore().GetRenderDoc(ctx, renderEntry.DocumentID)
-	if err != nil || storedRender == nil {
-		return nil
-	}
-
-	// Build cached response
-	resp := s.renderToResponse(storedRender)
-	resp.Cached = true
-	return &resp
-}
-
-// enqueueRenderJob creates a full render job (parse → layout → visualize).
-func (s *Server) enqueueRenderJob(ctx context.Context, userID string, req *RenderRequest, scope storage.Scope, graphCacheKey string) (string, error) {
-	jobID := generateJobID()
-
-	// Create payload from request options
-	req.Options.UserID = userID
-	req.Options.Scope = scope
-	payload := &pipeline.JobPayload{
-		Options:       req.Options,
-		GraphCacheKey: graphCacheKey,
-	}
-
-	payloadMap, err := payload.ToMap()
-	if err != nil {
-		return "", fmt.Errorf("serialize payload: %w", err)
-	}
-
-	job := &queue.Job{
-		ID:        jobID,
-		Type:      string(queue.TypeRender),
-		Payload:   payloadMap,
-		Status:    queue.StatusPending,
-		CreatedAt: time.Now(),
-	}
-
-	if err := s.queue.Enqueue(ctx, job); err != nil {
-		return "", err
-	}
-
-	return jobID, nil
-}
-
-// handleGetRender handles GET /api/v1/render/{renderID}
-// Auth handled by middleware.
+// handleGetRender handles GET /api/v1/render/{renderID}.
+// Uses optionalAuth middleware to allow both authenticated and unauthenticated access.
+//
+// Authorization strategy:
+// - Canonical renders (user_id = "") are accessible to everyone (public)
+// - User-scoped renders are only accessible to their owner (requires auth)
+// Returns 403 Forbidden for access denied (not 404) for clear feedback on ownership issues.
 func (s *Server) handleGetRender(w http.ResponseWriter, r *http.Request) {
-	userID := getUserID(r)
+	ctx := s.handlerContext()
+	userID := getUserID(r) // May be empty for unauthenticated users
 	renderID := chi.URLParam(r, "renderID")
 
 	if renderID == "" {
-		s.errorResponse(w, http.StatusBadRequest, errFieldRequired("render ID"))
+		s.errorResponse(w, http.StatusBadRequest, msgFieldRequired("render ID"))
 		return
 	}
 
-	// Use scoped method - enforces authorization
-	render, err := s.backend.DocumentStore().GetRenderDocScoped(r.Context(), renderID, userID)
-	if errors.Is(err, storage.ErrAccessDenied) {
-		s.errorResponse(w, http.StatusForbidden, "access denied")
-		return
-	}
+	// Get the render without scoping (to check if it's canonical/public)
+	render, err := ctx.Backend.DocumentStore().GetRenderDoc(r.Context(), renderID)
 	if err != nil {
-		s.logger.Error("failed to get render", "error", err, "render_id", renderID, "user_id", userID, "request_id", getRequestID(r))
-		s.errorResponse(w, http.StatusInternalServerError, "failed to retrieve render")
+		ctx.Logger.Error("failed to get render", "error", err, "render_id", renderID, "request_id", getRequestID(r))
+		s.errorResponse(w, http.StatusInternalServerError, errMsgRenderGetFailed)
 		return
 	}
 	if render == nil {
-		s.errorResponse(w, http.StatusNotFound, errResourceNotFound("render"))
+		s.errorResponse(w, http.StatusNotFound, msgResourceNotFound("render"))
 		return
 	}
 
-	s.jsonResponse(w, http.StatusOK, s.renderToResponse(render))
+	// Check authorization:
+	// - Canonical renders (user_id = "") are public and accessible to everyone
+	// - User-scoped renders require authentication and ownership match
+	if render.UserID != "" {
+		if userID == "" {
+			// User-scoped render accessed by unauthenticated user
+			s.errorResponse(w, http.StatusForbidden, "This visualization is private. Please sign in to view it.")
+			return
+		}
+		if render.UserID != userID {
+			// User-scoped render accessed by different user
+			s.errorResponse(w, http.StatusForbidden, errMsgAccessDenied)
+			return
+		}
+	}
+
+	s.jsonResponse(w, http.StatusOK, storageRenderToResponse(render))
 }
 
-// handleDeleteRender handles DELETE /api/v1/render/{renderID}
-// Auth handled by middleware.
+// handleDeleteRender handles DELETE /api/v1/render/{renderID}.
+// Auth enforced by requireAuth middleware.
+//
+// Authorization strategy: Returns 403 Forbidden for access denied (not 404) because
+// renders are user-owned resources where we want clear feedback on ownership issues.
 func (s *Server) handleDeleteRender(w http.ResponseWriter, r *http.Request) {
+	ctx := s.handlerContext()
 	userID := getUserID(r)
 	renderID := chi.URLParam(r, "renderID")
 
 	if renderID == "" {
-		s.errorResponse(w, http.StatusBadRequest, errFieldRequired("render ID"))
+		s.errorResponse(w, http.StatusBadRequest, msgFieldRequired("render ID"))
 		return
 	}
 
-	// Use scoped delete - enforces ownership
-	err := s.backend.DocumentStore().DeleteRenderDocScoped(r.Context(), renderID, userID)
+	err := ctx.Backend.DocumentStore().DeleteRenderDocScoped(r.Context(), renderID, userID)
 	if errors.Is(err, storage.ErrAccessDenied) {
-		s.errorResponse(w, http.StatusForbidden, "access denied")
+		s.errorResponse(w, http.StatusForbidden, errMsgAccessDenied)
 		return
 	}
 	if err != nil {
-		s.logger.Error("failed to delete render", "error", err, "render_id", renderID, "user_id", userID, "request_id", getRequestID(r))
-		s.errorResponse(w, http.StatusInternalServerError, "failed to delete render")
+		ctx.Logger.Error("failed to delete render", "error", err, "render_id", renderID, "request_id", getRequestID(r))
+		s.errorResponse(w, http.StatusInternalServerError, errMsgRenderDeleteFailed)
 		return
 	}
 
 	s.jsonResponse(w, http.StatusOK, map[string]string{"status": "deleted"})
 }
 
-// renderToResponse converts a Render to a RenderResponse.
-func (s *Server) renderToResponse(render *storage.Render) RenderResponse {
-	artifacts := make(map[string]string)
-	if render.Artifacts.SVG != "" {
-		artifacts["svg"] = fmt.Sprintf("/api/v1/artifacts/%s", render.Artifacts.SVG)
+// =============================================================================
+// Defaults and Response Transformations
+// =============================================================================
+
+// setWebAPIDefaults sets sensible defaults for web API render requests.
+func setWebAPIDefaults(opts *pipeline.Options) {
+	if opts.VizType == "" {
+		opts.VizType = pipeline.VizTypeTower
 	}
-	if render.Artifacts.PNG != "" {
-		artifacts["png"] = fmt.Sprintf("/api/v1/artifacts/%s", render.Artifacts.PNG)
+	// Ensure JSON format is always included (needed for dependency list with brittle flags)
+	if len(opts.Formats) == 0 {
+		opts.Formats = []string{"svg", "json"}
+	} else if !containsFormat(opts.Formats, "json") {
+		opts.Formats = append(opts.Formats, "json")
 	}
-	if render.Artifacts.PDF != "" {
-		artifacts["pdf"] = fmt.Sprintf("/api/v1/artifacts/%s", render.Artifacts.PDF)
+	// Tower-specific defaults for better web visualization
+	if opts.VizType == pipeline.VizTypeTower {
+		opts.Randomize = true // Vary block widths for visual interest
+		opts.Merge = true     // Merge subdividers for cleaner towers
+		opts.Popups = false   // Disable popups - frontend handles interaction via dependency list
+	}
+}
+
+// containsFormat checks if a format is in the list.
+func containsFormat(formats []string, target string) bool {
+	for _, f := range formats {
+		if f == target {
+			return true
+		}
+	}
+	return false
+}
+
+// renderRecordToResponse converts a pipeline.RenderRecord to RenderResponse.
+func renderRecordToResponse(record *pipeline.RenderRecord, cached bool) *RenderResponse {
+	// Parse layout data to interface{} for JSON response
+	var layout interface{}
+	if len(record.LayoutData) > 0 {
+		_ = json.Unmarshal(record.LayoutData, &layout)
 	}
 
-	return RenderResponse{
+	return &RenderResponse{
 		Status:   "completed",
-		RenderID: render.ID,
+		RenderID: record.RenderID,
+		Cached:   cached,
 		Result: &RenderResult{
-			Artifacts: artifacts,
-			NodeCount: render.NodeCount,
-			EdgeCount: render.EdgeCount,
-			Source: RenderSourceInfo{
-				Type:     render.Source.Type,
-				Language: render.Source.Language,
-				Package:  render.Source.Package,
-				Repo:     render.Source.Repo,
-			},
+			Artifacts: record.Artifacts,
+			NodeCount: record.NodeCount,
+			EdgeCount: record.EdgeCount,
+			VizType:   record.VizType,
+			Source:    ToRenderSourceInfo(record.Source),
+			Layout:    layout,
 		},
 	}
 }
+
+// storageRenderToResponse converts a storage.Render to RenderResponse.
+func storageRenderToResponse(render *storage.Render) *RenderResponse {
+	return &RenderResponse{
+		Status:   "completed",
+		RenderID: render.ID,
+		Result: &RenderResult{
+			Artifacts: storage.BuildArtifactURLs(render.Artifacts, render.GraphID),
+			NodeCount: render.NodeCount,
+			EdgeCount: render.EdgeCount,
+			VizType:   render.LayoutOptions.VizType,
+			Source:    ToRenderSourceInfo(render.Source),
+			Layout:    storage.ToJSONSafe(render.Layout),
+		},
+	}
+}
+
+// Ensure queue types are used
+var _ = queue.TypeRender

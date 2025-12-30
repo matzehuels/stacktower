@@ -1,3 +1,11 @@
+// Package api provides HTTP REST API types for Stacktower.
+//
+// This file defines request/response types for all API endpoints.
+// Types are organized by endpoint group and follow these patterns:
+//
+//   - Request types embed pipeline.Options where appropriate (DRY)
+//   - Response types are API-specific and don't expose storage internals
+//   - Transformation functions convert storage types to API types
 package api
 
 import (
@@ -7,65 +15,24 @@ import (
 	"github.com/matzehuels/stacktower/pkg/pipeline"
 )
 
-// APIError represents a structured error response.
-type APIError struct {
-	Code    string      `json:"code"`
-	Message string      `json:"message"`
-	Details interface{} `json:"details,omitempty"`
-}
-
-// Common error codes for client-side handling.
-const (
-	ErrCodeValidation     = "VALIDATION_ERROR"
-	ErrCodeUnauthorized   = "UNAUTHORIZED"
-	ErrCodeForbidden      = "FORBIDDEN"
-	ErrCodeNotFound       = "NOT_FOUND"
-	ErrCodeRateLimited    = "RATE_LIMITED"
-	ErrCodeInternal       = "INTERNAL_ERROR"
-	ErrCodeServiceUnavail = "SERVICE_UNAVAILABLE"
-	ErrCodeBadRequest     = "BAD_REQUEST"
-)
+// =============================================================================
+// Render Endpoint Types
+// =============================================================================
 
 // RenderRequest is the request body for POST /api/v1/render.
-// It embeds pipeline.Options for all rendering configuration.
-// Access validation via req.Options.ValidateAndSetDefaults().
+// Embeds pipeline.Options for all rendering configuration.
 type RenderRequest struct {
 	pipeline.Options
 }
 
-// GraphOptions extracts graph-related options for cache keys.
-func (r *RenderRequest) GraphOptions() storage.GraphOptions {
-	return storage.GraphOptions{
-		MaxDepth:  r.Options.MaxDepth,
-		MaxNodes:  r.Options.MaxNodes,
-		Normalize: r.Options.Normalize,
-	}
-}
-
-// LayoutOptions extracts layout-related options for cache keys.
-func (r *RenderRequest) LayoutOptions() storage.LayoutOptions {
-	return storage.LayoutOptions{
-		VizType:   r.Options.VizType,
-		Width:     r.Options.Width,
-		Height:    r.Options.Height,
-		Ordering:  r.Options.Ordering,
-		Merge:     r.Options.Merge,
-		Randomize: r.Options.Randomize,
-		Seed:      r.Options.Seed,
-	}
-}
-
 // RenderResponse is the response for POST /api/v1/render.
 type RenderResponse struct {
-	Status       string        `json:"status"` // "completed", "pending"
-	RenderID     string        `json:"render_id,omitempty"`
-	JobID        string        `json:"job_id,omitempty"`
-	Cached       bool          `json:"cached,omitempty"`
-	Stale        bool          `json:"stale,omitempty"`      // Data may be outdated
-	Refreshing   bool          `json:"refreshing,omitempty"` // Background refresh in progress
-	RefreshJobID string        `json:"refresh_job_id,omitempty"`
-	Result       *RenderResult `json:"result,omitempty"`
-	Error        string        `json:"error,omitempty"`
+	Status   string        `json:"status"` // "completed" or "pending"
+	RenderID string        `json:"render_id,omitempty"`
+	JobID    string        `json:"job_id,omitempty"`
+	Cached   bool          `json:"cached,omitempty"`
+	Result   *RenderResult `json:"result,omitempty"`
+	Error    string        `json:"error,omitempty"`
 }
 
 // RenderResult contains the output of a completed render.
@@ -73,16 +40,74 @@ type RenderResult struct {
 	Artifacts map[string]string `json:"artifacts"` // format -> artifact URL
 	NodeCount int               `json:"node_count"`
 	EdgeCount int               `json:"edge_count"`
+	VizType   string            `json:"viz_type"`
 	Source    RenderSourceInfo  `json:"source"`
+	Layout    interface{}       `json:"layout,omitempty"` // Full layout data (blocks, edges, nebraska, etc.)
 }
 
-// RenderSourceInfo describes what was rendered.
+// NebraskaRankingAPI represents a maintainer's influence score (API type).
+type NebraskaRankingAPI struct {
+	Maintainer string               `json:"maintainer"`
+	Score      float64              `json:"score"`
+	Packages   []NebraskaPackageAPI `json:"packages"`
+}
+
+// NebraskaPackageAPI represents a package maintained by someone (API type).
+type NebraskaPackageAPI struct {
+	Package string `json:"package"`
+	Role    string `json:"role"` // "owner", "lead", or "maintainer"
+	URL     string `json:"url,omitempty"`
+	Depth   int    `json:"depth,omitempty"`
+}
+
+// RenderSourceInfo describes the source of a render.
+// This is the API representation of storage.RenderSource.
 type RenderSourceInfo struct {
 	Type     string `json:"type"` // "package" or "manifest"
 	Language string `json:"language"`
 	Package  string `json:"package,omitempty"`
 	Repo     string `json:"repo,omitempty"`
 }
+
+// ToRenderSourceInfo converts a storage.RenderSource to API type.
+// This is the canonical transformation from storage to API layer.
+func ToRenderSourceInfo(s storage.RenderSource) RenderSourceInfo {
+	return RenderSourceInfo{
+		Type:     s.Type,
+		Language: s.Language,
+		Package:  s.Package,
+		Repo:     s.Repo,
+	}
+}
+
+// ToNebraskaRankingsAPI converts storage.NebraskaRanking slice to API types.
+func ToNebraskaRankingsAPI(rankings []storage.NebraskaRanking) []NebraskaRankingAPI {
+	if len(rankings) == 0 {
+		return nil
+	}
+	result := make([]NebraskaRankingAPI, len(rankings))
+	for i, r := range rankings {
+		pkgs := make([]NebraskaPackageAPI, len(r.Packages))
+		for j, p := range r.Packages {
+			pkgs[j] = NebraskaPackageAPI{
+				Package: p.Package,
+				Role:    p.Role,
+				URL:     p.URL,
+				Depth:   p.Depth,
+			}
+		}
+		result[i] = NebraskaRankingAPI{
+			Maintainer: r.Maintainer,
+			Score:      r.Score,
+			Packages:   pkgs,
+		}
+	}
+	return result
+}
+
+// =============================================================================
+// Job Endpoint Types
+// =============================================================================
 
 // JobResponse is the response after submitting an async job.
 type JobResponse struct {
@@ -104,6 +129,10 @@ type JobStatusResponse struct {
 	Error       *string                `json:"error,omitempty"`
 }
 
+// =============================================================================
+// History Endpoint Types
+// =============================================================================
+
 // HistoryResponse is the response for GET /api/v1/history.
 type HistoryResponse struct {
 	Renders []*RenderHistoryItem `json:"renders"`
@@ -112,15 +141,23 @@ type HistoryResponse struct {
 	Offset  int                  `json:"offset"`
 }
 
-// RenderHistoryItem is a single item in the user's render history.
-type RenderHistoryItem struct {
-	ID        string            `json:"id"`
-	Source    RenderSourceInfo  `json:"source"`
+// VizTypeRender represents a single visualization type's artifacts.
+type VizTypeRender struct {
 	VizType   string            `json:"viz_type"`
-	NodeCount int               `json:"node_count"`
-	EdgeCount int               `json:"edge_count"`
-	Artifacts map[string]string `json:"artifacts"`
-	CreatedAt time.Time         `json:"created_at"`
+	Artifacts map[string]string `json:"artifacts"` // svg, png, pdf URLs
+}
+
+// RenderHistoryItem is a single item in the user's render history.
+// Each item represents a package with all available viz type renders.
+type RenderHistoryItem struct {
+	ID        string           `json:"id"`
+	Source    RenderSourceInfo `json:"source"`
+	NodeCount int              `json:"node_count"`
+	EdgeCount int              `json:"edge_count"`
+	GraphURL  string           `json:"graph_url"` // Shared JSON graph URL
+	Renders   []VizTypeRender  `json:"renders"`   // Available viz types with their artifacts
+	Layout    interface{}      `json:"layout,omitempty"`
+	CreatedAt time.Time        `json:"created_at"`
 }
 
 // =============================================================================
@@ -170,6 +207,8 @@ type LayoutResponse struct {
 // =============================================================================
 
 // VisualizeRequest is the request body for POST /api/v1/visualize.
+// Note: This endpoint runs synchronously (no job queuing) so it uses
+// a simplified request structure instead of embedding pipeline.Options.
 type VisualizeRequest struct {
 	Layout    []byte   `json:"layout"`
 	Graph     []byte   `json:"graph,omitempty"` // Optional, for popups/nebraska
@@ -186,4 +225,14 @@ type VisualizeResponse struct {
 	Artifacts map[string]string `json:"artifacts,omitempty"` // format -> base64-encoded data
 	Cached    bool              `json:"cached,omitempty"`
 	Error     string            `json:"error,omitempty"`
+}
+
+// =============================================================================
+// Repository Endpoint Types
+// =============================================================================
+
+// RepoAnalyzeRequest is the request body for POST /api/v1/repos/{owner}/{repo}/analyze.
+type RepoAnalyzeRequest struct {
+	ManifestPath string   `json:"manifest_path"`
+	Formats      []string `json:"formats,omitempty"`
 }

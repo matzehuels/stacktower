@@ -2,69 +2,48 @@ package api
 
 import (
 	"net/http"
-	"time"
 
 	"github.com/matzehuels/stacktower/pkg/infra/queue"
-	"github.com/matzehuels/stacktower/pkg/pipeline"
 )
 
-// handleLayout handles POST /api/v1/layout
-// Auth and rate limiting handled by middleware.
+// handleLayout handles POST /api/v1/layout.
+// Auth enforced by requireAuth middleware.
 func (s *Server) handleLayout(w http.ResponseWriter, r *http.Request) {
+	ctx := s.handlerContext()
 	userID := getUserID(r)
 
 	var req LayoutRequest
 	if err := s.decodeJSON(w, r, &req); err != nil {
-		s.errorResponse(w, http.StatusBadRequest, errInvalidJSON(err))
+		s.errorResponse(w, http.StatusBadRequest, msgInvalidJSON(err))
 		return
 	}
 
 	// Validate graph input requirement
 	if len(req.Graph) == 0 && req.GraphID == "" {
-		s.errorResponse(w, http.StatusBadRequest, errFieldRequired("graph or graph_id"))
+		s.errorResponse(w, http.StatusBadRequest, msgFieldRequired("graph or graph_id"))
 		return
 	}
 
-	// Use centralized validation for options
-	if err := req.Options.ValidateAndSetDefaults(); err != nil {
+	if err := req.Options.ValidateForLayout(); err != nil {
 		s.errorResponse(w, http.StatusBadRequest, err.Error())
 		return
 	}
-
-	ctx := r.Context()
+	req.Options.UserID = userID
 
 	// Queue job for async processing
-	jobID := generateJobID()
-	req.Options.UserID = userID
-	payload := &pipeline.JobPayload{
+	job := s.enqueueJob(ctx, w, r, queue.TypeLayout, JobRequest{
+		UserID:    userID,
+		TraceID:   getRequestID(r),
 		Options:   req.Options,
 		GraphID:   req.GraphID,
 		GraphData: req.Graph,
-	}
-
-	payloadMap, err := payload.ToMap()
-	if err != nil {
-		s.logger.Error("failed to serialize payload", "error", err, "user_id", userID, "request_id", getRequestID(r))
-		s.errorResponse(w, http.StatusInternalServerError, "failed to create job")
-		return
-	}
-
-	job := &queue.Job{
-		ID:        jobID,
-		Type:      string(queue.TypeLayout),
-		Payload:   payloadMap,
-		Status:    queue.StatusPending,
-		CreatedAt: time.Now(),
-	}
-
-	if err := s.queue.Enqueue(ctx, job); err != nil {
-		s.logger.Error("failed to enqueue layout job", "error", err, "user_id", userID, "request_id", getRequestID(r))
-		s.errorResponse(w, http.StatusInternalServerError, "failed to start layout job")
-		return
+	})
+	if job == nil {
+		return // Error response already sent
 	}
 
 	s.jsonResponse(w, http.StatusAccepted, LayoutResponse{
 		Status: "pending",
-		JobID:  jobID,
+		JobID:  job.ID,
 	})
 }

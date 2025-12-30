@@ -142,6 +142,18 @@ func (c *Config) ValidateForAPI() error {
 	return nil
 }
 
+// ValidateForProduction checks that security-critical settings are configured.
+// This should be called in production to ensure sessions are encrypted.
+func (c *Config) ValidateForProduction() error {
+	if err := c.ValidateForAPI(); err != nil {
+		return err
+	}
+	if c.Session.EncryptionKey == "" {
+		return fmt.Errorf("STACKTOWER_SESSION_KEY is required in production (generate with: openssl rand -base64 32)")
+	}
+	return nil
+}
+
 // ValidateGitHubOAuth checks that GitHub OAuth is properly configured.
 func (c *Config) ValidateGitHubOAuth() error {
 	if c.GitHub.ClientID == "" {

@@ -44,6 +44,11 @@ type DocumentStore interface {
 	// StoreRenderDoc saves a render document. Sets render.ID if empty.
 	StoreRenderDoc(ctx context.Context, render *Render) error
 
+	// UpsertRenderDoc inserts or updates a render document by ID.
+	// If a render with the same ID exists, it updates; otherwise creates new.
+	// This prevents duplicate history entries when re-rendering.
+	UpsertRenderDoc(ctx context.Context, render *Render) error
+
 	// DeleteRenderDoc removes a render and its associated artifacts.
 	DeleteRenderDoc(ctx context.Context, id string) error
 
@@ -51,12 +56,9 @@ type DocumentStore interface {
 	// Returns ErrAccessDenied if user doesn't own this render.
 	DeleteRenderDocScoped(ctx context.Context, id string, userID string) error
 
-	// ListRenderDocs returns a user's render history (paginated).
-	ListRenderDocs(ctx context.Context, userID string, limit, offset int) ([]*Render, int64, error)
-
 	// StoreArtifact saves a binary file (SVG, PNG, PDF) to GridFS.
 	// Returns the artifact ID for later retrieval.
-	StoreArtifact(ctx context.Context, renderID, filename string, data []byte) (string, error)
+	StoreArtifact(ctx context.Context, renderID, filename string, data []byte, userID string) (string, error)
 
 	// GetArtifact retrieves a binary file from GridFS by ID.
 	GetArtifact(ctx context.Context, artifactID string) ([]byte, error)
@@ -69,40 +71,51 @@ type DocumentStore interface {
 	// Ping checks if the document store backend is reachable.
 	Ping(ctx context.Context) error
 
+	// CountUniqueTowers returns the number of unique packages/manifests visualized.
+	// This dedupes by (language, package) - different viz types for same package count as 1.
+	CountUniqueTowers(ctx context.Context) (int64, error)
+
+	// CountUniqueUsers returns the number of unique users with renders (for stats).
+	CountUniqueUsers(ctx context.Context) (int64, error)
+
+	// CountUniqueDependencies returns the count of unique dependency nodes across all graphs.
+	// This requires extracting node IDs from graph JSON and deduping.
+	CountUniqueDependencies(ctx context.Context) (int64, error)
+
+	// ListPackageSuggestions returns package names that match a query prefix for a given language.
+	// This is used for autocomplete in the frontend, drawing from global history.
+	// Results are ordered by popularity (most frequently rendered first).
+	ListPackageSuggestions(ctx context.Context, language string, query string, limit int) ([]PackageSuggestion, error)
+
+	// ListExplore returns public towers for the explore page.
+	// Groups by (language, package), includes popularity count.
+	// sortBy: "popular" (default) or "recent"
+	ListExplore(ctx context.Context, language, sortBy string, limit, offset int) ([]ExploreEntry, int64, error)
+
+	// ==========================================================================
+	// Canonical Renders & User Library
+	// ==========================================================================
+
+	// GetCanonicalRender looks up a canonical (shared) render for a public package.
+	// Canonical renders have user_id="" and are shared across all users.
+	GetCanonicalRender(ctx context.Context, language, pkg, vizType string) (*Render, error)
+
+	// SaveToLibrary adds a package to a user's library. Idempotent.
+	SaveToLibrary(ctx context.Context, userID, language, pkg string) error
+
+	// RemoveFromLibrary removes a package from a user's library. Idempotent.
+	RemoveFromLibrary(ctx context.Context, userID, language, pkg string) error
+
+	// IsInLibrary checks if a package is in a user's library.
+	IsInLibrary(ctx context.Context, userID, language, pkg string) (bool, error)
+
+	// ListLibrary returns a user's saved public packages.
+	ListLibrary(ctx context.Context, userID string, limit, offset int) ([]LibraryEntry, int64, error)
+
+	// ListPrivateRenders returns a user's private repo renders (manifests).
+	ListPrivateRenders(ctx context.Context, userID string, limit, offset int) ([]*Render, int64, error)
+
 	Close() error
-}
-
-// OperationStore records user operation history for all pipeline stages.
-// This enables tracking "which user triggered how many layouts" etc.
-//
-// # Implementations
-//
-//   - Production: infra.Mongo provides OperationStore via MongoDB
-//   - Development: MemoryBackend implements OperationStore
-type OperationStore interface {
-	// RecordOperation logs a pipeline operation for a user.
-	RecordOperation(ctx context.Context, op *Operation) error
-
-	// ListOperations returns a user's operation history (paginated).
-	// opType can filter by operation type (empty string = all types).
-	ListOperations(ctx context.Context, userID string, opType OperationType, limit, offset int) ([]*Operation, int64, error)
-
-	// CountOperations counts operations for a user within a time window.
-	// Used for rate limiting checks.
-	CountOperationsInWindow(ctx context.Context, userID string, opType OperationType, windowStart int64) (int64, error)
-
-	// GetOperationStats returns aggregate stats for a user.
-	GetOperationStats(ctx context.Context, userID string) (*UserOperationStats, error)
-}
-
-// UserOperationStats contains aggregate operation statistics for a user.
-type UserOperationStats struct {
-	TotalOperations  int64 `json:"total_operations" bson:"total_operations"`
-	TotalParses      int64 `json:"total_parses" bson:"total_parses"`
-	TotalLayouts     int64 `json:"total_layouts" bson:"total_layouts"`
-	TotalRenders     int64 `json:"total_renders" bson:"total_renders"`
-	TotalCacheHits   int64 `json:"total_cache_hits" bson:"total_cache_hits"`
-	StorageBytesUsed int64 `json:"storage_bytes_used" bson:"storage_bytes_used"`
 }
 
 // Cache combines both tiers (Index + DocumentStore) for unified access.

@@ -172,3 +172,22 @@ func New(accessToken string, user *github.User, ttl time.Duration) (*Session, er
 		CreatedAt:   now,
 	}, nil
 }
+
+// MockLocal creates a mock session for local development without authentication.
+// This is used when --no-auth is enabled in standalone mode.
+// The mock user has ID "local" and no GitHub access token.
+func MockLocal() *Session {
+	now := time.Now()
+	return &Session{
+		ID:          "local-session",
+		AccessToken: "", // No token - can't make authenticated GitHub API calls
+		User: &github.User{
+			ID:        0,
+			Login:     "local",
+			Name:      "Local User",
+			AvatarURL: "",
+		},
+		ExpiresAt: now.Add(365 * 24 * time.Hour), // Never expires
+		CreatedAt: now,
+	}
+}

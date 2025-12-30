@@ -1,140 +1,95 @@
-import { useState, useEffect } from 'react';
-import type { GitHubRepo, ManifestFile } from '../types/api';
-import { useRepos, useManifests, useAnalyzeRepo } from '../hooks/useApi';
-import { VisualizationResult } from './VisualizationResult';
+/**
+ * Repository selector for analyzing GitHub repos.
+ */
 
-interface RepoSelectorProps {
-  onBack?: () => void;
+import { useState, useEffect } from 'react';
+import { Search, ChevronRight, ChevronLeft, Folder, File, Zap } from 'lucide-react';
+import type { GitHubRepo, ManifestFile, JobResponse } from '@/types/api';
+import { useRepos, useManifests, useAnalyzeRepoMutation } from '@/hooks/queries';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { cn } from '@/lib/utils';
+
+interface Props {
+  onJobCreated: (job: JobResponse) => void;
 }
 
-export function RepoSelector({ onBack: _onBack }: RepoSelectorProps) {
-  const { repos, isLoading: reposLoading, error: reposError, fetchRepos } = useRepos();
-  const { manifests, isLoading: manifestsLoading, error: manifestsError, fetchManifests, reset: resetManifests } = useManifests();
-  const { job, isLoading: analyzing, error: analyzeError, analyze, reset: resetAnalyze } = useAnalyzeRepo();
-  
+export function RepoSelector({ onJobCreated }: Props) {
+  const { data: repos = [], isLoading: reposLoading, error: reposError } = useRepos();
   const [selectedRepo, setSelectedRepo] = useState<GitHubRepo | null>(null);
   const [selectedManifest, setSelectedManifest] = useState<ManifestFile | null>(null);
   const [search, setSearch] = useState('');
 
-  useEffect(() => {
-    fetchRepos();
-  }, [fetchRepos]);
+  // Parse owner/repo from selectedRepo
+  const [owner, repoName] = selectedRepo?.full_name.split('/') ?? ['', ''];
+  
+  const { data: manifests = [], isLoading: manifestsLoading, error: manifestsError } = useManifests(owner, repoName);
+  const { job, isLoading: analyzing, error: analyzeError, analyze, reset: resetAnalyze } = useAnalyzeRepoMutation();
 
+  // When job is created, pass it up
   useEffect(() => {
-    if (selectedRepo) {
-      const [owner, repo] = selectedRepo.full_name.split('/');
-      fetchManifests(owner, repo);
+    if (job) {
+      onJobCreated(job);
     }
-  }, [selectedRepo, fetchManifests]);
+  }, [job, onJobCreated]);
 
-  const filteredRepos = repos.filter(repo => 
+  const filteredRepos = repos.filter(repo =>
     repo.name.toLowerCase().includes(search.toLowerCase()) ||
     repo.full_name.toLowerCase().includes(search.toLowerCase())
   );
 
   const handleAnalyze = () => {
     if (!selectedRepo || !selectedManifest) return;
-    
-    const [owner, repo] = selectedRepo.full_name.split('/');
-    analyze(owner, repo, {
+    const [o, r] = selectedRepo.full_name.split('/');
+    analyze(o, r, {
       manifest_path: selectedManifest.path,
       formats: ['svg', 'png', 'pdf']
     });
   };
 
-  const handleReset = () => {
+  const handleBack = () => {
     setSelectedRepo(null);
     setSelectedManifest(null);
-    resetManifests();
     resetAnalyze();
   };
 
-  // If we have a job result, show it
-  if (job && (job.status === 'completed' || job.status === 'failed')) {
-    return (
-      <div className="h-full flex flex-col">
-        {/* Back button */}
-        <div className="flex items-center gap-3 mb-4">
-          <button
-            onClick={handleReset}
-            className="btn btn-ghost"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            Back
-          </button>
-          <span className="text-[var(--color-text-muted)]">•</span>
-          <span className="font-mono text-sm text-[var(--color-text)]">{selectedRepo?.full_name}</span>
-        </div>
-        <div className="flex-1 min-h-0">
-          <VisualizationResult job={job} onReset={handleReset} />
-        </div>
-      </div>
-    );
-  }
-
-  // Processing state
-  if (job && (job.status === 'pending' || job.status === 'processing')) {
-    return (
-      <div className="h-full flex flex-col">
-        <div className="flex items-center gap-3 mb-4">
-          <span className="font-mono text-sm text-[var(--color-text)]">{selectedRepo?.full_name}</span>
-        </div>
-        <div className="flex-1 min-h-0">
-          <VisualizationResult job={job} onReset={handleReset} />
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="h-full flex gap-6">
+    <div className="flex-1 flex h-full min-h-0">
       {/* Repo list */}
-      <div className="w-96 flex-shrink-0 panel flex flex-col">
-        <div className="panel-header">
-          Select Repository
-        </div>
-        
-        {/* Search */}
-        <div className="p-3 border-b border-[var(--color-border)]">
+      <div className="w-80 border-r border-border bg-card flex flex-col min-h-0">
+        <div className="p-4 border-b border-border">
           <div className="relative">
-            <input
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search repositories..."
-              className="input pl-9"
+              className="pl-9"
             />
-            <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
           </div>
         </div>
 
-        {/* Error */}
         {reposError && (
-          <div className="p-3 m-3 bg-[var(--color-error-light)] rounded-lg text-sm text-[var(--color-error)]">
-            {reposError}
-          </div>
+          <div className="p-4 text-sm text-destructive">{reposError.message}</div>
         )}
 
-        {/* Loading */}
-        {reposLoading && (
-          <div className="flex-1 flex items-center justify-center">
-            <div className="w-8 h-8 border-2 border-[var(--color-primary)] border-t-transparent rounded-full animate-spin" />
+        {reposLoading ? (
+          <div className="p-4 space-y-3">
+            {[...Array(5)].map((_, i) => (
+              <Skeleton key={i} className="h-16 w-full" />
+            ))}
           </div>
-        )}
-
-        {/* Repo List */}
-        {!reposLoading && (
+        ) : (
           <div className="flex-1 overflow-y-auto">
             {filteredRepos.length === 0 ? (
-              <div className="p-8 text-center text-[var(--color-text-muted)] text-sm">
+              <div className="p-8 text-center text-muted-foreground text-sm">
                 {search ? 'No repositories match your search' : 'No repositories found'}
               </div>
             ) : (
-              <div className="divide-y divide-[var(--color-border)]">
+              <div className="divide-y divide-border">
                 {filteredRepos.map(repo => (
                   <button
                     key={repo.id}
@@ -142,35 +97,30 @@ export function RepoSelector({ onBack: _onBack }: RepoSelectorProps) {
                       setSelectedRepo(repo);
                       setSelectedManifest(null);
                     }}
-                    className={`w-full p-3 text-left hover:bg-[var(--color-bg-hover)] transition-colors ${
-                      selectedRepo?.id === repo.id ? 'bg-[var(--color-primary-light)]' : ''
-                    }`}
+                    className={cn(
+                      'w-full p-4 text-left hover:bg-muted transition-colors',
+                      selectedRepo?.id === repo.id && 'bg-primary/10'
+                    )}
                   >
                     <div className="flex items-center justify-between gap-2">
-                      <div className="min-w-0">
+                      <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2">
-                          <span className="font-medium text-[var(--color-text)] truncate">{repo.name}</span>
+                          <span className="font-medium text-foreground truncate">{repo.name}</span>
                           {repo.private && (
-                            <span className="badge badge-warning text-xs">Private</span>
+                            <span className="px-1.5 py-0.5 text-[10px] bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 rounded">Private</span>
                           )}
                         </div>
                         {repo.description && (
-                          <p className="text-xs text-[var(--color-text-muted)] truncate mt-0.5">
-                            {repo.description}
-                          </p>
+                          <p className="text-xs text-muted-foreground truncate mt-0.5">{repo.description}</p>
                         )}
-                        <div className="flex items-center gap-3 mt-1 text-xs text-[var(--color-text-muted)]">
-                          {repo.language && (
-                            <span className="flex items-center gap-1">
-                              <span className="w-2 h-2 rounded-full bg-[var(--color-primary)]" />
-                              {repo.language}
-                            </span>
-                          )}
-                        </div>
+                        {repo.language && (
+                          <div className="flex items-center gap-1 mt-1 text-xs text-muted-foreground">
+                            <span className="w-2 h-2 rounded-full bg-primary" />
+                            {repo.language}
+                          </div>
+                        )}
                       </div>
-                      <svg className="w-4 h-4 text-[var(--color-text-muted)] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                      </svg>
+                      <ChevronRight className="w-4 h-4 text-muted-foreground" />
                     </div>
                   </button>
                 ))}
@@ -181,126 +131,102 @@ export function RepoSelector({ onBack: _onBack }: RepoSelectorProps) {
       </div>
 
       {/* Manifest selection */}
-      <div className="flex-1 panel flex flex-col">
+      <div className="flex-1 flex flex-col bg-background">
         {!selectedRepo ? (
           <div className="flex-1 flex items-center justify-center">
             <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 bg-[var(--color-bg)] rounded-xl flex items-center justify-center">
-                <svg className="w-8 h-8 text-[var(--color-text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                </svg>
+              <div className="w-16 h-16 mx-auto mb-4 bg-muted rounded-xl flex items-center justify-center">
+                <Folder className="w-8 h-8 text-muted-foreground" />
               </div>
-              <p className="text-[var(--color-text-secondary)]">Select a repository to analyze</p>
+              <p className="text-foreground font-medium">Select a repository</p>
+              <p className="text-sm text-muted-foreground mt-1">Choose from your GitHub repos on the left</p>
             </div>
           </div>
         ) : (
           <>
-            <div className="panel-header flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-[var(--color-text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                </svg>
-                <span className="font-mono">{selectedRepo.full_name}</span>
+            {/* Repo header */}
+            <div className="h-14 px-6 flex items-center justify-between border-b border-border bg-card">
+              <div className="flex items-center gap-3">
+                <Button variant="ghost" size="icon" onClick={handleBack}>
+                  <ChevronLeft className="w-5 h-5" />
+                </Button>
+                <span className="font-mono text-foreground">{selectedRepo.full_name}</span>
               </div>
-              <button
-                onClick={() => {
-                  setSelectedRepo(null);
-                  setSelectedManifest(null);
-                  resetManifests();
-                }}
-                className="btn btn-ghost text-xs py-1 px-2"
-              >
-                Change
-              </button>
             </div>
 
             {/* Error */}
             {(manifestsError || analyzeError) && (
-              <div className="p-3 m-3 bg-[var(--color-error-light)] rounded-lg text-sm text-[var(--color-error)]">
-                {manifestsError || analyzeError}
+              <div className="p-4 m-4 bg-destructive/10 border border-destructive/20 rounded-lg text-sm text-destructive">
+                {manifestsError?.message || analyzeError}
               </div>
             )}
 
             {/* Loading manifests */}
-            {manifestsLoading && (
+            {manifestsLoading ? (
               <div className="flex-1 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="w-6 h-6 mx-auto mb-2 border-2 border-[var(--color-primary)] border-t-transparent rounded-full animate-spin" />
-                  <p className="text-sm text-[var(--color-text-muted)]">Detecting manifest files...</p>
+                  <div className="w-6 h-6 mx-auto mb-3 border-2 border-primary rounded-full border-t-transparent animate-spin" />
+                  <p className="text-sm text-muted-foreground">Detecting manifest files...</p>
                 </div>
               </div>
-            )}
-
-            {/* Manifest list */}
-            {!manifestsLoading && manifests.length > 0 && (
-              <div className="flex-1 p-4 overflow-y-auto">
-                <p className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wide mb-3">
+            ) : manifests.length > 0 ? (
+              <div className="flex-1 p-6 overflow-y-auto">
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-4">
                   Select manifest to analyze
                 </p>
                 <div className="space-y-2">
                   {manifests.map(manifest => (
-                    <button
+                    <Card
                       key={manifest.path}
-                      onClick={() => setSelectedManifest(manifest)}
-                      className={`w-full p-3 text-left rounded-lg border transition-all ${
+                      className={cn(
+                        'p-4 cursor-pointer transition-all',
                         selectedManifest?.path === manifest.path
-                          ? 'border-[var(--color-primary)] bg-[var(--color-primary-light)]'
-                          : 'border-[var(--color-border)] hover:border-[var(--color-text-muted)]'
-                      }`}
+                          ? 'border-primary bg-primary/10'
+                          : 'hover:border-muted-foreground'
+                      )}
+                      onClick={() => setSelectedManifest(manifest)}
                     >
                       <div className="flex items-center gap-3">
-                        <svg className="w-5 h-5 text-[var(--color-text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
+                        <File className="w-5 h-5 text-muted-foreground" />
                         <div>
-                          <p className="font-mono text-sm text-[var(--color-text)]">{manifest.name}</p>
-                          <p className="text-xs text-[var(--color-text-muted)] capitalize">{manifest.language}</p>
+                          <p className="font-mono text-sm text-foreground">{manifest.name}</p>
+                          <p className="text-xs text-muted-foreground capitalize">{manifest.language}</p>
                         </div>
                       </div>
-                    </button>
+                    </Card>
                   ))}
                 </div>
 
-                {/* Analyze button */}
                 {selectedManifest && (
-                  <button
+                  <Button
                     onClick={handleAnalyze}
                     disabled={analyzing}
-                    className="btn btn-primary w-full mt-6"
+                    className="w-full mt-6"
+                    size="lg"
                   >
                     {analyzing ? (
                       <>
-                        <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                        </svg>
+                        <span className="w-4 h-4 border-2 border-current rounded-full border-t-transparent animate-spin mr-2" />
                         Analyzing...
                       </>
                     ) : (
                       <>
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
+                        <Zap className="w-4 h-4 mr-2" />
                         Generate Tower
                       </>
                     )}
-                  </button>
+                  </Button>
                 )}
               </div>
-            )}
-
-            {/* No manifests found */}
-            {!manifestsLoading && manifests.length === 0 && (
+            ) : (
               <div className="flex-1 flex items-center justify-center">
                 <div className="text-center p-8">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-[var(--color-bg)] rounded-xl flex items-center justify-center">
-                    <svg className="w-8 h-8 text-[var(--color-text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
+                  <div className="w-16 h-16 mx-auto mb-4 bg-muted rounded-xl flex items-center justify-center">
+                    <File className="w-8 h-8 text-muted-foreground" />
                   </div>
-                  <p className="font-medium text-[var(--color-text)]">No manifest files found</p>
-                  <p className="text-sm text-[var(--color-text-muted)] mt-1">
-                    This repository doesn't have any supported dependency files in the root directory.
+                  <p className="font-medium text-foreground">No manifest files found</p>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    This repository doesn't have supported dependency files
                   </p>
                 </div>
               </div>

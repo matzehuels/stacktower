@@ -3,16 +3,51 @@ package cli
 import "github.com/matzehuels/stacktower/pkg/pipeline"
 
 // =============================================================================
-// CLI Command Options
-// Each command struct embeds pipeline.Options and adds CLI-specific fields.
-// This eliminates duplication between CLI and API while keeping CLI concerns separate.
+// CLI Command Options - Embedding Pattern
+// =============================================================================
+//
+// This file defines option structs for CLI commands using Go's struct embedding.
+// The pattern enables code sharing between CLI and API while keeping concerns separate.
+//
+// # Architecture
+//
+// Each command-specific options struct embeds two types:
+//   - pipeline.Options: Core rendering options shared with API (pkg/pipeline/pipeline.go)
+//   - CommonOptions: CLI-specific options (output paths, caching, timeouts)
+//
+// Example:
+//
+//	type RenderCmdOpts struct {
+//	    pipeline.Options  // Shared: Language, VizType, Formats, etc.
+//	    CommonOptions     // CLI-only: Output, NoCache, OrderTimeout
+//	}
+//
+// # Benefits
+//
+//  1. Single source of truth: pipeline.Options defines all rendering params once
+//  2. CLI flexibility: CommonOptions adds CLI-specific behavior without polluting API
+//  3. Type safety: Each command gets its own typed struct with appropriate defaults
+//  4. Flag binding: Cobra flags can bind directly to embedded fields (opts.MaxDepth)
+//
+// # Adding a New Command
+//
+//  1. Create a new *CmdOpts struct embedding pipeline.Options and CommonOptions
+//  2. Create a Default*CmdOpts() function that sets appropriate defaults
+//  3. In cmd_*.go, use the opts struct with Cobra flag binding
+//
+// # Default Values
+//
+// Pipeline defaults are defined in pkg/pipeline/pipeline.go (DefaultMaxDepth, etc.)
+// CLI defaults call those constants to stay in sync.
 // =============================================================================
 
-// CLIOpts contains CLI-specific options shared across commands.
-type CLIOpts struct {
+// CommonOptions contains CLI-specific options shared across commands.
+// These options are distinct from pipeline.Options and handle CLI concerns
+// like output paths, caching preferences, and timeout configuration.
+type CommonOptions struct {
 	Output       string // output file path (stdout if empty)
 	NoCache      bool   // disable caching
-	OrderTimeout int    // timeout in seconds for optimal ordering search (CLI-specific)
+	OrderTimeout int    // timeout in seconds for optimal ordering search
 }
 
 // DefaultOrderTimeout is the default timeout for optimal ordering search.
@@ -21,9 +56,9 @@ type CLIOpts struct {
 // Users can increase this via --ordering-timeout for larger graphs.
 const DefaultOrderTimeout = 60
 
-// DefaultCLIOpts returns CLIOpts with sensible defaults.
-func DefaultCLIOpts() CLIOpts {
-	return CLIOpts{
+// DefaultCommonOptions returns CommonOptions with sensible defaults.
+func DefaultCommonOptions() CommonOptions {
+	return CommonOptions{
 		OrderTimeout: DefaultOrderTimeout,
 	}
 }
@@ -31,19 +66,19 @@ func DefaultCLIOpts() CLIOpts {
 // ParseCmdOpts combines pipeline options with CLI-specific options for parsing.
 type ParseCmdOpts struct {
 	pipeline.Options
-	CLIOpts
-	Name string // override project name for manifest parsing (CLI-specific)
+	CommonOptions
+	Name string // override project name for manifest parsing
 }
 
 // DefaultParseCmdOpts returns ParseCmdOpts with sensible defaults.
 func DefaultParseCmdOpts() ParseCmdOpts {
 	opts := ParseCmdOpts{
-		CLIOpts: DefaultCLIOpts(),
+		CommonOptions: DefaultCommonOptions(),
 	}
 	// Set parse-specific defaults
 	opts.MaxDepth = pipeline.DefaultMaxDepth
 	opts.MaxNodes = pipeline.DefaultMaxNodes
-	opts.Enrich = true
+	opts.SkipEnrich = false
 	opts.Normalize = true
 	return opts
 }
@@ -51,13 +86,13 @@ func DefaultParseCmdOpts() ParseCmdOpts {
 // LayoutCmdOpts combines pipeline options with CLI-specific options for layout.
 type LayoutCmdOpts struct {
 	pipeline.Options
-	CLIOpts
+	CommonOptions
 }
 
 // DefaultLayoutCmdOpts returns LayoutCmdOpts with sensible defaults.
 func DefaultLayoutCmdOpts() LayoutCmdOpts {
 	opts := LayoutCmdOpts{
-		CLIOpts: DefaultCLIOpts(),
+		CommonOptions: DefaultCommonOptions(),
 	}
 	// Set layout-specific defaults
 	opts.VizType = pipeline.DefaultVizType
@@ -79,13 +114,13 @@ func (o *LayoutCmdOpts) NeedsOptimalOrderer() bool {
 // VisualizeCmdOpts combines pipeline options with CLI-specific options for visualization.
 type VisualizeCmdOpts struct {
 	pipeline.Options
-	CLIOpts
+	CommonOptions
 }
 
 // DefaultVisualizeCmdOpts returns VisualizeCmdOpts with sensible defaults.
 func DefaultVisualizeCmdOpts() VisualizeCmdOpts {
 	opts := VisualizeCmdOpts{
-		CLIOpts: DefaultCLIOpts(),
+		CommonOptions: DefaultCommonOptions(),
 	}
 	// Set visualize-specific defaults
 	opts.Style = pipeline.DefaultStyle
@@ -96,13 +131,13 @@ func DefaultVisualizeCmdOpts() VisualizeCmdOpts {
 // RenderCmdOpts combines pipeline options with CLI-specific options for full render.
 type RenderCmdOpts struct {
 	pipeline.Options
-	CLIOpts
+	CommonOptions
 }
 
 // DefaultRenderCmdOpts returns RenderCmdOpts with sensible defaults.
 func DefaultRenderCmdOpts() RenderCmdOpts {
 	opts := RenderCmdOpts{
-		CLIOpts: DefaultCLIOpts(),
+		CommonOptions: DefaultCommonOptions(),
 	}
 	// Set layout defaults
 	opts.VizType = pipeline.DefaultVizType

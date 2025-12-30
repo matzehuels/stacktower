@@ -120,7 +120,8 @@ func (b *FileBackend) GetLayout(ctx context.Context, hash string) ([]byte, bool,
 	return b.get(ctx, "layout", hash)
 }
 
-func (b *FileBackend) PutLayout(ctx context.Context, hash string, data []byte, ttl time.Duration) error {
+func (b *FileBackend) PutLayout(ctx context.Context, hash string, data []byte, ttl time.Duration, scope Scope, userID string) error {
+	// FileBackend is single-user (CLI), so ignore scope/user
 	return b.put(ctx, "layout", hash, data, ttl)
 }
 
@@ -129,7 +130,8 @@ func (b *FileBackend) GetRender(ctx context.Context, hash, format string) ([]byt
 	return b.get(ctx, "render", key)
 }
 
-func (b *FileBackend) PutRender(ctx context.Context, hash, format string, data []byte, ttl time.Duration) error {
+func (b *FileBackend) PutRender(ctx context.Context, hash, format string, data []byte, ttl time.Duration, scope Scope, userID string) error {
+	// FileBackend is single-user (CLI), so ignore scope/user
 	key := fmt.Sprintf("%s:%s", hash, format)
 	return b.put(ctx, "render", key, data, ttl)
 }

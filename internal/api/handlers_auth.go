@@ -12,15 +12,17 @@ import (
 // handleGitHubAuth starts the GitHub OAuth flow.
 // GET /api/v1/auth/github
 func (s *Server) handleGitHubAuth(w http.ResponseWriter, r *http.Request) {
+	ctx := s.handlerContext()
+
 	if s.githubOAuth.ClientID == "" {
-		s.errorResponse(w, http.StatusServiceUnavailable, "GitHub OAuth not configured")
+		s.errorResponse(w, http.StatusServiceUnavailable, errMsgOAuthNotConfig)
 		return
 	}
 
 	// Generate state token using the configured state store (memory or Redis)
-	state, err := s.states.Generate(r.Context(), session.DefaultStateTTL)
+	state, err := ctx.States.Generate(r.Context(), session.DefaultStateTTL)
 	if err != nil {
-		s.logger.Error("failed to generate OAuth state", "error", err, "request_id", getRequestID(r))
+		ctx.Logger.Error("failed to generate OAuth state", "error", err, "request_id", getRequestID(r))
 		s.errorResponse(w, http.StatusInternalServerError, "failed to generate state")
 		return
 	}
@@ -35,16 +37,18 @@ func (s *Server) handleGitHubAuth(w http.ResponseWriter, r *http.Request) {
 // handleGitHubCallback handles the OAuth callback from GitHub.
 // GET /api/v1/auth/github/callback
 func (s *Server) handleGitHubCallback(w http.ResponseWriter, r *http.Request) {
+	ctx := s.handlerContext()
+
 	// Verify state using the configured state store (memory or Redis)
 	state := r.URL.Query().Get("state")
-	valid, err := s.states.Validate(r.Context(), state)
+	valid, err := ctx.States.Validate(r.Context(), state)
 	if err != nil {
-		s.logger.Error("failed to validate OAuth state", "error", err, "request_id", getRequestID(r))
+		ctx.Logger.Error("failed to validate OAuth state", "error", err, "request_id", getRequestID(r))
 		s.errorResponse(w, http.StatusInternalServerError, "failed to validate state")
 		return
 	}
 	if !valid {
-		s.errorResponse(w, http.StatusBadRequest, "invalid or expired state")
+		s.errorResponse(w, http.StatusBadRequest, errMsgInvalidState)
 		return
 	}
 
@@ -63,8 +67,8 @@ func (s *Server) handleGitHubCallback(w http.ResponseWriter, r *http.Request) {
 	oauthClient := github.NewOAuthClient(s.githubOAuth)
 	token, err := oauthClient.ExchangeCode(code)
 	if err != nil {
-		s.logger.Error("failed to exchange OAuth code", "error", err, "request_id", getRequestID(r))
-		s.errorResponse(w, http.StatusInternalServerError, "authentication failed")
+		ctx.Logger.Error("failed to exchange OAuth code", "error", err, "request_id", getRequestID(r))
+		s.errorResponse(w, http.StatusInternalServerError, errMsgAuthFailed)
 		return
 	}
 
@@ -72,7 +76,7 @@ func (s *Server) handleGitHubCallback(w http.ResponseWriter, r *http.Request) {
 	contentClient := github.NewContentClient(token.AccessToken)
 	user, err := contentClient.FetchUser(r.Context())
 	if err != nil {
-		s.logger.Error("failed to fetch GitHub user", "error", err, "request_id", getRequestID(r))
+		ctx.Logger.Error("failed to fetch GitHub user", "error", err, "request_id", getRequestID(r))
 		s.errorResponse(w, http.StatusInternalServerError, "failed to retrieve user information")
 		return
 	}
@@ -80,14 +84,14 @@ func (s *Server) handleGitHubCallback(w http.ResponseWriter, r *http.Request) {
 	// Create session
 	sess, err := session.New(token.AccessToken, user, session.DefaultTTL)
 	if err != nil {
-		s.logger.Error("failed to create session", "error", err, "request_id", getRequestID(r))
+		ctx.Logger.Error("failed to create session", "error", err, "request_id", getRequestID(r))
 		s.errorResponse(w, http.StatusInternalServerError, "failed to create session")
 		return
 	}
 
 	// Store session
-	if err := s.sessions.Set(r.Context(), sess); err != nil {
-		s.logger.Error("failed to store session", "error", err, "request_id", getRequestID(r))
+	if err := ctx.Sessions.Set(r.Context(), sess); err != nil {
+		ctx.Logger.Error("failed to store session", "error", err, "request_id", getRequestID(r))
 		s.errorResponse(w, http.StatusInternalServerError, "failed to store session")
 		return
 	}
@@ -107,7 +111,7 @@ func (s *Server) handleAuthMe(w http.ResponseWriter, r *http.Request) {
 	// Defensive nil check - should never happen with requireAuth middleware,
 	// but prevents a panic if middleware is misconfigured.
 	if sess == nil {
-		s.errorResponse(w, http.StatusUnauthorized, "authentication required")
+		s.errorResponse(w, http.StatusUnauthorized, errMsgAuthRequired)
 		return
 	}
 	s.jsonResponse(w, http.StatusOK, sess.User)
@@ -117,14 +121,16 @@ func (s *Server) handleAuthMe(w http.ResponseWriter, r *http.Request) {
 // POST /api/v1/auth/logout
 // Auth handled by middleware.
 func (s *Server) handleAuthLogout(w http.ResponseWriter, r *http.Request) {
+	ctx := s.handlerContext()
+
 	cookie, err := r.Cookie("session")
 	if err == nil {
 		// Use a background context with timeout for cleanup to ensure it completes
 		// even if the client disconnects
 		cleanupCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 		defer cancel()
-		if delErr := s.sessions.Delete(cleanupCtx, cookie.Value); delErr != nil {
-			s.logger.Warn("failed to delete session from store",
+		if delErr := ctx.Sessions.Delete(cleanupCtx, cookie.Value); delErr != nil {
+			ctx.Logger.Warn("failed to delete session from store",
 				"error", delErr,
 				"session_id", cookie.Value,
 				"request_id", getRequestID(r))
