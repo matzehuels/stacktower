@@ -2,6 +2,7 @@ package golang
 
 import (
 	"context"
+	"strings"
 	"time"
 
 	"github.com/matzehuels/stacktower/pkg/core/deps"
@@ -34,12 +35,18 @@ func (f fetcher) Fetch(ctx context.Context, name string, refresh bool) (*deps.Pa
 	if err != nil {
 		return nil, err
 	}
-	return &deps.Package{
+	pkg := &deps.Package{
 		Name:         m.Path,
 		Version:      m.Version,
 		Dependencies: m.Dependencies,
 		ManifestFile: "go.mod",
-	}, nil
+	}
+
+	// For github.com modules, extract repository URL from module path
+	// e.g., github.com/spf13/cobra → https://github.com/spf13/cobra
+	pkg.Repository = inferRepoURL(m.Path)
+
+	return pkg, nil
 }
 
 func newManifest(name string, res deps.Resolver) deps.ManifestParser {
@@ -55,4 +62,31 @@ func manifestParsers(res deps.Resolver) []deps.ManifestParser {
 	return []deps.ManifestParser{
 		&GoModParser{resolver: res},
 	}
+}
+
+// inferRepoURL extracts the repository URL from a Go module path.
+// For github.com, gitlab.com, and bitbucket.org modules, it converts
+// the module path to an HTTPS URL by taking the first two path segments.
+//
+// Examples:
+//   - github.com/spf13/cobra → https://github.com/spf13/cobra
+//   - github.com/gofiber/fiber/v2 → https://github.com/gofiber/fiber
+//   - gitlab.com/user/repo → https://gitlab.com/user/repo
+//   - gopkg.in/yaml.v3 → (returns empty string)
+//
+// Returns an empty string for non-repository-based modules or modules
+// from unsupported hosting platforms.
+func inferRepoURL(modulePath string) string {
+	// Common hosting platforms that use path-based module names
+	for _, prefix := range []string{"github.com/", "gitlab.com/", "bitbucket.org/"} {
+		if strings.HasPrefix(modulePath, prefix) {
+			// Extract owner/repo (first two path segments after the domain)
+			// e.g., "github.com/spf13/cobra/doc" → owner="spf13", repo="cobra"
+			parts := strings.Split(strings.TrimPrefix(modulePath, prefix), "/")
+			if len(parts) >= 2 {
+				return "https://" + prefix + parts[0] + "/" + parts[1]
+			}
+		}
+	}
+	return ""
 }

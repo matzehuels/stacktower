@@ -22,8 +22,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useTheme } from '@/hooks/useTheme';
 import { cn } from '@/lib/utils';
-
-export type Tab = 'packages' | 'repos' | 'library' | 'explore';
+import type { Tab } from '@/types/navigation';
 
 interface SidebarProps {
   user: GitHubUser | null | undefined;

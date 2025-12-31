@@ -138,7 +138,7 @@ function MaintainerItem({ ranking, rank, isExpanded, onToggle, onHighlight, onCl
     <div 
       className={cn(
         'transition-colors',
-        isExpanded ? 'bg-background' : 'hover:bg-muted/50'
+        isExpanded ? 'bg-muted/30' : 'hover:bg-muted/50'
       )}
       onMouseEnter={handleMaintainerHover}
       onMouseLeave={handleMaintainerLeave}

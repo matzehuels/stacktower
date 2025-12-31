@@ -6,16 +6,11 @@
 import { useState, useMemo } from 'react';
 import { Compass, Loader2, TrendingUp, Clock } from 'lucide-react';
 import { useExplore } from '@/hooks/queries';
-import { getRender } from '@/lib/api';
-import { toast } from 'sonner';
+import { selectExploreEntry } from '@/lib/helpers/explore';
 import { TowerCard } from '@/components/TowerCard';
 import { GitHubLoginButton } from '@/components/GitHubLoginButton';
 import { PackageSearchBar } from '@/components/PackageSearchBar';
-import { LanguageIcon } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { Skeleton } from '@/components/ui/skeleton';
-import { cn } from '@/lib/utils';
-import { LANGUAGES } from '@/config/constants';
+import { LanguageFilter, SortToggle, Button, EmptyState, LoadingGrid } from '@/components/ui';
 import type { Language } from '@/config/constants';
 import type { JobResponse, ExploreEntry, ExploreSortBy, RenderRequest } from '@/types/api';
 
@@ -71,26 +66,8 @@ export function TowerExplorer({ onSelect, onRender, isAuthenticated = true, onLo
     }
   };
 
-  const handleSelect = async (entry: ExploreEntry) => {
-    const towerViz = entry.viz_types.find((v) => v.viz_type === 'tower');
-    const selectedViz = towerViz || entry.viz_types[0];
-    
-    if (!selectedViz) return;
-
-    try {
-      // Fetch the full render data (includes layout with Nebraska rankings)
-      const jobResponse = await getRender(selectedViz.render_id);
-      
-      // Add related render IDs
-      const allRenderIds = entry.viz_types.map((v) => v.render_id).filter(Boolean);
-      if (jobResponse.result) {
-        jobResponse.result.related_render_ids = allRenderIds;
-      }
-      onSelect(jobResponse, entry.in_library);
-    } catch (error) {
-      console.error('Failed to fetch render:', error);
-      toast.error('Failed to load visualization');
-    }
+  const handleSelect = (entry: ExploreEntry) => {
+    selectExploreEntry(entry, onSelect);
   };
 
   const totalCount = exploreData?.pages[0]?.total ?? 0;
@@ -124,64 +101,22 @@ export function TowerExplorer({ onSelect, onRender, isAuthenticated = true, onLo
         {/* Filter bar */}
         <div className="flex flex-col sm:flex-row gap-2">
           {/* Language filter */}
-          <div className="flex gap-0.5 p-0.5 bg-muted rounded-md overflow-x-auto shrink-0">
-            <button
-              onClick={() => setSelectedLanguage('all')}
-              className={cn(
-                'px-2.5 py-1 text-xs font-medium rounded transition-colors whitespace-nowrap',
-                selectedLanguage === 'all'
-                  ? 'bg-background text-foreground shadow-sm'
-                  : 'text-muted-foreground hover:text-foreground'
-              )}
-            >
-              All
-            </button>
-            {LANGUAGES.map((lang) => (
-              <button
-                key={lang.value}
-                onClick={() => setSelectedLanguage(lang.value)}
-                className={cn(
-                  'p-1.5 rounded transition-colors whitespace-nowrap',
-                  selectedLanguage === lang.value
-                    ? 'bg-background shadow-sm'
-                    : 'text-muted-foreground hover:text-foreground'
-                )}
-                title={lang.label}
-              >
-                <LanguageIcon language={lang.value} className="h-3.5 w-3.5" />
-              </button>
-            ))}
-          </div>
+          <LanguageFilter 
+            value={selectedLanguage}
+            onChange={setSelectedLanguage}
+            className="overflow-x-auto"
+          />
 
           {/* Sort toggle */}
-          <div className="flex gap-0.5 p-0.5 bg-muted rounded-md shrink-0">
-            <button
-              onClick={() => setSortBy('popular')}
-              className={cn(
-                'px-2.5 py-1 text-xs font-medium rounded transition-colors whitespace-nowrap flex items-center gap-1',
-                sortBy === 'popular'
-                  ? 'bg-background text-foreground shadow-sm'
-                  : 'text-muted-foreground hover:text-foreground'
-              )}
-              title="Sort by popularity"
-            >
-              <TrendingUp className="h-3 w-3" />
-              Popular
-            </button>
-            <button
-              onClick={() => setSortBy('recent')}
-              className={cn(
-                'px-2.5 py-1 text-xs font-medium rounded transition-colors whitespace-nowrap flex items-center gap-1',
-                sortBy === 'recent'
-                  ? 'bg-background text-foreground shadow-sm'
-                  : 'text-muted-foreground hover:text-foreground'
-              )}
-              title="Sort by most recent"
-            >
-              <Clock className="h-3 w-3" />
-              Recent
-            </button>
-          </div>
+          <SortToggle
+            value={sortBy}
+            onChange={setSortBy}
+            options={[
+              { value: 'popular' as const, label: 'Popular', icon: <TrendingUp className="h-3 w-3" /> },
+              { value: 'recent' as const, label: 'Recent', icon: <Clock className="h-3 w-3" /> },
+            ]}
+            className="shrink-0"
+          />
 
           {/* Search with autocomplete */}
           <PackageSearchBar
@@ -196,30 +131,23 @@ export function TowerExplorer({ onSelect, onRender, isAuthenticated = true, onLo
       {/* Grid content */}
       <div className="flex-1 overflow-y-auto p-4 sm:p-6">
         {isExploring && !entries.length ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {[...Array(12)].map((_, i) => (
-              <Skeleton key={i} className="aspect-[4/3] rounded-lg" />
-            ))}
-          </div>
+          <LoadingGrid count={12} />
         ) : exploreError ? (
-          <div className="flex items-center justify-center h-64">
-            <div className="text-center">
-              <p className="text-sm text-destructive mb-3">{exploreError.message}</p>
+          <EmptyState
+            title="Failed to load towers"
+            description={exploreError.message}
+            action={
               <Button variant="outline" size="sm" onClick={() => fetchNextPage()}>
                 Try again
               </Button>
-            </div>
-          </div>
+            }
+          />
         ) : entries.length === 0 ? (
-          <div className="flex items-center justify-center h-64">
-            <div className="text-center">
-              <Compass className="w-8 h-8 mx-auto text-muted-foreground mb-3" />
-              <p className="font-medium">No towers found</p>
-              <p className="text-sm text-muted-foreground mt-1">
-                Be the first to create one!
-              </p>
-            </div>
-          </div>
+          <EmptyState
+            icon={<Compass className="w-8 h-8" />}
+            title="No towers found"
+            description="Be the first to create one!"
+          />
         ) : (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">

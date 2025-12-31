@@ -4,113 +4,53 @@
  * Supports both authenticated and public (explore-only) modes.
  */
 
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { Sidebar, PackagesView } from '@/components/layout';
-import type { Tab } from '@/components/layout';
 import { VisualizationResult } from '@/components/VisualizationResult';
 import { RepoSelector } from '@/components/RepoSelector';
 import { Library } from '@/components/Library';
 import { TowerExplorer } from '@/components/TowerExplorer';
 import { LandingPage } from '@/components/LandingPage';
+import { NotFound } from '@/components/NotFound';
 import { useCurrentUser, useLogout, useLogin, useRenderMutation } from '@/hooks/queries';
+import { useAppState } from '@/hooks/useAppState';
 import type { JobResponse, VizType } from '@/types/api';
 
 function App() {
   const { data: user, isLoading: authLoading, refetch: checkAuth } = useCurrentUser();
   const { mutate: logoutMutate } = useLogout();
   const { login } = useLogin();
-  const { job: renderJob, isLoading, error, render, reset: resetRender } = useRenderMutation();
+  const { job: renderJob, isLoading, render, reset: resetRender } = useRenderMutation();
   
-  // Start on explore for unauthenticated users, packages for authenticated
-  const [activeTab, setActiveTab] = useState<Tab>('explore');
-  const [selectedJob, setSelectedJob] = useState<JobResponse | null>(null);
-  const [selectedInLibrary, setSelectedInLibrary] = useState<boolean | undefined>(undefined);
-
-  // Set initial tab based on auth state
-  useEffect(() => {
-    if (user && activeTab === 'explore') {
-      // If user just logged in, stay on explore (they were browsing)
-      // Only switch to packages if they haven't navigated yet
-    }
-  }, [user, activeTab]);
+  // Centralized app state management
+  const { state, actions } = useAppState({ user, checkAuth });
+  const { activeTab, selectedJob, selectedInLibrary } = state;
 
   const displayJob = renderJob || selectedJob;
 
-  // Check for auth callback and shared render
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    
-    // Handle auth callback
-    if (params.get('auth') === 'success') {
-      checkAuth();
-      window.history.replaceState({}, '', window.location.pathname);
-    }
-    
-    // Handle shared render URL (e.g., ?render=abc123)
-    const sharedRenderId = params.get('render');
-    if (sharedRenderId && !selectedJob && !renderJob) {
-      // Load the shared render
-      import('@/lib/api').then(({ getRender }) => {
-        getRender(sharedRenderId)
-          .then((job) => {
-            setSelectedJob(job);
-            // Clean URL after loading
-            window.history.replaceState({}, '', window.location.pathname);
-          })
-          .catch((error) => {
-            console.error('Failed to load shared render:', error);
-            toast.error('Failed to load shared visualization', {
-              description: 'The link may be invalid or expired.'
-            });
-            // Clean URL even on error
-            window.history.replaceState({}, '', window.location.pathname);
-          });
-      });
-    }
-  }, [checkAuth, selectedJob, renderJob]);
-
   const handleReset = useCallback(() => {
     resetRender();
-    setSelectedJob(null);
-  }, [resetRender]);
+    actions.clearSelection();
+  }, [resetRender, actions]);
 
   const handleLogout = useCallback(() => {
     logoutMutate();
-    setActiveTab('explore'); // Go back to explore after logout
-  }, [logoutMutate]);
+    actions.navigate('explore');
+  }, [logoutMutate, actions]);
 
-  const handleRepoJob = useCallback((repoJob: JobResponse) => {
-    setSelectedJob(repoJob);
-  }, []);
-
-  const handleSelect = useCallback((job: JobResponse, inLibrary?: boolean) => {
-    setSelectedJob(job);
-    setSelectedInLibrary(inLibrary);
-  }, []);
-
-  const handleNavigate = useCallback((tab: Tab) => {
-    // Check if user needs to be authenticated for this tab
-    if (!user && tab !== 'explore') {
-      toast.info('Sign in to access this feature', {
-        action: {
-          label: 'Sign in with GitHub',
-          onClick: login,
-        },
-      });
-      return;
-    }
-    setActiveTab(tab);
-    setSelectedJob(null);
+  const handleNavigate = useCallback((tab: typeof activeTab) => {
+    actions.navigate(tab);
     resetRender();
-  }, [user, login, resetRender]);
+  }, [actions, resetRender]);
 
   const handleJobUpdate = useCallback((updatedJob: JobResponse) => {
     if (!renderJob) {
-      setSelectedJob(updatedJob);
+      actions.updateJob(updatedJob);
     }
-  }, [renderJob]);
+  }, [renderJob, actions]);
 
   const handleVizTypeChange = useCallback((newVizType: VizType) => {
     const source = displayJob?.result?.source;
@@ -190,44 +130,54 @@ function App() {
   // Landing page for unauthenticated users
   if (!user) {
     return (
-      <LandingPage 
-        onSelect={(job) => setSelectedJob(job)} 
-        onLogin={login} 
-      />
+      <Routes>
+        <Route path="/" element={
+          <LandingPage 
+            onSelect={actions.selectJob} 
+            onLogin={login} 
+          />
+        } />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     );
   }
 
   // Main app for authenticated users
   return (
-    <div className="h-screen bg-background flex overflow-hidden">
-      <Sidebar 
-        user={user} 
-        logout={handleLogout} 
-        login={login}
-        activeTab={activeTab} 
-        onNavigate={handleNavigate} 
-      />
-
-      <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        {activeTab === 'packages' && (
-          <PackagesView onSubmit={render} isLoading={isLoading} error={error} />
-        )}
-        {activeTab === 'repos' && (
-          <RepoSelector onJobCreated={handleRepoJob} />
-        )}
-        {activeTab === 'library' && (
-          <Library onSelect={handleSelect} />
-        )}
-        {activeTab === 'explore' && (
-          <TowerExplorer 
-            onSelect={handleSelect} 
-            onRender={render}
-            isAuthenticated={true} 
-            onLogin={login} 
+    <Routes>
+      <Route path="/" element={
+        <div className="h-screen bg-background flex overflow-hidden">
+          <Sidebar 
+            user={user} 
+            logout={handleLogout} 
+            login={login}
+            activeTab={activeTab} 
+            onNavigate={handleNavigate} 
           />
-        )}
-      </main>
-    </div>
+
+          <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
+            {activeTab === 'packages' && (
+              <PackagesView onSubmit={render} isLoading={isLoading} />
+            )}
+            {activeTab === 'repos' && (
+              <RepoSelector onJobCreated={actions.selectJob} />
+            )}
+            {activeTab === 'library' && (
+              <Library onSelect={actions.selectJob} />
+            )}
+            {activeTab === 'explore' && (
+              <TowerExplorer 
+                onSelect={actions.selectJob} 
+                onRender={render}
+                isAuthenticated={true} 
+                onLogin={login} 
+              />
+            )}
+          </main>
+        </div>
+      } />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 

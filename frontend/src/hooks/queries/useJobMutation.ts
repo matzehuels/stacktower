@@ -11,6 +11,8 @@ import { JOB_POLL_INTERVAL, TERMINAL_JOB_STATUSES } from '@/config/constants';
 import type { JobStatus } from '@/config/constants';
 import { queryKeys } from './keys';
 import type { JobResponse, RepoAnalyzeRequest } from '@/types/api';
+import { parseError } from '@/lib/helpers/errors';
+import { showError } from '@/lib/helpers/toast';
 
 // =============================================================================
 // Shared Polling Logic
@@ -104,8 +106,10 @@ export function useRenderMutation() {
         queryClient.invalidateQueries({ queryKey: queryKeys.explore.all });
       }
     },
-    onError: () => {
+    onError: (error) => {
       stopPolling();
+      const parsed = parseError(error, 'package');
+      showError(parsed.title, parsed.message + (parsed.suggestion ? `\n\n${parsed.suggestion}` : ''));
     },
   });
 
@@ -140,8 +144,10 @@ export function useAnalyzeRepoMutation() {
         startPolling(data.job_id);
       }
     },
-    onError: () => {
+    onError: (error) => {
       stopPolling();
+      const parsed = parseError(error, 'repository');
+      showError(parsed.title, parsed.message + (parsed.suggestion ? `\n\n${parsed.suggestion}` : ''));
     },
   });
 

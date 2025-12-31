@@ -21,6 +21,12 @@ export {
   JavaIcon,
 } from './LanguageIcons';
 
+// Social/branded icons
+export { XIcon } from './XIcon';
+
+// Illustration icons
+export { CollapsedTowerIcon } from './CollapsedTowerIcon';
+
 // =============================================================================
 // Logo
 // =============================================================================

@@ -4,11 +4,13 @@
 
 // Feature components
 export { DependencyList } from './DependencyList';
+export { DependencyItem, type DependencyItemProps } from './DependencyItem';
 export { ErrorBoundary, ErrorFallback } from './ErrorBoundary';
 export { ErrorPage } from './ErrorPage';
 export { GitHubLoginButton } from './GitHubLoginButton';
 export { IntegrationsShowcase } from './IntegrationsShowcase';
 export { LandingPage } from './LandingPage';
+export { NotFound } from './NotFound';
 export { PackageSearchBar } from './PackageSearchBar';
 export { Library } from './Library';
 export { PlaygroundForm } from './PlaygroundForm';

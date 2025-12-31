@@ -3,47 +3,19 @@
  */
 
 import { useState } from 'react';
-import { Library as LibraryIcon, RefreshCw, Trash2, GitBranch, Box, Layers, Network, Star } from 'lucide-react';
+import { Library as LibraryIcon, RefreshCw } from 'lucide-react';
 import { toast } from 'sonner';
 import { useLibrary, useRemoveFromLibrary } from '@/hooks/queries';
 import { deleteRender, getRender } from '@/lib/api';
-import { LanguageIcon } from '@/components/icons';
-import { Button } from '@/components/ui/button';
-import { Skeleton } from '@/components/ui/skeleton';
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
-import type { JobResponse, LibraryItem, RepoItem, Language } from '@/types/api';
+import { Button, EmptyState, LoadingGrid } from '@/components/ui';
+import { PackageListItem, RepoListItem } from '@/components/library-items';
+import type { JobResponse, LibraryItem, RepoItem } from '@/types/api';
 
-interface Props {
+interface LibraryProps {
   onSelect: (job: JobResponse, inLibrary?: boolean) => void;
 }
 
-function formatDate(dateStr: string): string {
-  const date = new Date(dateStr);
-  const now = new Date();
-  const diffMs = now.getTime() - date.getTime();
-  const diffMins = Math.floor(diffMs / 60000);
-  const diffHours = Math.floor(diffMs / 3600000);
-  const diffDays = Math.floor(diffMs / 86400000);
-
-  if (diffMins < 1) return 'Just now';
-  if (diffMins < 60) return `${diffMins}m ago`;
-  if (diffHours < 24) return `${diffHours}h ago`;
-  if (diffDays < 7) return `${diffDays}d ago`;
-  
-  return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
-}
-
-export function Library({ onSelect }: Props) {
+export function Library({ onSelect }: LibraryProps) {
   const { data, isLoading, error, refetch } = useLibrary(50);
   const { mutate: removeFromLibrary, isPending: isRemoving } = useRemoveFromLibrary();
   const [deletingId, setDeletingId] = useState<string | null>(null);
@@ -145,15 +117,7 @@ export function Library({ onSelect }: Props) {
   if (isLoading) {
     return (
       <div className="flex-1 flex flex-col max-w-3xl mx-auto w-full px-6 py-8">
-        <div className="flex items-center justify-between mb-6">
-          <Skeleton className="h-7 w-32" />
-          <Skeleton className="h-9 w-9" />
-        </div>
-        <div className="space-y-2">
-          {[...Array(5)].map((_, i) => (
-            <Skeleton key={i} className="h-16 w-full" />
-          ))}
-        </div>
+        <LoadingGrid count={5} columns={1} aspectRatio="8/1" />
       </div>
     );
   }
@@ -162,7 +126,9 @@ export function Library({ onSelect }: Props) {
     return (
       <div className="flex-1 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-destructive mb-4">{error.message}</p>
+          <p className="text-sm text-muted-foreground mb-4">
+            Failed to load your library. Please try again.
+          </p>
           <Button variant="outline" onClick={() => refetch()}>
             Try again
           </Button>
@@ -177,17 +143,16 @@ export function Library({ onSelect }: Props) {
 
   if (isEmpty) {
     return (
-      <div className="flex-1 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 mx-auto mb-4 bg-muted rounded-xl flex items-center justify-center">
+      <EmptyState
+        icon={
+          <div className="w-16 h-16 mx-auto bg-muted rounded-xl flex items-center justify-center">
             <LibraryIcon className="w-8 h-8 text-muted-foreground" />
           </div>
-          <p className="text-foreground font-medium">Your library is empty</p>
-          <p className="text-sm text-muted-foreground mt-1">
-            Visualize packages or save from explore
-          </p>
-        </div>
-      </div>
+        }
+        title="Your library is empty"
+        description="Visualize packages or save from explore"
+        className="flex-1 flex items-center justify-center"
+      />
     );
   }
 
@@ -208,188 +173,26 @@ export function Library({ onSelect }: Props) {
       <div className="flex-1 overflow-y-auto -mx-2">
         <div className="space-y-2">
           {/* Public packages */}
-          {data?.packages?.map((item) => {
-            const hasTower = item.viz_types?.some(v => v.viz_type === 'tower') ?? false;
-            const hasNodelink = item.viz_types?.some(v => v.viz_type === 'nodelink') ?? false;
-            
-            return (
-              <div
-                key={`${item.language}-${item.package}`}
-                className="group flex items-center gap-3 px-3 py-3 border rounded-lg hover:bg-muted/50 transition-colors"
-              >
-                <div className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center flex-shrink-0">
-                  <LanguageIcon 
-                    language={item.language as Language} 
-                    className="w-4 h-4" 
-                  />
-                </div>
-
-                <button
-                  onClick={() => handleSelectPackage(item)}
-                  className="flex-1 min-w-0 text-left"
-                >
-                  <div className="font-mono text-sm font-medium text-foreground truncate">
-                    {item.package}
-                  </div>
-                  
-                  <div className="flex items-center gap-3 mt-0.5 text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1">
-                      <Box className="w-3 h-3" />
-                      {item.node_count}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <GitBranch className="w-3 h-3" />
-                      {item.edge_count}
-                    </span>
-                    
-                    <span className="flex items-center gap-1">
-                      {hasTower && (
-                        <span className="flex items-center gap-0.5" title="Tower">
-                          <Layers className="w-3 h-3" />
-                        </span>
-                      )}
-                      {hasNodelink && (
-                        <span className="flex items-center gap-0.5" title="Node-Link">
-                          <Network className="w-3 h-3" />
-                        </span>
-                      )}
-                    </span>
-                    
-                    <span className="ml-auto flex items-center gap-1">
-                      <Star className="w-3 h-3" />
-                      {formatDate(item.saved_at)}
-                    </span>
-                  </div>
-                </button>
-
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      disabled={isRemoving}
-                      className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-destructive hover:bg-destructive/10"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>Remove from library?</AlertDialogTitle>
-                      <AlertDialogDescription>
-                        <span className="font-mono font-medium">{item.package}</span> will be removed from your library.
-                        The tower will still be available in explore.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction
-                        onClick={() => handleRemovePackage(item)}
-                        className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                      >
-                        Remove
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              </div>
-            );
-          })}
+          {data?.packages?.map((item) => (
+            <PackageListItem
+              key={`${item.language}-${item.package}`}
+              item={item}
+              onSelect={handleSelectPackage}
+              onRemove={handleRemovePackage}
+              isRemoving={isRemoving}
+            />
+          ))}
 
           {/* Private repos */}
-          {data?.repos?.map((item) => {
-            const repoName = item.source.repo || item.source.package || 'Unknown';
-            const primaryRender = item.renders[0];
-            
-            return (
-              <div
-                key={item.id}
-                className="group flex items-center gap-3 px-3 py-3 border rounded-lg hover:bg-muted/50 transition-colors"
-              >
-                <div className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center flex-shrink-0">
-                  <LanguageIcon 
-                    language={item.source.language as Language} 
-                    className="w-4 h-4" 
-                  />
-                </div>
-
-                <button
-                  onClick={() => handleSelectRepo(item)}
-                  className="flex-1 min-w-0 text-left"
-                  disabled={deletingId === item.id}
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-sm font-medium text-foreground truncate">
-                      {repoName}
-                    </span>
-                    <span className="text-xs bg-muted px-1.5 py-0.5 rounded text-muted-foreground">
-                      private
-                    </span>
-                  </div>
-                  
-                  <div className="flex items-center gap-3 mt-0.5 text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1">
-                      <Box className="w-3 h-3" />
-                      {item.node_count}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <GitBranch className="w-3 h-3" />
-                      {item.edge_count}
-                    </span>
-                    
-                    {primaryRender && (
-                      <span className="flex items-center gap-0.5">
-                        {primaryRender.viz_type === 'tower' ? (
-                          <Layers className="w-3 h-3" />
-                        ) : (
-                          <Network className="w-3 h-3" />
-                        )}
-                      </span>
-                    )}
-                    
-                    <span className="ml-auto">
-                      {formatDate(item.created_at)}
-                    </span>
-                  </div>
-                </button>
-
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      disabled={deletingId === item.id}
-                      className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-destructive hover:bg-destructive/10"
-                    >
-                      {deletingId === item.id ? (
-                        <span className="h-4 w-4 border-2 border-current rounded-full border-t-transparent animate-spin" />
-                      ) : (
-                        <Trash2 className="h-4 w-4" />
-                      )}
-                    </Button>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>Delete visualization?</AlertDialogTitle>
-                      <AlertDialogDescription>
-                        This will permanently delete the visualization for <span className="font-mono font-medium">{repoName}</span>.
-                        This action cannot be undone.
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction
-                        onClick={() => handleDeleteRepo(item)}
-                        className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                      >
-                        Delete
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              </div>
-            );
-          })}
+          {data?.repos?.map((item) => (
+            <RepoListItem
+              key={item.id}
+              item={item}
+              onSelect={handleSelectRepo}
+              onDelete={handleDeleteRepo}
+              isDeleting={deletingId === item.id}
+            />
+          ))}
         </div>
       </div>
     </div>

@@ -399,6 +399,23 @@ make build          # Build binary to bin/stacktower
 
 Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/).
 
+## Deployment
+
+Docker images are published to GitHub Container Registry on each release:
+
+```bash
+# Pull the latest image
+docker pull ghcr.io/matzehuels/stacktower:latest
+
+# Run API server
+docker run -p 8080:8080 ghcr.io/matzehuels/stacktower:latest
+
+# Run worker
+docker run ghcr.io/matzehuels/stacktower:latest --worker --concurrency 4
+```
+
+Deploy to any platform that supports Docker (Railway, Fly.io, Render, etc.) by pointing to `ghcr.io/matzehuels/stacktower:latest`.
+
 ## Learn More
 
 - 📖 **[stacktower.io](https://www.stacktower.io)** — Interactive examples and the full story behind tower visualizations

@@ -2,7 +2,7 @@
  * Main packages view for entering package names to visualize.
  */
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ArrowRight, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -16,38 +16,28 @@ import {
 } from '@/components/ui/select';
 import { LanguageIcon } from '@/components/icons';
 import { usePackageSuggestions } from '@/hooks/queries';
+import { useDebounce } from '@/hooks';
 import type { RenderRequest } from '@/types/api';
 import type { Language } from '@/config/constants';
 import { LANGUAGES, DEFAULT_FORMATS } from '@/config/constants';
 import { cn } from '@/lib/utils';
 
-interface PackagesViewProps {
-  onSubmit: (request: RenderRequest) => void;
-  isLoading: boolean;
-  error: string | null;
-}
-
-// Simple debounce hook
-function useDebounce<T>(value: T, delay: number): T {
-  const [debouncedValue, setDebouncedValue] = useState(value);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setDebouncedValue(value), delay);
-    return () => clearTimeout(timer);
-  }, [value, delay]);
-
-  return debouncedValue;
-}
-
 const EXAMPLES_BY_LANGUAGE: Record<string, string[]> = {
   python: ['fastapi', 'openai', 'pydantic', 'requests', 'typer', 'flask', 'django', 'numpy', 'pandas'],
   javascript: ['express', 'ioredis', 'knex', 'mongoose', 'pino', 'yup', 'lodash', 'axios', 'zod'],
   rust: ['serde', 'diesel', 'hyper', 'rayon', 'ureq', 'tokio', 'actix-web', 'clap'],
-  go: ['gin', 'fiber', 'echo', 'cobra', 'viper', 'gorm'],
+  go: ['github.com/gin-gonic/gin', 'github.com/gofiber/fiber/v2', 'github.com/labstack/echo/v4', 'github.com/spf13/cobra', 'github.com/spf13/viper', 'gorm.io/gorm'],
   ruby: ['rails', 'sinatra', 'devise', 'rspec', 'sidekiq'],
+  php: ['laravel/framework', 'symfony/symfony', 'guzzlehttp/guzzle', 'monolog/monolog', 'phpunit/phpunit'],
+  java: ['org.springframework:spring-core', 'com.google.guava:guava', 'org.apache.commons:commons-lang3', 'junit:junit', 'org.hibernate:hibernate-core'],
 };
 
-export function PackagesView({ onSubmit, isLoading, error }: PackagesViewProps) {
+interface PackagesViewProps {
+  onSubmit: (request: RenderRequest) => void;
+  isLoading: boolean;
+}
+
+export function PackagesView({ onSubmit, isLoading }: PackagesViewProps) {
   const [language, setLanguage] = useState<Language>('python');
   const [packageName, setPackageName] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
@@ -209,12 +199,6 @@ export function PackagesView({ onSubmit, isLoading, error }: PackagesViewProps) 
               </div>
             )}
           </form>
-
-          {error && (
-            <div className="mt-4 p-3 bg-destructive/10 border border-destructive/20 rounded-lg text-center">
-              <p className="text-sm text-destructive">{error}</p>
-            </div>
-          )}
         </div>
       </div>
 

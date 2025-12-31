@@ -6,23 +6,11 @@
 import { useState, useMemo, useCallback } from 'react';
 import { Search } from 'lucide-react';
 import { Combobox, type ComboboxOption } from '@/components/ui/combobox';
-import { LanguageIcon } from '@/components/icons';
+import { LanguageFilter } from '@/components/ui/language-filter';
 import { usePackageSuggestions } from '@/hooks/queries';
+import { useDebounce } from '@/hooks';
 import type { Language } from '@/config/constants';
-import { LANGUAGES } from '@/config/constants';
 import { cn } from '@/lib/utils';
-
-// Simple debounce hook
-function useDebounce<T>(value: T, delay: number): T {
-  const [debouncedValue, setDebouncedValue] = useState(value);
-
-  useMemo(() => {
-    const timer = setTimeout(() => setDebouncedValue(value), delay);
-    return () => clearTimeout(timer);
-  }, [value, delay]);
-
-  return debouncedValue;
-}
 
 interface PackageSearchBarProps {
   /** Called when a package is selected from suggestions */
@@ -95,34 +83,12 @@ export function PackageSearchBar({
     <div className={cn('flex gap-2 items-center', className)}>
       {/* Language filter - compact icon buttons */}
       {compactLanguageFilter && onLanguageChange && (
-        <div className="flex gap-1 p-1 bg-muted rounded-lg shrink-0">
-          <button
-            onClick={() => onLanguageChange('all')}
-            className={cn(
-              'px-2 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap',
-              language === 'all'
-                ? 'bg-background text-foreground shadow-sm'
-                : 'text-muted-foreground hover:text-foreground'
-            )}
-          >
-            All
-          </button>
-          {LANGUAGES.map((lang) => (
-            <button
-              key={lang.value}
-              onClick={() => onLanguageChange(lang.value)}
-              className={cn(
-                'px-1.5 py-1.5 rounded-md transition-colors whitespace-nowrap flex items-center',
-                language === lang.value
-                  ? 'bg-background shadow-sm'
-                  : 'text-muted-foreground hover:text-foreground'
-              )}
-              title={lang.label}
-            >
-              <LanguageIcon language={lang.value} className="h-4 w-4" />
-            </button>
-          ))}
-        </div>
+        <LanguageFilter 
+          value={language}
+          onChange={onLanguageChange}
+          size="sm"
+          className="p-1 rounded-lg"
+        />
       )}
 
       {/* Search input with autocomplete */}

@@ -100,7 +100,7 @@ export const LANGUAGES: LanguageConfig[] = [
   { value: 'python', label: 'Python (PyPI)', placeholder: 'flask, requests, django' },
   { value: 'javascript', label: 'JavaScript (npm)', placeholder: 'react, express, lodash' },
   { value: 'rust', label: 'Rust (crates.io)', placeholder: 'serde, tokio, actix-web' },
-  { value: 'go', label: 'Go (proxy.golang.org)', placeholder: 'gin, fiber, echo' },
+  { value: 'go', label: 'Go (proxy.golang.org)', placeholder: 'github.com/gin-gonic/gin' },
   { value: 'ruby', label: 'Ruby (RubyGems)', placeholder: 'rails, sinatra, devise' },
   { value: 'php', label: 'PHP (Packagist)', placeholder: 'laravel/framework' },
   { value: 'java', label: 'Java (Maven)', placeholder: 'org.springframework:spring-core' },
@@ -114,7 +114,7 @@ export const QUICK_EXAMPLES = [
   { lang: LANGUAGE.PYTHON, pkg: 'flask' },
   { lang: LANGUAGE.JAVASCRIPT, pkg: 'express' },
   { lang: LANGUAGE.RUST, pkg: 'serde' },
-  { lang: LANGUAGE.GO, pkg: 'gin' },
+  { lang: LANGUAGE.GO, pkg: 'github.com/gin-gonic/gin' },
 ] as const;
 
 // =============================================================================
@@ -124,6 +124,20 @@ export const QUICK_EXAMPLES = [
 export const EXTERNAL_URLS = {
   GITHUB_REPO: 'https://github.com/matzehuels/stacktower',
 } as const;
+
+// =============================================================================
+// Registry Display Names
+// =============================================================================
+
+export const REGISTRY_DISPLAY_NAMES: Record<string, string> = {
+  pypi: 'PyPI',
+  npm: 'npm',
+  crates: 'crates.io',
+  rubygems: 'RubyGems',
+  packagist: 'Packagist',
+  maven: 'Maven Central',
+  go: 'Go Modules',
+};
 
 // =============================================================================
 // Local Storage Keys

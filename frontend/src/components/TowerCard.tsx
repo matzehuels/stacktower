@@ -3,9 +3,11 @@
  * Clean, minimal card design.
  */
 
+import { memo } from 'react';
 import { Layers, GitBranch, Users, Bookmark, BookmarkPlus } from 'lucide-react';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
+import { formatRelativeTime } from '@/lib/date';
 import { LanguageIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { useArtifact, useSaveToLibrary, useRemoveFromLibrary } from '@/hooks/queries';
@@ -19,7 +21,7 @@ interface TowerCardProps {
   isAuthenticated?: boolean;
 }
 
-export function TowerCard({ entry, onClick, className, isAuthenticated = true }: TowerCardProps) {
+export const TowerCard = memo(function TowerCard({ entry, onClick, className, isAuthenticated = true }: TowerCardProps) {
   const towerViz = entry.viz_types.find((v) => v.viz_type === 'tower');
   const previewViz = towerViz || entry.viz_types[0];
   
@@ -31,9 +33,7 @@ export function TowerCard({ entry, onClick, className, isAuthenticated = true }:
 
   const language = entry.source.language as Language;
   const packageName = entry.source.package || 'Unknown';
-
-  const createdDate = new Date(entry.created_at);
-  const timeAgo = getTimeAgo(createdDate);
+  const timeAgo = formatRelativeTime(entry.created_at);
 
   const hasTower = entry.viz_types.some((v) => v.viz_type === 'tower');
   const hasNodelink = entry.viz_types.some((v) => v.viz_type === 'nodelink');
@@ -147,16 +147,4 @@ export function TowerCard({ entry, onClick, className, isAuthenticated = true }:
       </div>
     </div>
   );
-}
-
-function getTimeAgo(date: Date): string {
-  const now = new Date();
-  const seconds = Math.floor((now.getTime() - date.getTime()) / 1000);
-
-  if (seconds < 60) return 'just now';
-  if (seconds < 3600) return `${Math.floor(seconds / 60)}m ago`;
-  if (seconds < 86400) return `${Math.floor(seconds / 3600)}h ago`;
-  if (seconds < 604800) return `${Math.floor(seconds / 86400)}d ago`;
-  
-  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-}
+});

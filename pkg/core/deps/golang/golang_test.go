@@ -214,3 +214,66 @@ func TestLanguageRegistryMethod(t *testing.T) {
 func TestFetcherImplementsInterface(t *testing.T) {
 	var _ deps.Fetcher = fetcher{}
 }
+
+func TestInferRepoURL(t *testing.T) {
+	tests := []struct {
+		name       string
+		modulePath string
+		want       string
+	}{
+		{
+			name:       "github.com module",
+			modulePath: "github.com/spf13/cobra",
+			want:       "https://github.com/spf13/cobra",
+		},
+		{
+			name:       "github.com module with subpath",
+			modulePath: "github.com/spf13/cobra/doc",
+			want:       "https://github.com/spf13/cobra",
+		},
+		{
+			name:       "github.com module with version suffix",
+			modulePath: "github.com/gofiber/fiber/v2",
+			want:       "https://github.com/gofiber/fiber",
+		},
+		{
+			name:       "gitlab.com module",
+			modulePath: "gitlab.com/gitlab-org/gitaly",
+			want:       "https://gitlab.com/gitlab-org/gitaly",
+		},
+		{
+			name:       "bitbucket.org module",
+			modulePath: "bitbucket.org/user/repo",
+			want:       "https://bitbucket.org/user/repo",
+		},
+		{
+			name:       "gopkg.in module",
+			modulePath: "gopkg.in/yaml.v3",
+			want:       "",
+		},
+		{
+			name:       "golang.org module",
+			modulePath: "golang.org/x/sync",
+			want:       "",
+		},
+		{
+			name:       "custom domain",
+			modulePath: "go.uber.org/zap",
+			want:       "",
+		},
+		{
+			name:       "github.com with only owner",
+			modulePath: "github.com/user",
+			want:       "",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := inferRepoURL(tt.modulePath)
+			if got != tt.want {
+				t.Errorf("inferRepoURL(%q) = %q, want %q", tt.modulePath, got, tt.want)
+			}
+		})
+	}
+}
