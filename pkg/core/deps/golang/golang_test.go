@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/matzehuels/stacktower/pkg/core/deps"
-	"github.com/matzehuels/stacktower/pkg/infra/storage"
+	"github.com/matzehuels/stacktower/pkg/cache"
 )
 
 func TestLanguageDefinition(t *testing.T) {
@@ -151,7 +151,7 @@ func TestNewResolverCreatesResolver(t *testing.T) {
 		t.Skip("skipping integration test in short mode")
 	}
 
-	resolver, err := newResolver(storage.NullBackend{}, time.Hour)
+	resolver, err := newResolver(cache.NewNullCache(), time.Hour)
 	if err != nil {
 		t.Fatalf("newResolver() error: %v", err)
 	}
@@ -170,7 +170,7 @@ func TestLanguageResolverMethod(t *testing.T) {
 		t.Skip("skipping integration test in short mode")
 	}
 
-	resolver, err := Language.Resolver(storage.NullBackend{})
+	resolver, err := Language.Resolver(cache.NewNullCache())
 	if err != nil {
 		t.Fatalf("Resolver() error: %v", err)
 	}
@@ -186,7 +186,7 @@ func TestLanguageRegistryMethod(t *testing.T) {
 	}
 
 	// Test default registry
-	resolver, err := Language.Registry(storage.NullBackend{}, "goproxy")
+	resolver, err := Language.Registry(cache.NewNullCache(), "goproxy")
 	if err != nil {
 		t.Fatalf("Registry(goproxy) error: %v", err)
 	}
@@ -195,7 +195,7 @@ func TestLanguageRegistryMethod(t *testing.T) {
 	}
 
 	// Test alias
-	resolver, err = Language.Registry(storage.NullBackend{}, "proxy")
+	resolver, err = Language.Registry(cache.NewNullCache(), "proxy")
 	if err != nil {
 		t.Fatalf("Registry(proxy) error: %v", err)
 	}
@@ -204,7 +204,7 @@ func TestLanguageRegistryMethod(t *testing.T) {
 	}
 
 	// Test unknown registry
-	_, err = Language.Registry(storage.NullBackend{}, "unknown")
+	_, err = Language.Registry(cache.NewNullCache(), "unknown")
 	if err == nil {
 		t.Error("Registry(unknown) should return error")
 	}

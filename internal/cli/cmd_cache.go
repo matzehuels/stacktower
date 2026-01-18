@@ -25,7 +25,7 @@ func NewCacheCmd() *cobra.Command {
 }
 
 // newCacheClearCmd creates the "cache clear" subcommand.
-// It removes all non-directory files from the cache directory.
+// It recursively removes all files from the cache directory and its subdirectories.
 // If the cache directory does not exist, the command prints "Cache is empty" and succeeds.
 // Failed removals are silently skipped; only successful deletions are counted.
 func newCacheClearCmd() *cobra.Command {
@@ -38,23 +38,42 @@ func newCacheClearCmd() *cobra.Command {
 				return err
 			}
 
-			entries, err := os.ReadDir(dir)
-			if os.IsNotExist(err) {
+			if _, err := os.Stat(dir); os.IsNotExist(err) {
 				term.PrintInfo("Cache is empty")
 				return nil
 			}
+
+			count := 0
+			err = filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
+				if err != nil {
+					return nil // Skip errors, continue walking
+				}
+				// Don't delete the root cache directory itself
+				if path == dir {
+					return nil
+				}
+				// Delete files and empty directories
+				if !info.IsDir() {
+					if err := os.Remove(path); err == nil {
+						count++
+					}
+				}
+				return nil
+			})
 			if err != nil {
 				return err
 			}
 
-			count := 0
-			for _, entry := range entries {
-				if !entry.IsDir() {
-					if err := os.Remove(filepath.Join(dir, entry.Name())); err == nil {
-						count++
-					}
+			// Clean up empty subdirectories
+			_ = filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
+				if err != nil || path == dir {
+					return nil
 				}
-			}
+				if info.IsDir() {
+					os.Remove(path) // Will only succeed if directory is empty
+				}
+				return nil
+			})
 
 			term.PrintSuccess("Cleared %d cached entries", count)
 			term.PrintDetail("Directory: %s", dir)

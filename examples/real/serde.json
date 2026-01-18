@@ -2,10 +2,10 @@
   "nodes": [
     {
       "id": "proc-macro2",
-      "row": 4,
+      "url": "https://github.com/dtolnay/proc-macro2",
       "meta": {
         "description": "A substitute implementation of the compiler's `proc_macro` API to decouple token-based libraries from the procedural macro use case.",
-        "downloads": 866250482,
+        "downloads": 871654518,
         "repo_archived": false,
         "repo_language": "Rust",
         "repo_last_commit": "2025-12-27",
@@ -18,18 +18,19 @@
           "SergioBenitez"
         ],
         "repo_owner": "dtolnay",
-        "repo_stars": 886,
+        "repo_stars": 890,
         "repo_url": "https://github.com/dtolnay/proc-macro2",
         "version": "1.0.104"
       }
     },
     {
       "id": "quote",
-      "row": 3,
+      "url": "https://github.com/dtolnay/quote",
       "meta": {
         "description": "Quasi-quoting macro quote!(...)",
-        "downloads": 847621777,
+        "downloads": 852493112,
         "repo_archived": false,
+        "repo_description": "Rust quasi-quoting",
         "repo_language": "Rust",
         "repo_last_commit": "2025-12-20",
         "repo_last_release": "2025-11-06",
@@ -41,7 +42,7 @@
           "SimonSapin"
         ],
         "repo_owner": "dtolnay",
-        "repo_stars": 1505,
+        "repo_stars": 1508,
         "repo_topics": [
           "proc-macro",
           "rust",
@@ -53,10 +54,12 @@
     },
     {
       "id": "serde",
+      "url": "https://github.com/serde-rs/serde",
       "meta": {
         "description": "A generic serialization/deserialization framework",
-        "downloads": 754573440,
+        "downloads": 758985247,
         "repo_archived": false,
+        "repo_description": "Serialization framework for Rust",
         "repo_language": "Rust",
         "repo_last_commit": "2025-12-22",
         "repo_last_release": "2025-09-27",
@@ -68,7 +71,7 @@
           "mitsuhiko"
         ],
         "repo_owner": "serde-rs",
-        "repo_stars": 10255,
+        "repo_stars": 10268,
         "repo_topics": [
           "derive",
           "no-std",
@@ -81,11 +84,12 @@
     },
     {
       "id": "serde_core",
-      "row": 1,
+      "url": "https://github.com/serde-rs/serde",
       "meta": {
         "description": "Serde traits only, with no support for derive -- use the `serde` crate instead",
-        "downloads": 60117563,
+        "downloads": 62926120,
         "repo_archived": false,
+        "repo_description": "Serialization framework for Rust",
         "repo_language": "Rust",
         "repo_last_commit": "2025-12-22",
         "repo_last_release": "2025-09-27",
@@ -97,7 +101,7 @@
           "mitsuhiko"
         ],
         "repo_owner": "serde-rs",
-        "repo_stars": 10255,
+        "repo_stars": 10268,
         "repo_topics": [
           "derive",
           "no-std",
@@ -110,11 +114,12 @@
     },
     {
       "id": "serde_derive",
-      "row": 2,
+      "url": "https://github.com/serde-rs/serde",
       "meta": {
         "description": "Macros 1.1 implementation of #[derive(Serialize, Deserialize)]",
-        "downloads": 697630291,
+        "downloads": 701887113,
         "repo_archived": false,
+        "repo_description": "Serialization framework for Rust",
         "repo_language": "Rust",
         "repo_last_commit": "2025-12-22",
         "repo_last_release": "2025-09-27",
@@ -126,7 +131,7 @@
           "mitsuhiko"
         ],
         "repo_owner": "serde-rs",
-        "repo_stars": 10255,
+        "repo_stars": 10268,
         "repo_topics": [
           "derive",
           "no-std",
@@ -139,14 +144,15 @@
     },
     {
       "id": "syn",
-      "row": 3,
+      "url": "https://github.com/dtolnay/syn",
       "meta": {
         "description": "Parser for Rust source code",
-        "downloads": 1257082344,
+        "downloads": 1264384651,
         "repo_archived": false,
+        "repo_description": "Parser for Rust source code",
         "repo_language": "Rust",
-        "repo_last_commit": "2025-12-20",
-        "repo_last_release": "2025-11-23",
+        "repo_last_commit": "2025-12-30",
+        "repo_last_release": "2025-12-30",
         "repo_maintainers": [
           "dtolnay",
           "mystor",
@@ -155,21 +161,22 @@
           "CAD97"
         ],
         "repo_owner": "dtolnay",
-        "repo_stars": 3247,
+        "repo_stars": 3258,
         "repo_topics": [
           "proc-macro"
         ],
         "repo_url": "https://github.com/dtolnay/syn",
-        "version": "2.0.111"
+        "version": "2.0.112"
       }
     },
     {
       "id": "unicode-ident",
-      "row": 5,
+      "url": "https://github.com/dtolnay/unicode-ident",
       "meta": {
         "description": "Determine whether characters have the XID_Start or XID_Continue properties according to Unicode Standard Annex #31",
-        "downloads": 669053826,
+        "downloads": 673728823,
         "repo_archived": false,
+        "repo_description": "Determine whether characters have the XID_Start or XID_Continue properties",
         "repo_language": "Rust",
         "repo_last_commit": "2025-12-21",
         "repo_last_release": "2025-10-30",
@@ -197,6 +204,10 @@
     },
     {
       "from": "serde_derive",
+      "to": "proc-macro2"
+    },
+    {
+      "from": "serde_derive",
       "to": "quote"
     },
     {
@@ -204,16 +215,20 @@
       "to": "syn"
     },
     {
-      "from": "quote",
-      "to": "proc-macro2"
-    },
-    {
       "from": "proc-macro2",
       "to": "unicode-ident"
     },
     {
+      "from": "quote",
+      "to": "proc-macro2"
+    },
+    {
       "from": "syn",
       "to": "proc-macro2"
+    },
+    {
+      "from": "syn",
+      "to": "unicode-ident"
     }
   ]
 }

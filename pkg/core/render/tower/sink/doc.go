@@ -6,7 +6,6 @@
 // This package provides renderers for:
 //
 //   - SVG: Scalable vector graphics with interactivity
-//   - JSON: Layout data export for external tools
 //   - PDF: Print-ready output (requires rsvg-convert)
 //   - PNG: Raster image output (requires rsvg-convert)
 //
@@ -37,17 +36,6 @@
 //   - [WithPopups]: Enable hover popups with package metadata
 //   - [WithNebraska]: Add maintainer ranking panel
 //
-// # JSON Output
-//
-// [RenderJSON] exports the complete layout as JSON, enabling:
-//
-//   - Integration with external visualization tools
-//   - Caching of layout computations
-//   - Round-trip rendering (re-import and render identically)
-//
-// The JSON includes all render options (style, seed, randomize, merged) and
-// node flags (auxiliary, synthetic) needed to reproduce the exact visual.
-//
 // # PDF and PNG Output
 //
 // [RenderPDF] and [RenderPNG] render the layout as PDF/PNG by first generating
@@ -77,7 +65,7 @@
 //  4. Register in internal/cli/render.go for CLI support
 //
 // The existing sinks provide examples: svg.go for full-featured output,
-// json.go for data export, pdf.go/png.go for format conversion wrappers.
+// pdf.go/png.go for format conversion wrappers.
 //
 // [layout.Layout]: github.com/matzehuels/stacktower/pkg/core/render/tower/layout.Layout
 // [styles.Simple]: github.com/matzehuels/stacktower/pkg/core/render/tower/styles.Simple

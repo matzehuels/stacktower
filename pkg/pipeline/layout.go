@@ -1,51 +1,46 @@
 package pipeline
 
 import (
-	"bytes"
-
 	"github.com/matzehuels/stacktower/pkg/core/dag"
-	dagtransform "github.com/matzehuels/stacktower/pkg/core/dag/transform"
-	nodelinkio "github.com/matzehuels/stacktower/pkg/core/render/nodelink/io"
+	"github.com/matzehuels/stacktower/pkg/core/render/nodelink"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/feature"
-	towerio "github.com/matzehuels/stacktower/pkg/core/render/tower/io"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/layout"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/transform"
+	"github.com/matzehuels/stacktower/pkg/dto"
 )
 
-// LayoutResult contains the outputs of layout computation.
-type LayoutResult struct {
-	Layout     layout.Layout
-	LayoutData []byte
-	// Note: Nebraska rankings are embedded in LayoutData JSON, not stored separately
-}
+// =============================================================================
+// Layout DTO Generation
+// =============================================================================
 
-// ComputeLayout computes visual positions for a dependency graph.
-// If opts.Normalize is true, normalizes the graph before computing layout.
-// For tower visualizations, normalization is auto-applied if the graph hasn't
-// been layered yet (all nodes at row 0), since tower layout requires row assignments.
-// Returns the layout result containing positions, serialized data, and Nebraska rankings.
-func ComputeLayout(g *dag.DAG, opts Options) (*LayoutResult, error) {
-	// For tower viz, auto-normalize if graph isn't already layered.
-	// This is essential because tower layout requires row assignments.
-	// Check if graph needs normalization: if max row is 0 and there are edges,
-	// the graph hasn't been layered yet.
-	needsNormalization := opts.Normalize
-	if opts.IsTower() && !opts.Normalize && g.EdgeCount() > 0 && g.MaxRow() == 0 {
-		needsNormalization = true
-	}
-
-	if needsNormalization {
-		dagtransform.Normalize(g)
-	}
-
+// GenerateLayoutDTO generates a complete layout DTO for any visualization type.
+// This is the unified entry point for generating serializable layout data.
+//
+// Both tower and nodelink layouts include:
+//   - Graph structure (nodes, edges, rows)
+//   - Nebraska rankings (maintainer data)
+//   - Visualization-specific data (blocks for tower, DOT for nodelink)
+func GenerateLayoutDTO(g *dag.DAG, opts Options) (dto.Layout, error) {
 	if opts.IsNodelink() {
-		return computeNodelinkLayout(g, opts)
+		return generateNodelinkDTO(g, opts)
 	}
-	return computeTowerLayout(g, opts)
+	return generateTowerDTO(g, opts)
 }
 
-// computeTowerLayout computes a tower-style layout.
-func computeTowerLayout(g *dag.DAG, opts Options) (*LayoutResult, error) {
+// =============================================================================
+// Tower
+// =============================================================================
+
+// generateTowerDTO generates a complete tower layout DTO.
+// Computes positions, applies transforms, and includes Nebraska rankings.
+func generateTowerDTO(g *dag.DAG, opts Options) (dto.Layout, error) {
+	// Ensure graph has row assignments
+	workGraph := g
+	if g.MaxRow() == 0 && g.EdgeCount() > 0 {
+		workGraph = g.Clone()
+		layout.EnsureLayered(workGraph)
+	}
+
 	// Build layout options
 	var layoutOpts []layout.Option
 	if opts.Orderer != nil {
@@ -53,74 +48,72 @@ func computeTowerLayout(g *dag.DAG, opts Options) (*LayoutResult, error) {
 	}
 
 	// Compute base layout
-	l := layout.Build(g, opts.Width, opts.Height, layoutOpts...)
+	l := layout.Build(workGraph, opts.Width, opts.Height, layoutOpts...)
 
 	// Apply transforms
 	if opts.Merge {
-		l = transform.MergeSubdividers(l, g)
+		l = transform.MergeSubdividers(l, workGraph)
 	}
 	if opts.Randomize {
-		l = transform.Randomize(l, g, opts.Seed, nil)
+		l = transform.Randomize(l, workGraph, opts.Seed, nil)
 	}
 
-	// Serialize layout with Nebraska rankings embedded
-	// Rankings are computed here while the graph has row assignments
-	writeOpts := []towerio.WriteOption{towerio.WithGraph(g)}
-	if opts.Merge {
-		writeOpts = append(writeOpts, towerio.WithMerged())
-	}
-	if opts.Randomize {
-		writeOpts = append(writeOpts, towerio.WithRandomize(opts.Seed))
-	}
-	if opts.Style != "" {
-		writeOpts = append(writeOpts, towerio.WithStyle(opts.Style))
-	}
+	// Set metadata
+	l.Style = opts.Style
+	l.Seed = opts.Seed
+	l.Randomize = opts.Randomize
+	l.Merged = opts.Merge
 
-	// Always compute and embed Nebraska rankings in layout JSON
-	rankings := feature.RankNebraska(g, 10)
-	if len(rankings) > 0 {
-		writeOpts = append(writeOpts, towerio.WithNebraska(rankings))
-	}
+	// Compute Nebraska rankings
+	l.Nebraska = feature.RankNebraska(workGraph, 10)
 
-	layoutData, err := towerio.WriteLayout(l, writeOpts...)
-	if err != nil {
-		return nil, err
-	}
-
-	return &LayoutResult{
-		Layout:     l,
-		LayoutData: layoutData,
-	}, nil
+	// Convert to DTO
+	return l.ToDTO(workGraph)
 }
 
-// computeNodelinkLayout computes a node-link (Graphviz) layout.
-func computeNodelinkLayout(g *dag.DAG, opts Options) (*LayoutResult, error) {
-	// Build write options
-	writeOpts := []nodelinkio.WriteOption{
-		nodelinkio.WithGraph(g),
-		nodelinkio.WithDimensions(opts.Width, opts.Height),
-		nodelinkio.WithEngine("dot"),
-	}
-	if opts.Style != "" {
-		writeOpts = append(writeOpts, nodelinkio.WithStyle(opts.Style))
-	}
+// =============================================================================
+// Nodelink
+// =============================================================================
 
-	// Serialize layout (includes DOT generation)
-	layoutData, err := nodelinkio.WriteLayout(writeOpts...)
+// generateNodelinkDTO generates a complete nodelink layout DTO.
+// Includes DOT string for Graphviz and Nebraska rankings.
+func generateNodelinkDTO(g *dag.DAG, opts Options) (dto.Layout, error) {
+	// Generate DOT representation
+	dot := nodelink.ToDOT(g, nodelink.Options{Detailed: false})
+
+	// Build base layout DTO
+	layoutDTO, err := nodelink.ToDTO(dot, g, nodelink.Options{Detailed: false}, opts.Width, opts.Height, opts.Style)
 	if err != nil {
-		return nil, err
+		return layoutDTO, err
 	}
 
-	// Return empty layout since nodelink uses DOT string from JSON
-	// Nebraska rankings are not applicable for nodelink visualizations
-	return &LayoutResult{
-		Layout:     layout.Layout{},
-		LayoutData: layoutData,
-	}, nil
+	// Add Nebraska rankings
+	layoutDTO.Nebraska = nebraskaToDTO(feature.RankNebraska(g, 10))
+
+	return layoutDTO, nil
 }
 
-// LayoutFromData deserializes a layout from JSON data.
-// Returns layout, metadata (including Nebraska rankings), and any error.
-func LayoutFromData(data []byte) (layout.Layout, towerio.LayoutMeta, error) {
-	return towerio.ReadLayout(bytes.NewReader(data))
+// =============================================================================
+// Helpers
+// =============================================================================
+
+// nebraskaToDTO converts internal Nebraska rankings to DTO format.
+func nebraskaToDTO(rankings []feature.NebraskaRanking) []dto.NebraskaRanking {
+	result := make([]dto.NebraskaRanking, len(rankings))
+	for i, r := range rankings {
+		pkgs := make([]dto.NebraskaPackage, len(r.Packages))
+		for j, p := range r.Packages {
+			pkgs[j] = dto.NebraskaPackage{
+				Package: p.Package,
+				Role:    string(p.Role),
+				URL:     p.URL,
+			}
+		}
+		result[i] = dto.NebraskaRanking{
+			Maintainer: r.Maintainer,
+			Score:      r.Score,
+			Packages:   pkgs,
+		}
+	}
+	return result
 }

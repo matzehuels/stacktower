@@ -9,17 +9,15 @@ import (
 	"testing"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/infra/storage"
+	"github.com/matzehuels/stacktower/pkg/cache"
 )
 
 func TestNewClient(t *testing.T) {
-	backend, _ := storage.NewFileBackend(storage.FileConfig{
-		CacheDir: t.TempDir(),
-	})
-	defer backend.Close()
+	c, _ := cache.NewFileCache(t.TempDir())
+	defer c.Close()
 
 	headers := map[string]string{"Authorization": "Bearer token"}
-	client := NewClient(backend, "test:", time.Hour, headers)
+	client := NewClient(c, "test:", time.Hour, headers)
 
 	if client == nil {
 		t.Fatal("NewClient() returned nil")
@@ -27,8 +25,8 @@ func TestNewClient(t *testing.T) {
 	if client.http == nil {
 		t.Error("NewClient() http client is nil")
 	}
-	if client.backend != backend {
-		t.Error("NewClient() backend not set correctly")
+	if client.cache != c {
+		t.Error("NewClient() cache not set correctly")
 	}
 	if client.headers["Authorization"] != "Bearer token" {
 		t.Error("NewClient() headers not set correctly")
@@ -36,12 +34,10 @@ func TestNewClient(t *testing.T) {
 }
 
 func TestNewClientNilHeaders(t *testing.T) {
-	backend, _ := storage.NewFileBackend(storage.FileConfig{
-		CacheDir: t.TempDir(),
-	})
-	defer backend.Close()
+	c, _ := cache.NewFileCache(t.TempDir())
+	defer c.Close()
 
-	client := NewClient(backend, "test:", time.Hour, nil)
+	client := NewClient(c, "test:", time.Hour, nil)
 
 	if client == nil {
 		t.Fatal("NewClient() returned nil")
@@ -64,12 +60,10 @@ func TestClientGet(t *testing.T) {
 	}))
 	defer server.Close()
 
-	backend, _ := storage.NewFileBackend(storage.FileConfig{
-		CacheDir: t.TempDir(),
-	})
-	defer backend.Close()
+	c, _ := cache.NewFileCache(t.TempDir())
+	defer c.Close()
 
-	client := NewClient(backend, "test:", time.Hour, nil)
+	client := NewClient(c, "test:", time.Hour, nil)
 	client.http = server.Client()
 
 	var resp response
@@ -91,12 +85,10 @@ func TestClientGetWithHeaders(t *testing.T) {
 	}))
 	defer server.Close()
 
-	backend, _ := storage.NewFileBackend(storage.FileConfig{
-		CacheDir: t.TempDir(),
-	})
-	defer backend.Close()
+	c, _ := cache.NewFileCache(t.TempDir())
+	defer c.Close()
 
-	client := NewClient(backend, "test:", time.Hour, map[string]string{"X-Default": "default"})
+	client := NewClient(c, "test:", time.Hour, map[string]string{"X-Default": "default"})
 	client.http = server.Client()
 
 	var resp map[string]string
@@ -118,12 +110,10 @@ func TestClientGetWithHeadersOverridesDefaults(t *testing.T) {
 	}))
 	defer server.Close()
 
-	backend, _ := storage.NewFileBackend(storage.FileConfig{
-		CacheDir: t.TempDir(),
-	})
-	defer backend.Close()
+	c, _ := cache.NewFileCache(t.TempDir())
+	defer c.Close()
 
-	client := NewClient(backend, "test:", time.Hour, map[string]string{"X-Override": "default"})
+	client := NewClient(c, "test:", time.Hour, map[string]string{"X-Override": "default"})
 	client.http = server.Client()
 
 	var resp map[string]string
@@ -142,12 +132,10 @@ func TestClientGetText(t *testing.T) {
 	}))
 	defer server.Close()
 
-	backend, _ := storage.NewFileBackend(storage.FileConfig{
-		CacheDir: t.TempDir(),
-	})
-	defer backend.Close()
+	c, _ := cache.NewFileCache(t.TempDir())
+	defer c.Close()
 
-	client := NewClient(backend, "test:", time.Hour, nil)
+	client := NewClient(c, "test:", time.Hour, nil)
 	client.http = server.Client()
 
 	text, err := client.GetText(context.Background(), server.URL)
@@ -165,12 +153,10 @@ func TestClientGet404(t *testing.T) {
 	}))
 	defer server.Close()
 
-	backend, _ := storage.NewFileBackend(storage.FileConfig{
-		CacheDir: t.TempDir(),
-	})
-	defer backend.Close()
+	c, _ := cache.NewFileCache(t.TempDir())
+	defer c.Close()
 
-	client := NewClient(backend, "test:", time.Hour, nil)
+	client := NewClient(c, "test:", time.Hour, nil)
 	client.http = server.Client()
 
 	var resp map[string]string
@@ -186,12 +172,10 @@ func TestClientGet500(t *testing.T) {
 	}))
 	defer server.Close()
 
-	backend, _ := storage.NewFileBackend(storage.FileConfig{
-		CacheDir: t.TempDir(),
-	})
-	defer backend.Close()
+	c, _ := cache.NewFileCache(t.TempDir())
+	defer c.Close()
 
-	client := NewClient(backend, "test:", time.Hour, nil)
+	client := NewClient(c, "test:", time.Hour, nil)
 	client.http = server.Client()
 
 	var resp map[string]string
@@ -200,19 +184,17 @@ func TestClientGet500(t *testing.T) {
 		t.Error("Get() should return error for 500")
 	}
 
-	var retryErr *storage.RetryableError
+	var retryErr *cache.RetryableError
 	if !errors.As(err, &retryErr) {
 		t.Errorf("Get() error should be RetryableError, got %T", err)
 	}
 }
 
 func TestClientCached(t *testing.T) {
-	backend, _ := storage.NewFileBackend(storage.FileConfig{
-		CacheDir: t.TempDir(),
-	})
-	defer backend.Close()
+	c, _ := cache.NewFileCache(t.TempDir())
+	defer c.Close()
 
-	client := NewClient(backend, "test:", time.Hour, nil)
+	client := NewClient(c, "test:", time.Hour, nil)
 
 	fetchCount := 0
 	type testData struct {
@@ -241,12 +223,10 @@ func TestClientCached(t *testing.T) {
 }
 
 func TestClientCachedRefresh(t *testing.T) {
-	backend, _ := storage.NewFileBackend(storage.FileConfig{
-		CacheDir: t.TempDir(),
-	})
-	defer backend.Close()
+	c, _ := cache.NewFileCache(t.TempDir())
+	defer c.Close()
 
-	client := NewClient(backend, "test:", time.Hour, nil)
+	client := NewClient(c, "test:", time.Hour, nil)
 
 	fetchCount := 0
 	var value string
@@ -268,12 +248,10 @@ func TestClientCachedRefresh(t *testing.T) {
 }
 
 func TestClientCachedFetchError(t *testing.T) {
-	backend, _ := storage.NewFileBackend(storage.FileConfig{
-		CacheDir: t.TempDir(),
-	})
-	defer backend.Close()
+	c, _ := cache.NewFileCache(t.TempDir())
+	defer c.Close()
 
-	client := NewClient(backend, "test:", time.Hour, nil)
+	client := NewClient(c, "test:", time.Hour, nil)
 
 	var value string
 
@@ -357,7 +335,7 @@ func TestCheckStatus(t *testing.T) {
 					t.Errorf("checkStatus() error = %v, want %v", err, tt.wantType)
 				}
 				if tt.isRetryErr {
-					var retryErr *storage.RetryableError
+					var retryErr *cache.RetryableError
 					if !errors.As(err, &retryErr) {
 						t.Errorf("checkStatus() error should be RetryableError, got %T", err)
 					}

@@ -3,6 +3,7 @@ package metadata
 const (
 	RepoURL         = "repo_url"
 	RepoOwner       = "repo_owner"
+	RepoDescription = "repo_description"
 	RepoStars       = "repo_stars"
 	RepoArchived    = "repo_archived"
 	RepoLanguage    = "repo_language"

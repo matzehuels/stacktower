@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800.0 1440.0" width="800" height="1440">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800.0 940.0" width="800" height="940">
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;display=swap');
@@ -8,6 +8,7 @@
 " x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>
     </pattern>
   </defs>
+  <g transform="translate(0, 40.0)">
   <a href="https://github.com/mongodb-js/devtools-shared" target="_blank"><path id="block-@mongodb-js/saslprep" class="block" d="M 115.21 337.54 Q 117.00 315.07 127.33 313.87 Q 137.67 312.66 148.00 312.23 Q 158.33 311.79 168.67 313.21 Q 179.00 314.63 179.60 337.31 Q 180.20 360.00 178.28 382.50 Q 176.36 405.00 175.87 427.50 Q 175.38 450.00 166.86 451.10 Q 158.33 452.20 148.00 451.06 Q 137.67 449.93 127.33 451.88 Q 117.00 453.83 118.91 429.41 Q 120.82 405.00 117.12 382.50 Q 113.43 360.00 115.21 337.54 Z" fill="#e0e0e0" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.097 148.00 382.50)"/></a>
   <a href="https://github.com/DefinitelyTyped/DefinitelyTyped" target="_blank"><path id="block-@types/webidl-conversions" class="block" d="M 259.42 618.37 Q 261.00 584.25 271.33 585.97 Q 281.67 587.69 292.00 587.70 Q 302.33 587.70 312.67 584.49 Q 323.00 581.27 321.68 616.89 Q 320.35 652.50 320.33 686.25 Q 320.30 720.00 320.17 753.75 Q 320.03 787.50 319.87 821.25 Q 319.72 855.00 311.03 853.81 Q 302.33 852.62 292.00 852.71 Q 281.67 852.80 271.33 855.45 Q 261.00 858.10 259.21 822.80 Q 257.41 787.50 258.13 753.75 Q 258.85 720.00 258.35 686.25 Q 257.85 652.50 259.42 618.37 Z" fill="#f8f8f8" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-1.035 292.00 720.00)"/></a>
   <a href="https://github.com/DefinitelyTyped/DefinitelyTyped" target="_blank"><path id="block-@types/whatwg-url" class="block" d="M 272.06 473.00 Q 272.26 451.00 278.84 448.54 Q 285.42 446.07 292.00 446.54 Q 298.58 447.01 305.16 447.56 Q 311.74 448.12 312.79 471.56 Q 313.84 495.00 312.24 517.50 Q 310.63 540.00 309.63 562.50 Q 308.63 585.00 303.60 584.57 Q 298.58 584.15 292.00 584.19 Q 285.42 584.24 278.84 582.95 Q 272.26 581.65 274.01 560.82 Q 275.75 540.00 273.81 517.50 Q 271.86 495.00 272.06 473.00 Z" fill="#e5e5e5" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.928 292.00 517.50)"/></a>
@@ -103,6 +104,7 @@
   <a href="https://github.com/jsdom/whatwg-url" target="_blank">    <rect x="392.18" y="482.29" width="15.65" height="70.41" fill="#d1d1d1"/>
     <text x="400.00" y="517.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="15.6" fill="#333" transform="rotate(-90 400.00 517.50)">whatwg-url</text>
 </a>  </g>
+  </g>
   <style>
     .block { transition: stroke-width 0.2s ease; }
     .block.highlight { stroke-width: 4; }
@@ -122,41 +124,8 @@
       el.addEventListener('mouseenter', () => highlight([el.id.replace('block-', '')]));
       el.addEventListener('mouseleave', clearHighlight);
     });
-  ]]></script>
-  <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
-  <path d="M 272.0 980.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <a href="https://github.com/mafintosh" target="_blank" class="maintainer-link" data-packages="memory-pager,sparse-bitfield">
-    <text x="215.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#1 @mafintosh</text>
-  </a>
-  <text class="package-entry" data-package="memory-pager" x="215.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">memory-pager</text>
-  <text class="package-entry" data-package="sparse-bitfield" x="215.0" y="1067.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">sparse-bitfield</text>
-  <a href="https://github.com/jsdom" target="_blank" class="maintainer-link" data-packages="tr46">
-    <text x="585.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#2 @jsdom</text>
-  </a>
-  <text class="package-entry" data-package="tr46" x="585.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">tr46</text>
-  <a href="https://github.com/crcn" target="_blank" class="maintainer-link" data-packages="sift">
-    <text x="215.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#3 @crcn</text>
-  </a>
-  <text class="package-entry" data-package="sift" x="215.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">sift</text>
-  <a href="https://github.com/mathiasbynens" target="_blank" class="maintainer-link" data-packages="punycode">
-    <text x="585.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#4 @mathiasbynens</text>
-  </a>
-  <text class="package-entry" data-package="punycode" x="585.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">punycode</text>
-  <a href="https://github.com/pfrazee" target="_blank" class="maintainer-link" data-packages="memory-pager">
-    <text x="400.0" y="1304.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#5 @pfrazee</text>
-  </a>
-  <text class="package-entry" data-package="memory-pager" x="400.0" y="1329.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">memory-pager</text>
-  <style>
-    .maintainer-link text { cursor: pointer; }
-    .maintainer-link:hover text { text-decoration: underline; }
-  </style>
-  <script type="text/javascript"><![CDATA[
-    document.querySelectorAll('.maintainer-link').forEach(el => {
-      el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
-      el.addEventListener('mouseleave', clearHighlight);
-    });
-    document.querySelectorAll('.package-entry').forEach(el => {
-      el.addEventListener('mouseenter', () => highlight([el.dataset.package]));
+    document.querySelectorAll('.block-text').forEach(el => {
+      el.addEventListener('mouseenter', () => highlight([el.dataset.block]));
       el.addEventListener('mouseleave', clearHighlight);
     });
   ]]></script>
@@ -312,4 +281,18 @@
       el.addEventListener('mouseleave', () => popup.setAttribute('visibility', 'hidden'));
     });
   ]]></script>
+  <a href="https://www.stacktower.io" target="_blank" rel="noopener">
+    <g transform="translate(340.0, 15.0)" class="watermark">
+      <g transform="scale(0.67)">
+      <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+      <text x="20" y="11" font-family="sans-serif" font-size="14" font-weight="500" fill="#000">stacktower.io</text>
+    </g>
+  </a>
+  <style>
+    .watermark { transition: opacity 0.2s ease; opacity: 1; }
+    .watermark:hover { opacity: 0.7; }
+  </style>
 </svg>

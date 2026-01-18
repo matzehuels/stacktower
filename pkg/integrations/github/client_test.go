@@ -1,6 +1,7 @@
 package github
 
 import (
+	"github.com/matzehuels/stacktower/pkg/cache"
 	"context"
 	"encoding/json"
 	"net/http"
@@ -8,7 +9,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/infra/storage"
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
@@ -96,7 +96,7 @@ func TestExtractURL(t *testing.T) {
 }
 
 func TestNewClient(t *testing.T) {
-	c := NewClient(storage.NullBackend{}, "test-token", time.Hour)
+	c := NewClient(cache.NewNullCache(), "test-token", time.Hour)
 	if c.Client == nil {
 		t.Error("expected client to be initialized")
 	}
@@ -109,7 +109,7 @@ func testClient(t *testing.T, serverURL, token string) *Client {
 		headers["Authorization"] = "Bearer " + token
 	}
 	return &Client{
-		Client:  integrations.NewClient(storage.NullBackend{}, "github:", time.Hour, headers),
+		Client:  integrations.NewClient(cache.NewNullCache(), "github:", time.Hour, headers),
 		baseURL: serverURL,
 	}
 }

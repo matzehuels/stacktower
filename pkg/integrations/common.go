@@ -7,22 +7,21 @@ import (
 	"strings"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/infra/storage"
+	"github.com/matzehuels/stacktower/pkg/cache"
 )
 
 // httpTimeout is the default timeout for all HTTP requests to registry APIs.
 // Individual registries do not override this value.
 const httpTimeout = 10 * time.Second
 
-// Sentinel errors - re-exported from storage for API consistency.
-// These are the canonical definitions; use storage.ErrNotFound/ErrNetwork directly when possible.
+// Sentinel errors - re-exported from cache for API consistency.
 var (
 	// ErrNotFound is returned when a package or resource doesn't exist in the registry.
 	// This corresponds to HTTP 404 responses.
-	ErrNotFound = storage.ErrNotFound
+	ErrNotFound = cache.ErrNotFound
 
 	// ErrNetwork is returned for HTTP failures (timeouts, connection errors, 5xx responses).
-	ErrNetwork = storage.ErrNetwork
+	ErrNetwork = cache.ErrNetwork
 )
 
 // RepoMetrics holds repository-level data fetched from GitHub or GitLab.
@@ -35,6 +34,7 @@ var (
 type RepoMetrics struct {
 	RepoURL       string        `json:"repo_url"`                   // Canonical repository URL (https://...). Never empty in valid metrics.
 	Owner         string        `json:"owner"`                      // Repository owner username. Never empty in valid metrics.
+	Description   string        `json:"description,omitempty"`      // Repository description from GitHub/GitLab. Empty if not set.
 	Stars         int           `json:"stars"`                      // GitHub/GitLab star count. 0 is a valid value for new repositories.
 	SizeKB        int           `json:"size_kb,omitempty"`          // Repository size in kilobytes. 0 means not available or very small.
 	LastCommitAt  *time.Time    `json:"last_commit_at,omitempty"`   // Date of most recent commit. Nil if not available.

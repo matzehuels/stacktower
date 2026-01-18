@@ -499,3 +499,55 @@ func NodeIDs(nodes []*Node) []string {
 	}
 	return ids
 }
+
+// Clone creates a deep copy of the DAG, including all nodes, edges, and metadata.
+// The returned DAG is completely independent - modifications to it will not affect
+// the original graph. This is useful when graph transformations (like normalization)
+// need to be applied without mutating the original graph.
+//
+// Clone preserves:
+//   - All nodes with their row assignments, metadata, kind, and master IDs
+//   - All edges with their metadata
+//   - Graph-level metadata
+//   - Row index structure
+//
+// Time complexity: O(N + E) where N is node count and E is edge count.
+func (d *DAG) Clone() *DAG {
+	// Clone graph-level metadata
+	meta := make(Metadata, len(d.meta))
+	for k, v := range d.meta {
+		meta[k] = v
+	}
+
+	clone := New(meta)
+
+	// Clone all nodes with their metadata
+	for _, n := range d.nodes {
+		nodeMeta := make(Metadata, len(n.Meta))
+		for k, v := range n.Meta {
+			nodeMeta[k] = v
+		}
+		clone.AddNode(Node{
+			ID:       n.ID,
+			Row:      n.Row,
+			Meta:     nodeMeta,
+			Kind:     n.Kind,
+			MasterID: n.MasterID,
+		})
+	}
+
+	// Clone all edges with their metadata
+	for _, e := range d.edges {
+		edgeMeta := make(Metadata, len(e.Meta))
+		for k, v := range e.Meta {
+			edgeMeta[k] = v
+		}
+		clone.AddEdge(Edge{
+			From: e.From,
+			To:   e.To,
+			Meta: edgeMeta,
+		})
+	}
+
+	return clone
+}

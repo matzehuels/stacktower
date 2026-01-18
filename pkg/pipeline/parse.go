@@ -5,45 +5,45 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/matzehuels/stacktower/pkg/cache"
 	"github.com/matzehuels/stacktower/pkg/core/dag"
-	dagtransform "github.com/matzehuels/stacktower/pkg/core/dag/transform"
 	"github.com/matzehuels/stacktower/pkg/core/deps"
 	"github.com/matzehuels/stacktower/pkg/core/deps/languages"
 	"github.com/matzehuels/stacktower/pkg/core/deps/metadata"
-	"github.com/matzehuels/stacktower/pkg/infra/storage"
 )
 
 // Parse resolves dependencies for a package or manifest.
-func Parse(ctx context.Context, backend storage.Backend, opts Options) (*dag.DAG, error) {
+func Parse(ctx context.Context, c cache.Cache, opts Options) (*dag.DAG, error) {
 	lang := languages.Find(opts.Language)
 	if lang == nil {
 		return nil, fmt.Errorf("unsupported language: %s", opts.Language)
 	}
 
-	resolveOpts := buildResolveOptions(backend, opts)
+	resolveOpts := buildResolveOptions(c, opts)
 
 	var g *dag.DAG
 	var err error
 
 	if opts.Manifest != "" {
-		g, err = parseManifest(ctx, backend, lang, opts, resolveOpts)
+		g, err = parseManifest(ctx, c, lang, opts, resolveOpts)
 	} else {
-		g, err = resolvePackage(ctx, backend, lang, opts.Package, resolveOpts)
+		g, err = resolvePackage(ctx, c, lang, opts.Package, resolveOpts)
 	}
 
 	if err != nil {
 		return nil, err
 	}
 
-	if opts.Normalize {
-		dagtransform.Normalize(g)
-	}
+	// NOTE: Normalization (adding subdividers) is NOT done here.
+	// It's applied later during layout via PrepareGraph, which allows
+	// the raw graph to be stored and reused for different viz types
+	// (tower needs normalized graph, nodelink needs raw graph).
 
 	return g, nil
 }
 
 // buildResolveOptions creates deps.Options from pipeline options.
-func buildResolveOptions(backend storage.Backend, opts Options) deps.Options {
+func buildResolveOptions(c cache.Cache, opts Options) deps.Options {
 	resolveOpts := deps.Options{
 		MaxDepth: opts.MaxDepth,
 		MaxNodes: opts.MaxNodes,
@@ -64,7 +64,7 @@ func buildResolveOptions(backend storage.Backend, opts Options) deps.Options {
 		token = os.Getenv("GITHUB_TOKEN")
 	}
 	if opts.ShouldEnrich() && token != "" {
-		gh := metadata.NewGitHub(backend, token, deps.DefaultCacheTTL)
+		gh := metadata.NewGitHub(c, token, deps.DefaultCacheTTL)
 		resolveOpts.MetadataProviders = []deps.MetadataProvider{gh}
 	}
 
@@ -72,8 +72,8 @@ func buildResolveOptions(backend storage.Backend, opts Options) deps.Options {
 }
 
 // resolvePackage resolves dependencies from a package registry.
-func resolvePackage(ctx context.Context, backend storage.Backend, lang *deps.Language, pkg string, opts deps.Options) (*dag.DAG, error) {
-	resolver, err := lang.Resolver(backend)
+func resolvePackage(ctx context.Context, c cache.Cache, lang *deps.Language, pkg string, opts deps.Options) (*dag.DAG, error) {
+	resolver, err := lang.Resolver(c)
 	if err != nil {
 		return nil, fmt.Errorf("get resolver: %w", err)
 	}
@@ -92,8 +92,8 @@ func resolvePackage(ctx context.Context, backend storage.Backend, lang *deps.Lan
 }
 
 // parseManifest parses dependencies from a manifest file or content.
-func parseManifest(ctx context.Context, backend storage.Backend, lang *deps.Language, opts Options, resolveOpts deps.Options) (*dag.DAG, error) {
-	resolver, err := lang.Resolver(backend)
+func parseManifest(ctx context.Context, c cache.Cache, lang *deps.Language, opts Options, resolveOpts deps.Options) (*dag.DAG, error) {
+	resolver, err := lang.Resolver(c)
 	if err != nil {
 		return nil, fmt.Errorf("get resolver: %w", err)
 	}

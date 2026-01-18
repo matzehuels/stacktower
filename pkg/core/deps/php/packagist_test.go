@@ -4,11 +4,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/infra/storage"
+	"github.com/matzehuels/stacktower/pkg/cache"
 )
 
 func TestNewResolver(t *testing.T) {
-	r, err := Language.NewResolver(storage.NullBackend{}, time.Minute)
+	r, err := Language.NewResolver(cache.NewNullCache(), time.Minute)
 	if err != nil {
 		t.Fatalf("NewResolver failed: %v", err)
 	}

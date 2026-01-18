@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/matzehuels/stacktower/pkg/core/deps"
-	"github.com/matzehuels/stacktower/pkg/infra/storage"
+	"github.com/matzehuels/stacktower/pkg/cache"
 	"github.com/matzehuels/stacktower/pkg/integrations/maven"
 )
 
@@ -24,7 +24,7 @@ var Language = &deps.Language{
 	NormalizeName:   NormalizeCoordinate,
 }
 
-func newResolver(backend storage.Backend, ttl time.Duration) (deps.Resolver, error) {
+func newResolver(backend cache.Cache, ttl time.Duration) (deps.Resolver, error) {
 	c := maven.NewClient(backend, ttl)
 	return deps.NewRegistry("maven", fetcher{c}), nil
 }

@@ -1,6 +1,7 @@
 package crates
 
 import (
+	"github.com/matzehuels/stacktower/pkg/cache"
 	"context"
 	"encoding/json"
 	"net/http"
@@ -8,12 +9,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/infra/storage"
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
 func TestNewClient(t *testing.T) {
-	c := NewClient(storage.NullBackend{}, time.Hour)
+	c := NewClient(cache.NewNullCache(), time.Hour)
 	if c.Client == nil {
 		t.Error("expected client to be initialized")
 	}
@@ -93,7 +93,7 @@ func testClient(t *testing.T, serverURL string) *Client {
 		"User-Agent": "stacktower/1.0 (https://github.com/matzehuels/stacktower)",
 	}
 	return &Client{
-		Client:  integrations.NewClient(storage.NullBackend{}, "crates:", time.Hour, headers),
+		Client:  integrations.NewClient(cache.NewNullCache(), "crates:", time.Hour, headers),
 		baseURL: serverURL,
 	}
 }

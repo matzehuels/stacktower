@@ -2,365 +2,283 @@
   "nodes": [
     {
       "id": "github.com/cpuguy83/go-md2man/v2",
-      "row": 1,
+      "url": "https://github.com/cpuguy83/go-md2man",
       "meta": {
+        "repo_archived": false,
+        "repo_language": "Go",
+        "repo_last_commit": "2025-11-24",
+        "repo_last_release": "2025-04-24",
+        "repo_maintainers": [
+          "cpuguy83",
+          "kolyshkin",
+          "thaJeztah",
+          "corhere"
+        ],
+        "repo_owner": "cpuguy83",
+        "repo_stars": 264,
+        "repo_url": "https://github.com/cpuguy83/go-md2man",
         "version": "v2.0.7"
       }
     },
     {
       "id": "github.com/creack/pty",
-      "row": 5,
+      "url": "https://github.com/creack/pty",
       "meta": {
+        "repo_archived": false,
+        "repo_description": "PTY interface for Go",
+        "repo_language": "Go",
+        "repo_last_commit": "2024-10-31",
+        "repo_last_release": "2024-10-31",
+        "repo_maintainers": [
+          "creack",
+          "kr",
+          "sio",
+          "yoheiueda",
+          "WeidiDeng"
+        ],
+        "repo_owner": "creack",
+        "repo_stars": 1941,
+        "repo_topics": [
+          "cross-platform",
+          "go",
+          "pty",
+          "tty"
+        ],
+        "repo_url": "https://github.com/creack/pty",
         "version": "v1.1.24"
       }
     },
     {
-      "id": "github.com/creack/pty_sub_10",
-      "row": 10,
-      "kind": "subdivider",
-      "master_id": "github.com/creack/pty"
-    },
-    {
-      "id": "github.com/creack/pty_sub_6",
-      "row": 6,
-      "kind": "subdivider",
-      "master_id": "github.com/creack/pty"
-    },
-    {
-      "id": "github.com/creack/pty_sub_7",
-      "row": 7,
-      "kind": "subdivider",
-      "master_id": "github.com/creack/pty"
-    },
-    {
-      "id": "github.com/creack/pty_sub_8",
-      "row": 8,
-      "kind": "subdivider",
-      "master_id": "github.com/creack/pty"
-    },
-    {
-      "id": "github.com/creack/pty_sub_9",
-      "row": 9,
-      "kind": "subdivider",
-      "master_id": "github.com/creack/pty"
-    },
-    {
       "id": "github.com/google/go-cmp",
-      "row": 7,
+      "url": "https://github.com/google/go-cmp",
       "meta": {
+        "repo_archived": false,
+        "repo_description": "Package for comparing Go values in tests",
+        "repo_language": "Go",
+        "repo_last_commit": "2025-02-21",
+        "repo_last_release": "2025-02-21",
+        "repo_maintainers": [
+          "dsnet",
+          "neild",
+          "muesli",
+          "tklauser",
+          "178inaba"
+        ],
+        "repo_owner": "google",
+        "repo_stars": 4569,
+        "repo_topics": [
+          "equality",
+          "go",
+          "testing"
+        ],
+        "repo_url": "https://github.com/google/go-cmp",
         "version": "v0.7.0"
       }
     },
     {
-      "id": "github.com/google/go-cmp_sub_10",
-      "row": 10,
-      "kind": "subdivider",
-      "master_id": "github.com/google/go-cmp"
-    },
-    {
-      "id": "github.com/google/go-cmp_sub_8",
-      "row": 8,
-      "kind": "subdivider",
-      "master_id": "github.com/google/go-cmp"
-    },
-    {
-      "id": "github.com/google/go-cmp_sub_9",
-      "row": 9,
-      "kind": "subdivider",
-      "master_id": "github.com/google/go-cmp"
-    },
-    {
       "id": "github.com/inconshreveable/mousetrap",
-      "row": 1,
+      "url": "https://github.com/inconshreveable/mousetrap",
       "meta": {
+        "repo_archived": false,
+        "repo_description": "Detect starting from Windows explorer",
+        "repo_language": "Go",
+        "repo_last_commit": "2022-11-29",
+        "repo_last_release": "2017-07-29",
+        "repo_maintainers": [
+          "inconshreveable",
+          "thaJeztah",
+          "sethwklein"
+        ],
+        "repo_owner": "inconshreveable",
+        "repo_stars": 263,
+        "repo_url": "https://github.com/inconshreveable/mousetrap",
         "version": "v1.1.0"
       }
     },
     {
-      "id": "github.com/inconshreveable/mousetrap_sub_10",
-      "row": 10,
-      "kind": "subdivider",
-      "master_id": "github.com/inconshreveable/mousetrap"
-    },
-    {
-      "id": "github.com/inconshreveable/mousetrap_sub_2",
-      "row": 2,
-      "kind": "subdivider",
-      "master_id": "github.com/inconshreveable/mousetrap"
-    },
-    {
-      "id": "github.com/inconshreveable/mousetrap_sub_3",
-      "row": 3,
-      "kind": "subdivider",
-      "master_id": "github.com/inconshreveable/mousetrap"
-    },
-    {
-      "id": "github.com/inconshreveable/mousetrap_sub_4",
-      "row": 4,
-      "kind": "subdivider",
-      "master_id": "github.com/inconshreveable/mousetrap"
-    },
-    {
-      "id": "github.com/inconshreveable/mousetrap_sub_5",
-      "row": 5,
-      "kind": "subdivider",
-      "master_id": "github.com/inconshreveable/mousetrap"
-    },
-    {
-      "id": "github.com/inconshreveable/mousetrap_sub_6",
-      "row": 6,
-      "kind": "subdivider",
-      "master_id": "github.com/inconshreveable/mousetrap"
-    },
-    {
-      "id": "github.com/inconshreveable/mousetrap_sub_7",
-      "row": 7,
-      "kind": "subdivider",
-      "master_id": "github.com/inconshreveable/mousetrap"
-    },
-    {
-      "id": "github.com/inconshreveable/mousetrap_sub_8",
-      "row": 8,
-      "kind": "subdivider",
-      "master_id": "github.com/inconshreveable/mousetrap"
-    },
-    {
-      "id": "github.com/inconshreveable/mousetrap_sub_9",
-      "row": 9,
-      "kind": "subdivider",
-      "master_id": "github.com/inconshreveable/mousetrap"
-    },
-    {
       "id": "github.com/kr/pretty",
-      "row": 3,
+      "url": "https://github.com/kr/pretty",
       "meta": {
+        "repo_archived": false,
+        "repo_description": "Pretty printing for Go values",
+        "repo_language": "Go",
+        "repo_last_commit": "2024-07-26",
+        "repo_maintainers": [
+          "kr",
+          "cee-dub",
+          "jhenstridge",
+          "jmcvetta",
+          "myitcv"
+        ],
+        "repo_owner": "kr",
+        "repo_stars": 1402,
+        "repo_url": "https://github.com/kr/pretty",
         "version": "v0.3.1"
       }
     },
     {
       "id": "github.com/kr/text",
-      "row": 4,
+      "brittle": true,
+      "url": "https://github.com/kr/text",
       "meta": {
+        "repo_archived": false,
+        "repo_description": "Miscellaneous functions for formatting text",
+        "repo_language": "Go",
+        "repo_last_commit": "2024-07-26",
+        "repo_maintainers": [
+          "kr",
+          "octo",
+          "maruel",
+          "mmorel-35"
+        ],
+        "repo_owner": "kr",
+        "repo_stars": 96,
+        "repo_url": "https://github.com/kr/text",
         "version": "v0.2.0"
       }
     },
     {
       "id": "github.com/rogpeppe/go-internal",
-      "row": 4,
+      "url": "https://github.com/rogpeppe/go-internal",
       "meta": {
+        "repo_archived": false,
+        "repo_description": "Selected Go-internal packages factored out from the standard library",
+        "repo_language": "Go",
+        "repo_last_commit": "2025-04-10",
+        "repo_last_release": "2025-02-25",
+        "repo_maintainers": [
+          "rogpeppe",
+          "mvdan",
+          "myitcv",
+          "twpayne",
+          "bitfield"
+        ],
+        "repo_owner": "rogpeppe",
+        "repo_stars": 959,
+        "repo_url": "https://github.com/rogpeppe/go-internal",
         "version": "v1.14.1"
       }
     },
     {
       "id": "github.com/russross/blackfriday/v2",
-      "row": 2,
+      "url": "https://github.com/russross/blackfriday",
       "meta": {
+        "repo_archived": false,
+        "repo_description": "Blackfriday: a markdown processor for Go",
+        "repo_language": "Go",
+        "repo_last_commit": "2024-01-29",
+        "repo_last_release": "2020-11-07",
+        "repo_maintainers": [
+          "rtfb",
+          "russross",
+          "dmitshur",
+          "dimfeld",
+          "moshee"
+        ],
+        "repo_owner": "russross",
+        "repo_stars": 5610,
+        "repo_url": "https://github.com/russross/blackfriday",
         "version": "v2.1.0"
       }
     },
     {
-      "id": "github.com/russross/blackfriday/v2_sub_10",
-      "row": 10,
-      "kind": "subdivider",
-      "master_id": "github.com/russross/blackfriday/v2"
-    },
-    {
-      "id": "github.com/russross/blackfriday/v2_sub_3",
-      "row": 3,
-      "kind": "subdivider",
-      "master_id": "github.com/russross/blackfriday/v2"
-    },
-    {
-      "id": "github.com/russross/blackfriday/v2_sub_4",
-      "row": 4,
-      "kind": "subdivider",
-      "master_id": "github.com/russross/blackfriday/v2"
-    },
-    {
-      "id": "github.com/russross/blackfriday/v2_sub_5",
-      "row": 5,
-      "kind": "subdivider",
-      "master_id": "github.com/russross/blackfriday/v2"
-    },
-    {
-      "id": "github.com/russross/blackfriday/v2_sub_6",
-      "row": 6,
-      "kind": "subdivider",
-      "master_id": "github.com/russross/blackfriday/v2"
-    },
-    {
-      "id": "github.com/russross/blackfriday/v2_sub_7",
-      "row": 7,
-      "kind": "subdivider",
-      "master_id": "github.com/russross/blackfriday/v2"
-    },
-    {
-      "id": "github.com/russross/blackfriday/v2_sub_8",
-      "row": 8,
-      "kind": "subdivider",
-      "master_id": "github.com/russross/blackfriday/v2"
-    },
-    {
-      "id": "github.com/russross/blackfriday/v2_sub_9",
-      "row": 9,
-      "kind": "subdivider",
-      "master_id": "github.com/russross/blackfriday/v2"
-    },
-    {
       "id": "github.com/spf13/cobra",
+      "url": "https://github.com/spf13/cobra",
       "meta": {
         "repo_archived": false,
-        "repo_language": "TypeScript",
-        "repo_last_commit": "2025-12-27",
-        "repo_last_release": "2025-12-16",
+        "repo_description": "A Commander for modern Go CLI interactions",
+        "repo_language": "Go",
+        "repo_last_commit": "2025-12-10",
+        "repo_last_release": "2025-12-04",
         "repo_maintainers": [
-          "torkelo",
-          "bergquist",
-          "ryantxu",
-          "marefr"
+          "eparis",
+          "n10v",
+          "spf13",
+          "marckhouzam",
+          "jharshman"
         ],
-        "repo_owner": "grafana",
-        "repo_stars": 71468,
+        "repo_owner": "spf13",
+        "repo_stars": 42772,
         "repo_topics": [
-          "alerting",
-          "analytics",
-          "business-intelligence",
-          "dashboard",
-          "data-visualization",
-          "elasticsearch",
+          "cli",
+          "cli-app",
+          "cobra",
+          "cobra-generator",
+          "cobra-library",
+          "command",
+          "command-cobra",
+          "command-line",
+          "commandline",
           "go",
-          "grafana",
-          "hacktoberfest",
-          "influxdb",
-          "metrics",
-          "monitoring",
-          "mysql",
-          "postgres",
-          "prometheus"
+          "golang",
+          "golang-application",
+          "golang-library",
+          "posix",
+          "posix-compliant-flags",
+          "subcommands"
         ],
-        "repo_url": "https://github.com/grafana/grafana",
+        "repo_url": "https://github.com/spf13/cobra",
         "version": "v1.10.2"
       }
     },
     {
       "id": "github.com/spf13/pflag",
-      "row": 1,
+      "url": "https://github.com/spf13/pflag",
       "meta": {
         "repo_archived": false,
+        "repo_description": "Drop-in replacement for Go's flag package, implementing POSIX/GNU-style --flags.",
         "repo_language": "Go",
-        "repo_last_commit": "2025-12-23",
-        "repo_last_release": "2025-11-20",
+        "repo_last_commit": "2025-10-07",
+        "repo_last_release": "2025-09-02",
         "repo_maintainers": [
-          "Roasbeef",
-          "guggero",
-          "yyforyongyu",
-          "cfromknecht",
-          "halseth"
+          "eparis",
+          "ogier",
+          "tomasaschan",
+          "n10v",
+          "therealmitchconnors"
         ],
-        "repo_owner": "lightningnetwork",
-        "repo_stars": 8076,
-        "repo_topics": [
-          "bitcoin",
-          "blockchain",
-          "cryptocurrency",
-          "cryptography",
-          "lightning",
-          "lightning-network",
-          "micropayments",
-          "payments",
-          "peer-to-peer",
-          "protocol"
-        ],
-        "repo_url": "https://github.com/lightningnetwork/lnd",
+        "repo_owner": "spf13",
+        "repo_stars": 2679,
+        "repo_url": "https://github.com/spf13/pflag",
         "version": "v1.0.10"
       }
     },
     {
-      "id": "github.com/spf13/pflag_sub_10",
-      "row": 10,
-      "kind": "subdivider",
-      "master_id": "github.com/spf13/pflag"
-    },
-    {
-      "id": "github.com/spf13/pflag_sub_2",
-      "row": 2,
-      "kind": "subdivider",
-      "master_id": "github.com/spf13/pflag"
-    },
-    {
-      "id": "github.com/spf13/pflag_sub_3",
-      "row": 3,
-      "kind": "subdivider",
-      "master_id": "github.com/spf13/pflag"
-    },
-    {
-      "id": "github.com/spf13/pflag_sub_4",
-      "row": 4,
-      "kind": "subdivider",
-      "master_id": "github.com/spf13/pflag"
-    },
-    {
-      "id": "github.com/spf13/pflag_sub_5",
-      "row": 5,
-      "kind": "subdivider",
-      "master_id": "github.com/spf13/pflag"
-    },
-    {
-      "id": "github.com/spf13/pflag_sub_6",
-      "row": 6,
-      "kind": "subdivider",
-      "master_id": "github.com/spf13/pflag"
-    },
-    {
-      "id": "github.com/spf13/pflag_sub_7",
-      "row": 7,
-      "kind": "subdivider",
-      "master_id": "github.com/spf13/pflag"
-    },
-    {
-      "id": "github.com/spf13/pflag_sub_8",
-      "row": 8,
-      "kind": "subdivider",
-      "master_id": "github.com/spf13/pflag"
-    },
-    {
-      "id": "github.com/spf13/pflag_sub_9",
-      "row": 9,
-      "kind": "subdivider",
-      "master_id": "github.com/spf13/pflag"
-    },
-    {
       "id": "github.com/yuin/goldmark",
-      "row": 7,
+      "url": "https://github.com/yuin/goldmark",
       "meta": {
+        "repo_archived": false,
+        "repo_description": ":trophy: A markdown parser written in Go. Easy to extend, standard(CommonMark) compliant, well structured.",
+        "repo_language": "Go",
+        "repo_last_commit": "2025-12-06",
+        "repo_last_release": "2025-07-22",
+        "repo_maintainers": [
+          "yuin",
+          "moorereason",
+          "henry0312",
+          "abhinav",
+          "88250"
+        ],
+        "repo_owner": "yuin",
+        "repo_stars": 4489,
+        "repo_topics": [
+          "commonmark",
+          "go",
+          "golang",
+          "markdown"
+        ],
+        "repo_url": "https://github.com/yuin/goldmark",
         "version": "v1.7.13"
       }
     },
     {
-      "id": "github.com/yuin/goldmark_sub_10",
-      "row": 10,
-      "kind": "subdivider",
-      "master_id": "github.com/yuin/goldmark"
-    },
-    {
-      "id": "github.com/yuin/goldmark_sub_8",
-      "row": 8,
-      "kind": "subdivider",
-      "master_id": "github.com/yuin/goldmark"
-    },
-    {
-      "id": "github.com/yuin/goldmark_sub_9",
-      "row": 9,
-      "kind": "subdivider",
-      "master_id": "github.com/yuin/goldmark"
-    },
-    {
       "id": "go.yaml.in/yaml/v3",
-      "row": 1,
+      "url": "https://github.com/grafana/grafana",
       "meta": {
         "repo_archived": false,
+        "repo_description": "The open and composable observability and data visualization platform. Visualize metrics, logs, and traces from multiple sources like Prometheus, Loki, Elasticsearch, InfluxDB, Postgres and many more. ",
         "repo_language": "TypeScript",
-        "repo_last_commit": "2025-12-27",
+        "repo_last_commit": "2026-01-02",
         "repo_last_release": "2025-12-16",
         "repo_maintainers": [
           "torkelo",
@@ -369,7 +287,7 @@
           "marefr"
         ],
         "repo_owner": "grafana",
-        "repo_stars": 71468,
+        "repo_stars": 71521,
         "repo_topics": [
           "alerting",
           "analytics",
@@ -393,107 +311,221 @@
     },
     {
       "id": "golang.org/x/crypto",
-      "row": 8,
       "meta": {
         "version": "v0.46.0"
       }
     },
     {
       "id": "golang.org/x/mod",
-      "row": 5,
+      "url": "https://github.com/grafana/grafana",
       "meta": {
+        "repo_archived": false,
+        "repo_description": "The open and composable observability and data visualization platform. Visualize metrics, logs, and traces from multiple sources like Prometheus, Loki, Elasticsearch, InfluxDB, Postgres and many more. ",
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2026-01-02",
+        "repo_last_release": "2025-12-16",
+        "repo_maintainers": [
+          "torkelo",
+          "bergquist",
+          "ryantxu",
+          "marefr"
+        ],
+        "repo_owner": "grafana",
+        "repo_stars": 71521,
+        "repo_topics": [
+          "alerting",
+          "analytics",
+          "business-intelligence",
+          "dashboard",
+          "data-visualization",
+          "elasticsearch",
+          "go",
+          "grafana",
+          "hacktoberfest",
+          "influxdb",
+          "metrics",
+          "monitoring",
+          "mysql",
+          "postgres",
+          "prometheus"
+        ],
+        "repo_url": "https://github.com/grafana/grafana",
         "version": "v0.31.0"
       }
     },
     {
       "id": "golang.org/x/net",
-      "row": 7,
       "meta": {
         "version": "v0.48.0"
       }
     },
     {
       "id": "golang.org/x/sync",
-      "row": 8,
       "meta": {
         "version": "v0.19.0"
       }
     },
     {
-      "id": "golang.org/x/sync_sub_10",
-      "row": 10,
-      "kind": "subdivider",
-      "master_id": "golang.org/x/sync"
-    },
-    {
-      "id": "golang.org/x/sync_sub_9",
-      "row": 9,
-      "kind": "subdivider",
-      "master_id": "golang.org/x/sync"
-    },
-    {
       "id": "golang.org/x/sys",
-      "row": 10,
+      "url": "https://github.com/grafana/grafana",
       "meta": {
+        "repo_archived": false,
+        "repo_description": "The open and composable observability and data visualization platform. Visualize metrics, logs, and traces from multiple sources like Prometheus, Loki, Elasticsearch, InfluxDB, Postgres and many more. ",
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2026-01-02",
+        "repo_last_release": "2025-12-16",
+        "repo_maintainers": [
+          "torkelo",
+          "bergquist",
+          "ryantxu",
+          "marefr"
+        ],
+        "repo_owner": "grafana",
+        "repo_stars": 71521,
+        "repo_topics": [
+          "alerting",
+          "analytics",
+          "business-intelligence",
+          "dashboard",
+          "data-visualization",
+          "elasticsearch",
+          "go",
+          "grafana",
+          "hacktoberfest",
+          "influxdb",
+          "metrics",
+          "monitoring",
+          "mysql",
+          "postgres",
+          "prometheus"
+        ],
+        "repo_url": "https://github.com/grafana/grafana",
         "version": "v0.39.0"
       }
     },
     {
       "id": "golang.org/x/telemetry",
-      "row": 7,
+      "url": "https://github.com/grafana/grafana",
       "meta": {
+        "repo_archived": false,
+        "repo_description": "The open and composable observability and data visualization platform. Visualize metrics, logs, and traces from multiple sources like Prometheus, Loki, Elasticsearch, InfluxDB, Postgres and many more. ",
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2026-01-02",
+        "repo_last_release": "2025-12-16",
+        "repo_maintainers": [
+          "torkelo",
+          "bergquist",
+          "ryantxu",
+          "marefr"
+        ],
+        "repo_owner": "grafana",
+        "repo_stars": 71521,
+        "repo_topics": [
+          "alerting",
+          "analytics",
+          "business-intelligence",
+          "dashboard",
+          "data-visualization",
+          "elasticsearch",
+          "go",
+          "grafana",
+          "hacktoberfest",
+          "influxdb",
+          "metrics",
+          "monitoring",
+          "mysql",
+          "postgres",
+          "prometheus"
+        ],
+        "repo_url": "https://github.com/grafana/grafana",
         "version": "v0.0.0-20251222180846-3f2a21fb04ff"
       }
     },
     {
-      "id": "golang.org/x/telemetry_sub_8",
-      "row": 8,
-      "kind": "subdivider",
-      "master_id": "golang.org/x/telemetry"
-    },
-    {
-      "id": "golang.org/x/telemetry_sub_9",
-      "row": 9,
-      "kind": "subdivider",
-      "master_id": "golang.org/x/telemetry"
-    },
-    {
       "id": "golang.org/x/term",
-      "row": 9,
       "meta": {
         "version": "v0.38.0"
       }
     },
     {
       "id": "golang.org/x/text",
-      "row": 8,
       "meta": {
         "version": "v0.32.0"
       }
     },
     {
-      "id": "golang.org/x/text_sub_10",
-      "row": 10,
-      "kind": "subdivider",
-      "master_id": "golang.org/x/text"
-    },
-    {
-      "id": "golang.org/x/text_sub_9",
-      "row": 9,
-      "kind": "subdivider",
-      "master_id": "golang.org/x/text"
-    },
-    {
       "id": "golang.org/x/tools",
-      "row": 6,
+      "url": "https://github.com/grafana/grafana",
       "meta": {
+        "repo_archived": false,
+        "repo_description": "The open and composable observability and data visualization platform. Visualize metrics, logs, and traces from multiple sources like Prometheus, Loki, Elasticsearch, InfluxDB, Postgres and many more. ",
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2026-01-02",
+        "repo_last_release": "2025-12-16",
+        "repo_maintainers": [
+          "torkelo",
+          "bergquist",
+          "ryantxu",
+          "marefr"
+        ],
+        "repo_owner": "grafana",
+        "repo_stars": 71521,
+        "repo_topics": [
+          "alerting",
+          "analytics",
+          "business-intelligence",
+          "dashboard",
+          "data-visualization",
+          "elasticsearch",
+          "go",
+          "grafana",
+          "hacktoberfest",
+          "influxdb",
+          "metrics",
+          "monitoring",
+          "mysql",
+          "postgres",
+          "prometheus"
+        ],
+        "repo_url": "https://github.com/grafana/grafana",
         "version": "v0.40.0"
       }
     },
     {
       "id": "gopkg.in/check.v1",
-      "row": 2,
+      "url": "https://github.com/grafana/grafana",
       "meta": {
+        "repo_archived": false,
+        "repo_description": "The open and composable observability and data visualization platform. Visualize metrics, logs, and traces from multiple sources like Prometheus, Loki, Elasticsearch, InfluxDB, Postgres and many more. ",
+        "repo_language": "TypeScript",
+        "repo_last_commit": "2026-01-02",
+        "repo_last_release": "2025-12-16",
+        "repo_maintainers": [
+          "torkelo",
+          "bergquist",
+          "ryantxu",
+          "marefr"
+        ],
+        "repo_owner": "grafana",
+        "repo_stars": 71521,
+        "repo_topics": [
+          "alerting",
+          "analytics",
+          "business-intelligence",
+          "dashboard",
+          "data-visualization",
+          "elasticsearch",
+          "go",
+          "grafana",
+          "hacktoberfest",
+          "influxdb",
+          "metrics",
+          "monitoring",
+          "mysql",
+          "postgres",
+          "prometheus"
+        ],
+        "repo_url": "https://github.com/grafana/grafana",
         "version": "v1.0.0-20201130134442-10cb98267c6c"
       }
     }
@@ -516,12 +548,12 @@
       "to": "go.yaml.in/yaml/v3"
     },
     {
-      "from": "go.yaml.in/yaml/v3",
-      "to": "gopkg.in/check.v1"
-    },
-    {
       "from": "github.com/cpuguy83/go-md2man/v2",
       "to": "github.com/russross/blackfriday/v2"
+    },
+    {
+      "from": "go.yaml.in/yaml/v3",
+      "to": "gopkg.in/check.v1"
     },
     {
       "from": "gopkg.in/check.v1",
@@ -544,7 +576,11 @@
       "to": "golang.org/x/mod"
     },
     {
-      "from": "golang.org/x/mod",
+      "from": "github.com/rogpeppe/go-internal",
+      "to": "golang.org/x/sys"
+    },
+    {
+      "from": "github.com/rogpeppe/go-internal",
       "to": "golang.org/x/tools"
     },
     {
@@ -557,11 +593,35 @@
     },
     {
       "from": "golang.org/x/tools",
+      "to": "golang.org/x/mod"
+    },
+    {
+      "from": "golang.org/x/tools",
       "to": "golang.org/x/net"
     },
     {
       "from": "golang.org/x/tools",
+      "to": "golang.org/x/sync"
+    },
+    {
+      "from": "golang.org/x/tools",
       "to": "golang.org/x/telemetry"
+    },
+    {
+      "from": "golang.org/x/mod",
+      "to": "golang.org/x/tools"
+    },
+    {
+      "from": "golang.org/x/telemetry",
+      "to": "golang.org/x/mod"
+    },
+    {
+      "from": "golang.org/x/telemetry",
+      "to": "golang.org/x/sync"
+    },
+    {
+      "from": "golang.org/x/telemetry",
+      "to": "golang.org/x/sys"
     },
     {
       "from": "golang.org/x/net",
@@ -569,11 +629,23 @@
     },
     {
       "from": "golang.org/x/net",
+      "to": "golang.org/x/sys"
+    },
+    {
+      "from": "golang.org/x/net",
+      "to": "golang.org/x/term"
+    },
+    {
+      "from": "golang.org/x/net",
       "to": "golang.org/x/text"
     },
     {
-      "from": "golang.org/x/telemetry",
-      "to": "golang.org/x/sync"
+      "from": "golang.org/x/crypto",
+      "to": "golang.org/x/net"
+    },
+    {
+      "from": "golang.org/x/crypto",
+      "to": "golang.org/x/sys"
     },
     {
       "from": "golang.org/x/crypto",
@@ -584,180 +656,8 @@
       "to": "golang.org/x/sys"
     },
     {
-      "from": "golang.org/x/telemetry",
-      "to": "golang.org/x/telemetry_sub_8"
-    },
-    {
-      "from": "golang.org/x/telemetry_sub_8",
-      "to": "golang.org/x/telemetry_sub_9"
-    },
-    {
-      "from": "golang.org/x/telemetry_sub_9",
-      "to": "golang.org/x/sys"
-    },
-    {
-      "from": "github.com/russross/blackfriday/v2",
-      "to": "github.com/russross/blackfriday/v2_sub_3"
-    },
-    {
-      "from": "github.com/russross/blackfriday/v2_sub_3",
-      "to": "github.com/russross/blackfriday/v2_sub_4"
-    },
-    {
-      "from": "github.com/russross/blackfriday/v2_sub_4",
-      "to": "github.com/russross/blackfriday/v2_sub_5"
-    },
-    {
-      "from": "github.com/russross/blackfriday/v2_sub_5",
-      "to": "github.com/russross/blackfriday/v2_sub_6"
-    },
-    {
-      "from": "github.com/russross/blackfriday/v2_sub_6",
-      "to": "github.com/russross/blackfriday/v2_sub_7"
-    },
-    {
-      "from": "github.com/russross/blackfriday/v2_sub_7",
-      "to": "github.com/russross/blackfriday/v2_sub_8"
-    },
-    {
-      "from": "github.com/russross/blackfriday/v2_sub_8",
-      "to": "github.com/russross/blackfriday/v2_sub_9"
-    },
-    {
-      "from": "github.com/russross/blackfriday/v2_sub_9",
-      "to": "github.com/russross/blackfriday/v2_sub_10"
-    },
-    {
-      "from": "github.com/creack/pty",
-      "to": "github.com/creack/pty_sub_6"
-    },
-    {
-      "from": "github.com/creack/pty_sub_6",
-      "to": "github.com/creack/pty_sub_7"
-    },
-    {
-      "from": "github.com/creack/pty_sub_7",
-      "to": "github.com/creack/pty_sub_8"
-    },
-    {
-      "from": "github.com/creack/pty_sub_8",
-      "to": "github.com/creack/pty_sub_9"
-    },
-    {
-      "from": "github.com/creack/pty_sub_9",
-      "to": "github.com/creack/pty_sub_10"
-    },
-    {
-      "from": "github.com/yuin/goldmark",
-      "to": "github.com/yuin/goldmark_sub_8"
-    },
-    {
-      "from": "github.com/yuin/goldmark_sub_8",
-      "to": "github.com/yuin/goldmark_sub_9"
-    },
-    {
-      "from": "github.com/yuin/goldmark_sub_9",
-      "to": "github.com/yuin/goldmark_sub_10"
-    },
-    {
-      "from": "github.com/spf13/pflag",
-      "to": "github.com/spf13/pflag_sub_2"
-    },
-    {
-      "from": "github.com/spf13/pflag_sub_2",
-      "to": "github.com/spf13/pflag_sub_3"
-    },
-    {
-      "from": "github.com/spf13/pflag_sub_3",
-      "to": "github.com/spf13/pflag_sub_4"
-    },
-    {
-      "from": "github.com/spf13/pflag_sub_4",
-      "to": "github.com/spf13/pflag_sub_5"
-    },
-    {
-      "from": "github.com/spf13/pflag_sub_5",
-      "to": "github.com/spf13/pflag_sub_6"
-    },
-    {
-      "from": "github.com/spf13/pflag_sub_6",
-      "to": "github.com/spf13/pflag_sub_7"
-    },
-    {
-      "from": "github.com/spf13/pflag_sub_7",
-      "to": "github.com/spf13/pflag_sub_8"
-    },
-    {
-      "from": "github.com/spf13/pflag_sub_8",
-      "to": "github.com/spf13/pflag_sub_9"
-    },
-    {
-      "from": "github.com/spf13/pflag_sub_9",
-      "to": "github.com/spf13/pflag_sub_10"
-    },
-    {
-      "from": "github.com/google/go-cmp",
-      "to": "github.com/google/go-cmp_sub_8"
-    },
-    {
-      "from": "github.com/google/go-cmp_sub_8",
-      "to": "github.com/google/go-cmp_sub_9"
-    },
-    {
-      "from": "github.com/google/go-cmp_sub_9",
-      "to": "github.com/google/go-cmp_sub_10"
-    },
-    {
-      "from": "golang.org/x/sync",
-      "to": "golang.org/x/sync_sub_9"
-    },
-    {
-      "from": "golang.org/x/sync_sub_9",
-      "to": "golang.org/x/sync_sub_10"
-    },
-    {
       "from": "golang.org/x/text",
-      "to": "golang.org/x/text_sub_9"
-    },
-    {
-      "from": "golang.org/x/text_sub_9",
-      "to": "golang.org/x/text_sub_10"
-    },
-    {
-      "from": "github.com/inconshreveable/mousetrap",
-      "to": "github.com/inconshreveable/mousetrap_sub_2"
-    },
-    {
-      "from": "github.com/inconshreveable/mousetrap_sub_2",
-      "to": "github.com/inconshreveable/mousetrap_sub_3"
-    },
-    {
-      "from": "github.com/inconshreveable/mousetrap_sub_3",
-      "to": "github.com/inconshreveable/mousetrap_sub_4"
-    },
-    {
-      "from": "github.com/inconshreveable/mousetrap_sub_4",
-      "to": "github.com/inconshreveable/mousetrap_sub_5"
-    },
-    {
-      "from": "github.com/inconshreveable/mousetrap_sub_5",
-      "to": "github.com/inconshreveable/mousetrap_sub_6"
-    },
-    {
-      "from": "github.com/inconshreveable/mousetrap_sub_6",
-      "to": "github.com/inconshreveable/mousetrap_sub_7"
-    },
-    {
-      "from": "github.com/inconshreveable/mousetrap_sub_7",
-      "to": "github.com/inconshreveable/mousetrap_sub_8"
-    },
-    {
-      "from": "github.com/inconshreveable/mousetrap_sub_8",
-      "to": "github.com/inconshreveable/mousetrap_sub_9"
-    },
-    {
-      "from": "github.com/inconshreveable/mousetrap_sub_9",
-      "to": "github.com/inconshreveable/mousetrap_sub_10"
+      "to": "golang.org/x/tools"
     }
   ]
 }

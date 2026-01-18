@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900.0 780.0" width="900" height="780">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900.0 540.0" width="900" height="540">
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;display=swap');
@@ -8,6 +8,7 @@
 " x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>
     </pattern>
   </defs>
+  <g transform="translate(0, 40.0)">
   <a href="https://github.com/tokio-rs/bytes" target="_blank"><path id="block-bytes" class="block" d="M 87.42 381.12 Q 87.04 362.23 118.03 364.32 Q 149.01 366.40 180.00 364.43 Q 210.99 362.46 241.97 362.23 Q 272.96 362.00 274.94 381.00 Q 276.91 400.00 276.81 418.75 Q 276.70 437.50 276.32 456.25 Q 275.93 475.00 243.46 476.33 Q 210.99 477.67 180.00 476.50 Q 149.01 475.33 118.03 474.22 Q 87.04 473.11 86.99 455.30 Q 86.94 437.50 87.37 418.75 Q 87.79 400.00 87.42 381.12 Z" fill="#f0f0f0" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.951 180.00 418.75)"/></a>
   <a href="https://github.com/hyperium/http" target="_blank"><path id="block-http" class="block" d="M 50.35 270.42 Q 50.00 253.35 87.86 250.97 Q 125.71 248.59 163.57 248.74 Q 201.43 248.90 239.29 250.83 Q 277.14 252.76 315.00 250.58 Q 352.86 248.39 390.71 249.34 Q 428.57 250.28 466.43 248.49 Q 504.29 246.70 542.14 248.13 Q 580.00 249.56 579.39 268.53 Q 578.78 287.50 579.85 306.25 Q 580.92 325.00 582.21 343.75 Q 583.49 362.50 543.89 364.30 Q 504.29 366.10 466.43 365.80 Q 428.57 365.51 390.71 362.62 Q 352.86 359.73 315.00 362.71 Q 277.14 365.70 239.29 364.30 Q 201.43 362.89 163.57 363.32 Q 125.71 363.75 87.86 362.64 Q 50.00 361.53 49.11 343.26 Q 48.23 325.00 49.46 306.25 Q 50.70 287.50 50.35 270.42 Z" fill="#cbcbcb" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.145 315.00 306.25)"/></a>
   <a href="https://github.com/hyperium/http-body" target="_blank"><path id="block-http-body" class="block" d="M 111.87 154.48 Q 110.21 133.96 144.34 135.77 Q 178.47 137.59 212.61 137.25 Q 246.74 136.90 280.87 138.09 Q 315.00 139.27 349.13 139.80 Q 383.26 140.32 417.39 137.97 Q 451.53 135.62 485.66 136.62 Q 519.79 137.63 518.82 156.31 Q 517.85 175.00 518.55 193.75 Q 519.26 212.50 520.71 231.25 Q 522.17 250.00 486.85 251.35 Q 451.53 252.71 417.39 251.24 Q 383.26 249.78 349.13 251.40 Q 315.00 253.03 280.87 249.94 Q 246.74 246.86 212.61 246.63 Q 178.47 246.41 144.34 247.39 Q 110.21 248.36 108.23 230.43 Q 106.26 212.50 109.90 193.75 Q 113.53 175.00 111.87 154.48 Z" fill="#bebebe" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.131 315.00 193.75)"/></a>
@@ -43,6 +44,7 @@
   <a href="https://github.com/tokio-rs/tokio" target="_blank">    <rect x="693.00" y="181.75" width="54.00" height="24.00" fill="#c7c7c7"/>
     <text x="720.00" y="193.75" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">tokio</text>
 </a>  </g>
+  </g>
   <style>
     .block { transition: stroke-width 0.2s ease; }
     .block.highlight { stroke-width: 4; }
@@ -62,46 +64,8 @@
       el.addEventListener('mouseenter', () => highlight([el.id.replace('block-', '')]));
       el.addEventListener('mouseleave', clearHighlight);
     });
-  ]]></script>
-  <text x="450.0" y="564.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
-  <path d="M 322.0 580.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <a href="https://github.com/taiki-e" target="_blank" class="maintainer-link" data-packages="pin-project-lite,bytes,tokio">
-    <text x="114.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#1 @taiki-e</text>
-  </a>
-  <text class="package-entry" data-package="pin-project-lite" x="114.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">pin-project-lite</text>
-  <text class="package-entry" data-package="bytes" x="114.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">bytes</text>
-  <text class="package-entry" data-package="tokio" x="114.0" y="685.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">tokio</text>
-  <a href="https://github.com/dtolnay" target="_blank" class="maintainer-link" data-packages="itoa">
-    <text x="282.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#2 @dtolnay</text>
-  </a>
-  <text class="package-entry" data-package="itoa" x="282.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">itoa</text>
-  <a href="https://github.com/carllerche" target="_blank" class="maintainer-link" data-packages="bytes,tokio,http">
-    <text x="450.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#3 @carllerche</text>
-  </a>
-  <text class="package-entry" data-package="bytes" x="450.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">bytes</text>
-  <text class="package-entry" data-package="tokio" x="450.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">tokio</text>
-  <text class="package-entry" data-package="http" x="450.0" y="685.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">http</text>
-  <a href="https://github.com/seanmonstar" target="_blank" class="maintainer-link" data-packages="http,http-body,bytes">
-    <text x="618.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#4 @seanmonstar</text>
-  </a>
-  <text class="package-entry" data-package="http" x="618.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">http</text>
-  <text class="package-entry" data-package="http-body" x="618.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">http-body</text>
-  <text class="package-entry" data-package="bytes" x="618.0" y="685.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">bytes</text>
-  <a href="https://github.com/glandium" target="_blank" class="maintainer-link" data-packages="itoa">
-    <text x="786.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#5 @glandium</text>
-  </a>
-  <text class="package-entry" data-package="itoa" x="786.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">itoa</text>
-  <style>
-    .maintainer-link text { cursor: pointer; }
-    .maintainer-link:hover text { text-decoration: underline; }
-  </style>
-  <script type="text/javascript"><![CDATA[
-    document.querySelectorAll('.maintainer-link').forEach(el => {
-      el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
-      el.addEventListener('mouseleave', clearHighlight);
-    });
-    document.querySelectorAll('.package-entry').forEach(el => {
-      el.addEventListener('mouseenter', () => highlight([el.dataset.package]));
+    document.querySelectorAll('.block-text').forEach(el => {
+      el.addEventListener('mouseenter', () => highlight([el.dataset.block]));
       el.addEventListener('mouseleave', clearHighlight);
     });
   ]]></script>
@@ -185,4 +149,18 @@
       el.addEventListener('mouseleave', () => popup.setAttribute('visibility', 'hidden'));
     });
   ]]></script>
+  <a href="https://www.stacktower.io" target="_blank" rel="noopener">
+    <g transform="translate(390.0, 15.0)" class="watermark">
+      <g transform="scale(0.67)">
+      <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+      <text x="20" y="11" font-family="sans-serif" font-size="14" font-weight="500" fill="#000">stacktower.io</text>
+    </g>
+  </a>
+  <style>
+    .watermark { transition: opacity 0.2s ease; opacity: 1; }
+    .watermark:hover { opacity: 0.7; }
+  </style>
 </svg>

@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/matzehuels/stacktower/pkg/core/deps/metadata"
 )
 
 const (
@@ -20,11 +21,11 @@ func IsBrittle(n *dag.Node) bool {
 	if n == nil || n.Meta == nil {
 		return false
 	}
-	if archived, _ := n.Meta["repo_archived"].(bool); archived {
+	if archived, _ := n.Meta[metadata.RepoArchived].(bool); archived {
 		return true
 	}
 
-	lastCommit := ParseDate(n.Meta["repo_last_commit"])
+	lastCommit := ParseDate(n.Meta[metadata.RepoLastCommit])
 	if lastCommit.IsZero() {
 		return false
 	}
@@ -37,8 +38,8 @@ func IsBrittle(n *dag.Node) bool {
 		return false
 	}
 
-	maintainers := CountMaintainers(n.Meta["repo_maintainers"])
-	stars, _ := n.Meta["repo_stars"].(int)
+	maintainers := CountMaintainers(n.Meta[metadata.RepoMaintainers])
+	stars, _ := n.Meta[metadata.RepoStars].(int)
 	return maintainers == 1 || stars < lowStarCount || maintainers <= minMaintainerCount
 }
 

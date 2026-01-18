@@ -9,9 +9,9 @@ import (
 	"time"
 
 	"github.com/matzehuels/stacktower/internal/cli/term"
-	"github.com/matzehuels/stacktower/pkg/infra"
-	"github.com/matzehuels/stacktower/pkg/infra/session"
+	"github.com/matzehuels/stacktower/pkg/config"
 	"github.com/matzehuels/stacktower/pkg/integrations/github"
+	"github.com/matzehuels/stacktower/pkg/session"
 )
 
 // cliSessionTTL is the duration for CLI sessions.
@@ -101,7 +101,7 @@ func openBrowser(rawURL string) error {
 // runGitHubLogin performs the GitHub device flow login and returns the session.
 // This can be called from any command that needs authentication.
 func runGitHubLogin(ctx context.Context) (*session.Session, error) {
-	cfg := infra.LoadGitHubConfig()
+	cfg := config.LoadGitHubConfig()
 	clientID := cfg.ClientID
 	if clientID == "" {
 		clientID = github.DefaultClientID

@@ -8,14 +8,13 @@ import (
 	"github.com/matzehuels/stacktower/internal/cli/term"
 	"github.com/matzehuels/stacktower/pkg/core/dag"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/ordering"
-	"github.com/matzehuels/stacktower/pkg/infra"
 )
 
 // optimalOrderer wraps ordering.OptimalSearch with progress feedback.
 // It shows improvements via UI and keeps debug info for --verbose mode.
 type optimalOrderer struct {
 	ordering.OptimalSearch
-	logger *infra.Logger // Only used for --verbose debug output
+	logger *Logger // Only used for --verbose debug output
 
 	mu                       sync.Mutex
 	lastExplored, lastPruned int
@@ -28,7 +27,7 @@ type optimalOrderer struct {
 // The timeoutSec parameter controls how long the search runs before returning the best solution found.
 // Longer timeouts may find better orderings (fewer edge crossings) at the cost of increased runtime.
 func newOptimalOrderer(ctx context.Context, timeoutSec int) ordering.Orderer {
-	logger := infra.LoggerFromContext(ctx)
+	logger := loggerFromContext(ctx)
 	o := &optimalOrderer{
 		logger:   logger,
 		lastBest: -1,

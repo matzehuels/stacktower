@@ -4,6 +4,8 @@ import (
 	"slices"
 
 	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/matzehuels/stacktower/pkg/core/dag/transform"
+	"github.com/matzehuels/stacktower/pkg/core/render/tower/feature"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/ordering"
 )
 
@@ -13,7 +15,15 @@ const (
 )
 
 // Layout represents the computed physical positions and dimensions of all
-// blocks in a tower visualization.
+// blocks in a tower visualization, along with rendering metadata.
+//
+// This is the internal representation used during layout computation and rendering.
+// For serialization (JSON files, API responses, caching), convert to stackio.Layout
+// using the ToDTO() method. Use FromDTO() to convert back from serialized form.
+//
+// The key difference from stackio.Layout:
+//   - This type: optimized for computation (map-based block lookup, computed values)
+//   - stackio.Layout: optimized for serialization (slice-based, JSON-friendly)
 type Layout struct {
 	FrameWidth  float64
 	FrameHeight float64
@@ -21,6 +31,15 @@ type Layout struct {
 	RowOrders   map[int][]string
 	MarginX     float64
 	MarginY     float64
+
+	// Metadata fields for rendering configuration
+	Style     string // Render style: "simple", "handdrawn"
+	Seed      uint64 // Random seed for reproducible rendering
+	Randomize bool   // Whether block widths were randomized
+	Merged    bool   // Whether subdividers were merged
+
+	// Nebraska contains maintainer ranking data (computed during layout)
+	Nebraska []feature.NebraskaRanking
 }
 
 // Option configures the layout generation process.
@@ -58,9 +77,22 @@ func WithTopDownWidths() Option {
 	return func(c *config) { c.topDownFlow = true }
 }
 
+// EnsureLayered ensures the graph has row assignments for tower layout.
+// If the graph has no rows assigned (MaxRow == 0), this assigns layers.
+// This modifies the graph in place.
+func EnsureLayered(g *dag.DAG) {
+	if g.MaxRow() == 0 && g.EdgeCount() > 0 {
+		transform.AssignLayers(g)
+	}
+}
+
 // Build computes a physical layout for the given DAG within the specified
 // width and height constraints. It applies row ordering, width computation,
 // and coordinate assignment.
+//
+// Build requires that the graph has row assignments. If the graph was loaded
+// from a file without normalization, call EnsureLayered first, or the caller
+// should handle layer assignment.
 func Build(g *dag.DAG, width, height float64, opts ...Option) Layout {
 	cfg := config{
 		orderer:     ordering.Barycentric{},

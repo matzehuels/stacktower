@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/infra/storage"
+	"github.com/matzehuels/stacktower/pkg/cache"
 )
 
 // Language defines how to resolve dependencies for a programming language.
@@ -38,11 +38,11 @@ type Language struct {
 	// Used by DetectManifest to match file paths. May be nil or empty.
 	ManifestAliases map[string]string
 
-	// NewResolver creates a registry Resolver with the given cache backend and TTL.
-	// The backend is used for HTTP response caching (use storage.NullBackend{} for no caching).
+	// NewResolver creates a registry Resolver with the given cache and TTL.
+	// The cache is used for HTTP response caching (use cache.NullCache{} for no caching).
 	// Returns an error if resolver construction fails (e.g., missing
 	// configuration). May be nil if the language has no registry support.
-	NewResolver func(backend storage.Backend, ttl time.Duration) (Resolver, error)
+	NewResolver func(c cache.Cache, ttl time.Duration) (Resolver, error)
 
 	// NewManifest creates a ManifestParser for the given type name and resolver.
 	// The name is typically a value from ManifestTypes or ManifestAliases.
@@ -73,7 +73,7 @@ type Language struct {
 // Use NewResolver directly for custom TTLs.
 //
 // Returns an error if the registry name is unknown or if NewResolver fails.
-func (l *Language) Registry(backend storage.Backend, name string) (Resolver, error) {
+func (l *Language) Registry(backend cache.Cache, name string) (Resolver, error) {
 	name = l.alias(l.RegistryAliases, name)
 	if name != l.DefaultRegistry {
 		return nil, fmt.Errorf("unknown registry %q (available: %s)", name, l.DefaultRegistry)
@@ -86,7 +86,7 @@ func (l *Language) Registry(backend storage.Backend, name string) (Resolver, err
 // This is a convenience wrapper around NewResolver with the given backend
 // and DefaultCacheTTL.
 // Returns an error if NewResolver is nil or fails.
-func (l *Language) Resolver(backend storage.Backend) (Resolver, error) {
+func (l *Language) Resolver(backend cache.Cache) (Resolver, error) {
 	return l.NewResolver(backend, DefaultCacheTTL)
 }
 

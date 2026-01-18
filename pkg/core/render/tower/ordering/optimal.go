@@ -308,7 +308,14 @@ func (s *solver) generateC1PCandidates(depth int, nodes []*dag.Node, prevOrder [
 
 	limit := s.candLimit
 	if n <= 8 {
-		limit = tree.ValidCount()
+		// For small rows, use actual count but cap at candidate limit
+		// to prevent combinatorial explosion (e.g., 6! = 720 candidates
+		// combined with other large rows creates 720M+ search paths)
+		actualCount := tree.ValidCount()
+		if actualCount <= s.candLimit {
+			limit = actualCount
+		}
+		// else keep s.candLimit to prevent memory explosion
 	}
 
 	perms := tree.Enumerate(limit)

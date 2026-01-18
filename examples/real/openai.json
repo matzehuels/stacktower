@@ -2,11 +2,12 @@
   "nodes": [
     {
       "id": "annotated-types",
-      "row": 2,
+      "url": "https://github.com/annotated-types/annotated-types",
       "meta": {
         "description": "Reusable constraint types to use with typing.Annotated",
         "license": "MIT License",
         "repo_archived": false,
+        "repo_description": "Reusable constraint types to use with typing.Annotated",
         "repo_language": "Python",
         "repo_last_commit": "2025-11-10",
         "repo_last_release": "2024-05-20",
@@ -18,25 +19,20 @@
           "Viicos"
         ],
         "repo_owner": "annotated-types",
-        "repo_stars": 585,
+        "repo_stars": 586,
         "repo_url": "https://github.com/annotated-types/annotated-types",
         "version": "0.7.0"
       }
     },
     {
-      "id": "annotated-types_sub_3",
-      "row": 3,
-      "kind": "subdivider",
-      "master_id": "annotated-types"
-    },
-    {
       "id": "anyio",
-      "row": 2,
+      "url": "https://github.com/agronholm/anyio",
       "meta": {
         "description": "High-level concurrency and networking framework on top of asyncio or Trio",
         "repo_archived": false,
+        "repo_description": "High level asynchronous concurrency and networking framework that works on top of either Trio or asyncio",
         "repo_language": "Python",
-        "repo_last_commit": "2025-12-27",
+        "repo_last_commit": "2025-12-31",
         "repo_last_release": "2025-11-30",
         "repo_maintainers": [
           "agronholm",
@@ -45,7 +41,7 @@
           "davidbrochart"
         ],
         "repo_owner": "agronholm",
-        "repo_stars": 2338,
+        "repo_stars": 2344,
         "repo_topics": [
           "async-await",
           "asyncio",
@@ -57,12 +53,13 @@
     },
     {
       "id": "certifi",
-      "row": 3,
+      "url": "https://github.com/certifi/python-certifi",
       "meta": {
         "author": "Kenneth Reitz",
         "description": "Python package for providing Mozilla's CA Bundle.",
         "license": "Mozilla Public License 2.0 (MPL 2.0)",
         "repo_archived": false,
+        "repo_description": "(Python Distribution) A carefully curated collection of Root Certificates for validating the trustworthiness of SSL certificates while verifying the identity of TLS hosts.",
         "repo_language": "Python",
         "repo_last_commit": "2025-12-22",
         "repo_maintainers": [
@@ -71,24 +68,19 @@
           "sigmavirus24"
         ],
         "repo_owner": "certifi",
-        "repo_stars": 944,
+        "repo_stars": 946,
         "repo_url": "https://github.com/certifi/python-certifi",
         "version": "2025.11.12"
       }
     },
     {
-      "id": "certifi_sub_4",
-      "row": 4,
-      "kind": "subdivider",
-      "master_id": "certifi"
-    },
-    {
       "id": "colorama",
-      "row": 2,
+      "url": "https://github.com/tartley/colorama",
       "meta": {
         "description": "Cross-platform colored terminal text.",
         "license": "BSD License",
         "repo_archived": false,
+        "repo_description": "Simple cross-platform colored terminal text in Python",
         "repo_language": "Python",
         "repo_last_commit": "2025-07-09",
         "repo_maintainers": [
@@ -105,25 +97,14 @@
       }
     },
     {
-      "id": "colorama_sub_3",
-      "row": 3,
-      "kind": "subdivider",
-      "master_id": "colorama"
-    },
-    {
-      "id": "colorama_sub_4",
-      "row": 4,
-      "kind": "subdivider",
-      "master_id": "colorama"
-    },
-    {
       "id": "distro",
-      "row": 1,
+      "url": "https://github.com/python-distro/distro",
       "meta": {
         "author": "Nir Cohen",
         "description": "Distro - an OS platform information API",
         "license": "Apache Software License",
         "repo_archived": false,
+        "repo_description": "A much more elaborate replacement for removed Python's `platform.linux_distribution()` method",
         "repo_language": "Python",
         "repo_last_commit": "2025-11-14",
         "repo_last_release": "2024-01-14",
@@ -135,7 +116,7 @@
           "SethMichaelLarson"
         ],
         "repo_owner": "python-distro",
-        "repo_stars": 280,
+        "repo_stars": 281,
         "repo_topics": [
           "distribution",
           "distro",
@@ -150,30 +131,14 @@
       }
     },
     {
-      "id": "distro_sub_2",
-      "row": 2,
-      "kind": "subdivider",
-      "master_id": "distro"
-    },
-    {
-      "id": "distro_sub_3",
-      "row": 3,
-      "kind": "subdivider",
-      "master_id": "distro"
-    },
-    {
-      "id": "distro_sub_4",
-      "row": 4,
-      "kind": "subdivider",
-      "master_id": "distro"
-    },
-    {
       "id": "exceptiongroup",
-      "row": 3,
+      "brittle": true,
+      "url": "https://github.com/agronholm/exceptiongroup",
       "meta": {
         "description": "Backport of PEP 654 (exception groups)",
         "license": "MIT License",
         "repo_archived": false,
+        "repo_description": "Backport of PEP 654 (exception groups)",
         "repo_language": "Python",
         "repo_last_commit": "2025-12-27",
         "repo_last_release": "2025-11-21",
@@ -191,12 +156,13 @@
     },
     {
       "id": "h11",
-      "row": 3,
+      "url": "https://github.com/python-hyper/h11",
       "meta": {
         "author": "Nathaniel J. Smith",
         "description": "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1",
         "license": "MIT License",
         "repo_archived": false,
+        "repo_description": "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1",
         "repo_language": "Python",
         "repo_last_commit": "2025-04-24",
         "repo_maintainers": [
@@ -207,7 +173,7 @@
           "lovelydinosaur"
         ],
         "repo_owner": "python-hyper",
-        "repo_stars": 538,
+        "repo_stars": 541,
         "repo_topics": [
           "http",
           "python",
@@ -218,20 +184,15 @@
       }
     },
     {
-      "id": "h11_sub_4",
-      "row": 4,
-      "kind": "subdivider",
-      "master_id": "h11"
-    },
-    {
       "id": "httpcore",
-      "row": 2,
+      "url": "https://github.com/encode/httpcore",
       "meta": {
         "description": "A minimal low-level HTTP client.",
         "license": "BSD License",
         "repo_archived": false,
+        "repo_description": "A minimal HTTP client. ⚙️",
         "repo_language": "Python",
-        "repo_last_commit": "2025-12-06",
+        "repo_last_commit": "2026-01-01",
         "repo_last_release": "2025-04-24",
         "repo_maintainers": [
           "lovelydinosaur",
@@ -247,11 +208,12 @@
     },
     {
       "id": "httpx",
-      "row": 1,
+      "url": "https://github.com/encode/httpx",
       "meta": {
         "description": "The next generation HTTP client.",
         "license": "BSD License",
         "repo_archived": false,
+        "repo_description": "A next generation HTTP client for Python. 🦋",
         "repo_language": "Python",
         "repo_last_commit": "2025-12-17",
         "repo_last_release": "2024-12-06",
@@ -262,7 +224,7 @@
           "karpetrosyan"
         ],
         "repo_owner": "encode",
-        "repo_stars": 14870,
+        "repo_stars": 14874,
         "repo_topics": [
           "asyncio",
           "http",
@@ -275,10 +237,11 @@
     },
     {
       "id": "idna",
-      "row": 3,
+      "url": "https://github.com/kjd/idna",
       "meta": {
         "description": "Internationalized Domain Names in Applications (IDNA)",
         "repo_archived": false,
+        "repo_description": "Internationalized Domain Names for Python (IDNA 2008 and UTS #46)",
         "repo_language": "Python",
         "repo_last_commit": "2025-10-20",
         "repo_last_release": "2025-10-12",
@@ -303,18 +266,13 @@
       }
     },
     {
-      "id": "idna_sub_4",
-      "row": 4,
-      "kind": "subdivider",
-      "master_id": "idna"
-    },
-    {
       "id": "jiter",
-      "row": 1,
+      "url": "https://github.com/pydantic/jiter",
       "meta": {
         "description": "Fast iterable JSON parser.",
         "license": "MIT License",
         "repo_archived": false,
+        "repo_description": "Fast iterable JSON parser.",
         "repo_language": "Rust",
         "repo_last_commit": "2025-11-09",
         "repo_last_release": "2025-11-09",
@@ -338,29 +296,13 @@
       }
     },
     {
-      "id": "jiter_sub_2",
-      "row": 2,
-      "kind": "subdivider",
-      "master_id": "jiter"
-    },
-    {
-      "id": "jiter_sub_3",
-      "row": 3,
-      "kind": "subdivider",
-      "master_id": "jiter"
-    },
-    {
-      "id": "jiter_sub_4",
-      "row": 4,
-      "kind": "subdivider",
-      "master_id": "jiter"
-    },
-    {
       "id": "openai",
+      "url": "https://github.com/openai/openai-python",
       "meta": {
         "description": "The official Python library for the openai API",
         "license": "Apache Software License",
         "repo_archived": false,
+        "repo_description": "The official Python library for the OpenAI API",
         "repo_language": "Python",
         "repo_last_commit": "2025-12-19",
         "repo_last_release": "2025-12-19",
@@ -371,7 +313,7 @@
           "rachellim"
         ],
         "repo_owner": "openai",
-        "repo_stars": 29568,
+        "repo_stars": 29596,
         "repo_topics": [
           "openai",
           "python"
@@ -382,12 +324,13 @@
     },
     {
       "id": "pydantic",
-      "row": 1,
+      "url": "https://github.com/pydantic/pydantic",
       "meta": {
         "description": "Data validation using Python type hints",
         "repo_archived": false,
+        "repo_description": "Data validation using Python type hints",
         "repo_language": "Python",
-        "repo_last_commit": "2025-12-27",
+        "repo_last_commit": "2026-01-01",
         "repo_last_release": "2025-11-26",
         "repo_maintainers": [
           "samuelcolvin",
@@ -396,7 +339,7 @@
           "dmontagu"
         ],
         "repo_owner": "pydantic",
-        "repo_stars": 26285,
+        "repo_stars": 26338,
         "repo_topics": [
           "hints",
           "json-schema",
@@ -416,12 +359,13 @@
     },
     {
       "id": "pydantic-core",
-      "row": 2,
+      "url": "https://github.com/pydantic/pydantic-core",
       "meta": {
         "description": "Core functionality for Pydantic validation and serialization",
         "repo_archived": false,
+        "repo_description": "Core validation logic for pydantic written in rust",
         "repo_language": "Python",
-        "repo_last_commit": "2025-11-10",
+        "repo_last_commit": "2026-01-01",
         "repo_last_release": "2025-11-04",
         "repo_maintainers": [
           "samuelcolvin",
@@ -444,18 +388,13 @@
       }
     },
     {
-      "id": "pydantic-core_sub_3",
-      "row": 3,
-      "kind": "subdivider",
-      "master_id": "pydantic-core"
-    },
-    {
       "id": "sniffio",
-      "row": 1,
+      "url": "https://github.com/python-trio/sniffio",
       "meta": {
         "description": "Sniff out which async library your code is running under",
         "license": "Apache Software License",
         "repo_archived": false,
+        "repo_description": "Sniff out which async library your code is running under",
         "repo_language": "Python",
         "repo_last_commit": "2024-02-25",
         "repo_maintainers": [
@@ -466,7 +405,7 @@
           "hugovk"
         ],
         "repo_owner": "python-trio",
-        "repo_stars": 144,
+        "repo_stars": 146,
         "repo_topics": [
           "async",
           "asyncio",
@@ -478,30 +417,13 @@
       }
     },
     {
-      "id": "sniffio_sub_2",
-      "row": 2,
-      "kind": "subdivider",
-      "master_id": "sniffio"
-    },
-    {
-      "id": "sniffio_sub_3",
-      "row": 3,
-      "kind": "subdivider",
-      "master_id": "sniffio"
-    },
-    {
-      "id": "sniffio_sub_4",
-      "row": 4,
-      "kind": "subdivider",
-      "master_id": "sniffio"
-    },
-    {
       "id": "tqdm",
-      "row": 1,
+      "url": "https://github.com/tqdm/tqdm",
       "meta": {
         "description": "Fast, Extensible Progress Meter",
         "license": "MIT License",
         "repo_archived": false,
+        "repo_description": ":zap: A Fast, Extensible Progress Bar for Python and CLI",
         "repo_language": "Python",
         "repo_last_commit": "2025-05-22",
         "repo_last_release": "2024-11-27",
@@ -513,7 +435,7 @@
           "richardsheridan"
         ],
         "repo_owner": "tqdm",
-        "repo_stars": 30803,
+        "repo_stars": 30820,
         "repo_topics": [
           "cli",
           "closember",
@@ -542,12 +464,13 @@
     },
     {
       "id": "typing-extensions",
-      "row": 4,
+      "url": "https://github.com/python/typing_extensions",
       "meta": {
         "description": "Backported and Experimental Type Hints for Python 3.9+",
         "repo_archived": false,
+        "repo_description": "Backported and experimental type hints for Python",
         "repo_language": "Python",
-        "repo_last_commit": "2025-12-02",
+        "repo_last_commit": "2026-01-01",
         "repo_last_release": "2025-08-25",
         "repo_maintainers": [
           "JelleZijlstra",
@@ -564,10 +487,12 @@
     },
     {
       "id": "typing-inspection",
-      "row": 2,
+      "brittle": true,
+      "url": "https://github.com/pydantic/typing-inspection",
       "meta": {
         "description": "Runtime typing introspection tools",
         "repo_archived": false,
+        "repo_description": "Runtime typing introspection tools",
         "repo_language": "Python",
         "repo_last_commit": "2025-10-01",
         "repo_last_release": "2025-10-01",
@@ -581,15 +506,13 @@
         "repo_url": "https://github.com/pydantic/typing-inspection",
         "version": "0.4.2"
       }
-    },
-    {
-      "id": "typing-inspection_sub_3",
-      "row": 3,
-      "kind": "subdivider",
-      "master_id": "typing-inspection"
     }
   ],
   "edges": [
+    {
+      "from": "openai",
+      "to": "anyio"
+    },
     {
       "from": "openai",
       "to": "distro"
@@ -615,6 +538,22 @@
       "to": "tqdm"
     },
     {
+      "from": "openai",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "anyio",
+      "to": "exceptiongroup"
+    },
+    {
+      "from": "anyio",
+      "to": "idna"
+    },
+    {
+      "from": "anyio",
+      "to": "typing-extensions"
+    },
+    {
       "from": "tqdm",
       "to": "colorama"
     },
@@ -624,14 +563,14 @@
     },
     {
       "from": "httpx",
+      "to": "certifi"
+    },
+    {
+      "from": "httpx",
       "to": "httpcore"
     },
     {
-      "from": "anyio",
-      "to": "exceptiongroup"
-    },
-    {
-      "from": "anyio",
+      "from": "httpx",
       "to": "idna"
     },
     {
@@ -644,7 +583,15 @@
     },
     {
       "from": "pydantic",
+      "to": "typing-extensions"
+    },
+    {
+      "from": "pydantic",
       "to": "typing-inspection"
+    },
+    {
+      "from": "exceptiongroup",
+      "to": "typing-extensions"
     },
     {
       "from": "httpcore",
@@ -655,88 +602,16 @@
       "to": "h11"
     },
     {
-      "from": "exceptiongroup",
-      "to": "typing-extensions"
-    },
-    {
       "from": "annotated-types",
-      "to": "annotated-types_sub_3"
-    },
-    {
-      "from": "annotated-types_sub_3",
       "to": "typing-extensions"
     },
     {
       "from": "typing-inspection",
-      "to": "typing-inspection_sub_3"
-    },
-    {
-      "from": "typing-inspection_sub_3",
       "to": "typing-extensions"
     },
     {
       "from": "pydantic-core",
-      "to": "pydantic-core_sub_3"
-    },
-    {
-      "from": "pydantic-core_sub_3",
       "to": "typing-extensions"
-    },
-    {
-      "from": "distro",
-      "to": "distro_sub_2"
-    },
-    {
-      "from": "distro_sub_2",
-      "to": "distro_sub_3"
-    },
-    {
-      "from": "distro_sub_3",
-      "to": "distro_sub_4"
-    },
-    {
-      "from": "colorama",
-      "to": "colorama_sub_3"
-    },
-    {
-      "from": "colorama_sub_3",
-      "to": "colorama_sub_4"
-    },
-    {
-      "from": "h11",
-      "to": "h11_sub_4"
-    },
-    {
-      "from": "idna",
-      "to": "idna_sub_4"
-    },
-    {
-      "from": "jiter",
-      "to": "jiter_sub_2"
-    },
-    {
-      "from": "jiter_sub_2",
-      "to": "jiter_sub_3"
-    },
-    {
-      "from": "jiter_sub_3",
-      "to": "jiter_sub_4"
-    },
-    {
-      "from": "sniffio",
-      "to": "sniffio_sub_2"
-    },
-    {
-      "from": "sniffio_sub_2",
-      "to": "sniffio_sub_3"
-    },
-    {
-      "from": "sniffio_sub_3",
-      "to": "sniffio_sub_4"
-    },
-    {
-      "from": "certifi",
-      "to": "certifi_sub_4"
     }
   ]
 }

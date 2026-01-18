@@ -7,7 +7,7 @@
 [![Release](https://img.shields.io/github/v/release/matzehuels/stacktower)](https://github.com/matzehuels/stacktower/releases)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Inspired by [XKCD #2347](https://xkcd.com/2347/), Stacktower renders dependency graphs as **physical towers** where blocks rest on what they depend on. Your application sits at the top, supported by libraries below—all the way down to that one critical package maintained by *some dude in Nebraska*.
+Inspired by [XKCD #2347](https://xkcd.com/2347/), Stacktower renders dependency graphs as **physical towers** where blocks rest on what they depend on. Your application sits at the top, supported by libraries below—all the way down to that one critical package maintained by _some dude in Nebraska_.
 
 <p align="center">
   <img src="blogpost/plots/showcase/python/fastapi.svg" alt="FastAPI dependency tower" width="600">
@@ -88,6 +88,7 @@ stacktower parse go examples/manifest/go.mod -o deps.json
 When the argument exists on disk or matches a known manifest filename, Stacktower automatically parses it as a manifest.
 
 The project name (root node) is auto-detected from the manifest or a sibling file:
+
 - **Cargo.toml**: `[package].name`
 - **go.mod**: `module` directive
 - **package.json**: `name` field
@@ -183,12 +184,14 @@ stacktower render examples/real/flask.json -t tower,nodelink -f svg,json
 ```
 
 Output path behavior:
+
 - **No `-o`**: Derives from input (`input.json` → `input.<format>`)
 - **Single format**: Uses exact path (`-o out.svg` → `out.svg`)
 - **Multiple formats**: Strips extension, adds format (`-o out.svg -f svg,json` → `out.svg`, `out.json`)
 - **Multiple types**: Adds type suffix (`-t tower,nodelink` → `out_tower.svg`, `out_nodelink.svg`)
 
 > **Note:** PDF and PNG output requires [librsvg](https://wiki.gnome.org/Projects/LibRsvg):
+>
 > - macOS: `brew install librsvg`
 > - Linux: `apt install librsvg2-bin`
 
@@ -213,50 +216,50 @@ stacktower render examples/test/diamond.json -o diamond.svg
 
 ### Global Options
 
-| Flag | Description |
-|------|-------------|
+| Flag              | Description                                              |
+| ----------------- | -------------------------------------------------------- |
 | `-v`, `--verbose` | Enable debug logging (search space info, timing details) |
 
 ### Parse Options
 
-| Flag | Description |
-|------|-------------|
-| `-o`, `--output` | Output file (stdout if empty) |
-| `-n`, `--name` | Project name for manifest parsing (auto-detected from manifest if not set) |
-| `--max-depth N` | Maximum dependency depth (default: 10) |
-| `--max-nodes N` | Maximum packages to fetch (default: 5000) |
-| `--enrich` | Enrich with GitHub metadata (default: true, requires `GITHUB_TOKEN`) |
-| `--refresh` | Bypass cache |
+| Flag             | Description                                                                |
+| ---------------- | -------------------------------------------------------------------------- |
+| `-o`, `--output` | Output file (stdout if empty)                                              |
+| `-n`, `--name`   | Project name for manifest parsing (auto-detected from manifest if not set) |
+| `--max-depth N`  | Maximum dependency depth (default: 10)                                     |
+| `--max-nodes N`  | Maximum packages to fetch (default: 5000)                                  |
+| `--enrich`       | Enrich with GitHub metadata (default: true, requires `GITHUB_TOKEN`)       |
+| `--refresh`      | Bypass cache                                                               |
 
 ### Render Options
 
-| Flag | Description |
-|------|-------------|
-| `-o`, `--output` | Output file or base path for multiple types/formats |
-| `-t`, `--type` | Visualization type(s): `tower` (default), `nodelink` (comma-separated) |
-| `-f`, `--format` | Output format(s): `svg` (default), `json`, `pdf`, `png` (comma-separated) |
-| `--normalize` | Apply graph normalization: break cycles, remove transitive edges, assign layers, subdivide long edges (default: true) |
+| Flag             | Description                                                                                                           |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `-o`, `--output` | Output file or base path for multiple types/formats                                                                   |
+| `-t`, `--type`   | Visualization type(s): `tower` (default), `nodelink` (comma-separated)                                                |
+| `-f`, `--format` | Output format(s): `svg` (default), `json`, `pdf`, `png` (comma-separated)                                             |
+| `--normalize`    | Apply graph normalization: break cycles, remove transitive edges, assign layers, subdivide long edges (default: true) |
 
 #### Tower Options
 
-| Flag | Description |
-|------|-------------|
-| `--width N` | Frame width in pixels (default: 800) |
-| `--height N` | Frame height in pixels (default: 600) |
-| `--style handdrawn\|simple` | Visual style (default: handdrawn) |
-| `--randomize` | Vary block widths to visualize load-bearing structure (default: true) |
-| `--merge` | Merge subdivider blocks into continuous towers (default: true) |
-| `--popups` | Enable hover popups with package metadata (default: true) |
-| `--nebraska` | Show "Nebraska guy" maintainer ranking panel |
-| `--edges` | Show dependency edges as dashed lines |
-| `--ordering optimal\|barycentric` | Crossing minimization algorithm (default: optimal) |
-| `--ordering-timeout N` | Timeout for optimal search in seconds (default: 60) |
-| `--top-down` | Width flows from roots down; by default width flows from sinks up |
+| Flag                              | Description                                                           |
+| --------------------------------- | --------------------------------------------------------------------- |
+| `--width N`                       | Frame width in pixels (default: 800)                                  |
+| `--height N`                      | Frame height in pixels (default: 600)                                 |
+| `--style handdrawn\|simple`       | Visual style (default: handdrawn)                                     |
+| `--randomize`                     | Vary block widths to visualize load-bearing structure (default: true) |
+| `--merge`                         | Merge subdivider blocks into continuous towers (default: true)        |
+| `--popups`                        | Enable hover popups with package metadata (default: true)             |
+| `--nebraska`                      | Show "Nebraska guy" maintainer ranking panel                          |
+| `--edges`                         | Show dependency edges as dashed lines                                 |
+| `--ordering optimal\|barycentric` | Crossing minimization algorithm (default: optimal)                    |
+| `--ordering-timeout N`            | Timeout for optimal search in seconds (default: 60)                   |
+| `--top-down`                      | Width flows from roots down; by default width flows from sinks up     |
 
 #### Node-Link Options
 
-| Flag | Description |
-|------|-------------|
+| Flag         | Description                      |
+| ------------ | -------------------------------- |
 | `--detailed` | Show all node metadata in labels |
 
 ## JSON Format
@@ -267,11 +270,7 @@ The render layer accepts a simple JSON format, making it easy to visualize **any
 
 ```json
 {
-  "nodes": [
-    { "id": "app" },
-    { "id": "lib-a" },
-    { "id": "lib-b" }
-  ],
+  "nodes": [{ "id": "app" }, { "id": "lib-a" }, { "id": "lib-b" }],
   "edges": [
     { "from": "app", "to": "lib-a" },
     { "from": "lib-a", "to": "lib-b" }
@@ -281,34 +280,34 @@ The render layer accepts a simple JSON format, making it easy to visualize **any
 
 ### Required Fields
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `nodes[].id` | string | Unique node identifier (displayed as label) |
-| `edges[].from` | string | Source node ID |
-| `edges[].to` | string | Target node ID |
+| Field          | Type   | Description                                 |
+| -------------- | ------ | ------------------------------------------- |
+| `nodes[].id`   | string | Unique node identifier (displayed as label) |
+| `edges[].from` | string | Source node ID                              |
+| `edges[].to`   | string | Target node ID                              |
 
 ### Optional Fields
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `nodes[].row` | int | Pre-assigned layer (computed automatically if omitted) |
-| `nodes[].kind` | string | Internal use: `"subdivider"` or `"auxiliary"` |
-| `nodes[].meta` | object | Freeform metadata for display features |
+| Field          | Type   | Description                                            |
+| -------------- | ------ | ------------------------------------------------------ |
+| `nodes[].row`  | int    | Pre-assigned layer (computed automatically if omitted) |
+| `nodes[].kind` | string | Internal use: `"subdivider"` or `"auxiliary"`          |
+| `nodes[].meta` | object | Freeform metadata for display features                 |
 
 ### Recognized `meta` Keys
 
 These keys are read by specific render flags. All are optional—missing keys simply disable the corresponding feature.
 
-| Key | Type | Used By |
-|-----|------|---------|
-| `repo_url` | string | Clickable blocks, `--popups`, `--nebraska` |
-| `repo_stars` | int | `--popups` |
-| `repo_owner` | string | `--nebraska` |
-| `repo_maintainers` | []string | `--nebraska` |
-| `repo_last_commit` | string (date) | `--popups`, brittle detection |
-| `repo_last_release` | string (date) | `--popups` |
-| `repo_archived` | bool | `--popups`, brittle detection |
-| `summary` | string | `--popups` (fallback: `description`) |
+| Key                 | Type          | Used By                                    |
+| ------------------- | ------------- | ------------------------------------------ |
+| `repo_url`          | string        | Clickable blocks, `--popups`, `--nebraska` |
+| `repo_stars`        | int           | `--popups`                                 |
+| `repo_owner`        | string        | `--nebraska`                               |
+| `repo_maintainers`  | []string      | `--nebraska`                               |
+| `repo_last_commit`  | string (date) | `--popups`, brittle detection              |
+| `repo_last_release` | string (date) | `--popups`                                 |
+| `repo_archived`     | bool          | `--popups`, brittle detection              |
+| `summary`           | string        | `--popups` (fallback: `description`)       |
 
 The `--detailed` flag (node-link only) displays **all** meta keys in the node label.
 
@@ -325,8 +324,8 @@ The ordering step is where the magic happens. Stacktower uses an optimal search 
 
 ## Environment Variables
 
-| Variable | Description |
-|----------|-------------|
+| Variable       | Description                              |
+| -------------- | ---------------------------------------- |
 | `GITHUB_TOKEN` | GitHub API token for `--enrich` metadata |
 | `GITLAB_TOKEN` | GitLab API token for `--enrich` metadata |
 
@@ -369,6 +368,7 @@ svg := sink.RenderSVG(l, sink.WithGraph(g), sink.WithPopups())
 📚 **[Full API documentation on pkg.go.dev](https://pkg.go.dev/github.com/matzehuels/stacktower)**
 
 Key packages:
+
 - [`pkg/dag`](https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/dag) — DAG data structure and crossing algorithms
 - [`pkg/dag/transform`](https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/dag/transform) — Graph normalization pipeline
 - [`pkg/render/tower`](https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/render/tower) — Layout, ordering, and rendering
@@ -386,35 +386,18 @@ make check          # Run all CI checks locally (fmt, lint, test, vuln)
 make build          # Build binary to bin/stacktower
 ```
 
-| Command | Description |
-|---------|-------------|
-| `make check` | Format, lint, test, vulncheck (same as CI) |
-| `make fmt` | Format code with gofmt and goimports |
-| `make lint` | Run golangci-lint |
-| `make test` | Run tests with race detector |
-| `make cover` | Run tests with coverage report |
-| `make vuln` | Check for known vulnerabilities |
-| `make e2e` | Run end-to-end tests |
-| `make snapshot` | Build release locally (no publish) |
+| Command         | Description                                |
+| --------------- | ------------------------------------------ |
+| `make check`    | Format, lint, test, vulncheck (same as CI) |
+| `make fmt`      | Format code with gofmt and goimports       |
+| `make lint`     | Run golangci-lint                          |
+| `make test`     | Run tests with race detector               |
+| `make cover`    | Run tests with coverage report             |
+| `make vuln`     | Check for known vulnerabilities            |
+| `make e2e`      | Run end-to-end tests                       |
+| `make snapshot` | Build release locally (no publish)         |
 
 Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/).
-
-## Deployment
-
-Docker images are published to GitHub Container Registry on each release:
-
-```bash
-# Pull the latest image
-docker pull ghcr.io/matzehuels/stacktower:latest
-
-# Run API server
-docker run -p 8080:8080 ghcr.io/matzehuels/stacktower:latest
-
-# Run worker
-docker run ghcr.io/matzehuels/stacktower:latest --worker --concurrency 4
-```
-
-Deploy to any platform that supports Docker (Railway, Fly.io, Render, etc.) by pointing to `ghcr.io/matzehuels/stacktower:latest`.
 
 ## Learn More
 

@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/infra/storage"
+	"github.com/matzehuels/stacktower/pkg/cache"
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
@@ -42,7 +42,7 @@ type Client struct {
 //   - cacheTTL: How long responses are cached (typical: 1-24 hours)
 //
 // The returned Client is safe for concurrent use.
-func NewClient(backend storage.Backend, cacheTTL time.Duration) *Client {
+func NewClient(backend cache.Cache, cacheTTL time.Duration) *Client {
 	return &Client{
 		Client:  integrations.NewClient(backend, "goproxy:", cacheTTL, nil),
 		baseURL: "https://proxy.golang.org",

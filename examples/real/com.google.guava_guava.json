@@ -2,9 +2,10 @@
   "nodes": [
     {
       "id": "com.google.errorprone:error_prone_annotations",
-      "row": 1,
+      "url": "https://github.com/netty/netty",
       "meta": {
         "repo_archived": false,
+        "repo_description": "Netty project - an event-driven asynchronous network application framework",
         "repo_language": "Java",
         "repo_last_commit": "2025-12-19",
         "repo_maintainers": [
@@ -15,18 +16,19 @@
           "chrisvest"
         ],
         "repo_owner": "netty",
-        "repo_stars": 34671,
+        "repo_stars": 34682,
         "repo_url": "https://github.com/netty/netty",
         "version": "2.39.0"
       }
     },
     {
       "id": "com.google.guava:failureaccess",
-      "row": 1,
+      "url": "https://github.com/apache/spark",
       "meta": {
         "repo_archived": false,
+        "repo_description": "Apache Spark - A unified analytics engine for large-scale data processing",
         "repo_language": "Scala",
-        "repo_last_commit": "2025-12-27",
+        "repo_last_commit": "2026-01-02",
         "repo_maintainers": [
           "dongjoon-hyun",
           "HyukjinKwon",
@@ -35,7 +37,7 @@
           "rxin"
         ],
         "repo_owner": "apache",
-        "repo_stars": 42554,
+        "repo_stars": 42581,
         "repo_topics": [
           "big-data",
           "java",
@@ -52,38 +54,38 @@
     },
     {
       "id": "com.google.guava:guava",
+      "url": "https://github.com/google/guava",
       "meta": {
         "repo_archived": false,
+        "repo_description": "Google core libraries for Java",
         "repo_language": "Java",
-        "repo_last_commit": "2025-12-18",
-        "repo_last_release": "2025-06-26",
+        "repo_last_commit": "2026-01-02",
+        "repo_last_release": "2025-09-17",
         "repo_maintainers": [
-          "Randgalt",
-          "cammckenzie",
-          "tisonkun",
-          "dragonsinth",
-          "kezhuw"
+          "cpovirk",
+          "kluever",
+          "cgdecker",
+          "lowasser",
+          "Bezier89"
         ],
-        "repo_owner": "apache",
-        "repo_stars": 3168,
+        "repo_owner": "google",
+        "repo_stars": 51388,
         "repo_topics": [
-          "consensus",
-          "curator",
-          "database",
-          "java",
-          "zookeeper"
+          "guava",
+          "java"
         ],
-        "repo_url": "https://github.com/apache/curator",
+        "repo_url": "https://github.com/google/guava",
         "version": "33.4.8-jre"
       }
     },
     {
       "id": "com.google.guava:listenablefuture",
-      "row": 1,
+      "url": "https://github.com/quarkusio/quarkus",
       "meta": {
         "repo_archived": false,
+        "repo_description": "Quarkus: Supersonic Subatomic Java. ",
         "repo_language": "Java",
-        "repo_last_commit": "2025-12-27",
+        "repo_last_commit": "2026-01-02",
         "repo_last_release": "2025-12-24",
         "repo_maintainers": [
           "gsmet",
@@ -92,7 +94,7 @@
           "gastaldi"
         ],
         "repo_owner": "quarkusio",
-        "repo_stars": 15365,
+        "repo_stars": 15371,
         "repo_topics": [
           "cloud-native",
           "hacktoberfest",
@@ -106,54 +108,55 @@
     },
     {
       "id": "com.google.j2objc:j2objc-annotations",
-      "row": 1,
+      "url": "https://github.com/google/j2objc",
       "meta": {
         "repo_archived": false,
+        "repo_description": "A Java to iOS Objective-C translation tool and runtime.",
         "repo_language": "Java",
-        "repo_last_commit": "2025-12-19",
+        "repo_last_commit": "2025-12-18",
         "repo_maintainers": [
-          "normanmaurer",
-          "trustin",
-          "Scottmitch",
-          "netty-project-bot",
-          "chrisvest"
+          "tomball",
+          "kstanger",
+          "antonio-cortes-perez",
+          "albertomisail",
+          "j2objc-copybara"
         ],
-        "repo_owner": "netty",
-        "repo_stars": 34671,
-        "repo_url": "https://github.com/netty/netty",
+        "repo_owner": "google",
+        "repo_stars": 6028,
+        "repo_url": "https://github.com/google/j2objc",
         "version": "3.0.0"
       }
     },
     {
       "id": "org.jspecify:jspecify",
-      "row": 1,
+      "url": "https://github.com/jspecify/jspecify",
       "meta": {
         "repo_archived": false,
+        "repo_description": "An artifact of fully-specified annotations to power static-analysis checks, beginning with nullness analysis.",
         "repo_language": "Java",
-        "repo_last_commit": "2025-12-27",
-        "repo_last_release": "2025-09-16",
+        "repo_last_commit": "2026-01-01",
+        "repo_last_release": "2024-07-17",
         "repo_maintainers": [
-          "codahale",
-          "joschi",
-          "arteam",
-          "jplock"
+          "cpovirk",
+          "netdpb",
+          "wmdietl",
+          "KengoTODA"
         ],
-        "repo_owner": "dropwizard",
-        "repo_stars": 8578,
+        "repo_owner": "jspecify",
+        "repo_stars": 1018,
         "repo_topics": [
-          "dropwizard",
-          "hibernate",
+          "android",
+          "annotations",
+          "bugfinding",
           "java",
-          "jax-rs",
-          "jdbi",
-          "jersey-framework",
-          "jersey2",
-          "jetty",
-          "rest",
-          "restful-webservices",
-          "web-framework"
+          "jvm-languages",
+          "kotlin",
+          "null",
+          "nullability-analysis",
+          "standard-library",
+          "static-analysis"
         ],
-        "repo_url": "https://github.com/dropwizard/dropwizard",
+        "repo_url": "https://github.com/jspecify/jspecify",
         "version": "1.0.0"
       }
     }

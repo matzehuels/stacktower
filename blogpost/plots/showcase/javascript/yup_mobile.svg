@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800.0 1440.0" width="800" height="1440">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800.0 940.0" width="800" height="940">
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;display=swap');
@@ -8,6 +8,7 @@
 " x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>
     </pattern>
   </defs>
+  <g transform="translate(0, 40.0)">
   <a href="https://github.com/jquense/expr" target="_blank"><path id="block-property-expr" class="block brittle" d="M 65.45 347.01 Q 64.31 311.53 86.21 315.02 Q 108.10 318.52 130.00 318.69 Q 151.90 318.87 173.79 315.18 Q 195.69 311.48 196.73 346.99 Q 197.78 382.50 195.48 416.25 Q 193.18 450.00 192.58 483.75 Q 191.97 517.50 192.31 551.25 Q 192.64 585.00 196.01 618.75 Q 199.38 652.50 198.21 686.25 Q 197.04 720.00 195.14 753.75 Q 193.24 787.50 193.80 821.25 Q 194.36 855.00 173.13 853.40 Q 151.90 851.80 130.00 853.01 Q 108.10 854.22 86.21 855.27 Q 64.31 856.32 65.68 821.91 Q 67.04 787.50 67.32 753.75 Q 67.60 720.00 66.97 686.25 Q 66.33 652.50 64.79 618.75 Q 63.25 585.00 65.76 551.25 Q 68.27 517.50 65.21 483.75 Q 62.16 450.00 64.37 416.25 Q 66.59 382.50 65.45 347.01 Z" fill="#acacac" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.534 130.00 585.00)"/></a>
   <path class="block-texture" d="M 65.45 347.01 Q 64.31 311.53 86.21 315.02 Q 108.10 318.52 130.00 318.69 Q 151.90 318.87 173.79 315.18 Q 195.69 311.48 196.73 346.99 Q 197.78 382.50 195.48 416.25 Q 193.18 450.00 192.58 483.75 Q 191.97 517.50 192.31 551.25 Q 192.64 585.00 196.01 618.75 Q 199.38 652.50 198.21 686.25 Q 197.04 720.00 195.14 753.75 Q 193.24 787.50 193.80 821.25 Q 194.36 855.00 173.13 853.40 Q 151.90 851.80 130.00 853.01 Q 108.10 854.22 86.21 855.27 Q 64.31 856.32 65.68 821.91 Q 67.04 787.50 67.32 753.75 Q 67.60 720.00 66.97 686.25 Q 66.33 652.50 64.79 618.75 Q 63.25 585.00 65.76 551.25 Q 68.27 517.50 65.21 483.75 Q 62.16 450.00 64.37 416.25 Q 66.59 382.50 65.45 347.01 Z" fill="url(#brittleTexture)" style="pointer-events: none;" transform="rotate(0.534 130.00 585.00)"/>
   <a href="https://github.com/sindresorhus/tagged-tag" target="_blank"><path id="block-tagged-tag" class="block" d="M 583.32 618.82 Q 585.00 585.14 613.33 583.56 Q 641.67 581.97 670.00 583.51 Q 698.33 585.06 726.67 584.66 Q 755.00 584.26 753.43 618.38 Q 751.87 652.50 752.51 686.25 Q 753.15 720.00 752.25 753.75 Q 751.35 787.50 754.47 821.25 Q 757.58 855.00 727.96 853.89 Q 698.33 852.78 670.00 853.70 Q 641.67 854.63 613.33 855.35 Q 585.00 856.08 583.36 821.79 Q 581.71 787.50 583.14 753.75 Q 584.56 720.00 583.10 686.25 Q 581.64 652.50 583.32 618.82 Z" fill="#a2a2a2" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.101 670.00 720.00)"/></a>
@@ -41,6 +42,7 @@
   <a href="https://github.com/jquense/yup" target="_blank">    <rect x="383.80" y="168.00" width="32.40" height="24.00" fill="#b1b1b1"/>
     <text x="400.00" y="180.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">yup</text>
 </a>  </g>
+  </g>
   <style>
     .block { transition: stroke-width 0.2s ease; }
     .block.highlight { stroke-width: 4; }
@@ -60,42 +62,8 @@
       el.addEventListener('mouseenter', () => highlight([el.id.replace('block-', '')]));
       el.addEventListener('mouseleave', clearHighlight);
     });
-  ]]></script>
-  <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
-  <path d="M 272.0 980.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <a href="https://github.com/sindresorhus" target="_blank" class="maintainer-link" data-packages="tagged-tag,type-fest">
-    <text x="215.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#1 @sindresorhus</text>
-  </a>
-  <text class="package-entry" data-package="tagged-tag" x="215.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">tagged-tag</text>
-  <text class="package-entry" data-package="type-fest" x="215.0" y="1067.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">type-fest</text>
-  <a href="https://github.com/marcelklehr" target="_blank" class="maintainer-link" data-packages="toposort">
-    <text x="585.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#2 @marcelklehr</text>
-  </a>
-  <text class="package-entry" data-package="toposort" x="585.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">toposort</text>
-  <a href="https://github.com/jquense" target="_blank" class="maintainer-link" data-packages="property-expr,tiny-case">
-    <text x="215.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#3 @jquense</text>
-  </a>
-  <text class="package-entry" data-package="property-expr" x="215.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">property-expr</text>
-  <text class="package-entry" data-package="tiny-case" x="215.0" y="1207.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">tiny-case</text>
-  <a href="https://github.com/Tralafarlaw" target="_blank" class="maintainer-link" data-packages="tiny-case">
-    <text x="585.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#4 @Tralafarlaw</text>
-  </a>
-  <text class="package-entry" data-package="tiny-case" x="585.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">tiny-case</text>
-  <a href="https://github.com/corydeppen" target="_blank" class="maintainer-link" data-packages="property-expr">
-    <text x="400.0" y="1304.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#5 @corydeppen</text>
-  </a>
-  <text class="package-entry" data-package="property-expr" x="400.0" y="1329.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">property-expr</text>
-  <style>
-    .maintainer-link text { cursor: pointer; }
-    .maintainer-link:hover text { text-decoration: underline; }
-  </style>
-  <script type="text/javascript"><![CDATA[
-    document.querySelectorAll('.maintainer-link').forEach(el => {
-      el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
-      el.addEventListener('mouseleave', clearHighlight);
-    });
-    document.querySelectorAll('.package-entry').forEach(el => {
-      el.addEventListener('mouseenter', () => highlight([el.dataset.package]));
+    document.querySelectorAll('.block-text').forEach(el => {
+      el.addEventListener('mouseenter', () => highlight([el.dataset.block]));
       el.addEventListener('mouseleave', clearHighlight);
     });
   ]]></script>
@@ -167,4 +135,18 @@
       el.addEventListener('mouseleave', () => popup.setAttribute('visibility', 'hidden'));
     });
   ]]></script>
+  <a href="https://www.stacktower.io" target="_blank" rel="noopener">
+    <g transform="translate(340.0, 15.0)" class="watermark">
+      <g transform="scale(0.67)">
+      <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+      <text x="20" y="11" font-family="sans-serif" font-size="14" font-weight="500" fill="#000">stacktower.io</text>
+    </g>
+  </a>
+  <style>
+    .watermark { transition: opacity 0.2s ease; opacity: 1; }
+    .watermark:hover { opacity: 0.7; }
+  </style>
 </svg>

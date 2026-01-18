@@ -5,6 +5,7 @@ import (
 	"slices"
 
 	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/matzehuels/stacktower/pkg/core/deps/metadata"
 )
 
 type Role string
@@ -61,7 +62,7 @@ func RankNebraska(g *dag.DAG, topN int) []NebraskaRanking {
 			scores[maintainer] += share * roleWeight(role)
 
 			if !hasPackage(packages[maintainer], n.ID) {
-				url, _ := n.Meta["repo_url"].(string)
+				url, _ := n.Meta[metadata.RepoURL].(string)
 				packages[maintainer] = append(packages[maintainer], PackageRole{
 					Package: n.ID,
 					Role:    role,
@@ -150,8 +151,8 @@ func getMaintainerRoles(n *dag.Node) map[string]Role {
 		return nil
 	}
 
-	owner, _ := n.Meta["repo_owner"].(string)
-	maintainers := getStringSlice(n.Meta["repo_maintainers"])
+	owner, _ := n.Meta[metadata.RepoOwner].(string)
+	maintainers := getStringSlice(n.Meta[metadata.RepoMaintainers])
 
 	if len(maintainers) == 0 && owner != "" {
 		return map[string]Role{owner: RoleOwner}

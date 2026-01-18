@@ -7,9 +7,15 @@ import (
 	"slices"
 
 	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/matzehuels/stacktower/pkg/core/deps/metadata"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/feature"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/layout"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/styles"
+)
+
+const (
+	// Font stack: Patrick Hand (Google Fonts), then common casual/handwriting fonts
+	watermarkFont = `'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif`
 )
 
 const blockInteractionCSS = `
@@ -69,19 +75,18 @@ func RenderSVG(l layout.Layout, opts ...SVGOption) []byte {
 		edges = buildEdges(l, r.graph, r.merged)
 	}
 
-	totalHeight := calculateHeight(l, r.nebraska)
+	totalWidth, totalHeight := calculateDimensions(l, r.nebraska)
 
 	var buf bytes.Buffer
 	fmt.Fprintf(&buf, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %.1f %.1f" width="%.0f" height="%.0f">`+"\n",
-		l.FrameWidth, totalHeight, l.FrameWidth, totalHeight)
+		totalWidth, totalHeight, totalWidth, totalHeight)
 
 	r.style.RenderDefs(&buf)
 	renderContent(&buf, &r, blocks, edges)
 	renderBlockInteraction(&buf)
 
 	if len(r.nebraska) > 0 {
-		// Nebraska panel starts after the frame height + watermark margin
-		renderNebraskaPanel(&buf, l.FrameWidth, l.FrameHeight+watermarkMargin, r.nebraska)
+		renderNebraskaPanel(&buf, l.FrameWidth, l.FrameHeight, r.nebraska)
 		renderNebraskaScript(&buf)
 	}
 
@@ -109,12 +114,21 @@ func newSVGRenderer(opts ...SVGOption) svgRenderer {
 
 const watermarkMargin = 40.0 // Space reserved at top for watermark
 
-func calculateHeight(l layout.Layout, nebraska []feature.NebraskaRanking) float64 {
-	h := l.FrameHeight + watermarkMargin // Add space for watermark at top
+func calculateDimensions(l layout.Layout, nebraska []feature.NebraskaRanking) (width, height float64) {
+	width = l.FrameWidth
+	height = l.FrameHeight + watermarkMargin // Add space for watermark at top
+
 	if len(nebraska) > 0 {
-		h += calcNebraskaPanelHeight(l.FrameWidth, l.FrameHeight)
+		isLandscape := l.FrameWidth > l.FrameHeight
+		if isLandscape {
+			// Panel on the right: add to width
+			width += nebraskaPanelLandscape
+		} else {
+			// Panel below: add to height
+			height += nebraskaPanelPortrait
+		}
 	}
-	return h
+	return width, height
 }
 
 func renderContent(buf *bytes.Buffer, r *svgRenderer, blocks []styles.Block, edges []styles.Edge) {
@@ -162,7 +176,7 @@ func buildBlocks(l layout.Layout, g *dag.DAG, withPopups bool) []styles.Block {
 		}
 		if g != nil {
 			if n, ok := g.Node(id); ok && n.Meta != nil {
-				blk.URL, _ = n.Meta["repo_url"].(string)
+				blk.URL, _ = n.Meta[metadata.RepoURL].(string)
 				blk.Brittle = feature.IsBrittle(n)
 				if withPopups {
 					blk.Popup = extractPopupData(n)
@@ -269,10 +283,10 @@ func renderWatermark(buf *bytes.Buffer, frameWidth float64) {
 	buf.WriteString(fmt.Sprintf(`  <a href="https://www.stacktower.io" target="_blank" rel="noopener">
     <g transform="translate(%.1f, %.1f)" class="watermark">
       %s
-      <text x="20" y="11" font-family="sans-serif" font-size="14" font-weight="500" fill="#000">stacktower.io</text>
+      <text x="20" y="11" font-family="%s" font-size="14" font-weight="500" fill="#000">stacktower.io</text>
     </g>
   </a>
-`, x, y, icon))
+`, x, y, icon, watermarkFont))
 
 	// Add hover effect
 	buf.WriteString(`  <style>

@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/matzehuels/stacktower/pkg/core/deps"
-	"github.com/matzehuels/stacktower/pkg/infra/storage"
+	"github.com/matzehuels/stacktower/pkg/cache"
 	"github.com/matzehuels/stacktower/pkg/integrations/packagist"
 )
 
@@ -34,7 +34,7 @@ func manifestParsers(res deps.Resolver) []deps.ManifestParser {
 	return []deps.ManifestParser{&ComposerJSON{resolver: res}}
 }
 
-func newResolver(backend storage.Backend, ttl time.Duration) (deps.Resolver, error) {
+func newResolver(backend cache.Cache, ttl time.Duration) (deps.Resolver, error) {
 	c := packagist.NewClient(backend, ttl)
 	return deps.NewRegistry("packagist", fetcher{c}), nil
 }

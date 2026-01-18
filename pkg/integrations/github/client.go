@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/infra/storage"
+	"github.com/matzehuels/stacktower/pkg/cache"
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
@@ -35,7 +35,7 @@ type Client struct {
 //
 // Authentication is strongly recommended for production use to avoid rate limiting.
 // The returned Client is safe for concurrent use.
-func NewClient(backend storage.Backend, token string, cacheTTL time.Duration) *Client {
+func NewClient(backend cache.Cache, token string, cacheTTL time.Duration) *Client {
 	headers := map[string]string{"Accept": "application/vnd.github.v3+json"}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
@@ -90,14 +90,15 @@ func (c *Client) fetchMetrics(ctx context.Context, owner, repo string, m *integr
 	}
 
 	*m = integrations.RepoMetrics{
-		RepoURL:  fmt.Sprintf("https://github.com/%s/%s", owner, repo),
-		Owner:    owner,
-		Stars:    data.Stars,
-		SizeKB:   data.Size,
-		License:  data.License.SPDXID,
-		Language: data.Language,
-		Topics:   data.Topics,
-		Archived: data.Archived,
+		RepoURL:     fmt.Sprintf("https://github.com/%s/%s", owner, repo),
+		Owner:       owner,
+		Description: data.Description,
+		Stars:       data.Stars,
+		SizeKB:      data.Size,
+		License:     data.License.SPDXID,
+		Language:    data.Language,
+		Topics:      data.Topics,
+		Archived:    data.Archived,
 	}
 	if data.PushedAt != nil {
 		m.LastCommitAt = data.PushedAt
@@ -213,10 +214,11 @@ func ExtractURL(urls map[string]string, homepage string) (owner, repo string, ok
 }
 
 type repoResponse struct {
-	Stars    int        `json:"stargazers_count"`
-	Size     int        `json:"size"`
-	PushedAt *time.Time `json:"pushed_at"`
-	License  struct {
+	Description string     `json:"description"`
+	Stars       int        `json:"stargazers_count"`
+	Size        int        `json:"size"`
+	PushedAt    *time.Time `json:"pushed_at"`
+	License     struct {
 		SPDXID string `json:"spdx_id"`
 	} `json:"license"`
 	Language string   `json:"language"`

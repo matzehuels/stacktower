@@ -64,17 +64,19 @@ check_prerequisites() {
 
 run_parse_tests() {
     echo ""
-    echo "--- Parse Registry ---"
+    echo "--- Parse Registry (without normalization for render tests) ---"
     mkdir -p "$EXAMPLES_DIR/real"
 
-    test_parse python flask
-    test_parse python openai
-    test_parse rust serde
-    test_parse javascript yargs
-    test_parse ruby rspec
-    test_parse php symfony/console
-    test_parse java com.google.guava:guava
-    test_parse go github.com/spf13/cobra
+    # Parse WITHOUT normalization so render tests can show the difference
+    # between --normalize=false and --normalize=true
+    test_parse_unnormalized python flask
+    test_parse_unnormalized python openai
+    test_parse_unnormalized rust serde
+    test_parse_unnormalized javascript yargs
+    test_parse_unnormalized ruby rspec
+    test_parse_unnormalized php symfony/console
+    test_parse_unnormalized java com.google.guava:guava
+    test_parse_unnormalized go github.com/spf13/cobra
 
     echo ""
     echo "--- Parse Manifests ---"
@@ -121,7 +123,7 @@ render_dag() {
     # Nodelink normalized - all formats at once
     if ! $BIN render "$input" \
         --type nodelink \
-        --normalize=true \
+        --normalize \
         --format svg,png,pdf \
         -o "$dag_dir/nodelink/normalized" 2>&1 | filter_warnings; then
         fail "nodelink render failed"
@@ -139,41 +141,40 @@ render_dag() {
     # Tower visualizations (all formats in single call)
     # ==========================================================================
 
-    # Tower simple - all formats at once
+    # Tower simple (unmerged) - all formats at once
     if ! $BIN render "$input" \
         --type tower \
-        --normalize=true \
+        --normalize \
         --width "$RENDER_WIDTH" \
         --height "$RENDER_HEIGHT" \
         --edges \
         --style simple \
+        --merge=false \
         --format svg,png,pdf \
         -o "$dag_dir/tower/simple" 2>&1 | filter_warnings; then
         fail "tower simple render failed"
     fi
 
-    # Tower simple merged - SVG only
+    # Tower merged - SVG only (merged is the default)
     if ! $BIN render "$input" \
         --type tower \
-        --normalize=true \
+        --normalize \
         --width "$RENDER_WIDTH" \
         --height "$RENDER_HEIGHT" \
         --edges \
         --style simple \
-        --merge \
         -o "$dag_dir/tower/merged.svg" 2>&1 | filter_warnings; then
         fail "tower merged render failed"
     fi
 
-    # Tower handdrawn - all formats at once
+    # Tower handdrawn - all formats at once (merged by default)
     if ! $BIN render "$input" \
         --type tower \
-        --normalize=true \
+        --normalize \
         --width "$RENDER_WIDTH" \
         --height "$RENDER_HEIGHT" \
         --style handdrawn \
         --randomize \
-        --merge \
         --format svg,png,pdf \
         -o "$dag_dir/tower/handdrawn" 2>&1 | filter_warnings; then
         fail "tower handdrawn render failed"
@@ -370,6 +371,30 @@ test_parse() {
         --max-depth "$depth" \
         --max-nodes "$nodes" \
         $cache_flag \
+        -o "$output" 2>&1 | filter_warnings; then
+        fail "parse returned error"
+    fi
+
+    validate_json "$output"
+    echo "OK"
+}
+
+test_parse_unnormalized() {
+    local lang=$1
+    local pkg=$2
+    local depth=${3:-$DEFAULT_MAX_DEPTH}  # Smaller depth for render tests
+    local nodes=${4:-$DEFAULT_MAX_NODES} # Smaller graph for render tests
+    # Extract basename and replace colons with underscores (colons not allowed in filenames)
+    local basename="${pkg##*/}"
+    basename="${basename//:/_}"
+    local output="$EXAMPLES_DIR/real/${basename}.json"
+
+    echo -n "  $lang/$pkg... "
+
+    # Parse produces raw graphs (normalization happens during layout/render)
+    if ! $BIN parse "$lang" "$pkg" \
+        --max-depth "$depth" \
+        --max-nodes "$nodes" \
         -o "$output" 2>&1 | filter_warnings; then
         fail "parse returned error"
     fi

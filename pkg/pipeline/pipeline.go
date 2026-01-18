@@ -16,15 +16,16 @@
 //
 // # Usage
 //
-// Run the complete pipeline:
+// Create a Runner and execute the pipeline:
 //
+//	runner := pipeline.NewRunner(cache, nil, logger)
 //	opts := pipeline.Options{
 //	    Language: "python",
 //	    Package:  "requests",
 //	    VizType:  "tower",
 //	    Formats:  []string{"svg"},
 //	}
-//	result, err := pipeline.Execute(ctx, opts)
+//	result, err := runner.Execute(ctx, opts)
 //	if err != nil {
 //	    log.Fatal(err)
 //	}
@@ -33,38 +34,41 @@
 // Run individual stages:
 //
 //	// Parse only
-//	g, err := pipeline.Parse(ctx, parseOpts)
+//	g, err := runner.Parse(ctx, parseOpts)
 //
 //	// Layout with existing graph
-//	layout, err := pipeline.Layout(g, layoutOpts)
+//	layout, err := runner.ComputeLayout(ctx, g, layoutOpts)
 //
 //	// Render with existing layout
-//	artifacts, err := pipeline.Render(layout, g, renderOpts)
+//	artifacts, err := runner.Render(ctx, layout, g, renderOpts)
 package pipeline
 
 import (
-	"context"
 	"fmt"
 	"io"
 	"time"
 
 	"github.com/charmbracelet/log"
 
+	"github.com/matzehuels/stacktower/pkg/cache"
 	"github.com/matzehuels/stacktower/pkg/core/dag"
-	"github.com/matzehuels/stacktower/pkg/core/render/tower/layout"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/ordering"
-	"github.com/matzehuels/stacktower/pkg/infra/storage"
+	"github.com/matzehuels/stacktower/pkg/dto"
 )
 
 // =============================================================================
-// Default values - single source of truth for CLI, API, and Worker
+// Default Values - Single Source of Truth for CLI, API, and Worker
 // =============================================================================
 
 const (
-	// DefaultMaxDepth is the maximum dependency traversal depth.
+	// DefaultMaxDepth is the maximum dependency traversal depth for the pipeline.
+	// This is intentionally more conservative than deps.DefaultMaxDepth (50) to
+	// provide better UX for CLI users and prevent excessively large graphs.
+	// API users can override this by setting MaxDepth explicitly.
 	DefaultMaxDepth = 10
 
 	// DefaultMaxNodes is the maximum number of nodes to fetch.
+	// This matches deps.DefaultMaxNodes (5000) to maintain consistency.
 	DefaultMaxNodes = 5000
 
 	// DefaultWidth is the default frame width in pixels.
@@ -73,12 +77,6 @@ const (
 	// DefaultHeight is the default frame height in pixels.
 	DefaultHeight = 600.0
 
-	// DefaultVizType is the default visualization type.
-	DefaultVizType = "tower"
-
-	// DefaultStyle is the default visual style.
-	DefaultStyle = "handdrawn"
-
 	// DefaultSeed is the default random seed for reproducibility.
 	DefaultSeed = uint64(42)
 
@@ -86,17 +84,11 @@ const (
 	DefaultOrdering = "optimal"
 )
 
-// VizType constants for visualization types.
-const (
-	VizTypeTower    = "tower"
-	VizTypeNodelink = "nodelink"
-)
+// DefaultVizType is the default visualization type.
+const DefaultVizType = dto.VizTypeTower
 
-// Style constants for visual styles.
-const (
-	StyleSimple    = "simple"
-	StyleHanddrawn = "handdrawn"
-)
+// DefaultStyle is the default visual style.
+const DefaultStyle = dto.StyleHanddrawn
 
 // Format constants for output formats.
 const (
@@ -114,30 +106,25 @@ var ValidFormats = map[string]bool{
 	FormatJSON: true,
 }
 
-// errFieldRequired returns a consistent error for missing required fields.
-func errFieldRequired(field string) error {
-	return fmt.Errorf("%s is required", field)
-}
-
 // ValidStyles is the set of supported visual styles.
 var ValidStyles = map[string]bool{
-	StyleSimple:    true,
-	StyleHanddrawn: true,
+	dto.StyleSimple:    true,
+	dto.StyleHanddrawn: true,
 }
 
 // ValidVizTypes is the set of supported visualization types.
 var ValidVizTypes = map[string]bool{
-	VizTypeTower:    true,
-	VizTypeNodelink: true,
+	dto.VizTypeTower:    true,
+	dto.VizTypeNodelink: true,
 }
+
+// =============================================================================
+// Options - Pipeline Configuration
+// =============================================================================
 
 // Options contains all configuration for the visualization pipeline.
 // This struct supports JSON serialization for API requests.
 type Options struct {
-	// User context (for scoped storage and authorization)
-	UserID string        `json:"user_id,omitempty"`
-	Scope  storage.Scope `json:"scope,omitempty"`
-
 	// Parse options
 	Language         string `json:"language"`
 	Package          string `json:"package,omitempty"`
@@ -148,12 +135,12 @@ type Options struct {
 	MaxNodes         int    `json:"max_nodes,omitempty"`
 	SkipEnrich       bool   `json:"skip_enrich,omitempty"` // Skip metadata enrichment (default: false = enrich)
 	Refresh          bool   `json:"refresh,omitempty"`
-	Normalize        bool   `json:"normalize,omitempty"`
 
 	// Layout options
 	VizType   string  `json:"viz_type,omitempty"`
 	Width     float64 `json:"width,omitempty"`
 	Height    float64 `json:"height,omitempty"`
+	Normalize bool    `json:"normalize,omitempty"` // Apply graph normalization during layout
 	Ordering  string  `json:"ordering,omitempty"`
 	Merge     bool    `json:"merge,omitempty"`
 	Randomize bool    `json:"randomize,omitempty"`
@@ -172,7 +159,6 @@ type Options struct {
 	Orderer     ordering.Orderer `json:"-"`
 
 	// validated tracks whether ValidateAndSetDefaults has been called.
-	// This makes validation idempotent and helps detect programming errors.
 	validated bool `json:"-"`
 }
 
@@ -184,18 +170,17 @@ type Result struct {
 	// GraphHash is the content hash of the graph.
 	GraphHash string
 
-	// Layout contains the computed visual positions.
-	Layout layout.Layout
-
-	// LayoutData is the serialized layout (JSON).
-	// Note: Nebraska rankings are embedded in the layout JSON, not stored separately.
-	LayoutData []byte
+	// LayoutDTO contains the layout data (positions, nebraska, etc).
+	LayoutDTO dto.Layout
 
 	// Artifacts contains rendered outputs keyed by format.
 	Artifacts map[string][]byte
 
 	// Stats contains timing and size information.
 	Stats Stats
+
+	// CacheInfo tracks which stages hit the cache.
+	CacheInfo CacheInfo
 }
 
 // Stats contains pipeline execution statistics.
@@ -206,6 +191,17 @@ type Stats struct {
 	LayoutTime time.Duration
 	RenderTime time.Duration
 }
+
+// CacheInfo tracks cache hits for each pipeline stage.
+type CacheInfo struct {
+	ParseHit  bool // Whether parse result came from cache
+	LayoutHit bool // Whether layout result came from cache
+	RenderHit bool // Whether all artifacts came from cache
+}
+
+// =============================================================================
+// Validation Functions
+// =============================================================================
 
 // ValidateFormat checks that a format is valid.
 func ValidateFormat(format string) error {
@@ -241,12 +237,15 @@ func ValidateVizType(vizType string) error {
 	return nil
 }
 
+// =============================================================================
+// Options Methods
+// =============================================================================
+
 // ValidateAndSetDefaults checks required fields and applies defaults for the full pipeline.
 // This method is idempotent - calling it multiple times has the same effect as calling it once.
-// Use ValidateForParse, ValidateForLayout, or ValidateForRender for stage-specific validation.
 func (o *Options) ValidateAndSetDefaults() error {
 	if o.validated {
-		return nil // Already validated, skip
+		return nil
 	}
 	if err := o.ValidateForParse(); err != nil {
 		return err
@@ -260,16 +259,16 @@ func (o *Options) ValidateAndSetDefaults() error {
 // ValidateForParse checks required fields for parsing.
 func (o *Options) ValidateForParse() error {
 	if o.Language == "" {
-		return errFieldRequired("language")
+		return fmt.Errorf("language is required")
 	}
 	if o.Package == "" && o.Manifest == "" {
-		return errFieldRequired("package or manifest")
+		return fmt.Errorf("package or manifest is required")
 	}
 	if o.Manifest != "" && o.ManifestFilename == "" {
-		return errFieldRequired("manifest_filename")
+		return fmt.Errorf("manifest_filename is required")
 	}
 
-	// Parse defaults.
+	// Parse defaults
 	if o.MaxDepth == 0 {
 		o.MaxDepth = DefaultMaxDepth
 	}
@@ -277,7 +276,7 @@ func (o *Options) ValidateForParse() error {
 		o.MaxNodes = DefaultMaxNodes
 	}
 
-	// Logger default.
+	// Logger default
 	if o.Logger == nil {
 		o.Logger = log.NewWithOptions(io.Discard, log.Options{})
 	}
@@ -307,10 +306,7 @@ func (o *Options) SetLayoutDefaults() {
 // ValidateForLayout validates and sets defaults for layout computation.
 func (o *Options) ValidateForLayout() error {
 	o.SetLayoutDefaults()
-	if err := ValidateVizType(o.VizType); err != nil {
-		return err
-	}
-	return nil
+	return ValidateVizType(o.VizType)
 }
 
 // SetRenderDefaults sets default values for rendering.
@@ -336,83 +332,53 @@ func (o *Options) ValidateForRender() error {
 	if err := ValidateFormats(o.Formats); err != nil {
 		return err
 	}
-	if err := ValidateStyle(o.Style); err != nil {
-		return err
-	}
-	return nil
+	return ValidateStyle(o.Style)
 }
 
 // IsTower returns true if this is a tower visualization.
 func (o *Options) IsTower() bool {
-	return o.VizType == "" || o.VizType == "tower"
+	return o.VizType == "" || o.VizType == dto.VizTypeTower
 }
 
 // IsNodelink returns true if this is a nodelink visualization.
 func (o *Options) IsNodelink() bool {
-	return o.VizType == "nodelink"
+	return o.VizType == dto.VizTypeNodelink
+}
+
+// NeedsOptimalOrderer returns true if the ordering algorithm requires the optimal orderer.
+// This is true when ordering is "optimal" (the default) or empty.
+func (o *Options) NeedsOptimalOrderer() bool {
+	return o.Ordering == DefaultOrdering || o.Ordering == ""
 }
 
 // ShouldEnrich returns whether metadata enrichment should be performed.
-// Returns true unless SkipEnrich is explicitly set.
 func (o *Options) ShouldEnrich() bool {
 	return !o.SkipEnrich
 }
 
-// Execute runs the complete parse → layout → render pipeline.
-// The backend parameter provides caching for HTTP responses during dependency resolution.
-// Use storage.NullBackend{} to disable caching.
-func Execute(ctx context.Context, backend storage.Backend, opts Options) (*Result, error) {
-	if err := opts.ValidateAndSetDefaults(); err != nil {
-		return nil, fmt.Errorf("invalid options: %w", err)
+// LayoutKeyOpts returns cache key options for layout computation.
+func (o *Options) LayoutKeyOpts() cache.LayoutKeyOpts {
+	return cache.LayoutKeyOpts{
+		VizType:   o.VizType,
+		Width:     o.Width,
+		Height:    o.Height,
+		Normalize: o.Normalize,
+		Ordering:  o.Ordering,
+		Merge:     o.Merge,
+		Randomize: o.Randomize,
+		Seed:      o.Seed,
 	}
+}
 
-	result := &Result{
-		Artifacts: make(map[string][]byte),
+// ArtifactKeyOpts returns cache key options for artifact rendering.
+func (o *Options) ArtifactKeyOpts(format string) cache.ArtifactKeyOpts {
+	return cache.ArtifactKeyOpts{
+		Format:    format,
+		Style:     o.Style,
+		ShowEdges: o.ShowEdges,
+		Popups:    o.Popups,
+		Nebraska:  o.Nebraska,
+		Merge:     o.Merge,
+		Normalize: o.Normalize,
 	}
-
-	// Stage 1: Parse
-	parseStart := time.Now()
-	g, err := Parse(ctx, backend, opts)
-	if err != nil {
-		return nil, fmt.Errorf("parse: %w", err)
-	}
-	result.Graph = g
-	result.Stats.ParseTime = time.Since(parseStart)
-	result.Stats.NodeCount = g.NodeCount()
-	result.Stats.EdgeCount = g.EdgeCount()
-
-	opts.Logger.Info("parsed dependencies",
-		"nodes", g.NodeCount(),
-		"edges", g.EdgeCount(),
-		"duration", result.Stats.ParseTime)
-
-	// Stage 2: Layout
-	layoutStart := time.Now()
-	layoutResult, err := ComputeLayout(g, opts)
-	if err != nil {
-		return nil, fmt.Errorf("layout: %w", err)
-	}
-	result.Layout = layoutResult.Layout
-	result.LayoutData = layoutResult.LayoutData
-	// Note: Nebraska rankings are embedded in LayoutData, not stored separately
-	result.Stats.LayoutTime = time.Since(layoutStart)
-
-	opts.Logger.Info("computed layout",
-		"blocks", len(layoutResult.Layout.Blocks),
-		"duration", result.Stats.LayoutTime)
-
-	// Stage 3: Render
-	renderStart := time.Now()
-	artifacts, err := Render(layoutResult.Layout, layoutResult.LayoutData, g, opts)
-	if err != nil {
-		return nil, fmt.Errorf("render: %w", err)
-	}
-	result.Artifacts = artifacts
-	result.Stats.RenderTime = time.Since(renderStart)
-
-	opts.Logger.Info("rendered outputs",
-		"formats", opts.Formats,
-		"duration", result.Stats.RenderTime)
-
-	return result, nil
 }

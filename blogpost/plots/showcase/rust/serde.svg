@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900.0 780.0" width="900" height="780">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900.0 540.0" width="900" height="540">
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;display=swap');
@@ -8,6 +8,7 @@
 " x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>
     </pattern>
   </defs>
+  <g transform="translate(0, 40.0)">
   <a href="https://github.com/dtolnay/proc-macro2" target="_blank"><path id="block-proc-macro2" class="block" d="M 133.29 311.73 Q 131.36 298.46 166.77 294.82 Q 202.17 291.18 237.58 292.39 Q 272.98 293.59 308.38 295.08 Q 343.79 296.57 379.19 294.96 Q 414.60 293.35 450.00 293.11 Q 485.40 292.87 520.81 293.88 Q 556.21 294.89 591.62 295.01 Q 627.02 295.14 662.42 293.52 Q 697.83 291.90 733.23 291.97 Q 768.64 292.05 767.26 308.52 Q 765.89 325.00 768.65 340.00 Q 771.42 355.00 769.19 370.00 Q 766.97 385.00 732.40 386.13 Q 697.83 387.26 662.42 384.87 Q 627.02 382.47 591.62 382.84 Q 556.21 383.21 520.81 385.17 Q 485.40 387.13 450.00 385.18 Q 414.60 383.23 379.19 384.82 Q 343.79 386.42 308.38 385.12 Q 272.98 383.83 237.58 383.77 Q 202.17 383.71 166.77 385.96 Q 131.36 388.21 133.04 371.60 Q 134.72 355.00 134.97 340.00 Q 135.22 325.00 133.29 311.73 Z" fill="#ececec" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.473 450.00 340.00)"/></a>
   <a href="https://github.com/dtolnay/quote" target="_blank"><path id="block-quote" class="block" d="M 48.50 220.22 Q 50.00 205.44 89.50 204.80 Q 129.00 204.16 168.50 204.30 Q 208.00 204.44 247.50 206.23 Q 287.00 208.03 326.50 207.71 Q 366.00 207.40 405.50 207.66 Q 445.00 207.92 443.58 221.46 Q 442.16 235.00 444.11 250.00 Q 446.06 265.00 444.15 280.00 Q 442.23 295.00 404.12 294.65 Q 366.00 294.30 326.50 295.60 Q 287.00 296.89 247.50 296.49 Q 208.00 296.08 168.50 297.00 Q 129.00 297.92 89.50 295.57 Q 50.00 293.23 48.26 279.11 Q 46.53 265.00 46.76 250.00 Q 46.99 235.00 48.50 220.22 Z" fill="#e5e5e5" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.299 247.50 250.00)"/></a>
   <a href="https://github.com/serde-rs/serde" target="_blank"><path id="block-serde" class="block" d="M 44.94 38.36 Q 45.00 21.73 78.75 21.58 Q 112.50 21.43 146.25 22.16 Q 180.00 22.89 213.75 23.59 Q 247.50 24.29 281.25 23.04 Q 315.00 21.79 348.75 24.88 Q 382.50 27.96 416.25 26.13 Q 450.00 24.31 483.75 23.41 Q 517.50 22.51 551.25 23.71 Q 585.00 24.92 618.75 26.14 Q 652.50 27.35 686.25 26.01 Q 720.00 24.68 753.75 25.69 Q 787.50 26.70 821.25 25.62 Q 855.00 24.53 856.34 39.77 Q 857.68 55.00 855.68 70.00 Q 853.68 85.00 854.81 100.00 Q 855.94 115.00 821.72 114.35 Q 787.50 113.71 753.75 114.57 Q 720.00 115.44 686.25 115.66 Q 652.50 115.88 618.75 114.65 Q 585.00 113.42 551.25 116.12 Q 517.50 118.81 483.75 118.01 Q 450.00 117.21 416.25 114.35 Q 382.50 111.50 348.75 112.90 Q 315.00 114.31 281.25 112.72 Q 247.50 111.13 213.75 111.68 Q 180.00 112.22 146.25 114.60 Q 112.50 116.98 78.75 117.83 Q 45.00 118.69 43.22 101.84 Q 41.45 85.00 43.16 70.00 Q 44.87 55.00 44.94 38.36 Z" fill="#d2d2d2" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.120 450.00 70.00)"/></a>
@@ -38,6 +39,7 @@
   <a href="https://github.com/dtolnay/unicode-ident" target="_blank">    <rect x="379.80" y="418.00" width="140.40" height="24.00" fill="#a3a3a3"/>
     <text x="450.00" y="430.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">unicode-ident</text>
 </a>  </g>
+  </g>
   <style>
     .block { transition: stroke-width 0.2s ease; }
     .block.highlight { stroke-width: 4; }
@@ -57,47 +59,8 @@
       el.addEventListener('mouseenter', () => highlight([el.id.replace('block-', '')]));
       el.addEventListener('mouseleave', clearHighlight);
     });
-  ]]></script>
-  <text x="450.0" y="564.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
-  <path d="M 322.0 580.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <a href="https://github.com/dtolnay" target="_blank" class="maintainer-link" data-packages="unicode-ident,proc-macro2,quote,syn,serde_derive">
-    <text x="114.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#1 @dtolnay</text>
-  </a>
-  <text class="package-entry" data-package="unicode-ident" x="114.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">unicode-ident</text>
-  <text class="package-entry" data-package="proc-macro2" x="114.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">proc-macro2</text>
-  <text class="package-entry" data-package="quote" x="114.0" y="685.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">quote</text>
-  <text x="114.0" y="703.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#aaa">+2 more</text>
-  <a href="https://github.com/mystor" target="_blank" class="maintainer-link" data-packages="quote,syn,proc-macro2">
-    <text x="282.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#2 @mystor</text>
-  </a>
-  <text class="package-entry" data-package="quote" x="282.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">quote</text>
-  <text class="package-entry" data-package="syn" x="282.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">syn</text>
-  <text class="package-entry" data-package="proc-macro2" x="282.0" y="685.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">proc-macro2</text>
-  <a href="https://github.com/alexcrichton" target="_blank" class="maintainer-link" data-packages="proc-macro2,quote,syn">
-    <text x="450.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#3 @alexcrichton</text>
-  </a>
-  <text class="package-entry" data-package="proc-macro2" x="450.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">proc-macro2</text>
-  <text class="package-entry" data-package="quote" x="450.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">quote</text>
-  <text class="package-entry" data-package="syn" x="450.0" y="685.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">syn</text>
-  <a href="https://github.com/Marcondiro" target="_blank" class="maintainer-link" data-packages="unicode-ident">
-    <text x="618.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#4 @Marcondiro</text>
-  </a>
-  <text class="package-entry" data-package="unicode-ident" x="618.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">unicode-ident</text>
-  <a href="https://github.com/Jake-Shadle" target="_blank" class="maintainer-link" data-packages="unicode-ident">
-    <text x="786.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#5 @Jake-Shadle</text>
-  </a>
-  <text class="package-entry" data-package="unicode-ident" x="786.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">unicode-ident</text>
-  <style>
-    .maintainer-link text { cursor: pointer; }
-    .maintainer-link:hover text { text-decoration: underline; }
-  </style>
-  <script type="text/javascript"><![CDATA[
-    document.querySelectorAll('.maintainer-link').forEach(el => {
-      el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
-      el.addEventListener('mouseleave', clearHighlight);
-    });
-    document.querySelectorAll('.package-entry').forEach(el => {
-      el.addEventListener('mouseenter', () => highlight([el.dataset.package]));
+    document.querySelectorAll('.block-text').forEach(el => {
+      el.addEventListener('mouseenter', () => highlight([el.dataset.block]));
       el.addEventListener('mouseleave', clearHighlight);
     });
   ]]></script>
@@ -175,4 +138,18 @@
       el.addEventListener('mouseleave', () => popup.setAttribute('visibility', 'hidden'));
     });
   ]]></script>
+  <a href="https://www.stacktower.io" target="_blank" rel="noopener">
+    <g transform="translate(390.0, 15.0)" class="watermark">
+      <g transform="scale(0.67)">
+      <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+      <text x="20" y="11" font-family="sans-serif" font-size="14" font-weight="500" fill="#000">stacktower.io</text>
+    </g>
+  </a>
+  <style>
+    .watermark { transition: opacity 0.2s ease; opacity: 1; }
+    .watermark:hover { opacity: 0.7; }
+  </style>
 </svg>

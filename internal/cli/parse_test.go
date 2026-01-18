@@ -47,13 +47,6 @@ func TestLooksLikeFile(t *testing.T) {
 	}
 }
 
-func TestNopCloser(t *testing.T) {
-	nc := nopCloser{}
-	if err := nc.Close(); err != nil {
-		t.Errorf("nopCloser.Close() error: %v", err)
-	}
-}
-
 func TestLanguagesRegistered(t *testing.T) {
 	if len(languages.All) == 0 {
 		t.Error("languages.All slice should not be empty")

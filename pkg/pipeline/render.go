@@ -1,34 +1,31 @@
 package pipeline
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
 
 	"github.com/matzehuels/stacktower/pkg/core/dag"
 	"github.com/matzehuels/stacktower/pkg/core/render/nodelink"
-	nodelinkio "github.com/matzehuels/stacktower/pkg/core/render/nodelink/io"
-	towerio "github.com/matzehuels/stacktower/pkg/core/render/tower/io"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/layout"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/sink"
+	"github.com/matzehuels/stacktower/pkg/core/render/tower/styles"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/styles/handdrawn"
+	"github.com/matzehuels/stacktower/pkg/dto"
 )
 
 // Render generates output artifacts in the requested formats.
-// If l is empty (Blocks == nil), it will be deserialized from layoutData.
-func Render(l layout.Layout, layoutData []byte, g *dag.DAG, opts Options) (map[string][]byte, error) {
+func Render(l layout.Layout, g *dag.DAG, opts Options) (map[string][]byte, error) {
 	if opts.IsNodelink() {
-		return renderNodelink(layoutData, opts)
+		// For nodelink, generate DOT graph on-demand
+		return renderNodelinkFromGraph(g, opts)
 	}
-	return renderTower(l, layoutData, g, opts)
+	return renderTower(l, g, opts)
 }
 
-// renderNodelink generates nodelink outputs using Graphviz.
-func renderNodelink(layoutData []byte, opts Options) (map[string][]byte, error) {
-	// Extract DOT from layout JSON
-	dot, err := extractDOT(layoutData)
-	if err != nil {
-		return nil, fmt.Errorf("extract DOT from layout: %w", err)
+// RenderNodelink generates nodelink outputs from a typed layout.
+// The layout must be a nodelink layout (VizType = "nodelink") with a DOT string.
+func RenderNodelink(layoutDTO dto.Layout, opts Options) (map[string][]byte, error) {
+	if layoutDTO.DOT == "" {
+		return nil, fmt.Errorf("nodelink layout missing DOT string")
 	}
 
 	artifacts := make(map[string][]byte)
@@ -38,15 +35,14 @@ func renderNodelink(layoutData []byte, opts Options) (map[string][]byte, error) 
 		var err error
 
 		switch format {
-		case "svg":
-			data, err = nodelink.RenderSVG(dot)
-		case "png":
-			data, err = nodelink.RenderPNG(dot, 2.0)
-		case "pdf":
-			data, err = nodelink.RenderPDF(dot)
-		case "json":
-			// Return the layout JSON itself
-			data = layoutData
+		case FormatSVG:
+			data, err = nodelink.RenderSVG(layoutDTO.DOT)
+		case FormatPNG:
+			data, err = nodelink.RenderPNG(layoutDTO.DOT, 2.0)
+		case FormatPDF:
+			data, err = nodelink.RenderPDF(layoutDTO.DOT)
+		case FormatJSON:
+			data, err = dto.MarshalLayout(layoutDTO)
 		default:
 			return nil, fmt.Errorf("unsupported nodelink format: %s", format)
 		}
@@ -60,46 +56,27 @@ func renderNodelink(layoutData []byte, opts Options) (map[string][]byte, error) 
 	return artifacts, nil
 }
 
-// extractDOT extracts the DOT string from nodelink layout JSON.
-// Falls back to treating the data as raw DOT if JSON parsing fails.
-func extractDOT(data []byte) (string, error) {
-	// Try to parse as nodelink layout JSON
-	layoutData, _, err := nodelinkio.ReadLayout(bytes.NewReader(data))
-	if err == nil && layoutData.DOT != "" {
-		return layoutData.DOT, nil
+// renderNodelinkFromGraph generates nodelink outputs directly from a graph.
+// This generates the DOT graph on-demand instead of requiring a pre-computed layout.
+func renderNodelinkFromGraph(g *dag.DAG, opts Options) (map[string][]byte, error) {
+	// Generate DOT graph
+	dot := nodelink.ToDOT(g, nodelink.Options{Detailed: false})
+
+	// Build typed layout
+	layoutDTO, err := nodelink.ToDTO(dot, g, nodelink.Options{Detailed: false}, opts.Width, opts.Height, opts.Style)
+	if err != nil {
+		return nil, fmt.Errorf("generate nodelink layout: %w", err)
 	}
 
-	// Fall back to treating data as raw DOT (for backwards compatibility)
-	if len(data) > 0 && data[0] != '{' {
-		return string(data), nil
-	}
-
-	return "", fmt.Errorf("invalid nodelink layout: %w", err)
+	// Render using the typed layout
+	return RenderNodelink(layoutDTO, opts)
 }
 
 // renderTower generates tower outputs.
-func renderTower(l layout.Layout, layoutData []byte, g *dag.DAG, opts Options) (map[string][]byte, error) {
-	// If layout is empty (Blocks == nil), deserialize from data
-	if l.Blocks == nil && len(layoutData) > 0 {
-		var meta towerio.LayoutMeta
-		var err error
-		l, meta, err = towerio.ReadLayout(bytes.NewReader(layoutData))
-		if err != nil {
-			return nil, fmt.Errorf("parse layout: %w", err)
-		}
-		// Use meta values if options not set
-		if opts.Style == "" {
-			opts.Style = meta.Style
-		}
-		if opts.Seed == 0 {
-			opts.Seed = meta.Seed
-		}
-		if !opts.Merge {
-			opts.Merge = meta.Merged
-		}
-	}
+func renderTower(l layout.Layout, g *dag.DAG, opts Options) (map[string][]byte, error) {
+	opts = applyLayoutMetadata(opts, l)
 
-	svgOpts := buildSVGOptions(g, opts)
+	svgOpts := buildSVGOptions(g, l, opts)
 	artifacts := make(map[string][]byte)
 
 	for _, format := range opts.Formats {
@@ -107,14 +84,18 @@ func renderTower(l layout.Layout, layoutData []byte, g *dag.DAG, opts Options) (
 		var err error
 
 		switch format {
-		case "svg":
+		case FormatSVG:
 			data = sink.RenderSVG(l, svgOpts...)
-		case "png":
+		case FormatPNG:
 			data, err = sink.RenderPNG(l, sink.WithPNGSVGOptions(svgOpts...))
-		case "pdf":
+		case FormatPDF:
 			data, err = sink.RenderPDF(l, sink.WithPDFSVGOptions(svgOpts...))
-		case "json":
-			data = layoutData
+		case FormatJSON:
+			layoutDTO, err := l.ToDTO(g)
+			if err != nil {
+				return nil, fmt.Errorf("serialize layout: %w", err)
+			}
+			data, err = dto.MarshalLayout(layoutDTO)
 		default:
 			return nil, fmt.Errorf("unsupported tower format: %s", format)
 		}
@@ -128,8 +109,24 @@ func renderTower(l layout.Layout, layoutData []byte, g *dag.DAG, opts Options) (
 	return artifacts, nil
 }
 
+// applyLayoutMetadata applies layout metadata to options if not already set.
+// This ensures that serialized layouts preserve their original rendering settings.
+func applyLayoutMetadata(opts Options, l layout.Layout) Options {
+	if opts.Style == "" && l.Style != "" {
+		opts.Style = l.Style
+	}
+	if opts.Seed == 0 && l.Seed != 0 {
+		opts.Seed = l.Seed
+	}
+	if !opts.Merge && l.Merged {
+		opts.Merge = l.Merged
+	}
+	return opts
+}
+
 // buildSVGOptions builds SVG rendering options.
-func buildSVGOptions(g *dag.DAG, opts Options) []sink.SVGOption {
+// Nebraska rankings are extracted from the layout struct (computed during layout phase).
+func buildSVGOptions(g *dag.DAG, l layout.Layout, opts Options) []sink.SVGOption {
 	var svgOpts []sink.SVGOption
 
 	if g != nil {
@@ -142,16 +139,26 @@ func buildSVGOptions(g *dag.DAG, opts Options) []sink.SVGOption {
 		svgOpts = append(svgOpts, sink.WithMerged())
 	}
 
-	if opts.Style == "handdrawn" {
+	// Apply visual style
+	switch opts.Style {
+	case dto.StyleHanddrawn:
 		seed := opts.Seed
 		if seed == 0 {
 			seed = 42
 		}
 		svgOpts = append(svgOpts, sink.WithStyle(handdrawn.New(seed)))
+	case dto.StyleSimple:
+		svgOpts = append(svgOpts, sink.WithStyle(styles.Simple{}))
+	}
 
-		if opts.Popups && g != nil {
-			svgOpts = append(svgOpts, sink.WithPopups())
-		}
+	// Popups only for handdrawn style (simple doesn't support them yet)
+	if opts.Style == dto.StyleHanddrawn && opts.Popups && g != nil {
+		svgOpts = append(svgOpts, sink.WithPopups())
+	}
+
+	// Nebraska guy ranking (from layout metadata, computed during layout phase)
+	if opts.Nebraska && len(l.Nebraska) > 0 {
+		svgOpts = append(svgOpts, sink.WithNebraska(l.Nebraska))
 	}
 
 	return svgOpts
@@ -160,39 +167,30 @@ func buildSVGOptions(g *dag.DAG, opts Options) []sink.SVGOption {
 // RenderFromLayoutData renders output from serialized layout data.
 // This is useful when the layout was computed elsewhere (e.g., cached).
 func RenderFromLayoutData(layoutData []byte, g *dag.DAG, opts Options) (map[string][]byte, error) {
-	// Detect viz type from layout JSON
-	vizType := detectVizType(layoutData)
-	if vizType == nodelinkio.VizType {
-		opts.VizType = VizTypeNodelink
-		return renderNodelink(layoutData, opts)
-	}
-
-	l, meta, err := towerio.ReadLayout(bytes.NewReader(layoutData))
+	// Parse layout to typed struct
+	layoutDTO, err := dto.UnmarshalLayout(layoutData)
 	if err != nil {
 		return nil, fmt.Errorf("parse layout: %w", err)
 	}
 
-	// Apply meta values if options not set
-	if opts.Style == "" {
-		opts.Style = meta.Style
-	}
-	if opts.Seed == 0 {
-		opts.Seed = meta.Seed
-	}
-	if !opts.Merge {
-		opts.Merge = meta.Merged
-	}
-
-	return renderTower(l, layoutData, g, opts)
+	// Dispatch based on viz type
+	return RenderFromLayout(layoutDTO, g, opts)
 }
 
-// detectVizType reads the viz_type field from layout JSON.
-func detectVizType(data []byte) string {
-	var header struct {
-		VizType string `json:"viz_type"`
+// RenderFromLayout renders output from a typed layout.
+// This is the preferred entry point when you have a typed dto.Layout.
+func RenderFromLayout(layoutDTO dto.Layout, g *dag.DAG, opts Options) (map[string][]byte, error) {
+	if layoutDTO.IsNodelink() {
+		opts.VizType = dto.VizTypeNodelink
+		return RenderNodelink(layoutDTO, opts)
 	}
-	if err := json.Unmarshal(data, &header); err != nil {
-		return ""
+
+	// Convert to internal tower layout
+	l, err := layout.FromDTO(layoutDTO)
+	if err != nil {
+		return nil, fmt.Errorf("convert layout: %w", err)
 	}
-	return header.VizType
+
+	// renderTower applies layout metadata via applyLayoutMetadata
+	return renderTower(l, g, opts)
 }

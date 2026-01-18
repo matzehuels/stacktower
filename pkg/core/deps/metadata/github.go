@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
+	"github.com/matzehuels/stacktower/pkg/cache"
 	"github.com/matzehuels/stacktower/pkg/core/deps"
-	"github.com/matzehuels/stacktower/pkg/infra/storage"
 	"github.com/matzehuels/stacktower/pkg/integrations/github"
 )
 
@@ -13,7 +13,7 @@ type GitHub struct {
 	client *github.Client
 }
 
-func NewGitHub(backend storage.Backend, token string, cacheTTL time.Duration) *GitHub {
+func NewGitHub(backend cache.Cache, token string, cacheTTL time.Duration) *GitHub {
 	c := github.NewClient(backend, token, cacheTTL)
 	return &GitHub{c}
 }
@@ -39,6 +39,9 @@ func (g *GitHub) Enrich(ctx context.Context, pkg *deps.PackageRef, refresh bool)
 		RepoOwner:    m.Owner,
 		RepoStars:    m.Stars,
 		RepoArchived: m.Archived,
+	}
+	if m.Description != "" {
+		result[RepoDescription] = m.Description
 	}
 	if m.Language != "" {
 		result[RepoLanguage] = m.Language

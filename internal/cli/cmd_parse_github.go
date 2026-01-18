@@ -14,7 +14,6 @@ import (
 	"github.com/matzehuels/stacktower/internal/cli/term"
 	"github.com/matzehuels/stacktower/pkg/core/deps"
 	"github.com/matzehuels/stacktower/pkg/core/deps/languages"
-	"github.com/matzehuels/stacktower/pkg/infra"
 	"github.com/matzehuels/stacktower/pkg/integrations/github"
 )
 
@@ -54,7 +53,7 @@ Examples:
 }
 
 func runParseGitHub(ctx context.Context, args []string, opts *ParseCmdOpts, publicOnly bool, timeout time.Duration) error {
-	logger := infra.LoggerFromContext(ctx)
+	logger := loggerFromContext(ctx)
 
 	sess, err := LoadGitHubSession(ctx)
 	if err != nil {

@@ -9,7 +9,6 @@ import (
 
 	"github.com/matzehuels/stacktower/internal/cli"
 	"github.com/matzehuels/stacktower/pkg/buildinfo"
-	"github.com/matzehuels/stacktower/pkg/infra"
 )
 
 func main() {
@@ -29,11 +28,11 @@ func execute() error {
 		Version:      buildinfo.Version,
 		SilenceUsage: true,
 		PersistentPreRun: func(cmd *cobra.Command, args []string) {
-			level := infra.LogInfo
+			level := cli.LogInfo
 			if verbose {
-				level = infra.LogDebug
+				level = cli.LogDebug
 			}
-			ctx := infra.WithLogger(cmd.Context(), infra.NewLogger(os.Stderr, level))
+			ctx := cli.WithLogger(cmd.Context(), cli.NewLogger(os.Stderr, level))
 			cmd.SetContext(ctx)
 		},
 	}

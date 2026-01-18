@@ -73,36 +73,15 @@ func ExampleRenderSVG_withEdges() {
 	// Has content: true
 }
 
-func ExampleRenderJSON() {
-	g := dag.New(nil)
-	_ = g.AddNode(dag.Node{ID: "app", Row: 0})
-	_ = g.AddNode(dag.Node{ID: "lib", Row: 1})
-	_ = g.AddEdge(dag.Edge{From: "app", To: "lib"})
-
-	l := layout.Build(g, 400, 300)
-
-	// Export layout as JSON for external tools
-	data, err := sink.RenderJSON(l, sink.WithJSONGraph(g))
-	if err != nil {
-		return
-	}
-
-	fmt.Println("JSON starts with:", string(data[:1]))
-	fmt.Println("Contains blocks:", strings.Contains(string(data), "blocks"))
-	// Output:
-	// JSON starts with: {
-	// Contains blocks: true
-}
-
 func ExampleRenderSVG_withPopups() {
 	g := dag.New(nil)
 	_ = g.AddNode(dag.Node{
 		ID:  "fastapi",
 		Row: 0,
 		Meta: dag.Metadata{
-			"version":     "0.100.0",
-			"description": "FastAPI framework",
-			"repo_stars":  70000,
+			"version":          "0.100.0",
+			"repo_description": "FastAPI framework",
+			"repo_stars":       70000,
 		},
 	})
 	_ = g.AddNode(dag.Node{ID: "starlette", Row: 1})

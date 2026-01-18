@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/matzehuels/stacktower/pkg/core/deps/metadata"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/feature"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/styles"
 )
@@ -43,18 +44,13 @@ func extractPopupData(n *dag.Node) *styles.PopupData {
 		return nil
 	}
 	p := &styles.PopupData{
-		Stars:   feature.AsInt(n.Meta["repo_stars"]),
+		Stars:   feature.AsInt(n.Meta[metadata.RepoStars]),
 		Brittle: feature.IsBrittle(n),
 	}
-	p.LastCommit, _ = n.Meta["repo_last_commit"].(string)
-	p.LastRelease, _ = n.Meta["repo_last_release"].(string)
-	p.Archived, _ = n.Meta["repo_archived"].(bool)
-
-	if desc, ok := n.Meta["description"].(string); ok && desc != "" {
-		p.Description = desc
-	} else if summary, ok := n.Meta["summary"].(string); ok && summary != "" {
-		p.Description = summary
-	}
+	p.LastCommit, _ = n.Meta[metadata.RepoLastCommit].(string)
+	p.LastRelease, _ = n.Meta[metadata.RepoLastRelease].(string)
+	p.Archived, _ = n.Meta[metadata.RepoArchived].(bool)
+	p.Description, _ = n.Meta[metadata.RepoDescription].(string)
 	return p
 }
 

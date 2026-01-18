@@ -30,24 +30,6 @@ builds:
       - -X github.com/matzehuels/stacktower/pkg/buildinfo.Commit={{.Commit}}
       - -X github.com/matzehuels/stacktower/pkg/buildinfo.Date={{.Date}}
 
-  # Server/Worker binary (stacktowerd) - for deployment
-  - id: stacktowerd
-    main: ./cmd/stacktowerd
-    binary: stacktowerd
-    env:
-      - CGO_ENABLED=0
-    goos:
-      - linux
-      - darwin
-    goarch:
-      - amd64
-      - arm64
-    ldflags:
-      - -s -w
-      - -X github.com/matzehuels/stacktower/pkg/buildinfo.Version={{.Version}}
-      - -X github.com/matzehuels/stacktower/pkg/buildinfo.Commit={{.Commit}}
-      - -X github.com/matzehuels/stacktower/pkg/buildinfo.Date={{.Date}}
-
 archives:
   # CLI archive (for Homebrew, manual download)
   - id: stacktower
@@ -71,89 +53,8 @@ archives:
       - LICENSE
       - README.md
 
-  # Server archive (for manual server deployment)
-  - id: stacktowerd
-    builds:
-      - stacktowerd
-    formats:
-      - tar.gz
-    name_template: >-
-      {{ .ProjectName }}d_
-      {{- .Version }}_
-      {{- title .Os }}_
-      {{- if eq .Arch "amd64" }}x86_64
-      {{- else if eq .Arch "386" }}i386
-      {{- else }}{{ .Arch }}{{ end }}
-      {{- if .Arm }}v{{ .Arm }}{{ end }}
-    files:
-      - LICENSE
-      - README.md
-
-# Docker images for deployment
-dockers:
-  # AMD64 image
-  - id: stacktowerd-amd64
-    ids:
-      - stacktowerd
-    goos: linux
-    goarch: amd64
-    image_templates:
-      - "ghcr.io/matzehuels/stacktower:{{ .Version }}-amd64"
-      - "ghcr.io/matzehuels/stacktower:latest-amd64"
-    build_flag_templates:
-      - "--pull"
-      - "--platform=linux/amd64"
-      - "--target=release"
-      - "--label=org.opencontainers.image.title=stacktower"
-      - "--label=org.opencontainers.image.description=Dependency graph visualization as stack towers"
-      - "--label=org.opencontainers.image.url=https://github.com/matzehuels/stacktower"
-      - "--label=org.opencontainers.image.source=https://github.com/matzehuels/stacktower"
-      - "--label=org.opencontainers.image.version={{ .Version }}"
-      - "--label=org.opencontainers.image.revision={{ .Commit }}"
-    dockerfile: Dockerfile
-    extra_files:
-      - go.mod
-      - go.sum
-    use: buildx
-
-  # ARM64 image
-  - id: stacktowerd-arm64
-    ids:
-      - stacktowerd
-    goos: linux
-    goarch: arm64
-    image_templates:
-      - "ghcr.io/matzehuels/stacktower:{{ .Version }}-arm64"
-      - "ghcr.io/matzehuels/stacktower:latest-arm64"
-    build_flag_templates:
-      - "--pull"
-      - "--platform=linux/arm64"
-      - "--target=release"
-      - "--label=org.opencontainers.image.title=stacktower"
-      - "--label=org.opencontainers.image.description=Dependency graph visualization as stack towers"
-      - "--label=org.opencontainers.image.url=https://github.com/matzehuels/stacktower"
-      - "--label=org.opencontainers.image.source=https://github.com/matzehuels/stacktower"
-      - "--label=org.opencontainers.image.version={{ .Version }}"
-      - "--label=org.opencontainers.image.revision={{ .Commit }}"
-    dockerfile: Dockerfile
-    extra_files:
-      - go.mod
-      - go.sum
-    use: buildx
-
-# Multi-arch manifest
-docker_manifests:
-  - name_template: "ghcr.io/matzehuels/stacktower:{{ .Version }}"
-    image_templates:
-      - "ghcr.io/matzehuels/stacktower:{{ .Version }}-amd64"
-      - "ghcr.io/matzehuels/stacktower:{{ .Version }}-arm64"
-  - name_template: "ghcr.io/matzehuels/stacktower:latest"
-    image_templates:
-      - "ghcr.io/matzehuels/stacktower:latest-amd64"
-      - "ghcr.io/matzehuels/stacktower:latest-arm64"
-
 checksum:
-  name_template: 'checksums.txt'
+  name_template: "checksums.txt"
 
 snapshot:
   version_template: "{{ incpatch .Version }}-next"
@@ -163,11 +64,11 @@ changelog:
   use: github
   filters:
     exclude:
-      - '^docs:'
-      - '^test:'
-      - '^chore:'
-      - '^ci:'
-      - 'README'
+      - "^docs:"
+      - "^test:"
+      - "^chore:"
+      - "^ci:"
+      - "README"
       - Merge pull request
       - Merge branch
   groups:

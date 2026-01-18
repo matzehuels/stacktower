@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900.0 780.0" width="900" height="780">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900.0 540.0" width="900" height="540">
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;display=swap');
@@ -8,6 +8,7 @@
 " x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>
     </pattern>
   </defs>
+  <g transform="translate(0, 40.0)">
   <a href="https://github.com/jorgebucaran/colorette" target="_blank"><path id="block-colorette" class="block" d="M 53.54 136.00 Q 54.62 97.00 59.85 99.91 Q 65.08 102.83 70.31 102.31 Q 75.54 101.80 80.78 100.65 Q 86.01 99.49 84.64 137.25 Q 83.27 175.00 85.46 212.50 Q 87.65 250.00 88.58 287.50 Q 89.51 325.00 87.14 362.50 Q 84.77 400.00 84.11 437.50 Q 83.45 475.00 79.50 475.64 Q 75.54 476.28 70.31 474.15 Q 65.08 472.02 59.85 474.41 Q 54.62 476.79 54.30 438.40 Q 53.98 400.00 55.31 362.50 Q 56.63 325.00 56.47 287.50 Q 56.31 250.00 54.39 212.50 Q 52.47 175.00 53.54 136.00 Z" fill="#e8e8e8" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.016 70.31 287.50)"/></a>
   <a href="https://github.com/tj/commander.js" target="_blank"><path id="block-commander" class="block" d="M 103.84 137.22 Q 104.76 99.43 110.15 100.28 Q 115.54 101.13 120.94 101.77 Q 126.33 102.40 131.72 102.81 Q 137.12 103.21 136.06 139.10 Q 135.01 175.00 134.74 212.50 Q 134.48 250.00 134.65 287.50 Q 134.82 325.00 137.60 362.50 Q 140.38 400.00 138.74 437.50 Q 137.09 475.00 131.71 474.63 Q 126.33 474.25 120.94 474.80 Q 115.54 475.34 110.15 475.63 Q 104.76 475.92 103.84 437.96 Q 102.93 400.00 102.03 362.50 Q 101.13 325.00 103.54 287.50 Q 105.95 250.00 104.43 212.50 Q 102.92 175.00 103.84 137.22 Z" fill="#b3b3b3" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.731 120.94 287.50)"/></a>
   <a href="https://github.com/debug-js/debug#readme" target="_blank"><path id="block-debug" class="block" d="M 154.69 112.47 Q 156.56 99.94 161.56 100.44 Q 166.56 100.95 171.56 98.87 Q 176.56 96.79 181.56 97.41 Q 186.56 98.04 186.10 111.52 Q 185.64 125.00 184.65 137.50 Q 183.65 150.00 183.37 162.50 Q 183.08 175.00 179.82 176.12 Q 176.56 177.24 171.56 177.80 Q 166.56 178.35 161.56 177.69 Q 156.56 177.03 155.46 163.51 Q 154.36 150.00 153.59 137.50 Q 152.81 125.00 154.69 112.47 Z" fill="#d6d6d6" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-4.368 171.56 137.50)"/></a>
@@ -131,6 +132,7 @@
   <a href="https://github.com/sindresorhus/tildify#readme" target="_blank">    <rect x="820.36" y="258.11" width="18.66" height="58.78" fill="#cecece"/>
     <text x="829.69" y="287.50" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.7" fill="#333" transform="rotate(-90 829.69 287.50)">tildify</text>
 </a>  </g>
+  </g>
   <style>
     .block { transition: stroke-width 0.2s ease; }
     .block.highlight { stroke-width: 4; }
@@ -150,43 +152,8 @@
       el.addEventListener('mouseenter', () => highlight([el.id.replace('block-', '')]));
       el.addEventListener('mouseleave', clearHighlight);
     });
-  ]]></script>
-  <text x="450.0" y="564.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
-  <path d="M 322.0 580.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <a href="https://github.com/inspect-js" target="_blank" class="maintainer-link" data-packages="hasown,supports-preserve-symlinks-flag">
-    <text x="114.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#1 @inspect-js</text>
-  </a>
-  <text class="package-entry" data-package="hasown" x="114.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">hasown</text>
-  <text class="package-entry" data-package="supports-preserve-symlinks-flag" x="114.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">supports-preserve-syml...</text>
-  <a href="https://github.com/browserify" target="_blank" class="maintainer-link" data-packages="resolve">
-    <text x="282.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#2 @browserify</text>
-  </a>
-  <text class="package-entry" data-package="resolve" x="282.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">resolve</text>
-  <a href="https://github.com/sindresorhus" target="_blank" class="maintainer-link" data-packages="resolve-from,tildify,path-parse">
-    <text x="450.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#3 @sindresorhus</text>
-  </a>
-  <text class="package-entry" data-package="resolve-from" x="450.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">resolve-from</text>
-  <text class="package-entry" data-package="tildify" x="450.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">tildify</text>
-  <text class="package-entry" data-package="path-parse" x="450.0" y="685.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">path-parse</text>
-  <a href="https://github.com/Raynos" target="_blank" class="maintainer-link" data-packages="function-bind">
-    <text x="618.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#4 @Raynos</text>
-  </a>
-  <text class="package-entry" data-package="function-bind" x="618.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">function-bind</text>
-  <a href="https://github.com/cfware" target="_blank" class="maintainer-link" data-packages="get-package-type">
-    <text x="786.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#5 @cfware</text>
-  </a>
-  <text class="package-entry" data-package="get-package-type" x="786.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">get-package-type</text>
-  <style>
-    .maintainer-link text { cursor: pointer; }
-    .maintainer-link:hover text { text-decoration: underline; }
-  </style>
-  <script type="text/javascript"><![CDATA[
-    document.querySelectorAll('.maintainer-link').forEach(el => {
-      el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
-      el.addEventListener('mouseleave', clearHighlight);
-    });
-    document.querySelectorAll('.package-entry').forEach(el => {
-      el.addEventListener('mouseenter', () => highlight([el.dataset.package]));
+    document.querySelectorAll('.block-text').forEach(el => {
+      el.addEventListener('mouseenter', () => highlight([el.dataset.block]));
       el.addEventListener('mouseleave', clearHighlight);
     });
   ]]></script>
@@ -370,4 +337,18 @@
       el.addEventListener('mouseleave', () => popup.setAttribute('visibility', 'hidden'));
     });
   ]]></script>
+  <a href="https://www.stacktower.io" target="_blank" rel="noopener">
+    <g transform="translate(390.0, 15.0)" class="watermark">
+      <g transform="scale(0.67)">
+      <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+      <text x="20" y="11" font-family="sans-serif" font-size="14" font-weight="500" fill="#000">stacktower.io</text>
+    </g>
+  </a>
+  <style>
+    .watermark { transition: opacity 0.2s ease; opacity: 1; }
+    .watermark:hover { opacity: 0.7; }
+  </style>
 </svg>

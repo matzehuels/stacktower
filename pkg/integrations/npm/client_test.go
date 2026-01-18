@@ -8,12 +8,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/infra/storage"
+	"github.com/matzehuels/stacktower/pkg/cache"
+
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
 func TestNewClient(t *testing.T) {
-	c := NewClient(storage.NullBackend{}, time.Hour)
+	c := NewClient(cache.NewNullCache(), time.Hour)
 	if c.Client == nil {
 		t.Error("expected client to be initialized")
 	}
@@ -135,7 +136,7 @@ func TestExtractField(t *testing.T) {
 func testClient(t *testing.T, serverURL string) *Client {
 	t.Helper()
 	return &Client{
-		Client:  integrations.NewClient(storage.NullBackend{}, "npm:", time.Hour, nil),
+		Client:  integrations.NewClient(cache.NewNullCache(), "npm:", time.Hour, nil),
 		baseURL: serverURL,
 	}
 }

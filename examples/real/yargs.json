@@ -2,12 +2,13 @@
   "nodes": [
     {
       "id": "ansi-regex",
-      "row": 5,
+      "url": "https://github.com/chalk/ansi-regex",
       "meta": {
         "author": "Sindre Sorhus",
         "description": "Regular expression for matching ANSI escape codes",
         "license": "MIT",
         "repo_archived": false,
+        "repo_description": "Regular expression for matching ANSI escape codes",
         "repo_language": "JavaScript",
         "repo_last_commit": "2025-09-08",
         "repo_last_release": "2025-09-08",
@@ -26,12 +27,13 @@
     },
     {
       "id": "ansi-styles",
-      "row": 3,
+      "url": "https://github.com/chalk/ansi-styles",
       "meta": {
         "author": "Sindre Sorhus",
         "description": "ANSI escape codes for styling strings in the terminal",
         "license": "MIT",
         "repo_archived": false,
+        "repo_description": "ANSI escape codes for styling strings in the terminal",
         "repo_language": "JavaScript",
         "repo_last_commit": "2025-10-01",
         "repo_last_release": "2025-09-08",
@@ -52,25 +54,14 @@
       }
     },
     {
-      "id": "ansi-styles_sub_4",
-      "row": 4,
-      "kind": "subdivider",
-      "master_id": "ansi-styles"
-    },
-    {
-      "id": "ansi-styles_sub_5",
-      "row": 5,
-      "kind": "subdivider",
-      "master_id": "ansi-styles"
-    },
-    {
       "id": "cliui",
-      "row": 1,
+      "url": "https://github.com/yargs/cliui",
       "meta": {
         "author": "Ben Coe",
         "description": "easily create complex multi-column command-line-interfaces",
         "license": "ISC",
         "repo_archived": false,
+        "repo_description": "easily create complex multi-column command-line-interfaces.",
         "repo_language": "JavaScript",
         "repo_last_commit": "2025-12-15",
         "repo_last_release": "2025-03-17",
@@ -88,12 +79,13 @@
     },
     {
       "id": "escalade",
-      "row": 1,
+      "url": "https://github.com/lukeed/escalade",
       "meta": {
         "author": "Luke Edwards",
         "description": "A tiny (183B to 210B) and fast utility to ascend parent directories",
         "license": "MIT",
         "repo_archived": false,
+        "repo_description": "A tiny (183B to 210B) and fast utility to ascend parent directories",
         "repo_language": "JavaScript",
         "repo_last_commit": "2024-08-29",
         "repo_last_release": "2024-08-29",
@@ -104,38 +96,15 @@
           "triannguyen"
         ],
         "repo_owner": "lukeed",
-        "repo_stars": 153,
+        "repo_stars": 154,
         "repo_url": "https://github.com/lukeed/escalade",
         "version": "3.2.0"
       }
     },
     {
-      "id": "escalade_sub_2",
-      "row": 2,
-      "kind": "subdivider",
-      "master_id": "escalade"
-    },
-    {
-      "id": "escalade_sub_3",
-      "row": 3,
-      "kind": "subdivider",
-      "master_id": "escalade"
-    },
-    {
-      "id": "escalade_sub_4",
-      "row": 4,
-      "kind": "subdivider",
-      "master_id": "escalade"
-    },
-    {
-      "id": "escalade_sub_5",
-      "row": 5,
-      "kind": "subdivider",
-      "master_id": "escalade"
-    },
-    {
       "id": "get-caller-file",
-      "row": 1,
+      "brittle": true,
+      "url": "https://github.com/stefanpenner/get-caller-file",
       "meta": {
         "author": "Stefan Penner",
         "description": "[![Build Status](https://travis-ci.org/stefanpenner/get-caller-file.svg?branch=master)](https://travis-ci.org/stefanpenner/get-caller-file) [![Build status](https://ci.appveyor.com/api/projects/status/ol2q94g1932cy14a/branch/master?svg=true)](https://ci.a",
@@ -157,37 +126,15 @@
       }
     },
     {
-      "id": "get-caller-file_sub_2",
-      "row": 2,
-      "kind": "subdivider",
-      "master_id": "get-caller-file"
-    },
-    {
-      "id": "get-caller-file_sub_3",
-      "row": 3,
-      "kind": "subdivider",
-      "master_id": "get-caller-file"
-    },
-    {
-      "id": "get-caller-file_sub_4",
-      "row": 4,
-      "kind": "subdivider",
-      "master_id": "get-caller-file"
-    },
-    {
-      "id": "get-caller-file_sub_5",
-      "row": 5,
-      "kind": "subdivider",
-      "master_id": "get-caller-file"
-    },
-    {
       "id": "get-east-asian-width",
-      "row": 4,
+      "brittle": true,
+      "url": "https://github.com/sindresorhus/get-east-asian-width",
       "meta": {
         "author": "Sindre Sorhus",
         "description": "Determine the East Asian Width of a Unicode character",
         "license": "MIT",
         "repo_archived": false,
+        "repo_description": "Determine the East Asian Width of a Unicode character",
         "repo_language": "JavaScript",
         "repo_last_commit": "2025-09-11",
         "repo_last_release": "2025-09-09",
@@ -196,25 +143,20 @@
           "fisker"
         ],
         "repo_owner": "sindresorhus",
-        "repo_stars": 43,
+        "repo_stars": 44,
         "repo_url": "https://github.com/sindresorhus/get-east-asian-width",
         "version": "1.4.0"
       }
     },
     {
-      "id": "get-east-asian-width_sub_5",
-      "row": 5,
-      "kind": "subdivider",
-      "master_id": "get-east-asian-width"
-    },
-    {
       "id": "string-width",
-      "row": 3,
+      "url": "https://github.com/sindresorhus/string-width",
       "meta": {
         "author": "Sindre Sorhus",
         "description": "Get the visual width of a string - the number of columns required to display it",
         "license": "MIT",
         "repo_archived": false,
+        "repo_description": "Get the visual width of a string - the number of columns required to display it",
         "repo_language": "JavaScript",
         "repo_last_commit": "2025-12-26",
         "repo_last_release": "2025-09-01",
@@ -226,19 +168,20 @@
           "adam2k"
         ],
         "repo_owner": "sindresorhus",
-        "repo_stars": 513,
+        "repo_stars": 514,
         "repo_url": "https://github.com/sindresorhus/string-width",
         "version": "8.1.0"
       }
     },
     {
       "id": "strip-ansi",
-      "row": 4,
+      "url": "https://github.com/chalk/strip-ansi",
       "meta": {
         "author": "Sindre Sorhus",
         "description": "Strip ANSI escape codes from a string",
         "license": "MIT",
         "repo_archived": false,
+        "repo_description": "Strip ANSI escape codes from a string",
         "repo_language": "JavaScript",
         "repo_last_commit": "2025-09-08",
         "repo_last_release": "2025-09-08",
@@ -250,19 +193,20 @@
           "kevva"
         ],
         "repo_owner": "chalk",
-        "repo_stars": 430,
+        "repo_stars": 431,
         "repo_url": "https://github.com/chalk/strip-ansi",
         "version": "7.1.2"
       }
     },
     {
       "id": "wrap-ansi",
-      "row": 2,
+      "url": "https://github.com/chalk/wrap-ansi",
       "meta": {
         "author": "Sindre Sorhus",
         "description": "Wordwrap a string with ANSI escape codes",
         "license": "MIT",
         "repo_archived": false,
+        "repo_description": "Wordwrap a string with ANSI escape codes",
         "repo_language": "JavaScript",
         "repo_last_commit": "2025-09-08",
         "repo_last_release": "2025-09-08",
@@ -281,12 +225,13 @@
     },
     {
       "id": "y18n",
-      "row": 1,
+      "url": "https://github.com/yargs/y18n",
       "meta": {
         "author": "Ben Coe",
         "description": "the bare-bones internationalization library used by yargs",
         "license": "ISC",
         "repo_archived": false,
+        "repo_description": ":ledger: the bare-bones i18n library used by yargs",
         "repo_language": "JavaScript",
         "repo_last_commit": "2025-12-15",
         "repo_last_release": "2021-04-07",
@@ -302,35 +247,13 @@
       }
     },
     {
-      "id": "y18n_sub_2",
-      "row": 2,
-      "kind": "subdivider",
-      "master_id": "y18n"
-    },
-    {
-      "id": "y18n_sub_3",
-      "row": 3,
-      "kind": "subdivider",
-      "master_id": "y18n"
-    },
-    {
-      "id": "y18n_sub_4",
-      "row": 4,
-      "kind": "subdivider",
-      "master_id": "y18n"
-    },
-    {
-      "id": "y18n_sub_5",
-      "row": 5,
-      "kind": "subdivider",
-      "master_id": "y18n"
-    },
-    {
       "id": "yargs",
+      "url": "https://github.com/yargs/yargs",
       "meta": {
         "description": "yargs the modern, pirate-themed, successor to optimist.",
         "license": "MIT",
         "repo_archived": false,
+        "repo_description": " yargs the modern, pirate-themed successor to optimist.",
         "repo_language": "JavaScript",
         "repo_last_commit": "2025-12-25",
         "repo_last_release": "2025-05-27",
@@ -341,19 +264,20 @@
           "mleguen"
         ],
         "repo_owner": "yargs",
-        "repo_stars": 11412,
+        "repo_stars": 11417,
         "repo_url": "https://github.com/yargs/yargs",
         "version": "18.0.0"
       }
     },
     {
       "id": "yargs-parser",
-      "row": 1,
+      "url": "https://github.com/yargs/yargs-parser",
       "meta": {
         "author": "Ben Coe",
         "description": "the mighty option parser used by yargs",
         "license": "ISC",
         "repo_archived": false,
+        "repo_description": ":muscle: the mighty option parser used by yargs",
         "repo_language": "JavaScript",
         "repo_last_commit": "2025-12-15",
         "repo_last_release": "2025-05-26",
@@ -367,33 +291,13 @@
         "repo_url": "https://github.com/yargs/yargs-parser",
         "version": "22.0.0"
       }
-    },
-    {
-      "id": "yargs-parser_sub_2",
-      "row": 2,
-      "kind": "subdivider",
-      "master_id": "yargs-parser"
-    },
-    {
-      "id": "yargs-parser_sub_3",
-      "row": 3,
-      "kind": "subdivider",
-      "master_id": "yargs-parser"
-    },
-    {
-      "id": "yargs-parser_sub_4",
-      "row": 4,
-      "kind": "subdivider",
-      "master_id": "yargs-parser"
-    },
-    {
-      "id": "yargs-parser_sub_5",
-      "row": 5,
-      "kind": "subdivider",
-      "master_id": "yargs-parser"
     }
   ],
   "edges": [
+    {
+      "from": "yargs",
+      "to": "y18n"
+    },
     {
       "from": "yargs",
       "to": "yargs-parser"
@@ -412,11 +316,7 @@
     },
     {
       "from": "yargs",
-      "to": "y18n"
-    },
-    {
-      "from": "cliui",
-      "to": "wrap-ansi"
+      "to": "string-width"
     },
     {
       "from": "string-width",
@@ -427,92 +327,32 @@
       "to": "strip-ansi"
     },
     {
-      "from": "wrap-ansi",
-      "to": "ansi-styles"
+      "from": "cliui",
+      "to": "string-width"
     },
     {
-      "from": "wrap-ansi",
-      "to": "string-width"
+      "from": "cliui",
+      "to": "strip-ansi"
+    },
+    {
+      "from": "cliui",
+      "to": "wrap-ansi"
     },
     {
       "from": "strip-ansi",
       "to": "ansi-regex"
     },
     {
-      "from": "escalade",
-      "to": "escalade_sub_2"
+      "from": "wrap-ansi",
+      "to": "strip-ansi"
     },
     {
-      "from": "escalade_sub_2",
-      "to": "escalade_sub_3"
+      "from": "wrap-ansi",
+      "to": "ansi-styles"
     },
     {
-      "from": "escalade_sub_3",
-      "to": "escalade_sub_4"
-    },
-    {
-      "from": "escalade_sub_4",
-      "to": "escalade_sub_5"
-    },
-    {
-      "from": "y18n",
-      "to": "y18n_sub_2"
-    },
-    {
-      "from": "y18n_sub_2",
-      "to": "y18n_sub_3"
-    },
-    {
-      "from": "y18n_sub_3",
-      "to": "y18n_sub_4"
-    },
-    {
-      "from": "y18n_sub_4",
-      "to": "y18n_sub_5"
-    },
-    {
-      "from": "get-caller-file",
-      "to": "get-caller-file_sub_2"
-    },
-    {
-      "from": "get-caller-file_sub_2",
-      "to": "get-caller-file_sub_3"
-    },
-    {
-      "from": "get-caller-file_sub_3",
-      "to": "get-caller-file_sub_4"
-    },
-    {
-      "from": "get-caller-file_sub_4",
-      "to": "get-caller-file_sub_5"
-    },
-    {
-      "from": "get-east-asian-width",
-      "to": "get-east-asian-width_sub_5"
-    },
-    {
-      "from": "ansi-styles",
-      "to": "ansi-styles_sub_4"
-    },
-    {
-      "from": "ansi-styles_sub_4",
-      "to": "ansi-styles_sub_5"
-    },
-    {
-      "from": "yargs-parser",
-      "to": "yargs-parser_sub_2"
-    },
-    {
-      "from": "yargs-parser_sub_2",
-      "to": "yargs-parser_sub_3"
-    },
-    {
-      "from": "yargs-parser_sub_3",
-      "to": "yargs-parser_sub_4"
-    },
-    {
-      "from": "yargs-parser_sub_4",
-      "to": "yargs-parser_sub_5"
+      "from": "wrap-ansi",
+      "to": "string-width"
     }
   ]
 }

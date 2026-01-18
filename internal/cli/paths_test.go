@@ -25,6 +25,15 @@ func TestConfigDir(t *testing.T) {
 }
 
 func TestCacheDir(t *testing.T) {
+	// Clear XDG_CACHE_HOME to test default behavior
+	oldXdg := os.Getenv("XDG_CACHE_HOME")
+	os.Unsetenv("XDG_CACHE_HOME")
+	defer func() {
+		if oldXdg != "" {
+			os.Setenv("XDG_CACHE_HOME", oldXdg)
+		}
+	}()
+
 	dir, err := cacheDir()
 	if err != nil {
 		t.Fatalf("cacheDir() error: %v", err)
@@ -40,28 +49,61 @@ func TestCacheDir(t *testing.T) {
 		t.Errorf("cacheDir() = %q, should be under home %q", dir, home)
 	}
 
-	// Should end with "cache" (under .stacktower)
-	if !strings.HasSuffix(dir, "cache") {
-		t.Errorf("cacheDir() = %q, should end with 'cache'", dir)
+	// Should end with "stacktower"
+	if !strings.HasSuffix(dir, "stacktower") {
+		t.Errorf("cacheDir() = %q, should end with 'stacktower'", dir)
 	}
 
-	// Should contain ".stacktower" in path
-	if !strings.Contains(dir, ".stacktower") {
-		t.Errorf("cacheDir() = %q, should contain '.stacktower'", dir)
+	// Should use XDG standard: ~/.cache/stacktower
+	if !strings.Contains(dir, ".cache") {
+		t.Errorf("cacheDir() = %q, should contain '.cache'", dir)
 	}
 }
 
 func TestCacheDirStructure(t *testing.T) {
+	// Clear XDG_CACHE_HOME to test default behavior
+	oldXdg := os.Getenv("XDG_CACHE_HOME")
+	os.Unsetenv("XDG_CACHE_HOME")
+	defer func() {
+		if oldXdg != "" {
+			os.Setenv("XDG_CACHE_HOME", oldXdg)
+		}
+	}()
+
 	dir, err := cacheDir()
 	if err != nil {
 		t.Fatalf("cacheDir() error: %v", err)
 	}
 
-	// Verify the expected structure: $HOME/.stacktower/cache
+	// Verify the expected structure: $HOME/.cache/stacktower
 	home, _ := os.UserHomeDir()
-	expected := filepath.Join(home, ".stacktower", "cache")
+	expected := filepath.Join(home, ".cache", "stacktower")
 	if dir != expected {
 		t.Errorf("cacheDir() = %q, want %q", dir, expected)
+	}
+}
+
+func TestCacheDirXDG(t *testing.T) {
+	// Test XDG_CACHE_HOME override
+	customCache := "/tmp/custom-cache"
+	oldXdg := os.Getenv("XDG_CACHE_HOME")
+	os.Setenv("XDG_CACHE_HOME", customCache)
+	defer func() {
+		if oldXdg != "" {
+			os.Setenv("XDG_CACHE_HOME", oldXdg)
+		} else {
+			os.Unsetenv("XDG_CACHE_HOME")
+		}
+	}()
+
+	dir, err := cacheDir()
+	if err != nil {
+		t.Fatalf("cacheDir() error: %v", err)
+	}
+
+	expected := filepath.Join(customCache, "stacktower")
+	if dir != expected {
+		t.Errorf("cacheDir() with XDG_CACHE_HOME = %q, want %q", dir, expected)
 	}
 }
 
@@ -79,15 +121,24 @@ func TestSessionsDir(t *testing.T) {
 }
 
 func TestPathsConsistency(t *testing.T) {
-	// All paths should share the same base config directory
+	// Config-related paths should share the same base config directory
 	config, _ := configDir()
-	cache, _ := cacheDir()
 	sessions, _ := sessionsDir()
 
-	if !strings.HasPrefix(cache, config) {
-		t.Errorf("cacheDir() = %q should be under configDir() = %q", cache, config)
-	}
+	// Sessions should be under config directory
 	if !strings.HasPrefix(sessions, config) {
 		t.Errorf("sessionsDir() = %q should be under configDir() = %q", sessions, config)
+	}
+
+	// Cache is separate (XDG standard), should NOT be under config
+	cache, _ := cacheDir()
+	home, _ := os.UserHomeDir()
+
+	// Cache should be under home but not under .stacktower config
+	if !strings.HasPrefix(cache, home) {
+		t.Errorf("cacheDir() = %q should be under home %q", cache, home)
+	}
+	if strings.HasPrefix(cache, config) {
+		t.Errorf("cacheDir() = %q should NOT be under configDir() = %q (cache uses XDG standard)", cache, config)
 	}
 }

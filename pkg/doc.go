@@ -10,7 +10,7 @@
 //  2. [infra] - Infrastructure (caching, storage, queues, sessions)
 //  3. [integrations] - External API clients (PyPI, npm, GitHub, etc.)
 //  4. [pipeline] - Orchestration (parse → layout → render)
-//  5. [io] - Data import/export (JSON node-link format)
+//  5. [dto] - Data Transfer Objects for serialization (graphs, layouts)
 //
 // # Architecture
 //
@@ -103,9 +103,9 @@
 //
 // [render] - Top-level utilities for format conversion (SVG to PDF/PNG).
 //
-// ## Data Import/Export
+// ## Data Transfer Objects
 //
-// [io] - Import/export dependency graphs in JSON node-link format.
+// [dto] - Serialization types for graphs and layouts (JSON node-link format).
 //
 // ## Infrastructure
 //
@@ -171,7 +171,7 @@
 // [core/dag]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/dag
 // [core/render]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/render
 // [infra]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/infra
-// [infra/storage]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/infra/storage
+// [infra/storage]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/storage
 // [integrations]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/integrations
 // [dag/transform]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/dag/transform
 // [dag/perm]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/dag/perm
@@ -184,9 +184,9 @@
 // [render/tower/styles]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/render/tower/styles
 // [render/tower/feature]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/render/tower/feature
 // [render/nodelink]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/render/nodelink
-// [io]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/io
+// [dto]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/dto
 // [pipeline]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/pipeline
-// [storage]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/infra/storage
+// [storage]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/storage
 // [queue]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/infra/queue
 // [session]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/infra/session
 // [common]: https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/infra/common

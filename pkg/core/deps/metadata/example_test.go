@@ -8,17 +8,17 @@ import (
 	"github.com/matzehuels/stacktower/pkg/core/deps"
 	"github.com/matzehuels/stacktower/pkg/core/deps/metadata"
 	"github.com/matzehuels/stacktower/pkg/core/deps/python"
-	"github.com/matzehuels/stacktower/pkg/infra/storage"
+	"github.com/matzehuels/stacktower/pkg/cache"
 )
 
 func ExampleNewGitHub() {
 	// Create a GitHub metadata provider with authentication
 	// Use an empty string for unauthenticated requests (lower rate limits)
 	token := "" // or os.Getenv("GITHUB_TOKEN")
-	provider := metadata.NewGitHub(storage.NullBackend{}, token, 24*time.Hour)
+	provider := metadata.NewGitHub(cache.NewNullCache(), token, 24*time.Hour)
 
 	// Use with resolver options
-	resolver, _ := python.Language.Resolver(storage.NullBackend{})
+	resolver, _ := python.Language.Resolver(cache.NewNullCache())
 	opts := deps.Options{
 		MetadataProviders: []deps.MetadataProvider{provider},
 		MaxDepth:          5,
@@ -39,7 +39,7 @@ func ExampleNewGitHub() {
 func ExampleGitHub_Enrich() {
 	// Enrich a single package with GitHub metadata
 	token := "" // or os.Getenv("GITHUB_TOKEN")
-	provider := metadata.NewGitHub(storage.NullBackend{}, token, 24*time.Hour)
+	provider := metadata.NewGitHub(cache.NewNullCache(), token, 24*time.Hour)
 
 	// Package reference with GitHub URL
 	pkg := &deps.PackageRef{
@@ -68,13 +68,13 @@ func ExampleGitHub_Enrich() {
 
 func ExampleNewComposite() {
 	// Combine multiple metadata providers
-	github := metadata.NewGitHub(storage.NullBackend{}, "", 24*time.Hour)
+	github := metadata.NewGitHub(cache.NewNullCache(), "", 24*time.Hour)
 
 	// Composite merges results from all providers
 	composite := metadata.NewComposite(github)
 
 	// Use in resolver options
-	resolver, _ := python.Language.Resolver(storage.NullBackend{})
+	resolver, _ := python.Language.Resolver(cache.NewNullCache())
 	opts := deps.Options{
 		MetadataProviders: []deps.MetadataProvider{composite},
 		MaxDepth:          3,

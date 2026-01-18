@@ -2,12 +2,13 @@
   "nodes": [
     {
       "id": "blinker",
-      "row": 1,
+      "url": "https://github.com/pallets-eco/blinker",
       "meta": {
         "author": "Jason Kirtland",
         "description": "Fast, simple object-to-object and broadcast signaling",
         "license": "MIT License",
         "repo_archived": false,
+        "repo_description": "A fast Python in-process signal/event dispatching system.",
         "repo_language": "Python",
         "repo_last_commit": "2025-11-19",
         "repo_last_release": "2024-11-08",
@@ -18,7 +19,7 @@
           "pgjones"
         ],
         "repo_owner": "pallets-eco",
-        "repo_stars": 2010,
+        "repo_stars": 2012,
         "repo_topics": [
           "blinker",
           "python",
@@ -29,19 +30,14 @@
       }
     },
     {
-      "id": "blinker_sub_2",
-      "row": 2,
-      "kind": "subdivider",
-      "master_id": "blinker"
-    },
-    {
       "id": "click",
-      "row": 1,
+      "url": "https://github.com/pallets/click",
       "meta": {
         "description": "Composable command line interface toolkit",
         "repo_archived": false,
+        "repo_description": "Python composable command line interface toolkit",
         "repo_language": "Python",
-        "repo_last_commit": "2025-12-24",
+        "repo_last_commit": "2025-12-31",
         "repo_last_release": "2025-11-15",
         "repo_maintainers": [
           "davidism",
@@ -50,7 +46,7 @@
           "untitaker"
         ],
         "repo_owner": "pallets",
-        "repo_stars": 17080,
+        "repo_stars": 17088,
         "repo_topics": [
           "cli",
           "click",
@@ -63,11 +59,12 @@
     },
     {
       "id": "colorama",
-      "row": 2,
+      "url": "https://github.com/tartley/colorama",
       "meta": {
         "description": "Cross-platform colored terminal text.",
         "license": "BSD License",
         "repo_archived": false,
+        "repo_description": "Simple cross-platform colored terminal text in Python",
         "repo_language": "Python",
         "repo_last_commit": "2025-07-09",
         "repo_maintainers": [
@@ -85,9 +82,11 @@
     },
     {
       "id": "flask",
+      "url": "https://github.com/pallets/flask",
       "meta": {
         "description": "A simple framework for building complex web applications.",
         "repo_archived": false,
+        "repo_description": "The Python micro framework for building web applications.",
         "repo_language": "Python",
         "repo_last_commit": "2025-11-28",
         "repo_last_release": "2025-08-19",
@@ -99,7 +98,7 @@
           "greyli"
         ],
         "repo_owner": "pallets",
-        "repo_stars": 70971,
+        "repo_stars": 71007,
         "repo_topics": [
           "flask",
           "jinja",
@@ -115,12 +114,13 @@
     },
     {
       "id": "importlib-metadata",
-      "row": 1,
+      "url": "https://github.com/python/importlib_metadata",
       "meta": {
         "description": "Read metadata from Python packages",
         "repo_archived": false,
+        "repo_description": "Library to access metadata for Python packages",
         "repo_language": "Python",
-        "repo_last_commit": "2025-12-26",
+        "repo_last_commit": "2025-12-29",
         "repo_last_release": "2025-12-21",
         "repo_maintainers": [
           "jaraco",
@@ -137,11 +137,12 @@
     },
     {
       "id": "itsdangerous",
-      "row": 1,
+      "url": "https://github.com/pallets/itsdangerous",
       "meta": {
         "description": "Safely pass data to untrusted environments and back.",
         "license": "BSD License",
         "repo_archived": false,
+        "repo_description": "Safely pass trusted data to untrusted environments and back.",
         "repo_language": "Python",
         "repo_last_commit": "2025-06-14",
         "repo_last_release": "2024-04-16",
@@ -150,7 +151,7 @@
           "mitsuhiko"
         ],
         "repo_owner": "pallets",
-        "repo_stars": 3095,
+        "repo_stars": 3098,
         "repo_topics": [
           "hmac",
           "itsdangerous",
@@ -164,18 +165,13 @@
       }
     },
     {
-      "id": "itsdangerous_sub_2",
-      "row": 2,
-      "kind": "subdivider",
-      "master_id": "itsdangerous"
-    },
-    {
       "id": "jinja2",
-      "row": 1,
+      "url": "https://github.com/pallets/jinja",
       "meta": {
         "description": "A very fast and expressive template engine.",
         "license": "BSD License",
         "repo_archived": false,
+        "repo_description": "A very fast and expressive template engine.",
         "repo_language": "Python",
         "repo_last_commit": "2025-06-14",
         "repo_last_release": "2025-03-05",
@@ -185,7 +181,7 @@
           "untitaker"
         ],
         "repo_owner": "pallets",
-        "repo_stars": 11348,
+        "repo_stars": 11357,
         "repo_topics": [
           "jinja",
           "jinja2",
@@ -200,10 +196,11 @@
     },
     {
       "id": "markupsafe",
-      "row": 2,
+      "url": "https://github.com/pallets/markupsafe",
       "meta": {
         "description": "Safely add untrusted strings to HTML/XML markup.",
         "repo_archived": false,
+        "repo_description": "Safely add untrusted strings to HTML/XML markup.",
         "repo_language": "Python",
         "repo_last_commit": "2025-09-27",
         "repo_last_release": "2025-09-27",
@@ -228,12 +225,13 @@
     },
     {
       "id": "werkzeug",
-      "row": 1,
+      "url": "https://github.com/pallets/werkzeug",
       "meta": {
         "description": "The comprehensive WSGI web application library.",
         "repo_archived": false,
+        "repo_description": "The comprehensive WSGI web application library.",
         "repo_language": "Python",
-        "repo_last_commit": "2025-12-02",
+        "repo_last_commit": "2026-01-02",
         "repo_last_release": "2025-11-29",
         "repo_maintainers": [
           "mitsuhiko",
@@ -242,7 +240,7 @@
           "DasIch"
         ],
         "repo_owner": "pallets",
-        "repo_stars": 6827,
+        "repo_stars": 6828,
         "repo_topics": [
           "http",
           "pallets",
@@ -256,7 +254,7 @@
     },
     {
       "id": "zipp",
-      "row": 2,
+      "url": "https://github.com/jaraco/zipp",
       "meta": {
         "description": "Backport of pathlib-compatible object wrapper for zip files",
         "repo_archived": false,
@@ -300,18 +298,14 @@
     },
     {
       "from": "flask",
-      "to": "werkzeug"
-    },
-    {
-      "from": "importlib-metadata",
-      "to": "zipp"
-    },
-    {
-      "from": "jinja2",
       "to": "markupsafe"
     },
     {
-      "from": "werkzeug",
+      "from": "flask",
+      "to": "werkzeug"
+    },
+    {
+      "from": "jinja2",
       "to": "markupsafe"
     },
     {
@@ -319,12 +313,12 @@
       "to": "colorama"
     },
     {
-      "from": "itsdangerous",
-      "to": "itsdangerous_sub_2"
+      "from": "importlib-metadata",
+      "to": "zipp"
     },
     {
-      "from": "blinker",
-      "to": "blinker_sub_2"
+      "from": "werkzeug",
+      "to": "markupsafe"
     }
   ]
 }

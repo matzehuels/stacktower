@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900.0 780.0" width="900" height="780">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900.0 540.0" width="900" height="540">
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;display=swap');
@@ -8,6 +8,7 @@
 " x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>
     </pattern>
   </defs>
+  <g transform="translate(0, 40.0)">
   <a href="https://github.com/crossbeam-rs/crossbeam" target="_blank"><path id="block-crossbeam-deque" class="block" d="M 454.93 221.04 Q 455.00 207.09 494.50 207.72 Q 534.00 208.36 573.50 205.89 Q 613.00 203.42 652.50 204.14 Q 692.00 204.87 731.50 205.57 Q 771.00 206.27 810.50 206.15 Q 850.00 206.02 851.16 220.51 Q 852.31 235.00 849.90 250.00 Q 847.49 265.00 847.78 280.00 Q 848.08 295.00 809.54 296.06 Q 771.00 297.12 731.50 295.25 Q 692.00 293.38 652.50 294.34 Q 613.00 295.30 573.50 294.96 Q 534.00 294.61 494.50 295.22 Q 455.00 295.82 455.81 280.41 Q 456.63 265.00 455.74 250.00 Q 454.85 235.00 454.93 221.04 Z" fill="#e9e9e9" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.298 652.50 250.00)"/></a>
   <a href="https://github.com/crossbeam-rs/crossbeam" target="_blank"><path id="block-crossbeam-epoch" class="block" d="M 512.83 310.80 Q 511.28 296.60 546.58 294.03 Q 581.89 291.45 617.19 292.92 Q 652.50 294.39 687.81 294.91 Q 723.11 295.43 758.42 293.73 Q 793.72 292.02 795.22 308.51 Q 796.72 325.00 794.52 340.00 Q 792.33 355.00 794.30 370.00 Q 796.26 385.00 759.69 383.74 Q 723.11 382.49 687.81 382.39 Q 652.50 382.28 617.19 381.80 Q 581.89 381.31 546.58 384.06 Q 511.28 386.81 511.65 370.90 Q 512.02 355.00 513.20 340.00 Q 514.38 325.00 512.83 310.80 Z" fill="#c2c2c2" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.034 652.50 340.00)"/></a>
   <a href="https://github.com/crossbeam-rs/crossbeam" target="_blank"><path id="block-crossbeam-utils" class="block" d="M 453.76 401.12 Q 455.00 387.23 494.50 386.02 Q 534.00 384.80 573.50 384.48 Q 613.00 384.16 652.50 383.91 Q 692.00 383.65 731.50 382.37 Q 771.00 381.10 810.50 384.93 Q 850.00 388.75 851.15 401.88 Q 852.31 415.00 849.40 430.00 Q 846.49 445.00 847.22 460.00 Q 847.94 475.00 809.47 474.92 Q 771.00 474.84 731.50 474.08 Q 692.00 473.32 652.50 475.16 Q 613.00 477.00 573.50 474.47 Q 534.00 471.94 494.50 472.23 Q 455.00 472.51 454.39 458.75 Q 453.77 445.00 453.15 430.00 Q 452.52 415.00 453.76 401.12 Z" fill="#f4f4f4" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.792 652.50 430.00)"/></a>
@@ -38,6 +39,7 @@
   <a href="https://github.com/rayon-rs/rayon" target="_blank">    <rect x="598.50" y="148.00" width="108.00" height="24.00" fill="#d6d6d6"/>
     <text x="652.50" y="160.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333">rayon-core</text>
 </a>  </g>
+  </g>
   <style>
     .block { transition: stroke-width 0.2s ease; }
     .block.highlight { stroke-width: 4; }
@@ -57,49 +59,8 @@
       el.addEventListener('mouseenter', () => highlight([el.id.replace('block-', '')]));
       el.addEventListener('mouseleave', clearHighlight);
     });
-  ]]></script>
-  <text x="450.0" y="564.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
-  <path d="M 322.0 580.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <a href="https://github.com/taiki-e" target="_blank" class="maintainer-link" data-packages="crossbeam-utils,crossbeam-epoch,crossbeam-deque">
-    <text x="114.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#1 @taiki-e</text>
-  </a>
-  <text class="package-entry" data-package="crossbeam-utils" x="114.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-utils</text>
-  <text class="package-entry" data-package="crossbeam-epoch" x="114.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-epoch</text>
-  <text class="package-entry" data-package="crossbeam-deque" x="114.0" y="685.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-deque</text>
-  <a href="https://github.com/Amanieu" target="_blank" class="maintainer-link" data-packages="crossbeam-utils,crossbeam-epoch,crossbeam-deque">
-    <text x="282.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#2 @Amanieu</text>
-  </a>
-  <text class="package-entry" data-package="crossbeam-utils" x="282.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-utils</text>
-  <text class="package-entry" data-package="crossbeam-epoch" x="282.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-epoch</text>
-  <text class="package-entry" data-package="crossbeam-deque" x="282.0" y="685.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-deque</text>
-  <a href="https://github.com/aturon" target="_blank" class="maintainer-link" data-packages="crossbeam-utils,crossbeam-epoch,crossbeam-deque">
-    <text x="450.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#3 @aturon</text>
-  </a>
-  <text class="package-entry" data-package="crossbeam-utils" x="450.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-utils</text>
-  <text class="package-entry" data-package="crossbeam-epoch" x="450.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-epoch</text>
-  <text class="package-entry" data-package="crossbeam-deque" x="450.0" y="685.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-deque</text>
-  <a href="https://github.com/jeehoonkang" target="_blank" class="maintainer-link" data-packages="crossbeam-utils,crossbeam-epoch,crossbeam-deque">
-    <text x="618.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#4 @jeehoonkang</text>
-  </a>
-  <text class="package-entry" data-package="crossbeam-utils" x="618.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-utils</text>
-  <text class="package-entry" data-package="crossbeam-epoch" x="618.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-epoch</text>
-  <text class="package-entry" data-package="crossbeam-deque" x="618.0" y="685.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">crossbeam-deque</text>
-  <a href="https://github.com/cuviper" target="_blank" class="maintainer-link" data-packages="either,rayon-core">
-    <text x="786.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#5 @cuviper</text>
-  </a>
-  <text class="package-entry" data-package="either" x="786.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">either</text>
-  <text class="package-entry" data-package="rayon-core" x="786.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">rayon-core</text>
-  <style>
-    .maintainer-link text { cursor: pointer; }
-    .maintainer-link:hover text { text-decoration: underline; }
-  </style>
-  <script type="text/javascript"><![CDATA[
-    document.querySelectorAll('.maintainer-link').forEach(el => {
-      el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
-      el.addEventListener('mouseleave', clearHighlight);
-    });
-    document.querySelectorAll('.package-entry').forEach(el => {
-      el.addEventListener('mouseenter', () => highlight([el.dataset.package]));
+    document.querySelectorAll('.block-text').forEach(el => {
+      el.addEventListener('mouseenter', () => highlight([el.dataset.block]));
       el.addEventListener('mouseleave', clearHighlight);
     });
   ]]></script>
@@ -170,4 +131,18 @@
       el.addEventListener('mouseleave', () => popup.setAttribute('visibility', 'hidden'));
     });
   ]]></script>
+  <a href="https://www.stacktower.io" target="_blank" rel="noopener">
+    <g transform="translate(390.0, 15.0)" class="watermark">
+      <g transform="scale(0.67)">
+      <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+      <text x="20" y="11" font-family="sans-serif" font-size="14" font-weight="500" fill="#000">stacktower.io</text>
+    </g>
+  </a>
+  <style>
+    .watermark { transition: opacity 0.2s ease; opacity: 1; }
+    .watermark:hover { opacity: 0.7; }
+  </style>
 </svg>

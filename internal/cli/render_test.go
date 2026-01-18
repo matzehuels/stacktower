@@ -3,6 +3,7 @@ package cli
 import (
 	"testing"
 
+	"github.com/matzehuels/stacktower/pkg/dto"
 	"github.com/matzehuels/stacktower/pkg/pipeline"
 )
 
@@ -103,11 +104,11 @@ func TestValidFormatsMap(t *testing.T) {
 }
 
 func TestStyleConstants(t *testing.T) {
-	if pipeline.StyleSimple != "simple" {
-		t.Errorf("pipeline.StyleSimple = %q, want %q", pipeline.StyleSimple, "simple")
+	if dto.StyleSimple != "simple" {
+		t.Errorf("dto.StyleSimple = %q, want %q", dto.StyleSimple, "simple")
 	}
-	if pipeline.StyleHanddrawn != "handdrawn" {
-		t.Errorf("pipeline.StyleHanddrawn = %q, want %q", pipeline.StyleHanddrawn, "handdrawn")
+	if dto.StyleHanddrawn != "handdrawn" {
+		t.Errorf("dto.StyleHanddrawn = %q, want %q", dto.StyleHanddrawn, "handdrawn")
 	}
 }
 

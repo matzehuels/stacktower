@@ -3,13 +3,12 @@ name: Release
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
   workflow_dispatch:
     # Manual trigger for re-running failed releases (requires existing tag)
 
 permissions:
   contents: write
-  packages: write  # For pushing to GHCR
 
 jobs:
   release:
@@ -21,20 +20,8 @@ jobs:
 
       - uses: actions/setup-go@v5
         with:
-          go-version-file: 'go.mod'
+          go-version-file: "go.mod"
           cache: true
-
-      # Setup Docker Buildx for multi-arch builds
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      # Login to GitHub Container Registry
-      - name: Login to GHCR
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6

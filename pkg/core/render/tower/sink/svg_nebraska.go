@@ -16,7 +16,7 @@ const (
 	nebraskaTitleY         = 40.0
 	nebraskaUnderlineY     = 16.0
 	nebraskaEntryStartY    = 80.0
-	nebraskaEntryHeight    = 140.0
+	nebraskaEntryHeight    = 155.0
 
 	fontFamily = `'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif`
 )
@@ -35,49 +35,63 @@ const nebraskaJS = `
       el.addEventListener('mouseleave', clearHighlight);
     });`
 
-func calcNebraskaPanelHeight(w, h float64) float64 {
-	if h > w {
-		return nebraskaPanelPortrait
-	}
-	return nebraskaPanelLandscape
-}
-
 func renderNebraskaPanel(buf *bytes.Buffer, frameWidth, frameHeight float64, rankings []feature.NebraskaRanking) {
-	panelY := frameHeight + nebraskaPanelPadding
-	centerX := frameWidth / 2
-
-	fmt.Fprintf(buf, `  <text x="%.1f" y="%.1f" text-anchor="middle" font-family="%s" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>`+"\n",
-		centerX, panelY+nebraskaTitleY, fontFamily)
-	fmt.Fprintf(buf, `  <path d="M %.1f %.1f q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>`+"\n",
-		centerX-128, panelY+nebraskaTitleY+nebraskaUnderlineY)
-
-	numEntries := min(len(rankings), 5)
+	numEntries := min(len(rankings), 6)
 	padding := 30.0
-	isPortrait := frameHeight > frameWidth
+	isLandscape := frameWidth > frameHeight
 
-	if isPortrait {
+	if isLandscape {
+		// Panel on the right side: 2 columns, 3 rows
+		panelX := frameWidth + nebraskaPanelPadding
+		panelWidth := nebraskaPanelLandscape - 2*nebraskaPanelPadding
+		centerX := panelX + panelWidth/2
+
+		// Title at top of panel
+		titleY := watermarkMargin + nebraskaTitleY
+		fmt.Fprintf(buf, `  <text x="%.1f" y="%.1f" text-anchor="middle" font-family="%s" font-size="24" fill="#333" font-weight="bold">Nebraska Guy</text>`+"\n",
+			centerX, titleY, fontFamily)
+		fmt.Fprintf(buf, `  <text x="%.1f" y="%.1f" text-anchor="middle" font-family="%s" font-size="24" fill="#333" font-weight="bold">Ranking</text>`+"\n",
+			centerX, titleY+28, fontFamily)
+		fmt.Fprintf(buf, `  <path d="M %.1f %.1f q 30 2 60 -1 t 65 2" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>`+"\n",
+			centerX-63, titleY+28+nebraskaUnderlineY)
+
+		// 2 columns, 3 rows grid with margins
 		cols := 2
-		availableWidth := frameWidth - 2*padding
-		entryWidth := availableWidth / float64(cols)
+		colMargin := 12.0
+		rowMargin := 5.0
+		entryWidth := (panelWidth - colMargin) / float64(cols)
+		entryHeight := 145.0 + rowMargin
+		startY := titleY + 70
 
 		for i := 0; i < numEntries; i++ {
-			row, col := i/cols, i%cols
-			var entryX float64
-			if row == 2 && numEntries == 5 {
-				entryX = (frameWidth - entryWidth) / 2
-			} else {
-				entryX = padding + float64(col)*entryWidth
-			}
-			entryY := panelY + nebraskaEntryStartY + float64(row)*nebraskaEntryHeight
+			row := i / cols
+			col := i % cols
+			entryX := panelX + float64(col)*(entryWidth+colMargin)
+			entryY := startY + float64(row)*entryHeight
 			renderNebraskaEntry(buf, rankings[i], i, entryX, entryY, entryWidth)
 		}
 	} else {
+		// Panel below tower (portrait mode): 3 columns, 2 rows
+		panelY := frameHeight + watermarkMargin + nebraskaPanelPadding
+		centerX := frameWidth / 2
+
+		fmt.Fprintf(buf, `  <text x="%.1f" y="%.1f" text-anchor="middle" font-family="%s" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>`+"\n",
+			centerX, panelY+nebraskaTitleY, fontFamily)
+		fmt.Fprintf(buf, `  <path d="M %.1f %.1f q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>`+"\n",
+			centerX-128, panelY+nebraskaTitleY+nebraskaUnderlineY)
+
+		// 3 columns, 2 rows grid with margins
+		cols := 3
+		colMargin := 16.0
+		rowMargin := 8.0
 		availableWidth := frameWidth - 2*padding
-		entryWidth := availableWidth / float64(numEntries)
-		entryY := panelY + nebraskaEntryStartY
+		entryWidth := (availableWidth - float64(cols-1)*colMargin) / float64(cols)
 
 		for i := 0; i < numEntries; i++ {
-			entryX := padding + float64(i)*entryWidth
+			row := i / cols
+			col := i % cols
+			entryX := padding + float64(col)*(entryWidth+colMargin)
+			entryY := panelY + nebraskaEntryStartY + float64(row)*(nebraskaEntryHeight+rowMargin)
 			renderNebraskaEntry(buf, rankings[i], i, entryX, entryY, entryWidth)
 		}
 	}
@@ -97,7 +111,7 @@ func renderNebraskaEntry(buf *bytes.Buffer, r feature.NebraskaRanking, idx int, 
 	// Maintainer name with link
 	fmt.Fprintf(buf, `  <a href="https://github.com/%s" target="_blank" class="maintainer-link" data-packages="%s">`+"\n",
 		r.Maintainer, styles.EscapeXML(strings.Join(allPkgIDs, ",")))
-	fmt.Fprintf(buf, `    <text x="%.1f" y="%.1f" text-anchor="middle" font-family="%s" font-size="16" fill="#0366d6" font-weight="bold">#%d @%s</text>`+"\n",
+	fmt.Fprintf(buf, `    <text x="%.1f" y="%.1f" text-anchor="middle" font-family="%s" font-size="18" fill="#333" font-weight="bold">#%d @%s</text>`+"\n",
 		centerX, y+20, fontFamily, idx+1, styles.EscapeXML(r.Maintainer))
 	buf.WriteString("  </a>\n")
 
@@ -110,12 +124,12 @@ func renderNebraskaEntry(buf *bytes.Buffer, r feature.NebraskaRanking, idx int, 
 		if len(displayPkg) > 25 {
 			displayPkg = displayPkg[:22] + "..."
 		}
-		fmt.Fprintf(buf, `  <text class="package-entry" data-package="%s" x="%.1f" y="%.1f" text-anchor="middle" font-family="%s" font-size="12" fill="#666" style="cursor:pointer">%s</text>`+"\n",
+		fmt.Fprintf(buf, `  <text class="package-entry" data-package="%s" x="%.1f" y="%.1f" text-anchor="middle" font-family="%s" font-size="14" fill="#666" style="cursor:pointer">%s</text>`+"\n",
 			styles.EscapeXML(pkg), centerX, lineY, fontFamily, styles.EscapeXML(displayPkg))
-		lineY += 18
+		lineY += 20
 	}
 	if extra := len(r.Packages) - displayed; extra > 0 {
-		fmt.Fprintf(buf, `  <text x="%.1f" y="%.1f" text-anchor="middle" font-family="%s" font-size="12" fill="#aaa">+%d more</text>`+"\n",
+		fmt.Fprintf(buf, `  <text x="%.1f" y="%.1f" text-anchor="middle" font-family="%s" font-size="14" fill="#aaa">+%d more</text>`+"\n",
 			centerX, lineY, fontFamily, extra)
 	}
 }

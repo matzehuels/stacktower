@@ -8,43 +8,45 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/infra/storage"
+	"github.com/matzehuels/stacktower/pkg/cache"
 )
 
 // Client provides shared HTTP functionality for all registry API clients.
 // It handles caching, retry logic, and common request headers.
 //
 // Client is safe for concurrent use by multiple goroutines.
-// The underlying HTTP client, backend, and headers are all goroutine-safe.
+// The underlying HTTP client, cache, and headers are all goroutine-safe.
 //
 // Zero values: Do not use an uninitialized Client; always create via [NewClient].
 type Client struct {
 	http      *http.Client
-	backend   storage.Backend
+	cache     cache.Cache
+	keyer     cache.Keyer
 	namespace string        // Cache key prefix (e.g., "pypi:", "npm:")
 	ttl       time.Duration // Cache TTL
 	headers   map[string]string
 }
 
-// NewClient creates a Client with the given backend and default headers.
+// NewClient creates a Client with the given cache and default headers.
 // Headers are applied to all requests made through this client.
 //
 // Parameters:
-//   - backend: Backend for caching HTTP responses (must not be nil).
+//   - c: Cache for caching HTTP responses (must not be nil).
 //   - namespace: Cache key prefix for this client (e.g., "pypi:", "npm:").
 //   - ttl: How long to cache responses.
 //   - headers: Default HTTP headers for all requests. Pass nil if no default headers
 //     are needed. Common examples: "Authorization", "User-Agent", "Accept".
 //
 // The returned Client is safe for concurrent use by multiple goroutines.
-// Panics if backend is nil.
-func NewClient(backend storage.Backend, namespace string, ttl time.Duration, headers map[string]string) *Client {
-	if backend == nil {
-		panic("backend must not be nil")
+// Panics if c is nil.
+func NewClient(c cache.Cache, namespace string, ttl time.Duration, headers map[string]string) *Client {
+	if c == nil {
+		panic("cache must not be nil")
 	}
 	return &Client{
 		http:      NewHTTPClient(),
-		backend:   backend,
+		cache:     c,
+		keyer:     cache.NewDefaultKeyer(),
 		namespace: namespace,
 		ttl:       ttl,
 		headers:   headers,
@@ -78,19 +80,21 @@ func NewClient(backend storage.Backend, namespace string, ttl time.Duration, hea
 func (c *Client) Cached(ctx context.Context, key string, refresh bool, v any, fetch func() error) error {
 	if !refresh {
 		// Try to get from cache
-		data, hit, _ := c.backend.GetHTTP(ctx, c.namespace, key)
+		cacheKey := c.keyer.HTTPKey(c.namespace, key)
+		data, hit, _ := c.cache.Get(ctx, cacheKey)
 		if hit {
 			if err := json.Unmarshal(data, v); err == nil {
 				return nil
 			}
 		}
 	}
-	if err := storage.RetryWithBackoff(ctx, fetch); err != nil {
+	if err := cache.RetryWithBackoff(ctx, fetch); err != nil {
 		return err
 	}
 	// Store in cache (ignore errors)
 	if data, err := json.Marshal(v); err == nil {
-		_ = c.backend.SetHTTP(ctx, c.namespace, key, data, c.ttl)
+		cacheKey := c.keyer.HTTPKey(c.namespace, key)
+		_ = c.cache.Set(ctx, cacheKey, data, c.ttl)
 	}
 	return nil
 }
@@ -180,7 +184,7 @@ func (c *Client) doRequest(ctx context.Context, url string, headers map[string]s
 
 	resp, err := c.http.Do(req)
 	if err != nil {
-		return nil, storage.Retryable(fmt.Errorf("%w: %v", ErrNetwork, err))
+		return nil, cache.Retryable(fmt.Errorf("%w: %v", ErrNetwork, err))
 	}
 
 	if err := checkStatus(resp.StatusCode); err != nil {
@@ -197,7 +201,7 @@ func checkStatus(code int) error {
 	case code == http.StatusNotFound:
 		return ErrNotFound
 	case code >= 500:
-		return storage.Retryable(fmt.Errorf("%w: status %d", ErrNetwork, code))
+		return cache.Retryable(fmt.Errorf("%w: status %d", ErrNetwork, code))
 	default:
 		return fmt.Errorf("%w: status %d", ErrNetwork, code)
 	}

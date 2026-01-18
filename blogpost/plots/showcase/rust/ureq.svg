@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900.0 780.0" width="900" height="780">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900.0 540.0" width="900" height="540">
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;display=swap');
@@ -8,6 +8,7 @@
 " x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>
     </pattern>
   </defs>
+  <g transform="translate(0, 40.0)">
   <a href="https://github.com/marshallpierce/rust-base64" target="_blank"><path id="block-base64" class="block" d="M 164.01 285.52 Q 165.71 246.04 183.33 247.54 Q 200.95 249.05 218.57 251.06 Q 236.19 253.08 253.81 249.64 Q 271.43 246.20 272.10 285.60 Q 272.78 325.00 273.96 362.50 Q 275.14 400.00 275.23 437.50 Q 275.32 475.00 255.75 475.69 Q 236.19 476.37 218.57 476.53 Q 200.95 476.68 183.33 476.67 Q 165.71 476.66 167.64 438.33 Q 169.56 400.00 165.93 362.50 Q 162.30 325.00 164.01 285.52 Z" fill="#a8a8a8" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(0.468 218.57 362.50)"/></a>
   <a href="https://github.com/tokio-rs/bytes" target="_blank"><path id="block-bytes" class="block" d="M 304.70 381.12 Q 304.33 362.23 314.31 364.32 Q 324.30 366.40 334.29 364.43 Q 344.27 362.46 354.26 362.23 Q 364.24 362.00 366.22 381.00 Q 368.20 400.00 368.10 418.75 Q 367.99 437.50 367.60 456.25 Q 367.22 475.00 355.74 476.33 Q 344.27 477.67 334.29 476.50 Q 324.30 475.33 314.31 474.22 Q 304.33 473.11 304.28 455.30 Q 304.23 437.50 304.65 418.75 Q 305.07 400.00 304.70 381.12 Z" fill="#f0f0f0" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-1.570 334.29 418.75)"/></a>
   <a href="https://github.com/hyperium/http" target="_blank"><path id="block-http" class="block" d="M 283.23 270.42 Q 281.43 253.35 318.33 250.97 Q 355.24 248.59 392.14 248.74 Q 429.05 248.90 465.95 250.83 Q 502.86 252.76 502.05 270.13 Q 501.25 287.50 502.20 306.25 Q 503.14 325.00 501.35 343.75 Q 499.55 362.50 464.30 362.28 Q 429.05 362.06 392.14 361.67 Q 355.24 361.28 318.33 362.35 Q 281.43 363.42 283.17 344.21 Q 284.92 325.00 284.97 306.25 Q 285.03 287.50 283.23 270.42 Z" fill="#cbcbcb" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.348 392.14 306.25)"/></a>
@@ -59,6 +60,7 @@
   <a href="https://github.com/SimonSapin/rust-utf8" target="_blank">    <rect x="785.14" y="279.25" width="24.00" height="54.00" fill="#cdcdcd"/>
     <text x="797.14" y="306.25" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="24.0" fill="#333" transform="rotate(-90 797.14 306.25)">utf-8</text>
 </a>  </g>
+  </g>
   <style>
     .block { transition: stroke-width 0.2s ease; }
     .block.highlight { stroke-width: 4; }
@@ -78,49 +80,8 @@
       el.addEventListener('mouseenter', () => highlight([el.id.replace('block-', '')]));
       el.addEventListener('mouseleave', clearHighlight);
     });
-  ]]></script>
-  <text x="450.0" y="564.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
-  <path d="M 322.0 580.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <a href="https://github.com/seanmonstar" target="_blank" class="maintainer-link" data-packages="httparse,http,bytes">
-    <text x="114.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#1 @seanmonstar</text>
-  </a>
-  <text class="package-entry" data-package="httparse" x="114.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">httparse</text>
-  <text class="package-entry" data-package="http" x="114.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">http</text>
-  <text class="package-entry" data-package="bytes" x="114.0" y="685.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">bytes</text>
-  <a href="https://github.com/SimonSapin" target="_blank" class="maintainer-link" data-packages="utf-8,percent-encoding,itoa">
-    <text x="282.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#2 @SimonSapin</text>
-  </a>
-  <text class="package-entry" data-package="utf-8" x="282.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">utf-8</text>
-  <text class="package-entry" data-package="percent-encoding" x="282.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">percent-encoding</text>
-  <text class="package-entry" data-package="itoa" x="282.0" y="685.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">itoa</text>
-  <a href="https://github.com/dtolnay" target="_blank" class="maintainer-link" data-packages="itoa,log">
-    <text x="450.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#3 @dtolnay</text>
-  </a>
-  <text class="package-entry" data-package="itoa" x="450.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">itoa</text>
-  <text class="package-entry" data-package="log" x="450.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">log</text>
-  <a href="https://github.com/nox" target="_blank" class="maintainer-link" data-packages="itoa,base64,httparse,percent-encoding">
-    <text x="618.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#4 @nox</text>
-  </a>
-  <text class="package-entry" data-package="itoa" x="618.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">itoa</text>
-  <text class="package-entry" data-package="base64" x="618.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">base64</text>
-  <text class="package-entry" data-package="httparse" x="618.0" y="685.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">httparse</text>
-  <text x="618.0" y="703.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#aaa">+1 more</text>
-  <a href="https://github.com/carllerche" target="_blank" class="maintainer-link" data-packages="bytes,http">
-    <text x="786.0" y="624.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#5 @carllerche</text>
-  </a>
-  <text class="package-entry" data-package="bytes" x="786.0" y="649.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">bytes</text>
-  <text class="package-entry" data-package="http" x="786.0" y="667.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">http</text>
-  <style>
-    .maintainer-link text { cursor: pointer; }
-    .maintainer-link:hover text { text-decoration: underline; }
-  </style>
-  <script type="text/javascript"><![CDATA[
-    document.querySelectorAll('.maintainer-link').forEach(el => {
-      el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
-      el.addEventListener('mouseleave', clearHighlight);
-    });
-    document.querySelectorAll('.package-entry').forEach(el => {
-      el.addEventListener('mouseenter', () => highlight([el.dataset.package]));
+    document.querySelectorAll('.block-text').forEach(el => {
+      el.addEventListener('mouseenter', () => highlight([el.dataset.block]));
       el.addEventListener('mouseleave', clearHighlight);
     });
   ]]></script>
@@ -219,4 +180,18 @@
       el.addEventListener('mouseleave', () => popup.setAttribute('visibility', 'hidden'));
     });
   ]]></script>
+  <a href="https://www.stacktower.io" target="_blank" rel="noopener">
+    <g transform="translate(390.0, 15.0)" class="watermark">
+      <g transform="scale(0.67)">
+      <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+      <text x="20" y="11" font-family="sans-serif" font-size="14" font-weight="500" fill="#000">stacktower.io</text>
+    </g>
+  </a>
+  <style>
+    .watermark { transition: opacity 0.2s ease; opacity: 1; }
+    .watermark:hover { opacity: 0.7; }
+  </style>
 </svg>

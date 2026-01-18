@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/infra/storage"
+	"github.com/matzehuels/stacktower/pkg/cache"
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
@@ -48,7 +48,7 @@ type Client struct {
 //
 // The client includes a User-Agent header as required by crates.io API policy.
 // The returned Client is safe for concurrent use.
-func NewClient(backend storage.Backend, cacheTTL time.Duration) *Client {
+func NewClient(backend cache.Cache, cacheTTL time.Duration) *Client {
 	headers := map[string]string{
 		"User-Agent": "stacktower/1.0 (https://github.com/matzehuels/stacktower)",
 	}

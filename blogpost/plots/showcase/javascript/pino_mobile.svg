@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800.0 1440.0" width="800" height="1440">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800.0 940.0" width="800" height="940">
   <defs>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&amp;display=swap');
@@ -8,6 +8,7 @@
 " x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" opacity="0.6"/>
     </pattern>
   </defs>
+  <g transform="translate(0, 40.0)">
   <a href="https://github.com/pinojs/redact" target="_blank"><path id="block-@pinojs/redact" class="block" d="M 54.28 347.78 Q 52.95 313.07 61.97 313.51 Q 70.98 313.96 80.00 314.70 Q 89.02 315.44 98.03 314.67 Q 107.05 313.90 108.81 348.20 Q 110.56 382.50 108.37 416.25 Q 106.18 450.00 106.03 483.75 Q 105.88 517.50 107.21 551.25 Q 108.54 585.00 109.45 618.75 Q 110.35 652.50 107.42 686.25 Q 104.49 720.00 105.28 753.75 Q 106.08 787.50 104.58 821.25 Q 103.09 855.00 96.05 853.74 Q 89.02 852.49 80.00 854.13 Q 70.98 855.78 61.97 853.54 Q 52.95 851.29 52.32 819.40 Q 51.69 787.50 52.87 753.75 Q 54.04 720.00 51.56 686.25 Q 49.08 652.50 49.78 618.75 Q 50.48 585.00 49.91 551.25 Q 49.34 517.50 52.07 483.75 Q 54.81 450.00 55.21 416.25 Q 55.61 382.50 54.28 347.78 Z" fill="#acacac" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.056 80.00 585.00)"/></a>
   <a href="https://github.com/davidmarkclements/atomic-sleep" target="_blank"><path id="block-atomic-sleep" class="block brittle" d="M 605.10 617.00 Q 605.00 581.50 616.67 583.61 Q 628.33 585.72 640.00 586.40 Q 651.67 587.08 663.33 587.22 Q 675.00 587.37 674.80 619.93 Q 674.60 652.50 674.68 686.25 Q 674.76 720.00 674.67 753.75 Q 674.59 787.50 673.27 821.25 Q 671.94 855.00 661.80 856.09 Q 651.67 857.18 640.00 857.63 Q 628.33 858.08 616.67 857.28 Q 605.00 856.48 603.94 821.99 Q 602.88 787.50 602.59 753.75 Q 602.30 720.00 603.75 686.25 Q 605.21 652.50 605.10 617.00 Z" fill="#bebebe" stroke="#333" stroke-width="2" stroke-linejoin="round" transform="rotate(-0.762 640.00 720.00)"/></a>
   <path class="block-texture" d="M 605.10 617.00 Q 605.00 581.50 616.67 583.61 Q 628.33 585.72 640.00 586.40 Q 651.67 587.08 663.33 587.22 Q 675.00 587.37 674.80 619.93 Q 674.60 652.50 674.68 686.25 Q 674.76 720.00 674.67 753.75 Q 674.59 787.50 673.27 821.25 Q 671.94 855.00 661.80 856.09 Q 651.67 857.18 640.00 857.63 Q 628.33 858.08 616.67 857.28 Q 605.00 856.48 603.94 821.99 Q 602.88 787.50 602.59 753.75 Q 602.30 720.00 603.75 686.25 Q 605.21 652.50 605.10 617.00 Z" fill="url(#brittleTexture)" style="pointer-events: none;" transform="rotate(-0.762 640.00 720.00)"/>
@@ -78,6 +79,7 @@
   <a href="https://github.com/mcollina/thread-stream" target="_blank">    <rect x="711.00" y="397.35" width="18.00" height="105.30" fill="#c0c0c0"/>
     <text x="720.00" y="450.00" text-anchor="middle" dominant-baseline="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="18.0" fill="#333" transform="rotate(-90 720.00 450.00)">thread-stream</text>
 </a>  </g>
+  </g>
   <style>
     .block { transition: stroke-width 0.2s ease; }
     .block.highlight { stroke-width: 4; }
@@ -97,44 +99,8 @@
       el.addEventListener('mouseenter', () => highlight([el.id.replace('block-', '')]));
       el.addEventListener('mouseleave', clearHighlight);
     });
-  ]]></script>
-  <text x="400.0" y="964.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="30" fill="#333" font-weight="bold">Nebraska Guy Ranking</text>
-  <path d="M 272.0 980.0 q 60 4 120 -1 t 135 3" fill="none" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <a href="https://github.com/davidmarkclements" target="_blank" class="maintainer-link" data-packages="atomic-sleep,quick-format-unescaped">
-    <text x="215.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#1 @davidmarkclements</text>
-  </a>
-  <text class="package-entry" data-package="atomic-sleep" x="215.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">atomic-sleep</text>
-  <text class="package-entry" data-package="quick-format-unescaped" x="215.0" y="1067.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">quick-format-unescaped</text>
-  <a href="https://github.com/mcollina" target="_blank" class="maintainer-link" data-packages="split2,on-exit-leak-free,thread-stream,@pinojs/redact,pino-abstract-transport,sonic-boom,real-require,quick-format-unescaped">
-    <text x="585.0" y="1024.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#2 @mcollina</text>
-  </a>
-  <text class="package-entry" data-package="split2" x="585.0" y="1049.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">split2</text>
-  <text class="package-entry" data-package="on-exit-leak-free" x="585.0" y="1067.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">on-exit-leak-free</text>
-  <text class="package-entry" data-package="thread-stream" x="585.0" y="1085.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">thread-stream</text>
-  <text x="585.0" y="1103.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#aaa">+5 more</text>
-  <a href="https://github.com/BridgeAR" target="_blank" class="maintainer-link" data-packages="safe-stable-stringify">
-    <text x="215.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#3 @BridgeAR</text>
-  </a>
-  <text class="package-entry" data-package="safe-stable-stringify" x="215.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">safe-stable-stringify</text>
-  <a href="https://github.com/fastify" target="_blank" class="maintainer-link" data-packages="process-warning">
-    <text x="585.0" y="1164.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#4 @fastify</text>
-  </a>
-  <text class="package-entry" data-package="process-warning" x="585.0" y="1189.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">process-warning</text>
-  <a href="https://github.com/pinojs" target="_blank" class="maintainer-link" data-packages="pino-std-serializers">
-    <text x="400.0" y="1304.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="16" fill="#0366d6" font-weight="bold">#5 @pinojs</text>
-  </a>
-  <text class="package-entry" data-package="pino-std-serializers" x="400.0" y="1329.0" text-anchor="middle" font-family="'Patrick Hand', 'Comic Sans MS', 'Bradley Hand', 'Segoe Script', sans-serif" font-size="12" fill="#666" style="cursor:pointer">pino-std-serializers</text>
-  <style>
-    .maintainer-link text { cursor: pointer; }
-    .maintainer-link:hover text { text-decoration: underline; }
-  </style>
-  <script type="text/javascript"><![CDATA[
-    document.querySelectorAll('.maintainer-link').forEach(el => {
-      el.addEventListener('mouseenter', () => highlight(el.dataset.packages.split(',')));
-      el.addEventListener('mouseleave', clearHighlight);
-    });
-    document.querySelectorAll('.package-entry').forEach(el => {
-      el.addEventListener('mouseenter', () => highlight([el.dataset.package]));
+    document.querySelectorAll('.block-text').forEach(el => {
+      el.addEventListener('mouseenter', () => highlight([el.dataset.block]));
       el.addEventListener('mouseleave', clearHighlight);
     });
   ]]></script>
@@ -256,4 +222,18 @@
       el.addEventListener('mouseleave', () => popup.setAttribute('visibility', 'hidden'));
     });
   ]]></script>
+  <a href="https://www.stacktower.io" target="_blank" rel="noopener">
+    <g transform="translate(340.0, 15.0)" class="watermark">
+      <g transform="scale(0.67)">
+      <path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+      <text x="20" y="11" font-family="sans-serif" font-size="14" font-weight="500" fill="#000">stacktower.io</text>
+    </g>
+  </a>
+  <style>
+    .watermark { transition: opacity 0.2s ease; opacity: 1; }
+    .watermark:hover { opacity: 0.7; }
+  </style>
 </svg>

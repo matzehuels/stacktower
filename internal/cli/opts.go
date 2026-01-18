@@ -50,18 +50,34 @@ type CommonOptions struct {
 	OrderTimeout int    // timeout in seconds for optimal ordering search
 }
 
-// DefaultOrderTimeout is the default timeout for optimal ordering search.
-// 60 seconds provides enough time for most dependency graphs (<100 nodes)
-// to find an optimal or near-optimal ordering while keeping the CLI responsive.
-// Users can increase this via --ordering-timeout for larger graphs.
+// DefaultOrderTimeout is the default timeout for optimal ordering search (60s).
 const DefaultOrderTimeout = 60
 
-// DefaultCommonOptions returns CommonOptions with sensible defaults.
-func DefaultCommonOptions() CommonOptions {
-	return CommonOptions{
-		OrderTimeout: DefaultOrderTimeout,
-	}
+// =============================================================================
+// Shared Defaults
+// =============================================================================
+
+// setLayoutDefaults applies common layout defaults to pipeline options.
+func setLayoutDefaults(opts *pipeline.Options) {
+	opts.VizType = pipeline.DefaultVizType
+	opts.Width = pipeline.DefaultWidth
+	opts.Height = pipeline.DefaultHeight
+	opts.Ordering = pipeline.DefaultOrdering
+	opts.Seed = pipeline.DefaultSeed
+	opts.Randomize = true
+	opts.Merge = true
+	opts.Normalize = true
 }
+
+// setRenderDefaults applies common render defaults to pipeline options.
+func setRenderDefaults(opts *pipeline.Options) {
+	opts.Style = pipeline.DefaultStyle
+	opts.Popups = true
+}
+
+// =============================================================================
+// Command Option Types
+// =============================================================================
 
 // ParseCmdOpts combines pipeline options with CLI-specific options for parsing.
 type ParseCmdOpts struct {
@@ -72,15 +88,13 @@ type ParseCmdOpts struct {
 
 // DefaultParseCmdOpts returns ParseCmdOpts with sensible defaults.
 func DefaultParseCmdOpts() ParseCmdOpts {
-	opts := ParseCmdOpts{
-		CommonOptions: DefaultCommonOptions(),
+	return ParseCmdOpts{
+		Options: pipeline.Options{
+			MaxDepth: pipeline.DefaultMaxDepth,
+			MaxNodes: pipeline.DefaultMaxNodes,
+		},
+		CommonOptions: CommonOptions{OrderTimeout: DefaultOrderTimeout},
 	}
-	// Set parse-specific defaults
-	opts.MaxDepth = pipeline.DefaultMaxDepth
-	opts.MaxNodes = pipeline.DefaultMaxNodes
-	opts.SkipEnrich = false
-	opts.Normalize = true
-	return opts
 }
 
 // LayoutCmdOpts combines pipeline options with CLI-specific options for layout.
@@ -91,24 +105,14 @@ type LayoutCmdOpts struct {
 
 // DefaultLayoutCmdOpts returns LayoutCmdOpts with sensible defaults.
 func DefaultLayoutCmdOpts() LayoutCmdOpts {
-	opts := LayoutCmdOpts{
-		CommonOptions: DefaultCommonOptions(),
-	}
-	// Set layout-specific defaults
-	opts.VizType = pipeline.DefaultVizType
-	opts.Width = pipeline.DefaultWidth
-	opts.Height = pipeline.DefaultHeight
-	opts.Ordering = pipeline.DefaultOrdering
-	opts.Seed = pipeline.DefaultSeed
-	opts.Randomize = true
-	opts.Merge = true
-	opts.Normalize = true
+	opts := LayoutCmdOpts{CommonOptions: CommonOptions{OrderTimeout: DefaultOrderTimeout}}
+	setLayoutDefaults(&opts.Options)
 	return opts
 }
 
-// NeedsOptimalOrderer returns true if the ordering algorithm requires the optimal orderer.
+// NeedsOptimalOrderer delegates to the embedded pipeline.Options.
 func (o *LayoutCmdOpts) NeedsOptimalOrderer() bool {
-	return o.Ordering == pipeline.DefaultOrdering || o.Ordering == ""
+	return o.Options.NeedsOptimalOrderer()
 }
 
 // VisualizeCmdOpts combines pipeline options with CLI-specific options for visualization.
@@ -118,14 +122,12 @@ type VisualizeCmdOpts struct {
 }
 
 // DefaultVisualizeCmdOpts returns VisualizeCmdOpts with sensible defaults.
+// Note: Merge is left at zero value to use layout metadata's merge setting.
 func DefaultVisualizeCmdOpts() VisualizeCmdOpts {
-	opts := VisualizeCmdOpts{
-		CommonOptions: DefaultCommonOptions(),
+	return VisualizeCmdOpts{
+		Options:       pipeline.Options{Style: pipeline.DefaultStyle, Popups: true},
+		CommonOptions: CommonOptions{OrderTimeout: DefaultOrderTimeout},
 	}
-	// Set visualize-specific defaults
-	opts.Style = pipeline.DefaultStyle
-	opts.Popups = true
-	return opts
 }
 
 // RenderCmdOpts combines pipeline options with CLI-specific options for full render.
@@ -136,25 +138,13 @@ type RenderCmdOpts struct {
 
 // DefaultRenderCmdOpts returns RenderCmdOpts with sensible defaults.
 func DefaultRenderCmdOpts() RenderCmdOpts {
-	opts := RenderCmdOpts{
-		CommonOptions: DefaultCommonOptions(),
-	}
-	// Set layout defaults
-	opts.VizType = pipeline.DefaultVizType
-	opts.Width = pipeline.DefaultWidth
-	opts.Height = pipeline.DefaultHeight
-	opts.Ordering = pipeline.DefaultOrdering
-	opts.Seed = pipeline.DefaultSeed
-	opts.Randomize = true
-	opts.Merge = true
-	opts.Normalize = true
-	// Set render defaults
-	opts.Style = pipeline.DefaultStyle
-	opts.Popups = true
+	opts := RenderCmdOpts{CommonOptions: CommonOptions{OrderTimeout: DefaultOrderTimeout}}
+	setLayoutDefaults(&opts.Options)
+	setRenderDefaults(&opts.Options)
 	return opts
 }
 
-// NeedsOptimalOrderer returns true if the ordering algorithm requires the optimal orderer.
+// NeedsOptimalOrderer delegates to the embedded pipeline.Options.
 func (o *RenderCmdOpts) NeedsOptimalOrderer() bool {
-	return o.Ordering == pipeline.DefaultOrdering || o.Ordering == ""
+	return o.Options.NeedsOptimalOrderer()
 }

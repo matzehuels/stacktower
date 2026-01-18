@@ -9,10 +9,13 @@ import (
 const (
 	// DefaultMaxDepth is the default maximum dependency depth (50 levels).
 	// This prevents infinite recursion in circular or very deep dependency trees.
+	// Note: pipeline.DefaultMaxDepth (10) is more conservative for CLI/API UX,
+	// but this higher limit is appropriate for the low-level resolver.
 	DefaultMaxDepth = 50
 
 	// DefaultMaxNodes is the default maximum number of packages to fetch (5000 nodes).
 	// This caps memory usage and prevents unbounded crawling of large ecosystems.
+	// This value is shared with pipeline.DefaultMaxNodes.
 	DefaultMaxNodes = 5000
 
 	// DefaultCacheTTL is the default HTTP cache duration (24 hours).
