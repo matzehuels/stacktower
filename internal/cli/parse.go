@@ -14,6 +14,7 @@ import (
 	"github.com/matzehuels/stacktower/pkg/core/deps/languages"
 	"github.com/matzehuels/stacktower/pkg/graph"
 	"github.com/matzehuels/stacktower/pkg/pipeline"
+	"github.com/matzehuels/stacktower/pkg/session"
 )
 
 // parseFlags holds parse command options.
@@ -103,7 +104,7 @@ func (c *CLI) parsePackage(ctx context.Context, lang *deps.Language, flags *pars
 	opts.Language = lang.Name
 	opts.Package = pkg
 	opts.Logger = c.Logger
-	opts.GitHubToken = os.Getenv("GITHUB_TOKEN")
+	opts.GitHubToken = getGitHubToken(ctx)
 
 	spinner := newSpinnerWithContext(ctx, fmt.Sprintf("Resolving %s/%s...", lang.Name, pkg))
 	spinner.Start()
@@ -140,7 +141,7 @@ func (c *CLI) parseManifest(ctx context.Context, lang *deps.Language, flags *par
 	opts.Manifest = string(manifestContent)
 	opts.ManifestFilename = filepath.Base(filePath)
 	opts.Logger = c.Logger
-	opts.GitHubToken = os.Getenv("GITHUB_TOKEN")
+	opts.GitHubToken = getGitHubToken(ctx)
 
 	spinner := newSpinnerWithContext(ctx, fmt.Sprintf("Parsing %s...", filepath.Base(filePath)))
 	spinner.Start()
@@ -202,6 +203,27 @@ func looksLikeFile(arg string) bool {
 	}
 	base := filepath.Base(arg)
 	return deps.IsManifestSupported(base, languages.All)
+}
+
+// getGitHubToken returns the GitHub token from environment or stored session.
+// Priority: GITHUB_TOKEN env var > stored CLI session > empty string.
+func getGitHubToken(ctx context.Context) string {
+	if token := os.Getenv("GITHUB_TOKEN"); token != "" {
+		return token
+	}
+
+	// Try to load from stored session (from 'stacktower github login')
+	store, err := session.NewCLIStore()
+	if err != nil {
+		return ""
+	}
+
+	sess, err := store.GetSession(ctx)
+	if err != nil || sess == nil || sess.IsExpired() {
+		return ""
+	}
+
+	return sess.AccessToken
 }
 
 // validatePackageName performs basic security validation on package names.
