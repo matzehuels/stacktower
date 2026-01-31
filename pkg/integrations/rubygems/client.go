@@ -7,6 +7,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/matzehuels/stacktower/pkg/cache"
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
@@ -39,22 +40,18 @@ type Client struct {
 	baseURL string
 }
 
-// NewClient creates a RubyGems client with the specified cache TTL.
+// NewClient creates a RubyGems client with the given cache backend.
 //
-// The cacheTTL parameter sets how long responses are cached.
-// Typical values: 1-24 hours for production, 0 for testing (no cache).
+// Parameters:
+//   - backend: Cache backend for HTTP response caching (use storage.NullBackend{} for no caching)
+//   - cacheTTL: How long responses are cached (typical: 1-24 hours)
 //
-// Returns an error if the cache directory cannot be created or accessed.
 // The returned Client is safe for concurrent use.
-func NewClient(cacheTTL time.Duration) (*Client, error) {
-	cache, err := integrations.NewCacheWithNamespace("rubygems:", cacheTTL)
-	if err != nil {
-		return nil, err
-	}
+func NewClient(backend cache.Cache, cacheTTL time.Duration) *Client {
 	return &Client{
-		Client:  integrations.NewClient(cache, nil),
+		Client:  integrations.NewClient(backend, "rubygems:", cacheTTL, nil),
 		baseURL: "https://rubygems.org/api/v1",
-	}, nil
+	}
 }
 
 // FetchGem retrieves metadata for a Ruby gem from RubyGems.

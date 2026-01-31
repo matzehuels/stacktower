@@ -7,6 +7,7 @@ import (
 	"regexp"
 	"time"
 
+	"github.com/matzehuels/stacktower/pkg/cache"
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
@@ -23,35 +24,27 @@ type Client struct {
 
 // NewClient creates a GitHub API client with optional authentication.
 //
-// The token parameter is a GitHub personal access token for authentication.
-// Pass an empty string to use unauthenticated requests.
+// Parameters:
+//   - backend: Cache backend for HTTP response caching (use storage.NullBackend{} for no caching)
+//   - token: GitHub personal access token (empty string for unauthenticated)
+//   - cacheTTL: How long responses are cached (typical: 1-24 hours)
 //
 // Rate limits:
 //   - Unauthenticated: 60 requests/hour per IP
 //   - Authenticated: 5,000 requests/hour per token
 //
 // Authentication is strongly recommended for production use to avoid rate limiting.
-//
-// The cacheTTL parameter sets how long responses are cached.
-// Typical values: 1-24 hours for production, 0 for testing (no cache).
-//
-// Returns an error if the cache directory cannot be created or accessed.
 // The returned Client is safe for concurrent use.
-func NewClient(token string, cacheTTL time.Duration) (*Client, error) {
-	cache, err := integrations.NewCacheWithNamespace("github:", cacheTTL)
-	if err != nil {
-		return nil, err
-	}
-
+func NewClient(backend cache.Cache, token string, cacheTTL time.Duration) *Client {
 	headers := map[string]string{"Accept": "application/vnd.github.v3+json"}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
 
 	return &Client{
-		Client:  integrations.NewClient(cache, headers),
+		Client:  integrations.NewClient(backend, "github:", cacheTTL, headers),
 		baseURL: "https://api.github.com",
-	}, nil
+	}
 }
 
 // Fetch retrieves repository metrics (stars, maintainers, activity) from GitHub.
@@ -97,14 +90,15 @@ func (c *Client) fetchMetrics(ctx context.Context, owner, repo string, m *integr
 	}
 
 	*m = integrations.RepoMetrics{
-		RepoURL:  fmt.Sprintf("https://github.com/%s/%s", owner, repo),
-		Owner:    owner,
-		Stars:    data.Stars,
-		SizeKB:   data.Size,
-		License:  data.License.SPDXID,
-		Language: data.Language,
-		Topics:   data.Topics,
-		Archived: data.Archived,
+		RepoURL:     fmt.Sprintf("https://github.com/%s/%s", owner, repo),
+		Owner:       owner,
+		Description: data.Description,
+		Stars:       data.Stars,
+		SizeKB:      data.Size,
+		License:     data.License.SPDXID,
+		Language:    data.Language,
+		Topics:      data.Topics,
+		Archived:    data.Archived,
 	}
 	if data.PushedAt != nil {
 		m.LastCommitAt = data.PushedAt
@@ -220,10 +214,11 @@ func ExtractURL(urls map[string]string, homepage string) (owner, repo string, ok
 }
 
 type repoResponse struct {
-	Stars    int        `json:"stargazers_count"`
-	Size     int        `json:"size"`
-	PushedAt *time.Time `json:"pushed_at"`
-	License  struct {
+	Description string     `json:"description"`
+	Stars       int        `json:"stargazers_count"`
+	Size        int        `json:"size"`
+	PushedAt    *time.Time `json:"pushed_at"`
+	License     struct {
 		SPDXID string `json:"spdx_id"`
 	} `json:"license"`
 	Language string   `json:"language"`

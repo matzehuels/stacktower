@@ -6,8 +6,9 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"time"
 
-	"github.com/matzehuels/stacktower/pkg/httputil"
+	"github.com/matzehuels/stacktower/pkg/cache"
 )
 
 // Client provides shared HTTP functionality for all registry API clients.
@@ -18,27 +19,36 @@ import (
 //
 // Zero values: Do not use an uninitialized Client; always create via [NewClient].
 type Client struct {
-	http    *http.Client
-	cache   *httputil.Cache
-	headers map[string]string
+	http      *http.Client
+	cache     cache.Cache
+	keyer     cache.Keyer
+	namespace string        // Cache key prefix (e.g., "pypi:", "npm:")
+	ttl       time.Duration // Cache TTL
+	headers   map[string]string
 }
 
 // NewClient creates a Client with the given cache and default headers.
 // Headers are applied to all requests made through this client.
 //
 // Parameters:
-//   - cache: Cache instance for storing responses (must not be nil). Create with
-//     [NewCacheWithNamespace] for registry-specific caching.
+//   - c: Cache for caching HTTP responses. If nil, a NullCache is used (no caching).
+//   - namespace: Cache key prefix for this client (e.g., "pypi:", "npm:").
+//   - ttl: How long to cache responses.
 //   - headers: Default HTTP headers for all requests. Pass nil if no default headers
 //     are needed. Common examples: "Authorization", "User-Agent", "Accept".
 //
 // The returned Client is safe for concurrent use by multiple goroutines.
-// Panics if cache is nil.
-func NewClient(cache *httputil.Cache, headers map[string]string) *Client {
+func NewClient(c cache.Cache, namespace string, ttl time.Duration, headers map[string]string) *Client {
+	if c == nil {
+		c = cache.NewNullCache()
+	}
 	return &Client{
-		http:    NewHTTPClient(),
-		cache:   cache,
-		headers: headers,
+		http:      NewHTTPClient(),
+		cache:     c,
+		keyer:     cache.NewDefaultKeyer(),
+		namespace: namespace,
+		ttl:       ttl,
+		headers:   headers,
 	}
 }
 
@@ -54,11 +64,11 @@ func NewClient(cache *httputil.Cache, headers map[string]string) *Client {
 //
 // Behavior:
 //  1. If refresh=false and cache hit: returns nil immediately with v populated
-//  2. If cache miss or refresh=true: calls fetch with automatic retry on [httputil.RetryableError]
+//  2. If cache miss or refresh=true: calls fetch with automatic retry on [RetryableError]
 //  3. On successful fetch: stores result in cache (ignoring cache write errors)
 //
 // The fetch function should populate v and return nil on success, or return an error.
-// Network errors should be wrapped with [httputil.Retryable] to enable retry.
+// Network errors should be wrapped with [Retryable] to enable retry.
 //
 // Returns:
 //   - nil on success (v is populated)
@@ -68,14 +78,23 @@ func NewClient(cache *httputil.Cache, headers map[string]string) *Client {
 // This method is safe for concurrent use on the same Client.
 func (c *Client) Cached(ctx context.Context, key string, refresh bool, v any, fetch func() error) error {
 	if !refresh {
-		if ok, _ := c.cache.Get(key, v); ok {
-			return nil
+		// Try to get from cache
+		cacheKey := c.keyer.HTTPKey(c.namespace, key)
+		data, hit, _ := c.cache.Get(ctx, cacheKey)
+		if hit {
+			if err := json.Unmarshal(data, v); err == nil {
+				return nil
+			}
 		}
 	}
-	if err := httputil.RetryWithBackoff(ctx, fetch); err != nil {
+	if err := cache.RetryWithBackoff(ctx, fetch); err != nil {
 		return err
 	}
-	_ = c.cache.Set(key, v)
+	// Store in cache (ignore errors)
+	if data, err := json.Marshal(v); err == nil {
+		cacheKey := c.keyer.HTTPKey(c.namespace, key)
+		_ = c.cache.Set(ctx, cacheKey, data, c.ttl)
+	}
 	return nil
 }
 
@@ -89,7 +108,7 @@ func (c *Client) Cached(ctx context.Context, key string, refresh bool, v any, fe
 //
 // Returns:
 //   - [ErrNotFound] for HTTP 404 responses
-//   - [ErrNetwork] wrapped with [httputil.RetryableError] for HTTP 5xx responses
+//   - [ErrNetwork] wrapped with [RetryableError] for HTTP 5xx responses
 //   - [ErrNetwork] for connection failures and timeouts
 //   - json decoding errors if response is not valid JSON
 //
@@ -164,7 +183,7 @@ func (c *Client) doRequest(ctx context.Context, url string, headers map[string]s
 
 	resp, err := c.http.Do(req)
 	if err != nil {
-		return nil, httputil.Retryable(fmt.Errorf("%w: %v", ErrNetwork, err))
+		return nil, cache.Retryable(fmt.Errorf("%w: %v", ErrNetwork, err))
 	}
 
 	if err := checkStatus(resp.StatusCode); err != nil {
@@ -180,9 +199,24 @@ func checkStatus(code int) error {
 		return nil
 	case code == http.StatusNotFound:
 		return ErrNotFound
+	case code == http.StatusTooManyRequests:
+		return &RateLimitedError{}
 	case code >= 500:
-		return httputil.Retryable(fmt.Errorf("%w: status %d", ErrNetwork, code))
+		return cache.Retryable(fmt.Errorf("%w: status %d", ErrNetwork, code))
 	default:
 		return fmt.Errorf("%w: status %d", ErrNetwork, code)
 	}
+}
+
+// RateLimitedError indicates the API rate limit has been exceeded.
+type RateLimitedError struct {
+	RetryAfter int // Seconds to wait before retrying (0 if unknown)
+}
+
+// Error implements the error interface.
+func (e *RateLimitedError) Error() string {
+	if e.RetryAfter > 0 {
+		return fmt.Sprintf("rate limited: retry after %d seconds", e.RetryAfter)
+	}
+	return "rate limited: too many requests"
 }

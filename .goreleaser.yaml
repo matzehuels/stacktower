@@ -11,8 +11,9 @@ before:
     - go test ./...
 
 builds:
+  # CLI binary (stacktower) - for end users
   - id: stacktower
-    main: ./main.go
+    main: ./cmd/stacktower
     binary: stacktower
     env:
       - CGO_ENABLED=0
@@ -25,12 +26,15 @@ builds:
       - arm64
     ldflags:
       - -s -w
-      - -X main.version={{.Version}}
-      - -X main.commit={{.Commit}}
-      - -X main.date={{.Date}}
+      - -X github.com/matzehuels/stacktower/pkg/buildinfo.Version={{.Version}}
+      - -X github.com/matzehuels/stacktower/pkg/buildinfo.Commit={{.Commit}}
+      - -X github.com/matzehuels/stacktower/pkg/buildinfo.Date={{.Date}}
 
 archives:
+  # CLI archive (for Homebrew, manual download)
   - id: stacktower
+    builds:
+      - stacktower
     formats:
       - tar.gz
     name_template: >-
@@ -50,7 +54,7 @@ archives:
       - README.md
 
 checksum:
-  name_template: 'checksums.txt'
+  name_template: "checksums.txt"
 
 snapshot:
   version_template: "{{ incpatch .Version }}-next"
@@ -60,11 +64,11 @@ changelog:
   use: github
   filters:
     exclude:
-      - '^docs:'
-      - '^test:'
-      - '^chore:'
-      - '^ci:'
-      - 'README'
+      - "^docs:"
+      - "^test:"
+      - "^chore:"
+      - "^ci:"
+      - "README"
       - Merge pull request
       - Merge branch
   groups:

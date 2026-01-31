@@ -33,7 +33,7 @@
 //   - Version: Latest version from Maven Central search
 //   - Dependencies: Compile-scope dependencies from POM
 //   - Description: Project description from POM
-//   - URL: Link to the POM file
+//   - URL: Project homepage/repository URL from POM (e.g., GitHub URL)
 //
 // # Caching
 //

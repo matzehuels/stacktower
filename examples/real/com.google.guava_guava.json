@@ -1,155 +1,39 @@
 {
   "nodes": [
     {
-      "id": "com.google.guava:guava",
+      "id": "com.google.errorprone:error_prone_annotations",
       "meta": {
-        "repo_archived": false,
-        "repo_language": "Java",
-        "repo_last_commit": "2025-12-18",
-        "repo_last_release": "2025-06-26",
-        "repo_maintainers": [
-          "Randgalt",
-          "cammckenzie",
-          "tisonkun",
-          "dragonsinth",
-          "kezhuw"
-        ],
-        "repo_owner": "apache",
-        "repo_stars": 3165,
-        "repo_topics": [
-          "consensus",
-          "curator",
-          "database",
-          "java",
-          "zookeeper"
-        ],
-        "repo_url": "https://github.com/apache/curator",
-        "version": "33.4.8-jre"
+        "version": "2.39.0"
       }
     },
     {
       "id": "com.google.guava:failureaccess",
       "meta": {
-        "repo_archived": false,
-        "repo_language": "Scala",
-        "repo_last_commit": "2025-12-23",
-        "repo_maintainers": [
-          "dongjoon-hyun",
-          "HyukjinKwon",
-          "zhengruifeng",
-          "mateiz",
-          "rxin"
-        ],
-        "repo_owner": "apache",
-        "repo_stars": 42526,
-        "repo_topics": [
-          "big-data",
-          "java",
-          "jdbc",
-          "python",
-          "r",
-          "scala",
-          "spark",
-          "sql"
-        ],
-        "repo_url": "https://github.com/apache/spark",
         "version": "1.0.3"
+      }
+    },
+    {
+      "id": "com.google.guava:guava",
+      "meta": {
+        "version": "33.4.8-jre"
       }
     },
     {
       "id": "com.google.guava:listenablefuture",
       "meta": {
-        "repo_archived": false,
-        "repo_language": "Java",
-        "repo_last_commit": "2025-12-22",
-        "repo_last_release": "2025-12-17",
-        "repo_maintainers": [
-          "gsmet",
-          "geoand",
-          "stuartwdouglas",
-          "gastaldi"
-        ],
-        "repo_owner": "quarkusio",
-        "repo_stars": 15356,
-        "repo_topics": [
-          "cloud-native",
-          "hacktoberfest",
-          "java",
-          "kubernetes",
-          "reactive"
-        ],
-        "repo_url": "https://github.com/quarkusio/quarkus",
         "version": "9999.0-empty-to-avoid-conflict-with-guava"
-      }
-    },
-    {
-      "id": "org.jspecify:jspecify",
-      "meta": {
-        "repo_archived": false,
-        "repo_language": "Java",
-        "repo_last_commit": "2025-12-22",
-        "repo_last_release": "2025-09-16",
-        "repo_maintainers": [
-          "codahale",
-          "joschi",
-          "arteam",
-          "jplock"
-        ],
-        "repo_owner": "dropwizard",
-        "repo_stars": 8577,
-        "repo_topics": [
-          "dropwizard",
-          "hibernate",
-          "java",
-          "jax-rs",
-          "jdbi",
-          "jersey-framework",
-          "jersey2",
-          "jetty",
-          "rest",
-          "restful-webservices",
-          "web-framework"
-        ],
-        "repo_url": "https://github.com/dropwizard/dropwizard",
-        "version": "1.0.0"
-      }
-    },
-    {
-      "id": "com.google.errorprone:error_prone_annotations",
-      "meta": {
-        "repo_archived": false,
-        "repo_language": "Java",
-        "repo_last_commit": "2025-12-19",
-        "repo_maintainers": [
-          "normanmaurer",
-          "trustin",
-          "Scottmitch",
-          "netty-project-bot",
-          "chrisvest"
-        ],
-        "repo_owner": "netty",
-        "repo_stars": 34658,
-        "repo_url": "https://github.com/netty/netty",
-        "version": "2.39.0"
       }
     },
     {
       "id": "com.google.j2objc:j2objc-annotations",
       "meta": {
-        "repo_archived": false,
-        "repo_language": "Java",
-        "repo_last_commit": "2025-12-19",
-        "repo_maintainers": [
-          "normanmaurer",
-          "trustin",
-          "Scottmitch",
-          "netty-project-bot",
-          "chrisvest"
-        ],
-        "repo_owner": "netty",
-        "repo_stars": 34658,
-        "repo_url": "https://github.com/netty/netty",
         "version": "3.0.0"
+      }
+    },
+    {
+      "id": "org.jspecify:jspecify",
+      "meta": {
+        "version": "1.0.0"
       }
     }
   ],

@@ -2,35 +2,10 @@ package cli
 
 import (
 	"testing"
+
+	"github.com/matzehuels/stacktower/pkg/graph"
+	"github.com/matzehuels/stacktower/pkg/pipeline"
 )
-
-func TestParseVizTypes(t *testing.T) {
-	tests := []struct {
-		name  string
-		input string
-		want  []string
-	}{
-		{"empty defaults to tower", "", []string{"tower"}},
-		{"single type", "tower", []string{"tower"}},
-		{"multiple types", "tower,nodelink", []string{"tower", "nodelink"}},
-		{"nodelink only", "nodelink", []string{"nodelink"}},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			got := parseVizTypes(tt.input)
-			if len(got) != len(tt.want) {
-				t.Errorf("parseVizTypes(%q) length = %d, want %d", tt.input, len(got), len(tt.want))
-				return
-			}
-			for i, v := range got {
-				if v != tt.want[i] {
-					t.Errorf("parseVizTypes(%q)[%d] = %q, want %q", tt.input, i, v, tt.want[i])
-				}
-			}
-		})
-	}
-}
 
 func TestParseFormats(t *testing.T) {
 	tests := []struct {
@@ -40,8 +15,8 @@ func TestParseFormats(t *testing.T) {
 	}{
 		{"empty defaults to svg", "", []string{"svg"}},
 		{"single format", "svg", []string{"svg"}},
-		{"multiple formats", "svg,json,pdf", []string{"svg", "json", "pdf"}},
-		{"json only", "json", []string{"json"}},
+		{"multiple formats", "svg,pdf,png", []string{"svg", "pdf", "png"}},
+		{"pdf only", "pdf", []string{"pdf"}},
 	}
 
 	for _, tt := range tests {
@@ -67,10 +42,11 @@ func TestValidateFormats(t *testing.T) {
 		wantErr bool
 	}{
 		{"valid svg", []string{"svg"}, false},
-		{"valid json", []string{"json"}, false},
 		{"valid pdf", []string{"pdf"}, false},
 		{"valid png", []string{"png"}, false},
-		{"valid multiple", []string{"svg", "json", "pdf", "png"}, false},
+		{"valid json", []string{"json"}, false},
+		{"valid multiple", []string{"svg", "pdf", "png"}, false},
+		{"valid all", []string{"svg", "pdf", "png", "json"}, false},
 		{"invalid format", []string{"invalid"}, true},
 		{"mixed valid invalid", []string{"svg", "invalid"}, true},
 		{"empty slice", []string{}, false},
@@ -78,9 +54,9 @@ func TestValidateFormats(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := validateFormats(tt.formats)
+			err := pipeline.ValidateFormats(tt.formats)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("validateFormats(%v) error = %v, wantErr %v", tt.formats, err, tt.wantErr)
+				t.Errorf("ValidateFormats(%v) error = %v, wantErr %v", tt.formats, err, tt.wantErr)
 			}
 		})
 	}
@@ -100,34 +76,9 @@ func TestValidateStyle(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := validateStyle(tt.style)
+			err := pipeline.ValidateStyle(tt.style)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("validateStyle(%q) error = %v, wantErr %v", tt.style, err, tt.wantErr)
-			}
-		})
-	}
-}
-
-func TestBasePath(t *testing.T) {
-	tests := []struct {
-		name   string
-		output string
-		input  string
-		want   string
-	}{
-		{"empty output uses input", "", "/path/to/file.json", "/path/to/file"},
-		{"output without format ext", "/out/file", "/in/file.json", "/out/file"},
-		{"output with svg ext", "/out/file.svg", "/in/file.json", "/out/file"},
-		{"output with json ext", "/out/file.json", "/in/file.json", "/out/file"},
-		{"output with pdf ext", "/out/file.pdf", "/in/file.json", "/out/file"},
-		{"output with png ext", "/out/file.png", "/in/file.json", "/out/file"},
-		{"output with unknown ext", "/out/file.txt", "/in/file.json", "/out/file.txt"},
-	}
-
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := basePath(tt.output, tt.input); got != tt.want {
-				t.Errorf("basePath(%q, %q) = %q, want %q", tt.output, tt.input, got, tt.want)
+				t.Errorf("ValidateStyle(%q) error = %v, wantErr %v", tt.style, err, tt.wantErr)
 			}
 		})
 	}
@@ -136,39 +87,39 @@ func TestBasePath(t *testing.T) {
 func TestValidFormatsMap(t *testing.T) {
 	expected := map[string]bool{
 		"svg":  true,
-		"json": true,
 		"pdf":  true,
 		"png":  true,
+		"json": true,
 	}
 
 	for k, v := range expected {
-		if validFormats[k] != v {
-			t.Errorf("validFormats[%q] = %v, want %v", k, validFormats[k], v)
+		if pipeline.ValidFormats[k] != v {
+			t.Errorf("ValidFormats[%q] = %v, want %v", k, pipeline.ValidFormats[k], v)
 		}
 	}
 
-	if validFormats["invalid"] {
-		t.Error("validFormats[invalid] should be false")
+	if pipeline.ValidFormats["invalid"] {
+		t.Error("ValidFormats[invalid] should be false")
 	}
 }
 
 func TestStyleConstants(t *testing.T) {
-	if styleSimple != "simple" {
-		t.Errorf("styleSimple = %q, want %q", styleSimple, "simple")
+	if graph.StyleSimple != "simple" {
+		t.Errorf("graph.StyleSimple = %q, want %q", graph.StyleSimple, "simple")
 	}
-	if styleHanddrawn != "handdrawn" {
-		t.Errorf("styleHanddrawn = %q, want %q", styleHanddrawn, "handdrawn")
+	if graph.StyleHanddrawn != "handdrawn" {
+		t.Errorf("graph.StyleHanddrawn = %q, want %q", graph.StyleHanddrawn, "handdrawn")
 	}
 }
 
 func TestDefaultConstants(t *testing.T) {
-	if defaultWidth != 800 {
-		t.Errorf("defaultWidth = %v, want 800", defaultWidth)
+	if pipeline.DefaultWidth != 800 {
+		t.Errorf("pipeline.DefaultWidth = %v, want 800", pipeline.DefaultWidth)
 	}
-	if defaultHeight != 600 {
-		t.Errorf("defaultHeight = %v, want 600", defaultHeight)
+	if pipeline.DefaultHeight != 600 {
+		t.Errorf("pipeline.DefaultHeight = %v, want 600", pipeline.DefaultHeight)
 	}
-	if defaultSeed != 42 {
-		t.Errorf("defaultSeed = %v, want 42", defaultSeed)
+	if pipeline.DefaultSeed != 42 {
+		t.Errorf("pipeline.DefaultSeed = %v, want 42", pipeline.DefaultSeed)
 	}
 }

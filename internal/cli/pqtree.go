@@ -2,28 +2,16 @@ package cli
 
 import (
 	"fmt"
-	"os"
 	"strconv"
 	"strings"
 
 	"github.com/spf13/cobra"
 
-	"github.com/matzehuels/stacktower/pkg/dag/perm"
+	"github.com/matzehuels/stacktower/pkg/core/dag/perm"
 )
 
-// newPQTreeCmd creates the pqtree command for visualizing PQ-tree constraints.
-// This is a debug tool for testing adjacency constraint solving.
-//
-// A PQ-tree represents all valid permutations of elements subject to adjacency constraints.
-// Each constraint specifies elements that must appear consecutively (but in any order).
-//
-// Example:
-//
-//	stacktower pqtree --labels A,B,C,D -o tree.svg 0,1
-//
-// This creates a tree with 4 elements where indices 0 and 1 (A and B) must be adjacent,
-// allowing permutations like ABCD, BACD, CDAB, DCBA but rejecting ACBD, CADB, etc.
-func newPQTreeCmd() *cobra.Command {
+// pqtreeCommand creates the pqtree command for visualizing PQ-tree constraints.
+func (c *CLI) pqtreeCommand() *cobra.Command {
 	var output string
 	var labels string
 
@@ -65,21 +53,17 @@ Example: "0,1" means elements 0 and 1 must be adjacent.`,
 				return fmt.Errorf("render: %w", err)
 			}
 
-			out, err := openOutput(output)
-			if err != nil {
-				return err
-			}
-			defer out.Close()
-
-			if _, err := out.Write(svg); err != nil {
-				return err
+			if err := writeFile(svg, output); err != nil {
+				return fmt.Errorf("write output: %w", err)
 			}
 
-			fmt.Fprintf(os.Stderr, "Tree: %s\n", tree.StringWithLabels(labelList))
-			fmt.Fprintf(os.Stderr, "Valid permutations: %d\n", tree.ValidCount())
+			printSuccess("PQ-tree generated")
+			printKeyValue("Tree", tree.StringWithLabels(labelList))
+			printKeyValue("Permutations", fmt.Sprintf("%d", tree.ValidCount()))
 			if output != "" {
-				fmt.Fprintf(os.Stderr, "Output: %s\n", output)
+				printFile(output)
 			}
+
 			return nil
 		},
 	}
@@ -91,8 +75,6 @@ Example: "0,1" means elements 0 and 1 must be adjacent.`,
 }
 
 // parseConstraint parses a constraint string like "0,1,2" into a slice of indices.
-// Each index must be a valid integer. At least 2 indices are required.
-// Leading and trailing whitespace is trimmed from each index.
 func parseConstraint(s string) ([]int, error) {
 	parts := strings.Split(s, ",")
 	if len(parts) < 2 {

@@ -10,6 +10,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/matzehuels/stacktower/pkg/cache"
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
@@ -27,7 +28,7 @@ type ArtifactInfo struct {
 	Version      string   // Latest version (e.g., "32.1.3-jre", never empty in valid info)
 	Dependencies []string // Compile-scope dependency coordinates (nil or empty if none or POM fetch failed)
 	Description  string   // Artifact description from POM (may be empty)
-	URL          string   // URL to the POM file on Maven Central (never empty in valid info)
+	URL          string   // Project homepage/repository URL from POM (may be empty if not specified in POM)
 }
 
 // Coordinate returns the Maven coordinate string "groupId:artifactId".
@@ -45,22 +46,18 @@ type Client struct {
 	baseURL string
 }
 
-// NewClient creates a Maven Central client with the specified cache TTL.
+// NewClient creates a Maven Central client with the given cache backend.
 //
-// The cacheTTL parameter sets how long responses are cached.
-// Typical values: 1-24 hours for production, 0 for testing (no cache).
+// Parameters:
+//   - backend: Cache backend for HTTP response caching (use storage.NullBackend{} for no caching)
+//   - cacheTTL: How long responses are cached (typical: 1-24 hours)
 //
-// Returns an error if the cache directory cannot be created or accessed.
 // The returned Client is safe for concurrent use.
-func NewClient(cacheTTL time.Duration) (*Client, error) {
-	cache, err := integrations.NewCacheWithNamespace("maven:", cacheTTL)
-	if err != nil {
-		return nil, err
-	}
+func NewClient(backend cache.Cache, cacheTTL time.Duration) *Client {
 	return &Client{
-		Client:  integrations.NewClient(cache, nil),
+		Client:  integrations.NewClient(backend, "maven:", cacheTTL, nil),
 		baseURL: "https://search.maven.org/solrsearch/select",
-	}, nil
+	}
 }
 
 // FetchArtifact retrieves metadata for a Java artifact from Maven Central.
@@ -128,30 +125,54 @@ func (c *Client) fetch(ctx context.Context, groupID, artifactID string, info *Ar
 		version = doc.Version
 	}
 
-	// Fetch POM to get dependencies
-	deps, pomURL := c.fetchPOMDeps(ctx, groupID, artifactID, version)
+	// Fetch POM to get dependencies and project URL
+	deps, _, projectURL := c.fetchPOMDeps(ctx, groupID, artifactID, version)
 
 	*info = ArtifactInfo{
 		GroupID:      groupID,
 		ArtifactID:   artifactID,
 		Version:      version,
 		Dependencies: deps,
-		URL:          pomURL,
+		URL:          projectURL, // Use project URL from POM, not the POM file URL
 	}
 	return nil
 }
 
-func (c *Client) fetchPOMDeps(ctx context.Context, groupID, artifactID, version string) ([]string, string) {
+func (c *Client) fetchPOMDeps(ctx context.Context, groupID, artifactID, version string) ([]string, string, string) {
 	groupPath := strings.ReplaceAll(groupID, ".", "/")
 	pomURL := fmt.Sprintf("https://repo1.maven.org/maven2/%s/%s/%s/%s-%s.pom",
 		groupPath, artifactID, version, artifactID, version)
 
 	pom, err := c.fetchPOM(ctx, pomURL)
 	if err != nil {
-		return nil, pomURL
+		return nil, pomURL, ""
 	}
 
-	return extractDeps(pom), pomURL
+	// Prefer SCM URL (repository) over generic project URL
+	projectURL := extractProjectURL(pom)
+	return extractDeps(pom), pomURL, projectURL
+}
+
+// extractProjectURL extracts the best available project URL from a POM.
+// Prefers SCM URLs (actual repository) over generic project URLs.
+func extractProjectURL(pom *pomProject) string {
+	// Try SCM URLs first (repository locations)
+	if pom.SCM != nil {
+		// Prefer scm.url (browser-viewable)
+		if pom.SCM.URL != "" {
+			return integrations.NormalizeRepoURL(pom.SCM.URL)
+		}
+		// Fall back to developer connection (git@... or https://...)
+		if pom.SCM.DeveloperConnection != "" {
+			return integrations.NormalizeRepoURL(pom.SCM.DeveloperConnection)
+		}
+		// Last resort: connection string
+		if pom.SCM.Connection != "" {
+			return integrations.NormalizeRepoURL(pom.SCM.Connection)
+		}
+	}
+	// Fall back to project URL (might be project website, not repo)
+	return pom.URL
 }
 
 func (c *Client) fetchPOM(ctx context.Context, url string) (*pomProject, error) {
@@ -232,7 +253,14 @@ type pomProject struct {
 	Name         string          `xml:"name"`
 	Description  string          `xml:"description"`
 	URL          string          `xml:"url"`
+	SCM          *pomSCM         `xml:"scm"`
 	Dependencies []pomDependency `xml:"dependencies>dependency"`
+}
+
+type pomSCM struct {
+	Connection          string `xml:"connection"`
+	DeveloperConnection string `xml:"developerConnection"`
+	URL                 string `xml:"url"`
 }
 
 type pomDependency struct {

@@ -2,7 +2,8 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches-ignore:
+      - "dependabot/**" # Skip dependabot branches (they create PRs)
   pull_request:
 
 concurrency:
@@ -21,18 +22,19 @@ jobs:
 
       - uses: actions/setup-go@v5
         with:
-          go-version-file: 'go.mod'
+          go-version-file: "go.mod"
           cache: true
 
       - name: Lint
         uses: golangci/golangci-lint-action@v7
         with:
-          version: v2.1.6
+          version: v2.8.0
 
       - name: Test
         run: go test -race -coverprofile=coverage.txt -timeout=2m ./...
 
       - name: Upload coverage to Codecov
+        if: github.ref == 'refs/heads/main'
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}

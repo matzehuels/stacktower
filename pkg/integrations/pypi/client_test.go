@@ -9,6 +9,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/matzehuels/stacktower/pkg/cache"
+
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
@@ -109,12 +111,8 @@ func TestNormalizePkgName(t *testing.T) {
 
 func testClient(t *testing.T, serverURL string) *Client {
 	t.Helper()
-	cache, err := integrations.NewCache(time.Hour)
-	if err != nil {
-		t.Fatal(err)
-	}
 	return &Client{
-		Client:  integrations.NewClient(cache, nil),
+		Client:  integrations.NewClient(cache.NewNullCache(), "pypi:", time.Hour, nil),
 		baseURL: serverURL,
 	}
 }

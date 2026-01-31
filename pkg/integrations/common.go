@@ -1,32 +1,27 @@
 package integrations
 
 import (
-	"errors"
 	"net/http"
 	"net/url"
 	"regexp"
 	"strings"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/httputil"
+	"github.com/matzehuels/stacktower/pkg/cache"
 )
 
 // httpTimeout is the default timeout for all HTTP requests to registry APIs.
 // Individual registries do not override this value.
 const httpTimeout = 10 * time.Second
 
+// Sentinel errors - re-exported from cache for API consistency.
 var (
 	// ErrNotFound is returned when a package or resource doesn't exist in the registry.
 	// This corresponds to HTTP 404 responses.
-	// Callers should check with errors.Is(err, integrations.ErrNotFound).
-	// This error is never wrapped with additional context.
-	ErrNotFound = errors.New("resource not found")
+	ErrNotFound = cache.ErrNotFound
 
 	// ErrNetwork is returned for HTTP failures (timeouts, connection errors, 5xx responses).
-	// This error may be wrapped with [httputil.RetryableError] for 5xx status codes.
-	// Callers should check with errors.Is(err, integrations.ErrNetwork) for any network issue,
-	// or errors.As(err, &httputil.RetryableError{}) to detect retryable failures specifically.
-	ErrNetwork = errors.New("network error")
+	ErrNetwork = cache.ErrNetwork
 )
 
 // RepoMetrics holds repository-level data fetched from GitHub or GitLab.
@@ -39,6 +34,7 @@ var (
 type RepoMetrics struct {
 	RepoURL       string        `json:"repo_url"`                   // Canonical repository URL (https://...). Never empty in valid metrics.
 	Owner         string        `json:"owner"`                      // Repository owner username. Never empty in valid metrics.
+	Description   string        `json:"description,omitempty"`      // Repository description from GitHub/GitLab. Empty if not set.
 	Stars         int           `json:"stars"`                      // GitHub/GitLab star count. 0 is a valid value for new repositories.
 	SizeKB        int           `json:"size_kb,omitempty"`          // Repository size in kilobytes. 0 means not available or very small.
 	LastCommitAt  *time.Time    `json:"last_commit_at,omitempty"`   // Date of most recent commit. Nil if not available.
@@ -67,45 +63,6 @@ type Contributor struct {
 // Returns a new client on every call; clients are not pooled.
 func NewHTTPClient() *http.Client {
 	return &http.Client{Timeout: httpTimeout}
-}
-
-// NewCache creates a file-based cache with the given TTL in the default cache directory.
-// See [httputil.NewCache] for details on cache location and behavior.
-//
-// The ttl parameter must be positive. A ttl of 0 means items never expire (not recommended).
-// Negative ttl values are invalid and will be treated as 0.
-//
-// For registry-specific clients, prefer using [NewCacheWithNamespace] to automatically
-// scope cache keys by registry name and prevent collisions.
-//
-// Returns an error if the cache directory cannot be created or accessed.
-// The returned cache is safe for concurrent use by multiple goroutines.
-func NewCache(ttl time.Duration) (*httputil.Cache, error) {
-	return httputil.NewCache("", ttl)
-}
-
-// NewCacheWithNamespace creates a namespaced cache for a specific registry.
-// The namespace parameter (e.g., "pypi:", "npm:") is automatically prefixed to all
-// cache keys, preventing collisions between different registries.
-//
-// The namespace should be non-empty and typically ends with a colon. An empty namespace
-// is valid but defeats the purpose of this function; use [NewCache] instead.
-//
-// The ttl parameter must be positive. A ttl of 0 means items never expire (not recommended).
-//
-// This is the preferred way to create caches for registry clients:
-//
-//	cache, err := integrations.NewCacheWithNamespace("pypi:", 24*time.Hour)
-//	client := integrations.NewClient(cache, nil)
-//
-// Returns an error if the cache directory cannot be created or accessed.
-// The returned cache is safe for concurrent use by multiple goroutines.
-func NewCacheWithNamespace(namespace string, ttl time.Duration) (*httputil.Cache, error) {
-	cache, err := httputil.NewCache("", ttl)
-	if err != nil {
-		return nil, err
-	}
-	return cache.Namespace(namespace), nil
 }
 
 // NormalizePkgName converts a package name to its canonical form.
