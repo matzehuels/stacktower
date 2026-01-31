@@ -30,7 +30,7 @@
 // # Shared Infrastructure
 //
 // The [Client] type provides shared HTTP functionality used by all registry
-// clients, including caching via [httputil.Cache].
+// clients, including HTTP response caching via [cache.Cache].
 //
 // # Adding a New Registry
 //
@@ -51,6 +51,6 @@
 // [goproxy]: github.com/matzehuels/stacktower/pkg/integrations/goproxy
 // [github]: github.com/matzehuels/stacktower/pkg/integrations/github
 // [gitlab]: github.com/matzehuels/stacktower/pkg/integrations/gitlab
-// [httputil.Cache]: github.com/matzehuels/stacktower/pkg/httputil.Cache
-// [deps]: github.com/matzehuels/stacktower/pkg/deps
+// [cache.Cache]: github.com/matzehuels/stacktower/pkg/cache.Cache
+// [deps]: github.com/matzehuels/stacktower/pkg/core/deps
 package integrations

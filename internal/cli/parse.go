@@ -3,77 +3,35 @@ package cli
 import (
 	"context"
 	"fmt"
-	"io"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/spf13/cobra"
 
-	"github.com/matzehuels/stacktower/pkg/dag"
-	"github.com/matzehuels/stacktower/pkg/deps"
-	"github.com/matzehuels/stacktower/pkg/deps/golang"
-	"github.com/matzehuels/stacktower/pkg/deps/java"
-	"github.com/matzehuels/stacktower/pkg/deps/javascript"
-	"github.com/matzehuels/stacktower/pkg/deps/metadata"
-	"github.com/matzehuels/stacktower/pkg/deps/php"
-	"github.com/matzehuels/stacktower/pkg/deps/python"
-	"github.com/matzehuels/stacktower/pkg/deps/ruby"
-	"github.com/matzehuels/stacktower/pkg/deps/rust"
-	pkgio "github.com/matzehuels/stacktower/pkg/io"
+	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/matzehuels/stacktower/pkg/core/deps"
+	"github.com/matzehuels/stacktower/pkg/core/deps/languages"
+	"github.com/matzehuels/stacktower/pkg/graph"
+	"github.com/matzehuels/stacktower/pkg/pipeline"
 )
 
-// languages is the list of supported package ecosystems.
-// Each language provides resolvers for package registries and manifest parsers.
-var languages = []*deps.Language{
-	python.Language,
-	rust.Language,
-	javascript.Language,
-	ruby.Language,
-	php.Language,
-	java.Language,
-	golang.Language,
+// parseFlags holds parse command options.
+type parseFlags struct {
+	pipeline.Options
+	output  string
+	noCache bool
+	name    string // project name override for manifest parsing
 }
 
-// parseOpts holds the command-line flags for the parse command.
-// These options control dependency resolution depth, caching, and metadata enrichment.
-type parseOpts struct {
-	maxDepth int    // maximum dependency tree depth
-	maxNodes int    // maximum total nodes to fetch
-	enrich   bool   // whether to fetch GitHub metadata
-	refresh  bool   // bypass HTTP cache
-	output   string // output file path (stdout if empty)
-	name     string // override project name for manifest parsing
-}
-
-// resolveOptions converts parseOpts into deps.Options for the resolver.
-// If metadata enrichment fails (e.g., missing GITHUB_TOKEN), a warning is logged
-// and enrichment is disabled rather than failing the entire operation.
-func (o *parseOpts) resolveOptions(ctx context.Context) deps.Options {
-	logger := loggerFromContext(ctx)
-	providers, err := metadataProviders(o.enrich)
-	if err != nil {
-		logger.Warnf("Metadata enrichment disabled: %v", err)
+// parseCommand creates the parse command with language-specific subcommands.
+func (c *CLI) parseCommand() *cobra.Command {
+	flags := parseFlags{
+		Options: pipeline.Options{
+			MaxDepth: pipeline.DefaultMaxDepth,
+			MaxNodes: pipeline.DefaultMaxNodes,
+		},
 	}
-	return deps.Options{
-		MaxDepth:          o.maxDepth,
-		MaxNodes:          o.maxNodes,
-		Refresh:           o.refresh,
-		CacheTTL:          deps.DefaultCacheTTL,
-		MetadataProviders: providers,
-		Logger:            func(msg string, args ...any) { logger.Warnf(msg, args...) },
-	}
-}
-
-// newParseCmd creates the parse command with language-specific subcommands.
-// It supports parsing from package registries (e.g., "parse python requests")
-// or from local manifest files (e.g., "parse python poetry.lock").
-//
-// Default options:
-//   - maxDepth: 10 levels of transitive dependencies
-//   - maxNodes: 5000 packages maximum
-//   - enrich: true (fetch GitHub metadata if GITHUB_TOKEN is set)
-func newParseCmd() *cobra.Command {
-	opts := parseOpts{maxDepth: 10, maxNodes: 5000, enrich: true}
 
 	cmd := &cobra.Command{
 		Use:   "parse",
@@ -81,231 +39,192 @@ func newParseCmd() *cobra.Command {
 		Long: `Parse dependency graphs from package managers or local manifest files.
 
 The command auto-detects whether you're providing a package name or a manifest file.
+Results are cached locally for faster subsequent runs.
 
 Examples:
   stacktower parse python requests                        # Package from PyPI
   stacktower parse python poetry.lock                     # Manifest file
-  stacktower parse python registry pypi fastapi           # Explicit registry  
-  stacktower parse python manifest poetry my_poetry.lock  # Explicit manifest type`,
+  stacktower parse python requests --no-cache             # Disable caching`,
 	}
 
-	cmd.PersistentFlags().IntVar(&opts.maxDepth, "max-depth", opts.maxDepth, "maximum dependency depth")
-	cmd.PersistentFlags().IntVar(&opts.maxNodes, "max-nodes", opts.maxNodes, "maximum nodes to fetch")
-	cmd.PersistentFlags().BoolVar(&opts.enrich, "enrich", opts.enrich, "enrich with GitHub metadata (requires GITHUB_TOKEN)")
-	cmd.PersistentFlags().BoolVar(&opts.refresh, "refresh", false, "bypass cache")
-	cmd.PersistentFlags().StringVarP(&opts.output, "output", "o", "", "output file (stdout if empty)")
-	cmd.PersistentFlags().StringVarP(&opts.name, "name", "n", "", "project name (for manifest parsing, overrides auto-detection)")
+	cmd.PersistentFlags().IntVar(&flags.MaxDepth, "max-depth", flags.MaxDepth, "maximum dependency depth")
+	cmd.PersistentFlags().IntVar(&flags.MaxNodes, "max-nodes", flags.MaxNodes, "maximum nodes to fetch")
+	cmd.PersistentFlags().BoolVar(&flags.SkipEnrich, "skip-enrich", flags.SkipEnrich, "skip metadata enrichment")
+	cmd.PersistentFlags().StringVarP(&flags.output, "output", "o", "", "output file (stdout if empty)")
+	cmd.PersistentFlags().StringVarP(&flags.name, "name", "n", "", "project name (for manifest parsing)")
+	cmd.PersistentFlags().BoolVar(&flags.noCache, "no-cache", false, "disable caching")
 
-	for _, lang := range languages {
-		cmd.AddCommand(langCmd(lang, &opts))
+	for _, lang := range languages.All {
+		cmd.AddCommand(c.langCommand(lang, &flags))
 	}
+
+	cmd.AddCommand(c.parseGitHubCommand(&flags))
 
 	return cmd
 }
 
-// langCmd creates a language-specific parse subcommand (e.g., "parse python").
-// The command auto-detects whether the argument is a package name or manifest file
-// using smartParse.
-func langCmd(lang *deps.Language, opts *parseOpts) *cobra.Command {
-	cmd := &cobra.Command{
+// langCommand creates a language-specific parse subcommand.
+func (c *CLI) langCommand(lang *deps.Language, flags *parseFlags) *cobra.Command {
+	return &cobra.Command{
 		Use:   fmt.Sprintf("%s <package-or-file>", lang.Name),
 		Short: fmt.Sprintf("Parse %s dependencies", lang.Name),
 		Args:  cobra.ExactArgs(1),
-		RunE: func(c *cobra.Command, args []string) error {
-			return smartParse(c.Context(), lang, opts, args[0])
-		},
-	}
-
-	cmd.AddCommand(registryCmd(lang, opts))
-	if lang.HasManifests() {
-		cmd.AddCommand(manifestCmd(lang, opts))
-	}
-
-	return cmd
-}
-
-// registryCmd creates the "registry" subcommand for explicit registry selection.
-// Example: "parse python registry pypi requests" to force PyPI even if the default changes.
-func registryCmd(lang *deps.Language, opts *parseOpts) *cobra.Command {
-	return &cobra.Command{
-		Use:   fmt.Sprintf("registry <%s> <package>", lang.DefaultRegistry),
-		Short: fmt.Sprintf("Parse %s package from specific registry", lang.Name),
-		Args:  cobra.ExactArgs(2),
-		RunE: func(c *cobra.Command, args []string) error {
-			res, err := lang.Registry(args[0])
-			if err != nil {
-				return err
-			}
-			pkg := args[1]
-			// Normalize package name if the language supports it
-			if lang.NormalizeName != nil {
-				pkg = lang.NormalizeName(pkg)
-			}
-			return resolve(c.Context(), opts, res, pkg)
+		RunE: func(cmd *cobra.Command, args []string) error {
+			return c.runParse(cmd.Context(), lang, flags, args[0])
 		},
 	}
 }
 
-// manifestCmd creates the "manifest" subcommand for explicit manifest type selection.
-// Example: "parse python manifest poetry poetry.lock" to force Poetry format.
-func manifestCmd(lang *deps.Language, opts *parseOpts) *cobra.Command {
-	return &cobra.Command{
-		Use:   fmt.Sprintf("manifest <%s> <file>", strings.Join(lang.ManifestTypes, "|")),
-		Short: fmt.Sprintf("Parse %s manifest file with explicit type", lang.Name),
-		Args:  cobra.ExactArgs(2),
-		RunE: func(c *cobra.Command, args []string) error {
-			res, err := lang.Resolver()
-			if err != nil {
-				return err
-			}
-			parser, ok := lang.Manifest(args[0], res)
-			if !ok {
-				return fmt.Errorf("unknown manifest type: %s (available: %s)", args[0], strings.Join(lang.ManifestTypes, ", "))
-			}
-			return parseManifest(c.Context(), opts, parser, args[1])
-		},
-	}
-}
-
-// smartParse auto-detects whether arg is a manifest file or package name.
-// If looksLikeFile returns true and the language supports manifests, it parses as a file.
-// Otherwise, it resolves as a package from the default registry.
-func smartParse(ctx context.Context, lang *deps.Language, opts *parseOpts, arg string) error {
+// runParse auto-detects whether arg is a manifest file or package name.
+func (c *CLI) runParse(ctx context.Context, lang *deps.Language, flags *parseFlags, arg string) error {
 	if lang.HasManifests() && looksLikeFile(arg) {
-		return parseManifestAuto(ctx, lang, opts, arg)
+		return c.parseManifest(ctx, lang, flags, arg)
 	}
-	res, err := lang.Resolver()
-	if err != nil {
-		return err
-	}
-	// Normalize package name if the language supports it (e.g., Maven coordinate normalization)
+	pkg := arg
 	if lang.NormalizeName != nil {
-		arg = lang.NormalizeName(arg)
+		pkg = lang.NormalizeName(pkg)
 	}
-	return resolve(ctx, opts, res, arg)
+	return c.parsePackage(ctx, lang, flags, pkg)
 }
 
-// parseManifestAuto attempts to detect the manifest file type and parse it.
-// It returns an error if detection fails or if the file format is unsupported.
-func parseManifestAuto(ctx context.Context, lang *deps.Language, opts *parseOpts, filePath string) error {
-	res, err := lang.Resolver()
-	if err != nil {
-		return fmt.Errorf("resolver: %w", err)
-	}
-	parser, err := deps.DetectManifest(filePath, lang.ManifestParsers(res)...)
-	if err != nil {
-		return fmt.Errorf("%w\n\nSupported: %s", err, strings.Join(lang.ManifestTypes, ", "))
-	}
-	return parseManifest(ctx, opts, parser, filePath)
-}
-
-// resolve fetches the dependency graph for pkg from the given resolver.
-// It logs progress and writes the resulting graph as JSON to opts.output (or stdout).
-func resolve(ctx context.Context, opts *parseOpts, res deps.Resolver, pkg string) error {
-	logger := loggerFromContext(ctx)
-	logger.Infof("Resolving %s from %s", pkg, res.Name())
-
-	prog := newProgress(logger)
-	g, err := res.Resolve(ctx, pkg, opts.resolveOptions(ctx))
-	if err != nil {
+// parsePackage parses a package using the pipeline service.
+func (c *CLI) parsePackage(ctx context.Context, lang *deps.Language, flags *parseFlags, pkg string) error {
+	if err := validatePackageName(pkg); err != nil {
 		return err
 	}
-	prog.done(fmt.Sprintf("Resolved %d packages with %d dependencies", g.NodeCount(), g.EdgeCount()))
 
-	return writeGraph(g, opts.output, logger)
+	runner, err := c.newRunner(flags.noCache)
+	if err != nil {
+		return fmt.Errorf("initialize runner: %w", err)
+	}
+	defer runner.Close()
+
+	opts := flags.Options
+	opts.Language = lang.Name
+	opts.Package = pkg
+	opts.Logger = c.Logger
+	opts.GitHubToken = os.Getenv("GITHUB_TOKEN")
+
+	spinner := newSpinnerWithContext(ctx, fmt.Sprintf("Resolving %s/%s...", lang.Name, pkg))
+	spinner.Start()
+
+	g, cacheHit, err := runner.ParseWithCacheInfo(ctx, opts)
+	if err != nil {
+		spinner.StopWithError("Failed to resolve dependencies")
+		return fmt.Errorf("resolve %s/%s: %w", lang.Name, pkg, err)
+	}
+	spinner.Stop()
+
+	if ctx.Err() != nil {
+		return ctx.Err()
+	}
+
+	return finishParse(g, flags.output, lang.Name, pkg, cacheHit)
 }
 
-// parseManifest parses a manifest file and writes the resulting dependency graph.
-// If opts.name is set, it renames the root node from "__project__" to the specified name.
-func parseManifest(ctx context.Context, opts *parseOpts, parser deps.ManifestParser, filePath string) error {
-	logger := loggerFromContext(ctx)
-	logger.Infof("Parsing %s (%s)", filePath, parser.Type())
-
-	prog := newProgress(logger)
-	result, err := parser.Parse(filePath, opts.resolveOptions(ctx))
+// parseManifest parses a manifest file using the pipeline service.
+func (c *CLI) parseManifest(ctx context.Context, lang *deps.Language, flags *parseFlags, filePath string) error {
+	manifestContent, err := os.ReadFile(filePath)
 	if err != nil {
-		return err
+		return fmt.Errorf("read manifest: %w", err)
 	}
-	g := result.Graph.(*dag.DAG)
 
-	name := opts.name
+	runner, err := c.newRunner(flags.noCache)
+	if err != nil {
+		return fmt.Errorf("initialize runner: %w", err)
+	}
+	defer runner.Close()
+
+	opts := flags.Options
+	opts.Language = lang.Name
+	opts.Manifest = string(manifestContent)
+	opts.ManifestFilename = filepath.Base(filePath)
+	opts.Logger = c.Logger
+	opts.GitHubToken = os.Getenv("GITHUB_TOKEN")
+
+	spinner := newSpinnerWithContext(ctx, fmt.Sprintf("Parsing %s...", filepath.Base(filePath)))
+	spinner.Start()
+
+	g, cacheHit, err := runner.ParseWithCacheInfo(ctx, opts)
+	if err != nil {
+		spinner.StopWithError("Failed to parse manifest")
+		return fmt.Errorf("parse %s: %w", filepath.Base(filePath), err)
+	}
+	spinner.Stop()
+
+	if ctx.Err() != nil {
+		return ctx.Err()
+	}
+
+	// Rename root node
+	name := flags.name
 	if name == "" {
-		name = result.RootPackage
+		name = strings.TrimSuffix(filepath.Base(filePath), filepath.Ext(filePath))
 	}
 	if name != "" {
-		_ = g.RenameNode("__project__", name)
+		_ = g.RenameNode(graph.ProjectRootNodeID, name)
 	}
 
-	prog.done(fmt.Sprintf("Parsed %d packages with %d dependencies", g.NodeCount(), g.EdgeCount()))
-
-	return writeGraph(g, opts.output, logger)
+	return finishParse(g, flags.output, lang.Name, filepath.Base(filePath), cacheHit)
 }
 
-// looksLikeFile returns true if arg appears to be a file path rather than a package name.
-// It checks if the file exists or has a known manifest extension (.txt, .lock, .toml, .xml).
-// Known manifest files like "go.mod" and "pom.xml" always return true.
-func looksLikeFile(arg string) bool {
-	if _, err := os.Stat(arg); err == nil {
-		return true
+// finishParse writes output and prints summary.
+func finishParse(g *dag.DAG, output, langName, source string, cacheHit bool) error {
+	if output == "" {
+		if err := graph.WriteGraph(g, os.Stdout); err != nil {
+			return fmt.Errorf("write output: %w", err)
+		}
+	} else {
+		if err := graph.WriteGraphFile(g, output); err != nil {
+			return fmt.Errorf("write output: %w", err)
+		}
 	}
-	lower := strings.ToLower(arg)
-	return strings.HasSuffix(lower, ".txt") ||
-		strings.HasSuffix(lower, ".lock") ||
-		strings.HasSuffix(lower, ".toml") ||
-		strings.HasSuffix(lower, ".xml") ||
-		lower == "go.mod" ||
-		lower == "pom.xml"
-}
 
-// writeGraph serializes g as JSON to the specified path (or stdout if empty).
-// The logger is notified on success with the output path.
-func writeGraph(g *dag.DAG, path string, logger interface{ Infof(string, ...any) }) error {
-	out, err := openOutput(path)
-	if err != nil {
-		return err
+	printSuccess("Dependencies resolved")
+	printKeyValue("Source", source)
+	printKeyValue("Language", langName)
+	if output != "" {
+		printFile(output)
 	}
-	defer out.Close()
+	printStats(g.NodeCount(), g.EdgeCount(), cacheHit)
 
-	if err := pkgio.WriteJSON(g, out); err != nil {
-		return err
-	}
-	if path != "" {
-		logger.Infof("Wrote graph to %s", path)
+	if output != "" {
+		printNewline()
+		printNextStep("Render", "stacktower render "+output)
 	}
 	return nil
 }
 
-// metadataProviders returns GitHub metadata providers if enrich is true.
-// It requires the GITHUB_TOKEN environment variable.
-// If the token is missing or invalid, an error is returned.
-func metadataProviders(enrich bool) ([]deps.MetadataProvider, error) {
-	if !enrich {
-		return nil, nil
+// looksLikeFile returns true if arg appears to be a file path.
+func looksLikeFile(arg string) bool {
+	if _, err := os.Stat(arg); err == nil {
+		return true
 	}
-	tok := os.Getenv("GITHUB_TOKEN")
-	if tok == "" {
-		return nil, fmt.Errorf("GITHUB_TOKEN not set (set it or use --enrich=false)")
-	}
-	gh, err := metadata.NewGitHub(tok, deps.DefaultCacheTTL)
-	if err != nil {
-		return nil, fmt.Errorf("github: %w", err)
-	}
-	return []deps.MetadataProvider{gh}, nil
+	base := filepath.Base(arg)
+	return deps.IsManifestSupported(base, languages.All)
 }
 
-// nopCloser wraps an io.Writer with a no-op Close method.
-// It is used to make os.Stdout compatible with io.WriteCloser.
-type nopCloser struct{ io.Writer }
-
-// Close implements io.Closer with a no-op.
-func (nopCloser) Close() error { return nil }
-
-// openOutput returns a WriteCloser for the given path.
-// If path is empty, it returns os.Stdout wrapped in nopCloser.
-// Otherwise, it creates the file at path, overwriting if it exists.
-func openOutput(path string) (io.WriteCloser, error) {
-	if path == "" {
-		return nopCloser{os.Stdout}, nil
+// validatePackageName performs basic security validation on package names.
+func validatePackageName(name string) error {
+	if name == "" {
+		return fmt.Errorf("package name cannot be empty")
 	}
-	return os.Create(path)
+	if len(name) > 256 {
+		return fmt.Errorf("package name too long (max 256 characters)")
+	}
+
+	dangerousPatterns := []string{"..", "//", "\x00", "\\"}
+	for _, pattern := range dangerousPatterns {
+		if strings.Contains(name, pattern) {
+			return fmt.Errorf("invalid package name: contains %q", pattern)
+		}
+	}
+
+	for _, r := range name {
+		if r < 32 || r == 127 {
+			return fmt.Errorf("invalid package name: contains control characters")
+		}
+	}
+
+	return nil
 }

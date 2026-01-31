@@ -11,6 +11,9 @@
 # Test binary, built with `go test -c`
 *.test
 
+# GoReleaser output
+dist/
+
 # Output of the go coverage tool
 *.out
 coverage.out

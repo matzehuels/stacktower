@@ -8,6 +8,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/matzehuels/stacktower/pkg/cache"
+
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
@@ -95,10 +97,7 @@ func TestExtractURL(t *testing.T) {
 }
 
 func TestNewClient(t *testing.T) {
-	c, err := NewClient("test-token", time.Hour)
-	if err != nil {
-		t.Fatalf("NewClient failed: %v", err)
-	}
+	c := NewClient(cache.NewNullCache(), "test-token", time.Hour)
 	if c.Client == nil {
 		t.Error("expected client to be initialized")
 	}
@@ -106,16 +105,12 @@ func TestNewClient(t *testing.T) {
 
 func testClient(t *testing.T, serverURL, token string) *Client {
 	t.Helper()
-	cache, err := integrations.NewCache(time.Hour)
-	if err != nil {
-		t.Fatal(err)
-	}
 	headers := map[string]string{"Accept": "application/vnd.github.v3+json"}
 	if token != "" {
 		headers["Authorization"] = "Bearer " + token
 	}
 	return &Client{
-		Client:  integrations.NewClient(cache, headers),
+		Client:  integrations.NewClient(cache.NewNullCache(), "github:", time.Hour, headers),
 		baseURL: serverURL,
 	}
 }

@@ -1,131 +1,12 @@
 {
   "nodes": [
     {
-      "id": "yargs",
-      "meta": {
-        "description": "yargs the modern, pirate-themed, successor to optimist.",
-        "license": "MIT",
-        "repo_archived": false,
-        "repo_language": "JavaScript",
-        "repo_last_commit": "2025-12-20",
-        "repo_last_release": "2025-05-27",
-        "repo_maintainers": [
-          "bcoe",
-          "maxrimue",
-          "nexdrew",
-          "mleguen"
-        ],
-        "repo_owner": "yargs",
-        "repo_stars": 11410,
-        "repo_url": "https://github.com/yargs/yargs",
-        "version": "18.0.0"
-      }
-    },
-    {
-      "id": "y18n",
-      "meta": {
-        "author": "Ben Coe",
-        "description": "the bare-bones internationalization library used by yargs",
-        "license": "ISC",
-        "repo_archived": false,
-        "repo_language": "JavaScript",
-        "repo_last_commit": "2025-12-15",
-        "repo_last_release": "2021-04-07",
-        "repo_maintainers": [
-          "greenkeeperio-bot",
-          "maxrimue",
-          "bcoe"
-        ],
-        "repo_owner": "yargs",
-        "repo_stars": 151,
-        "repo_url": "https://github.com/yargs/y18n",
-        "version": "5.0.8"
-      }
-    },
-    {
-      "id": "yargs-parser",
-      "meta": {
-        "author": "Ben Coe",
-        "description": "the mighty option parser used by yargs",
-        "license": "ISC",
-        "repo_archived": false,
-        "repo_language": "JavaScript",
-        "repo_last_commit": "2025-12-15",
-        "repo_last_release": "2025-05-26",
-        "repo_maintainers": [
-          "bcoe",
-          "elas7",
-          "juergba"
-        ],
-        "repo_owner": "yargs",
-        "repo_stars": 520,
-        "repo_url": "https://github.com/yargs/yargs-parser",
-        "version": "22.0.0"
-      }
-    },
-    {
-      "id": "get-caller-file",
-      "meta": {
-        "author": "Stefan Penner",
-        "description": "[![Build Status](https://travis-ci.org/stefanpenner/get-caller-file.svg?branch=master)](https://travis-ci.org/stefanpenner/get-caller-file) [![Build status](https://ci.appveyor.com/api/projects/status/ol2q94g1932cy14a/branch/master?svg=true)](https://ci.a",
-        "license": "ISC",
-        "repo_archived": false,
-        "repo_language": "TypeScript",
-        "repo_last_commit": "2023-09-27",
-        "repo_maintainers": [
-          "stefanpenner",
-          "zomarg",
-          "mportuga",
-          "locks",
-          "dyniper"
-        ],
-        "repo_owner": "stefanpenner",
-        "repo_stars": 37,
-        "repo_url": "https://github.com/stefanpenner/get-caller-file",
-        "version": "2.0.5"
-      }
-    },
-    {
-      "id": "get-east-asian-width",
+      "id": "ansi-regex",
       "meta": {
         "author": "Sindre Sorhus",
-        "description": "Determine the East Asian Width of a Unicode character",
+        "description": "Regular expression for matching ANSI escape codes",
         "license": "MIT",
-        "repo_archived": false,
-        "repo_language": "JavaScript",
-        "repo_last_commit": "2025-09-11",
-        "repo_last_release": "2025-09-09",
-        "repo_maintainers": [
-          "sindresorhus",
-          "fisker"
-        ],
-        "repo_owner": "sindresorhus",
-        "repo_stars": 43,
-        "repo_url": "https://github.com/sindresorhus/get-east-asian-width",
-        "version": "1.4.0"
-      }
-    },
-    {
-      "id": "wrap-ansi",
-      "meta": {
-        "author": "Sindre Sorhus",
-        "description": "Wordwrap a string with ANSI escape codes",
-        "license": "MIT",
-        "repo_archived": false,
-        "repo_language": "JavaScript",
-        "repo_last_commit": "2025-09-08",
-        "repo_last_release": "2025-09-08",
-        "repo_maintainers": [
-          "sindresorhus",
-          "bcoe",
-          "SamVerschueren",
-          "coreyfarrell",
-          "kevva"
-        ],
-        "repo_owner": "chalk",
-        "repo_stars": 130,
-        "repo_url": "https://github.com/chalk/wrap-ansi",
-        "version": "9.0.2"
+        "version": "6.2.2"
       }
     },
     {
@@ -134,47 +15,7 @@
         "author": "Sindre Sorhus",
         "description": "ANSI escape codes for styling strings in the terminal",
         "license": "MIT",
-        "repo_archived": false,
-        "repo_language": "JavaScript",
-        "repo_last_commit": "2025-10-01",
-        "repo_last_release": "2025-09-08",
-        "repo_maintainers": [
-          "sindresorhus",
-          "Qix-",
-          "Richienb",
-          "arthurvr",
-          "ExE-Boss"
-        ],
-        "repo_owner": "chalk",
-        "repo_stars": 447,
-        "repo_topics": [
-          "chalk"
-        ],
-        "repo_url": "https://github.com/chalk/ansi-styles",
         "version": "6.2.3"
-      }
-    },
-    {
-      "id": "string-width",
-      "meta": {
-        "author": "Sindre Sorhus",
-        "description": "Get the visual width of a string - the number of columns required to display it",
-        "license": "MIT",
-        "repo_archived": false,
-        "repo_language": "JavaScript",
-        "repo_last_commit": "2025-09-01",
-        "repo_last_release": "2025-09-01",
-        "repo_maintainers": [
-          "sindresorhus",
-          "fisker",
-          "coreyfarrell",
-          "BendingBender",
-          "adam2k"
-        ],
-        "repo_owner": "sindresorhus",
-        "repo_stars": 513,
-        "repo_url": "https://github.com/sindresorhus/string-width",
-        "version": "8.1.0"
       }
     },
     {
@@ -183,19 +24,6 @@
         "author": "Ben Coe",
         "description": "easily create complex multi-column command-line-interfaces",
         "license": "ISC",
-        "repo_archived": false,
-        "repo_language": "JavaScript",
-        "repo_last_commit": "2025-12-15",
-        "repo_last_release": "2025-03-17",
-        "repo_maintainers": [
-          "bcoe",
-          "greenkeeperio-bot",
-          "coreyfarrell",
-          "nexdrew"
-        ],
-        "repo_owner": "yargs",
-        "repo_stars": 383,
-        "repo_url": "https://github.com/yargs/cliui",
         "version": "9.0.1"
       }
     },
@@ -205,20 +33,34 @@
         "author": "Luke Edwards",
         "description": "A tiny (183B to 210B) and fast utility to ascend parent directories",
         "license": "MIT",
-        "repo_archived": false,
-        "repo_language": "JavaScript",
-        "repo_last_commit": "2024-08-29",
-        "repo_last_release": "2024-08-29",
-        "repo_maintainers": [
-          "lukeed",
-          "ljharb",
-          "NMinhNguyen",
-          "triannguyen"
-        ],
-        "repo_owner": "lukeed",
-        "repo_stars": 153,
-        "repo_url": "https://github.com/lukeed/escalade",
         "version": "3.2.0"
+      }
+    },
+    {
+      "id": "get-caller-file",
+      "meta": {
+        "author": "Stefan Penner",
+        "description": "[![Build Status](https://travis-ci.org/stefanpenner/get-caller-file.svg?branch=master)](https://travis-ci.org/stefanpenner/get-caller-file) [![Build status](https://ci.appveyor.com/api/projects/status/ol2q94g1932cy14a/branch/master?svg=true)](https://ci.a",
+        "license": "ISC",
+        "version": "2.0.5"
+      }
+    },
+    {
+      "id": "get-east-asian-width",
+      "meta": {
+        "author": "Sindre Sorhus",
+        "description": "Determine the East Asian Width of a Unicode character",
+        "license": "MIT",
+        "version": "1.4.0"
+      }
+    },
+    {
+      "id": "string-width",
+      "meta": {
+        "author": "Sindre Sorhus",
+        "description": "Get the visual width of a string - the number of columns required to display it",
+        "license": "MIT",
+        "version": "8.1.1"
       }
     },
     {
@@ -227,60 +69,46 @@
         "author": "Sindre Sorhus",
         "description": "Strip ANSI escape codes from a string",
         "license": "MIT",
-        "repo_archived": false,
-        "repo_language": "JavaScript",
-        "repo_last_commit": "2025-09-08",
-        "repo_last_release": "2025-09-08",
-        "repo_maintainers": [
-          "sindresorhus",
-          "jbnicolai",
-          "LitoMore",
-          "rmg",
-          "kevva"
-        ],
-        "repo_owner": "chalk",
-        "repo_stars": 430,
-        "repo_url": "https://github.com/chalk/strip-ansi",
         "version": "7.1.2"
       }
     },
     {
-      "id": "ansi-regex",
+      "id": "wrap-ansi",
       "meta": {
         "author": "Sindre Sorhus",
-        "description": "Regular expression for matching ANSI escape codes",
+        "description": "Wordwrap a string with ANSI escape codes",
         "license": "MIT",
-        "repo_archived": false,
-        "repo_language": "JavaScript",
-        "repo_last_commit": "2025-09-08",
-        "repo_last_release": "2025-09-08",
-        "repo_maintainers": [
-          "sindresorhus",
-          "Qix-",
-          "Akim95",
-          "arjunmehta",
-          "llimllib"
-        ],
-        "repo_owner": "chalk",
-        "repo_stars": 198,
-        "repo_url": "https://github.com/chalk/ansi-regex",
-        "version": "6.2.2"
+        "version": "9.0.2"
+      }
+    },
+    {
+      "id": "y18n",
+      "meta": {
+        "author": "Ben Coe",
+        "description": "the bare-bones internationalization library used by yargs",
+        "license": "ISC",
+        "version": "5.0.8"
+      }
+    },
+    {
+      "id": "yargs",
+      "meta": {
+        "description": "yargs the modern, pirate-themed, successor to optimist.",
+        "license": "MIT",
+        "version": "18.0.0"
+      }
+    },
+    {
+      "id": "yargs-parser",
+      "meta": {
+        "author": "Ben Coe",
+        "description": "the mighty option parser used by yargs",
+        "license": "ISC",
+        "version": "22.0.0"
       }
     }
   ],
   "edges": [
-    {
-      "from": "yargs",
-      "to": "string-width"
-    },
-    {
-      "from": "yargs",
-      "to": "y18n"
-    },
-    {
-      "from": "yargs",
-      "to": "yargs-parser"
-    },
     {
       "from": "yargs",
       "to": "cliui"
@@ -294,12 +122,16 @@
       "to": "get-caller-file"
     },
     {
-      "from": "string-width",
-      "to": "get-east-asian-width"
+      "from": "yargs",
+      "to": "string-width"
     },
     {
-      "from": "string-width",
-      "to": "strip-ansi"
+      "from": "yargs",
+      "to": "y18n"
+    },
+    {
+      "from": "yargs",
+      "to": "yargs-parser"
     },
     {
       "from": "cliui",
@@ -328,6 +160,14 @@
     {
       "from": "wrap-ansi",
       "to": "string-width"
+    },
+    {
+      "from": "string-width",
+      "to": "strip-ansi"
+    },
+    {
+      "from": "string-width",
+      "to": "get-east-asian-width"
     }
   ]
 }

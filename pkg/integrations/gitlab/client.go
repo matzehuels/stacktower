@@ -4,6 +4,7 @@ import (
 	"regexp"
 	"time"
 
+	"github.com/matzehuels/stacktower/pkg/cache"
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
@@ -22,26 +23,19 @@ type Client struct {
 
 // NewClient creates a GitLab API client with optional authentication.
 //
-// The token parameter is a GitLab personal access token for authentication.
-// Pass an empty string to use unauthenticated requests (public repositories only).
+// Parameters:
+//   - backend: Cache backend for HTTP response caching (use storage.NullBackend{} for no caching)
+//   - token: GitLab personal access token (empty string for unauthenticated)
+//   - cacheTTL: How long responses are cached (typical: 1-24 hours)
 //
-// The cacheTTL parameter sets how long responses are cached.
-// Typical values: 1-24 hours for production, 0 for testing (no cache).
-//
-// Returns an error if the cache directory cannot be created or accessed.
 // The returned Client is safe for concurrent use.
-func NewClient(token string, cacheTTL time.Duration) (*Client, error) {
-	cache, err := integrations.NewCacheWithNamespace("gitlab:", cacheTTL)
-	if err != nil {
-		return nil, err
-	}
-
+func NewClient(backend cache.Cache, token string, cacheTTL time.Duration) *Client {
 	var headers map[string]string
 	if token != "" {
 		headers = map[string]string{"PRIVATE-TOKEN": token}
 	}
 
-	return &Client{integrations.NewClient(cache, headers)}, nil
+	return &Client{integrations.NewClient(backend, "gitlab:", cacheTTL, headers)}
 }
 
 // ExtractURL extracts GitLab repository owner and name from package URLs.

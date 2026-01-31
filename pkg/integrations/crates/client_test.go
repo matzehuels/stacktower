@@ -8,14 +8,13 @@ import (
 	"testing"
 	"time"
 
+	"github.com/matzehuels/stacktower/pkg/cache"
+
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
 func TestNewClient(t *testing.T) {
-	c, err := NewClient(time.Hour)
-	if err != nil {
-		t.Fatalf("NewClient failed: %v", err)
-	}
+	c := NewClient(cache.NewNullCache(), time.Hour)
 	if c.Client == nil {
 		t.Error("expected client to be initialized")
 	}
@@ -91,15 +90,11 @@ func TestClient_FetchCrate_NotFound(t *testing.T) {
 
 func testClient(t *testing.T, serverURL string) *Client {
 	t.Helper()
-	cache, err := integrations.NewCache(time.Hour)
-	if err != nil {
-		t.Fatal(err)
-	}
 	headers := map[string]string{
 		"User-Agent": "stacktower/1.0 (https://github.com/matzehuels/stacktower)",
 	}
 	return &Client{
-		Client:  integrations.NewClient(cache, headers),
+		Client:  integrations.NewClient(cache.NewNullCache(), "crates:", time.Hour, headers),
 		baseURL: serverURL,
 	}
 }

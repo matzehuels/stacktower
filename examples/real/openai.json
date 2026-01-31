@@ -1,204 +1,18 @@
 {
   "nodes": [
     {
-      "id": "h11",
+      "id": "annotated-types",
       "meta": {
-        "author": "Nathaniel J. Smith",
-        "description": "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1",
-        "license": "MIT",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-04-24",
-        "repo_maintainers": [
-          "njsmith",
-          "pgjones",
-          "Lukasa",
-          "cdeler",
-          "lovelydinosaur"
-        ],
-        "repo_owner": "python-hyper",
-        "repo_stars": 538,
-        "repo_topics": [
-          "http",
-          "python",
-          "sans-io"
-        ],
-        "repo_url": "https://github.com/python-hyper/h11",
-        "version": "0.16.0"
-      }
-    },
-    {
-      "id": "exceptiongroup",
-      "meta": {
-        "description": "Backport of PEP 654 (exception groups)",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-11-21",
-        "repo_last_release": "2025-11-21",
-        "repo_maintainers": [
-          "agronholm",
-          "jakkdl",
-          "Zac-HD",
-          "cfbolz"
-        ],
-        "repo_owner": "agronholm",
-        "repo_stars": 48,
-        "repo_url": "https://github.com/agronholm/exceptiongroup",
-        "version": "1.3.1"
-      }
-    },
-    {
-      "id": "httpx",
-      "meta": {
-        "description": "The next generation HTTP client.",
-        "license": "BSD-3-Clause",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-12-17",
-        "repo_last_release": "2024-12-06",
-        "repo_maintainers": [
-          "lovelydinosaur",
-          "florimondmanca",
-          "sethmlarson",
-          "karpetrosyan"
-        ],
-        "repo_owner": "encode",
-        "repo_stars": 14857,
-        "repo_topics": [
-          "asyncio",
-          "http",
-          "python",
-          "trio"
-        ],
-        "repo_url": "https://github.com/encode/httpx",
-        "version": "0.28.1"
-      }
-    },
-    {
-      "id": "jiter",
-      "meta": {
-        "description": "Fast iterable JSON parser.",
-        "repo_archived": false,
-        "repo_language": "Rust",
-        "repo_last_commit": "2025-11-09",
-        "repo_last_release": "2025-11-09",
-        "repo_maintainers": [
-          "samuelcolvin",
-          "davidhewitt",
-          "Viicos",
-          "jessekrubin",
-          "msimacek"
-        ],
-        "repo_owner": "pydantic",
-        "repo_stars": 481,
-        "repo_topics": [
-          "json",
-          "json-parser",
-          "pydantic",
-          "rust"
-        ],
-        "repo_url": "https://github.com/pydantic/jiter",
-        "version": "0.12.0"
-      }
-    },
-    {
-      "id": "pydantic-core",
-      "meta": {
-        "description": "Core functionality for Pydantic validation and serialization",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-11-10",
-        "repo_last_release": "2025-11-04",
-        "repo_maintainers": [
-          "samuelcolvin",
-          "davidhewitt",
-          "adriangb",
-          "sydney-runkle"
-        ],
-        "repo_owner": "pydantic",
-        "repo_stars": 1739,
-        "repo_topics": [
-          "json-schema",
-          "parsing",
-          "pydantic",
-          "rust",
-          "schema",
-          "validation"
-        ],
-        "repo_url": "https://github.com/pydantic/pydantic-core",
-        "version": "2.41.5"
-      }
-    },
-    {
-      "id": "typing-inspection",
-      "meta": {
-        "description": "Runtime typing introspection tools",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-10-01",
-        "repo_last_release": "2025-10-01",
-        "repo_maintainers": [
-          "Viicos",
-          "samuelcolvin",
-          "cdce8p"
-        ],
-        "repo_owner": "pydantic",
-        "repo_stars": 57,
-        "repo_url": "https://github.com/pydantic/typing-inspection",
-        "version": "0.4.2"
+        "description": "Reusable constraint types to use with typing.Annotated",
+        "license": "MIT License",
+        "version": "0.7.0"
       }
     },
     {
       "id": "anyio",
       "meta": {
         "description": "High-level concurrency and networking framework on top of asyncio or Trio",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-12-22",
-        "repo_last_release": "2025-11-30",
-        "repo_maintainers": [
-          "agronholm",
-          "graingert",
-          "gschaffner",
-          "davidbrochart"
-        ],
-        "repo_owner": "agronholm",
-        "repo_stars": 2331,
-        "repo_topics": [
-          "async-await",
-          "asyncio",
-          "trio"
-        ],
-        "repo_url": "https://github.com/agronholm/anyio",
-        "version": "4.12.0"
-      }
-    },
-    {
-      "id": "idna",
-      "meta": {
-        "description": "Internationalized Domain Names in Applications (IDNA)",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-10-20",
-        "repo_last_release": "2025-10-12",
-        "repo_maintainers": [
-          "kjd",
-          "hugovk",
-          "jdufresne",
-          "jribbens",
-          "slingamn"
-        ],
-        "repo_owner": "kjd",
-        "repo_stars": 273,
-        "repo_topics": [
-          "dns",
-          "hacktoberfest",
-          "idna",
-          "python",
-          "unicode"
-        ],
-        "repo_url": "https://github.com/kjd/idna",
-        "version": "3.11"
+        "version": "4.12.1"
       }
     },
     {
@@ -206,84 +20,16 @@
       "meta": {
         "author": "Kenneth Reitz",
         "description": "Python package for providing Mozilla's CA Bundle.",
-        "license": "MPL-2.0",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-12-22",
-        "repo_maintainers": [
-          "Lukasa",
-          "alex",
-          "sigmavirus24"
-        ],
-        "repo_owner": "certifi",
-        "repo_stars": 943,
-        "repo_url": "https://github.com/certifi/python-certifi",
-        "version": "2025.11.12"
-      }
-    },
-    {
-      "id": "httpcore",
-      "meta": {
-        "description": "A minimal low-level HTTP client.",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-12-06",
-        "repo_last_release": "2025-04-24",
-        "repo_maintainers": [
-          "lovelydinosaur",
-          "florimondmanca",
-          "karpetrosyan",
-          "cdeler"
-        ],
-        "repo_owner": "encode",
-        "repo_stars": 527,
-        "repo_url": "https://github.com/encode/httpcore",
-        "version": "1.0.9"
+        "license": "Mozilla Public License 2.0 (MPL 2.0)",
+        "version": "2026.1.4"
       }
     },
     {
       "id": "colorama",
       "meta": {
         "description": "Cross-platform colored terminal text.",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-07-09",
-        "repo_maintainers": [
-          "tartley",
-          "wiggin15",
-          "hugovk",
-          "njsmith",
-          "jdufresne"
-        ],
-        "repo_owner": "tartley",
-        "repo_stars": 3758,
-        "repo_url": "https://github.com/tartley/colorama",
+        "license": "BSD License",
         "version": "0.4.6"
-      }
-    },
-    {
-      "id": "openai",
-      "meta": {
-        "description": "The official Python library for the openai API",
-        "license": "Apache-2.0",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-12-19",
-        "repo_last_release": "2025-12-19",
-        "repo_maintainers": [
-          "stainless-bot",
-          "RobertCraigie",
-          "hallacy",
-          "rachellim"
-        ],
-        "repo_owner": "openai",
-        "repo_stars": 29537,
-        "repo_topics": [
-          "openai",
-          "python"
-        ],
-        "repo_url": "https://github.com/openai/openai-python",
-        "version": "2.14.0"
       }
     },
     {
@@ -291,90 +37,85 @@
       "meta": {
         "author": "Nir Cohen",
         "description": "Distro - an OS platform information API",
-        "license": "Apache License, Version 2.0",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-11-14",
-        "repo_last_release": "2024-01-14",
-        "repo_maintainers": [
-          "nir0s",
-          "andy-maier",
-          "jdufresne",
-          "HorlogeSkynet",
-          "SethMichaelLarson"
-        ],
-        "repo_owner": "python-distro",
-        "repo_stars": 279,
-        "repo_topics": [
-          "distribution",
-          "distro",
-          "hacktoberfest",
-          "linux",
-          "linux-distribution",
-          "python",
-          "python-library"
-        ],
-        "repo_url": "https://github.com/python-distro/distro",
+        "license": "Apache Software License",
         "version": "1.9.0"
+      }
+    },
+    {
+      "id": "exceptiongroup",
+      "meta": {
+        "description": "Backport of PEP 654 (exception groups)",
+        "license": "MIT License",
+        "version": "1.3.1"
+      }
+    },
+    {
+      "id": "h11",
+      "meta": {
+        "author": "Nathaniel J. Smith",
+        "description": "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1",
+        "license": "MIT License",
+        "version": "0.16.0"
+      }
+    },
+    {
+      "id": "httpcore",
+      "meta": {
+        "description": "A minimal low-level HTTP client.",
+        "license": "BSD License",
+        "version": "1.0.9"
+      }
+    },
+    {
+      "id": "httpx",
+      "meta": {
+        "description": "The next generation HTTP client.",
+        "license": "BSD License",
+        "version": "0.28.1"
+      }
+    },
+    {
+      "id": "idna",
+      "meta": {
+        "description": "Internationalized Domain Names in Applications (IDNA)",
+        "version": "3.11"
+      }
+    },
+    {
+      "id": "jiter",
+      "meta": {
+        "description": "Fast iterable JSON parser.",
+        "license": "MIT License",
+        "version": "0.12.0"
+      }
+    },
+    {
+      "id": "openai",
+      "meta": {
+        "description": "The official Python library for the openai API",
+        "license": "Apache Software License",
+        "version": "2.16.0"
       }
     },
     {
       "id": "pydantic",
       "meta": {
         "description": "Data validation using Python type hints",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-12-21",
-        "repo_last_release": "2025-11-26",
-        "repo_maintainers": [
-          "samuelcolvin",
-          "Viicos",
-          "sydney-runkle",
-          "dmontagu"
-        ],
-        "repo_owner": "pydantic",
-        "repo_stars": 26251,
-        "repo_topics": [
-          "hints",
-          "json-schema",
-          "parsing",
-          "pydantic",
-          "python",
-          "python310",
-          "python311",
-          "python312",
-          "python313",
-          "python39",
-          "validation"
-        ],
-        "repo_url": "https://github.com/pydantic/pydantic",
         "version": "2.12.5"
+      }
+    },
+    {
+      "id": "pydantic-core",
+      "meta": {
+        "description": "Core functionality for Pydantic validation and serialization",
+        "version": "2.41.5"
       }
     },
     {
       "id": "sniffio",
       "meta": {
         "description": "Sniff out which async library your code is running under",
-        "license": "MIT OR Apache-2.0",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2024-02-25",
-        "repo_maintainers": [
-          "njsmith",
-          "graingert",
-          "pquentin",
-          "agronholm",
-          "hugovk"
-        ],
-        "repo_owner": "python-trio",
-        "repo_stars": 144,
-        "repo_topics": [
-          "async",
-          "asyncio",
-          "python",
-          "trio"
-        ],
-        "repo_url": "https://github.com/python-trio/sniffio",
+        "license": "Apache Software License",
         "version": "1.3.1"
       }
     },
@@ -383,85 +124,21 @@
       "meta": {
         "description": "Fast, Extensible Progress Meter",
         "license": "MPL-2.0 AND MIT",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-05-22",
-        "repo_last_release": "2024-11-27",
-        "repo_maintainers": [
-          "casperdcl",
-          "lrq3000",
-          "altendky",
-          "hadim",
-          "richardsheridan"
-        ],
-        "repo_owner": "tqdm",
-        "repo_stars": 30795,
-        "repo_topics": [
-          "cli",
-          "closember",
-          "console",
-          "discord",
-          "gui",
-          "jupyter",
-          "keras",
-          "meter",
-          "pandas",
-          "parallel",
-          "progress",
-          "progress-bar",
-          "progressbar",
-          "progressmeter",
-          "python",
-          "rate",
-          "telegram",
-          "terminal",
-          "time",
-          "utilities"
-        ],
-        "repo_url": "https://github.com/tqdm/tqdm",
-        "version": "4.67.1"
+        "version": "4.67.2"
       }
     },
     {
       "id": "typing-extensions",
       "meta": {
         "description": "Backported and Experimental Type Hints for Python 3.9+",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-12-02",
-        "repo_last_release": "2025-08-25",
-        "repo_maintainers": [
-          "JelleZijlstra",
-          "AlexWaygood",
-          "srittau",
-          "brianschubert",
-          "Daraan"
-        ],
-        "repo_owner": "python",
-        "repo_stars": 543,
-        "repo_url": "https://github.com/python/typing_extensions",
         "version": "4.15.0"
       }
     },
     {
-      "id": "annotated-types",
+      "id": "typing-inspection",
       "meta": {
-        "description": "Reusable constraint types to use with typing.Annotated",
-        "repo_archived": false,
-        "repo_language": "Python",
-        "repo_last_commit": "2025-11-10",
-        "repo_last_release": "2024-05-20",
-        "repo_maintainers": [
-          "adriangb",
-          "samuelcolvin",
-          "Zac-HD",
-          "hugovk",
-          "Viicos"
-        ],
-        "repo_owner": "annotated-types",
-        "repo_stars": 585,
-        "repo_url": "https://github.com/annotated-types/annotated-types",
-        "version": "0.7.0"
+        "description": "Runtime typing introspection tools",
+        "version": "0.4.2"
       }
     }
   ],
@@ -499,26 +176,6 @@
       "to": "typing-extensions"
     },
     {
-      "from": "httpx",
-      "to": "anyio"
-    },
-    {
-      "from": "httpx",
-      "to": "certifi"
-    },
-    {
-      "from": "httpx",
-      "to": "httpcore"
-    },
-    {
-      "from": "httpx",
-      "to": "idna"
-    },
-    {
-      "from": "tqdm",
-      "to": "colorama"
-    },
-    {
       "from": "anyio",
       "to": "exceptiongroup"
     },
@@ -547,19 +204,7 @@
       "to": "typing-inspection"
     },
     {
-      "from": "httpcore",
-      "to": "certifi"
-    },
-    {
-      "from": "httpcore",
-      "to": "h11"
-    },
-    {
       "from": "exceptiongroup",
-      "to": "typing-extensions"
-    },
-    {
-      "from": "annotated-types",
       "to": "typing-extensions"
     },
     {
@@ -567,8 +212,40 @@
       "to": "typing-extensions"
     },
     {
+      "from": "annotated-types",
+      "to": "typing-extensions"
+    },
+    {
       "from": "pydantic-core",
       "to": "typing-extensions"
+    },
+    {
+      "from": "httpx",
+      "to": "anyio"
+    },
+    {
+      "from": "httpx",
+      "to": "certifi"
+    },
+    {
+      "from": "httpx",
+      "to": "httpcore"
+    },
+    {
+      "from": "httpx",
+      "to": "idna"
+    },
+    {
+      "from": "tqdm",
+      "to": "colorama"
+    },
+    {
+      "from": "httpcore",
+      "to": "certifi"
+    },
+    {
+      "from": "httpcore",
+      "to": "h11"
     }
   ]
 }

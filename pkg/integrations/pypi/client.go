@@ -5,8 +5,10 @@ import (
 	"errors"
 	"fmt"
 	"regexp"
+	"strings"
 	"time"
 
+	"github.com/matzehuels/stacktower/pkg/cache"
 	"github.com/matzehuels/stacktower/pkg/integrations"
 )
 
@@ -44,22 +46,18 @@ type Client struct {
 	baseURL string
 }
 
-// NewClient creates a PyPI client with the specified cache TTL.
+// NewClient creates a PyPI client with the given cache backend.
 //
-// The cacheTTL parameter sets how long responses are cached.
-// Typical values: 1-24 hours for production, 0 for testing (no cache).
+// Parameters:
+//   - backend: Cache backend for HTTP response caching (use storage.NullBackend{} for no caching)
+//   - cacheTTL: How long responses are cached (typical: 1-24 hours)
 //
-// Returns an error if the cache directory cannot be created or accessed.
 // The returned Client is safe for concurrent use.
-func NewClient(cacheTTL time.Duration) (*Client, error) {
-	cache, err := integrations.NewCacheWithNamespace("pypi:", cacheTTL)
-	if err != nil {
-		return nil, err
-	}
+func NewClient(backend cache.Cache, cacheTTL time.Duration) *Client {
 	return &Client{
-		Client:  integrations.NewClient(cache, nil),
+		Client:  integrations.NewClient(backend, "pypi:", cacheTTL, nil),
 		baseURL: "https://pypi.org/pypi",
-	}, nil
+	}
 }
 
 // FetchPackage retrieves metadata for a Python package from PyPI.
@@ -112,7 +110,7 @@ func (c *Client) fetch(ctx context.Context, pkg string, info *PackageInfo) error
 		Name:         data.Info.Name,
 		Version:      data.Info.Version,
 		Summary:      data.Info.Summary,
-		License:      data.Info.License,
+		License:      extractLicenseType(data.Info.License, data.Info.Classifiers),
 		Dependencies: extractDeps(data.Info.RequiresDist),
 		ProjectURLs:  urls,
 		HomePage:     data.Info.HomePage,
@@ -148,8 +146,42 @@ type apiInfo struct {
 	Version      string         `json:"version"`
 	Summary      string         `json:"summary"`
 	License      string         `json:"license"`
+	Classifiers  []string       `json:"classifiers"`
 	RequiresDist []string       `json:"requires_dist"`
 	ProjectURLs  map[string]any `json:"project_urls"`
 	HomePage     string         `json:"home_page"`
 	Author       string         `json:"author"`
+}
+
+// extractLicenseType extracts a short license identifier from PyPI data.
+// It prefers the classifier (e.g., "License :: OSI Approved :: MIT License" -> "MIT License")
+// and falls back to the license field if it's short enough.
+func extractLicenseType(license string, classifiers []string) string {
+	// First, try to extract from classifiers
+	for _, c := range classifiers {
+		if strings.HasPrefix(c, "License :: ") {
+			parts := strings.Split(c, " :: ")
+			if len(parts) >= 3 {
+				// Return the last part, e.g., "MIT License", "BSD-3-Clause"
+				return parts[len(parts)-1]
+			}
+		}
+	}
+
+	// If license field is short (likely just the type), use it
+	if license != "" && len(license) < 100 && !strings.Contains(license, "\n") {
+		return strings.TrimSpace(license)
+	}
+
+	// Otherwise, try to extract type from the beginning of the license text
+	if license != "" {
+		// Common patterns: "MIT License", "BSD 3-Clause License", "Apache License 2.0"
+		firstLine := strings.Split(license, "\n")[0]
+		firstLine = strings.TrimSpace(firstLine)
+		if len(firstLine) < 50 {
+			return firstLine
+		}
+	}
+
+	return ""
 }
