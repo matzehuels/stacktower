@@ -13,7 +13,13 @@ Inspired by [XKCD #2347](https://xkcd.com/2347/), Stacktower renders dependency 
   <img src="blogpost/plots/showcase/python/fastapi.svg" alt="FastAPI dependency tower" width="600">
 </p>
 
-📖 **[Read the full story at stacktower.io](https://www.stacktower.io)**
+---
+
+<p align="center">
+  <a href="https://app.stacktower.io"><strong>🚀 Try the Web App</strong></a> · <a href="https://www.stacktower.io"><strong>📖 Read the Story</strong></a>
+</p>
+
+---
 
 > ⚠️ **Note:** The ordering algorithms are still experimental and may not produce nicely stacked towers for projects with a large number of dependencies. Results can vary. We're actively working on improvements.
 
