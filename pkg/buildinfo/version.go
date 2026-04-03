@@ -21,6 +21,13 @@ var (
 	// Date is the build timestamp.
 	// Set via ldflags: -X github.com/matzehuels/stacktower/pkg/buildinfo.Date=...
 	Date = "unknown"
+
+	// GitHubAppClientID is the OAuth client ID for GitHub device flow authentication.
+	GitHubAppClientID = "Iv23liGZy2ueQyYDFD6q"
+
+	// GitHubAppSlug is the GitHub App slug for installation URLs.
+	// Set via ldflags: -X github.com/matzehuels/stacktower/pkg/buildinfo.GitHubAppSlug=...
+	GitHubAppSlug = "stacktower"
 )
 
 // String returns the formatted build information.
