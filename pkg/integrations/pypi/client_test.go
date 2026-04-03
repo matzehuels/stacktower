@@ -79,9 +79,9 @@ func TestExtractDeps_FiltersMarkers(t *testing.T) {
 		{[]string{"django>=3.0", "pytest; extra == 'test'"}, 1},
 		{[]string{"flask"}, 1},
 		// python_version markers: should filter deps for older Python versions
-		{[]string{"sniffio>=1.1; python_version < '3.11'"}, 0},       // Excluded: requires Python < 3.11
-		{[]string{"contextvars; python_version < '3.7'"}, 0},         // Excluded: requires Python < 3.7
-		{[]string{"typing-extensions; python_version >= '3.8'"}, 1},  // Included: satisfied on 3.11
+		{[]string{"sniffio>=1.1; python_version < '3.11'"}, 0},        // Excluded: requires Python < 3.11
+		{[]string{"contextvars; python_version < '3.7'"}, 0},          // Excluded: requires Python < 3.7
+		{[]string{"typing-extensions; python_version >= '3.8'"}, 1},   // Included: satisfied on 3.11
 		{[]string{"exceptiongroup>=1.0; python_version < '3.11'"}, 0}, // Excluded: requires Python < 3.11
 	}
 

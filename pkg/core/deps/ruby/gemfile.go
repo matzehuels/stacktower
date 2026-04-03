@@ -207,4 +207,3 @@ func parseGemfile(f *os.File) []string {
 
 	return gems
 }
-

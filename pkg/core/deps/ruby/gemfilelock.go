@@ -214,4 +214,3 @@ func buildGemfileLockGraph(lock *gemfileLockData, opts deps.Options) *dag.DAG {
 
 	return g
 }
-

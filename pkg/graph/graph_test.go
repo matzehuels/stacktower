@@ -337,7 +337,7 @@ func TestReadGraph_SpecialCharactersInIDs(t *testing.T) {
 			input := `{"nodes": [{"id": ` + jsonString(tt.id) + `}], "edges": []}`
 			r := strings.NewReader(input)
 			g, err := ReadGraph(r)
-			
+
 			if tt.valid {
 				if err != nil {
 					t.Errorf("ReadGraph() unexpected error = %v", err)

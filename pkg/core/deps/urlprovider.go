@@ -382,4 +382,3 @@ func (p *MavenURLProvider) FetchURLs(ctx context.Context, names []string, refres
 		}
 	}), nil
 }
-

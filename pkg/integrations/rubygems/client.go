@@ -181,16 +181,16 @@ func (c *Client) fetchVersionFromV2API(ctx context.Context, gem, version string,
 
 // gemV2Response represents the JSON response from RubyGems V2 API for a specific version.
 type gemV2Response struct {
-	Name         string `json:"name"`
-	Version      string `json:"version"`
-	Info         string `json:"info"`
-	Authors      string `json:"authors"`
-	Licenses     []string `json:"licenses"`
-	SourceCodeURI string `json:"source_code_uri"`
-	HomepageURI  string `json:"homepage_uri"`
-	Downloads    int    `json:"downloads"`
-	RubyVersion  string `json:"ruby_version"`
-	Dependencies struct {
+	Name          string   `json:"name"`
+	Version       string   `json:"version"`
+	Info          string   `json:"info"`
+	Authors       string   `json:"authors"`
+	Licenses      []string `json:"licenses"`
+	SourceCodeURI string   `json:"source_code_uri"`
+	HomepageURI   string   `json:"homepage_uri"`
+	Downloads     int      `json:"downloads"`
+	RubyVersion   string   `json:"ruby_version"`
+	Dependencies  struct {
 		Runtime     []dependency `json:"runtime"`
 		Development []dependency `json:"development"`
 	} `json:"dependencies"`

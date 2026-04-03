@@ -51,8 +51,8 @@ import (
 	"github.com/charmbracelet/log"
 
 	"github.com/matzehuels/stacktower/pkg/cache"
-	"github.com/matzehuels/stacktower/pkg/core/deps"
 	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/matzehuels/stacktower/pkg/core/deps"
 	"github.com/matzehuels/stacktower/pkg/core/render/tower/ordering"
 	"github.com/matzehuels/stacktower/pkg/graph"
 )
@@ -127,24 +127,24 @@ var ValidVizTypes = map[string]bool{
 // This struct supports JSON serialization for API requests.
 type Options struct {
 	// Parse options
-	Language            string `json:"language"`
-	Package             string `json:"package,omitempty"`
-	Version             string `json:"version,omitempty"` // Specific package version (e.g., "2.31.0")
-	Manifest            string `json:"manifest,omitempty"`
-	ManifestFilename    string `json:"manifest_filename,omitempty"`
-	ManifestPath        string `json:"manifest_path,omitempty"` // Optional on-disk path used when parser needs workspace context
-	Owner               string `json:"owner,omitempty"`     // GitHub owner (user/org)
-	Repo                string `json:"repo,omitempty"`      // GitHub repository name
-	Ref                 string `json:"ref,omitempty"`       // Git ref (branch/tag)
-	Path                string `json:"path,omitempty"`      // Path within repo
-	RootName            string `json:"root_name,omitempty"` // Custom name for root node (replaces __project__)
-	MaxDepth            int    `json:"max_depth,omitempty"`
-	MaxNodes            int    `json:"max_nodes,omitempty"`
-	Workers             int    `json:"workers,omitempty"`     // Concurrent fetch workers (0 = default 20)
-	SkipEnrich          bool   `json:"skip_enrich,omitempty"` // Skip metadata enrichment (default: false = enrich)
-	FetchContributors   bool   `json:"fetch_contributors,omitempty"` // Fetch GitHub contributors (slower, enables Nebraska rankings)
-	Refresh             bool   `json:"refresh,omitempty"`
-	DependencyScope   string `json:"dependency_scope,omitempty"`     // Dependency scope policy: prod_only (default) or all
+	Language          string `json:"language"`
+	Package           string `json:"package,omitempty"`
+	Version           string `json:"version,omitempty"` // Specific package version (e.g., "2.31.0")
+	Manifest          string `json:"manifest,omitempty"`
+	ManifestFilename  string `json:"manifest_filename,omitempty"`
+	ManifestPath      string `json:"manifest_path,omitempty"` // Optional on-disk path used when parser needs workspace context
+	Owner             string `json:"owner,omitempty"`         // GitHub owner (user/org)
+	Repo              string `json:"repo,omitempty"`          // GitHub repository name
+	Ref               string `json:"ref,omitempty"`           // Git ref (branch/tag)
+	Path              string `json:"path,omitempty"`          // Path within repo
+	RootName          string `json:"root_name,omitempty"`     // Custom name for root node (replaces __project__)
+	MaxDepth          int    `json:"max_depth,omitempty"`
+	MaxNodes          int    `json:"max_nodes,omitempty"`
+	Workers           int    `json:"workers,omitempty"`            // Concurrent fetch workers (0 = default 20)
+	SkipEnrich        bool   `json:"skip_enrich,omitempty"`        // Skip metadata enrichment (default: false = enrich)
+	FetchContributors bool   `json:"fetch_contributors,omitempty"` // Fetch GitHub contributors (slower, enables Nebraska rankings)
+	Refresh           bool   `json:"refresh,omitempty"`
+	DependencyScope   string `json:"dependency_scope,omitempty"`   // Dependency scope policy: prod_only (default) or all
 	IncludePrerelease bool   `json:"include_prerelease,omitempty"` // Include prerelease versions (alpha/beta/rc/dev/etc.)
 	RuntimeVersion    string `json:"runtime_version,omitempty"`    // Target runtime version for marker evaluation (e.g., "3.11" for Python)
 
@@ -162,7 +162,7 @@ type Options struct {
 	Formats    []string `json:"formats,omitempty"`
 	Style      string   `json:"style,omitempty"`
 	ShowEdges  bool     `json:"show_edges,omitempty"`
-	Nebraska   bool     `json:"nebraska,omitempty"`    // Show Nebraska ranking panel in SVG (data is always computed)
+	Nebraska   bool     `json:"nebraska,omitempty"` // Show Nebraska ranking panel in SVG (data is always computed)
 	Popups     bool     `json:"popups,omitempty"`
 	FlagsOnTop bool     `json:"flags_on_top,omitempty"` // Render security flags (license/vuln) on top of all blocks
 

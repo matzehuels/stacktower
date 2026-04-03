@@ -189,4 +189,3 @@ func normalizeComposerVersion(version string) string {
 	}
 	return version
 }
-

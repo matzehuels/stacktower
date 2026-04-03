@@ -47,8 +47,8 @@ func TestSemanticVersionCompare(t *testing.T) {
 		{"1.0.1", "1.0.0", 1},
 
 		// Prerelease comparisons
-		{"1.0.0", "1.0.0-alpha", 1},   // stable > prerelease
-		{"1.0.0-alpha", "1.0.0", -1},  // prerelease < stable
+		{"1.0.0", "1.0.0-alpha", 1},  // stable > prerelease
+		{"1.0.0-alpha", "1.0.0", -1}, // prerelease < stable
 		{"1.0.0-alpha", "1.0.0-beta", -1},
 		{"1.0.0-alpha.1", "1.0.0-alpha.2", -1},
 		{"1.0.0-alpha.2", "1.0.0-alpha.10", -1}, // numeric comparison

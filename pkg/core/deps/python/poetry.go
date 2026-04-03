@@ -116,4 +116,3 @@ func buildGraph(ctx context.Context, packages []lockPackage, scope string) *dag.
 
 	return g
 }
-

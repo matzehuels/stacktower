@@ -63,18 +63,18 @@ type Graph struct {
 // Node is the unified node type for all serialization contexts.
 // Used in both Graph and Layout types for consistency.
 type Node struct {
-	ID             string         `json:"id" bson:"id"`
-	Label          string         `json:"label,omitempty" bson:"label,omitempty"`                 // Display label (defaults to ID)
-	Row            int            `json:"row,omitempty" bson:"row,omitempty"`                     // Layer/rank assignment
-	Kind           string         `json:"kind,omitempty" bson:"kind,omitempty"`                   // "subdivider", "auxiliary", or empty
-	Brittle        bool           `json:"brittle,omitempty" bson:"brittle,omitempty"`             // At-risk package flag
-	VulnSeverity   string         `json:"vuln_severity,omitempty" bson:"vuln_severity,omitempty"` // Max vulnerability severity ("critical","high","medium","low")
-	LicenseRisk    string         `json:"license_risk,omitempty" bson:"license_risk,omitempty"`   // License risk classification ("copyleft","weak-copyleft","unknown","proprietary")
-	License        string         `json:"license,omitempty" bson:"license,omitempty"`             // License identifier/SPDX (e.g., "MIT", "Apache-2.0")
-	LicenseText    string         `json:"license_text,omitempty" bson:"license_text,omitempty"`   // Full license text for custom/non-standard licenses (for LLM analysis)
-	MasterID       string         `json:"master_id,omitempty" bson:"master_id,omitempty"`
-	URL            string         `json:"url,omitempty" bson:"url,omitempty"`                     // Repository URL
-	Meta           map[string]any `json:"meta,omitempty" bson:"meta,omitempty"`
+	ID           string         `json:"id" bson:"id"`
+	Label        string         `json:"label,omitempty" bson:"label,omitempty"`                 // Display label (defaults to ID)
+	Row          int            `json:"row,omitempty" bson:"row,omitempty"`                     // Layer/rank assignment
+	Kind         string         `json:"kind,omitempty" bson:"kind,omitempty"`                   // "subdivider", "auxiliary", or empty
+	Brittle      bool           `json:"brittle,omitempty" bson:"brittle,omitempty"`             // At-risk package flag
+	VulnSeverity string         `json:"vuln_severity,omitempty" bson:"vuln_severity,omitempty"` // Max vulnerability severity ("critical","high","medium","low")
+	LicenseRisk  string         `json:"license_risk,omitempty" bson:"license_risk,omitempty"`   // License risk classification ("copyleft","weak-copyleft","unknown","proprietary")
+	License      string         `json:"license,omitempty" bson:"license,omitempty"`             // License identifier/SPDX (e.g., "MIT", "Apache-2.0")
+	LicenseText  string         `json:"license_text,omitempty" bson:"license_text,omitempty"`   // Full license text for custom/non-standard licenses (for LLM analysis)
+	MasterID     string         `json:"master_id,omitempty" bson:"master_id,omitempty"`
+	URL          string         `json:"url,omitempty" bson:"url,omitempty"` // Repository URL
+	Meta         map[string]any `json:"meta,omitempty" bson:"meta,omitempty"`
 }
 
 // IsSubdivider returns true if this is a subdivider node.

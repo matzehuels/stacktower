@@ -771,7 +771,7 @@ func urlEncode(s string) string {
 // Branch represents a Git branch in a repository.
 type Branch struct {
 	Name      string `json:"name"`
-	Commit    string `json:"commit"`    // SHA of the branch HEAD
+	Commit    string `json:"commit"` // SHA of the branch HEAD
 	Protected bool   `json:"protected"`
 }
 

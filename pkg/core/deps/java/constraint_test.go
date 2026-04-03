@@ -16,11 +16,11 @@ func TestMavenMatcher_ParseVersion(t *testing.T) {
 		// for versions with qualifiers (jre, android, SNAPSHOT, etc.)
 		{"1.2.3", "1.2.3", true},
 		{"1.0.0", "1.0.0", true},
-		{"1.0", "1.0", true},                             // preserved as-is
-		{"1", "1", true},                                 // preserved as-is
-		{"32.1.3-jre", "32.1.3-jre", true},               // qualifier preserved
-		{"1.2.3-SNAPSHOT", "1.2.3-SNAPSHOT", true},       // qualifier preserved
-		{"1.2.3.Final", "1.2.3.Final", true},             // qualifier preserved
+		{"1.0", "1.0", true},                       // preserved as-is
+		{"1", "1", true},                           // preserved as-is
+		{"32.1.3-jre", "32.1.3-jre", true},         // qualifier preserved
+		{"1.2.3-SNAPSHOT", "1.2.3-SNAPSHOT", true}, // qualifier preserved
+		{"1.2.3.Final", "1.2.3.Final", true},       // qualifier preserved
 		{"9999.0-empty-to-avoid-conflict-with-guava", "9999.0-empty-to-avoid-conflict-with-guava", true},
 		{"invalid", "", false},
 		{"", "", false},
@@ -62,7 +62,7 @@ func TestMavenMatcher_ParseConstraint(t *testing.T) {
 
 		// Plain version with qualifier (must match exactly)
 		{"32.1.3-jre", "32.1.3-jre", true},
-		{"32.1.3-jre", "32.1.3", false},     // different version string
+		{"32.1.3-jre", "32.1.3", false}, // different version string
 		{"32.1.3-jre", "32.1.3-android", false},
 		{"9999.0-empty-to-avoid-conflict-with-guava", "9999.0-empty-to-avoid-conflict-with-guava", true},
 

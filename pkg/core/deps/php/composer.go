@@ -112,7 +112,6 @@ func extractComposerDepsWithVersions(comp composerFile, scope string) []deps.Dep
 	return result
 }
 
-
 func isPHPRequirement(name string) bool {
 	return name == "php" || strings.HasPrefix(name, "php-") || strings.HasPrefix(name, "ext-")
 }

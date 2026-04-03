@@ -174,10 +174,10 @@ func LatestVersion(versions []string) string {
 	if len(versions) == 0 {
 		return ""
 	}
-	
+
 	latest := versions[0]
 	latestParsed := ParseSemver(latest)
-	
+
 	for _, v := range versions[1:] {
 		parsed := ParseSemver(v)
 		if parsed.Compare(latestParsed) > 0 {
@@ -185,6 +185,6 @@ func LatestVersion(versions []string) string {
 			latestParsed = parsed
 		}
 	}
-	
+
 	return latest
 }

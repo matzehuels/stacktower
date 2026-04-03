@@ -144,8 +144,8 @@ type pyprojectFlit struct {
 
 // pyprojectFlitMetadata represents the [tool.flit.metadata] section.
 type pyprojectFlitMetadata struct {
-	Module       string              `toml:"module"`
-	Requires     []string            `toml:"requires"`
+	Module        string              `toml:"module"`
+	Requires      []string            `toml:"requires"`
 	RequiresExtra map[string][]string `toml:"requires-extra"`
 }
 
@@ -232,4 +232,3 @@ func parsePEP508(dep string) deps.Dependency {
 		Constraint: constraint,
 	}
 }
-

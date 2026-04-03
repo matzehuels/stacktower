@@ -70,9 +70,9 @@ func (u *UVLock) Parse(path string, opts deps.Options) (*deps.ManifestResult, er
 
 // uvLockFile represents the top-level structure of a uv.lock file.
 type uvLockFile struct {
-	Version        int            `toml:"version"`
-	RequiresPython string         `toml:"requires-python"`
-	Packages       []uvLockPkg    `toml:"package"`
+	Version        int         `toml:"version"`
+	RequiresPython string      `toml:"requires-python"`
+	Packages       []uvLockPkg `toml:"package"`
 }
 
 // uvLockPkg represents a single package in the uv.lock file.

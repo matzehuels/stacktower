@@ -212,7 +212,7 @@ func (c *AppClient) RefreshAccessToken(ctx context.Context, refreshToken string)
 
 // Installation represents a GitHub App installation.
 type Installation struct {
-	ID      int64  `json:"id"`
+	ID      int64 `json:"id"`
 	Account struct {
 		Login string `json:"login"`
 		ID    int64  `json:"id"`

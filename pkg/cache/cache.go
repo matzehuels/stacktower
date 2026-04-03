@@ -73,11 +73,11 @@ type Keyer interface {
 type GraphKeyOpts struct {
 	MaxDepth          int    `json:"max_depth"`
 	MaxNodes          int    `json:"max_nodes"`
-	Enriched          bool   `json:"enriched,omitempty"`            // Whether GitHub metadata enrichment was performed
-	SecurityScan      bool   `json:"security_scan,omitempty"`       // Whether vulnerability scan data is included
-	IncludePrerelease bool   `json:"include_prerelease,omitempty"`  // Whether prerelease versions were included
-	DependencyScope   string `json:"dependency_scope,omitempty"`    // Whether graph includes prod-only or all dependency groups
-	RuntimeVersion    string `json:"runtime_version,omitempty"`     // Target runtime version for marker evaluation (e.g., "3.11" for Python)
+	Enriched          bool   `json:"enriched,omitempty"`           // Whether GitHub metadata enrichment was performed
+	SecurityScan      bool   `json:"security_scan,omitempty"`      // Whether vulnerability scan data is included
+	IncludePrerelease bool   `json:"include_prerelease,omitempty"` // Whether prerelease versions were included
+	DependencyScope   string `json:"dependency_scope,omitempty"`   // Whether graph includes prod-only or all dependency groups
+	RuntimeVersion    string `json:"runtime_version,omitempty"`    // Target runtime version for marker evaluation (e.g., "3.11" for Python)
 }
 
 // LayoutKeyOpts defines parameters that affect layout computation.

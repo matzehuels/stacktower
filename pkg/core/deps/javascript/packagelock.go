@@ -75,11 +75,11 @@ func extractPackageJSONInfo(dir string) packageJSONInfo {
 
 // packageLockFile represents package-lock.json structure (v2/v3)
 type packageLockFile struct {
-	Name            string                       `json:"name"`
-	Version         string                       `json:"version"`
-	LockfileVersion int                          `json:"lockfileVersion"`
-	Packages        map[string]packageLockEntry  `json:"packages"`     // v2/v3 format
-	Dependencies    map[string]packageLockDepV1  `json:"dependencies"` // v1 format (backwards compat)
+	Name            string                      `json:"name"`
+	Version         string                      `json:"version"`
+	LockfileVersion int                         `json:"lockfileVersion"`
+	Packages        map[string]packageLockEntry `json:"packages"`     // v2/v3 format
+	Dependencies    map[string]packageLockDepV1 `json:"dependencies"` // v1 format (backwards compat)
 }
 
 // packageLockEntry represents a package entry in the "packages" object (v2/v3)
@@ -94,12 +94,12 @@ type packageLockEntry struct {
 
 // packageLockDepV1 represents a dependency entry in v1 format
 type packageLockDepV1 struct {
-	Version      string                       `json:"version"`
-	Resolved     string                       `json:"resolved"`
-	Dev          bool                         `json:"dev"`
-	Optional     bool                         `json:"optional"`
-	Requires     map[string]string            `json:"requires"`
-	Dependencies map[string]packageLockDepV1  `json:"dependencies"` // nested deps
+	Version      string                      `json:"version"`
+	Resolved     string                      `json:"resolved"`
+	Dev          bool                        `json:"dev"`
+	Optional     bool                        `json:"optional"`
+	Requires     map[string]string           `json:"requires"`
+	Dependencies map[string]packageLockDepV1 `json:"dependencies"` // nested deps
 }
 
 func buildPackageLockGraph(lock packageLockFile, opts deps.Options) *dag.DAG {
@@ -314,4 +314,3 @@ func extractPackageName(path string) string {
 
 	return name
 }
-

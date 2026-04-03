@@ -27,14 +27,14 @@ var _ deps.ConstraintParser = ComposerMatcher{}
 
 // composerVersion holds a parsed Composer version
 type composerVersion struct {
-	original   string
-	major      int
-	minor      int
-	patch      int
-	stability  string // dev, alpha, beta, RC
-	valid      bool
-	hasMinor   bool
-	hasPatch   bool
+	original  string
+	major     int
+	minor     int
+	patch     int
+	stability string // dev, alpha, beta, RC
+	valid     bool
+	hasMinor  bool
+	hasPatch  bool
 }
 
 var (

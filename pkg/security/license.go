@@ -326,23 +326,23 @@ func isPermissive(license string) bool {
 
 	// Handle specific SPDX identifiers
 	permissiveExact := map[string]bool{
-		"mit":           true,
-		"isc":           true,
-		"bsd-2-clause":  true,
-		"bsd-3-clause":  true,
-		"apache-2.0":    true,
-		"unlicense":     true,
-		"cc0-1.0":       true,
-		"0bsd":          true,
-		"zlib":          true,
-		"bsl-1.0":       true,
-		"wtfpl":         true,
-		"postgresql":    true,
-		"ncsa":          true,
-		"x11":           true,
+		"mit":              true,
+		"isc":              true,
+		"bsd-2-clause":     true,
+		"bsd-3-clause":     true,
+		"apache-2.0":       true,
+		"unlicense":        true,
+		"cc0-1.0":          true,
+		"0bsd":             true,
+		"zlib":             true,
+		"bsl-1.0":          true,
+		"wtfpl":            true,
+		"postgresql":       true,
+		"ncsa":             true,
+		"x11":              true,
 		"unicode-dfs-2016": true,
-		"python-2.0":    true,
-		"psf-2.0":       true,
+		"python-2.0":       true,
+		"psf-2.0":          true,
 	}
 	return permissiveExact[license]
 }
@@ -370,12 +370,12 @@ func isProprietary(original, normalized string) bool {
 	}
 
 	proprietaryExact := map[string]bool{
-		"sspl-1.0":         true,
-		"busl-1.1":         true,
-		"elastic-2.0":      true,
-		"commons-clause":   true,
-		"polyform-nc-1.0":  true,
-		"polyform-sb-1.0":  true,
+		"sspl-1.0":        true,
+		"busl-1.1":        true,
+		"elastic-2.0":     true,
+		"commons-clause":  true,
+		"polyform-nc-1.0": true,
+		"polyform-sb-1.0": true,
 	}
 	if proprietaryExact[normalized] {
 		return true
@@ -505,8 +505,8 @@ type LicenseReport struct {
 func AnalyzeLicenses(g *dag.DAG) *LicenseReport {
 	if g == nil {
 		return &LicenseReport{
-			Licenses: make(map[string][]string),
-			Details:  make(map[string]*LicenseInfo),
+			Licenses:  make(map[string][]string),
+			Details:   make(map[string]*LicenseInfo),
 			Compliant: true,
 		}
 	}

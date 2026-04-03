@@ -234,8 +234,8 @@ func TestPEP440Matcher_ParseConstraint_LessThanExcludesPrereleaseOfBound(t *test
 		version string
 		want    bool
 	}{
-		{"0.52.1", true},   // stable version below 1.0 - included
-		{"0.99.0", true},   // stable version below 1.0 - included
+		{"0.52.1", true},    // stable version below 1.0 - included
+		{"0.99.0", true},    // stable version below 1.0 - included
 		{"1.0.0rc1", false}, // prerelease OF 1.0.0 - excluded
 		{"1.0.0a1", false},  // prerelease OF 1.0.0 - excluded
 		{"1.0.0", false},    // the bound itself - excluded
@@ -279,12 +279,12 @@ func TestPEP440Matcher_ParseConstraint_LessThanWithPrereleaseBound(t *testing.T)
 
 func TestParseVersion(t *testing.T) {
 	tests := []struct {
-		input      string
-		wantMajor  int
-		wantMinor  int
-		wantPatch  int
-		wantPre    bool
-		wantValid  bool
+		input     string
+		wantMajor int
+		wantMinor int
+		wantPatch int
+		wantPre   bool
+		wantValid bool
 	}{
 		{"1.0.0", 1, 0, 0, false, true},
 		{"2.31.0", 2, 31, 0, false, true},

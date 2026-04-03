@@ -24,8 +24,8 @@ type Style interface {
 type Block struct {
 	ID           string     // Node identifier
 	Label        string     // Display text
-	X, Y, W, H  float64    // Position and dimensions
-	CX, CY      float64    // Center coordinates (for text)
+	X, Y, W, H   float64    // Position and dimensions
+	CX, CY       float64    // Center coordinates (for text)
 	URL          string     // Optional link target
 	Popup        *PopupData // Hover popup content (nil if disabled)
 	Brittle      bool       // Whether to apply brittle/warning styling

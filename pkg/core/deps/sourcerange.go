@@ -465,10 +465,10 @@ func (d *CargoDetector) DetectSections(content string) []SourceRange {
 	inDepsSection := false
 
 	depsSections := map[string]bool{
-		"dependencies":         true,
-		"dev-dependencies":     true,
-		"build-dependencies":   true,
-		"target":               false, // Target-specific deps need special handling
+		"dependencies":       true,
+		"dev-dependencies":   true,
+		"build-dependencies": true,
+		"target":             false, // Target-specific deps need special handling
 	}
 
 	for i, line := range lines {

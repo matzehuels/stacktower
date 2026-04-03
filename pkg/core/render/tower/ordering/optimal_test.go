@@ -281,7 +281,7 @@ func TestOptimalSearch_WideRowFallback(t *testing.T) {
 	g := dag.New(nil)
 	// Create a row wider than maxRowWidth (30) to trigger barycentric fallback
 	for i := 0; i < 35; i++ {
-		g.AddNode(dag.Node{ID: string(rune('A' + i%26)) + string(rune('0'+i/26)), Row: 0})
+		g.AddNode(dag.Node{ID: string(rune('A'+i%26)) + string(rune('0'+i/26)), Row: 0})
 	}
 	g.AddNode(dag.Node{ID: "sink", Row: 1})
 	for i := 0; i < 35; i++ {

@@ -133,7 +133,7 @@ func TestComposerLock_Parse(t *testing.T) {
 	}{
 		{"monolog/monolog", "3.5.0"},
 		{"psr/log", "3.0.0"},
-		{"symfony/console", "6.4.3"},           // 'v' prefix should be stripped
+		{"symfony/console", "6.4.3"},            // 'v' prefix should be stripped
 		{"symfony/polyfill-mbstring", "1.28.0"}, // 'v' prefix should be stripped
 	}
 

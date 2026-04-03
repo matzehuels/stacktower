@@ -123,12 +123,12 @@ func TestCargoMatcher_ParseConstraint(t *testing.T) {
 
 func TestParseCargoVersion(t *testing.T) {
 	tests := []struct {
-		input     string
-		wantMajor int
-		wantMinor int
-		wantPatch int
+		input      string
+		wantMajor  int
+		wantMinor  int
+		wantPatch  int
 		wantPrerel string
-		wantValid bool
+		wantValid  bool
 	}{
 		{"1.2.3", 1, 2, 3, "", true},
 		{"v1.2.3", 1, 2, 3, "", true},

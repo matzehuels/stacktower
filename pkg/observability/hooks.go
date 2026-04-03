@@ -208,9 +208,9 @@ func (NoopSecurityHooks) OnScanComplete(context.Context, string, int, time.Durat
 // NoopRateLimitHooks is a no-op implementation of RateLimitHooks.
 type NoopRateLimitHooks struct{}
 
-func (NoopRateLimitHooks) OnRateLimitWait(context.Context, string, time.Duration)       {}
-func (NoopRateLimitHooks) OnRetry(context.Context, string, int, time.Duration)          {}
-func (NoopRateLimitHooks) OnRateLimitHit(context.Context, string, int)                  {}
+func (NoopRateLimitHooks) OnRateLimitWait(context.Context, string, time.Duration)                {}
+func (NoopRateLimitHooks) OnRetry(context.Context, string, int, time.Duration)                   {}
+func (NoopRateLimitHooks) OnRateLimitHit(context.Context, string, int)                           {}
 func (NoopRateLimitHooks) OnCircuitStateChange(context.Context, string, CircuitState, time.Time) {}
 
 // NoopResolverHooks is a no-op implementation of ResolverHooks.

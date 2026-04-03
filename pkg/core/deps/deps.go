@@ -383,10 +383,10 @@ func (e *IncompatibleRuntimeError) Error() string {
 // This is common in npm where packages allow nested/duplicate dependencies, but
 // our SAT solver requires a single version per package.
 type DiamondDependencyError struct {
-	Package      string   // The package with conflicting requirements
-	Dependents   []string // Packages that depend on conflicting versions
-	Language     string   // Ecosystem (e.g., "javascript")
-	OriginalErr  string   // Original resolver error message
+	Package     string   // The package with conflicting requirements
+	Dependents  []string // Packages that depend on conflicting versions
+	Language    string   // Ecosystem (e.g., "javascript")
+	OriginalErr string   // Original resolver error message
 }
 
 func (e *DiamondDependencyError) Error() string {

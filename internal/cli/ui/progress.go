@@ -43,9 +43,9 @@ type ProgressView struct {
 	pending  int // remaining jobs (updated in collector via OnProgress)
 	lines    int // how many lines were last printed (for clearing)
 
-	rateLimited   map[string]rateLimitInfo  // registry -> rate limit info
-	circuitStates map[string]circuitInfo    // registry -> circuit breaker info
-	throttled     map[string]throttleInfo   // registry -> throttle info with end time
+	rateLimited   map[string]rateLimitInfo // registry -> rate limit info
+	circuitStates map[string]circuitInfo   // registry -> circuit breaker info
+	throttled     map[string]throttleInfo  // registry -> throttle info with end time
 
 	enriching      bool   // true when batch enrichment is in progress
 	enrichProvider string // name of the provider doing enrichment (e.g., "github")
@@ -58,8 +58,8 @@ type throttleInfo struct {
 }
 
 type rateLimitInfo struct {
-	hitAt       time.Time
-	retryAfter  int
+	hitAt      time.Time
+	retryAfter int
 }
 
 type circuitInfo struct {
