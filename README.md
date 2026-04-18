@@ -28,13 +28,14 @@ Inspired by [XKCD #2347](https://xkcd.com/2347/), Stacktower renders dependency 
 ### Homebrew (macOS/Linux)
 
 ```bash
-brew install stacktower-io/homebrew-tap/stacktower
+brew tap stacktower-io/tap
+brew install stacktower
 ```
 
 ### Go
 
 ```bash
-go install github.com/stacktower-io/stacktower@latest
+go install github.com/stacktower-io/stacktower/cmd/stacktower@latest
 ```
 
 ### From Source
