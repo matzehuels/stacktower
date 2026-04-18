@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
-	"github.com/matzehuels/stacktower/pkg/core/render/tower/layout"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/render/tower/layout"
 )
 
 func TestRenderSVG_Simple(t *testing.T) {

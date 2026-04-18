@@ -61,7 +61,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/integrations/github"
+	"github.com/stacktower-io/stacktower/pkg/integrations/github"
 )
 
 // Sentinel errors for session operations.

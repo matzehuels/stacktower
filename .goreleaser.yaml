@@ -26,9 +26,9 @@ builds:
       - arm64
     ldflags:
       - -s -w
-      - -X github.com/matzehuels/stacktower/pkg/buildinfo.Version={{.Version}}
-      - -X github.com/matzehuels/stacktower/pkg/buildinfo.Commit={{.Commit}}
-      - -X github.com/matzehuels/stacktower/pkg/buildinfo.Date={{.Date}}
+      - -X github.com/stacktower-io/stacktower/pkg/buildinfo.Version={{.Version}}
+      - -X github.com/stacktower-io/stacktower/pkg/buildinfo.Commit={{.Commit}}
+      - -X github.com/stacktower-io/stacktower/pkg/buildinfo.Date={{.Date}}
 
 archives:
   # CLI archive (for Homebrew, manual download)
@@ -86,7 +86,7 @@ changelog:
 
 release:
   github:
-    owner: matzehuels
+    owner: stacktower-io
     name: stacktower
   draft: false
   prerelease: auto
@@ -101,20 +101,20 @@ release:
     Download the appropriate binary for your platform below, or install via Go:
 
     ```bash
-    go install github.com/matzehuels/stacktower@{{.Tag}}
+    go install github.com/stacktower-io/stacktower@{{.Tag}}
     ```
 
   footer: |
-    **Full Changelog**: https://github.com/matzehuels/stacktower/compare/{{ .PreviousTag }}...{{ .Tag }}
+    **Full Changelog**: https://github.com/stacktower-io/stacktower/compare/{{ .PreviousTag }}...{{ .Tag }}
 
 brews:
   - name: stacktower
     repository:
-      owner: matzehuels
+      owner: stacktower-io
       name: homebrew-tap
       token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
     directory: Formula
-    homepage: https://github.com/matzehuels/stacktower
+    homepage: https://github.com/stacktower-io/stacktower
     description: Visualize dependency graphs as elegant stacked tower diagrams
     license: Apache-2.0
     test: |

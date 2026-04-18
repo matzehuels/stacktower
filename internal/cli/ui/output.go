@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/core/deps"
+	"github.com/stacktower-io/stacktower/pkg/core/deps"
 )
 
 // quietMode suppresses non-essential output when set to true.

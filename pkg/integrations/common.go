@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
+	"github.com/stacktower-io/stacktower/pkg/cache"
 )
 
 // DefaultTimeout is the default timeout for registry API requests when no

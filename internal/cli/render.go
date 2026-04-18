@@ -10,12 +10,12 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/matzehuels/stacktower/internal/cli/ui"
-	"github.com/matzehuels/stacktower/pkg/core/dag"
-	"github.com/matzehuels/stacktower/pkg/core/render/tower/ordering"
-	"github.com/matzehuels/stacktower/pkg/graph"
-	"github.com/matzehuels/stacktower/pkg/observability"
-	"github.com/matzehuels/stacktower/pkg/pipeline"
+	"github.com/stacktower-io/stacktower/internal/cli/ui"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/render/tower/ordering"
+	"github.com/stacktower-io/stacktower/pkg/graph"
+	"github.com/stacktower-io/stacktower/pkg/observability"
+	"github.com/stacktower-io/stacktower/pkg/pipeline"
 )
 
 // renderCommand creates the render command for generating visualizations.

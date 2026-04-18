@@ -26,6 +26,6 @@
 // The parser extracts dependencies from <dependencies> elements,
 // excluding test and provided scopes.
 //
-// [maven]: github.com/matzehuels/stacktower/pkg/integrations/maven
-// [deps.Language]: github.com/matzehuels/stacktower/pkg/core/deps.Language
+// [maven]: github.com/stacktower-io/stacktower/pkg/integrations/maven
+// [deps.Language]: github.com/stacktower-io/stacktower/pkg/core/deps.Language
 package java

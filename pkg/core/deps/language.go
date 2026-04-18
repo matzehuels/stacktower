@@ -3,7 +3,7 @@ package deps
 import (
 	"fmt"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
+	"github.com/stacktower-io/stacktower/pkg/cache"
 )
 
 // Language defines how to resolve dependencies for a programming language.

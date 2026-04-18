@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/observability"
+	"github.com/stacktower-io/stacktower/pkg/observability"
 )
 
 func TestCircuitBreakerInitialState(t *testing.T) {

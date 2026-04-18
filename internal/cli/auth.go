@@ -10,10 +10,10 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/matzehuels/stacktower/internal/cli/ui"
-	"github.com/matzehuels/stacktower/pkg/buildinfo"
-	"github.com/matzehuels/stacktower/pkg/integrations/github"
-	"github.com/matzehuels/stacktower/pkg/session"
+	"github.com/stacktower-io/stacktower/internal/cli/ui"
+	"github.com/stacktower-io/stacktower/pkg/buildinfo"
+	"github.com/stacktower-io/stacktower/pkg/integrations/github"
+	"github.com/stacktower-io/stacktower/pkg/session"
 )
 
 // sessionTTL is the duration for CLI sessions (30 days).
@@ -34,6 +34,7 @@ Your session is stored in ~/.config/stacktower/sessions/`,
 	cmd.AddCommand(c.githubLogoutCommand())
 	cmd.AddCommand(c.githubWhoamiCommand())
 	cmd.AddCommand(c.githubInstallCommand())
+	cmd.AddCommand(c.githubUninstallCommand())
 
 	return cmd
 }
@@ -174,6 +175,56 @@ and configure which repositories it can access.`,
 			ui.PrintKeyValue("URL", ui.StyleLink.Render(installURL))
 
 			if err := openBrowser(installURL); err != nil {
+				ui.PrintDetail("Copy the URL above and paste it in your browser")
+			}
+
+			return nil
+		},
+	}
+}
+
+// githubUninstallCommand creates the uninstall subcommand.
+func (c *CLI) githubUninstallCommand() *cobra.Command {
+	return &cobra.Command{
+		Use:   "uninstall",
+		Short: "Uninstall the Stacktower GitHub App",
+		Long: `Open the GitHub App settings page to uninstall Stacktower.
+
+This removes Stacktower's access to your repositories. You can re-install
+at any time with 'stacktower github install'.`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			ctx := cmd.Context()
+
+			sess, err := loadGitHubSession(ctx)
+			if err != nil {
+				ui.PrintWarning("Not logged in. Run 'stacktower github login' first.")
+				return nil
+			}
+
+			client := github.NewContentClient(sess.AccessToken)
+			installation, err := client.HasAppInstallation(ctx, buildinfo.GitHubAppSlug)
+			if err != nil {
+				c.Logger.Debug("failed to check app installation", "error", err)
+			}
+
+			if installation == nil {
+				ui.PrintInfo("GitHub App is not installed")
+				ui.PrintDetail("Run 'stacktower github install' to install it")
+				return nil
+			}
+
+			uninstallURL := fmt.Sprintf("https://github.com/settings/installations/%d", installation.ID)
+
+			ui.PrintNewline()
+			ui.PrintHeader("Uninstall Stacktower GitHub App")
+			ui.PrintKeyValue("Installed on", "@"+installation.Account.Login)
+			ui.PrintKeyValue("URL", ui.StyleLink.Render(uninstallURL))
+			ui.PrintNewline()
+			ui.PrintDetail("The settings page will open in your browser.")
+			ui.PrintDetail("Scroll to \"Danger zone\" and click Uninstall.")
+			ui.PrintNewline()
+
+			if err := openBrowser(uninstallURL); err != nil {
 				ui.PrintDetail("Copy the URL above and paste it in your browser")
 			}
 

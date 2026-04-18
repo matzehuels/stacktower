@@ -4,7 +4,7 @@ import (
 	"context"
 	"maps"
 
-	"github.com/matzehuels/stacktower/pkg/core/deps"
+	"github.com/stacktower-io/stacktower/pkg/core/deps"
 )
 
 type Composite struct {

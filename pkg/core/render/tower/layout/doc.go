@@ -72,5 +72,5 @@
 // Sinks in [render/tower/sink] consume the Layout to produce final output in
 // various formats (SVG, JSON, PDF, PNG).
 //
-// [render/tower/sink]: github.com/matzehuels/stacktower/pkg/core/render/tower/sink
+// [render/tower/sink]: github.com/stacktower-io/stacktower/pkg/core/render/tower/sink
 package layout

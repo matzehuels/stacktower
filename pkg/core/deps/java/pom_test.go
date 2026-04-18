@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/matzehuels/stacktower/pkg/core/deps"
+	"github.com/stacktower-io/stacktower/pkg/core/deps"
 )
 
 func TestPOMParser_Supports(t *testing.T) {

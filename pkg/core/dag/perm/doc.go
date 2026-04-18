@@ -75,5 +75,5 @@
 // This dramatically reduces the search space for the branch-and-bound
 // algorithm that finds optimal or near-optimal orderings.
 //
-// [render/tower/ordering]: github.com/matzehuels/stacktower/pkg/core/render/tower/ordering
+// [render/tower/ordering]: github.com/stacktower-io/stacktower/pkg/core/render/tower/ordering
 package perm

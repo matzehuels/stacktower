@@ -1,8 +1,8 @@
 package sink
 
 import (
-	"github.com/matzehuels/stacktower/pkg/core/render"
-	"github.com/matzehuels/stacktower/pkg/core/render/tower/layout"
+	"github.com/stacktower-io/stacktower/pkg/core/render"
+	"github.com/stacktower-io/stacktower/pkg/core/render/tower/layout"
 )
 
 // PDFOption configures PDF rendering.

@@ -28,7 +28,7 @@
 //
 // Use a [Language]'s resolver to fetch a complete dependency tree from a registry:
 //
-//	import "github.com/matzehuels/stacktower/pkg/core/deps/python"
+//	import "github.com/stacktower-io/stacktower/pkg/core/deps/python"
 //
 //	resolver, _ := python.Language.Resolver()
 //	g, _ := resolver.Resolve(ctx, "fastapi", deps.Options{
@@ -73,7 +73,7 @@
 //
 // For local projects, parse dependency information directly from manifest files:
 //
-//	import "github.com/matzehuels/stacktower/pkg/core/deps/python"
+//	import "github.com/stacktower-io/stacktower/pkg/core/deps/python"
 //
 //	parsers := python.Language.ManifestParsers(nil)
 //	parser, _ := deps.DetectManifest("poetry.lock", parsers...)
@@ -92,7 +92,7 @@
 //
 // [MetadataProvider] implementations add supplementary data from external sources:
 //
-//	import "github.com/matzehuels/stacktower/pkg/core/deps/metadata"
+//	import "github.com/stacktower-io/stacktower/pkg/core/deps/metadata"
 //
 //	providers := []deps.MetadataProvider{
 //	    metadata.NewGitHubProvider(token, ttl),
@@ -144,16 +144,16 @@
 // Manifest parsing errors are always fatal and returned by [ManifestParser.Parse].
 // Metadata enrichment errors are non-fatal and logged.
 //
-// [integrations]: github.com/matzehuels/stacktower/pkg/integrations
-// [internal/cli]: github.com/matzehuels/stacktower/internal/cli
-// [dag.DAG]: github.com/matzehuels/stacktower/pkg/core/dag.DAG
-// [dag.Node]: github.com/matzehuels/stacktower/pkg/core/dag.Node
-// [python]: github.com/matzehuels/stacktower/pkg/core/deps/python
-// [rust]: github.com/matzehuels/stacktower/pkg/core/deps/rust
-// [javascript]: github.com/matzehuels/stacktower/pkg/core/deps/javascript
-// [ruby]: github.com/matzehuels/stacktower/pkg/core/deps/ruby
-// [php]: github.com/matzehuels/stacktower/pkg/core/deps/php
-// [java]: github.com/matzehuels/stacktower/pkg/core/deps/java
-// [golang]: github.com/matzehuels/stacktower/pkg/core/deps/golang
-// [metadata.GitHubProvider]: github.com/matzehuels/stacktower/pkg/core/deps/metadata.GitHubProvider
+// [integrations]: github.com/stacktower-io/stacktower/pkg/integrations
+// [internal/cli]: github.com/stacktower-io/stacktower/internal/cli
+// [dag.DAG]: github.com/stacktower-io/stacktower/pkg/core/dag.DAG
+// [dag.Node]: github.com/stacktower-io/stacktower/pkg/core/dag.Node
+// [python]: github.com/stacktower-io/stacktower/pkg/core/deps/python
+// [rust]: github.com/stacktower-io/stacktower/pkg/core/deps/rust
+// [javascript]: github.com/stacktower-io/stacktower/pkg/core/deps/javascript
+// [ruby]: github.com/stacktower-io/stacktower/pkg/core/deps/ruby
+// [php]: github.com/stacktower-io/stacktower/pkg/core/deps/php
+// [java]: github.com/stacktower-io/stacktower/pkg/core/deps/java
+// [golang]: github.com/stacktower-io/stacktower/pkg/core/deps/golang
+// [metadata.GitHubProvider]: github.com/stacktower-io/stacktower/pkg/core/deps/metadata.GitHubProvider
 package deps

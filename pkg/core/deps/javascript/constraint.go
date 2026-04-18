@@ -8,7 +8,7 @@ import (
 
 	"github.com/contriboss/pubgrub-go"
 
-	"github.com/matzehuels/stacktower/pkg/core/deps"
+	"github.com/stacktower-io/stacktower/pkg/core/deps"
 )
 
 // SemverMatcher implements constraint matching for npm's semver specifiers.

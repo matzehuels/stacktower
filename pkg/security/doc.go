@@ -46,5 +46,5 @@
 //   - Both reports can be displayed in CLI output, rendered as visual indicators,
 //     or stored alongside render documents
 //
-// [deps.MetadataProvider]: github.com/matzehuels/stacktower/pkg/core/deps.MetadataProvider
+// [deps.MetadataProvider]: github.com/stacktower-io/stacktower/pkg/core/deps.MetadataProvider
 package security

@@ -53,6 +53,6 @@
 //
 //	DAG → dag/transform.Normalize → ordering → layout.Build → [this package] → sink.RenderSVG
 //
-// [layout.Build]: github.com/matzehuels/stacktower/pkg/core/render/tower/layout.Build
-// [dag/transform.Subdivide]: github.com/matzehuels/stacktower/pkg/core/dag/transform.Subdivide
+// [layout.Build]: github.com/stacktower-io/stacktower/pkg/core/render/tower/layout.Build
+// [dag/transform.Subdivide]: github.com/stacktower-io/stacktower/pkg/core/dag/transform.Subdivide
 package transform

@@ -10,9 +10,9 @@ import (
 	"github.com/contriboss/pubgrub-go"
 	"golang.org/x/sync/singleflight"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
-	"github.com/matzehuels/stacktower/pkg/core/deps/constraints"
-	"github.com/matzehuels/stacktower/pkg/observability"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/deps/constraints"
+	"github.com/stacktower-io/stacktower/pkg/observability"
 )
 
 // anyVersionCondition matches any version using "*" wildcard

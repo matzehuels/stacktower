@@ -24,6 +24,6 @@
 // Note: Cargo.toml contains direct dependencies only. The resolver fetches
 // transitive dependencies from crates.io.
 //
-// [crates]: github.com/matzehuels/stacktower/pkg/integrations/crates
-// [deps.Language]: github.com/matzehuels/stacktower/pkg/core/deps.Language
+// [crates]: github.com/stacktower-io/stacktower/pkg/integrations/crates
+// [deps.Language]: github.com/stacktower-io/stacktower/pkg/core/deps.Language
 package rust

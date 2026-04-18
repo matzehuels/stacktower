@@ -4,7 +4,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
 )
 
 func TestComputeWidths_FlowPropagation(t *testing.T) {

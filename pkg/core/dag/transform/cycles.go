@@ -1,6 +1,6 @@
 package transform
 
-import "github.com/matzehuels/stacktower/pkg/core/dag"
+import "github.com/stacktower-io/stacktower/pkg/core/dag"
 
 // BreakCycles removes back-edges from the graph to ensure it is a valid
 // directed acyclic graph (DAG).

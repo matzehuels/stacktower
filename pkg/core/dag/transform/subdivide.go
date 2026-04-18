@@ -3,7 +3,7 @@ package transform
 import (
 	"fmt"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
 )
 
 // Subdivide breaks edges that span multiple rows into sequences of single-row

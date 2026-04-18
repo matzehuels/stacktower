@@ -4,10 +4,10 @@ import (
 	"context"
 	"strings"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
-	"github.com/matzehuels/stacktower/pkg/core/deps"
-	"github.com/matzehuels/stacktower/pkg/core/deps/constraints"
-	"github.com/matzehuels/stacktower/pkg/integrations/packagist"
+	"github.com/stacktower-io/stacktower/pkg/cache"
+	"github.com/stacktower-io/stacktower/pkg/core/deps"
+	"github.com/stacktower-io/stacktower/pkg/core/deps/constraints"
+	"github.com/stacktower-io/stacktower/pkg/integrations/packagist"
 )
 
 // Language provides PHP dependency resolution via Packagist.

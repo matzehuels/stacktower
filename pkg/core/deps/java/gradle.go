@@ -7,10 +7,10 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
-	"github.com/matzehuels/stacktower/pkg/core/deps"
-	"github.com/matzehuels/stacktower/pkg/core/deps/constraints"
-	"github.com/matzehuels/stacktower/pkg/observability"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/deps"
+	"github.com/stacktower-io/stacktower/pkg/core/deps/constraints"
+	"github.com/stacktower-io/stacktower/pkg/observability"
 )
 
 // GradleParser parses Gradle build files (build.gradle and build.gradle.kts).

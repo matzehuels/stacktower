@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/matzehuels/stacktower/internal/cli"
+	"github.com/stacktower-io/stacktower/internal/cli"
 )
 
 func TestExitCodeForError(t *testing.T) {

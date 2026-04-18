@@ -16,7 +16,7 @@ We recommend always using the latest release.
 Instead, report them privately via one of these methods:
 
 1. **GitHub Security Advisories** (Preferred)  
-   Go to the [Security tab](https://github.com/matzehuels/stacktower/security/advisories) and click "Report a vulnerability"
+   Go to the [Security tab](https://github.com/stacktower-io/stacktower/security/advisories) and click "Report a vulnerability"
 
 2. **Email**  
    Contact the maintainer directly (see GitHub profile)

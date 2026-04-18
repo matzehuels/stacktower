@@ -5,15 +5,15 @@ import (
 	"strings"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
-	"github.com/matzehuels/stacktower/pkg/integrations/crates"
-	"github.com/matzehuels/stacktower/pkg/integrations/goproxy"
-	"github.com/matzehuels/stacktower/pkg/integrations/maven"
-	"github.com/matzehuels/stacktower/pkg/integrations/npm"
-	"github.com/matzehuels/stacktower/pkg/integrations/packagist"
-	"github.com/matzehuels/stacktower/pkg/integrations/pypi"
-	"github.com/matzehuels/stacktower/pkg/integrations/rubygems"
-	"github.com/matzehuels/stacktower/pkg/observability"
+	"github.com/stacktower-io/stacktower/pkg/cache"
+	"github.com/stacktower-io/stacktower/pkg/integrations/crates"
+	"github.com/stacktower-io/stacktower/pkg/integrations/goproxy"
+	"github.com/stacktower-io/stacktower/pkg/integrations/maven"
+	"github.com/stacktower-io/stacktower/pkg/integrations/npm"
+	"github.com/stacktower-io/stacktower/pkg/integrations/packagist"
+	"github.com/stacktower-io/stacktower/pkg/integrations/pypi"
+	"github.com/stacktower-io/stacktower/pkg/integrations/rubygems"
+	"github.com/stacktower-io/stacktower/pkg/observability"
 )
 
 // defaultChunkSize is the number of packages to process per chunk.

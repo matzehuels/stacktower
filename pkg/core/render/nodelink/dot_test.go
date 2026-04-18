@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
-	"github.com/matzehuels/stacktower/pkg/security"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/security"
 )
 
 func TestToDOT_Basic(t *testing.T) {

@@ -8,9 +8,9 @@ BINARY := stacktower
 VERSION := $(shell git describe --tags --always --dirty 2>/dev/null || echo "dev")
 COMMIT := $(shell git rev-parse --short HEAD 2>/dev/null || echo "unknown")
 DATE := $(shell date -u +%Y-%m-%dT%H:%M:%SZ)
-LDFLAGS := -X github.com/matzehuels/stacktower/pkg/buildinfo.Version=$(VERSION) \
-           -X github.com/matzehuels/stacktower/pkg/buildinfo.Commit=$(COMMIT) \
-           -X github.com/matzehuels/stacktower/pkg/buildinfo.Date=$(DATE)
+LDFLAGS := -X github.com/stacktower-io/stacktower/pkg/buildinfo.Version=$(VERSION) \
+           -X github.com/stacktower-io/stacktower/pkg/buildinfo.Commit=$(COMMIT) \
+           -X github.com/stacktower-io/stacktower/pkg/buildinfo.Date=$(DATE)
 
 # =============================================================================
 # Default Target
@@ -41,12 +41,12 @@ check: fmt lint test vuln
 
 fmt:
 	@gofmt -s -w .
-	@goimports -w -local github.com/matzehuels/stacktower .
+	@goimports -w -local github.com/stacktower-io/stacktower .
 
 fmt-check:
 	@echo "Checking formatting..."
 	@test -z "$$(gofmt -l .)" || (echo "Files not formatted:"; gofmt -l .; exit 1)
-	@test -z "$$(goimports -l -local github.com/matzehuels/stacktower .)" || (echo "Imports not formatted:"; goimports -l -local github.com/matzehuels/stacktower .; exit 1)
+	@test -z "$$(goimports -l -local github.com/stacktower-io/stacktower .)" || (echo "Imports not formatted:"; goimports -l -local github.com/stacktower-io/stacktower .; exit 1)
 	@echo "Formatting OK"
 
 lint:

@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/matzehuels/stacktower/pkg/core/render/tower/styles"
-	"github.com/matzehuels/stacktower/pkg/fonts"
-	"github.com/matzehuels/stacktower/pkg/security"
+	"github.com/stacktower-io/stacktower/pkg/core/render/tower/styles"
+	"github.com/stacktower-io/stacktower/pkg/fonts"
+	"github.com/stacktower-io/stacktower/pkg/security"
 )
 
 const (

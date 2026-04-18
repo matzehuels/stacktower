@@ -9,9 +9,9 @@ import (
 	"github.com/charmbracelet/lipgloss"
 	"github.com/charmbracelet/lipgloss/table"
 
-	"github.com/matzehuels/stacktower/pkg/core/deps"
-	"github.com/matzehuels/stacktower/pkg/core/deps/languages"
-	"github.com/matzehuels/stacktower/pkg/integrations/github"
+	"github.com/stacktower-io/stacktower/pkg/core/deps"
+	"github.com/stacktower-io/stacktower/pkg/core/deps/languages"
+	"github.com/stacktower-io/stacktower/pkg/integrations/github"
 )
 
 // TUIHints contains shared TUI chrome for navigation hints.

@@ -6,7 +6,7 @@
 //
 // Usage:
 //
-//	import "github.com/matzehuels/stacktower/pkg/core/deps/languages"
+//	import "github.com/stacktower-io/stacktower/pkg/core/deps/languages"
 //
 //	for _, lang := range languages.All {
 //	    fmt.Println(lang.Name)
@@ -14,14 +14,14 @@
 package languages
 
 import (
-	"github.com/matzehuels/stacktower/pkg/core/deps"
-	"github.com/matzehuels/stacktower/pkg/core/deps/golang"
-	"github.com/matzehuels/stacktower/pkg/core/deps/java"
-	"github.com/matzehuels/stacktower/pkg/core/deps/javascript"
-	"github.com/matzehuels/stacktower/pkg/core/deps/php"
-	"github.com/matzehuels/stacktower/pkg/core/deps/python"
-	"github.com/matzehuels/stacktower/pkg/core/deps/ruby"
-	"github.com/matzehuels/stacktower/pkg/core/deps/rust"
+	"github.com/stacktower-io/stacktower/pkg/core/deps"
+	"github.com/stacktower-io/stacktower/pkg/core/deps/golang"
+	"github.com/stacktower-io/stacktower/pkg/core/deps/java"
+	"github.com/stacktower-io/stacktower/pkg/core/deps/javascript"
+	"github.com/stacktower-io/stacktower/pkg/core/deps/php"
+	"github.com/stacktower-io/stacktower/pkg/core/deps/python"
+	"github.com/stacktower-io/stacktower/pkg/core/deps/ruby"
+	"github.com/stacktower-io/stacktower/pkg/core/deps/rust"
 )
 
 // All is the canonical list of supported package ecosystems.

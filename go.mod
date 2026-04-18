@@ -1,4 +1,4 @@
-module github.com/matzehuels/stacktower
+module github.com/stacktower-io/stacktower
 
 go 1.25.8
 

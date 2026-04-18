@@ -4,7 +4,7 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
 )
 
 func TestBarycentric_Diamond(t *testing.T) {

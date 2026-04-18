@@ -5,7 +5,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/matzehuels/stacktower/pkg/core/deps"
+	"github.com/stacktower-io/stacktower/pkg/core/deps"
 )
 
 type mockProvider struct {

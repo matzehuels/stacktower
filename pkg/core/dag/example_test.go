@@ -3,7 +3,7 @@ package dag_test
 import (
 	"fmt"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
 )
 
 func ExampleDAG_basic() {

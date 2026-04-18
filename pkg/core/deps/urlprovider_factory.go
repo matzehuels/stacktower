@@ -3,7 +3,7 @@ package deps
 import (
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
+	"github.com/stacktower-io/stacktower/pkg/cache"
 )
 
 // NewURLProvider returns the ecosystem URL provider for the given language.

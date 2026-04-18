@@ -4,9 +4,9 @@ import (
 	"context"
 	"strings"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
-	"github.com/matzehuels/stacktower/pkg/core/deps"
-	"github.com/matzehuels/stacktower/pkg/integrations/maven"
+	"github.com/stacktower-io/stacktower/pkg/cache"
+	"github.com/stacktower-io/stacktower/pkg/core/deps"
+	"github.com/stacktower-io/stacktower/pkg/integrations/maven"
 )
 
 // Language provides Java dependency resolution via Maven Central.

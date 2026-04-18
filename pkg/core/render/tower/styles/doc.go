@@ -77,5 +77,5 @@
 //	        b.X, b.Y, b.W, b.H, s.Color)
 //	}
 //
-// [handdrawn]: github.com/matzehuels/stacktower/pkg/core/render/tower/styles/handdrawn
+// [handdrawn]: github.com/stacktower-io/stacktower/pkg/core/render/tower/styles/handdrawn
 package styles

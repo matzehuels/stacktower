@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
 )
 
 // Orderer is an interface for horizontal row ordering algorithms.

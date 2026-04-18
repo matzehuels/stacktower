@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
+	"github.com/stacktower-io/stacktower/pkg/cache"
 
-	"github.com/matzehuels/stacktower/pkg/integrations"
+	"github.com/stacktower-io/stacktower/pkg/integrations"
 )
 
 func TestNewClient(t *testing.T) {
@@ -198,7 +198,7 @@ func TestClient_LicenseFallbackToVersion(t *testing.T) {
 func testClient(t *testing.T, serverURL string) *Client {
 	t.Helper()
 	headers := map[string]string{
-		"User-Agent": "stacktower/1.0 (https://github.com/matzehuels/stacktower)",
+		"User-Agent": "stacktower/1.0 (https://github.com/stacktower-io/stacktower)",
 	}
 	return &Client{
 		Client:  integrations.NewClient(cache.NewNullCache(), "crates:", time.Hour, headers),

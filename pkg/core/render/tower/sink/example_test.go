@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
-	"github.com/matzehuels/stacktower/pkg/core/render/tower/layout"
-	"github.com/matzehuels/stacktower/pkg/core/render/tower/sink"
-	"github.com/matzehuels/stacktower/pkg/core/render/tower/styles"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/render/tower/layout"
+	"github.com/stacktower-io/stacktower/pkg/core/render/tower/sink"
+	"github.com/stacktower-io/stacktower/pkg/core/render/tower/styles"
 )
 
 func ExampleRenderSVG() {

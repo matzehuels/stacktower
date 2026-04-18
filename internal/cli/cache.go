@@ -9,7 +9,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/matzehuels/stacktower/internal/cli/ui"
+	"github.com/stacktower-io/stacktower/internal/cli/ui"
 )
 
 // cacheCommand creates the cache management command.

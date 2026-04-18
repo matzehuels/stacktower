@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/matzehuels/stacktower/pkg/core/render/tower/styles"
+	"github.com/stacktower-io/stacktower/pkg/core/render/tower/styles"
 )
 
 func TestNew(t *testing.T) {

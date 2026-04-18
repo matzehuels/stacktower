@@ -76,6 +76,6 @@
 // data structure for efficiently generating only valid orderings that preserve
 // crossing-free constraints.
 //
-// [transform]: github.com/matzehuels/stacktower/pkg/core/dag/transform
-// [perm]: github.com/matzehuels/stacktower/pkg/core/dag/perm
+// [transform]: github.com/stacktower-io/stacktower/pkg/core/dag/transform
+// [perm]: github.com/stacktower-io/stacktower/pkg/core/dag/perm
 package dag

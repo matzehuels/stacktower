@@ -37,10 +37,10 @@
 //   - [transform]: Graph transformations specific to tower visualizations (e.g., merging subdividers).
 //   - [feature]: High-level visualization features like Nebraska ranking and brittle detection.
 //
-// [layout]: github.com/matzehuels/stacktower/pkg/core/render/tower/layout
-// [ordering]: github.com/matzehuels/stacktower/pkg/core/render/tower/ordering
-// [sink]: github.com/matzehuels/stacktower/pkg/core/render/tower/sink
-// [styles]: github.com/matzehuels/stacktower/pkg/core/render/tower/styles
-// [transform]: github.com/matzehuels/stacktower/pkg/core/render/tower/transform
-// [feature]: github.com/matzehuels/stacktower/pkg/core/render/tower/feature
+// [layout]: github.com/stacktower-io/stacktower/pkg/core/render/tower/layout
+// [ordering]: github.com/stacktower-io/stacktower/pkg/core/render/tower/ordering
+// [sink]: github.com/stacktower-io/stacktower/pkg/core/render/tower/sink
+// [styles]: github.com/stacktower-io/stacktower/pkg/core/render/tower/styles
+// [transform]: github.com/stacktower-io/stacktower/pkg/core/render/tower/transform
+// [feature]: github.com/stacktower-io/stacktower/pkg/core/render/tower/feature
 package tower

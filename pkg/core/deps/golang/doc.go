@@ -27,6 +27,6 @@
 // lists direct dependencies; transitive dependencies are resolved via
 // the Go Module Proxy.
 //
-// [goproxy]: github.com/matzehuels/stacktower/pkg/integrations/goproxy
-// [deps.Language]: github.com/matzehuels/stacktower/pkg/core/deps.Language
+// [goproxy]: github.com/stacktower-io/stacktower/pkg/integrations/goproxy
+// [deps.Language]: github.com/stacktower-io/stacktower/pkg/core/deps.Language
 package golang

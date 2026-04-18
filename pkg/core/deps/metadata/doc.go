@@ -49,5 +49,5 @@
 //	    gitlab,
 //	)
 //
-// [deps.MetadataProvider]: github.com/matzehuels/stacktower/pkg/core/deps.MetadataProvider
+// [deps.MetadataProvider]: github.com/stacktower-io/stacktower/pkg/core/deps.MetadataProvider
 package metadata

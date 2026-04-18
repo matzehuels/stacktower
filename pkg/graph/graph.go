@@ -7,7 +7,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
 )
 
 // =============================================================================

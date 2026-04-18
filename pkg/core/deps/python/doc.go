@@ -32,6 +32,6 @@
 // Python package names are normalized following PEP 503: converted to
 // lowercase with runs of [_.-] replaced by single hyphens.
 //
-// [pypi]: github.com/matzehuels/stacktower/pkg/integrations/pypi
-// [deps.Language]: github.com/matzehuels/stacktower/pkg/core/deps.Language
+// [pypi]: github.com/stacktower-io/stacktower/pkg/integrations/pypi
+// [deps.Language]: github.com/stacktower-io/stacktower/pkg/core/deps.Language
 package python

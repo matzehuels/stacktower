@@ -1,6 +1,6 @@
 package transform
 
-import "github.com/matzehuels/stacktower/pkg/core/dag"
+import "github.com/stacktower-io/stacktower/pkg/core/dag"
 
 // AssignLayers assigns nodes to horizontal rows (layers) based on their depth
 // in the graph.

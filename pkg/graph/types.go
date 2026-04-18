@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"slices"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
-	"github.com/matzehuels/stacktower/pkg/core/render/tower/feature"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/render/tower/feature"
 )
 
 // =============================================================================

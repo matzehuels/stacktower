@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
-	"github.com/matzehuels/stacktower/pkg/core/deps"
-	"github.com/matzehuels/stacktower/pkg/integrations/goproxy"
+	"github.com/stacktower-io/stacktower/pkg/cache"
+	"github.com/stacktower-io/stacktower/pkg/core/deps"
+	"github.com/stacktower-io/stacktower/pkg/integrations/goproxy"
 )
 
 func TestLanguageDefinition(t *testing.T) {

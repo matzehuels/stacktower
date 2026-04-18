@@ -40,10 +40,10 @@
 //	svg, err := nodelink.RenderSVG(dot)
 //	pdf, err := render.ToPDF(svg)
 //
-// [tower]: github.com/matzehuels/stacktower/pkg/core/render/tower
-// [tower/layout]: github.com/matzehuels/stacktower/pkg/core/render/tower/layout
-// [tower/ordering]: github.com/matzehuels/stacktower/pkg/core/render/tower/ordering
-// [tower/sink]: github.com/matzehuels/stacktower/pkg/core/render/tower/sink
-// [tower/styles]: github.com/matzehuels/stacktower/pkg/core/render/tower/styles
-// [nodelink]: github.com/matzehuels/stacktower/pkg/core/render/nodelink
+// [tower]: github.com/stacktower-io/stacktower/pkg/core/render/tower
+// [tower/layout]: github.com/stacktower-io/stacktower/pkg/core/render/tower/layout
+// [tower/ordering]: github.com/stacktower-io/stacktower/pkg/core/render/tower/ordering
+// [tower/sink]: github.com/stacktower-io/stacktower/pkg/core/render/tower/sink
+// [tower/styles]: github.com/stacktower-io/stacktower/pkg/core/render/tower/styles
+// [nodelink]: github.com/stacktower-io/stacktower/pkg/core/render/nodelink
 package render

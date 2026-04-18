@@ -8,7 +8,7 @@ import (
 
 	"github.com/contriboss/pubgrub-go"
 
-	"github.com/matzehuels/stacktower/pkg/core/deps"
+	"github.com/stacktower-io/stacktower/pkg/core/deps"
 )
 
 // MavenMatcher implements constraint matching for Maven version ranges.

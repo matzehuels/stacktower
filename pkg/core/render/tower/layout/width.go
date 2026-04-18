@@ -3,7 +3,7 @@ package layout
 import (
 	"math"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
 )
 
 const eps = 1e-9

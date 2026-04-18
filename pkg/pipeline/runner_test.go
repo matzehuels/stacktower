@@ -10,7 +10,7 @@ import (
 
 	"github.com/charmbracelet/log"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
+	"github.com/stacktower-io/stacktower/pkg/cache"
 )
 
 type failingSetCache struct {

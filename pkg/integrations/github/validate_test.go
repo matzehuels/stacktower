@@ -11,7 +11,7 @@ func TestParseRepoRef(t *testing.T) {
 	}{
 		// plain owner/repo
 		{"fastapi/fastapi", "fastapi", "fastapi", false},
-		{"matzehuels/stacktower", "matzehuels", "stacktower", false},
+		{"stacktower-io/stacktower", "stacktower-io", "stacktower", false},
 		// full HTTPS URL
 		{"https://github.com/fastapi/fastapi", "fastapi", "fastapi", false},
 		{"http://github.com/fastapi/fastapi", "fastapi", "fastapi", false},

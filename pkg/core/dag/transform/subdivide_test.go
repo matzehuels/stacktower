@@ -3,7 +3,7 @@ package transform
 import (
 	"testing"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
 )
 
 func TestSubdivide_NoEdges(t *testing.T) {

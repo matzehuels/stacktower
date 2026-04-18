@@ -3,11 +3,11 @@ package layout
 import (
 	"fmt"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
-	"github.com/matzehuels/stacktower/pkg/core/deps/metadata"
-	"github.com/matzehuels/stacktower/pkg/core/render/tower/feature"
-	"github.com/matzehuels/stacktower/pkg/graph"
-	"github.com/matzehuels/stacktower/pkg/security"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/deps/metadata"
+	"github.com/stacktower-io/stacktower/pkg/core/render/tower/feature"
+	"github.com/stacktower-io/stacktower/pkg/graph"
+	"github.com/stacktower-io/stacktower/pkg/security"
 )
 
 // Export converts an internal tower layout to the serialization format.

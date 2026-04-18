@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
-	"github.com/matzehuels/stacktower/pkg/integrations"
+	"github.com/stacktower-io/stacktower/pkg/cache"
+	"github.com/stacktower-io/stacktower/pkg/integrations"
 )
 
 // Dependency represents a Composer package dependency with version constraint.

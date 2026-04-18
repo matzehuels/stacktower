@@ -13,10 +13,10 @@ import (
 
 	"github.com/goccy/go-graphviz"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
-	"github.com/matzehuels/stacktower/pkg/core/render"
-	"github.com/matzehuels/stacktower/pkg/fonts"
-	"github.com/matzehuels/stacktower/pkg/security"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/render"
+	"github.com/stacktower-io/stacktower/pkg/fonts"
+	"github.com/stacktower-io/stacktower/pkg/security"
 )
 
 // graphvizMu serializes access to the graphviz WASM runtime.

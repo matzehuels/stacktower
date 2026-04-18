@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/matzehuels/stacktower/pkg/security"
+	"github.com/stacktower-io/stacktower/pkg/security"
 )
 
 const (

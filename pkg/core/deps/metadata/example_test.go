@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
-	"github.com/matzehuels/stacktower/pkg/core/deps"
-	"github.com/matzehuels/stacktower/pkg/core/deps/metadata"
-	"github.com/matzehuels/stacktower/pkg/core/deps/python"
+	"github.com/stacktower-io/stacktower/pkg/cache"
+	"github.com/stacktower-io/stacktower/pkg/core/deps"
+	"github.com/stacktower-io/stacktower/pkg/core/deps/metadata"
+	"github.com/stacktower-io/stacktower/pkg/core/deps/python"
 )
 
 func ExampleNewGitHub() {

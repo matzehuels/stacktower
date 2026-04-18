@@ -8,9 +8,9 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/matzehuels/stacktower/internal/cli/ui"
-	"github.com/matzehuels/stacktower/pkg/buildinfo"
-	"github.com/matzehuels/stacktower/pkg/core/deps/languages"
+	"github.com/stacktower-io/stacktower/internal/cli/ui"
+	"github.com/stacktower-io/stacktower/pkg/buildinfo"
+	"github.com/stacktower-io/stacktower/pkg/core/deps/languages"
 )
 
 func (c *CLI) infoCommand() *cobra.Command {

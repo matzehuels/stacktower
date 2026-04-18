@@ -7,8 +7,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/matzehuels/stacktower/internal/cli/ui"
-	"github.com/matzehuels/stacktower/pkg/core/dag/perm"
+	"github.com/stacktower-io/stacktower/internal/cli/ui"
+	"github.com/stacktower-io/stacktower/pkg/core/dag/perm"
 )
 
 // pqtreeCommand creates the pqtree command for visualizing PQ-tree constraints.

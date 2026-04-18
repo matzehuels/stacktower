@@ -2,9 +2,9 @@
 //
 // Variables are set via ldflags during build:
 //
-//	go build -ldflags "-X github.com/matzehuels/stacktower/pkg/buildinfo.Version=v1.0.0 \
-//	    -X github.com/matzehuels/stacktower/pkg/buildinfo.Commit=$(git rev-parse HEAD) \
-//	    -X github.com/matzehuels/stacktower/pkg/buildinfo.Date=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+//	go build -ldflags "-X github.com/stacktower-io/stacktower/pkg/buildinfo.Version=v1.0.0 \
+//	    -X github.com/stacktower-io/stacktower/pkg/buildinfo.Commit=$(git rev-parse HEAD) \
+//	    -X github.com/stacktower-io/stacktower/pkg/buildinfo.Date=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 package buildinfo
 
 import (
@@ -14,15 +14,15 @@ import (
 
 var (
 	// Version is the semantic version (e.g., "v1.2.3").
-	// Set via ldflags: -X github.com/matzehuels/stacktower/pkg/buildinfo.Version=...
+	// Set via ldflags: -X github.com/stacktower-io/stacktower/pkg/buildinfo.Version=...
 	Version = "dev"
 
 	// Commit is the git commit SHA.
-	// Set via ldflags: -X github.com/matzehuels/stacktower/pkg/buildinfo.Commit=...
+	// Set via ldflags: -X github.com/stacktower-io/stacktower/pkg/buildinfo.Commit=...
 	Commit = "none"
 
 	// Date is the build timestamp.
-	// Set via ldflags: -X github.com/matzehuels/stacktower/pkg/buildinfo.Date=...
+	// Set via ldflags: -X github.com/stacktower-io/stacktower/pkg/buildinfo.Date=...
 	Date = "unknown"
 
 	// GitHubAppClientID is the OAuth client ID for GitHub device flow authentication.

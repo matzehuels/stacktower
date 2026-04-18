@@ -3,7 +3,7 @@ package perm_test
 import (
 	"fmt"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag/perm"
+	"github.com/stacktower-io/stacktower/pkg/core/dag/perm"
 )
 
 func ExampleGenerate() {

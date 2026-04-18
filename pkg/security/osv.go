@@ -7,8 +7,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/integrations/osv"
-	"github.com/matzehuels/stacktower/pkg/observability"
+	"github.com/stacktower-io/stacktower/pkg/integrations/osv"
+	"github.com/stacktower-io/stacktower/pkg/observability"
 )
 
 const enrichConcurrency = 10

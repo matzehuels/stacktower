@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/observability"
+	"github.com/stacktower-io/stacktower/pkg/observability"
 )
 
 // InstrumentedCache wraps a Cache and emits observability hooks on Get/Set operations.

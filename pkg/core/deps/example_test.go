@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/core/deps"
+	"github.com/stacktower-io/stacktower/pkg/core/deps"
 )
 
 func ExampleOptions_WithDefaults() {
@@ -72,7 +72,7 @@ func ExampleDetectManifest() {
 	// DetectManifest finds the right parser for a manifest file.
 	// In real usage, you would get parsers from a Language definition:
 	//
-	//   import "github.com/matzehuels/stacktower/pkg/core/deps/python"
+	//   import "github.com/stacktower-io/stacktower/pkg/core/deps/python"
 	//
 	//   parsers := python.Language.ManifestParsers(nil)
 	//   parser, err := deps.DetectManifest("poetry.lock", parsers...)

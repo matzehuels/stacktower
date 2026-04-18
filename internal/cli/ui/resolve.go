@@ -8,7 +8,7 @@ import (
 
 	"github.com/charmbracelet/lipgloss"
 
-	"github.com/matzehuels/stacktower/pkg/pipeline"
+	"github.com/stacktower-io/stacktower/pkg/pipeline"
 )
 
 // =============================================================================

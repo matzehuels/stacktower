@@ -3,7 +3,7 @@ package integrations_test
 import (
 	"fmt"
 
-	"github.com/matzehuels/stacktower/pkg/integrations"
+	"github.com/stacktower-io/stacktower/pkg/integrations"
 )
 
 func ExampleNormalizePkgName() {

@@ -7,7 +7,7 @@ formatters:
   settings:
     goimports:
       local-prefixes:
-        - github.com/matzehuels/stacktower
+        - github.com/stacktower-io/stacktower
 
 linters:
   default: none

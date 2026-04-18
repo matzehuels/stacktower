@@ -3,7 +3,7 @@ package transform
 import (
 	"fmt"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
 )
 
 // Normalize prepares a DAG for tower rendering by applying a sequence of

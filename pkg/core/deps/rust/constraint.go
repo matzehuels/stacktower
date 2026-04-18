@@ -8,7 +8,7 @@ import (
 
 	"github.com/contriboss/pubgrub-go"
 
-	"github.com/matzehuels/stacktower/pkg/core/deps"
+	"github.com/stacktower-io/stacktower/pkg/core/deps"
 )
 
 // CargoMatcher implements constraint matching for Cargo's semver specifiers.

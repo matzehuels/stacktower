@@ -604,6 +604,35 @@ func (c *AppClient) countAllInstallations(ctx context.Context, jwtToken string) 
 	return total, nil
 }
 
+// DeleteInstallation uninstalls the GitHub App from a user or organization account.
+// This requires App JWT authentication and removes all repository access.
+func (c *AppClient) DeleteInstallation(ctx context.Context, installationID int64) error {
+	jwtToken, err := c.generateJWT()
+	if err != nil {
+		return fmt.Errorf("generate JWT: %w", err)
+	}
+
+	url := fmt.Sprintf("https://api.github.com/app/installations/%d", installationID)
+	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
+	if err != nil {
+		return fmt.Errorf("create request: %w", err)
+	}
+	req.Header.Set("Authorization", "Bearer "+jwtToken)
+	req.Header.Set("Accept", "application/vnd.github+json")
+
+	resp, err := c.httpClient.Do(req)
+	if err != nil {
+		return fmt.Errorf("send request: %w", err)
+	}
+	defer resp.Body.Close()
+
+	// 204 No Content = success; 404 = already uninstalled (treat as success)
+	if resp.StatusCode != http.StatusNoContent && resp.StatusCode != http.StatusNotFound {
+		return fmt.Errorf("GitHub API error: HTTP %d", resp.StatusCode)
+	}
+	return nil
+}
+
 // RevokeUserToken revokes a user access token, removing the app's authorization.
 // This removes the app from the user's "Authorized GitHub Apps" list.
 func (c *AppClient) RevokeUserToken(ctx context.Context, accessToken string) error {

@@ -51,9 +51,9 @@
 // The conversion functions are shared with [nodelink] so both visualization
 // types can export to PDF/PNG.
 //
-// [render.ToPDF]: github.com/matzehuels/stacktower/pkg/core/render.ToPDF
-// [render.ToPNG]: github.com/matzehuels/stacktower/pkg/core/render.ToPNG
-// [nodelink]: github.com/matzehuels/stacktower/pkg/core/render/nodelink
+// [render.ToPDF]: github.com/stacktower-io/stacktower/pkg/core/render.ToPDF
+// [render.ToPNG]: github.com/stacktower-io/stacktower/pkg/core/render.ToPNG
+// [nodelink]: github.com/stacktower-io/stacktower/pkg/core/render/nodelink
 //
 // # Adding New Formats
 //
@@ -67,7 +67,7 @@
 // The existing sinks provide examples: svg.go for full-featured output,
 // pdf.go/png.go for format conversion wrappers.
 //
-// [layout.Layout]: github.com/matzehuels/stacktower/pkg/core/render/tower/layout.Layout
-// [styles.Simple]: github.com/matzehuels/stacktower/pkg/core/render/tower/styles.Simple
-// [handdrawn.New]: github.com/matzehuels/stacktower/pkg/core/render/tower/styles/handdrawn.New
+// [layout.Layout]: github.com/stacktower-io/stacktower/pkg/core/render/tower/layout.Layout
+// [styles.Simple]: github.com/stacktower-io/stacktower/pkg/core/render/tower/styles.Simple
+// [handdrawn.New]: github.com/stacktower-io/stacktower/pkg/core/render/tower/styles/handdrawn.New
 package sink

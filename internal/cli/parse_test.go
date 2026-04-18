@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/matzehuels/stacktower/pkg/core/deps/languages"
+	"github.com/stacktower-io/stacktower/pkg/core/deps/languages"
 )
 
 func TestLooksLikeFile(t *testing.T) {

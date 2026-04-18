@@ -6,11 +6,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
-	"github.com/matzehuels/stacktower/pkg/core/dag"
-	"github.com/matzehuels/stacktower/pkg/core/deps"
-	"github.com/matzehuels/stacktower/pkg/integrations"
-	"github.com/matzehuels/stacktower/pkg/integrations/goproxy"
+	"github.com/stacktower-io/stacktower/pkg/cache"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/deps"
+	"github.com/stacktower-io/stacktower/pkg/integrations"
+	"github.com/stacktower-io/stacktower/pkg/integrations/goproxy"
 )
 
 // Ensure fetcher implements VersionLister (required by PubGrub resolver).

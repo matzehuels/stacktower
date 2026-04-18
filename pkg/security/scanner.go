@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
-	"github.com/matzehuels/stacktower/pkg/graph"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/graph"
 )
 
 // Scanner analyzes dependencies for known vulnerabilities.

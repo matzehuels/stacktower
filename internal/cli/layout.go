@@ -9,9 +9,9 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/matzehuels/stacktower/internal/cli/ui"
-	"github.com/matzehuels/stacktower/pkg/graph"
-	"github.com/matzehuels/stacktower/pkg/pipeline"
+	"github.com/stacktower-io/stacktower/internal/cli/ui"
+	"github.com/stacktower-io/stacktower/pkg/graph"
+	"github.com/stacktower-io/stacktower/pkg/pipeline"
 )
 
 // layoutCommand creates the layout command for computing visualization layouts.

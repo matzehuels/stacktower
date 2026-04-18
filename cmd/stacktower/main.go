@@ -9,8 +9,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/matzehuels/stacktower/internal/cli"
-	"github.com/matzehuels/stacktower/internal/cli/ui"
+	"github.com/stacktower-io/stacktower/internal/cli"
+	"github.com/stacktower-io/stacktower/internal/cli/ui"
 )
 
 func main() {

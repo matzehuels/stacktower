@@ -7,8 +7,8 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
-	"github.com/matzehuels/stacktower/pkg/integrations"
+	"github.com/stacktower-io/stacktower/pkg/cache"
+	"github.com/stacktower-io/stacktower/pkg/integrations"
 )
 
 // Dependency represents a crate dependency with version requirement.
@@ -58,7 +58,7 @@ type Client struct {
 // The returned Client is safe for concurrent use.
 func NewClient(backend cache.Cache, cacheTTL time.Duration) *Client {
 	headers := map[string]string{
-		"User-Agent": "stacktower/1.0 (https://github.com/matzehuels/stacktower)",
+		"User-Agent": "stacktower/1.0 (https://github.com/stacktower-io/stacktower)",
 	}
 	rl := integrations.DefaultRateLimits["crates"]
 	return &Client{

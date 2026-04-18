@@ -3,8 +3,8 @@ package cli
 import (
 	"testing"
 
-	"github.com/matzehuels/stacktower/pkg/graph"
-	"github.com/matzehuels/stacktower/pkg/pipeline"
+	"github.com/stacktower-io/stacktower/pkg/graph"
+	"github.com/stacktower-io/stacktower/pkg/pipeline"
 )
 
 func TestParseFormats(t *testing.T) {

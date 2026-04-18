@@ -24,6 +24,6 @@
 // Note: composer.json contains direct dependencies in "require". The
 // resolver fetches transitive dependencies from Packagist.
 //
-// [packagist]: github.com/matzehuels/stacktower/pkg/integrations/packagist
-// [deps.Language]: github.com/matzehuels/stacktower/pkg/core/deps.Language
+// [packagist]: github.com/stacktower-io/stacktower/pkg/integrations/packagist
+// [deps.Language]: github.com/stacktower-io/stacktower/pkg/core/deps.Language
 package php

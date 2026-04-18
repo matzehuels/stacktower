@@ -7,9 +7,9 @@ import (
 
 	"github.com/BurntSushi/toml"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
-	"github.com/matzehuels/stacktower/pkg/core/deps"
-	"github.com/matzehuels/stacktower/pkg/observability"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/deps"
+	"github.com/stacktower-io/stacktower/pkg/observability"
 )
 
 // PoetryLock parses poetry.lock files. It provides a full transitive closure

@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
-	"github.com/matzehuels/stacktower/pkg/core/deps"
+	"github.com/stacktower-io/stacktower/pkg/cache"
+	"github.com/stacktower-io/stacktower/pkg/core/deps"
 )
 
 func TestBuildResolveOptions_GitHubProviderWithoutToken(t *testing.T) {

@@ -9,7 +9,7 @@ import (
 
 	"github.com/contriboss/pubgrub-go"
 
-	"github.com/matzehuels/stacktower/pkg/core/deps"
+	"github.com/stacktower-io/stacktower/pkg/core/deps"
 )
 
 // PEP440Matcher implements constraint matching for Python's PEP 440 version specifiers.

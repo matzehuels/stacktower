@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
+	"github.com/stacktower-io/stacktower/pkg/cache"
 )
 
 func TestFetchCrate_Integration(t *testing.T) {

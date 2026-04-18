@@ -5,7 +5,7 @@ Thanks for your interest in contributing!
 ## Getting Started
 
 ```bash
-git clone https://github.com/matzehuels/stacktower.git
+git clone https://github.com/stacktower-io/stacktower.git
 cd stacktower
 make install-tools  # Install golangci-lint, goimports, govulncheck
 make check          # Run all CI checks locally
@@ -42,7 +42,7 @@ make cover      # Tests with coverage
 
 ## Architecture
 
-Stacktower follows a clean layered architecture. See the [pkg.go.dev documentation](https://pkg.go.dev/github.com/matzehuels/stacktower) for detailed API docs.
+Stacktower follows a clean layered architecture. See the [pkg.go.dev documentation](https://pkg.go.dev/github.com/stacktower-io/stacktower) for detailed API docs.
 
 ```
 internal/cli/                  # Command-line interface
@@ -113,7 +113,7 @@ var Language = &deps.Language{
 
 3. **Register in CLI** in `internal/cli/parse.go`
 
-See [`pkg/core/deps`](https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/deps) for detailed documentation.
+See [`pkg/core/deps`](https://pkg.go.dev/github.com/stacktower-io/stacktower/pkg/core/deps) for detailed documentation.
 
 ## Adding a Manifest Parser
 
@@ -151,9 +151,9 @@ func RenderMyFormat(l layout.Layout, opts ...MyFormatOption) ([]byte, error) {
 
 2. **Register in CLI** in `internal/cli/render.go`
 
-See [`pkg/core/render/tower/sink`](https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/render/tower/sink) for existing implementations.
+See [`pkg/core/render/tower/sink`](https://pkg.go.dev/github.com/stacktower-io/stacktower/pkg/core/render/tower/sink) for existing implementations.
 
 ## Questions?
 
-Open an [issue](https://github.com/matzehuels/stacktower/issues) — we're happy to help!
+Open an [issue](https://github.com/stacktower-io/stacktower/issues) — we're happy to help!
 

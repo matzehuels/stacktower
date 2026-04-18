@@ -42,15 +42,15 @@
 //  4. Use [NewClient] for HTTP with caching
 //  5. Wire into [deps] as a new language
 //
-// [pypi]: github.com/matzehuels/stacktower/pkg/integrations/pypi
-// [npm]: github.com/matzehuels/stacktower/pkg/integrations/npm
-// [crates]: github.com/matzehuels/stacktower/pkg/integrations/crates
-// [rubygems]: github.com/matzehuels/stacktower/pkg/integrations/rubygems
-// [packagist]: github.com/matzehuels/stacktower/pkg/integrations/packagist
-// [maven]: github.com/matzehuels/stacktower/pkg/integrations/maven
-// [goproxy]: github.com/matzehuels/stacktower/pkg/integrations/goproxy
-// [github]: github.com/matzehuels/stacktower/pkg/integrations/github
-// [gitlab]: github.com/matzehuels/stacktower/pkg/integrations/gitlab
-// [cache.Cache]: github.com/matzehuels/stacktower/pkg/cache.Cache
-// [deps]: github.com/matzehuels/stacktower/pkg/core/deps
+// [pypi]: github.com/stacktower-io/stacktower/pkg/integrations/pypi
+// [npm]: github.com/stacktower-io/stacktower/pkg/integrations/npm
+// [crates]: github.com/stacktower-io/stacktower/pkg/integrations/crates
+// [rubygems]: github.com/stacktower-io/stacktower/pkg/integrations/rubygems
+// [packagist]: github.com/stacktower-io/stacktower/pkg/integrations/packagist
+// [maven]: github.com/stacktower-io/stacktower/pkg/integrations/maven
+// [goproxy]: github.com/stacktower-io/stacktower/pkg/integrations/goproxy
+// [github]: github.com/stacktower-io/stacktower/pkg/integrations/github
+// [gitlab]: github.com/stacktower-io/stacktower/pkg/integrations/gitlab
+// [cache.Cache]: github.com/stacktower-io/stacktower/pkg/cache.Cache
+// [deps]: github.com/stacktower-io/stacktower/pkg/core/deps
 package integrations

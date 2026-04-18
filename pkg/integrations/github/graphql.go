@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/integrations"
+	"github.com/stacktower-io/stacktower/pkg/integrations"
 )
 
 // maxReposPerQuery is the maximum repos in a single GraphQL request.

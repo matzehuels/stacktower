@@ -5,7 +5,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/observability"
+	"github.com/stacktower-io/stacktower/pkg/observability"
 )
 
 // Sentinel errors for caching operations.

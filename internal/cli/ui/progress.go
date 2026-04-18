@@ -14,7 +14,7 @@ import (
 	"github.com/mattn/go-runewidth"
 	"golang.org/x/term"
 
-	"github.com/matzehuels/stacktower/pkg/observability"
+	"github.com/stacktower-io/stacktower/pkg/observability"
 )
 
 // maxDisplayedNames is the maximum number of package names shown in the "fetching" line.

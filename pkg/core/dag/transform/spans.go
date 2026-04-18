@@ -6,7 +6,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
 )
 
 // ResolveSpanOverlaps identifies and resolves impossible crossing patterns by

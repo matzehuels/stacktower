@@ -1,10 +1,10 @@
 # Stacktower
 
-[![CI](https://github.com/matzehuels/stacktower/actions/workflows/ci.yml/badge.svg)](https://github.com/matzehuels/stacktower/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/matzehuels/stacktower/graph/badge.svg)](https://codecov.io/gh/matzehuels/stacktower)
-[![Go Report Card](https://goreportcard.com/badge/github.com/matzehuels/stacktower)](https://goreportcard.com/report/github.com/matzehuels/stacktower)
-[![Go Reference](https://pkg.go.dev/badge/github.com/matzehuels/stacktower.svg)](https://pkg.go.dev/github.com/matzehuels/stacktower)
-[![Release](https://img.shields.io/github/v/release/matzehuels/stacktower)](https://github.com/matzehuels/stacktower/releases)
+[![CI](https://github.com/stacktower-io/stacktower/actions/workflows/ci.yml/badge.svg)](https://github.com/stacktower-io/stacktower/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/stacktower-io/stacktower/graph/badge.svg)](https://codecov.io/gh/stacktower-io/stacktower)
+[![Go Report Card](https://goreportcard.com/badge/github.com/stacktower-io/stacktower)](https://goreportcard.com/report/github.com/stacktower-io/stacktower)
+[![Go Reference](https://pkg.go.dev/badge/github.com/stacktower-io/stacktower.svg)](https://pkg.go.dev/github.com/stacktower-io/stacktower)
+[![Release](https://img.shields.io/github/v/release/stacktower-io/stacktower)](https://github.com/stacktower-io/stacktower/releases)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Inspired by [XKCD #2347](https://xkcd.com/2347/), Stacktower renders dependency graphs as **physical towers** where blocks rest on what they depend on. Your application sits at the top, supported by libraries below—all the way down to that one critical package maintained by _some dude in Nebraska_.
@@ -28,19 +28,19 @@ Inspired by [XKCD #2347](https://xkcd.com/2347/), Stacktower renders dependency 
 ### Homebrew (macOS/Linux)
 
 ```bash
-brew install matzehuels/tap/stacktower
+brew install stacktower-io/homebrew-tap/stacktower
 ```
 
 ### Go
 
 ```bash
-go install github.com/matzehuels/stacktower@latest
+go install github.com/stacktower-io/stacktower@latest
 ```
 
 ### From Source
 
 ```bash
-git clone https://github.com/matzehuels/stacktower.git
+git clone https://github.com/stacktower-io/stacktower.git
 cd stacktower
 go build -o bin/stacktower ./cmd/stacktower
 ```
@@ -956,10 +956,10 @@ Stacktower can be used as a Go library for programmatic graph visualization.
 
 ```go
 import (
-    "github.com/matzehuels/stacktower/pkg/core/dag"
-    "github.com/matzehuels/stacktower/pkg/core/dag/transform"
-    "github.com/matzehuels/stacktower/pkg/core/render/tower/layout"
-    "github.com/matzehuels/stacktower/pkg/core/render/tower/sink"
+    "github.com/stacktower-io/stacktower/pkg/core/dag"
+    "github.com/stacktower-io/stacktower/pkg/core/dag/transform"
+    "github.com/stacktower-io/stacktower/pkg/core/render/tower/layout"
+    "github.com/stacktower-io/stacktower/pkg/core/render/tower/sink"
 )
 
 // Build a graph
@@ -974,16 +974,16 @@ l := layout.Build(g, 800, 600)
 svg := sink.RenderSVG(l, sink.WithGraph(g), sink.WithPopups())
 ```
 
-📚 **[Full API documentation on pkg.go.dev](https://pkg.go.dev/github.com/matzehuels/stacktower)**
+📚 **[Full API documentation on pkg.go.dev](https://pkg.go.dev/github.com/stacktower-io/stacktower)**
 
 Key packages:
 
-- [`pkg/core/dag`](https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/dag) — DAG data structure and crossing algorithms
-- [`pkg/core/dag/transform`](https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/dag/transform) — Graph normalization pipeline
-- [`pkg/core/render/tower`](https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/render/tower) — Layout, ordering, and rendering
-- [`pkg/core/deps`](https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/core/deps) — Dependency resolution from registries
-- [`pkg/pipeline`](https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/pipeline) — Complete parse → layout → render pipeline
-- [`pkg/security`](https://pkg.go.dev/github.com/matzehuels/stacktower/pkg/security) — Vulnerability scanning via OSV.dev
+- [`pkg/core/dag`](https://pkg.go.dev/github.com/stacktower-io/stacktower/pkg/core/dag) — DAG data structure and crossing algorithms
+- [`pkg/core/dag/transform`](https://pkg.go.dev/github.com/stacktower-io/stacktower/pkg/core/dag/transform) — Graph normalization pipeline
+- [`pkg/core/render/tower`](https://pkg.go.dev/github.com/stacktower-io/stacktower/pkg/core/render/tower) — Layout, ordering, and rendering
+- [`pkg/core/deps`](https://pkg.go.dev/github.com/stacktower-io/stacktower/pkg/core/deps) — Dependency resolution from registries
+- [`pkg/pipeline`](https://pkg.go.dev/github.com/stacktower-io/stacktower/pkg/pipeline) — Complete parse → layout → render pipeline
+- [`pkg/security`](https://pkg.go.dev/github.com/stacktower-io/stacktower/pkg/security) — Vulnerability scanning via OSV.dev
 
 ## Contributing
 
@@ -1013,7 +1013,7 @@ Commit messages follow [Conventional Commits](https://www.conventionalcommits.or
 ## Learn More
 
 - 📖 **[stacktower.io](https://www.stacktower.io)** — Interactive examples and the full story behind tower visualizations
-- 🐛 **[Issues](https://github.com/matzehuels/stacktower/issues)** — Bug reports and feature requests
+- 🐛 **[Issues](https://github.com/stacktower-io/stacktower/issues)** — Bug reports and feature requests
 
 ## License
 

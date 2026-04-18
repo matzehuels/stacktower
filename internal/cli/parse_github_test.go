@@ -3,10 +3,10 @@ package cli
 import (
 	"testing"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
-	"github.com/matzehuels/stacktower/pkg/core/deps/metadata"
-	"github.com/matzehuels/stacktower/pkg/graph"
-	"github.com/matzehuels/stacktower/pkg/integrations/github"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/deps/metadata"
+	"github.com/stacktower-io/stacktower/pkg/graph"
+	"github.com/stacktower-io/stacktower/pkg/integrations/github"
 )
 
 func TestAnnotateGitHubRootNode(t *testing.T) {
@@ -21,7 +21,7 @@ func TestAnnotateGitHubRootNode(t *testing.T) {
 		Archived:    false,
 	}
 
-	annotateGitHubRootNode(g, "stacktower", "matzehuels", "stacktower", info)
+	annotateGitHubRootNode(g, "stacktower", "stacktower-io", "stacktower", info)
 
 	n, ok := g.Node("stacktower")
 	if !ok {
@@ -33,7 +33,7 @@ func TestAnnotateGitHubRootNode(t *testing.T) {
 	if got, _ := n.Meta[metadata.RepoStars].(int); got != 1234 {
 		t.Fatalf("repo_stars = %d", got)
 	}
-	if got, _ := n.Meta[metadata.RepoURL].(string); got != "https://github.com/matzehuels/stacktower" {
+	if got, _ := n.Meta[metadata.RepoURL].(string); got != "https://github.com/stacktower-io/stacktower" {
 		t.Fatalf("repo_url = %q", got)
 	}
 }

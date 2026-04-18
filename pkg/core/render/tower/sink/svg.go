@@ -6,13 +6,13 @@ import (
 	"fmt"
 	"slices"
 
-	"github.com/matzehuels/stacktower/pkg/core/dag"
-	"github.com/matzehuels/stacktower/pkg/core/deps/metadata"
-	"github.com/matzehuels/stacktower/pkg/core/render/tower/feature"
-	"github.com/matzehuels/stacktower/pkg/core/render/tower/layout"
-	"github.com/matzehuels/stacktower/pkg/core/render/tower/styles"
-	"github.com/matzehuels/stacktower/pkg/fonts"
-	"github.com/matzehuels/stacktower/pkg/security"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/core/deps/metadata"
+	"github.com/stacktower-io/stacktower/pkg/core/render/tower/feature"
+	"github.com/stacktower-io/stacktower/pkg/core/render/tower/layout"
+	"github.com/stacktower-io/stacktower/pkg/core/render/tower/styles"
+	"github.com/stacktower-io/stacktower/pkg/fonts"
+	"github.com/stacktower-io/stacktower/pkg/security"
 )
 
 const blockInteractionCSS = `

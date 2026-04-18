@@ -27,6 +27,6 @@
 // Note: package.json contains direct dependencies only. The resolver fetches
 // transitive dependencies from npm.
 //
-// [npm]: github.com/matzehuels/stacktower/pkg/integrations/npm
-// [deps.Language]: github.com/matzehuels/stacktower/pkg/core/deps.Language
+// [npm]: github.com/stacktower-io/stacktower/pkg/integrations/npm
+// [deps.Language]: github.com/stacktower-io/stacktower/pkg/core/deps.Language
 package javascript

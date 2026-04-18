@@ -5,8 +5,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/matzehuels/stacktower/pkg/cache"
-	"github.com/matzehuels/stacktower/pkg/core/dag"
+	"github.com/stacktower-io/stacktower/pkg/cache"
+	"github.com/stacktower-io/stacktower/pkg/core/dag"
 )
 
 var _ ManifestParser = (*mockManifestParser)(nil)

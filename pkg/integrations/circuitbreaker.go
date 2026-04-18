@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/matzehuels/stacktower/pkg/observability"
+	"github.com/stacktower-io/stacktower/pkg/observability"
 )
 
 // ErrCircuitOpen is returned when the circuit breaker is open and rejecting requests.

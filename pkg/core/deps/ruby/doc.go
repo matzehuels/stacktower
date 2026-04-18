@@ -24,6 +24,6 @@
 // Note: Gemfile parsing extracts gem names from `gem "name"` declarations.
 // Transitive dependencies are resolved via RubyGems.
 //
-// [rubygems]: github.com/matzehuels/stacktower/pkg/integrations/rubygems
-// [deps.Language]: github.com/matzehuels/stacktower/pkg/core/deps.Language
+// [rubygems]: github.com/stacktower-io/stacktower/pkg/integrations/rubygems
+// [deps.Language]: github.com/stacktower-io/stacktower/pkg/core/deps.Language
 package ruby
