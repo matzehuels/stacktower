@@ -44,10 +44,7 @@ bin/
 *.txt
 !examples/**/*.txt
 !pkg/render/tower/styles/handdrawn/brittle-bg-base64.txt
-!blogpost/robots.txt
-!blogpost/llms.txt
 !examples/**/*.svg
-!blogpost/plots/**/*.svg
 
 # Temporary files
 tmp/

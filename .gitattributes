@@ -43,9 +43,6 @@ coverage*.out linguist-generated=true
 /examples/real/*.json linguist-generated=true
 /examples/test/*.json linguist-generated=true
 
-# Cache files
-/blogpost/cache/** linguist-generated=true
-
 # Archive files
 *.zip binary
 *.tar binary

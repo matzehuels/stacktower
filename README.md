@@ -10,7 +10,7 @@
 Inspired by [XKCD #2347](https://xkcd.com/2347/), Stacktower renders dependency graphs as **physical towers** where blocks rest on what they depend on. Your application sits at the top, supported by libraries below—all the way down to that one critical package maintained by _some dude in Nebraska_.
 
 <p align="center">
-  <img src="blogpost/plots/showcase/python/fastapi.svg" alt="FastAPI dependency tower" width="600">
+  <img src="https://www.stacktower.io/plots/showcase/python/fastapi.svg" alt="FastAPI dependency tower" width="600">
 </p>
 
 ---

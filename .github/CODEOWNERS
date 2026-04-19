@@ -22,7 +22,6 @@
 /CONTRIBUTING.md @matzehuels
 /CODE_OF_CONDUCT.md @matzehuels
 /SECURITY.md @matzehuels
-/blogpost/ @matzehuels
 
 # Dependencies
 /go.mod @matzehuels

@@ -1,4 +1,4 @@
-.PHONY: all build clean fmt fmt-check lint test cover vuln e2e blog install-tools snapshot release help
+.PHONY: all build clean fmt fmt-check lint test cover vuln e2e install-tools snapshot release help
 
 # =============================================================================
 # Variables
@@ -84,18 +84,6 @@ e2e-parse: build
 	@./scripts/test_cli_e2e.sh parse
 
 # =============================================================================
-# Blog Assets
-# =============================================================================
-
-blog: blog-diagrams blog-showcase
-
-blog-diagrams: build
-	@./scripts/blog_diagrams.sh
-
-blog-showcase: build
-	@./scripts/blog_showcase.sh
-
-# =============================================================================
 # Release
 # =============================================================================
 
@@ -130,11 +118,6 @@ help:
 	@echo "  make e2e-test         - Run test examples"
 	@echo "  make e2e-real         - Run real package examples"
 	@echo "  make e2e-parse        - Run parse tests"
-	@echo ""
-	@echo "BLOG:"
-	@echo "  make blog             - Generate all blog assets"
-	@echo "  make blog-diagrams    - Generate blog diagrams"
-	@echo "  make blog-showcase    - Generate blog showcase"
 	@echo ""
 	@echo "RELEASE:"
 	@echo "  make snapshot         - Build release locally (no publish)"
