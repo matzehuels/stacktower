@@ -35,7 +35,7 @@ Example: "0,1" means elements 0 and 1 must be adjacent.`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			labelList := strings.Split(labels, ",")
 			if len(labelList) == 0 {
-				return fmt.Errorf("at least one label required")
+				return NewUserError("at least one label required", "Use --labels A,B,C,D to specify labels.")
 			}
 
 			tree := perm.NewPQTree(len(labelList))
@@ -43,20 +43,23 @@ Example: "0,1" means elements 0 and 1 must be adjacent.`,
 			for _, arg := range args {
 				constraint, err := parseConstraint(arg)
 				if err != nil {
-					return fmt.Errorf("invalid constraint %q: %w", arg, err)
+					return WrapUserError(err, fmt.Sprintf("invalid constraint %q", arg), "Constraints are comma-separated indices, e.g., 0,1")
 				}
 				if !tree.Reduce(constraint) {
-					return fmt.Errorf("constraint %q made tree unsatisfiable", arg)
+					return NewUserError(
+						fmt.Sprintf("constraint %q made tree unsatisfiable", arg),
+						"This constraint conflicts with previous constraints. Check for contradictions.",
+					)
 				}
 			}
 
 			svg, err := tree.RenderSVG(labelList)
 			if err != nil {
-				return fmt.Errorf("render: %w", err)
+				return WrapSystemError(err, "failed to render PQ-tree", "")
 			}
 
 			if err := writeFile(svg, output); err != nil {
-				return fmt.Errorf("write output: %w", err)
+				return WrapSystemError(err, "failed to write output", "Check that the output path is writable.")
 			}
 
 			ui.PrintSuccess("PQ-tree generated")

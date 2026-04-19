@@ -333,7 +333,7 @@ type RefListModel struct {
 }
 
 // NewRefListModel creates a ref list with the default branch first.
-func NewRefListModel(branches []github.Branch, tags []github.Tag, defaultBranch string) RefListModel {
+func NewRefListModel(branches []github.Branch, tags []github.Tag, defaultBranch string) *RefListModel {
 	var items []RefItem
 
 	// Default branch always first
@@ -361,7 +361,7 @@ func NewRefListModel(branches []github.Branch, tags []github.Tag, defaultBranch 
 		})
 	}
 
-	m := RefListModel{
+	m := &RefListModel{
 		Items:  items,
 		Height: 15,
 	}
@@ -383,11 +383,11 @@ func (m *RefListModel) rebuildFilter() {
 	m.Offset = 0
 }
 
-func (m RefListModel) Init() tea.Cmd {
+func (m *RefListModel) Init() tea.Cmd {
 	return nil
 }
 
-func (m RefListModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+func (m *RefListModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
 		switch msg.String() {
@@ -437,7 +437,7 @@ func (m RefListModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	return m, nil
 }
 
-func (m RefListModel) View() string {
+func (m *RefListModel) View() string {
 	var b strings.Builder
 
 	b.WriteString(StyleTitle.Render("Select Git Reference"))

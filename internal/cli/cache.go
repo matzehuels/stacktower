@@ -34,7 +34,7 @@ func (c *CLI) cacheClearCommand() *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 			dir, err := cacheDir()
 			if err != nil {
-				return fmt.Errorf("get cache dir: %w", err)
+				return WrapSystemError(err, "failed to determine cache directory", "Check that your home directory is accessible.")
 			}
 
 			if _, err := os.Stat(dir); os.IsNotExist(err) {
@@ -92,7 +92,7 @@ func (c *CLI) cachePathCommand() *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 			dir, err := cacheDir()
 			if err != nil {
-				return fmt.Errorf("get cache dir: %w", err)
+				return WrapSystemError(err, "failed to determine cache directory", "Check that your home directory is accessible.")
 			}
 			// Bare stdout for scriptability: eval $(stacktower cache path)
 			fmt.Println(dir)
@@ -110,7 +110,7 @@ func (c *CLI) cacheStatsCommand() *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 			dir, err := cacheDir()
 			if err != nil {
-				return fmt.Errorf("get cache dir: %w", err)
+				return WrapSystemError(err, "failed to determine cache directory", "Check that your home directory is accessible.")
 			}
 
 			if _, err := os.Stat(dir); os.IsNotExist(err) {

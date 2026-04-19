@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/spf13/cobra"
+	"golang.org/x/term"
 
 	"github.com/stacktower-io/stacktower/internal/cli/ui"
 	"github.com/stacktower-io/stacktower/pkg/core/deps"
@@ -15,10 +16,16 @@ import (
 	"github.com/stacktower-io/stacktower/pkg/pipeline"
 )
 
-const (
-	defaultListLimit = 20
-	termColumns      = 80
-)
+const defaultListLimit = 20
+
+// termWidth returns the current terminal width, falling back to 80 columns.
+func termWidth() int {
+	w, _, err := term.GetSize(int(os.Stderr.Fd()))
+	if err != nil || w <= 0 {
+		return 80
+	}
+	return w
+}
 
 type listFlags struct {
 	noCache           bool
@@ -241,7 +248,7 @@ func printVersionColumns(versions []string) {
 	const indent = 2
 	const colGap = 3
 	colWidth := maxLen + colGap
-	cols := (termColumns - indent) / colWidth
+	cols := (termWidth() - indent) / colWidth
 	if cols < 1 {
 		cols = 1
 	}

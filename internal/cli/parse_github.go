@@ -403,7 +403,7 @@ func (c *CLI) selectRef(ctx context.Context, client *github.ContentClient, owner
 		return "", defaultBranch, err
 	}
 
-	fm, ok := finalModel.(ui.RefListModel)
+	fm, ok := finalModel.(*ui.RefListModel)
 	if !ok || fm.Selected == nil {
 		return "", defaultBranch, nil
 	}

@@ -95,11 +95,11 @@
 //	import "github.com/stacktower-io/stacktower/pkg/core/deps/metadata"
 //
 //	providers := []deps.MetadataProvider{
-//	    metadata.NewGitHubProvider(token, ttl),
+//	    metadata.NewGitHub(cache, token, 24*time.Hour),
 //	}
 //	opts := deps.Options{MetadataProviders: providers}
 //
-// The GitHub provider (see [metadata.GitHubProvider]) adds:
+// The GitHub provider (see [metadata.GitHub]) adds:
 //   - repo_stars: GitHub star count
 //   - repo_owner, repo_maintainers: Maintainer information
 //   - repo_last_commit: Last commit timestamp
@@ -155,5 +155,5 @@
 // [php]: github.com/stacktower-io/stacktower/pkg/core/deps/php
 // [java]: github.com/stacktower-io/stacktower/pkg/core/deps/java
 // [golang]: github.com/stacktower-io/stacktower/pkg/core/deps/golang
-// [metadata.GitHubProvider]: github.com/stacktower-io/stacktower/pkg/core/deps/metadata.GitHubProvider
+// [metadata.GitHub]: github.com/stacktower-io/stacktower/pkg/core/deps/metadata.GitHub
 package deps

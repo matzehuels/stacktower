@@ -73,7 +73,7 @@ func (c *CLI) githubLogoutCommand() *cobra.Command {
 		Short: "Remove stored GitHub credentials",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if err := deleteGitHubSession(cmd.Context()); err != nil {
-				return fmt.Errorf("delete session: %w", err)
+				return WrapSystemError(err, "failed to delete session", "Check file permissions for ~/.config/stacktower/sessions/")
 			}
 			ui.PrintSuccess("Logged out")
 			return nil
@@ -103,7 +103,7 @@ func (c *CLI) githubWhoamiCommand() *cobra.Command {
 			user, err := client.FetchUser(ctx)
 			if err != nil {
 				spinner.StopWithError("Session invalid")
-				return fmt.Errorf("verify session: %w", err)
+				return WrapSystemError(err, "failed to verify GitHub session", "Your session may have expired. Try 'stacktower github logout' and re-login.")
 			}
 			spinner.Stop()
 
@@ -241,15 +241,15 @@ at any time with 'stacktower github install'.`,
 func loadGitHubSession(ctx context.Context) (*session.Session, error) {
 	store, err := session.NewCLIStore()
 	if err != nil {
-		return nil, fmt.Errorf("open session store: %w", err)
+		return nil, WrapSystemError(err, "failed to open session store", "Check file permissions for ~/.config/stacktower/sessions/")
 	}
 
 	sess, err := store.GetSession(ctx)
 	if err != nil {
-		return nil, fmt.Errorf("get session: %w", err)
+		return nil, WrapSystemError(err, "failed to read session", "Try 'stacktower github logout' and re-login.")
 	}
 	if sess == nil {
-		return nil, fmt.Errorf("not logged in (run 'stacktower github login' first)")
+		return nil, NewUserError("not logged in", "Run 'stacktower github login' first.")
 	}
 
 	return sess, nil
@@ -258,16 +258,16 @@ func loadGitHubSession(ctx context.Context) (*session.Session, error) {
 func saveGitHubSession(ctx context.Context, token *github.OAuthToken, user *github.User) (*session.Session, error) {
 	store, err := session.NewCLIStore()
 	if err != nil {
-		return nil, fmt.Errorf("open session store: %w", err)
+		return nil, WrapSystemError(err, "failed to open session store", "Check file permissions for ~/.config/stacktower/sessions/")
 	}
 
 	sess, err := session.New(token.AccessToken, user, sessionTTL)
 	if err != nil {
-		return nil, fmt.Errorf("create session: %w", err)
+		return nil, WrapSystemError(err, "failed to create session", "")
 	}
 
 	if err := store.SaveSession(ctx, sess); err != nil {
-		return nil, fmt.Errorf("save session: %w", err)
+		return nil, WrapSystemError(err, "failed to save session", "Check file permissions for ~/.config/stacktower/sessions/")
 	}
 
 	return sess, nil
@@ -276,9 +276,12 @@ func saveGitHubSession(ctx context.Context, token *github.OAuthToken, user *gith
 func deleteGitHubSession(ctx context.Context) error {
 	store, err := session.NewCLIStore()
 	if err != nil {
-		return fmt.Errorf("open session store: %w", err)
+		return WrapSystemError(err, "failed to open session store", "Check file permissions for ~/.config/stacktower/sessions/")
 	}
-	return store.DeleteSession(ctx)
+	if err := store.DeleteSession(ctx); err != nil {
+		return WrapSystemError(err, "failed to delete session", "Check file permissions for ~/.config/stacktower/sessions/")
+	}
+	return nil
 }
 
 // =============================================================================
@@ -287,7 +290,7 @@ func deleteGitHubSession(ctx context.Context) error {
 
 func (c *CLI) runGitHubLogin(ctx context.Context) (*session.Session, error) {
 	if buildinfo.GitHubAppClientID == "" {
-		return nil, fmt.Errorf("GitHub login not available in this build")
+		return nil, NewSystemError("GitHub login not available in this build", "This binary was built without a GitHub App client ID.")
 	}
 
 	oauthClient := github.NewOAuthClient(github.OAuthConfig{ClientID: buildinfo.GitHubAppClientID})
@@ -297,7 +300,7 @@ func (c *CLI) runGitHubLogin(ctx context.Context) (*session.Session, error) {
 
 	deviceResp, err := oauthClient.RequestDeviceCode(loginCtx)
 	if err != nil {
-		return nil, fmt.Errorf("request device code: %w", err)
+		return nil, WrapSystemError(err, "failed to request device code", "Check your network connection and try again.")
 	}
 
 	ui.PrintNewline()
@@ -318,19 +321,19 @@ func (c *CLI) runGitHubLogin(ctx context.Context) (*session.Session, error) {
 	token, err := oauthClient.PollForToken(loginCtx, deviceResp.DeviceCode, deviceResp.Interval)
 	if err != nil {
 		spinner.StopWithError("Authorization failed")
-		return nil, fmt.Errorf("authorization failed: %w", err)
+		return nil, WrapSystemError(err, "authorization failed", "Make sure you entered the code at the URL above and approved the request.")
 	}
 	spinner.Stop()
 
 	contentClient := github.NewContentClient(token.AccessToken)
 	user, err := contentClient.FetchUser(loginCtx)
 	if err != nil {
-		return nil, fmt.Errorf("fetch user: %w", err)
+		return nil, WrapSystemError(err, "failed to fetch GitHub user info", "Authorization succeeded but user lookup failed. Try again.")
 	}
 
 	sess, err := saveGitHubSession(ctx, token, user)
 	if err != nil {
-		return nil, fmt.Errorf("save session: %w", err)
+		return nil, err // already wrapped by saveGitHubSession
 	}
 
 	ui.PrintNewline()

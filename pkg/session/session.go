@@ -1,10 +1,8 @@
 // Package session provides session management for authenticated users.
 //
-// This package defines interfaces for session storage and OAuth state management,
-// with implementations for different backends:
-//   - memory: In-memory storage for development/testing
-//   - redis: Redis-backed storage for production multi-instance deployments
-//   - file: File-based storage for CLI applications
+// This package defines interfaces for session storage and OAuth state management.
+// The CLI uses a file-based store; other backends (memory, redis) can be
+// implemented against the [Store] and [StateStore] interfaces.
 //
 // # Architecture
 //
@@ -21,18 +19,9 @@
 //
 // # Usage
 //
-// Create a session store:
+// Create a session store for CLI use:
 //
-//	// Development
-//	store := memory.NewStore()
-//
-//	// Production
-//	store, err := redis.NewStore(ctx, redis.Config{
-//	    Addr: "localhost:6379",
-//	})
-//
-//	// CLI
-//	store, err := file.NewStore("")  // Uses ~/.config/stacktower/sessions/
+//	store, err := session.NewCLIStore()  // Uses ~/.config/stacktower/sessions/
 //
 // Manage sessions:
 //
@@ -41,10 +30,10 @@
 //	if err != nil {
 //	    return err
 //	}
-//	store.Set(ctx, sess)
+//	store.SaveSession(ctx, sess)
 //
 //	// Retrieve session
-//	sess, err := store.Get(ctx, sessionID)
+//	sess, err := store.GetSession(ctx)
 //	if err != nil {
 //	    return err
 //	}
