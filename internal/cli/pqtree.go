@@ -18,7 +18,8 @@ func (c *CLI) pqtreeCommand() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "pqtree [constraints...]",
-		Short: "Render a PQ-tree with optional constraints (debug tool)",
+		Short: "Experimental: render a PQ-tree with optional constraints",
+		Hidden: true,
 		Long: `Render a PQ-tree visualization showing valid permutations.
 
 Constraints are comma-separated indices that must be adjacent.

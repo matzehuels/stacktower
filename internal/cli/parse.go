@@ -77,7 +77,7 @@ Examples:
 	cmd.PersistentFlags().StringVarP(&flags.output, "output", "o", "", "output file (stdout if empty)")
 	cmd.PersistentFlags().StringVarP(&flags.name, "name", "n", "", "project name (for manifest parsing)")
 	cmd.PersistentFlags().BoolVar(&flags.noCache, "no-cache", false, "disable caching")
-	cmd.PersistentFlags().BoolVar(&flags.scan, "security-scan", false, "scan dependencies for known vulnerabilities (OSV.dev)")
+	cmd.PersistentFlags().BoolVar(&flags.scan, "security-scan", false, "best-effort scan for known vulnerabilities (OSV.dev)")
 
 	for _, lang := range languages.All {
 		cmd.AddCommand(c.langCommand(lang, &flags))

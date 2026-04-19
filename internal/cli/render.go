@@ -30,12 +30,13 @@ func (c *CLI) renderCommand() *cobra.Command {
 	setCLIDefaults(&opts)
 
 	cmd := &cobra.Command{
-		Use:   "render [graph.json]",
+		Use:   "render [graph.json|-]",
 		Short: "Render a dependency graph to SVG/PNG/PDF (shortcut for layout + visualize)",
 		Long: `Render a dependency graph to visual output.
 
 This command is a shortcut that combines 'layout' and 'visualize' in one step.
 It takes a graph.json file (produced by 'parse') and outputs SVG, PNG, or PDF.
+Use '-' as input to read graph JSON from stdin.
 
 Results are cached locally for faster subsequent runs.
 
@@ -86,8 +87,11 @@ If you want to save the intermediate layout, use 'layout' followed by 'visualize
 func (c *CLI) runRender(ctx context.Context, input string, opts pipeline.Options, output string, noCache bool, orderTimeout int) error {
 	start := time.Now()
 
-	g, err := graph.ReadGraphFile(input)
+	g, err := readRenderInput(input)
 	if err != nil {
+		if input == "-" {
+			return WrapSystemError(err, "failed to read graph from stdin", "Pipe valid graph JSON or pass a graph file path.")
+		}
 		return WrapSystemError(err, fmt.Sprintf("failed to load graph %s", input), "Check that the file exists and is valid JSON.")
 	}
 
@@ -299,6 +303,13 @@ func writeArtifacts(p artifactWriteParams) error {
 		ui.PrintNextStep("Open", "open "+paths[0])
 	}
 	return nil
+}
+
+func readRenderInput(input string) (*dag.DAG, error) {
+	if input == "-" {
+		return graph.ReadGraph(os.Stdin)
+	}
+	return graph.ReadGraphFile(input)
 }
 
 // deriveBasePath computes the base path for output files.

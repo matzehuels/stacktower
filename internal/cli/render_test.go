@@ -1,11 +1,43 @@
 package cli
 
 import (
+	"os"
 	"testing"
 
 	"github.com/stacktower-io/stacktower/pkg/graph"
 	"github.com/stacktower-io/stacktower/pkg/pipeline"
 )
+
+func TestReadRenderInputStdin(t *testing.T) {
+	r, w, err := os.Pipe()
+	if err != nil {
+		t.Fatalf("pipe: %v", err)
+	}
+	defer r.Close()
+
+	graphJSON := `{"nodes":[{"id":"app"},{"id":"dep"}],"edges":[{"from":"app","to":"dep"}]}`
+	if _, err := w.WriteString(graphJSON); err != nil {
+		t.Fatalf("write stdin data: %v", err)
+	}
+	if err := w.Close(); err != nil {
+		t.Fatalf("close writer: %v", err)
+	}
+
+	origStdin := os.Stdin
+	os.Stdin = r
+	defer func() { os.Stdin = origStdin }()
+
+	g, err := readRenderInput("-")
+	if err != nil {
+		t.Fatalf("readRenderInput(-) error = %v", err)
+	}
+	if g.NodeCount() != 2 {
+		t.Fatalf("NodeCount = %d, want 2", g.NodeCount())
+	}
+	if g.EdgeCount() != 1 {
+		t.Fatalf("EdgeCount = %d, want 1", g.EdgeCount())
+	}
+}
 
 func TestParseFormats(t *testing.T) {
 	tests := []struct {

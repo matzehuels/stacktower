@@ -49,23 +49,58 @@ go build -o bin/stacktower ./cmd/stacktower
 ```bash
 # Render the included Flask example (XKCD-style tower is the default)
 stacktower render examples/real/flask.json -o flask.svg
+
+# Parse a package from a registry, then render it
+stacktower parse python fastapi -o fastapi.json
+stacktower render fastapi.json -o fastapi.svg
+
+# Or pipe parse straight into render
+stacktower parse python flask | stacktower render - -o flask.svg
 ```
 
-## Usage
+## Global Options
 
-Stacktower works in two stages: **parse** dependency data from package registries or manifest files, then **render** visualizations.
+These flags apply to all commands:
 
-### Parsing Dependencies
+| Flag              | Description                                                |
+| ----------------- | ---------------------------------------------------------- |
+| `-v`, `--verbose` | Enable debug logging (search space info, timing details)   |
+| `-q`, `--quiet`   | Suppress non-essential output (success messages, stats)    |
+| `-h`, `--help`    | Show help for any command                                  |
+| `--version`       | Show version information                                   |
 
-The `parse` command auto-detects whether you're providing a package name or a manifest file:
+---
+
+## `stacktower parse`
+
+Parse dependency graphs from package registries or local manifest files.
 
 ```bash
 stacktower parse <language> <package-or-file> [flags]
+stacktower parse <manifest-file>                       # Auto-detect language from filename
+stacktower parse github [owner/repo]                   # Parse from a GitHub repository
 ```
 
 **Supported languages:** `python`, `rust`, `javascript`, `ruby`, `php`, `java`, `go`
 
-#### From Package Registries
+### Parse Options
+
+| Flag                    | Description                                                                          |
+| ----------------------- | ------------------------------------------------------------------------------------ |
+| `-o`, `--output`        | Output file (stdout if empty)                                                        |
+| `-n`, `--name`          | Project name for manifest parsing (auto-detected if not set)                         |
+| `--max-depth N`         | Maximum dependency depth (default: 10, max: 100)                                     |
+| `--max-nodes N`         | Maximum packages to fetch (default: 5000, max: 50000)                                |
+| `--workers N`           | Concurrent fetch workers (default: 20)                                               |
+| `--enrich`              | Enrich with GitHub metadata — stars, maintainers (default: true)                     |
+| `--contributors`        | Fetch GitHub contributors for Nebraska rankings (slower API calls)                   |
+| `--security-scan`       | Best-effort scan for known vulnerabilities via OSV.dev                               |
+| `--dependency-scope`    | Dependency scope: `prod_only` (default) or `all` (includes dev dependencies)         |
+| `--include-prerelease`  | Include prerelease versions (alpha/beta/rc/dev) in resolution                        |
+| `--runtime-version`     | Target runtime version for marker evaluation (e.g., `3.11` for Python)               |
+| `--no-cache`            | Disable caching                                                                      |
+
+### From Package Registries
 
 ```bash
 stacktower parse python fastapi -o fastapi.json                  # PyPI
@@ -85,20 +120,26 @@ stacktower parse rust serde@1.0.195 -o serde.json
 stacktower parse javascript @angular/core@17.0.0 -o angular.json  # scoped packages work too
 ```
 
-#### From Manifest Files (Auto-Detected)
+### From Manifest Files
 
 ```bash
-stacktower parse python examples/manifest/poetry.lock -o deps.json
-stacktower parse python examples/manifest/requirements.txt -o deps.json
-stacktower parse rust examples/manifest/Cargo.toml -o deps.json
-stacktower parse javascript examples/manifest/package.json -o deps.json
-stacktower parse ruby examples/manifest/Gemfile -o deps.json
-stacktower parse php examples/manifest/composer.json -o deps.json
-stacktower parse java examples/manifest/pom.xml -o deps.json
-stacktower parse go examples/manifest/go.mod -o deps.json
+stacktower parse python poetry.lock -o deps.json
+stacktower parse python requirements.txt -o deps.json
+stacktower parse rust Cargo.toml -o deps.json
+stacktower parse javascript package.json -o deps.json
+stacktower parse ruby Gemfile -o deps.json
+stacktower parse php composer.json -o deps.json
+stacktower parse java pom.xml -o deps.json
+stacktower parse go go.mod -o deps.json
 ```
 
-When the argument exists on disk or matches a known manifest filename, Stacktower automatically parses it as a manifest.
+When the argument exists on disk or matches a known manifest filename, Stacktower auto-detects the language from the filename so you can omit the language subcommand:
+
+```bash
+stacktower parse poetry.lock -o deps.json
+stacktower parse package-lock.json -o deps.json
+stacktower parse Cargo.lock -o deps.json
+```
 
 The project name (root node) is auto-detected from the manifest or a sibling file:
 
@@ -110,363 +151,104 @@ The project name (root node) is auto-detected from the manifest or a sibling fil
 - **poetry.lock / requirements.txt**: `pyproject.toml` (sibling)
 - **Gemfile**: `*.gemspec` (sibling)
 
-Use `--name` to override the auto-detected name:
+Use `--name` to override:
 
 ```bash
 stacktower parse python requirements.txt --name="my-project" -o deps.json
-stacktower parse ruby Gemfile -n my-rails-app -o deps.json
 ```
 
-#### Metadata Enrichment
+### Metadata Enrichment
 
-By default, Stacktower enriches packages with GitHub metadata (stars, maintainers, last commit) for richer visualizations. Set `GITHUB_TOKEN` to enable this:
+By default, `parse` enriches packages with GitHub metadata (stars, maintainers, last commit) for richer visualizations. Set `GITHUB_TOKEN` for higher rate limits:
 
 ```bash
 export GITHUB_TOKEN=your_token
 stacktower parse python fastapi -o fastapi.json
 
-# Skip enrichment if you don't have a token
+# Skip enrichment if you don't need it
 stacktower parse python fastapi --enrich=false -o fastapi.json
 ```
 
-#### Vulnerability Scanning
+### Vulnerability Scanning
 
-Stacktower can scan your dependency graph for known vulnerabilities using the [OSV.dev](https://osv.dev/) database. Add the `--security-scan` flag during parsing to annotate every package with its highest vulnerability severity:
+Add the `--security-scan` flag to annotate every package with its highest vulnerability severity via [OSV.dev](https://osv.dev/):
 
 ```bash
-# Parse with vulnerability scanning
 stacktower parse python fastapi --security-scan -o fastapi.json
-
-# Parse a manifest with scanning
 stacktower parse javascript package.json --security-scan -o deps.json
 ```
 
-When `--security-scan` is enabled, Stacktower queries OSV.dev in a single batch request and writes severity data (`critical`, `high`, `medium`, `low`) into each node's metadata. The scanned graph is cached separately from non-scanned graphs, so subsequent runs are instant.
+When `--security-scan` is enabled, Stacktower performs a best-effort query to OSV.dev in a single batch request and writes severity data (`critical`, `high`, `medium`, `low`) into each node's metadata when available. The scanned graph is cached separately from non-scanned graphs, so subsequent runs are instant.
 
-During rendering, vulnerable packages are automatically colour-coded by severity (red for critical, orange for high, amber for medium, yellow for low). Both tower and node-link visualizations support this. Use `--show-vulns=false` to suppress the colours while keeping the data in the graph:
+During rendering, vulnerable packages are automatically colour-coded by severity. Use `--show-vulns=false` to suppress the colours while keeping the data in the graph:
 
 ```bash
-# Render with vulnerability colours (default when data exists)
-stacktower render fastapi.json -o fastapi.svg
-
-# Render without vulnerability colours
 stacktower render fastapi.json --show-vulns=false -o fastapi.svg
 ```
 
-The `--show-vulns` flag is available on the `render`, `layout`, and `visualize` commands and defaults to `true`.
-
-### Resolving Dependencies
-
-The `resolve` command is a lightweight alternative to `parse`, designed for quickly testing dependency resolution on local manifest and lock files. It auto-detects the language from the filename and prints a human-readable dependency tree instead of graph JSON:
-
-```bash
-stacktower resolve <manifest-file>
-stacktower resolve <language> <package[@version]>
-```
-
-#### From Manifest / Lock Files (Auto-Detected)
-
-```bash
-stacktower resolve poetry.lock                          # Python (Poetry)
-stacktower resolve uv.lock                              # Python (uv)
-stacktower resolve requirements.txt                     # Python (pip)
-stacktower resolve package-lock.json                    # JavaScript (npm)
-stacktower resolve Cargo.lock                           # Rust
-stacktower resolve Gemfile.lock                         # Ruby
-stacktower resolve composer.lock                        # PHP
-stacktower resolve go.mod                               # Go
-```
-
-No `--language` flag needed — the filename is enough.
-
-#### From Package Registries
-
-```bash
-stacktower resolve python fastapi
-stacktower resolve rust serde@1.0.195
-stacktower resolve javascript yargs
-```
-
-#### Output
-
-By default, `resolve` prints an indented dependency tree to stdout:
-
-```
-fastapi 0.104.1
-  starlette 0.27.0
-    anyio 4.0.0
-      sniffio 1.3.0
-  pydantic 2.5.2
-    pydantic-core 2.14.5
-    typing-extensions 4.8.0
-
-Resolved 7 packages (max depth: 3, direct: 2)
-```
-
-Use `-o` to save the resolution as JSON (same format as `parse`), suitable for piping into `stacktower render`:
-
-```bash
-stacktower resolve Cargo.lock -o deps.json
-stacktower render deps.json -o deps.svg
-```
-
-### Listing Versions
-
-The `list` command shows all available versions of a package from its registry, sorted semantically with the latest stable version highlighted:
-
-```bash
-stacktower list <language> <package> [flags]
-```
-
-```bash
-stacktower list python fastapi
-stacktower list rust serde
-stacktower list javascript react
-stacktower list go github.com/gin-gonic/gin
-```
-
-Output (truncated to 20 most recent by default):
-
-```
-  fastapi  python · 277 versions
-  latest   0.129.2
-
-  0.129.1   0.129.0   0.128.8   0.128.7   0.128.6   0.128.5   0.128.4
-  0.128.3   0.128.2   0.128.1   0.128.0   0.127.1   0.127.0   0.126.0
-  0.125.0   0.124.4   0.124.3   0.124.2   0.124.1   0.124.0
-
-  … 256 older versions not shown (use --all to show all)
-```
-
-Use `--all` to see every version:
-
-```bash
-stacktower list python fastapi --all
-```
-
-Pre-release versions (alpha, beta, rc, dev) are shown dimmed and sorted after stable releases.
-
-### Rendering
-
-The `render` command generates visualizations from parsed JSON graphs:
-
-```bash
-stacktower render <file> [flags]
-```
-
-This is a shortcut that combines `layout` and `visualize` in one step. For more control, you can run them separately:
-
-```bash
-# Two-step workflow with intermediate layout
-stacktower layout examples/real/flask.json -o flask.layout.json
-stacktower visualize flask.layout.json -o flask.svg
-```
-
-#### Visualization Types
-
-```bash
-# Hand-drawn XKCD-style tower (default)
-stacktower render examples/real/flask.json -o flask.svg
-
-# Disable hand-drawn effects for a cleaner look
-stacktower render examples/real/serde.json --style simple --randomize=false --popups=false -o serde.svg
-
-# Traditional node-link diagram (uses Graphviz DOT)
-stacktower render examples/real/yargs.json -t nodelink -o yargs.svg
-```
-
-#### Output Formats
-
-```bash
-# SVG output (default)
-stacktower render examples/real/flask.json -o flask.svg
-
-# JSON layout export (for external tools or re-rendering)
-stacktower render examples/real/flask.json -f json -o flask.json
-
-# PDF output
-stacktower render examples/real/flask.json -f pdf -o flask.pdf
-
-# PNG output (2x scale by default)
-stacktower render examples/real/flask.json -f png -o flask.png
-
-# Multiple formats at once (outputs flask.svg, flask.json, flask.pdf)
-stacktower render examples/real/flask.json -f svg,json,pdf -o flask
-```
-
-Output path behavior:
-
-- **No `-o`**: Derives from input (`input.json` → `input.<format>`)
-- **Single format**: Uses exact path (`-o out.svg` → `out.svg`)
-- **Multiple formats**: Strips extension, adds format (`-o out -f svg,json` → `out.svg`, `out.json`)
-
-> **Note:** PDF and PNG output requires [librsvg](https://wiki.gnome.org/Projects/LibRsvg):
->
-> - macOS: `brew install librsvg`
-> - Linux: `apt install librsvg2-bin`
-
-### Included Examples
-
-The repository ships with pre-parsed graphs and manifest files so you can experiment immediately:
-
-```bash
-# Real packages with full metadata (XKCD-style by default)
-stacktower render examples/real/flask.json -o flask.svg
-stacktower render examples/real/serde.json -o serde.svg
-stacktower render examples/real/yargs.json -o yargs.svg
-
-# With Nebraska guy maintainer ranking
-stacktower render examples/real/flask.json --nebraska -o flask.svg
-
-# Synthetic test cases for layout algorithm testing
-stacktower render examples/test/diamond.json -o diamond.svg
-stacktower render examples/test/crossing.json -o crossing.svg
-```
-
-> **Note:** For accurate Nebraska rankings, parse with `--contributors` to fetch maintainer data:
-> ```bash
-> stacktower parse python flask --contributors -o flask.json
-> stacktower render flask.json --nebraska -o flask.svg
-> ```
-
-#### Example Manifest & Lock Files
-
-The `examples/manifest/` directory contains sample manifest and lock files for every supported ecosystem, useful for testing `resolve` and `parse` locally:
-
-| File | Language | Type |
-| --- | --- | --- |
-| `poetry.lock` | Python | Lock file |
-| `uv.lock` | Python | Lock file |
-| `pyproject.toml` | Python | Manifest |
-| `requirements.txt` | Python | Manifest |
-| `package-lock.json` | JavaScript | Lock file |
-| `package.json` | JavaScript | Manifest |
-| `Cargo.lock` | Rust | Lock file |
-| `Cargo.toml` | Rust | Manifest |
-| `Gemfile.lock` | Ruby | Lock file |
-| `Gemfile` | Ruby | Manifest |
-| `composer.lock` | PHP | Lock file |
-| `composer.json` | PHP | Manifest |
-| `go.mod` | Go | Manifest |
-| `pom.xml` | Java | Manifest |
-
-```bash
-# Quickly test dependency resolution on any of these
-stacktower resolve examples/manifest/poetry.lock
-stacktower resolve examples/manifest/Cargo.lock
-stacktower resolve examples/manifest/package-lock.json
-stacktower resolve examples/manifest/Gemfile.lock
-stacktower resolve examples/manifest/composer.lock
-```
-
-## Command Reference
-
-Stacktower provides a suite of commands organized around a parse → render workflow. Each command is documented below with all available options and reproducible examples.
-
-### Global Options
-
-These flags apply to all commands:
-
-| Flag              | Description                                                |
-| ----------------- | ---------------------------------------------------------- |
-| `-v`, `--verbose` | Enable debug logging (search space info, timing details)   |
-| `-q`, `--quiet`   | Suppress non-essential output (success messages, stats)    |
-| `-h`, `--help`    | Show help for any command                                  |
-| `--version`       | Show version information                                   |
-
----
-
-### `stacktower parse`
-
-Parse dependency graphs from package registries or local manifest files.
-
-```bash
-stacktower parse <language> <package-or-file> [flags]
-stacktower parse <manifest-file>                       # Auto-detect language
-stacktower parse github [owner/repo]                   # Parse from GitHub
-```
-
-#### Parse Options
-
-| Flag                    | Description                                                                          |
-| ----------------------- | ------------------------------------------------------------------------------------ |
-| `-o`, `--output`        | Output file (stdout if empty)                                                        |
-| `-n`, `--name`          | Project name for manifest parsing (auto-detected if not set)                         |
-| `--max-depth N`         | Maximum dependency depth (default: 10, max: 100)                                     |
-| `--max-nodes N`         | Maximum packages to fetch (default: 5000, max: 50000)                                |
-| `--workers N`           | Concurrent fetch workers (default: 20)                                               |
-| `--enrich`              | Enrich with GitHub metadata — stars, maintainers (default: true)                     |
-| `--contributors`        | Fetch GitHub contributors for Nebraska rankings (slower API calls)                   |
-| `--security-scan`       | Scan dependencies for known vulnerabilities via OSV.dev                              |
-| `--dependency-scope`    | Dependency scope: `prod_only` (default) or `all` (includes dev dependencies)         |
-| `--include-prerelease`  | Include prerelease versions (alpha/beta/rc/dev) in resolution                        |
-| `--runtime-version`     | Target runtime version for marker evaluation (e.g., `3.11` for Python)               |
-| `--no-cache`            | Disable caching                                                                      |
-
-#### Parse Examples
-
-```bash
-# Parse from package registries
-stacktower parse python requests -o requests.json
-stacktower parse python fastapi@0.104.1 -o fastapi.json      # Pin specific version
-stacktower parse rust serde -o serde.json
-stacktower parse javascript @angular/core@17.0.0 -o angular.json
-stacktower parse go github.com/gin-gonic/gin -o gin.json
-
-# Parse from manifest files (language auto-detected)
-stacktower parse poetry.lock -o deps.json
-stacktower parse package-lock.json -o deps.json
-stacktower parse Cargo.lock -o deps.json
-
-# Parse with explicit language
-stacktower parse python requirements.txt -o deps.json
-stacktower parse javascript package.json --name="my-app" -o deps.json
-
-# Include dev dependencies
-stacktower parse python poetry.lock --dependency-scope all -o deps.json
-
-# Target specific Python version for environment markers
-stacktower parse python fastapi --runtime-version 3.9 -o fastapi-py39.json
-
-# Scan for vulnerabilities during parsing
-stacktower parse python django --security-scan -o django.json
-
-# Full metadata including contributors (slower)
-stacktower parse python flask --contributors -o flask.json
-```
-
-#### Parse from GitHub
+### Parse from GitHub
 
 Parse dependencies directly from a GitHub repository with interactive selection:
 
 ```bash
 stacktower parse github                              # Full interactive flow
 stacktower parse github owner/repo                   # Select ref + manifest
-stacktower parse github owner/repo --ref v2.0.0     # Parse at specific tag
-stacktower parse github owner/repo --ref main       # Explicit branch
-stacktower parse github owner/repo --timeout 10m    # Custom timeout
+stacktower parse github owner/repo --ref v2.0.0      # Parse at specific tag
+stacktower parse github owner/repo --ref main         # Explicit branch
+stacktower parse github owner/repo --timeout 10m      # Custom timeout
 ```
 
-| Flag        | Description                                         |
-| ----------- | --------------------------------------------------- |
-| `--ref`     | Git ref (branch, tag, or commit SHA)                |
-| `--timeout` | Timeout for GitHub operations (default: 5m)         |
+| Flag            | Description                                         |
+| --------------- | --------------------------------------------------- |
+| `--ref`         | Git ref (branch, tag, or commit SHA)                |
+| `--timeout`     | Timeout for GitHub operations (default: 5m)         |
+| `--public-only` | Show only public repositories in interactive picker |
 
-> **Private repos:** To parse private repositories, first install the GitHub App with
-> `stacktower github install` and grant access to the repos you need.
+> **Private repos:** Install the GitHub App with `stacktower github install` and grant access to the repos you need.
+
+### Piping
+
+When `parse` detects that stdout is piped, it emits clean JSON with no chrome — making it composable with other tools:
+
+```bash
+# Pipe directly into render
+stacktower parse python flask | stacktower render - -o flask.svg
+
+# Pipe into jq for analysis
+stacktower parse python requests -o - | jq '.nodes | length'
+
+# Combine with security scan
+stacktower parse python django --security-scan | stacktower render - --show-vulns -o django.svg
+```
+
+Progress indicators and summary messages always go to stderr, so they never corrupt piped JSON.
+
+### Terminal Output
+
+A typical `parse` run looks like this:
+
+```
+⠙ Resolving python/flask...  [42/5000]
+  starlette  jinja2  markupsafe  click
+
+✓ Resolved flask (python)
+  42 packages · 67 edges · depth 5 · fresh · 2.3s
+  → flask.json
+Render: stacktower render flask.json
+```
 
 ---
 
-### `stacktower resolve`
+## `stacktower resolve`
 
-Lightweight alternative to `parse` for quick dependency resolution testing. Auto-detects language from manifest filenames and outputs a human-readable dependency tree.
+Lightweight alternative to `parse` for quickly testing dependency resolution. Auto-detects the language from manifest filenames and prints a human-readable dependency tree.
 
 ```bash
 stacktower resolve <manifest-file>
 stacktower resolve <language> <package[@version]>
 ```
 
-#### Resolve Options
+### Resolve Options
 
 | Flag                   | Description                                                                  |
 | ---------------------- | ---------------------------------------------------------------------------- |
@@ -480,7 +262,7 @@ stacktower resolve <language> <package[@version]>
 | `--runtime-version`    | Target runtime version for marker evaluation                                 |
 | `--no-cache`           | Disable caching                                                              |
 
-#### Resolve Examples
+### Resolve Examples
 
 ```bash
 # Auto-detect language from filename
@@ -493,36 +275,45 @@ stacktower resolve go.mod
 stacktower resolve python fastapi
 stacktower resolve rust serde@1.0.195
 
-# Save resolution as JSON
+# Save resolution as JSON for rendering
 stacktower resolve poetry.lock -o deps.json
-
-# Include dev dependencies
-stacktower resolve poetry.lock --dependency-scope all
-
-# Target specific runtime
-stacktower resolve python fastapi --runtime-version 3.8
+stacktower render deps.json -o deps.svg
 ```
 
-#### resolve vs parse
+**Output:**
+
+```
+fastapi 0.104.1
+  starlette 0.27.0
+    anyio 4.0.0
+      sniffio 1.3.0
+  pydantic 2.5.2
+    pydantic-core 2.14.5
+    typing-extensions 4.8.0
+
+Resolved 7 packages (max depth: 3, direct: 2)
+```
+
+### resolve vs parse
 
 | | `resolve` | `parse` |
 | --- | --- | --- |
-| Language detection | Auto-detected from filename | Must specify language subcommand |
+| Language detection | Auto-detected from filename | Must specify language subcommand (or auto-detect from filename) |
 | Default output | Human-readable tree | Graph JSON |
 | Metadata enrichment | Off (opt-in with `--enrich`) | On by default (`--enrich=false` to skip) |
 | Best for | Local testing, inspecting deps | Rendering pipeline, CI |
 
 ---
 
-### `stacktower list`
+## `stacktower list`
 
-List all available versions of a package from its registry, sorted semantically with the latest stable version highlighted.
+List all available versions of a package from its registry. Requires a language subcommand:
 
 ```bash
 stacktower list <language> <package> [flags]
 ```
 
-#### List Options
+### List Options
 
 | Flag                   | Description                                                           |
 | ---------------------- | --------------------------------------------------------------------- |
@@ -531,13 +322,13 @@ stacktower list <language> <package> [flags]
 | `--supported-runtimes` | Display runtime constraint for each version                           |
 | `--no-cache`           | Bypass cached version data                                            |
 
-#### List Examples
+### List Examples
 
 ```bash
-# List recent versions
 stacktower list python fastapi
 stacktower list rust serde
 stacktower list javascript react
+stacktower list go github.com/gin-gonic/gin
 
 # Show all versions
 stacktower list python django --all
@@ -549,7 +340,7 @@ stacktower list python fastapi --runtime-version 3.8
 stacktower list python fastapi --supported-runtimes
 ```
 
-**Output example:**
+**Output:**
 
 ```
   fastapi  python · 277 versions
@@ -564,15 +355,17 @@ stacktower list python fastapi --supported-runtimes
 
 ---
 
-### `stacktower render`
+## `stacktower render`
 
 Generate visualizations from parsed JSON graphs. This is a shortcut that combines `layout` and `visualize` in one step.
 
 ```bash
-stacktower render <graph.json> [flags]
+stacktower render <graph.json|-> [flags]
 ```
 
-#### Render Options
+Use `-` to read graph JSON from stdin.
+
+### Render Options
 
 | Flag               | Description                                                              |
 | ------------------ | ------------------------------------------------------------------------ |
@@ -585,7 +378,7 @@ stacktower render <graph.json> [flags]
 | `--flags-on-top`   | Render security flags on top of all blocks (default: true)               |
 | `--no-cache`       | Disable caching                                                          |
 
-#### Tower-Specific Options
+### Tower-Specific Options
 
 | Flag                              | Description                                                           |
 | --------------------------------- | --------------------------------------------------------------------- |
@@ -600,7 +393,7 @@ stacktower render <graph.json> [flags]
 | `--ordering optimal\|barycentric` | Crossing minimization algorithm (default: optimal)                    |
 | `--ordering-timeout N`            | Timeout for optimal search in seconds (default: 60)                   |
 
-#### Render Examples
+### Render Examples
 
 ```bash
 # Basic tower rendering (XKCD-style)
@@ -631,9 +424,31 @@ stacktower render flask.json --edges -o flask-edges.svg
 stacktower render scanned.json --show-vulns=false -o clean.svg
 ```
 
+### Output Formats
+
+Output path behavior:
+
+- **No `-o`**: Derives from input (`input.json` → `input.<format>`)
+- **Single format**: Uses exact path (`-o out.svg` → `out.svg`)
+- **Multiple formats**: Strips extension, adds format (`-o out -f svg,json` → `out.svg`, `out.json`)
+
+> **Note:** PDF and PNG output requires [librsvg](https://wiki.gnome.org/Projects/LibRsvg):
+>
+> - macOS: `brew install librsvg`
+> - Linux: `apt install librsvg2-bin`
+
+### Two-Step Workflow
+
+For more control, run `layout` and `visualize` separately:
+
+```bash
+stacktower layout flask.json -o flask.layout.json
+stacktower visualize flask.layout.json -o flask.svg
+```
+
 ---
 
-### `stacktower layout`
+## `stacktower layout`
 
 Compute visualization layout from a dependency graph. Outputs a layout JSON that can be rendered separately with `visualize`.
 
@@ -641,7 +456,7 @@ Compute visualization layout from a dependency graph. Outputs a layout JSON that
 stacktower layout <graph.json> [flags]
 ```
 
-#### Layout Options
+### Layout Options
 
 | Flag                              | Description                                                           |
 | --------------------------------- | --------------------------------------------------------------------- |
@@ -661,17 +476,9 @@ stacktower layout <graph.json> [flags]
 | `--flags-on-top`                  | Render security flags on top of all blocks (default: true)            |
 | `--no-cache`                      | Disable caching                                                       |
 
-#### Layout Example
-
-```bash
-# Compute layout separately
-stacktower layout flask.json -o flask.layout.json
-stacktower visualize flask.layout.json -o flask.svg
-```
-
 ---
 
-### `stacktower visualize`
+## `stacktower visualize`
 
 Render visualization from a computed layout (produced by `layout`).
 
@@ -679,7 +486,7 @@ Render visualization from a computed layout (produced by `layout`).
 stacktower visualize <layout.json> [flags]
 ```
 
-#### Visualize Options
+### Visualize Options
 
 | Flag               | Description                                                              |
 | ------------------ | ------------------------------------------------------------------------ |
@@ -693,26 +500,17 @@ stacktower visualize <layout.json> [flags]
 | `--flags-on-top`   | Render security flags on top of all blocks (default: true)               |
 | `--no-cache`       | Disable caching                                                          |
 
-#### Visualize Example
-
-```bash
-stacktower visualize flask.layout.json -o flask.svg
-stacktower visualize flask.layout.json -f pdf -o flask.pdf
-```
-
 ---
 
-### `stacktower cache`
+## `stacktower cache`
 
-Manage the local HTTP response cache (`~/.cache/stacktower/`).
+Manage the local cache (`~/.cache/stacktower/`).
 
 ```bash
 stacktower cache clear    # Delete all cached entries
 stacktower cache path     # Print cache directory path
-stacktower cache stats    # Show entry count, size, and age
+stacktower cache stats    # Show entry count, size, and age (alias: cache info)
 ```
-
-#### Cache Examples
 
 ```bash
 # Check cache statistics
@@ -728,25 +526,23 @@ CACHE_DIR=$(stacktower cache path)
 
 ---
 
-### `stacktower github`
+## `stacktower github`
 
 GitHub authentication and app installation commands.
 
 ```bash
-stacktower github login     # Authenticate with GitHub (device flow)
-stacktower github install   # Install/configure the GitHub App for repo access
-stacktower github whoami    # Show current session and app installation status
-stacktower github logout    # Remove stored credentials
+stacktower github login       # Authenticate with GitHub (device flow)
+stacktower github logout      # Remove stored credentials
+stacktower github whoami      # Show current session and app installation status
+stacktower github install     # Install/configure the GitHub App for repo access
+stacktower github uninstall   # Uninstall the GitHub App (opens settings page)
 ```
-
-#### GitHub Examples
 
 ```bash
 # Login (opens browser for device authorization)
 stacktower github login
 
 # Install the GitHub App to grant access to your repositories
-# Opens browser to configure which repos Stacktower can access
 stacktower github install
 
 # Verify session and check app installation
@@ -756,15 +552,14 @@ stacktower github whoami
 stacktower parse github owner/repo -o deps.json
 ```
 
-> **Note:** To access private repositories, you must install the Stacktower GitHub App
-> and grant it access to the specific repos you want to analyze. Run `stacktower github install`
-> to configure repository access.
+> **Note:** To access private repositories, install the Stacktower GitHub App
+> and grant it access to the specific repos you want to analyze.
 
 ---
 
-### `stacktower info`
+## `stacktower info`
 
-Display supported languages, registries, and manifest filenames.
+Display version, supported languages, registries, and manifest filenames.
 
 ```bash
 stacktower info
@@ -774,6 +569,8 @@ stacktower info
 
 ```
 stacktower v1.0.0 (abc1234, 2024-01-15)
+Commit abc1234
+Built  2024-01-15
 
 Supported Languages
   python     registry: pypi.org
@@ -784,12 +581,22 @@ Supported Languages
     manifests: package-lock.json, package.json
   ...
 
-Docs: https://www.stacktower.io
+Docs: https://app.stacktower.io/cli-docs
 ```
 
 ---
 
-### `stacktower completion`
+## `stacktower version`
+
+Show version and build information.
+
+```bash
+stacktower version
+```
+
+---
+
+## `stacktower completion`
 
 Generate shell completion scripts.
 
@@ -800,7 +607,7 @@ stacktower completion fish
 stacktower completion powershell
 ```
 
-#### Completion Setup
+### Completion Setup
 
 ```bash
 # Bash (Linux)
@@ -818,15 +625,58 @@ stacktower completion fish > ~/.config/fish/completions/stacktower.fish
 
 ---
 
-### `stacktower pqtree`
+## Included Examples
 
-Debug tool for visualizing PQ-tree constraints used in the ordering algorithm.
+The repository ships with pre-parsed graphs and manifest files so you can experiment immediately:
 
 ```bash
-stacktower pqtree --labels A,B,C,D -o tree.svg
-stacktower pqtree --labels A,B,C,D -o tree.svg 0,1      # Constraint: A,B adjacent
-stacktower pqtree --labels A,B,C,D -o tree.svg 0,1 2,3  # Multiple constraints
+# Real packages with full metadata (XKCD-style by default)
+stacktower render examples/real/flask.json -o flask.svg
+stacktower render examples/real/serde.json -o serde.svg
+stacktower render examples/real/yargs.json -o yargs.svg
+
+# With Nebraska guy maintainer ranking
+stacktower render examples/real/flask.json --nebraska -o flask.svg
+
+# Synthetic test cases for layout algorithm testing
+stacktower render examples/test/diamond.json -o diamond.svg
+stacktower render examples/test/crossing.json -o crossing.svg
 ```
+
+> **Note:** For accurate Nebraska rankings, parse with `--contributors` to fetch maintainer data:
+> ```bash
+> stacktower parse python flask --contributors -o flask.json
+> stacktower render flask.json --nebraska -o flask.svg
+> ```
+
+### Example Manifest & Lock Files
+
+The `examples/manifest/` directory contains sample manifest and lock files for every supported ecosystem, useful for testing `resolve` and `parse` locally:
+
+| File | Language | Type |
+| --- | --- | --- |
+| `poetry.lock` | Python | Lock file |
+| `uv.lock` | Python | Lock file |
+| `pyproject.toml` | Python | Manifest |
+| `requirements.txt` | Python | Manifest |
+| `package-lock.json` | JavaScript | Lock file |
+| `package.json` | JavaScript | Manifest |
+| `Cargo.lock` | Rust | Lock file |
+| `Cargo.toml` | Rust | Manifest |
+| `Gemfile.lock` | Ruby | Lock file |
+| `Gemfile` | Ruby | Manifest |
+| `composer.lock` | PHP | Lock file |
+| `composer.json` | PHP | Manifest |
+| `go.mod` | Go | Manifest |
+| `pom.xml` | Java | Manifest |
+
+```bash
+stacktower resolve examples/manifest/poetry.lock
+stacktower resolve examples/manifest/Cargo.lock
+stacktower resolve examples/manifest/package-lock.json
+```
+
+---
 
 ## JSON Format
 
@@ -877,36 +727,7 @@ These keys are read by specific render flags. All are optional—missing keys si
 | `summary`           | string        | `--popups` (fallback: `description`)       |
 | `vuln_severity`     | string        | `--show-vulns` (severity colour coding)    |
 
-### Piping
-
-When `parse` detects that stdout is piped, it emits clean JSON with no chrome — making it composable with other tools:
-
-```bash
-# Pipe directly into render
-stacktower parse python flask | stacktower render -o flask.svg
-
-# Pipe into jq for analysis
-stacktower parse python requests -o - | jq '.nodes | length'
-
-# Combine with security scan
-stacktower parse python django --security-scan | stacktower render --show-vulns -o django.svg
-```
-
-Progress indicators and summary messages always go to stderr, so they never corrupt piped JSON.
-
-### Terminal Output
-
-A typical `parse` run looks like this:
-
-```
-⠙ Resolving python/flask...  [42/5000]
-  starlette  jinja2  markupsafe  click
-
-✓ Resolved flask (python)
-  42 packages · 67 edges · depth 5 · fresh · 2.3s
-  → flask.json
-Render: stacktower render flask.json
-```
+---
 
 ## Troubleshooting
 
