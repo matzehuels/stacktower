@@ -313,6 +313,7 @@ func TestAnalyzeLicenses_NilDAG(t *testing.T) {
 	report := AnalyzeLicenses(nil)
 	if report == nil {
 		t.Fatal("should return non-nil report for nil DAG")
+		return
 	}
 	if !report.Compliant {
 		t.Error("nil DAG should be compliant")

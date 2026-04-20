@@ -12,6 +12,7 @@ func TestNew(t *testing.T) {
 	h := New(42)
 	if h == nil {
 		t.Fatal("New() returned nil")
+		return
 	}
 	if h.seed != 42 {
 		t.Errorf("seed = %d, want 42", h.seed)

@@ -134,6 +134,7 @@ func TestResolveSpanOverlaps_SeparatorPlacement(t *testing.T) {
 
 	if separator == nil {
 		t.Fatal("expected a separator node")
+		return
 	}
 
 	// Separator should be in intermediate row between parents (0) and children (now at 2)

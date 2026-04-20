@@ -30,6 +30,7 @@ func TestNewComposite(t *testing.T) {
 
 	if c == nil {
 		t.Fatal("NewComposite() returned nil")
+		return
 	}
 	if len(c.providers) != 2 {
 		t.Errorf("providers count = %d, want 2", len(c.providers))

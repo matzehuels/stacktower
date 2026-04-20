@@ -97,6 +97,7 @@ func TestBuildResolveResult(t *testing.T) {
 	}
 	if urllib3Entry == nil {
 		t.Fatal("urllib3 entry not found")
+		return
 	}
 	if len(urllib3Entry.Constraints) != 1 || urllib3Entry.Constraints[0] != ">=1.21,<3" {
 		t.Errorf("urllib3 constraints = %v, want [>=1.21,<3]", urllib3Entry.Constraints)

@@ -100,10 +100,7 @@ func computeReverseDeps(g *DAG, root string) map[string]int {
 		}
 
 		visited := map[string]bool{n.ID: true}
-		stack := []string{}
-		for _, child := range g.Children(n.ID) {
-			stack = append(stack, child)
-		}
+		stack := append([]string{}, g.Children(n.ID)...)
 		for len(stack) > 0 {
 			id := stack[len(stack)-1]
 			stack = stack[:len(stack)-1]

@@ -103,6 +103,7 @@ source = { registry = "https://pypi.org/simple" }
 
 	if result == nil {
 		t.Fatal("Parse() returned nil result")
+		return
 	}
 
 	if result.Type != "uv.lock" {

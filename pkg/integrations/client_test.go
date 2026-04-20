@@ -23,6 +23,7 @@ func TestNewClient(t *testing.T) {
 
 	if client == nil {
 		t.Fatal("NewClient() returned nil")
+		return
 	}
 	if client.http == nil {
 		t.Error("NewClient() http client is nil")
@@ -43,6 +44,7 @@ func TestNewClientNilHeaders(t *testing.T) {
 
 	if client == nil {
 		t.Fatal("NewClient() returned nil")
+		return
 	}
 	if client.headers != nil {
 		t.Error("NewClient() should allow nil headers")
@@ -460,6 +462,7 @@ func TestNewHTTPClient(t *testing.T) {
 	client := NewHTTPClient()
 	if client == nil {
 		t.Fatal("NewHTTPClient() returned nil")
+		return
 	}
 	if client.Timeout != DefaultTimeout {
 		t.Errorf("Timeout = %v, want %v", client.Timeout, DefaultTimeout)
@@ -568,6 +571,7 @@ func TestNewClientWithRateLimit(t *testing.T) {
 	client := NewClientWithRateLimit(c, "test:", time.Hour, nil, 5.0, 10)
 	if client == nil {
 		t.Fatal("NewClientWithRateLimit() returned nil")
+		return
 	}
 	if client.limiter == nil {
 		t.Error("NewClientWithRateLimit() should set limiter")
@@ -581,6 +585,7 @@ func TestNewClientWithRateLimitZeroRPS(t *testing.T) {
 	client := NewClientWithRateLimit(c, "test:", time.Hour, nil, 0, 0)
 	if client == nil {
 		t.Fatal("NewClientWithRateLimit() returned nil")
+		return
 	}
 	if client.limiter != nil {
 		t.Error("NewClientWithRateLimit(rps=0) should not set limiter")

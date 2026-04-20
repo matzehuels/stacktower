@@ -33,8 +33,8 @@ func TestDiff_Identical(t *testing.T) {
 	if len(d.Updated) != 0 {
 		t.Errorf("expected no updated, got %d", len(d.Updated))
 	}
-	if d.Unchanged != 2 {
-		t.Errorf("expected 2 unchanged, got %d", d.Unchanged)
+	if d.Unchanged != 1 {
+		t.Errorf("expected 1 unchanged (root excluded), got %d", d.Unchanged)
 	}
 }
 
@@ -90,8 +90,8 @@ func TestDiff_VersionUpdate(t *testing.T) {
 	if d.Updated[0].ID != "B" || d.Updated[0].OldVersion != "2.0" || d.Updated[0].NewVersion != "3.0" {
 		t.Errorf("unexpected update: %+v", d.Updated[0])
 	}
-	if d.Unchanged != 1 {
-		t.Errorf("expected 1 unchanged (A), got %d", d.Unchanged)
+	if d.Unchanged != 0 {
+		t.Errorf("expected 0 unchanged (root A excluded), got %d", d.Unchanged)
 	}
 }
 
@@ -128,11 +128,11 @@ func TestDiff_CompletelyDifferent(t *testing.T) {
 	)
 
 	d := Diff(before, after)
-	if len(d.Added) != 2 {
-		t.Errorf("expected 2 added, got %d", len(d.Added))
+	if len(d.Added) != 1 {
+		t.Errorf("expected 1 added (Y; root X excluded), got %d", len(d.Added))
 	}
-	if len(d.Removed) != 2 {
-		t.Errorf("expected 2 removed, got %d", len(d.Removed))
+	if len(d.Removed) != 1 {
+		t.Errorf("expected 1 removed (B; root A excluded), got %d", len(d.Removed))
 	}
 	if d.Unchanged != 0 {
 		t.Errorf("expected 0 unchanged, got %d", d.Unchanged)
